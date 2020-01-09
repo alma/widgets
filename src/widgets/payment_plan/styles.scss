@@ -1,0 +1,47 @@
+.alma-payment_plan {
+  padding: 5px;
+}
+
+.alma-payment_plan--plan {
+  margin: 15px 0;
+}
+
+.alma-payment_plan--installments_count {
+  position: relative;
+  display: inline-block;
+
+  width: 1.6em;
+  vertical-align: middle;
+  top: -0.15em;
+
+  margin-right: 5px;
+
+  border-radius: 50%;
+  line-height: 0;
+  background: #3651d2;
+
+  &::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+}
+
+.alma-installments_count--text-wrapper {
+  position: absolute;
+  bottom: 50%;
+  width: 100%;
+  text-align: center;
+
+  color: white;
+  font-size: 0.9em;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.alma-payment_plan--installment {
+  font-weight: bold;
+}

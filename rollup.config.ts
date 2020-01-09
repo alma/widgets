@@ -3,6 +3,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import typescript from 'rollup-plugin-typescript2';
 import json from 'rollup-plugin-json';
+import scss from 'rollup-plugin-scss';
 import {uglify} from 'rollup-plugin-uglify';
 import visualizer from 'rollup-plugin-visualizer';
 
@@ -29,6 +30,9 @@ const baseConfig = {
     commonjs(),
     // Resolve source maps to the original source
     sourceMaps(),
+    scss({
+      outputStyle: 'compressed'
+    }),
   ],
 };
 
@@ -36,14 +40,14 @@ export default [
   {
     ...baseConfig,
     output: [
-      {file: pkg.main, name: 'Alma.Widgets', format: 'umd', sourcemap: true},
+      {file: pkg.main, name: 'Alma', format: 'umd', sourcemap: true},
       {file: pkg.module, format: 'es', sourcemap: true},
     ],
   },
   {
     ...baseConfig,
     output: [
-      {file: pkg.min, name: 'Alma.Widgets', format: 'umd', sourcemap: true},
+      {file: pkg.min, name: 'Alma', format: 'umd', sourcemap: true},
     ],
     plugins: [
       ...baseConfig.plugins,
