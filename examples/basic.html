@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alma Widgets basic example</title>
+
+  <link rel="stylesheet" href="../dist/alma-widgets.umd.css">
+</head>
+<body>
+<h1>Échéancier</h1>
+
+<ul>
+  <li>Paiement de 139,90€</li>
+  <li>Paiement en 3 ou 4 fois</li>
+</ul>
+
+<div id="payment-plan"></div>
+
+<script src="../dist/alma-widgets.umd.js"></script>
+<script>
+  (function () {
+    var widgets = Alma.Widgets.initialize("11hUC3q66y4T08d7YeIw2gEeUkKAzTY8tr", Alma.ApiMode.TEST);
+
+    widgets.create(Alma.Widgets.PaymentPlan, {
+      container: '#payment-plan',
+      purchaseAmount: 13990,
+      installmentsCount: [3, 4]
+    });
+
+    widgets.render();
+  })();
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import {ApiMode, Client} from "alma-js-client";
-import {Widget, WidgetConstructor, WidgetOptions} from "./widgets/base";
+import {Widget, WidgetConstructor, WidgetSettings} from "./widgets/base";
 
 export class WidgetsController {
   private readonly almaClient: Client;
@@ -9,7 +9,7 @@ export class WidgetsController {
     this.almaClient = Client.withMerchantId(merchantId, {mode})
   }
 
-  create(widgetCtor: WidgetConstructor, options: WidgetOptions): Widget {
+  create(widgetCtor: WidgetConstructor, options: WidgetSettings): Widget {
     const widget = new widgetCtor(this.almaClient, options);
     this.widgets.push(widget);
     return widget;
