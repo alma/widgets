@@ -5,8 +5,8 @@ export class WidgetsController {
   private readonly almaClient: Client;
   private widgets: Widget[] = [];
 
-  constructor(merchantId: string, mode: ApiMode) {
-    this.almaClient = Client.withMerchantId(merchantId, {mode})
+  constructor(almaClient: Client) {
+    this.almaClient = almaClient;
   }
 
   create(widgetCtor: WidgetConstructor, options: WidgetSettings): Widget {

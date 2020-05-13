@@ -6,6 +6,8 @@ import json from 'rollup-plugin-json';
 import scss from 'rollup-plugin-scss';
 import {uglify} from 'rollup-plugin-uglify';
 import visualizer from 'rollup-plugin-visualizer';
+import image from '@rollup/plugin-image';
+
 
 const pkg = require('./package.json');
 const libraryName = 'alma-widgets';
@@ -20,12 +22,21 @@ const baseConfig = {
   plugins: [
     // Allow json resolution
     json(),
-    // Compile TypeScript files
-    typescript({useTsconfigDeclarationDir: true}),
+    // Allow image resolution
+    image(),
     // Allow node_modules resolution, so you can use 'external' to control
     // which external modules to include in the bundle
     // https://github.com/rollup/rollup-plugin-node-resolve#usage
     resolve({jsnext: true, preferBuiltins: true, browser: true}),
+    // Compile TypeScript files
+    typescript(
+      {
+        useTsconfigDeclarationDir: true,
+        // Since imported *.svg will be transformed to ES modules by the image plugin above, tell
+        // TypeScript to process them
+        include: ['*.ts+(|x)', '**/*.ts+(|x)', '*.svg', '**/*.svg']
+      }
+    ),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
     // Resolve source maps to the original source

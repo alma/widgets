@@ -1,14 +1,15 @@
 import {DeepRequired, DOMContent, integer} from "../../types";
 import {WidgetSettings} from "../base";
-import Eligibility from "alma-js-client/dist/types/entities/eligibility";
+import {EligibleEligibility} from "alma-js-client/dist/types/entities/eligibility";
+import {WidgetFactoryFunc} from "../types";
 
 export type PaymentPlanWidgetClassesOption = {
   root?: string;
   title?: string;
+  infoButton?: string;
   paymentPlan?: {
     root?: string;
-    installmentsCountWrapper?: string;
-    installmentsCountText?: string;
+    installmentsCount?: string;
     installmentsWrapper?: string;
     installmentAmount?: string;
   };
@@ -18,9 +19,9 @@ export type PaymentPlanWidgetClassesOption = {
 export type PaymentPlanWidgetClasses = DeepRequired<PaymentPlanWidgetClassesOption>;
 
 export type PaymentPlanTemplatesOption = {
-  title?: (eligiblePlans: any[]) => DOMContent | Element[];
-  paymentPlan?: (eligibility: Eligibility, classes: PaymentPlanWidgetClasses) => DOMContent | Element[];
-  notEligible?: (minimum: number, maximum: number) => DOMContent | Element[];
+  title?: (eligiblePlans: EligibleEligibility[], config: PaymentPlanConfig, createWidget: WidgetFactoryFunc) => DOMContent;
+  paymentPlan?: (eligibility: EligibleEligibility, config: PaymentPlanConfig, createWidget: WidgetFactoryFunc) => DOMContent;
+  notEligible?: (min: number, max: number, installmentsCounts: integer[], config: PaymentPlanConfig, createWidget: WidgetFactoryFunc) => DOMContent;
 }
 
 type PaymentPlanOptions = {

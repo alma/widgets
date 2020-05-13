@@ -9,8 +9,4 @@ export type DeepRequired<T> = {
     DeepRequired<T[K]>
 }
 
-export type DOMContent = string | Element;
-
-export interface RenderingFunc {
-  (renderingContext: any): DOMContent;
-}
+export type DOMContent = string | HTMLElement | HTMLElement[];
