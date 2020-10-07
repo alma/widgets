@@ -15,9 +15,10 @@
   cursor: pointer;
 
   img {
+    display: inline;
     width: 15px;
     vertical-align: middle;
-    margin: 0 3px;
+    margin: 0 5px;
   }
 }
 
@@ -97,9 +98,14 @@
 .alma-hiw_content--logo {
   text-align: center;
   margin-bottom: 30px;
+
+  img {
+    display: inline;
+  }
 }
 
 .alma-hiw_content--card-logo {
+  display: inline;
   vertical-align: middle;
   margin-right: 8px;
 }
