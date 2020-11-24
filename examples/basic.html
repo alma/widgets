@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Alma Widgets basic example</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Alma Widgets basic example</title>
 
-  <link rel="stylesheet" href="../dist/alma-widgets.css">
-  <style>
-    body {
-      font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
-      font-size: 15px;
-    }
-  </style>
-</head>
-<body>
-<h1>Échéancier</h1>
+    <link rel="stylesheet" href="../dist/alma-widgets.css" />
+    <style>
+      body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif;
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Échéancier</h1>
 
-<ul>
-  <li>Paiement de 150€</li>
-  <li>Paiement en 3 ou 4 fois</li>
-</ul>
+    <ul>
+      <li>Paiement de 150€</li>
+      <li>Paiement en 3 ou 4 fois</li>
+    </ul>
 
-<div id="payment-plan"></div>
-<br><br><br><br><br><br><br><br>
-<div id="how-it-works"></div>
+    <div id="payment-plan"></div>
+    <br /><br /><br /><br /><br /><br /><br /><br />
+    <div id="how-it-works"></div>
 
-<script src="../dist/alma-widgets.umd.js"></script>
-<script>
-  (function () {
-    var widgets = Alma.Widgets.initialize("11gKoO333vEXacMNMUMUSc4c4g68g2Les4", Alma.ApiMode.TEST);
+    <script src="../dist/alma-widgets.umd.js"></script>
+    <script>
+      ;(function () {
+        var widgets = Alma.Widgets.initialize(
+          '11gKoO333vEXacMNMUMUSc4c4g68g2Les4',
+          Alma.ApiMode.TEST
+        )
 
-    widgets.create(Alma.Widgets.PaymentPlan, {
-      container: '#payment-plan',
-      purchaseAmount: 15000,
-      installmentsCount: [3, 4, 12]
-    });
+        widgets.create(Alma.Widgets.PaymentPlan, {
+          container: '#payment-plan',
+          purchaseAmount: 15000,
+          installmentsCount: [3, 4, 12],
+        })
 
-    widgets.create(Alma.Widgets.HowItWorks, {
-      container: '#how-it-works',
-    });
+        widgets.create(Alma.Widgets.HowItWorks, {
+          container: '#how-it-works',
+        })
 
-    widgets.render();
-  })();
-</script>
-</body>
+        widgets.render()
+      })()
+    </script>
+  </body>
 </html>
