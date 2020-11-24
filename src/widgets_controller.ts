@@ -1,29 +1,29 @@
-import {ApiMode, Client} from "alma-js-client";
-import {Widget, WidgetConstructor, WidgetSettings} from "./widgets/base";
+import { Client } from '@alma/client'
+import { Widget, WidgetConstructor, WidgetSettings } from './widgets/base'
 
 export class WidgetsController {
-  private readonly almaClient: Client;
-  private widgets: Widget[] = [];
+  private readonly almaClient: Client
+  private widgets: Widget[] = []
 
   constructor(almaClient: Client) {
-    this.almaClient = almaClient;
+    this.almaClient = almaClient
   }
 
   create(widgetCtor: WidgetConstructor, options: WidgetSettings): Widget {
-    const widget = new widgetCtor(this.almaClient, options);
-    this.widgets.push(widget);
-    return widget;
+    const widget = new widgetCtor(this.almaClient, options)
+    this.widgets.push(widget)
+    return widget
   }
 
-  async render() {
-    let promises: Promise<void>[] = [];
+  async render(): Promise<void> {
+    const promises: Promise<void>[] = []
 
-    for (let widget of this.widgets) {
-      promises.push(widget.refresh());
+    for (const widget of this.widgets) {
+      promises.push(widget.refresh())
     }
 
-    await Promise.all(promises);
+    await Promise.all(promises)
   }
 }
 
-export default WidgetsController;
+export default WidgetsController

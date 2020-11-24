@@ -1,12 +1,6 @@
 // For semantic purposes
-export type integer = number;
+export type integer = number
 
-type primitive = string | number | boolean | Function | undefined | null;
-export type DeepRequired<T> = {
-  [K in keyof T]-?:
-    T[K] extends primitive ? T[K] :
-    T[K] extends (infer U)[] ? DeepRequired<U>[] :
-    DeepRequired<T[K]>
-}
+export { DeepRequired } from 'ts-essentials'
 
-export type DOMContent = string | HTMLElement | HTMLElement[];
+export type DOMContent = string | HTMLElement | HTMLElement[]
