@@ -79,13 +79,8 @@ describe('makeConfig', () => {
       },
     }
 
-    const config = makeConfig(defaults, settings)
-
-    // TODO: this assertion should not fail. makeConfig is "parameterized" with
-    //  <T extends WidgetSettings> (...) => WidgetConfig<T> ; I'd expect TSC to consider the return
-    //  type to be WidgetConfig<TestSettings>, but it resolves to WidgetConfig<WidgetSettings>
-    // expectTypeOf(config).toEqualTypeOf<WidgetConfig<TestSettings>>()
-    expectTypeOf(config).toEqualTypeOf<WidgetConfig<WidgetSettings>>()
+    const config = makeConfig<TestSettings>(defaults, settings)
+    expectTypeOf(config).toEqualTypeOf<WidgetConfig<TestSettings>>()
 
     // Resulting config is a merge of default config & settings, with precedence to the latter
     expect(config).toEqual({

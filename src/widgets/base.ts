@@ -23,7 +23,7 @@ export abstract class Widget<SettingsType extends WidgetSettings> {
   private readonly _config: WidgetConfig<SettingsType>
 
   constructor(protected readonly almaClient: Client, settings: SettingsLiteral<SettingsType>) {
-    this._config = makeConfig(this.defaultConfig(), settings)
+    this._config = makeConfig<SettingsType>(this.defaultConfig(), settings)
   }
 
   abstract defaultConfig(): DefaultWidgetConfig<SettingsType>
