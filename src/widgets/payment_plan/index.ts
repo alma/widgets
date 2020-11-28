@@ -6,45 +6,35 @@ import { Widget } from '../base'
 import { DOMContent, integer } from '@/types'
 import { Client } from '@alma/client'
 import { setDOMContent } from '@/utils'
-import defaultTemplates from './default_templates'
-import { PaymentPlanConfig, PaymentPlanSettings, PaymentPlanWidgetClasses } from './types'
+import { defaultTemplates } from './default_templates'
+import { PaymentPlanSettings } from './types'
 import { WidgetFactoryFunc } from '../types'
+import { DefaultWidgetConfig } from '@/widgets/config'
 
-const defaultClasses: PaymentPlanWidgetClasses = {
-  root: 'alma-payment_plan',
-  title: 'alma-payment_plan--title',
-  infoButton: 'alma-payment_plan--info_btn',
-  paymentPlan: {
-    root: 'alma-payment_plan--plan',
-    installmentsCount: 'alma-payment_plan--installments_count',
-    installmentsWrapper: 'alma-payment_plan--installments',
-    installmentAmount: 'alma-payment_plan--installment',
-  },
-  notEligible: 'alma-payment_plan--not_eligible',
-}
+type PaymentPlanDefaultConfig = DefaultWidgetConfig<PaymentPlanSettings>
 
-export class PaymentPlanWidget extends Widget {
-  constructor(almaClient: Client, options: PaymentPlanSettings) {
-    // Inject default templates into the given options
-    options = {
-      ...options,
-      templates: {
-        ...defaultTemplates,
-        ...options.templates,
-      },
+export class PaymentPlanWidget extends Widget<PaymentPlanSettings> {
+  defaultConfig(): PaymentPlanDefaultConfig {
+    return {
+      purchaseAmount: 100,
+      installmentsCount: 3,
+      minPurchaseAmount: null,
+      maxPurchaseAmount: null,
+      templates: defaultTemplates,
       classes: {
-        ...defaultClasses,
-        ...options.classes,
+        root: 'alma-payment_plan',
+        title: 'alma-payment_plan--title',
+        infoButton: 'alma-payment_plan--info_btn',
+        paymentPlan: {
+          root: 'alma-payment_plan--plan',
+          installmentsCount: 'alma-payment_plan--installments_count',
+          installmentsWrapper: 'alma-payment_plan--installments',
+          installmentAmount: 'alma-payment_plan--installment',
+        },
+        notEligible: 'alma-payment_plan--not_eligible',
       },
     }
-
-    super(almaClient, options)
   }
-
-  get config(): PaymentPlanConfig {
-    return { ...this._config } as PaymentPlanConfig
-  }
-
   get installmentsCounts(): integer[] {
     let installmentsCounts = this.config.installmentsCount
 
@@ -56,11 +46,11 @@ export class PaymentPlanWidget extends Widget {
   }
 
   protected async prepare(almaClient: Client): Promise<any> {
-    const options = this._config as PaymentPlanConfig
+    const { purchaseAmount, minPurchaseAmount, maxPurchaseAmount } = this.config
 
     if (
-      options.purchaseAmount < options.minPurchaseAmount ||
-      options.purchaseAmount > options.maxPurchaseAmount
+      (minPurchaseAmount && purchaseAmount < minPurchaseAmount) ||
+      (maxPurchaseAmount && purchaseAmount > maxPurchaseAmount)
     ) {
       return [
         {
@@ -70,8 +60,8 @@ export class PaymentPlanWidget extends Widget {
           },
           constraints: {
             purchase_amount: {
-              minimum: options.minPurchaseAmount,
-              maximum: options.maxPurchaseAmount,
+              minimum: minPurchaseAmount,
+              maximum: maxPurchaseAmount,
             },
           },
         },
@@ -80,7 +70,7 @@ export class PaymentPlanWidget extends Widget {
 
     return almaClient.payments.eligibility({
       payment: {
-        purchase_amount: options.purchaseAmount,
+        purchase_amount: purchaseAmount,
         installments_count: this.installmentsCounts,
       },
     })
@@ -158,5 +148,3 @@ export class PaymentPlanWidget extends Widget {
     return root
   }
 }
-
-export default PaymentPlanWidget

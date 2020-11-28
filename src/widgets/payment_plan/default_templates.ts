@@ -1,14 +1,15 @@
-import { DOMContent, integer } from '../../types'
+import { DOMContent, integer, ResolvePreserve } from '@/types'
 import { joinInstallmentsCounts, createRootElement, formatCents, imageWithSrc } from '../../utils'
-import { EligibleEligibility } from '@alma/client/dist/types/entities/eligibility'
-import { PaymentPlanConfig, PaymentPlanTemplatesOption, PaymentPlanWidgetClasses } from './types'
+import { EligibleEligibility, IInstallment } from '@alma/client/dist/types/entities/eligibility'
+import { PaymentPlanClassesConfig, PaymentPlanSettings } from './types'
 import { WidgetFactoryFunc } from '../types'
 import HowItWorksWidget from '../how_it_works'
-import { HowItWorksSettings, HowItWorksWidgetClasses } from '../how_it_works/types'
+import { HowItWorksSettings, HowItWorksClassesConfig } from '../how_it_works/types'
 import infoLogo from '../../assets/info.svg'
+import { WidgetConfig } from '@/widgets/config'
 
-function howItWorksCtaTemplate(title: HTMLElement, classes: PaymentPlanWidgetClasses) {
-  return (openModal: EventHandlerNonNull, nestedClasses: HowItWorksWidgetClasses): DOMContent => {
+function howItWorksCtaTemplate(title: HTMLElement, classes: PaymentPlanClassesConfig) {
+  return (openModal: EventHandlerNonNull, nestedClasses: HowItWorksClassesConfig): DOMContent => {
     const cta = createRootElement(nestedClasses.cta)
     cta.appendChild(title)
 
@@ -23,7 +24,7 @@ function howItWorksCtaTemplate(title: HTMLElement, classes: PaymentPlanWidgetCla
 
 function titleTemplate(
   eligiblePlans: EligibleEligibility[],
-  config: PaymentPlanConfig,
+  config: WidgetConfig<PaymentPlanSettings>,
   createWidget: WidgetFactoryFunc
 ): HTMLElement {
   const titleWrapper = createRootElement(config.classes.title)
@@ -50,7 +51,7 @@ function titleTemplate(
   return titleWrapper
 }
 
-function _installmentTemplate(content: string, classes: PaymentPlanWidgetClasses): HTMLElement {
+function _installmentTemplate(content: string, classes: PaymentPlanClassesConfig): HTMLElement {
   const installment = document.createElement('span')
   installment.className = classes.paymentPlan.installmentAmount
   installment.innerHTML = content
@@ -60,8 +61,8 @@ function _installmentTemplate(content: string, classes: PaymentPlanWidgetClasses
 
 function paymentPlanTemplate(
   eligibility: EligibleEligibility,
-  config: PaymentPlanConfig,
-  createWidget: WidgetFactoryFunc
+  config: WidgetConfig<PaymentPlanSettings>,
+  _: WidgetFactoryFunc
 ): HTMLElement[] {
   const installmentsCountLabel = document.createElement('span')
   installmentsCountLabel.className = config.classes.paymentPlan.installmentsCount
@@ -72,7 +73,7 @@ function paymentPlanTemplate(
 
   const installmentsData = [...eligibility.payment_plan]
   const equalInstallments = eligibility.payment_plan.every(
-    (p: any, idx: number, arr: Array<any>) => {
+    (p: IInstallment, idx: number, arr: IInstallment[]) => {
       return p.purchase_amount + p.customer_fee === arr[0].purchase_amount + arr[0].customer_fee
     }
   )
@@ -99,7 +100,7 @@ function notEligibleTemplate(
   min: number,
   max: number,
   installmentsCounts: integer[],
-  config: PaymentPlanConfig,
+  config: WidgetConfig<PaymentPlanSettings>,
   createWidget: WidgetFactoryFunc
 ): HTMLElement {
   const titleWrapper = createRootElement(config.classes.title)
@@ -115,15 +116,16 @@ function notEligibleTemplate(
     templates: {
       cta: howItWorksCtaTemplate(title, config.classes),
     },
-  } as HowItWorksSettings)
+    // TODO: why does WidgetFactoryFunc "wrongly" resolves SettingsFor<T> to WidgetSettings when
+    //  widget is declared as `class Widget<T extends WidgetSettings>`, but correctly to
+    //  HowItWorksSettings when it is declared as `class Widget<T>`?
+  } as ResolvePreserve<HowItWorksSettings>)
 
   return titleWrapper
 }
 
-const templates: PaymentPlanTemplatesOption = {
+export const defaultTemplates = {
   title: titleTemplate,
   paymentPlan: paymentPlanTemplate,
   notEligible: notEligibleTemplate,
 }
-
-export default templates

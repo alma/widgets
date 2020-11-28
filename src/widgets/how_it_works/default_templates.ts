@@ -1,5 +1,5 @@
-import { HowItWorksTemplates, HowItWorksWidgetClasses } from './types'
-import { DOMContent } from '../../types'
+import { HowItWorksTemplatesConfig, HowItWorksClassesConfig } from './types'
+import { DOMContent } from '@/types'
 import {
   createListElement,
   createRootElement,
@@ -23,7 +23,7 @@ function logo(): DOMContent {
   return imageWithSrc(almaLogo)
 }
 
-function cta(openModal: EventHandlerNonNull, classes: HowItWorksWidgetClasses): DOMContent {
+function cta(openModal: EventHandlerNonNull, classes: HowItWorksClassesConfig): DOMContent {
   const cta = createRootElement(classes.cta)
   cta.appendChild(document.createTextNode('Comment ça marche ?'))
   cta.appendChild(imageWithSrc(infoLogo))
@@ -34,7 +34,7 @@ function cta(openModal: EventHandlerNonNull, classes: HowItWorksWidgetClasses): 
 function modal(
   content: DOMContent,
   closeModal: EventHandlerNonNull,
-  classes: HowItWorksWidgetClasses
+  classes: HowItWorksClassesConfig
 ): DOMContent {
   const wrapper = createRootElement(classes.modal.wrapper)
 
@@ -63,7 +63,7 @@ function modal(
 function modalContent(
   paymentPlans: IPaymentPlan[],
   closeModal: EventHandlerNonNull,
-  classes: HowItWorksWidgetClasses
+  classes: HowItWorksClassesConfig
 ): DOMContent {
   const contentRoot = createRootElement(classes.modal.content.wrapper)
 
@@ -149,6 +149,8 @@ function modalContent(
 
   // Make first sample payment plan selected & visible
   setDOMContent(planDetailsWrapper, planDetails[0])
+
+  // TODO: Remove non-null assertion / handle null case
   paymentPlansButtonsList
     .querySelector(`.${classes.modal.content.paymentPlanButton.button}`)!
     .classList.add(classes.modal.content.paymentPlanButton.selected)
@@ -178,11 +180,9 @@ function modalContent(
   return contentRoot
 }
 
-export const templates: HowItWorksTemplates = {
+export const defaultTemplates: HowItWorksTemplatesConfig = {
   logo,
   cta,
   modal,
   modalContent,
 }
-
-export default templates

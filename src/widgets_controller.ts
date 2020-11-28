@@ -1,16 +1,13 @@
 import { Client } from '@alma/client'
-import { Widget, WidgetConstructor, WidgetSettings } from './widgets/base'
+import { Widget, WidgetSettings, ConstructorFor, SettingsFor } from './widgets/base'
 
 export class WidgetsController {
-  private readonly almaClient: Client
-  private widgets: Widget[] = []
+  private widgets: Widget<WidgetSettings>[] = []
 
-  constructor(almaClient: Client) {
-    this.almaClient = almaClient
-  }
+  constructor(private readonly almaClient: Client) {}
 
-  create(widgetCtor: WidgetConstructor, options: WidgetSettings): Widget {
-    const widget = new widgetCtor(this.almaClient, options)
+  create<T>(widgetCtor: ConstructorFor<T>, settings: SettingsFor<T>): T {
+    const widget = new widgetCtor(this.almaClient, settings)
     this.widgets.push(widget)
     return widget
   }

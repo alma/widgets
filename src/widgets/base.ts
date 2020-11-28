@@ -1,43 +1,50 @@
-import { DOMContent } from '@/types'
+import { DOMContent, ResolvePreserve } from '@/types'
 import { Client } from '@alma/client'
 import { setDOMContent } from '@/utils'
 import WidgetsController from '../widgets_controller'
-import { RenderingFunc, WidgetFactoryFunc } from './types'
+import { WidgetFactoryFunc } from './types'
+import {
+  DefaultWidgetConfig,
+  makeConfig,
+  WidgetConfig,
+  BaseWidgetSettings,
+  BaseTemplateSettings,
+  BaseClassesSettings,
+} from '@/widgets/config'
 
-export interface WidgetConstructor {
-  new <T extends Widget>(almaClient: Client, options: WidgetSettings): T
-}
+export type WidgetSettings = BaseWidgetSettings<BaseTemplateSettings, BaseClassesSettings>
 
-export interface WidgetSettings {
-  // CSS selector to a single DOM element, or a DOM Element itself into which the widget must render
-  container: string | HTMLElement
-  // Override the rendering of a widget by providing your own rendering function.
-  render?: RenderingFunc
-}
+export type ConstructorFor<T> = T extends Widget<infer SettingsType>
+  ? new (almaClient: Client, settings: ResolvePreserve<SettingsType>) => T
+  : never
 
-type WidgetConfig = WidgetSettings
+export type SettingsFor<T> = T extends Widget<infer SettingsType>
+  ? ResolvePreserve<SettingsType>
+  : never
 
-export abstract class Widget {
-  protected _config: WidgetConfig
-  protected readonly _almaClient: Client
+export abstract class Widget<SettingsType extends WidgetSettings> {
+  private readonly _config: WidgetConfig<SettingsType>
 
-  protected constructor(almaClient: Client, options: WidgetSettings) {
-    this._config = options
-    this._almaClient = almaClient
+  constructor(protected readonly almaClient: Client, settings: ResolvePreserve<SettingsType>) {
+    this._config = makeConfig(this.defaultConfig(), settings)
   }
 
-  get config(): WidgetConfig {
+  abstract defaultConfig(): DefaultWidgetConfig<SettingsType>
+
+  get config(): WidgetConfig<SettingsType> {
     return { ...this._config }
   }
 
   private get container(): HTMLElement {
-    let container: HTMLElement | null
+    let container: HTMLElement
 
     if (typeof this._config.container === 'string') {
-      container = document.querySelector(this._config.container)
+      const foundElement = document.querySelector(this._config.container)
 
-      if (!container) {
+      if (!foundElement) {
         throw new Error(`Container element '${this._config.container}' not found`)
+      } else {
+        container = foundElement as HTMLElement
       }
     } else {
       container = this._config.container
@@ -46,9 +53,19 @@ export abstract class Widget {
     return container
   }
 
+  protected abstract prepare(almaClient: Client): Promise<unknown>
+  protected abstract render(
+    renderingContext: unknown,
+    createWidget: WidgetFactoryFunc
+  ): Promise<DOMContent>
+
+  mount(dom: DOMContent): void {
+    setDOMContent(this.container, dom)
+  }
+
   async refresh(): Promise<void> {
-    const renderingContext = await this.prepare(this._almaClient)
-    const nestedWidgets = new WidgetsController(this._almaClient)
+    const renderingContext = await this.prepare(this.almaClient)
+    const nestedWidgets = new WidgetsController(this.almaClient)
 
     let dom: DOMContent
     const createWidget = nestedWidgets.create.bind(nestedWidgets)
@@ -63,15 +80,4 @@ export abstract class Widget {
     // Render any nested widget that might have been added by the rendering of the widget
     await nestedWidgets.render()
   }
-
-  mount(dom: DOMContent): void {
-    setDOMContent(this.container, dom)
-  }
-
-  protected abstract prepare(almaClient: Client): Promise<unknown>
-
-  protected abstract render(
-    renderingContext: unknown,
-    createWidget: WidgetFactoryFunc
-  ): Promise<DOMContent>
 }
