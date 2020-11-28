@@ -4,7 +4,7 @@ import './utils/polyfills'
 import './scss/main.scss'
 
 import { ApiMode, Client } from '@alma/client'
-import WidgetsController from './widgets_controller'
+import { WidgetsController } from './widgets_controller'
 
 import * as widgets from './widgets'
 import * as utils from './utils'

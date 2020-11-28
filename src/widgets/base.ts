@@ -1,7 +1,7 @@
 import { DOMContent, ResolvePreserve } from '@/types'
 import { Client } from '@alma/client'
 import { setDOMContent } from '@/utils'
-import WidgetsController from '../widgets_controller'
+import { WidgetsController } from '@/widgets_controller'
 import { WidgetFactoryFunc } from './types'
 import {
   DefaultWidgetConfig,

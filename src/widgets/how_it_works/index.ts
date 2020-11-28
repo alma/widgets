@@ -128,5 +128,3 @@ export class HowItWorksWidget extends Widget<HowItWorksSettings> {
     return root
   }
 }
-
-export default HowItWorksWidget

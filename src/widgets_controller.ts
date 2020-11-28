@@ -22,5 +22,3 @@ export class WidgetsController {
     await Promise.all(promises)
   }
 }
-
-export default WidgetsController

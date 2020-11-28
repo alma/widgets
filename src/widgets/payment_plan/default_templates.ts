@@ -3,7 +3,7 @@ import { joinInstallmentsCounts, createRootElement, formatCents, imageWithSrc } 
 import { EligibleEligibility, IInstallment } from '@alma/client/dist/types/entities/eligibility'
 import { PaymentPlanClassesConfig, PaymentPlanSettings } from './types'
 import { WidgetFactoryFunc } from '../types'
-import HowItWorksWidget from '../how_it_works'
+import { HowItWorksWidget } from '../how_it_works'
 import { HowItWorksSettings, HowItWorksClassesConfig } from '../how_it_works/types'
 import infoLogo from '../../assets/info.svg'
 import { WidgetConfig } from '@/widgets/config'
