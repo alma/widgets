@@ -6,17 +6,18 @@ import {
   BaseWidgetSettings,
   DefaultWidgetConfig,
   makeConfig,
+  SettingsLiteral,
   WidgetConfig,
   WidgetSettings,
 } from '@/widgets/config'
-import { DOMContent, ResolvePreserve } from '../src/types'
+import { DOMContent } from '../src/types'
 import { RenderingFunc } from '../src/widgets/types'
 
 describe('makeConfig', () => {
   it('has the correct signature', () => {
     type expectedFuncSignature = <T extends WidgetSettings>(
       defaults: DefaultWidgetConfig<T>,
-      settings: ResolvePreserve<T>
+      settings: SettingsLiteral<T>
     ) => WidgetConfig<T>
 
     expectTypeOf(makeConfig).toEqualTypeOf<expectedFuncSignature>()
@@ -64,7 +65,7 @@ describe('makeConfig', () => {
       },
     }
 
-    const settings: ResolvePreserve<TestSettings> = {
+    const settings: SettingsLiteral<TestSettings> = {
       container,
       render,
       testSetting: {

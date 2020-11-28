@@ -29,6 +29,8 @@ export interface BaseWidgetSettings<
 
 export type WidgetSettings = BaseWidgetSettings<BaseTemplateSettings, BaseClassesSettings>
 
+export type SettingsLiteral<T> = ResolvePreserve<T>
+
 /*
  *  *Config: "complete" representations of settings for internal use
  */
@@ -56,7 +58,7 @@ export type DefaultWidgetConfig<T> = T extends BaseWidgetSettings<infer _, infer
  */
 export function makeConfig<T extends WidgetSettings>(
   defaults: DefaultWidgetConfig<T>,
-  settings: ResolvePreserve<T>
+  settings: SettingsLiteral<T>
 ): WidgetConfig<T> {
   const result: WidgetConfig<T> = {} as WidgetConfig<T>
   const sources = [defaults, settings]

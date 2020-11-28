@@ -1,22 +1,28 @@
-import { DOMContent, ResolvePreserve } from '@/types'
+import { DOMContent } from '@/types'
 import { Client } from '@alma/client'
 import { setDOMContent } from '@/utils'
 import { WidgetsController } from '@/widgets_controller'
 import { WidgetFactoryFunc } from './types'
-import { DefaultWidgetConfig, makeConfig, WidgetConfig, WidgetSettings } from '@/widgets/config'
+import {
+  DefaultWidgetConfig,
+  makeConfig,
+  SettingsLiteral,
+  WidgetConfig,
+  WidgetSettings,
+} from '@/widgets/config'
 
 export type ConstructorFor<T> = T extends Widget<infer SettingsType>
-  ? new (almaClient: Client, settings: ResolvePreserve<SettingsType>) => T
+  ? new (almaClient: Client, settings: SettingsLiteral<SettingsType>) => T
   : never
 
 export type SettingsFor<T> = T extends Widget<infer SettingsType>
-  ? ResolvePreserve<SettingsType>
+  ? SettingsLiteral<SettingsType>
   : never
 
 export abstract class Widget<SettingsType extends WidgetSettings> {
   private readonly _config: WidgetConfig<SettingsType>
 
-  constructor(protected readonly almaClient: Client, settings: ResolvePreserve<SettingsType>) {
+  constructor(protected readonly almaClient: Client, settings: SettingsLiteral<SettingsType>) {
     this._config = makeConfig(this.defaultConfig(), settings)
   }
 
