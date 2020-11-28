@@ -3,16 +3,7 @@ import { Client } from '@alma/client'
 import { setDOMContent } from '@/utils'
 import { WidgetsController } from '@/widgets_controller'
 import { WidgetFactoryFunc } from './types'
-import {
-  DefaultWidgetConfig,
-  makeConfig,
-  WidgetConfig,
-  BaseWidgetSettings,
-  BaseTemplateSettings,
-  BaseClassesSettings,
-} from '@/widgets/config'
-
-export type WidgetSettings = BaseWidgetSettings<BaseTemplateSettings, BaseClassesSettings>
+import { DefaultWidgetConfig, makeConfig, WidgetConfig, WidgetSettings } from '@/widgets/config'
 
 export type ConstructorFor<T> = T extends Widget<infer SettingsType>
   ? new (almaClient: Client, settings: ResolvePreserve<SettingsType>) => T

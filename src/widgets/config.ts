@@ -4,8 +4,9 @@ import { MarkOptional } from 'ts-essentials'
 import { DOMContent, IObject, Preserve, PreservedDeepRequired, ResolvePreserve } from '@/types'
 import { RenderingFunc } from '@/widgets/types'
 
-// *Settings: interfaces for lib consumers
-/////////////////////////////////////////////
+/*
+ *  *Settings: interfaces for lib consumers
+ */
 export interface BaseTemplateSettings {
   [K: string]: ((...args: never[]) => DOMContent) | undefined
 }
@@ -26,7 +27,11 @@ export interface BaseWidgetSettings<
   classes?: Cls
 }
 
-/* *Config: "complete" representations of settings for internal use */
+export type WidgetSettings = BaseWidgetSettings<BaseTemplateSettings, BaseClassesSettings>
+
+/*
+ *  *Config: "complete" representations of settings for internal use
+ */
 
 // A Widget config is derived from its Settings type, making all keys
 // required except `render` ()
@@ -49,7 +54,7 @@ export type DefaultWidgetConfig<T> = T extends BaseWidgetSettings<infer _, infer
  *
  * @return WidgetConfig the fully merged config object
  */
-export function makeConfig<T>(
+export function makeConfig<T extends WidgetSettings>(
   defaults: DefaultWidgetConfig<T>,
   settings: ResolvePreserve<T>
 ): WidgetConfig<T> {

@@ -1,5 +1,6 @@
 import { Client } from '@alma/client'
-import { Widget, WidgetSettings, ConstructorFor, SettingsFor } from './widgets/base'
+import { Widget, ConstructorFor, SettingsFor } from './widgets/base'
+import { WidgetSettings } from '@/widgets/config'
 
 export class WidgetsController {
   private widgets: Widget<WidgetSettings>[] = []
