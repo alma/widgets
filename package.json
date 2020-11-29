@@ -20,7 +20,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "microbundle --name Alma watch",
+    "start": "microbundle --name Alma --jsxImportSource preact --css-modules false watch",
     "test": "jest --coverage",
     "test:no-coverage": "jest",
     "test:watch": "jest --coverage --watch",
@@ -28,7 +28,7 @@
     "lint": "npx eslint src test --ext .js,.ts",
     "lint:fix": "npx eslint --fix src test --ext .js,.ts",
     "prebuild": "rm -rf dist",
-    "build": "microbundle --name Alma --css-modules false",
+    "build": "microbundle --name Alma --jsxImportSource preact --css-modules false",
     "commit": "git-cz",
     "semantic-release": "semantic-release"
   },
@@ -43,6 +43,7 @@
     "@types/jest": "^26.0.14",
     "@types/lodash.isplainobject": "^4.0.6",
     "@types/node": "^14.14.10",
+    "@types/react": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
     "commitizen": "^4.2.1",
@@ -68,7 +69,8 @@
   },
   "dependencies": {
     "@alma/client": "^1.0.0",
-    "lodash.isplainobject": "^4.0.6"
+    "lodash.isplainobject": "^4.0.6",
+    "preact": "^10.5.7"
   },
   "commitlint": {
     "extends": [

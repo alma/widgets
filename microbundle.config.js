@@ -24,7 +24,12 @@ module.exports = {
       const _external = config.inputOptions.external
 
       config.inputOptions.external = (id, ...args) => {
-        if (id in (pkg.dependencies || {}) || id in (pkg.peerDependencies || {})) {
+        if (
+          id in (pkg.dependencies || {}) ||
+          id in (pkg.peerDependencies || {}) ||
+          // preact imports internal modules that we need inlined into the lib as well
+          id.match(/^preact\//)
+        ) {
           return false
         }
         return _external(id, ...args)
