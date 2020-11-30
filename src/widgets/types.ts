@@ -1,10 +1,10 @@
-import {Widget, WidgetConstructor, WidgetSettings} from "./base";
-import {DOMContent} from "../types";
+import { ConstructorFor, SettingsFor } from './base'
+import { DOMContent } from '@/types'
 
 export interface WidgetFactoryFunc {
-  (widgetCtor: WidgetConstructor, options: WidgetSettings): Widget;
+  <T>(widgetCtor: ConstructorFor<T>, settings: SettingsFor<T>): T
 }
 
 export interface RenderingFunc {
-  (renderingContext: any, createWidget: WidgetFactoryFunc): Promise<DOMContent>;
+  (renderingContext: unknown, createWidget: WidgetFactoryFunc): Promise<DOMContent>
 }

@@ -22,7 +22,6 @@
   }
 }
 
-
 .alma-modal--wrapper {
   position: fixed;
 
@@ -62,7 +61,6 @@
     overflow: auto;
   }
 }
-
 
 .alma-modal--close-btn {
   position: absolute;
@@ -129,23 +127,24 @@
   display: inline-block;
   padding: 10px;
   margin: 0 10px;
-  border: 2px solid #DADFFB;
+  border: 2px solid #dadffb;
   border-radius: 3px;
   cursor: pointer;
   color: #3651d2;
 
   transition: all 300ms ease-in-out;
 
-  &:hover, &.alma-hiw_content--plan-btn__selected {
+  &:hover,
+  &.alma-hiw_content--plan-btn__selected {
     border-color: #3651d2;
-    background: #F0F8FF;
+    background: #f0f8ff;
   }
 
   .alma-hiw_content--plan-btn--installments_count {
     position: relative;
     border-bottom: 3px solid #3651d2;
 
-    font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif;
     font-weight: bold;
   }
 }
@@ -176,7 +175,8 @@
   font-size: 0.8em;
   transition: all 300ms ease-in-out;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: #3651d2;
     color: white;
     outline: none;

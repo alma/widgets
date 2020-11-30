@@ -1,57 +1,192 @@
 {
-  "name": "alma-widgets",
-  "version": "0.0.0",
-  "description": "",
+  "name": "@alma/widgets",
+  "version": "0.0.0-development",
+  "description": "Widgets to easily display information from Alma - https://getalma.eu",
   "keywords": [],
-  "main": "dist/alma-widgets.umd.js",
-  "module": "dist/alma-widgets.es5.js",
-  "min": "dist/alma-widgets.umd.min.js",
-  "typings": "dist/types/alma-widgets.d.ts",
+  "main": "dist/alma-widgets.js",
+  "umd:main": "dist/alma-widgets.umd.js",
+  "module": "dist/alma-widgets.m.js",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "author": "Olivier Lance <olivier.lance@getalma.eu>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/alma/alma-widgets"
   },
   "license": "MIT",
   "engines": {
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "prebuild": "rimraf dist",
-    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
-    "start": "rollup -c rollup.config.ts -w",
+    "start": "microbundle --name Alma watch",
     "test": "jest --coverage",
+    "test:no-coverage": "jest",
     "test:watch": "jest --coverage --watch",
     "test:prod": "npm run lint && npm run test -- --no-cache",
-    "deploy-docs": "ts-node tools/gh-pages-publish",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "lint": "npx eslint src test --ext .js,.ts",
+    "lint:fix": "npx eslint --fix src test --ext .js,.ts",
+    "prebuild": "rm -rf dist",
+    "build": "microbundle --name Alma --css-modules false",
     "commit": "git-cz",
-    "semantic-release": "semantic-release",
-    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
-    "precommit": "lint-staged",
-    "travis-deploy-once": "travis-deploy-once"
+    "semantic-release": "semantic-release"
   },
-  "lint-staged": {
-    "{src,test}/**/*.ts": [
-      "prettier --write",
-      "git add"
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@google/semantic-release-replace-plugin": "^1.0.2",
+    "@octokit/core": "^3.2.1",
+    "@rollup/plugin-image": "^2.0.5",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@types/jest": "^26.0.14",
+    "@types/lodash.isplainobject": "^4.0.6",
+    "@types/node": "^14.14.10",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "commitizen": "^4.2.1",
+    "core-js": "^3.8.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "expect-type": "^0.9.1",
+    "husky": "^4.3.0",
+    "jest": "^26.6.0",
+    "jest-config": "^26.6.0",
+    "lint-staged": "^10.5.2",
+    "microbundle": "github:olance/microbundle#rollup/config-override",
+    "prettier": "^2.2.1",
+    "rollup": "^1.32.1",
+    "sass": "^1.29.0",
+    "semantic-release": "^17.3.0",
+    "ts-essentials": "^7.0.1",
+    "ts-jest": "^26.4.1",
+    "typedoc": "^0.19.2",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "@alma/client": "^1.0.0",
+    "lodash.isplainobject": "^4.0.6"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
     ]
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          "varsIgnorePattern": "^_+$",
+          "argsIgnorePattern": "^_+$"
+        }
+      ]
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.ts",
+          "*.tsx"
+        ],
+        "excludedFiles": [
+          "*.test.ts"
+        ],
+        "env": {
+          "browser": true
+        },
+        "extends": [
+          "plugin:@typescript-eslint/recommended",
+          "prettier/@typescript-eslint"
+        ],
+        "plugins": [
+          "@typescript-eslint"
+        ]
+      },
+      {
+        "files": [
+          "*.js"
+        ],
+        "env": {
+          "node": true
+        }
+      },
+      {
+        "files": [
+          "*.test.ts"
+        ],
+        "extends": [
+          "plugin:@typescript-eslint/recommended",
+          "prettier/@typescript-eslint",
+          "plugin:jest/recommended"
+        ],
+        "env": {
+          "es6": true,
+          "node": true,
+          "jest/globals": true
+        },
+        "plugins": [
+          "@typescript-eslint",
+          "jest"
+        ],
+        "parserOptions": {
+          "ecmaVersion": 2019,
+          "sourceType": "module"
+        },
+        "rules": {
+          "jest/expect-expect": [
+            "warn",
+            {
+              "assertFunctionNames": [
+                "expect",
+                "expectTypeOf"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "dist"
+  ],
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git-cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test:prod && npm run build"
     }
   },
   "jest": {
     "transform": {
-      ".(ts|tsx)": "ts-jest"
+      ".(ts|tsx)$": "ts-jest"
     },
-    "testEnvironment": "node",
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.s?css": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "^@/(.*)$": [
+        "<rootDir>/src/$1"
+      ],
+      "^test/(.*)$": [
+        "<rootDir>/test/$1"
+      ]
+    },
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -63,67 +198,66 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 90,
-        "functions": 95,
-        "lines": 95,
-        "statements": 95
+        "branches": 0,
+        "functions": 0,
+        "lines": 0,
+        "statements": 0
       }
     },
     "collectCoverageFrom": [
-      "src/*.{js,ts}"
+      "src/**/*.{js,ts}"
+    ]
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "prettier --write"
     ]
   },
   "prettier": {
     "semi": false,
     "singleQuote": true
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
+  "publishConfig": {
+    "access": "public"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      [
+        "@google/semantic-release-replace-plugin",
+        {
+          "replacements": [
+            {
+              "files": [
+                "dist/**"
+              ],
+              "from": "%%_SEMANTIC_VERSION_%%",
+              "to": "${nextRelease.version}",
+              "countMatches": true
+            }
+          ]
+        }
+      ],
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "dist/**",
+            "CHANGELOG.md",
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
     ]
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^8.3.3",
-    "@commitlint/config-conventional": "^7.1.2",
-    "@rollup/plugin-image": "^2.0.5",
-    "@types/jest": "^23.3.2",
-    "@types/node": "^10.11.0",
-    "colors": "^1.3.2",
-    "commitizen": "^3.0.0",
-    "core-js": "^3.6.4",
-    "coveralls": "^3.0.2",
-    "cross-env": "^5.2.0",
-    "cz-conventional-changelog": "^2.1.0",
-    "husky": "^1.0.1",
-    "jest": "^25.0.0",
-    "jest-config": "^25.0.0",
-    "lint-staged": "^8.0.0",
-    "lodash.camelcase": "^4.3.0",
-    "prettier": "^1.14.3",
-    "prompt": "^1.0.0",
-    "replace-in-file": "^3.4.2",
-    "rimraf": "^2.6.2",
-    "rollup": "^0.67.0",
-    "rollup-plugin-commonjs": "^9.1.8",
-    "rollup-plugin-json": "^3.1.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-scss": "^2.1.0",
-    "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-typescript2": "^0.25.3",
-    "rollup-plugin-uglify": "^6.0.4",
-    "rollup-plugin-visualizer": "^3.3.1",
-    "semantic-release": "^15.9.16",
-    "shelljs": "^0.8.3",
-    "travis-deploy-once": "^5.0.9",
-    "ts-jest": "^23.10.2",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
-    "tslint-config-standard": "^8.0.1",
-    "typedoc": "^0.15.6",
-    "typescript": "^3.0.3"
-  },
-  "dependencies": {
-    "alma-js-client": "file:../alma-js-client"
   }
 }

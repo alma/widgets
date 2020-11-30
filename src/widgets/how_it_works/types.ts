@@ -1,62 +1,65 @@
-import {DeepRequired, DOMContent} from "../../types";
-import {WidgetSettings} from "../base";
-import {IPaymentPlan} from "alma-js-client/dist/types/entities/eligibility";
+import { DOMContent } from '@/types'
+import { BaseClassesSettings, BaseTemplateSettings, BaseWidgetSettings } from '../config'
+import { IPaymentPlan } from '@alma/client/dist/types/entities/eligibility'
+import { DeepRequired } from 'ts-essentials'
 
-export type HowItWorksWidgetClassesOption = {
-  root?: string;
-  logo?: string;
-  cta?: string;
+interface HIWClasses extends BaseClassesSettings {
+  logo?: string
+  cta?: string
   modal?: {
-    root?: string;
-    wrapper?: string;
-    frame?: string;
-    closeButton?: string;
+    root?: string
+    wrapper?: string
+    frame?: string
+    closeButton?: string
     cardLogos?: {
-      wrapper?: string;
-      logo?: string;
+      wrapper?: string
+      logo?: string
     }
     content?: {
-      wrapper?: string;
-      logoContainer?: string;
-      paymentPlansWrapper?: string;
-      paymentPlansButtons?: string;
+      wrapper?: string
+      logoContainer?: string
+      paymentPlansWrapper?: string
+      paymentPlansButtons?: string
       paymentPlanButton?: {
-        button?: string;
-        selected?: string;
-        installmentsCount?: string;
-      };
-      paymentPlanDetailsWrapper?: string;
-      creditCardPayment?: string;
-      installmentAmount?: string;
-      installmentFees?: string;
-      installmentDate?: string;
+        button?: string
+        selected?: string
+        installmentsCount?: string
+      }
+      paymentPlanDetailsWrapper?: string
+      creditCardPayment?: string
+      installmentAmount?: string
+      installmentFees?: string
+      installmentDate?: string
       footer?: {
-        wrapper?: string;
-        closeButton?: string;
-      };
+        wrapper?: string
+        closeButton?: string
+      }
     }
   }
 }
 
-export type HowItWorksWidgetClasses = DeepRequired<HowItWorksWidgetClassesOption>;
+export type HowItWorksClassesConfig = DeepRequired<HIWClasses>
 
-export type HowItWorksTemplatesOption = {
-  logo?: (classes: HowItWorksWidgetClasses) => DOMContent;
-  cta?: (openModal: EventHandlerNonNull, classes: HowItWorksWidgetClasses) => DOMContent;
-  modal?: (content: DOMContent, closeModal: EventHandlerNonNull, classes: HowItWorksWidgetClasses) => DOMContent;
-  modalContent?: (paymentPlans: IPaymentPlan[], closeModal: EventHandlerNonNull, classes: HowItWorksWidgetClasses) => DOMContent;
+interface HIWTemplates extends BaseTemplateSettings {
+  logo?: (classes: HowItWorksClassesConfig) => DOMContent
+  cta?: (openModal: EventHandlerNonNull, classes: HowItWorksClassesConfig) => DOMContent
+  modal?: (
+    content: DOMContent,
+    closeModal: EventHandlerNonNull,
+    classes: HowItWorksClassesConfig
+  ) => DOMContent
+  modalContent?: (
+    paymentPlans: IPaymentPlan[],
+    closeModal: EventHandlerNonNull,
+    classes: HowItWorksClassesConfig
+  ) => DOMContent
 }
 
-export type HowItWorksTemplates = DeepRequired<HowItWorksTemplatesOption>;
+export type HowItWorksTemplatesConfig = DeepRequired<HIWTemplates>
 
-type HowItWorksOptions = {
-  templates?: HowItWorksTemplatesOption,
-  classes?: HowItWorksWidgetClassesOption;
-  displayLogo?: boolean;
-  displayInfoIcon?: boolean;
-  ctaContent?: DOMContent;
-  samplePlans?: IPaymentPlan[];
+export interface HowItWorksSettings extends BaseWidgetSettings<HIWTemplates, HIWClasses> {
+  displayLogo?: boolean
+  displayInfoIcon?: boolean
+  ctaContent?: DOMContent
+  samplePlans?: IPaymentPlan[]
 }
-
-export type HowItWorksSettings = HowItWorksOptions & WidgetSettings;
-export type HowItWorksConfig = DeepRequired<HowItWorksOptions> & WidgetSettings;
