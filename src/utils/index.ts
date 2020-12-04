@@ -1,8 +1,8 @@
-import { DOMContent, integer } from '../types'
+import { DOMContent, integer } from '@/types'
 
 export function createRootElement(
   className = '',
-  tagName: keyof HTMLElementTagNameMap = 'div'
+  tagName: keyof HTMLElementTagNameMap = 'div',
 ): HTMLElement {
   const element = document.createElement(tagName)
   element.className = className
@@ -12,7 +12,7 @@ export function createRootElement(
 export function createListElement(
   items: DOMContent[],
   listClass = '',
-  itemClass = ''
+  itemClass = '',
 ): HTMLUListElement {
   const list = document.createElement('ul')
   list.className = listClass
