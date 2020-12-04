@@ -2,7 +2,6 @@ import isPlainObject from 'lodash.isplainobject'
 import { MarkOptional } from 'ts-essentials'
 
 import { DOMContent, IObject, Preserve, PreservedDeepRequired, ResolvePreserve } from '@/types'
-import { RenderingFunc } from '@/widgets/types'
 
 /*
  *  *Settings: interfaces for lib consumers
@@ -21,7 +20,6 @@ export interface BaseWidgetSettings<
   Cls extends BaseClassesSettings
 > {
   container: Preserve<string | HTMLElement>
-  render?: RenderingFunc
 
   templates?: Tpl
   classes?: Cls
@@ -38,14 +36,14 @@ export type SettingsLiteral<T> = ResolvePreserve<T>
 // A Widget config is derived from its Settings type, making all keys
 // required except `render` ()
 export type WidgetConfig<T> = T extends BaseWidgetSettings<infer _, infer __>
-  ? MarkOptional<PreservedDeepRequired<T>, 'render'>
+  ? PreservedDeepRequired<T>
   : never
 
 // A "default widget config" represents the shape of the default values object used to initialize a
 // config. It's the Config type itself, with 'container' marked optional as it does not make a lot of
 // sense to have a default value for this property.
 export type DefaultWidgetConfig<T> = T extends BaseWidgetSettings<infer _, infer __>
-  ? MarkOptional<PreservedDeepRequired<T>, 'render' | 'container'>
+  ? MarkOptional<PreservedDeepRequired<T>, 'container'>
   : never
 
 /**
@@ -58,7 +56,7 @@ export type DefaultWidgetConfig<T> = T extends BaseWidgetSettings<infer _, infer
  */
 export function makeConfig<T extends WidgetSettings>(
   defaults: DefaultWidgetConfig<T>,
-  settings: SettingsLiteral<T>
+  settings: SettingsLiteral<T>,
 ): WidgetConfig<T> {
   const result: WidgetConfig<T> = {} as WidgetConfig<T>
   const sources = [defaults, settings]

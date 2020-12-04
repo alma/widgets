@@ -1,5 +1,5 @@
 import { Client } from '@alma/client'
-import { Widget, ConstructorFor, SettingsFor } from './widgets/base'
+import { Widget, ConstructorFor, SettingsFor } from './widgets/Widget'
 import { WidgetSettings } from '@/widgets/config'
 
 export class WidgetsController {
@@ -7,7 +7,7 @@ export class WidgetsController {
 
   constructor(private readonly almaClient: Client) {}
 
-  create<T>(widgetCtor: ConstructorFor<T>, settings: SettingsFor<T>): T {
+  add<T>(widgetCtor: ConstructorFor<T>, settings: SettingsFor<T>): T {
     const widget = new widgetCtor(this.almaClient, settings)
     this.widgets.push(widget)
     return widget
@@ -17,7 +17,7 @@ export class WidgetsController {
     const promises: Promise<void>[] = []
 
     for (const widget of this.widgets) {
-      promises.push(widget.refresh())
+      promises.push(widget.render())
     }
 
     await Promise.all(promises)
