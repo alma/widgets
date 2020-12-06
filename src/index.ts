@@ -16,7 +16,7 @@ export namespace Widgets {
     return new WidgetsController(almaClient)
   }
 
-  // export const PaymentPlan = widgets.PaymentPlan
+  export const PaymentPlans = widgets.PaymentPlans
   export const HowItWorks = widgets.HowItWorks
 }
 

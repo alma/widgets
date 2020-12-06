@@ -91,7 +91,7 @@
   <li>Paiement en 3 ou 4 fois</li>
 </ul>
 
-<div id="payment-plan"></div>
+<div id="payment-plans"></div>
 
 <footer>
   <div>
@@ -164,9 +164,6 @@
   </div>
 </footer>
 
-<p>
-  Payez vos achats en 3 ou 4 fois sans frais !
-</p>
 <div id="how-it-works"></div>
 
 <script src="../dist/alma-widgets.umd.js"></script>
@@ -177,11 +174,10 @@
       Alma.ApiMode.TEST
     )
 
-    // widgets.add(Alma.Widgets.PaymentPlan, {
-    //   container: '#payment-plan',
-    //   purchaseAmount: 15000,
-    //   installmentsCount: [3, 4, 12],
-    // })
+    widgets.add(Alma.Widgets.PaymentPlans, {
+      container: '#payment-plans',
+      purchaseAmount: 15000,
+    })
 
     const hiwWidget = widgets.add(Alma.Widgets.HowItWorks, {
       container: '#how-it-works',

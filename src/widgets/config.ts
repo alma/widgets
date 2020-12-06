@@ -7,7 +7,7 @@ import { DOMContent, IObject, Preserve, PreservedDeepRequired, ResolvePreserve }
  *  *Settings: interfaces for lib consumers
  */
 export interface BaseTemplateSettings {
-  [K: string]: ((...args: never[]) => DOMContent) | undefined
+  [K: string]: ((...args: never[]) => DOMContent) | null | undefined
 }
 
 export interface BaseClassesSettings {

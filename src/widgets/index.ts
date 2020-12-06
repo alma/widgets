@@ -1,2 +1,2 @@
-// export { PaymentPlanWidget as PaymentPlan } from './payment_plan'
+export { PaymentPlans } from './PaymentPlans/PaymentPlans'
 export { HowItWorks } from './HowItWorks/HowItWorks'

@@ -25,7 +25,7 @@ function howItWorksCtaTemplate(title: HTMLElement, classes: PaymentPlanClassesCo
 function titleTemplate(
   eligiblePlans: EligibleEligibility[],
   config: WidgetConfig<PaymentPlanSettings>,
-  createWidget: WidgetFactoryFunc
+  createWidget: WidgetFactoryFunc,
 ): HTMLElement {
   const titleWrapper = createRootElement(config.classes.title)
 
@@ -62,7 +62,7 @@ function _installmentTemplate(content: string, classes: PaymentPlanClassesConfig
 function paymentPlanTemplate(
   eligibility: EligibleEligibility,
   config: WidgetConfig<PaymentPlanSettings>,
-  _: WidgetFactoryFunc
+  _: WidgetFactoryFunc,
 ): HTMLElement[] {
   const installmentsCountLabel = document.createElement('span')
   installmentsCountLabel.className = config.classes.paymentPlan.installmentsCount
@@ -75,7 +75,7 @@ function paymentPlanTemplate(
   const equalInstallments = eligibility.payment_plan.every(
     (p: IInstallment, idx: number, arr: IInstallment[]) => {
       return p.purchase_amount + p.customer_fee === arr[0].purchase_amount + arr[0].customer_fee
-    }
+    },
   )
 
   if (!equalInstallments) {
@@ -90,7 +90,7 @@ function paymentPlanTemplate(
     ? installmentsData.length
     : installmentsData.length - 1
   installments.appendChild(
-    _installmentTemplate(`${installmentsCount} &times; ${formatCents(amount)} €`, config.classes)
+    _installmentTemplate(`${installmentsCount} &times; ${formatCents(amount)} €`, config.classes),
   )
 
   return [installmentsCountLabel, installments]
@@ -101,13 +101,13 @@ function notEligibleTemplate(
   max: number,
   installmentsCounts: integer[],
   config: WidgetConfig<PaymentPlanSettings>,
-  createWidget: WidgetFactoryFunc
+  createWidget: WidgetFactoryFunc,
 ): HTMLElement {
   const titleWrapper = createRootElement(config.classes.title)
 
   const title = document.createElement('strong')
   title.innerHTML = `Payez en ${joinInstallmentsCounts(
-    installmentsCounts
+    installmentsCounts,
   )} fois entre ${formatCents(min)}&nbsp;€ et ${formatCents(max)}&nbsp;€`
 
   createWidget(HowItWorksWidget, {
