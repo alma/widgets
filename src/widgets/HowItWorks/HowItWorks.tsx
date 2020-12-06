@@ -43,9 +43,7 @@ export class HowItWorks extends Widget<HowItWorksSettings> {
   }
 
   private async fetchSamplePlans(): Promise<IPaymentPlan[]> {
-    let plans: Eligibility[] = []
-
-    plans = (await this.almaClient.payments.eligibility({
+    const plans: Eligibility[] = (await this.almaClient.payments.eligibility({
       payment: {
         purchase_amount: this.config.samplePurchaseAmount,
         installments_count: this.config.sampleInstallmentsCounts,

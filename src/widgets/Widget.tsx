@@ -47,6 +47,9 @@ export abstract class Widget<SettingsType extends WidgetSettings> {
 
   async render(): Promise<void> {
     const content = await this.renderComponent()
-    render(<div className="alma-widget-root">{content}</div>, this.container)
+    render(
+      <div className={`alma-widget-root ${this.config.classes.root}`}>{content}</div>,
+      this.container,
+    )
   }
 }

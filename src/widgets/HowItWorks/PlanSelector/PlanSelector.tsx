@@ -30,9 +30,8 @@ export function PlanSelector({
     'atw-justify-around',
     'atw-border',
     'atw-rounded-sm',
-    loading
-      ? ['atw-animate-pulse', 'atw-border-orange-900', 'atw-opacity-25']
-      : 'atw-border-gray-400',
+    loading ? ['atw-animate-pulse', 'atw-border-orange-900', 'atw-opacity-25'] : 'atw-border-blue',
+    'atw-border-opacity-50',
   )
 
   return <ul className={classes}>{installments}</ul>

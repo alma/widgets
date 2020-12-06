@@ -36,17 +36,13 @@
   }
 
   .alma-widget-root {
-    @apply text-blue;
+    @apply text-blue font-semibold;
+    font-family: 'Public Sans', sans-serif !important;
   }
 
   .alma-title-text {
     @apply font-bold;
     font-family: 'Work Sans', sans-serif !important;
-  }
-
-  .alma-text {
-    @apply font-semibold;
-    font-family: 'Public Sans', sans-serif !important;
   }
 
   .alma-text-highlight-sm {

@@ -24,6 +24,7 @@ const basePillClasses = [
   'atw-my-4',
   'atw-transition-colors',
   'atw-duration-200',
+  ' atw-select-none',
 ]
 
 export function PlanSelectorPlaceholder(): JSX.Element {
