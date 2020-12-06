@@ -3,8 +3,8 @@ import { expectTypeOf } from 'expect-type'
 import { Widgets } from '../src'
 import { WidgetsController } from '@/widgets_controller'
 import { ApiMode } from '@alma/client'
-import { PaymentPlanWidget } from '../src/widgets/payment_plan'
-import { HowItWorksWidget } from '../src/widgets/how_it_works'
+import { PaymentPlans } from '@/widgets/PaymentPlans/PaymentPlans'
+import { HowItWorks } from '@/widgets/HowItWorks/HowItWorks'
 
 describe('Widgets namespace', () => {
   it('exports the initialize function', () => {
@@ -16,14 +16,14 @@ describe('Widgets namespace', () => {
   })
 
   it('exports the PaymentPlan widget', () => {
-    expect(Widgets.PaymentPlan).toBeDefined()
+    expect(Widgets.PaymentPlans).toBeDefined()
 
-    expectTypeOf(Widgets.PaymentPlan).toEqualTypeOf<typeof PaymentPlanWidget>()
+    expectTypeOf(Widgets.PaymentPlans).toEqualTypeOf<typeof PaymentPlans>()
   })
 
   it('exports the HowItWorks widget', () => {
     expect(Widgets.HowItWorks).toBeDefined()
 
-    expectTypeOf(Widgets.HowItWorks).toEqualTypeOf<typeof HowItWorksWidget>()
+    expectTypeOf(Widgets.HowItWorks).toEqualTypeOf<typeof HowItWorks>()
   })
 })
