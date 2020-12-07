@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'preact/hooks'
 
-import { IPaymentPlan } from '@alma/client/dist/types/entities/eligibility'
+import {
+  IEligibility,
+  EligibleEligibility,
+  IPaymentPlan,
+} from '@alma/client/dist/types/entities/eligibility'
 
 import { Modal } from '@/components/Modal'
 import { PlanSelector } from './PlanSelector/PlanSelector'
@@ -12,9 +16,13 @@ import visaLogo from '../../assets/cards/visa.svg'
 import mastercardLogo from '../../assets/cards/mastercard.svg'
 import { integer } from '@/types'
 import { PaymentPlan } from '@/widgets/HowItWorks/PaymentPlan/PaymentPlan'
+import { Client } from '@alma/client'
 
 type HowItWorksProps = {
-  samplePlans: IPaymentPlan[]
+  almaClient: Client
+  purchaseAmount: integer
+  installmentsCounts: integer[]
+  samplePlans?: IPaymentPlan[]
   closeCallback: () => void
 }
 
@@ -44,8 +52,30 @@ function PlanIntro({ plan }: { plan: IPaymentPlan | null }): JSX.Element {
   )
 }
 
-export function HowItWorksRenderer({ samplePlans, closeCallback }: HowItWorksProps): JSX.Element {
+async function fetchSamplePlans(
+  almaClient: Client,
+  purchaseAmount: integer,
+  installmentsCounts: integer[],
+): Promise<IPaymentPlan[]> {
+  const plans: IEligibility[] = await almaClient.payments.eligibility({
+    payment: {
+      purchase_amount: purchaseAmount,
+      installments_count: installmentsCounts,
+    },
+  })
+
+  return (plans.filter((p) => p.eligible) as EligibleEligibility[]).map((p) => p.payment_plan)
+}
+
+export function HowItWorksRenderer({
+  almaClient,
+  purchaseAmount,
+  installmentsCounts,
+  samplePlans: initialSamplePlans = [],
+  closeCallback,
+}: HowItWorksProps): JSX.Element {
   const [shownPlanIC, setShownPlanIC] = useState(0)
+  const [samplePlans, setSamplePlans] = useState(initialSamplePlans)
 
   useEffect(() => {
     const defaultPlanIC = samplePlans
@@ -54,6 +84,16 @@ export function HowItWorksRenderer({ samplePlans, closeCallback }: HowItWorksPro
 
     setShownPlanIC(defaultPlanIC)
   }, [samplePlans])
+
+  useEffect(() => {
+    if (!samplePlans.length) {
+      fetchSamplePlans(almaClient, purchaseAmount, installmentsCounts)
+        .then(setSamplePlans)
+        .catch(() => {
+          return null
+        })
+    }
+  }, [purchaseAmount, installmentsCounts, samplePlans])
 
   const shownPlan = planForN(samplePlans, shownPlanIC)
 
