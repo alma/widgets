@@ -39,6 +39,14 @@ export class HowItWorks extends Widget<HowItWorksSettings> {
     }
   }
 
+  open(): void {
+    this.show = true
+  }
+
+  close(): void {
+    this.show = false
+  }
+
   protected async renderComponent(): Promise<JSX.Element | null> {
     if (!this.show) return null
 
