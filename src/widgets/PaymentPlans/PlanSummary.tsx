@@ -14,8 +14,8 @@ function eligiblePlan(eligibility: EligibleEligibility): JSX.Element {
   const nextAmount = paymentPlan[1].purchase_amount + paymentPlan[1].customer_fee
 
   return (
-    <span>
-      <Amount cents={firstAmount} /> puis {paymentPlan.length - 1}&times;
+    <span className="atw-leading-relaxed">
+      <Amount cents={firstAmount} /> puis&nbsp;{paymentPlan.length - 1}&times;
       <Amount cents={nextAmount} />
     </span>
   )
