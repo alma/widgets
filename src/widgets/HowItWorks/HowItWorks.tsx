@@ -55,7 +55,7 @@ export class HowItWorks extends Widget<HowItWorksSettings> {
         almaClient={this.almaClient}
         purchaseAmount={this.config.samplePurchaseAmount}
         installmentsCounts={this.config.sampleInstallmentsCounts}
-        closeCallback={this.close}
+        closeCallback={this.close.bind(this)}
       />
     )
   }
