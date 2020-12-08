@@ -114,14 +114,14 @@ export function HowItWorksRenderer({
             </a>
           </p>
 
-          <p className="atw-mt-8">
-            <span className="atw-inline-block atw-mr-3 atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-2">
+          <p className="atw-mt-7 atw-space-x-3">
+            <span className="atw-inline-block atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-2">
               <CardLogo brand="cb" />
             </span>
-            <span className="atw-inline-block atw-mr-3 atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-2">
+            <span className="atw-inline-block atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-2">
               <CardLogo brand="visa" />
             </span>
-            <span className="atw-inline-block atw-mr-3 atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-1">
+            <span className="atw-inline-block atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-1">
               <CardLogo brand="mastercard" />
             </span>
           </p>
