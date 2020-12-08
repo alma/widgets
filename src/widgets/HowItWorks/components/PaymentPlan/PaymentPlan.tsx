@@ -3,8 +3,9 @@ import { IPaymentPlan } from '@alma/client/dist/types/entities/eligibility'
 import { integer } from '@/types'
 import { Amount } from '@/components/Amount'
 
-import { Installment, Placeholder } from './Installment'
-import { humanizedDate } from '@/utils'
+import { Installment } from './Installment'
+import { addMonths, humanizedDate } from '@/utils'
+import { InstallmentPlaceholder } from '@/widgets/HowItWorks/components/PaymentPlan/InstallmentPlaceholder'
 
 export type PlanDetailsProps = {
   plan: IPaymentPlan | null
@@ -14,15 +15,6 @@ function planFullAmount(plan: IPaymentPlan): integer {
   return plan.map((p) => p.purchase_amount + p.customer_fee).reduce((full, amount) => full + amount)
 }
 
-function addMonths(date: Date, months: integer): Date {
-  const d = date.getDate()
-  date.setMonth(date.getMonth() + +months)
-  if (date.getDate() != d) {
-    date.setDate(0)
-  }
-  return date
-}
-
 export function PaymentPlan({ plan }: PlanDetailsProps): JSX.Element {
   // If not plan has been provided, display a pulsing placeholder
   if (!plan) {
@@ -30,11 +22,11 @@ export function PaymentPlan({ plan }: PlanDetailsProps): JSX.Element {
 
     return (
       <div className="atw-space-y-4 atw-animate-pulse atw-text-orange-900 atw-opacity-25">
-        <Placeholder label={humanizedDate(today, true)} />
-        <Placeholder label={humanizedDate(addMonths(today, 1), true)} />
-        <Placeholder label={humanizedDate(addMonths(today, 2), true)} />
+        <InstallmentPlaceholder label={humanizedDate(today, true)} />
+        <InstallmentPlaceholder label={humanizedDate(addMonths(today, 1), true)} />
+        <InstallmentPlaceholder label={humanizedDate(addMonths(today, 2), true)} />
         <hr className="atw-border-orange-900 atw-opacity-25" />
-        <Placeholder label="Total" />
+        <InstallmentPlaceholder label="Total" />
       </div>
     )
   }

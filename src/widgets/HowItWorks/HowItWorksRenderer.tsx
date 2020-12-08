@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'preact/hooks'
 
+import { integer } from '@/types'
 import {
-  IEligibility,
   EligibleEligibility,
+  IEligibility,
   IPaymentPlan,
 } from '@alma/client/dist/types/entities/eligibility'
 
+import { Client } from '@alma/client'
+
 import { Modal } from '@/components/Modal'
-import { PlanSelector } from './PlanSelector/PlanSelector'
+import { PlanIntro } from './components/PlanIntro'
+import { PlanSelector } from './components/PlanSelector/PlanSelector'
+import { PaymentPlan } from './components/PaymentPlan/PaymentPlan'
 
 import './styles.scss'
 import almaLogo from '../../assets/alma.svg'
-import cbLogo from '../../assets/cards/cb.svg'
-import visaLogo from '../../assets/cards/visa.svg'
-import mastercardLogo from '../../assets/cards/mastercard.svg'
-import { integer } from '@/types'
-import { PaymentPlan } from '@/widgets/HowItWorks/PaymentPlan/PaymentPlan'
-import { Client } from '@alma/client'
+import { CardLogo } from '@/components/CardLogo'
 
 type HowItWorksProps = {
   almaClient: Client
@@ -28,28 +28,6 @@ type HowItWorksProps = {
 
 function planForN(plans: IPaymentPlan[], n: integer): IPaymentPlan | null {
   return plans.find((p) => p.length === n) || null
-}
-
-function isFree(plan: IPaymentPlan): boolean {
-  return plan.find((i) => i.customer_fee > 0) == null
-}
-
-function PlanIntro({ plan }: { plan: IPaymentPlan | null }): JSX.Element {
-  if (!plan) {
-    return (
-      <div className="atw-my-8 atw-space-y-2 atw-animate-pulse">
-        <div className="atw-h-4 atw-bg-orange-900 atw-rounded-sm atw-opacity-15">&nbsp;</div>
-        <div className="atw-h-4 atw-bg-orange-900 atw-rounded-sm atw-opacity-15">&nbsp;</div>
-      </div>
-    )
-  }
-
-  return (
-    <p className="atw-my-8 atw-text-lg">
-      Paiement {isFree(plan) ? 'sans frais,' : null} par carte bancaire, en {plan.length} échéances
-      :
-    </p>
-  )
 }
 
 async function fetchSamplePlans(
@@ -137,21 +115,15 @@ export function HowItWorksRenderer({
           </p>
 
           <p className="atw-mt-8">
-            <img
-              className="atw-inline-block atw-mr-3 atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-2"
-              src={cbLogo}
-              alt="Cartes Bancaires"
-            />
-            <img
-              className="atw-inline-block atw-mr-3 atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-2"
-              src={visaLogo}
-              alt="Visa"
-            />
-            <img
-              className="atw-inline-block atw-mr-3 atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-1"
-              src={mastercardLogo}
-              alt="Mastercard"
-            />
+            <span className="atw-inline-block atw-mr-3 atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-2">
+              <CardLogo brand="cb" />
+            </span>
+            <span className="atw-inline-block atw-mr-3 atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-2">
+              <CardLogo brand="visa" />
+            </span>
+            <span className="atw-inline-block atw-mr-3 atw-h-10 atw-border atw-border-orange atw-rounded-md atw-p-1">
+              <CardLogo brand="mastercard" />
+            </span>
           </p>
         </div>
         <div className="alma-howItWorks__planPanel atw-w-full md:atw-w-1/2 atw-p-8 atw-pb-24 md:atw-pb-8 md:atw-pt-24 atw-flex atw-flex-col atw-align-center atw-bg-beige">

@@ -121,7 +121,7 @@ export class PaymentPlans extends Widget<PaymentPlanSettings> {
         results={this.results}
         transitionDelay={transitionDelay}
         error={this.fetchError}
-        retryCallback={retry}
+        errorRetryCallback={retry}
       />
     )
   }

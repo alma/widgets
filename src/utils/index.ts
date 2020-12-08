@@ -1,4 +1,4 @@
-import { DOMContent, integer } from '@/types'
+import { integer } from '@/types'
 
 export function priceToCents(price: number): integer {
   return Math.round(price * 100)
@@ -40,4 +40,13 @@ export function humanizedDate(date: Date, addArticle = false, forceDate = false)
 
   const article = addArticle ? 'le ' : ''
   return article + date.toLocaleDateString()
+}
+
+export function addMonths(date: Date, months: integer): Date {
+  const d = date.getDate()
+  date.setMonth(date.getMonth() + +months)
+  if (date.getDate() != d) {
+    date.setDate(0)
+  }
+  return date
 }

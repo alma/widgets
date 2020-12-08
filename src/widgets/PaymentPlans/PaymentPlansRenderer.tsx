@@ -7,11 +7,13 @@ import { EligibleEligibility, IEligibility } from '@alma/client/dist/types/entit
 import { useEffect, useLayoutEffect, useReducer } from 'preact/hooks'
 
 import { HowItWorksRenderer } from '@/widgets/HowItWorks/HowItWorksRenderer'
-import { PlanSummary } from '@/widgets/PaymentPlans/PlanSummary'
+import { PlanSummary } from '@/widgets/PaymentPlans/components/PlanSummary'
 
 import almaLogo from '../../assets/alma.svg'
 import { render } from 'preact'
 import { Client } from '@alma/client'
+import { PlanPill } from '@/widgets/PaymentPlans/components/PlanPill'
+import { plansPlaceholders } from './components/plansPlaceholders'
 
 type RendererProps = {
   almaClient: Client
@@ -19,35 +21,13 @@ type RendererProps = {
   queriedPlans: QueriedPlanProperties[]
   results: IEligibility[]
   transitionDelay: number | false
-  error?: boolean
-  retryCallback?: () => void
+  error: boolean
+  errorRetryCallback: () => void
 }
-
-const basePillClasses = [
-  'atw-inline-block',
-  'atw-p-1',
-  'atw-text-white',
-  'atw-rounded-sm',
-  'atw-transition-colors',
-  'atw-duration-500',
-  'atw-select-none',
-]
 
 function planIsAvailable(plan: IEligibility): boolean {
   // TODO: Eligibility types need fixing in @alma/client
   return plan.eligible || (plan as any).reasons === undefined
-}
-
-function PillPlaceholder({ plan }: { plan: QueriedPlanProperties }): JSX.Element {
-  return (
-    <span className="atw-animate-pulse atw-h-7">
-      <span
-        className={cx(...basePillClasses, 'atw-bg-blue', 'atw-opacity-25', 'atw-w-full atw-h-6')}
-      >
-        {plan.installmentsCount}⨉
-      </span>
-    </span>
-  )
 }
 
 type State = {
@@ -96,6 +76,13 @@ function handleMouseLeave(dispatch: (action: ReturnType<typeof setState>) => voi
   }
 }
 
+function useTimeout(timeout: number, cb: () => void): void {
+  useEffect(() => {
+    const timeoutId = window.setTimeout(cb, timeout)
+    return () => clearTimeout(timeoutId)
+  }, [timeout, cb])
+}
+
 export function PaymentPlansRenderer({
   almaClient,
   purchaseAmount,
@@ -103,9 +90,10 @@ export function PaymentPlansRenderer({
   results,
   transitionDelay,
   error,
-  retryCallback,
-}: RendererProps): JSX.Element | null {
-  let planPills: JSX.Element[], planSummary: JSX.Element
+  errorRetryCallback,
+}: RendererProps): JSX.Element {
+  const eligiblePlans = results.filter((r) => r.eligible) as EligibleEligibility[]
+  const hasEligiblePlans = eligiblePlans.length > 0
 
   const [state, dispatch] = useReducer(reducer, results, initState)
 
@@ -114,19 +102,11 @@ export function PaymentPlansRenderer({
   }, [results])
 
   // Automatically transition from one plan to another
-  useEffect(() => {
-    let timeoutId: number | null = null
-    if (state.autoRotate && transitionDelay) {
-      timeoutId = window.setTimeout(() => {
-        dispatch(setState('shownPlan', (state.shownPlan + 1) % results.length))
-      }, transitionDelay)
-    }
-
-    return () => timeoutId && clearTimeout(timeoutId)
-  }, [state.autoRotate, state.shownPlan])
-
-  const eligiblePlans = results.filter((r) => r.eligible) as EligibleEligibility[]
-  const hasEligiblePlans = eligiblePlans.length > 0
+  if (state.autoRotate && transitionDelay && results.length > 1) {
+    useTimeout(transitionDelay, () => {
+      dispatch(setState('shownPlan', (state.shownPlan + 1) % results.length))
+    })
+  }
 
   useLayoutEffect(() => {
     if (state.showInfoModal && hasEligiblePlans) {
@@ -139,9 +119,9 @@ export function PaymentPlansRenderer({
         <HowItWorksRenderer
           almaClient={almaClient}
           purchaseAmount={purchaseAmount}
-          installmentsCounts={eligiblePlans.map((p) => p.installments_count)}
+          installmentsCounts={eligiblePlans.map((ep) => ep.installments_count)}
           closeCallback={() => dispatch(setState('showInfoModal', false))}
-          samplePlans={eligiblePlans.map((r) => r.payment_plan)}
+          samplePlans={eligiblePlans.map((ep) => ep.payment_plan)}
         />,
         container,
       )
@@ -150,69 +130,24 @@ export function PaymentPlansRenderer({
     }
   }, [state.showInfoModal, hasEligiblePlans])
 
+  let planPills: JSX.Element[], planSummary: JSX.Element
   if (results.length === 0 || error) {
     // We're still loading results, or having an issue, but we know what pills should be presented
     // so show placeholders
-    planPills = queriedPlans.map((p, idx) => <PillPlaceholder plan={p} key={idx} />)
-
-    if (error) {
-      planSummary = (
-        <span>
-          <span className="atw-text-xs">ERREUR</span> &nbsp;
-          <span className="atw-text-blue atw-underline" onClick={retryCallback}>
-            réessayer
-          </span>
-        </span>
-      )
-    } else {
-      planSummary = (
-        <span className="atw-animate-pulse">
-          <span className="atw-inline-block atw-h-4 atw-bg-blue atw-opacity-25 atw-rounded-sm atw-w-full">
-            &nbsp;
-          </span>
-        </span>
-      )
-    }
+    ;({ planPills, planSummary } = plansPlaceholders({ error, queriedPlans, errorRetryCallback }))
   } else {
     const { shownPlan } = state
 
-    planPills = results.filter(planIsAvailable).map((r, idx) => {
-      const isActive = shownPlan === idx
-      const isEligible = r.eligible
-
-      return (
-        <span key={idx} className={cx('atw-inline-block', 'atw-h-7')}>
-          <span
-            className={cx(
-              'atw-inline-block',
-              'atw-transition-all',
-              'atw-duration-500',
-              'atw-border-b-2',
-              {
-                'atw-border-red': isActive && isEligible,
-                'atw-border-opacity-100': isActive && isEligible,
-                'atw-border-blue': !isActive || !isEligible,
-                'atw-border-opacity-50': isActive && !isEligible,
-                'atw-border-opacity-0': !isActive,
-              },
-              isActive ? 'atw-h-7' : 'atw-h-6',
-            )}
-          >
-            <span
-              className={cx(...basePillClasses, {
-                'atw-bg-red': isActive && isEligible,
-                'atw-bg-blue': !isActive || !isEligible,
-                'atw-bg-opacity-50': isActive && !isEligible,
-                'atw-bg-opacity-25': !isActive && !isEligible,
-              })}
-              onMouseEnter={() => dispatch(setState('shownPlan', idx))}
-            >
-              {r.installments_count}⨉
-            </span>
-          </span>
-        </span>
-      )
-    })
+    planPills = results
+      .filter(planIsAvailable)
+      .map((r, idx) => (
+        <PlanPill
+          key={idx}
+          eligibility={r}
+          isActive={shownPlan === idx}
+          mouseEnterCallback={() => dispatch(setState('shownPlan', idx))}
+        />
+      ))
 
     planSummary = <PlanSummary purchaseAmount={purchaseAmount} eligibility={results[shownPlan]} />
   }
