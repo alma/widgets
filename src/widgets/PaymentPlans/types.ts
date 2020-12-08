@@ -21,5 +21,5 @@ export interface PaymentPlanSettings
   extends BaseWidgetSettings<PaymentPlanTemplates, BaseClassesSettings> {
   purchaseAmount: integer
   plans: QueriedPlanProperties[]
-  transitionDelay?: number
+  transitionDelay?: number | false
 }

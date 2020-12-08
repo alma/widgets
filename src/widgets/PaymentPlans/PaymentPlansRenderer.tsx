@@ -18,7 +18,7 @@ type RendererProps = {
   purchaseAmount: integer
   queriedPlans: QueriedPlanProperties[]
   results: IEligibility[]
-  transitionDelay: number
+  transitionDelay: number | false
   error?: boolean
   retryCallback?: () => void
 }
@@ -116,7 +116,7 @@ export function PaymentPlansRenderer({
   // Automatically transition from one plan to another
   useEffect(() => {
     let timeoutId: number | null = null
-    if (state.autoRotate) {
+    if (state.autoRotate && transitionDelay) {
       timeoutId = window.setTimeout(() => {
         dispatch(setState('shownPlan', (state.shownPlan + 1) % results.length))
       }, transitionDelay)
