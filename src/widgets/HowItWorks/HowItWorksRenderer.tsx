@@ -74,15 +74,16 @@ export function HowItWorksRenderer({
   samplePlans: initialSamplePlans = [],
   closeCallback,
 }: HowItWorksProps): JSX.Element {
-  const [shownPlanIC, setShownPlanIC] = useState(0)
+  const [shownInstallmentsCount, setShownInstallmentsCount] = useState(0)
   const [samplePlans, setSamplePlans] = useState(initialSamplePlans)
 
   useEffect(() => {
-    const defaultPlanIC = samplePlans
+    // Select "p3x" by default, or the plan with highest installments count if p3x not present
+    const defaultInstallmentsCount = samplePlans
       .map((p) => p.length)
       .reduce((prev, n) => (prev !== 3 && n > prev ? n : prev), 0)
 
-    setShownPlanIC(defaultPlanIC)
+    setShownInstallmentsCount(defaultInstallmentsCount)
   }, [samplePlans])
 
   useEffect(() => {
@@ -95,7 +96,7 @@ export function HowItWorksRenderer({
     }
   }, [purchaseAmount, installmentsCounts, samplePlans])
 
-  const shownPlan = planForN(samplePlans, shownPlanIC)
+  const shownPlan = planForN(samplePlans, shownInstallmentsCount)
 
   return (
     <Modal closeCallback={closeCallback}>
@@ -157,8 +158,8 @@ export function HowItWorksRenderer({
           <div className="atw-flex-grow">
             <PlanSelector
               installmentsCounts={samplePlans.map((p) => p.length)}
-              selectedPlan={shownPlanIC}
-              onSelect={setShownPlanIC}
+              selectedPlan={shownInstallmentsCount}
+              onSelect={setShownInstallmentsCount}
             />
 
             <PlanIntro plan={shownPlan} />
