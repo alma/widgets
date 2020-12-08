@@ -9,6 +9,9 @@ module.exports = {
   purge: ['./src/**/*.ts', './src/**/*.tsx', './src/**/*.html'],
   theme: {
     extend: {
+      spacing: {
+        7: '1.75rem',
+      },
       opacity: {
         15: '0.15',
       },

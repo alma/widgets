@@ -40,9 +40,9 @@ function planIsAvailable(plan: IEligibility): boolean {
 
 function PillPlaceholder({ plan }: { plan: QueriedPlanProperties }): JSX.Element {
   return (
-    <span className="atw-animate-pulse">
+    <span className="atw-animate-pulse atw-h-7">
       <span
-        className={cx(...basePillClasses, 'atw-bg-blue', 'atw-opacity-25', 'atw-w-full atw-h-full')}
+        className={cx(...basePillClasses, 'atw-bg-blue', 'atw-opacity-25', 'atw-w-full atw-h-6')}
       >
         {plan.installmentsCount}⨉
       </span>
@@ -176,19 +176,43 @@ export function PaymentPlansRenderer({
   } else {
     const { shownPlan } = state
 
-    planPills = results.filter(planIsAvailable).map((r, idx) => (
-      <span
-        key={idx}
-        className={cx(...basePillClasses, {
-          'atw-bg-red': shownPlan === idx && r.eligible,
-          'atw-bg-blue': shownPlan !== idx || !r.eligible,
-          'atw-bg-opacity-75': shownPlan !== idx,
-        })}
-        onMouseEnter={() => dispatch(setState('shownPlan', idx))}
-      >
-        {r.installments_count}⨉
-      </span>
-    ))
+    planPills = results.filter(planIsAvailable).map((r, idx) => {
+      const isActive = shownPlan === idx
+      const isEligible = r.eligible
+
+      return (
+        <span key={idx} className={cx('atw-inline-block', 'atw-h-7')}>
+          <span
+            className={cx(
+              'atw-inline-block',
+              'atw-transition-all',
+              'atw-duration-500',
+              'atw-border-b-2',
+              {
+                'atw-border-red': isActive && isEligible,
+                'atw-border-opacity-100': isActive && isEligible,
+                'atw-border-blue': !isActive || !isEligible,
+                'atw-border-opacity-50': isActive && !isEligible,
+                'atw-border-opacity-0': !isActive,
+              },
+              isActive ? 'atw-h-7' : 'atw-h-6',
+            )}
+          >
+            <span
+              className={cx(...basePillClasses, {
+                'atw-bg-red': isActive && isEligible,
+                'atw-bg-blue': !isActive || !isEligible,
+                'atw-bg-opacity-50': isActive && !isEligible,
+                'atw-bg-opacity-25': !isActive && !isEligible,
+              })}
+              onMouseEnter={() => dispatch(setState('shownPlan', idx))}
+            >
+              {r.installments_count}⨉
+            </span>
+          </span>
+        </span>
+      )
+    })
 
     planSummary = <PlanSummary purchaseAmount={purchaseAmount} eligibility={results[shownPlan]} />
   }
@@ -215,7 +239,7 @@ export function PaymentPlansRenderer({
       </p>
       <div className="atw-bg-white atw-cursor-pointer atw-flex atw-flex-row atw-items-center atw-flex-wrap atw-text-xs atw-p-2 atw-pb-0 atw-rounded-md atw-border atw-border-blue atw-border-opacity-50">
         <img className="atw-h-5 atw-mb-2" src={almaLogo} alt="Alma" />
-        <span className="atw-flex atw-flex-row atw-space-x-1 atw-mx-2 atw-mb-2">{planPills}</span>
+        <span className="atw-flex atw-flex-row atw-space-x-1 atw-mx-2 atw-mb-1">{planPills}</span>
         <span className="atw-inline-block atw-mb-2 atw-flex-grow atw-text-sm">{planSummary}</span>
       </div>
     </div>
