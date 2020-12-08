@@ -25,7 +25,6 @@ export namespace Utils {
   export const priceToCents = utils.priceToCents
   export const priceFromCents = utils.priceFromCents
   export const formatCents = utils.formatCents
-  export const joinInstallmentsCounts = utils.joinInstallmentsCounts
 }
 
 export { ApiMode } from '@alma/client'
