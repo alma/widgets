@@ -1,5 +1,5 @@
 import { Widget } from '@/widgets/Widget'
-import { Client } from '@alma/client'
+import { Client, Eligibility } from '@alma/client'
 import { PaymentPlanSettings } from './types'
 import { DefaultWidgetConfig, SettingsLiteral } from '@/widgets/config'
 import { PaymentPlansRenderer } from '@/widgets/PaymentPlans/PaymentPlansRenderer'
@@ -9,10 +9,13 @@ type PaymentPlanDefaultConfig = DefaultWidgetConfig<PaymentPlanSettings>
 
 export class PaymentPlans extends Widget<PaymentPlanSettings> {
   private results: IEligibility[]
+  private loading: boolean
+  private fetchError: boolean
 
   defaultConfig(): PaymentPlanDefaultConfig {
     return {
       purchaseAmount: 100,
+      transitionDelay: 5500,
       plans: [
         {
           installmentsCount: 3,
@@ -29,7 +32,7 @@ export class PaymentPlans extends Widget<PaymentPlanSettings> {
         planSummary: null,
       },
       classes: {
-        root: 'alma-payment_plan',
+        root: 'alma-paymentPlans',
       },
     }
   }
@@ -37,112 +40,89 @@ export class PaymentPlans extends Widget<PaymentPlanSettings> {
   constructor(almaClient: Client, settings: SettingsLiteral<PaymentPlanSettings>) {
     super(almaClient, settings)
     this.results = []
+    this.loading = false
+    this.fetchError = false
   }
 
-  protected async renderComponent(): Promise<JSX.Element | null> {
-    return <PaymentPlansRenderer queriedPlans={this.config.plans} results={this.results} />
+  private async fetchResults() {
+    // Start with an empty list of results
+    const results: Array<Eligibility | number> = []
+
+    const { purchaseAmount, plans } = this.config
+    const installmentsCountsToQuery = []
+
+    // For each plan to be queried, check whether it's worth querying (i.e. is the purchase amount
+    // is within the plan's boundaries) and act accordingly
+    for (const plan of plans) {
+      if (purchaseAmount < plan.minAmount || purchaseAmount > plan.maxAmount) {
+        // purchase amount is out of bounds: build a non-eligible result
+        results.push(
+          new Eligibility({
+            eligible: false,
+            installments_count: plan.installmentsCount,
+            constraints: {
+              purchase_amount: {
+                minimum: plan.minAmount,
+                maximum: plan.maxAmount,
+              },
+            },
+          }),
+        )
+      } else {
+        installmentsCountsToQuery.push(plan.installmentsCount)
+        // Push a marker into the results array to easily merge back handmade results with API ones
+        results.push(installmentsCountsToQuery.length - 1)
+      }
+    }
+
+    // Now, query the API for plans that were valid for the requested purchase amount
+    let eligibilities: IEligibility[]
+    try {
+      eligibilities = await this.almaClient.payments.eligibility({
+        payment: {
+          purchase_amount: purchaseAmount,
+          installments_count: installmentsCountsToQuery,
+        },
+      })
+    } catch (e) {
+      console?.error?.(e)
+      this.fetchError = true
+      eligibilities = []
+    }
+
+    this.results = results
+      .map((r) => (typeof r === 'number' ? eligibilities[r] : r))
+      // In case of network error, eligibilities might be empty and results contain `undefined`
+      // entries as a consequence, so make sure to filter them out
+      .filter(Boolean)
+  }
+
+  protected async renderComponent(): Promise<JSX.Element> {
+    // Compute/request results if we don't have them yet
+    if (!this.results.length && !this.loading && !this.fetchError) {
+      this.loading = true
+      this.fetchResults().then(() => {
+        this.loading = false
+        this.render()
+      })
+    }
+
+    const retry = () => {
+      this.fetchError = false
+      this.render()
+    }
+
+    const { purchaseAmount, plans, transitionDelay } = this.config
+    return (
+      <PaymentPlansRenderer
+        almaClient={this.almaClient}
+        purchaseAmount={purchaseAmount}
+        queriedPlans={plans}
+        results={this.results}
+        transitionDelay={transitionDelay}
+        error={this.fetchError}
+        retryCallback={retry}
+      />
+    )
   }
 }
-
-// protected async prepare(almaClient: Client): Promise<any> {
-//   const { purchaseAmount, minPurchaseAmount, maxPurchaseAmount } = this.config
-//
-//   if (
-//     (minPurchaseAmount && purchaseAmount < minPurchaseAmount) ||
-//     (maxPurchaseAmount && purchaseAmount > maxPurchaseAmount)
-//   ) {
-//     return [
-//       {
-//         eligible: false,
-//         reasons: {
-//           purchase_amount: 'invalid_value',
-//         },
-//         constraints: {
-//           purchase_amount: {
-//             minimum: minPurchaseAmount,
-//             maximum: maxPurchaseAmount,
-//           },
-//         },
-//       },
-//     ]
-//   }
-//
-//   return almaClient.payments.eligibility({
-//     payment: {
-//       purchase_amount: purchaseAmount,
-//       installments_count: this.installmentsCounts,
-//     },
-//   })
-// }
-
-// protected async render(
-//   renderingContext: any,
-//   createWidget: WidgetFactoryFunc,
-// ): Promise<DOMContent> {
-//   const root = document.createElement('div')
-//   root.className = this.config.classes.root
-//
-//   const eligiblePlans: EligibleEligibility[] = []
-//   let minEligible: integer = Number.MAX_VALUE
-//   let maxEligible: integer = Number.MIN_VALUE
-//
-//   for (const eligibility of renderingContext) {
-//     if (eligibility.eligible) {
-//       eligiblePlans.push(eligibility)
-//     } else {
-//       if (eligibility.reasons.purchase_amount) {
-//         const min = Math.max(
-//           this.config.minPurchaseAmount || 0,
-//           eligibility.constraints.purchase_amount.minimum,
-//         )
-//         const max = Math.min(
-//           this.config.maxPurchaseAmount || 0,
-//           eligibility.constraints.purchase_amount.maximum,
-//         )
-//
-//         minEligible = min < minEligible ? min : minEligible
-//         maxEligible = max > maxEligible ? max : maxEligible
-//       } else if (eligibility.reasons.merchant) {
-//         return ''
-//       }
-//     }
-//   }
-//
-//   if (eligiblePlans.length > 0) {
-//     const titleRoot = document.createElement('div')
-//     titleRoot.className = this.config.classes.title
-//     setDOMContent(
-//       titleRoot,
-//       this.config.templates.title(eligiblePlans, this.config, createWidget),
-//     )
-//     setDOMContent(root, titleRoot)
-//
-//     for (const eligibility of eligiblePlans) {
-//       const plan = document.createElement('div')
-//       plan.className = this.config.classes.paymentPlan.root
-//       setDOMContent(
-//         plan,
-//         this.config.templates.paymentPlan(eligibility, this.config, createWidget),
-//       )
-//
-//       root.appendChild(plan)
-//     }
-//   } else {
-//     const notEligibleRoot = document.createElement('div')
-//     notEligibleRoot.className = this.config.classes.notEligible
-//     setDOMContent(
-//       notEligibleRoot,
-//       this.config.templates.notEligible(
-//         minEligible,
-//         maxEligible,
-//         this.installmentsCounts,
-//         this.config,
-//         createWidget,
-//       ),
-//     )
-//
-//     setDOMContent(root, notEligibleRoot)
-//   }
-//
-//   return root
-// }
