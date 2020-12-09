@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/alma/alma-widgets/compare/v1.0.0...v1.0.1) (2020-12-09)
+
+
+### Bug Fixes
+
+* **readme:** remove TypeScript starter lib's readme and re-release to NPM ([7952cc4](https://github.com/alma/alma-widgets/commit/7952cc422ecaecc9884197a4b51a639460f2572c))
+
 # 1.0.0 (2020-12-09)
 
 
