@@ -16,7 +16,7 @@ export namespace Widgets {
     return new WidgetsController(almaClient)
   }
 
-  export const PaymentPlan = widgets.PaymentPlan
+  export const PaymentPlans = widgets.PaymentPlans
   export const HowItWorks = widgets.HowItWorks
 }
 
@@ -25,7 +25,6 @@ export namespace Utils {
   export const priceToCents = utils.priceToCents
   export const priceFromCents = utils.priceFromCents
   export const formatCents = utils.formatCents
-  export const joinInstallmentsCounts = utils.joinInstallmentsCounts
 }
 
 export { ApiMode } from '@alma/client'

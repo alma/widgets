@@ -11,13 +11,12 @@ import {
   WidgetSettings,
 } from '@/widgets/config'
 import { DOMContent } from '../src/types'
-import { RenderingFunc } from '../src/widgets/types'
 
 describe('makeConfig', () => {
   it('has the correct signature', () => {
     type expectedFuncSignature = <T extends WidgetSettings>(
       defaults: DefaultWidgetConfig<T>,
-      settings: SettingsLiteral<T>
+      settings: SettingsLiteral<T>,
     ) => WidgetConfig<T>
 
     expectTypeOf(makeConfig).toEqualTypeOf<expectedFuncSignature>()
@@ -45,7 +44,6 @@ describe('makeConfig', () => {
     }
 
     const container = document.createElement('div')
-    const render: RenderingFunc = async (): Promise<DOMContent> => 'Hello world'
 
     const defaults: DefaultWidgetConfig<TestSettings> = {
       testSetting: {
@@ -67,7 +65,6 @@ describe('makeConfig', () => {
 
     const settings: SettingsLiteral<TestSettings> = {
       container,
-      render,
       testSetting: {
         testNestedSetting: {
           anActualValue: false,

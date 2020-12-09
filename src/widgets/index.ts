@@ -1,2 +1,2 @@
-export { PaymentPlanWidget as PaymentPlan } from './payment_plan'
-export { HowItWorksWidget as HowItWorks } from './how_it_works'
+export { PaymentPlans } from './PaymentPlans/PaymentPlans'
+export { HowItWorks } from './HowItWorks/HowItWorks'
