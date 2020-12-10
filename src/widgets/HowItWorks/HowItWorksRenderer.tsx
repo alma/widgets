@@ -78,7 +78,7 @@ export function HowItWorksRenderer({
 
   return (
     <Modal closeCallback={closeCallback}>
-      <div className="atw-overflow-auto atw-relative atw-flex atw-flex-row atw-flex-wrap atw-rounded-sm atw-shadow-lg atw-w-screen atw-h-screen md:atw-h-650 lg:atw-w-9/12 md:atw-max-w-3xl atw-max-h-screen atw-bg-white">
+      <div className="atw-overflow-auto atw-relative atw-flex atw-flex-row atw-flex-wrap atw-rounded-sm atw-shadow-lg atw-w-screen atw-h-screen md:atw-h-650 lg:atw-w-9/12 md:atw-max-w-3xl atw-max-h-screen atw-bg-white atw-text-base">
         <button
           onClick={closeCallback}
           className="atw-text-3xl atw-opacity-50 hover:atw-opacity-100 focus:atw-opacity-100 atw-absolute atw-top-3 atw-right-4 atw-outline-none atw-transform hover:atw-scale-125 focus:atw-scale-125 atw-transition-transform atw-duration-100"
