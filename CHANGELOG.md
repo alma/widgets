@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/alma/alma-widgets/compare/v1.0.1...v1.0.2) (2020-12-10)
+
+
+### Bug Fixes
+
+* add some more styles reset to protect widgets from host's CSS ([c2a560a](https://github.com/alma/alma-widgets/commit/c2a560acb97e11427e3a2224b92de6453bbfd445))
+* change rem for px on all dimensions to avoid depending on host's CSS ([ddf486d](https://github.com/alma/alma-widgets/commit/ddf486d11a0e5d32cd8cfcc7fde918080b59caca))
+
 ## [1.0.1](https://github.com/alma/alma-widgets/compare/v1.0.0...v1.0.1) (2020-12-09)
 
 
