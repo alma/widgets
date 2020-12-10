@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        7: '1.75rem',
+        7: '28px',
       },
       opacity: {
         15: '0.15',
@@ -49,18 +49,20 @@ module.exports = {
         'above-xl': '0 -20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04)',
       },
       fontSize: {
-        '5xl': '2.75rem',
+        '5xl': '44px',
       },
       inset: {
-        3: '0.75rem',
-        4: '1rem',
+        3: '12px',
+        4: '16px',
       },
     },
   },
   variants: {
     backgroundColor: [...defaultConfig.variants.backgroundColor, 'group-hover'],
   },
-  plugins: [],
+  plugins: [
+    require('./remToPx')(defaultConfig.theme, 16),
+  ],
   corePlugins: {
     // Deactivate preflight's inclusion, it will be added "manually" so that it's scoped to Alma
     preflight: false,
