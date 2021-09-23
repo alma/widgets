@@ -151,6 +151,12 @@ export function HowItWorksRenderer({
                 J'ai compris
               </button>
             </div>
+            {shownPlan && shownPlan.length > 4 && (
+              <div className="atw-font-light atw-mt-6">
+                Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de
+                remboursement avant de vous engager.
+              </div>
+            )}
           </div>
         </div>
       </div>
