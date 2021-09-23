@@ -12,13 +12,14 @@ const baseItemClasses = [
   'atw-inline-block',
   'atw-transition-all',
   'duration-200',
-  'atw-border-b-3',
+  'atw-border-b-2',
   'atw-text-sm',
+  'atw-mr-3',
 ]
 
 const basePillClasses = [
   'atw-inline-block',
-  'atw-p-1',
+  'atw-p-2',
   'atw-text-white',
   'atw-rounded-sm',
   'atw-my-4',
@@ -39,7 +40,7 @@ export function PlanSelectorPlaceholder(): JSX.Element {
 
   return (
     <li className={itemClasses}>
-      Payez en <span className={pillClasses}>⨉</span>
+      <span className={pillClasses}>⨉</span>
     </li>
   )
 }
@@ -63,7 +64,7 @@ export function PlanSelectorItem({ n, selected, onSelect }: PlanSelectorProps): 
 
   return (
     <li className={itemClasses} onClick={handleClick}>
-      Payez en <span className={pillClasses}>{n}⨉</span>
+      <span className={pillClasses}>{n}⨉</span>
     </li>
   )
 }
