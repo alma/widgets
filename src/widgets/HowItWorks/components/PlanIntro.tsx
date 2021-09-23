@@ -1,7 +1,7 @@
 import { IPaymentPlan } from '@alma/client/dist/types/entities/eligibility'
 
 function isFree(plan: IPaymentPlan): boolean {
-  return plan.find((i) => i.customer_fee > 0) == null
+  return plan.find((i) => i.customer_fee > 0 || i.customer_interest > 0) == null
 }
 
 export function PlanIntro({ plan }: { plan: IPaymentPlan | null }): JSX.Element {
