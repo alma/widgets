@@ -16,8 +16,8 @@ export function PlanIntro({ plan }: { plan: IPaymentPlan | null }): JSX.Element 
 
   return (
     <p className="atw-my-8 atw-text-lg">
-      Paiement {isFree(plan) ? 'sans frais,' : null} par carte bancaire, en {plan.length} échéances
-      :
+      Paiement {isFree(plan) ? 'sans frais,' : null} par carte bancaire, en {plan.length}{' '}
+      échéances&nbsp;:
     </p>
   )
 }

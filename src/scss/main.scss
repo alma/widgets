@@ -67,4 +67,16 @@
   .alma-text-highlight-lg {
     @apply inline-block border-b-8 border-red;
   }
+
+  .plan-pill-multiplier {
+    width: 10px;
+    margin-left: -2px !important;
+    padding-top: 0px !important;
+  }
+
+  .plan-selector-multiplier {
+    width: 14px;
+    margin-left: -2px !important;
+    padding-top: 2px !important;
+  }
 }

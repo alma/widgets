@@ -1,8 +1,9 @@
 import cx from 'classnames'
 import { IEligibility } from '@alma/client/dist/types/entities/eligibility'
+import CrossIcon from '@/assets/Cross'
 
 export const basePillClasses = [
-  'atw-inline-block',
+  'atw-flex',
   'atw-p-1',
   'atw-text-white',
   'atw-rounded-sm',
@@ -51,7 +52,8 @@ export function PlanPill({
           })}
           onMouseEnter={mouseEnterCallback}
         >
-          {eligibility.installments_count}⨉
+          {eligibility.installments_count}
+          <CrossIcon className="plan-pill-multiplier" />
         </span>
       </span>
     </span>

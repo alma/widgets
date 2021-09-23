@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import { integer } from '@/types'
+import CrossIcon from '@/assets/Cross'
 
 type PlanSelectorProps = {
   n: integer
@@ -18,7 +19,7 @@ const baseItemClasses = [
 ]
 
 const basePillClasses = [
-  'atw-inline-block',
+  'atw-flex',
   'atw-p-2',
   'atw-text-white',
   'atw-rounded-sm',
@@ -40,7 +41,9 @@ export function PlanSelectorPlaceholder(): JSX.Element {
 
   return (
     <li className={itemClasses}>
-      <span className={pillClasses}>⨉</span>
+      <span className={pillClasses}>
+        <CrossIcon />
+      </span>
     </li>
   )
 }
@@ -64,7 +67,10 @@ export function PlanSelectorItem({ n, selected, onSelect }: PlanSelectorProps): 
 
   return (
     <li className={itemClasses} onClick={handleClick}>
-      <span className={pillClasses}>{n}⨉</span>
+      <span className={pillClasses}>
+        {n}
+        <CrossIcon className="plan-selector-multiplier" />
+      </span>
     </li>
   )
 }
