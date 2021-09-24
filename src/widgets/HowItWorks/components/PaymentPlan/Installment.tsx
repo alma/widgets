@@ -8,7 +8,8 @@ type InstallmentProps = {
 }
 
 export function Installment({ installment }: InstallmentProps): JSX.Element {
-  const fullAmount = installment.purchase_amount + installment.customer_fee
+  const fullAmount =
+    installment.purchase_amount + installment.customer_fee + installment.customer_interest
 
   const installmentClasses = cx('atw-flex', 'atw-flex-row', 'atw-justify-between', {
     'atw-pb-4': installment.customer_fee === 0,

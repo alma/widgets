@@ -78,7 +78,7 @@ export function HowItWorksRenderer({
 
   return (
     <Modal closeCallback={closeCallback}>
-      <div className="atw-overflow-auto atw-relative atw-flex atw-flex-row atw-flex-wrap atw-rounded-sm atw-shadow-lg atw-w-screen atw-h-screen md:atw-h-650 lg:atw-w-9/12 md:atw-max-w-3xl atw-max-h-screen atw-bg-white atw-text-base">
+      <div className="atw-overflow-auto atw-relative atw-flex atw-flex-row atw-flex-wrap atw-rounded-sm atw-shadow-lg atw-w-screen atw-h-screen md:atw-h-800 lg:atw-w-11/12 md:atw-max-w-4xl atw-max-h-screen atw-bg-white atw-text-base">
         <button
           onClick={closeCallback}
           className="atw-text-3xl atw-opacity-50 hover:atw-opacity-100 focus:atw-opacity-100 atw-absolute atw-top-3 atw-right-4 atw-outline-none atw-transform hover:atw-scale-125 focus:atw-scale-125 atw-transition-transform atw-duration-100"
@@ -126,7 +126,7 @@ export function HowItWorksRenderer({
             </span>
           </p>
         </div>
-        <div className="alma-howItWorks__planPanel atw-w-full md:atw-w-1/2 atw-p-8 atw-pb-24 md:atw-pb-8 md:atw-pt-24 atw-flex atw-flex-col atw-align-center atw-bg-beige">
+        <div className="alma-howItWorks__planPanel atw-w-full md:atw-w-1/2 atw-p-8 atw-pb-24 md:atw-pb-8 md:atw-pt-8 atw-flex atw-flex-col atw-align-center atw-bg-beige">
           <div className="atw-flex-grow">
             <PlanSelector
               installmentsCounts={samplePlans.map((p) => p.length)}
@@ -151,6 +151,12 @@ export function HowItWorksRenderer({
                 J'ai compris
               </button>
             </div>
+            {shownPlan && shownPlan.length > 4 && (
+              <div className="atw-font-light atw-mt-6">
+                Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de
+                remboursement avant de vous engager.
+              </div>
+            )}
           </div>
         </div>
       </div>

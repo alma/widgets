@@ -12,7 +12,9 @@ export type PlanDetailsProps = {
 }
 
 function planFullAmount(plan: IPaymentPlan): integer {
-  return plan.map((p) => p.purchase_amount + p.customer_fee).reduce((full, amount) => full + amount)
+  return plan
+    .map((p) => p.purchase_amount + p.customer_fee + p.customer_interest)
+    .reduce((full, amount) => full + amount)
 }
 
 export function PaymentPlan({ plan }: PlanDetailsProps): JSX.Element {

@@ -1,3 +1,4 @@
+import CrossIcon from '@/assets/Cross'
 import { QueriedPlanProperties } from '@/widgets/PaymentPlans/types'
 import cx from 'classnames'
 import { basePillClasses } from './PlanPill'
@@ -8,7 +9,8 @@ export function PlanPillPlaceholder({ plan }: { plan: QueriedPlanProperties }): 
       <span
         className={cx(...basePillClasses, 'atw-bg-blue', 'atw-opacity-25', 'atw-w-full atw-h-6')}
       >
-        {plan.installmentsCount}⨉
+        {plan.installmentsCount}
+        <CrossIcon className="plan-pill-multiplier" />
       </span>
     </span>
   )
