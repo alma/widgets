@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/alma/alma-widgets/compare/v1.0.2...v1.1.0) (2021-09-28)
+
+
+### Bug Fixes
+
+* **multiply-sign:** replace by a svg ([acb2581](https://github.com/alma/alma-widgets/commit/acb25812e1c8f484584b12ef72f7e592f41f4c3f))
+* **p10x:** handle customer_interest ([0f6b97b](https://github.com/alma/alma-widgets/commit/0f6b97bf8dcf1d58013ac444773de47abdc0bd7c))
+* **p10x:** use customer_interest in total amount calculation ([f39a0e1](https://github.com/alma/alma-widgets/commit/f39a0e168e237ef343b0015f726260d90903d811))
+
+
+### Features
+
+* **p10x:** add legal credit text ([89985a8](https://github.com/alma/alma-widgets/commit/89985a879c33c5882e7dbbf6e33ceac01915cf51))
+
 ## [1.0.2](https://github.com/alma/alma-widgets/compare/v1.0.1...v1.0.2) (2020-12-10)
 
 
