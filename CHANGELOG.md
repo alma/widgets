@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/alma/alma-widgets/compare/v1.1.0...v1.1.1) (2021-10-13)
+
+
+### Bug Fixes
+
+* **eligibility:** change default minAmount rules ([504f623](https://github.com/alma/alma-widgets/commit/504f623f164ee1a8eeb4ced013143a927819119b))
+
 # [1.1.0](https://github.com/alma/alma-widgets/compare/v1.0.2...v1.1.0) (2021-09-28)
 
 
