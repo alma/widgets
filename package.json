@@ -180,7 +180,6 @@
   ],
   "husky": {
     "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git-cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged",
       "pre-push": "npm run test:prod && npm run build"
