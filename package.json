@@ -29,7 +29,6 @@
     "lint:fix": "npx eslint --fix src test --ext .js,.ts,.tsx",
     "prebuild": "rm -rf dist",
     "build": "NODE_ENV=production microbundle --name Alma --jsxImportSource preact --css-modules false",
-    "commit": "git-cz",
     "semantic-release": "semantic-release"
   },
   "devDependencies": {
