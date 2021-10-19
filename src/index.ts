@@ -8,25 +8,18 @@ import { WidgetsController } from './widgets_controller'
 import * as utils from './utils'
 
 import { ApiMode } from './consts'
-import { fetchFromApi } from './utils/fetch'
-
+import PaymentPlanWidget from 'Widgets/PaymentPlan'
+export enum widgetTypes {
+  PaymentPlan = 'PaymentPlan',
+  HowItWorks = 'HowItWorks',
+}
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Widgets {
   export function initialize(merchantId: string, mode: ApiMode): WidgetsController {
-    /*const almaClient = await fetchFromApi(
-      mode + '/v2/payments/eligibility',
-      {
-        purchase_amount: 20000,
-      },
-      {
-        Authorization: `Alma-Merchant-Auth ${merchantId}`,
-      },
-    )*/
-    return new WidgetsController({ apiMode: mode, merchantId })
+    return new WidgetsController({ domain: mode, merchantId })
   }
-
-  //export const PaymentPlans = widgets.PaymentPlans
-  //export const HowItWorks = widgets.HowItWorks
+  export const PaymentPlan = widgetTypes.PaymentPlan
+  export const HowItWorks = widgetTypes.HowItWorks
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
