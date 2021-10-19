@@ -4,13 +4,13 @@ import { integer } from '@/types'
 import { QueriedPlanProperties } from '@/widgets/PaymentPlans/types'
 import { EligibleEligibility, IEligibility } from '@alma/client/dist/types/entities/eligibility'
 
-import { useEffect, useLayoutEffect, useReducer } from 'preact/hooks'
+import React, { useEffect, useLayoutEffect, useReducer } from 'react'
 
 import { HowItWorksRenderer } from '@/widgets/HowItWorks/HowItWorksRenderer'
 import { PlanSummary } from '@/widgets/PaymentPlans/components/PlanSummary'
 
 import almaLogo from '../../assets/alma.svg'
-import { render } from 'preact'
+import { render } from 'react-dom'
 import { Client } from '@alma/client'
 import { PlanPill } from '@/widgets/PaymentPlans/components/PlanPill'
 import { plansPlaceholders } from './components/plansPlaceholders'
@@ -77,10 +77,11 @@ function handleMouseLeave(dispatch: (action: ReturnType<typeof setState>) => voi
 }
 
 function useTimeout(timeout: number, cb: () => void): void {
+  /*
   useEffect(() => {
     const timeoutId = window.setTimeout(cb, timeout)
     return () => clearTimeout(timeoutId)
-  }, [timeout, cb])
+  }, [timeout, cb])*/
 }
 
 export function PaymentPlansRenderer({
@@ -108,7 +109,7 @@ export function PaymentPlansRenderer({
     })
   }
 
-  useLayoutEffect(() => {
+  /*useLayoutEffect(() => {
     if (state.showInfoModal && hasEligiblePlans) {
       // To show correctly, the modal needs to be injected into the document's body
       const container = document.createElement('div')
@@ -126,9 +127,9 @@ export function PaymentPlansRenderer({
         container,
       )
 
-      return () => document.body.removeChild(container)
+      //return () => document.body.removeChild(container)
     }
-  }, [state.showInfoModal, hasEligiblePlans])
+  }, [state.showInfoModal, hasEligiblePlans])*/
 
   let planPills: JSX.Element[], planSummary: JSX.Element
   if (results.length === 0 || error) {

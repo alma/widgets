@@ -1,5 +1,4 @@
-import { FunctionComponent } from 'preact'
-import { useEffect } from 'preact/hooks'
+import { useEffect, FunctionComponent } from 'react'
 
 type ModalProps = {
   closeCallback?: () => void

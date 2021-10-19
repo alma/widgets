@@ -6,7 +6,7 @@ import {
   WidgetConfig,
   WidgetSettings,
 } from '@/widgets/config'
-import { render } from 'preact'
+import { render } from 'react-dom'
 
 export type ConstructorFor<T> = T extends Widget<infer SettingsType>
   ? new (almaClient: Client, settings: SettingsLiteral<SettingsType>) => T
