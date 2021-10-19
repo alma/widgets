@@ -50,7 +50,7 @@ module.exports = {
           id in (pkg.dependencies || {}) ||
           id in (pkg.peerDependencies || {}) ||
           // preact imports internal modules that we need inlined into the lib as well
-          id.match(/^preact\//) ||
+          id.match(/^react\//) ||
           id.match(/\.svg$/)
         ) {
           return false
