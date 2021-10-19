@@ -31,6 +31,7 @@
     "jsxFactory": "h"
   },
   "include": [
-    "src"
+    "src",
+    "node_modules/microbundle/index.d.ts"
   ]
 }
