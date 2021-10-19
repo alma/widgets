@@ -16,8 +16,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "jsx": "preserve",
-    "jsxFactory": "h"
+    "jsx": "react"
   },
   "include": ["src", "node_modules/microbundle/index.d.ts"]
 }
