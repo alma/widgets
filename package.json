@@ -20,7 +20,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "NODE_ENV=development microbundle --name Alma --jsxImportSource react --define process.env.NODE_ENV=development --css-modules true --format umd watch",
+    "start": "NODE_ENV=development microbundle --name Alma --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx --define process.env.NODE_ENV=development --css-modules true --format umd watch",
     "test": "NODE_ENV=test jest --coverage",
     "test:no-coverage": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --coverage --watch",
@@ -28,7 +28,7 @@
     "lint": "npx eslint src test --ext .js,.ts,.tsx",
     "lint:fix": "npx eslint --fix src test --ext .js,.ts,.tsx",
     "prebuild": "rm -rf dist",
-    "build": "NODE_ENV=production microbundle --name Alma --jsxImportSource react --define process.env.NODE_ENV=development--css-modules true",
+    "build": "NODE_ENV=production microbundle --name Alma --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx --define process.env.NODE_ENV=development--css-modules true",
     "semantic-release": "semantic-release"
   },
   "devDependencies": {
