@@ -1,14 +1,12 @@
-import { integer } from '@/types'
-
-export function priceToCents(price: number): integer {
+export function priceToCents(price: number): number {
   return Math.round(price * 100)
 }
 
-export function priceFromCents(cents: integer): number {
+export function priceFromCents(cents: number): number {
   return Number((cents / 100).toFixed(2))
 }
 
-export function formatCents(cents: integer): string {
+export function formatCents(cents: number): string {
   return String(priceFromCents(cents)).replace('.', ',')
 }
 
@@ -42,7 +40,7 @@ export function humanizedDate(date: Date, addArticle = false, forceDate = false)
   return article + date.toLocaleDateString()
 }
 
-export function addMonths(date: Date, months: integer): Date {
+export function addMonths(date: Date, months: number): Date {
   const d = date.getDate()
   date.setMonth(date.getMonth() + +months)
   if (date.getDate() != d) {

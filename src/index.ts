@@ -1,23 +1,32 @@
 import 'core-js/stable/array/from'
 import './utils/polyfills'
 
-import './scss/main.scss'
+import './main.css'
 
-import { ApiMode, Client } from '@alma/client'
 import { WidgetsController } from './widgets_controller'
 
-import * as widgets from './widgets'
 import * as utils from './utils'
+
+import { ApiMode } from './consts'
+import { fetchFromApi } from './utils/fetch'
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Widgets {
   export function initialize(merchantId: string, mode: ApiMode): WidgetsController {
-    const almaClient = Client.withMerchantId(merchantId, { mode })
-    return new WidgetsController(almaClient)
+    /*const almaClient = await fetchFromApi(
+      mode + '/v2/payments/eligibility',
+      {
+        purchase_amount: 20000,
+      },
+      {
+        Authorization: `Alma-Merchant-Auth ${merchantId}`,
+      },
+    )*/
+    return new WidgetsController({ apiMode: mode, merchantId })
   }
 
-  export const PaymentPlans = widgets.PaymentPlans
-  export const HowItWorks = widgets.HowItWorks
+  //export const PaymentPlans = widgets.PaymentPlans
+  //export const HowItWorks = widgets.HowItWorks
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -27,4 +36,4 @@ export namespace Utils {
   export const formatCents = utils.formatCents
 }
 
-export { ApiMode } from '@alma/client'
+export { ApiMode } from './consts'
