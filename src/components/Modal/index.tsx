@@ -5,7 +5,6 @@ import noScroll from 'no-scroll'
 import cx from 'classnames'
 
 import s from './Modal.module.css'
-import closeIcon from 'assets/close.svg'
 import CrossIcon from 'assets/Cross'
 
 export type Props = Modal.Props & {

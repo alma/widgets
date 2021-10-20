@@ -26,3 +26,70 @@
   --green-100: #ddf8f1;
   --green-300: #1dcda3;
 }
+@font-face {
+  font-family: 'Eina04';
+  src: url('./assets/fonts/Eina04-Light.eot?#iefix') format('embedded-opentype'),
+    url('./assets/fonts/Eina04-Light.woff') format('woff'),
+    url('./assets/fonts/Eina04-Light.ttf') format('truetype'),
+    url('./assets/fonts/Eina04-Light.svg#Eina04-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Eina04';
+  src: url('./assets/fonts/Eina04-Regular.eot?#iefix') format('embedded-opentype'),
+    url('./assets/fonts/Eina04-Regular.woff') format('woff'),
+    url('./assets/fonts/Eina04-Regular.ttf') format('truetype'),
+    url('./assets/fonts/Eina04-Regular.svg#Eina04-Regular') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Eina04';
+  src: url('./assets/fonts/Eina04-RegularItalic.eot?#iefix') format('embedded-opentype'),
+    url('./assets/fonts/Eina04-RegularItalic.woff') format('woff'),
+    url('./assets/fonts/Eina04-RegularItalic.ttf') format('truetype'),
+    url('./assets/fonts/Eina04-RegularItalic.svg#Eina04-RegularItalic') format('svg');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Eina04';
+  src: url('./assets/fonts/Eina04-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('./assets/fonts/Eina04-SemiBold.woff') format('woff'),
+    url('./assets/fonts/Eina04-SemiBold.ttf') format('truetype'),
+    url('./assets/fonts/Eina04-SemiBold.svg#Eina04-SemiBold') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Eina04';
+  src: url('./assets/fonts/Eina04-SemiboldItalic.eot?#iefix') format('embedded-opentype'),
+    url('./assets/fonts/Eina04-SemiboldItalic.woff') format('woff'),
+    url('./assets/fonts/Eina04-SemiboldItalic.ttf') format('truetype'),
+    url('./assets/fonts/Eina04-SemiboldItalic.svg#Eina04-SemiboldItalic') format('svg');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Eina04';
+  src: url('./assets/fonts/Eina04-Bold.eot?#iefix') format('embedded-opentype'),
+    url('./assets/fonts/Eina04-Bold.woff') format('woff'),
+    url('./assets/fonts/Eina04-Bold.ttf') format('truetype'),
+    url('./assets/fonts/Eina04-Bold.svg#Eina04-Bold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Public Sans';
+  src: url('./assets/fonts/PublicSans-VariableFont_wght.ttf');
+  font-style: normal;
+  font-display: swap;
+}
