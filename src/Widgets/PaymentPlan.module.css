@@ -1,0 +1,57 @@
+.widgetButton {
+  height: 84px;
+  width: 368px;
+  background-color: transparent;
+  border: 1px solid var(--gray-300);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+}
+.logo {
+  color: var(--blue-300);
+  margin-right: 12px;
+}
+.primaryContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.paymentPlans {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  max-width: 310px;
+  flex-wrap: wrap;
+}
+.plan {
+  font-size: 14px;
+  font-family: 'Eina04';
+  font-weight: 600;
+  color: var(--blue-300);
+  line-height: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 19px;
+  width: 30px;
+  margin: 4px 4px 4px 4px;
+}
+.plan::after {
+  content: '';
+  height: 3px;
+  width: 100%;
+  background-color: transparent;
+}
+.plan:hover::after {
+  background-color: var(--blue-300);
+}
+.info {
+  font-family: Public Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 180%;
+  color: var(--blue-300);
+}
