@@ -1,7 +1,10 @@
 import { ApiMode } from 'consts'
 
 export type ApiConfig = { domain: ApiMode; merchantId: string }
-
+export enum widgetTypes {
+  PaymentPlans = 'PaymentPlans',
+  HowItWorks = 'HowItWorks',
+}
 export type PaymentPlan = {
   customer_fee: number
   customer_interest: number

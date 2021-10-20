@@ -8,17 +8,14 @@ import { WidgetsController } from './widgets_controller'
 import * as utils from './utils'
 
 import { ApiMode } from './consts'
-import PaymentPlanWidget from 'Widgets/PaymentPlan'
-export enum widgetTypes {
-  PaymentPlan = 'PaymentPlan',
-  HowItWorks = 'HowItWorks',
-}
+import { widgetTypes } from 'types'
+
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Widgets {
   export function initialize(merchantId: string, mode: ApiMode): WidgetsController {
     return new WidgetsController({ domain: mode, merchantId })
   }
-  export const PaymentPlan = widgetTypes.PaymentPlan
+  export const PaymentPlans = widgetTypes.PaymentPlans
   export const HowItWorks = widgetTypes.HowItWorks
 }
 

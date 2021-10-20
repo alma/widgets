@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-import { ApiConfig } from 'types'
 import EligibilityModal from './EligibilityModal'
 type Props = {
   button: string
