@@ -5,11 +5,7 @@ import useFetchEligibility from 'hooks/useFetchEligibility'
 import EligibilityModal from './EligibilityModal'
 import s from './PaymentPlan.module.css'
 import LogoIcon from 'assets/Logo'
-import {
-  paymentPlanInfoText,
-  paymentPlanShorthandName,
-  paymentPlanFeesText,
-} from 'utils/paymentPlanStrings'
+import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import cx from 'classnames'
 
 type Props = {
@@ -23,22 +19,26 @@ const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData }) => {
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
   const [active, setActive] = useState(0)
-  let update = true
+  const [update, setUpdate] = useState(true)
   useEffect(() => {
+    let isMounted = true
     if (eligibilityPlans.length !== 0) {
       setTimeout(() => {
-        if (update) setActive((active + 1) % eligibilityPlans.length)
+        if (update && isMounted) setActive((active + 1) % eligibilityPlans.length)
       }, 3000)
+    }
+    return () => {
+      isMounted = false
     }
   }, [eligibilityPlans, active])
 
   const handleHover = (key: number) => {
-    update = false
+    setUpdate(false)
     setActive(key)
   }
   return (
     <>
-      <button onClick={openModal} className={s.widgetButton}>
+      <button onClick={openModal} className={s.widgetButton} data-testid="widget-button">
         <div className={s.primaryContainer}>
           <LogoIcon color="#00425D" className={s.logo} />
           <div className={s.paymentPlans}>
@@ -56,10 +56,7 @@ const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData }) => {
           </div>
         </div>
         <div className={s.info}>
-          {eligibilityPlans.length !== 0 &&
-            `${paymentPlanInfoText(eligibilityPlans[active])} ${paymentPlanFeesText(
-              eligibilityPlans[active],
-            )}`}
+          {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[active])}
         </div>
       </button>
       <EligibilityModal
