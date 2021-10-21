@@ -23,7 +23,7 @@
     "start": "NODE_ENV=development microbundle --name Alma --sourcemap --jsx React.createElement --jsxImportSource react --globals react/jsx-runtime=jsx --define process.env.NODE_ENV=development --css-modules true --format umd watch",
     "test": "NODE_ENV=test jest --coverage",
     "test:no-coverage": "NODE_ENV=test jest",
-    "test:watch": "NODE_ENV=test jest --coverage --watch",
+    "test:watch": "NODE_ENV=test jest --watch",
     "test:prod": "npm run lint && npm run test -- --no-cache",
     "lint": "npx eslint src test --ext .js,.ts,.tsx",
     "lint:fix": "npx eslint --fix src test --ext .js,.ts,.tsx",
@@ -46,6 +46,7 @@
     "@rollup/plugin-image": "^2.0.5",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
+    "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
     "@types/classnames": "^2.2.11",
     "@types/jest": "^26.0.16",
@@ -56,6 +57,7 @@
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
+    "babel-plugin-css-modules-transform": "^1.6.2",
     "commitizen": "^4.2.1",
     "core-js": "^3.8.1",
     "cz-conventional-changelog": "^3.3.0",
@@ -194,6 +196,7 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
+    "rootDir": "src",
     "moduleNameMapper": {
       "\\.s?css": "<rootDir>/__mocks__/styleMock.js",
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",

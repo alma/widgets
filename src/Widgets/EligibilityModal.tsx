@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent } from 'react'
 import Modal from 'components/Modal'
 import React from 'react'
 
