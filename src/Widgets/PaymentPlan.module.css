@@ -44,7 +44,7 @@
   width: 100%;
   background-color: transparent;
 }
-.plan:hover::after {
+.active::after {
   background-color: var(--blue-300);
 }
 .info {
