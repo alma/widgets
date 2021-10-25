@@ -1,10 +1,10 @@
+import { ApiMode } from 'consts'
 import React from 'react'
 import { render } from 'react-dom'
-import PaymentPlanWidget from 'Widgets/PaymentPlan'
-
-import { ApiMode } from 'consts'
-import HowItWorksWidget from 'Widgets/HowItWorks'
+import { IntlProvider } from 'react-intl'
 import { Plans, widgetTypes } from 'types'
+import HowItWorksWidget from 'Widgets/HowItWorks'
+import PaymentPlanWidget from 'Widgets/PaymentPlan'
 
 export class WidgetsController {
   constructor(private readonly apiData: { domain: ApiMode; merchantId: string }) {}
@@ -19,14 +19,21 @@ export class WidgetsController {
   ): void {
     if (widget === widgetTypes.PaymentPlans) {
       render(
-        <PaymentPlanWidget purchaseAmount={purchaseAmount} apiData={this.apiData} plans={plans} />,
+        <IntlProvider messages={{}} locale="fr">
+          <PaymentPlanWidget purchaseAmount={purchaseAmount} apiData={this.apiData} plans={plans} />
+        </IntlProvider>,
         document.querySelector(container),
       )
     }
     if (widget === widgetTypes.HowItWorks) {
       const modalContainer = document.createElement('div')
       document.querySelector(container)?.append(modalContainer)
-      render(<HowItWorksWidget button={container} />, modalContainer)
+      render(
+        <IntlProvider messages={{}} locale="fr">
+          <HowItWorksWidget button={container} />
+        </IntlProvider>,
+        modalContainer,
+      )
     }
   }
 }

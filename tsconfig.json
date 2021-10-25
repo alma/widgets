@@ -4,7 +4,6 @@
     "outDir": "dist/lib",
     "typeRoots": ["node_modules/@types"],
     "baseUrl": "src",
-
     "moduleResolution": "node",
     "target": "ES2019",
     "module": "commonjs",
