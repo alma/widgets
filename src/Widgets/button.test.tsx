@@ -1,7 +1,8 @@
-import { render, waitFor, screen, act, fireEvent } from '@testing-library/react'
-import React from 'react'
-import PaymentPlanWidget from './PaymentPlan'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { ApiMode } from 'consts'
+import React from 'react'
+import { IntlProvider } from 'react-intl'
+import PaymentPlanWidget from './PaymentPlan'
 jest.mock('utils/fetch', () => {
   return {
     fetchFromApi: async () => [
@@ -211,10 +212,12 @@ jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
 describe('Button', () => {
   beforeEach(async () => {
     render(
-      <PaymentPlanWidget
-        purchaseAmount={40000}
-        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-      />,
+      <IntlProvider messages={{}} locale="fr">
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+        />
+      </IntlProvider>,
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
   })

@@ -1,6 +1,7 @@
 import { ApiMode } from 'consts'
 
 export type ApiConfig = { domain: ApiMode; merchantId: string }
+
 export enum widgetTypes {
   PaymentPlans = 'PaymentPlans',
   HowItWorks = 'HowItWorks',
@@ -21,6 +22,7 @@ export type PaymentPlan = {
   total_amount: number
 }
 export type EligibilityPlan = {
+  annual_interest_rate?: number
   customer_total_cost_amount: number
   customer_total_cost_bps: number
   deferred_days: number

@@ -1,14 +1,10 @@
 import 'core-js/stable/array/from'
-import './utils/polyfills'
-
-import './main.css'
-
-import { WidgetsController } from './widgets_controller'
-
-import * as utils from './utils'
-
-import { ApiMode } from './consts'
 import { widgetTypes } from 'types'
+import { ApiMode } from './consts'
+import './main.css'
+import * as utils from './utils'
+import './utils/polyfills'
+import { WidgetsController } from './widgets_controller'
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Widgets {

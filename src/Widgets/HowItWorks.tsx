@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-
 import EligibilityModal from './EligibilityModal'
+
 type Props = {
   button: string
 }
@@ -19,7 +19,8 @@ const HowItWorksWidget: React.FC<Props> = ({ button }) => {
       onClose={() => {
         closeModal()
       }}
-    ></EligibilityModal>
+      eligibilityPlans={[]}
+    />
   )
 }
 export default HowItWorksWidget

@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
-
-import { ApiConfig, Plans } from 'types'
-import useFetchEligibility from 'hooks/useFetchEligibility'
-import EligibilityModal from './EligibilityModal'
-import s from './PaymentPlan.module.css'
 import LogoIcon from 'assets/Logo'
-import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import cx from 'classnames'
 import useButtonAnimation from 'hooks/useButtonAnimation'
+import useFetchEligibility from 'hooks/useFetchEligibility'
+import React, { useState } from 'react'
+import { ApiConfig, Plans } from 'types'
+import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
+import EligibilityModal from './EligibilityModal'
+import s from './PaymentPlan.module.css'
 
 type Props = {
   purchaseAmount: number
@@ -61,12 +60,7 @@ const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData, plans }) 
           {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
         </div>
       </button>
-      <EligibilityModal
-        isOpen={isOpen}
-        onClose={() => {
-          closeModal()
-        }}
-      ></EligibilityModal>
+      <EligibilityModal isOpen={isOpen} onClose={closeModal} eligibilityPlans={eligibilityPlans} />
     </>
   )
 }

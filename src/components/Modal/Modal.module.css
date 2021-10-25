@@ -53,10 +53,11 @@
   .modal {
     border-radius: 8px;
     width: 800px;
-    height: fit-content;
+    height: 550px;
   }
   .contentScrollable {
     max-height: 100vh;
+    overflow: hidden;
   }
 
   .content {
