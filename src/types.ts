@@ -5,6 +5,14 @@ export enum widgetTypes {
   PaymentPlans = 'PaymentPlans',
   HowItWorks = 'HowItWorks',
 }
+export type Plans = {
+  installmentsCount: number
+  deferredDays?: number
+  deferredMonths?: number
+  minAmount: number
+  maxAmount: number
+}
+
 export type PaymentPlan = {
   customer_fee: number
   customer_interest: number
@@ -21,4 +29,9 @@ export type EligibilityPlan = {
   installments_count: number
   payment_plan: PaymentPlan[]
   purchase_amount: number
+}
+export type EligibilityPlanToDisplay = EligibilityPlan & {
+  minAmount: number
+  maxAmount: number
+  eligible: boolean
 }

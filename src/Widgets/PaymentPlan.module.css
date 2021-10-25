@@ -47,6 +47,10 @@
 .active::after {
   background-color: var(--blue-300);
 }
+.active.notEligible::after {
+  background-color: var(--gray-600);
+}
+
 .info {
   font-family: Public Sans;
   font-style: normal;
@@ -54,4 +58,7 @@
   font-size: 14px;
   line-height: 180%;
   color: var(--blue-300);
+}
+.notEligible {
+  color: var(--gray-600);
 }

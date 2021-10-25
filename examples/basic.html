@@ -357,6 +357,24 @@
         widgets.add(Alma.Widgets.PaymentPlans, {
           container: '#payment-plans',
           purchaseAmount: 45000,
+          plans: [
+            {
+              installmentsCount: 1,
+              minAmount: 5000,
+              maxAmount: 20000,
+            },
+            {
+              installmentsCount: 1,
+              deferredDays: 30,
+              minAmount: 50,
+              maxAmount: 70000,
+            },
+            {
+              installmentsCount: 3,
+              minAmount: 5000,
+              maxAmount: 50000,
+            },
+          ],
         })
         widgets.add(Alma.Widgets.HowItWorks, {
           container: 'footer .pill',

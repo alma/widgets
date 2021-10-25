@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
-import { ApiConfig, EligibilityPlan } from 'types'
+import { ApiConfig, EligibilityPlan, EligibilityPlanToDisplay, Plans } from 'types'
 import { fetchFromApi } from 'utils/fetch'
+import filterELigibility from 'utils/filterEligibility'
 
 const useFetchEligibility = (
   purchaseAmount: number,
   { domain, merchantId }: ApiConfig,
-): EligibilityPlan[] => {
-  const [eligibility, setEligibility] = useState([])
+  plans?: Plans[],
+): EligibilityPlanToDisplay[] => {
+  const [eligibility, setEligibility] = useState([] as EligibilityPlan[])
   useEffect(() => {
     fetchFromApi(
       domain + '/v2/payments/eligibility',
@@ -20,6 +22,7 @@ const useFetchEligibility = (
       setEligibility(res)
     })
   }, [])
-  return eligibility
+
+  return filterELigibility(eligibility, plans)
 }
 export default useFetchEligibility

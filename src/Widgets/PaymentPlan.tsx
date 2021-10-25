@@ -1,40 +1,37 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { ApiConfig } from 'types'
+import { ApiConfig, Plans } from 'types'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import EligibilityModal from './EligibilityModal'
 import s from './PaymentPlan.module.css'
 import LogoIcon from 'assets/Logo'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import cx from 'classnames'
+import useButtonAnimation from 'hooks/useButtonAnimation'
 
 type Props = {
   purchaseAmount: number
   apiData: ApiConfig
+  plans?: Plans[]
 }
 
-const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData }) => {
-  const eligibilityPlans = useFetchEligibility(purchaseAmount, apiData)
+const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData, plans }) => {
+  const eligibilityPlans = useFetchEligibility(purchaseAmount, apiData, plans)
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
-  const [active, setActive] = useState(0)
-  const [update, setUpdate] = useState(true)
-  useEffect(() => {
-    let isMounted = true
-    if (eligibilityPlans.length !== 0) {
-      setTimeout(() => {
-        if (update && isMounted) setActive((active + 1) % eligibilityPlans.length)
-      }, 3000)
-    }
-    return () => {
-      isMounted = false
-    }
-  }, [eligibilityPlans, active])
+
+  const [current, setCurrent] = useButtonAnimation(
+    eligibilityPlans
+      .map((plan, key) => {
+        if (plan.eligible) return key
+        return undefined
+      })
+      .filter((key) => key !== undefined) as number[],
+  )
 
   const handleHover = (key: number) => {
-    setUpdate(false)
-    setActive(key)
+    setCurrent(key)
   }
   return (
     <>
@@ -47,7 +44,8 @@ const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData }) => {
                 onMouseOver={() => handleHover(key)}
                 key={key}
                 className={cx(s.plan, {
-                  [s.active]: active === key,
+                  [s.active]: current === key,
+                  [s.notEligible]: !eligibilityPlan.eligible,
                 })}
               >
                 {paymentPlanShorthandName(eligibilityPlan)}
@@ -55,8 +53,12 @@ const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData }) => {
             ))}
           </div>
         </div>
-        <div className={s.info}>
-          {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[active])}
+        <div
+          className={cx(s.info, {
+            [s.notEligible]: eligibilityPlans[current] && !eligibilityPlans[current].eligible,
+          })}
+        >
+          {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
         </div>
       </button>
       <EligibilityModal
