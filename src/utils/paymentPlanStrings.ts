@@ -1,4 +1,4 @@
-import { EligibilityPlan } from 'types'
+import { EligibilityPlan, EligibilityPlanToDisplay } from 'types'
 import { priceFromCents } from 'utils'
 
 export const paymentPlanShorthandName = (payment: EligibilityPlan): string => {
@@ -14,7 +14,7 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): string => {
 }
 
 export const paymentPlanInfoTextDeferred = (
-  payment: EligibilityPlan,
+  payment: EligibilityPlanToDisplay,
   deferredDays: number,
 ): string => {
   const date = new Date()
@@ -26,21 +26,29 @@ export const paymentPlanInfoTextDeferred = (
     day: '2-digit',
   }).format(date)} `
 }
-export const paymentPlanInfoTextInstallements = (payment: EligibilityPlan): string => {
+export const paymentPlanInfoTextInstallements = (payment: EligibilityPlanToDisplay): string => {
   return `${payment.installments_count} mensualités de ${priceFromCents(
     payment.payment_plan[0].purchase_amount,
   )} € ${paymentPlanFeesText(payment)}`
 }
 export const paymentPlanInfoTextDeferredInstallements = (
-  payment: EligibilityPlan,
+  payment: EligibilityPlanToDisplay,
   deferredDays: number,
 ): string => {
   console.warn('TODO')
   return `payez en plusieurs fois avec Alma`
 }
+const paymentPlanInfoTextIneligible = (payment: EligibilityPlanToDisplay) => {
+  if (payment.purchase_amount < payment.minAmount)
+    return `À partir de ${priceFromCents(payment.minAmount)} €`
+  if (payment.purchase_amount > payment.maxAmount)
+    return `Jusqu'à ${priceFromCents(payment.maxAmount)} €`
+  return `payez en plusieurs fois avec Alma`
+}
 
-export const paymentPlanInfoText = (payment: EligibilityPlan): string => {
+export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): string => {
   const deferredDays = payment.deferred_days + payment.deferred_months * 30
+  if (!payment.eligible) return paymentPlanInfoTextIneligible(payment)
   if (deferredDays !== 0 && payment.installments_count === 1) {
     return paymentPlanInfoTextDeferred(payment, deferredDays)
   } else if (deferredDays !== 0) {

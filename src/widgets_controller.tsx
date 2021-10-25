@@ -4,18 +4,22 @@ import PaymentPlanWidget from 'Widgets/PaymentPlan'
 
 import { ApiMode } from 'consts'
 import HowItWorksWidget from 'Widgets/HowItWorks'
-import { widgetTypes } from 'types'
+import { Plans, widgetTypes } from 'types'
 
 export class WidgetsController {
   constructor(private readonly apiData: { domain: ApiMode; merchantId: string }) {}
 
   add(
     widget: string,
-    { container, purchaseAmount }: { container: string; purchaseAmount: number },
+    {
+      container,
+      purchaseAmount,
+      plans,
+    }: { container: string; purchaseAmount: number; plans: Plans[] },
   ): void {
     if (widget === widgetTypes.PaymentPlans) {
       render(
-        <PaymentPlanWidget purchaseAmount={purchaseAmount} apiData={this.apiData} />,
+        <PaymentPlanWidget purchaseAmount={purchaseAmount} apiData={this.apiData} plans={plans} />,
         document.querySelector(container),
       )
     }
