@@ -11,11 +11,13 @@ const filterELigibility = (
       minAmount: 0,
       maxAmount: 0,
     }))
+
   return eligibilities.reduce((resultEligibilities: EligibilityPlanToDisplay[], eligibility) => {
     const eligibilityDeferredDays =
       (eligibility.deferred_months ? eligibility.deferred_months : 0) * 30 +
       (eligibility.deferred_days ? eligibility.deferred_days : 0)
 
+    //retirieve the plan that matches eligibility
     const consideredPlan = plans.find((plan) => {
       const planDeferredDays =
         (plan.deferredMonths ? plan.deferredMonths : 0) * 30 +
@@ -26,7 +28,14 @@ const filterELigibility = (
       )
     })
 
-    if (consideredPlan) {
+    //filter P1x as will not offer it on widget
+    const isP1x =
+      eligibility.installments_count === 1 &&
+      eligibility.deferred_months === 0 &&
+      eligibility.deferred_days === 0
+
+    //return eligibilities that we will display
+    if (consideredPlan && !isP1x) {
       resultEligibilities.push({
         ...eligibility,
         minAmount: consideredPlan.minAmount,

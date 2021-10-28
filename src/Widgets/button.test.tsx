@@ -43,6 +43,31 @@ jest.mock('utils/fetch', () => {
         purchase_amount: 45000,
       },
       {
+        customer_total_cost_amount: 0,
+        customer_total_cost_bps: 0,
+        deferred_days: 0,
+        deferred_months: 0,
+        eligible: true,
+        installments_count: 2,
+        payment_plan: [
+          {
+            customer_fee: 0,
+            customer_interest: 0,
+            due_date: 1634819600,
+            purchase_amount: 22500,
+            total_amount: 22500,
+          },
+          {
+            customer_fee: 0,
+            customer_interest: 0,
+            due_date: 1634819600,
+            purchase_amount: 22500,
+            total_amount: 22500,
+          },
+        ],
+        purchase_amount: 45000,
+      },
+      {
         customer_total_cost_amount: 135,
         customer_total_cost_bps: 30,
         deferred_days: 0,
@@ -212,7 +237,7 @@ jest.mock('utils/fetch', () => {
 const animationDuration = 5500
 jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
 describe('Button', () => {
-  describe('No plans provided', () => {
+  describe('Basics', () => {
     beforeEach(async () => {
       render(
         <IntlProvider messages={{}} locale="fr">
@@ -227,7 +252,26 @@ describe('Button', () => {
     it('displays the button', () => {
       expect(screen.getByTestId('widget-button')).toBeInTheDocument()
     })
+    it('Opens the modal on click', async () => {
+      act(() => {
+        fireEvent.click(screen.getByTestId('widget-button'))
+      })
+      expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
+    })
+  })
 
+  describe('No plans provided', () => {
+    beforeEach(async () => {
+      render(
+        <IntlProvider messages={{}} locale="fr">
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          />
+        </IntlProvider>,
+      )
+      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    })
     it('displays all available payment plans', () => {
       expect(screen.getByText('3x')).toBeInTheDocument()
       expect(screen.getByText('4x')).toBeInTheDocument()
@@ -254,6 +298,11 @@ describe('Button', () => {
             plans={[
               {
                 installmentsCount: 1,
+                minAmount: 100,
+                maxAmount: 100000,
+              },
+              {
+                installmentsCount: 2,
                 minAmount: 100,
                 maxAmount: 100000,
               },
@@ -304,8 +353,6 @@ describe('Button', () => {
       })
       expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
     })
-
-    //TODO test modal open
   })
   describe('paymentPlan includes contains ineligible options', () => {
     beforeEach(async () => {
@@ -316,6 +363,11 @@ describe('Button', () => {
             plans={[
               {
                 installmentsCount: 1,
+                minAmount: 5000,
+                maxAmount: 20000,
+              },
+              {
+                installmentsCount: 2,
                 minAmount: 5000,
                 maxAmount: 20000,
               },
@@ -342,10 +394,10 @@ describe('Button', () => {
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
-    it('Displays only provided plans', () => {
+    it('Displays only provided plans (except p1x)', () => {
       expect(screen.getByText('J+30')).toBeInTheDocument()
-      expect(screen.getByText('1x')).toBeInTheDocument()
       expect(screen.getByText('3x')).toBeInTheDocument()
+      expect(screen.queryByText('1x')).not.toBeInTheDocument()
     })
     it('does not display plan that are not part of eligibility', () => {
       expect(screen.queryByText('8x')).not.toBeInTheDocument()
@@ -363,7 +415,7 @@ describe('Button', () => {
       })
       expect(screen.getByText('À partir de 500 €')).toBeInTheDocument()
       act(() => {
-        fireEvent.mouseOver(screen.getByText('1x'))
+        fireEvent.mouseOver(screen.getByText('2x'))
       })
       expect(screen.getByText("Jusqu'à 200 €")).toBeInTheDocument()
     })
