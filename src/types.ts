@@ -6,7 +6,7 @@ export enum widgetTypes {
   PaymentPlans = 'PaymentPlans',
   HowItWorks = 'HowItWorks',
 }
-export type Plans = {
+export type configPlans = {
   installmentsCount: number
   deferredDays?: number
   deferredMonths?: number

@@ -3,7 +3,7 @@ import cx from 'classnames'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import React, { useState } from 'react'
-import { ApiConfig, Plans } from 'types'
+import { ApiConfig, configPlans } from 'types'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import EligibilityModal from './EligibilityModal'
 import s from './PaymentPlan.module.css'
@@ -11,10 +11,10 @@ import s from './PaymentPlan.module.css'
 type Props = {
   purchaseAmount: number
   apiData: ApiConfig
-  plans?: Plans[]
+  configPlans?: configPlans[]
   transitionDelay?: number
 }
-const defaultPlan = [
+const defaultConfigPlans = [
   {
     installmentsCount: 3,
     minAmount: 0,
@@ -29,10 +29,14 @@ const defaultPlan = [
 const PaymentPlanWidget: React.FC<Props> = ({
   purchaseAmount,
   apiData,
-  plans,
+  configPlans,
   transitionDelay,
 }) => {
-  const eligibilityPlans = useFetchEligibility(purchaseAmount, apiData, plans ? plans : defaultPlan)
+  const eligibilityPlans = useFetchEligibility(
+    purchaseAmount,
+    apiData,
+    configPlans ? configPlans : defaultConfigPlans,
+  )
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)

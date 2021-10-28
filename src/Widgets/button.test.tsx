@@ -295,7 +295,7 @@ describe('Button', () => {
           <PaymentPlanWidget
             purchaseAmount={40000}
             apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-            plans={[
+            configPlans={[
               {
                 installmentsCount: 1,
                 minAmount: 100,
@@ -360,7 +360,7 @@ describe('Button', () => {
         <IntlProvider messages={{}} locale="fr">
           <PaymentPlanWidget
             purchaseAmount={40000}
-            plans={[
+            configPlans={[
               {
                 installmentsCount: 1,
                 minAmount: 5000,
