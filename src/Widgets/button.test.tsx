@@ -208,77 +208,143 @@ jest.mock('utils/fetch', () => {
     ],
   }
 })
+
+const animationDuration = 2000
 jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
 describe('Button', () => {
-  beforeEach(async () => {
-    render(
-      <IntlProvider messages={{}} locale="fr">
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-        />
-      </IntlProvider>,
-    )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-  })
-  it('displays the button', () => {
-    expect(screen.getByTestId('widget-button')).toBeInTheDocument()
-  })
+  describe('No plans provided', () => {
+    beforeEach(async () => {
+      render(
+        <IntlProvider messages={{}} locale="fr">
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          />
+        </IntlProvider>,
+      )
+      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    })
+    it('displays the button', () => {
+      expect(screen.getByTestId('widget-button')).toBeInTheDocument()
+    })
 
-  it('displays all available payment plans', () => {
-    expect(screen.getByText('J+30')).toBeInTheDocument()
-    expect(screen.getByText('1x')).toBeInTheDocument()
-    expect(screen.getByText('3x')).toBeInTheDocument()
-    expect(screen.getByText('4x')).toBeInTheDocument()
-    expect(screen.getByText('10x')).toBeInTheDocument()
-  })
-  it('display iterates on each message every 3 seconds then returns to the beginning', () => {
-    expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
-    act(() => {
-      jest.advanceTimersByTime(3000)
+    it('displays all available payment plans', () => {
+      expect(screen.getByText('J+30')).toBeInTheDocument()
+      expect(screen.getByText('1x')).toBeInTheDocument()
+      expect(screen.getByText('3x')).toBeInTheDocument()
+      expect(screen.getByText('4x')).toBeInTheDocument()
+      expect(screen.getByText('10x')).toBeInTheDocument()
     })
-    expect(screen.getByText('1 mensualités de 450 € (sans frais)')).toBeInTheDocument()
-    act(() => {
-      jest.advanceTimersByTime(3000)
+    it('display iterates on each message every 3 seconds then returns to the beginning', () => {
+      expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
+      expect(screen.getByText('1 mensualités de 450 € (sans frais)')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
+      expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
+      expect(screen.getByText('4 mensualités de 112.5 € (+ frais)')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
+      expect(screen.getByText('10 mensualités de 47.73 € (+ frais)')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
+      expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
     })
-    expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
-    act(() => {
-      jest.advanceTimersByTime(3000)
+    it('displays the message corresponding to the payment plan hovered', () => {
+      expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
+      act(() => {
+        fireEvent.mouseOver(screen.getByText('3x'))
+      })
+      expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
+      act(() => {
+        fireEvent.mouseOver(screen.getByText('10x'))
+      })
+      expect(screen.getByText('10 mensualités de 47.73 € (+ frais)')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
     })
-    expect(screen.getByText('4 mensualités de 112.5 € (+ frais)')).toBeInTheDocument()
-    act(() => {
-      jest.advanceTimersByTime(3000)
-    })
-    expect(screen.getByText('10 mensualités de 47.73 € (+ frais)')).toBeInTheDocument()
-    act(() => {
-      jest.advanceTimersByTime(3000)
-    })
-    expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
-  })
-  it('displays the message corresponding to the payment plan hovered', () => {
-    expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
-    act(() => {
-      fireEvent.mouseOver(screen.getByText('3x'))
-    })
-    expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
-    act(() => {
-      fireEvent.mouseOver(screen.getByText('10x'))
-    })
-    expect(screen.getByText('10 mensualités de 47.73 € (+ frais)')).toBeInTheDocument()
-    act(() => {
-      jest.advanceTimersByTime(3000)
-    })
-  })
-  it('Stops iterating when a element has been hovered', () => {
-    act(() => {
-      fireEvent.mouseOver(screen.getByText('3x'))
-    })
-    expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
+    it('Stops iterating when a element has been hovered', () => {
+      act(() => {
+        fireEvent.mouseOver(screen.getByText('3x'))
+      })
+      expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
 
-    act(() => {
-      jest.advanceTimersByTime(3000)
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
+      expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
     })
-    expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
+
+    //TODO test modal open
   })
-  //TODO test modal open
+  describe('With Merchant Plan', () => {
+    beforeEach(async () => {
+      render(
+        <IntlProvider messages={{}} locale="fr">
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            plans={[
+              {
+                installmentsCount: 1,
+                minAmount: 5000,
+                maxAmount: 20000,
+              },
+              {
+                installmentsCount: 1,
+                deferredDays: 30,
+                minAmount: 50000,
+                maxAmount: 70000,
+              },
+              {
+                installmentsCount: 3,
+                minAmount: 5000,
+                maxAmount: 50000,
+              },
+              {
+                installmentsCount: 8,
+                minAmount: 5000,
+                maxAmount: 50000,
+              },
+            ]}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          />
+        </IntlProvider>,
+      )
+      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    })
+    it('Displays only provided plans', () => {
+      expect(screen.getByText('J+30')).toBeInTheDocument()
+      expect(screen.getByText('1x')).toBeInTheDocument()
+      expect(screen.getByText('3x')).toBeInTheDocument()
+    })
+    it('does not display plan that are not part of eligibility', () => {
+      expect(screen.queryByText('8x')).not.toBeInTheDocument()
+    })
+    it('Only iterates over active plans', () => {
+      expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
+      expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
+    })
+    it('display conditions when inactive plans are hovered', () => {
+      act(() => {
+        fireEvent.mouseOver(screen.getByText('J+30'))
+      })
+      expect(screen.getByText('À partir de 500 €')).toBeInTheDocument()
+      act(() => {
+        fireEvent.mouseOver(screen.getByText('1x'))
+      })
+      expect(screen.getByText("Jusqu'à 200 €")).toBeInTheDocument()
+    })
+  })
 })
