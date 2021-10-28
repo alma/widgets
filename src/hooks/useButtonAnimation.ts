@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 const useButtonAnimation = (
   iterateValues: number[],
+  transitionDelay: number,
 ): { current: number; onHover: (current: number) => void; onLeave: (current: number) => void } => {
   const [current, setCurrent] = useState(0)
   const [update, setUpdate] = useState(true)
@@ -20,7 +21,7 @@ const useButtonAnimation = (
             ],
           )
         }
-      }, 2000)
+      }, transitionDelay)
     }
     return () => {
       isMounted = false
