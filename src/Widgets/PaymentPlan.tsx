@@ -20,7 +20,7 @@ const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData, plans }) 
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
-  const [current, setCurrent] = useButtonAnimation(
+  const { current, onHover, onLeave } = useButtonAnimation(
     eligibilityPlans
       .map((plan, key) => {
         if (plan.eligible) return key
@@ -29,9 +29,6 @@ const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData, plans }) 
       .filter((key) => key !== undefined) as number[],
   )
 
-  const handleHover = (key: number) => {
-    setCurrent(key)
-  }
   return (
     <>
       <button onClick={openModal} className={s.widgetButton} data-testid="widget-button">
@@ -40,7 +37,8 @@ const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData, plans }) 
           <div className={s.paymentPlans}>
             {eligibilityPlans.map((eligibilityPlan, key) => (
               <div
-                onMouseOver={() => handleHover(key)}
+                onMouseOver={() => onHover(key)}
+                onMouseOut={() => onLeave(key)}
                 key={key}
                 className={cx(s.plan, {
                   [s.active]: current === key,
