@@ -37,13 +37,15 @@ const PaymentPlanWidget: React.FC<Props> = ({
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
+  const activePlanKeys = eligibilityPlans
+    .map((plan, key) => {
+      if (plan.eligible) return key
+      return undefined
+    })
+    .filter((key) => key !== undefined) as number[]
+
   const { current, onHover, onLeave } = useButtonAnimation(
-    eligibilityPlans
-      .map((plan, key) => {
-        if (plan.eligible) return key
-        return undefined
-      })
-      .filter((key) => key !== undefined) as number[],
+    activePlanKeys,
     transitionDelay ? transitionDelay : 5500,
   )
 
@@ -76,7 +78,11 @@ const PaymentPlanWidget: React.FC<Props> = ({
           {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
         </div>
       </button>
-      <EligibilityModal isOpen={isOpen} onClose={closeModal} eligibilityPlans={eligibilityPlans} />
+      <EligibilityModal
+        isOpen={isOpen}
+        onClose={closeModal}
+        eligibilityPlans={eligibilityPlans.filter((plan) => plan.eligible)}
+      />
     </>
   )
 }
