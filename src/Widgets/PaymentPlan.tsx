@@ -12,10 +12,27 @@ type Props = {
   purchaseAmount: number
   apiData: ApiConfig
   plans?: Plans[]
+  transitionDelay?: number
 }
-
-const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData, plans }) => {
-  const eligibilityPlans = useFetchEligibility(purchaseAmount, apiData, plans)
+const defaultPlan = [
+  {
+    installmentsCount: 3,
+    minAmount: 0,
+    maxAmount: 200000,
+  },
+  {
+    installmentsCount: 4,
+    minAmount: 10000,
+    maxAmount: 200000,
+  },
+]
+const PaymentPlanWidget: React.FC<Props> = ({
+  purchaseAmount,
+  apiData,
+  plans,
+  transitionDelay,
+}) => {
+  const eligibilityPlans = useFetchEligibility(purchaseAmount, apiData, plans ? plans : defaultPlan)
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
@@ -27,6 +44,7 @@ const PaymentPlanWidget: React.FC<Props> = ({ purchaseAmount, apiData, plans }) 
         return undefined
       })
       .filter((key) => key !== undefined) as number[],
+    transitionDelay ? transitionDelay : 5500,
   )
 
   return (

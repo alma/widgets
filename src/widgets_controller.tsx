@@ -15,12 +15,18 @@ export class WidgetsController {
       container,
       purchaseAmount,
       plans,
-    }: { container: string; purchaseAmount: number; plans: Plans[] },
+      transitionDelay,
+    }: { container: string; purchaseAmount: number; plans: Plans[]; transitionDelay: number },
   ): void {
     if (widget === widgetTypes.PaymentPlans) {
       render(
         <IntlProvider messages={{}} locale="fr">
-          <PaymentPlanWidget purchaseAmount={purchaseAmount} apiData={this.apiData} plans={plans} />
+          <PaymentPlanWidget
+            purchaseAmount={purchaseAmount}
+            apiData={this.apiData}
+            plans={plans}
+            transitionDelay={transitionDelay}
+          />
         </IntlProvider>,
         document.querySelector(container),
       )
