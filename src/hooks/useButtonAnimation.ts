@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 const useButtonAnimation = (
   iterateValues: number[],
   transitionDelay: number,
-): { current: number; onHover: (current: number) => void; onLeave: (current: number) => void } => {
+): { current: number; onHover: (current: number) => void; onLeave: () => void } => {
   const [current, setCurrent] = useState(0)
   const [update, setUpdate] = useState(true)
 
@@ -33,11 +33,8 @@ const useButtonAnimation = (
       setCurrent(current)
       setUpdate(false)
     },
-    onLeave: (current: number) => {
-      setTimeout(() => {
-        setCurrent(current)
-        setUpdate(true)
-      }, 1500)
+    onLeave: () => {
+      setUpdate(true)
     },
   }
 }

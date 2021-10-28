@@ -62,7 +62,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
             {eligibilityPlans.map((eligibilityPlan, key) => (
               <div
                 onMouseOver={() => onHover(key)}
-                onMouseOut={() => onLeave(key)}
+                onMouseOut={() => onLeave()}
                 key={key}
                 className={cx(s.plan, {
                   [s.active]: current === key,
