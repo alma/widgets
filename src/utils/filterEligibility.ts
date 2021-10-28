@@ -1,10 +1,10 @@
-import { EligibilityPlan, EligibilityPlanToDisplay, Plans } from 'types'
+import { EligibilityPlan, EligibilityPlanToDisplay, configPlans } from 'types'
 
 const filterELigibility = (
   eligibilities: EligibilityPlan[],
-  plans?: Plans[],
+  configPlans?: configPlans[],
 ): EligibilityPlanToDisplay[] => {
-  if (!plans)
+  if (!configPlans)
     return eligibilities.map((eligibility) => ({
       ...eligibility,
       eligible: true,
@@ -18,7 +18,7 @@ const filterELigibility = (
       (eligibility.deferred_days ? eligibility.deferred_days : 0)
 
     //retirieve the plan that matches eligibility
-    const consideredPlan = plans.find((plan) => {
+    const consideredPlan = configPlans.find((plan) => {
       const planDeferredDays =
         (plan.deferredMonths ? plan.deferredMonths : 0) * 30 +
         (plan.deferredDays ? plan.deferredDays : 0)

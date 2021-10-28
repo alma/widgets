@@ -2,7 +2,7 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import { render } from 'react-dom'
 import { IntlProvider } from 'react-intl'
-import { Plans, widgetTypes } from 'types'
+import { configPlans, widgetTypes } from 'types'
 import HowItWorksWidget from 'Widgets/HowItWorks'
 import PaymentPlanWidget from 'Widgets/PaymentPlan'
 
@@ -16,7 +16,7 @@ export class WidgetsController {
       purchaseAmount,
       plans,
       transitionDelay,
-    }: { container: string; purchaseAmount: number; plans: Plans[]; transitionDelay: number },
+    }: { container: string; purchaseAmount: number; plans: configPlans[]; transitionDelay: number },
   ): void {
     if (widget === widgetTypes.PaymentPlans) {
       render(
@@ -24,7 +24,7 @@ export class WidgetsController {
           <PaymentPlanWidget
             purchaseAmount={purchaseAmount}
             apiData={this.apiData}
-            plans={plans}
+            configPlans={plans}
             transitionDelay={transitionDelay}
           />
         </IntlProvider>,
