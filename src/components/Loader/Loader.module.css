@@ -1,0 +1,61 @@
+.loadingIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.letter {
+  font-family: Eina04;
+  font-weight: bold;
+  line-height: 35px;
+  font-size: 64px;
+  color: var(--blue-300);
+  margin-bottom: 16px;
+  animation-delay: 1ms;
+  animation: loading-indicator-letter 0.7s cubic-bezier(0.87, 0, 0.17, 1) 1ms infinite
+    alternate-reverse both;
+}
+
+.bar {
+  width: 34px;
+  height: 10px;
+  background-color: var(--blue-300);
+  animation: loading-indicator-bar 1.4s cubic-bezier(0.87, 0, 0.17, 1) 1ms infinite forwards;
+}
+
+@keyframes loading-indicator-letter {
+  0% {
+    opacity: 1;
+    color: var(--blue-300);
+  }
+  100% {
+    opacity: 0;
+    color: var(--yellow-300);
+  }
+}
+
+@keyframes loading-indicator-bar {
+  0% {
+    opacity: 0;
+    transform: translateX(-34px);
+    border-radius: 48px;
+    background-color: var(--yellow-300);
+  }
+  40% {
+    border-radius: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0);
+    background-color: var(--blue-300);
+  }
+  60% {
+    border-radius: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(34px);
+    border-radius: 48px;
+    background-color: var(--yellow-300);
+  }
+}

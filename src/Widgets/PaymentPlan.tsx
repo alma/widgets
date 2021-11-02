@@ -1,9 +1,11 @@
 import LogoIcon from 'assets/Logo'
 import cx from 'classnames'
+import Loader from 'components/Loader'
+import LoadingIndicator from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import React, { useState } from 'react'
-import { ApiConfig, configPlans } from 'types'
+import { ApiConfig, apiStatus, configPlans } from 'types'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import EligibilityModal from './EligibilityModal'
 import s from './PaymentPlan.module.css'
@@ -32,7 +34,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
   configPlans,
   transitionDelay,
 }) => {
-  const eligibilityPlans = useFetchEligibility(
+  const [eligibilityPlans, status, reloadEligibility] = useFetchEligibility(
     purchaseAmount,
     apiData,
     configPlans ? configPlans : defaultConfigPlans,
@@ -52,6 +54,32 @@ const PaymentPlanWidget: React.FC<Props> = ({
     activePlanKeys,
     transitionDelay ? transitionDelay : 5500,
   )
+
+  if (status === apiStatus.PENDING) {
+    return (
+      <div className={cx(s.widgetButton, s.pending)}>
+        <Loader />
+      </div>
+    )
+  }
+
+  if (status === apiStatus.FAILED) {
+    return (
+      <div className={s.widgetButton}>
+        <div className={cx(s.primaryContainer, s.error)}>
+          <LogoIcon color="#00425D" className={s.logo} />
+          <div>
+            <span className={s.errorText}>
+              Something went wrong...{' '}
+              <a className={s.errorButton} onClick={reloadEligibility}>
+                try again ?
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>

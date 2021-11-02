@@ -6,6 +6,13 @@ export enum widgetTypes {
   PaymentPlans = 'PaymentPlans',
   HowItWorks = 'HowItWorks',
 }
+export enum apiStatus {
+  PENDING = 'pending',
+  SUCCESS = 'success',
+  FAILED = 'failed',
+}
+export type apiStatusType = apiStatus.PENDING | apiStatus.SUCCESS | apiStatus.FAILED
+
 export type configPlans = {
   installmentsCount: number
   deferredDays?: number

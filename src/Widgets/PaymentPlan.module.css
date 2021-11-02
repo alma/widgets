@@ -62,3 +62,25 @@
 .notEligible {
   color: var(--gray-600);
 }
+.loader {
+  overflow: hidden;
+  align-items: center;
+}
+.error {
+  align-items: center;
+  line-height: 100%;
+}
+.errorText {
+  font-family: Public Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: var(--blue-300);
+}
+.errorButton {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.pending {
+  align-items: center;
+}
