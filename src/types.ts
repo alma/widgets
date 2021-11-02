@@ -37,3 +37,25 @@ export type EligibilityPlanToDisplay = EligibilityPlan & {
   maxAmount: number
   eligible: boolean
 }
+export type PaymentPlanWidgetOptions = {
+  container: string
+  purchaseAmount: number
+  plans?: configPlans[]
+  transitionDelay?: number
+}
+export type HowItWorksWidgetOptions = {
+  container: string
+}
+
+export type WidgetNames = widgetTypes.PaymentPlans | widgetTypes.HowItWorks
+
+export type WidgetName<T> = T extends widgetTypes.PaymentPlans
+  ? widgetTypes.PaymentPlans
+  : T extends widgetTypes.HowItWorks
+  ? widgetTypes.HowItWorks
+  : never
+export type WidgetOptions<T> = T extends widgetTypes.PaymentPlans
+  ? PaymentPlanWidgetOptions
+  : T extends widgetTypes.HowItWorks
+  ? HowItWorksWidgetOptions
+  : never
