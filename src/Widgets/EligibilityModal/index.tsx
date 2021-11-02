@@ -23,6 +23,7 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
     priceFromCents(currentPlan.purchase_amount + currentPlan.customer_total_cost_amount)
   const creditCost = currentPlan ? priceFromCents(currentPlan.customer_total_cost_amount) : 0
   const TAEG = currentPlan?.annual_interest_rate && currentPlan.annual_interest_rate / 10000
+  const customerFees = priceFromCents(currentPlan ? currentPlan.customer_total_cost_amount : 0)
   const isCredit = currentPlan && currentPlan.installments_count > 4
 
   return (
@@ -68,7 +69,7 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
                   }}
                 />
               ) : (
-                <FormattedNumber value={total} style="currency" currency="EUR" />
+                <FormattedNumber value={customerFees} style="currency" currency="EUR" />
               )}
             </span>
           </div>
