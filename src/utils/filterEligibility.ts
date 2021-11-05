@@ -5,13 +5,21 @@ const filterELigibility = (
   configPlans?: configPlans[],
 ): EligibilityPlanToDisplay[] => {
   if (!configPlans)
-    return eligibilities.map((eligibility) => ({
-      ...eligibility,
-      eligible: true,
-      minAmount: 0,
-      maxAmount: 0,
-    }))
-
+    return eligibilities
+      .map((eligibility) => ({
+        ...eligibility,
+        eligible: true,
+        minAmount: 0,
+        maxAmount: 0,
+      }))
+      .filter(
+        (eligibility) =>
+          !(
+            eligibility.installments_count === 1 &&
+            eligibility.deferred_days === 0 &&
+            eligibility.deferred_months === 0
+          ),
+      )
   return eligibilities.reduce((resultEligibilities: EligibilityPlanToDisplay[], eligibility) => {
     const eligibilityDeferredDays =
       (eligibility.deferred_months ? eligibility.deferred_months : 0) * 30 +
