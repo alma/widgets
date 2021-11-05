@@ -1,7 +1,6 @@
 import LogoIcon from 'assets/Logo'
 import cx from 'classnames'
 import Loader from 'components/Loader'
-import LoadingIndicator from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import React, { useState } from 'react'
@@ -39,6 +38,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
     apiData,
     configPlans ? configPlans : defaultConfigPlans,
   )
+  console.log('status: ', status)
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
@@ -64,28 +64,14 @@ const PaymentPlanWidget: React.FC<Props> = ({
   }
 
   if (status === apiStatus.FAILED) {
-    return (
-      <div className={s.widgetButton}>
-        <div className={cx(s.primaryContainer, s.error)}>
-          <LogoIcon color="#00425D" className={s.logo} />
-          <div>
-            <span className={s.errorText}>
-              Something went wrong...{' '}
-              <a className={s.errorButton} onClick={reloadEligibility}>
-                try again ?
-              </a>
-            </span>
-          </div>
-        </div>
-      </div>
-    )
+    return null
   }
 
   return (
     <>
       <button onClick={openModal} className={s.widgetButton} data-testid="widget-button">
         <div className={s.primaryContainer}>
-          <LogoIcon color="#00425D" className={s.logo} />
+          <LogoIcon className={s.logo} />
           <div className={s.paymentPlans}>
             {eligibilityPlans.map((eligibilityPlan, key) => (
               <div

@@ -46,7 +46,9 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
         </div>
         <div className={s.schedule} data-testid="modal-installments-element">
           <div className={cx(s.scheduleLine, s.total)}>
-            <span>Total</span>
+            <span>
+              <FormattedMessage id="eligibility-modal.total" defaultMessage="Total" />
+            </span>
             <span>
               <FormattedNumber value={total} style="currency" currency="EUR" />
             </span>
@@ -99,8 +101,11 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
           ))}
           {isCredit && (
             <p className={s.creditMessage}>
-              Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement
-              avant de vous engager.
+              <FormattedMessage
+                id="eligibility-modal.credit-commitment"
+                defaultMessage="Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement
+              avant de vous engager."
+              />
             </p>
           )}
         </div>
@@ -108,24 +113,36 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
           <div className={s.listItem}>
             <div className={s.bullet}>1</div>
             <div>
-              Choisissez <strong>Alma</strong> au moment du paiement.
+              <FormattedMessage
+                id="eligibility-modal.bullet-1"
+                defaultMessage="Choisissez <strong>Alma</strong> au moment du paiement."
+                values={{ strong: (...chunks: string[]) => <strong>{chunks}</strong> }}
+              />
             </div>
           </div>
           <div className={s.listItem}>
             <div className={s.bullet}>2</div>
             <div>
-              Renseignez les <strong>informations</strong> demandées.
+              <FormattedMessage
+                id="eligibility-modal.bullet-2"
+                defaultMessage="Renseignez les <strong>informations</strong> demandées."
+                values={{ strong: (...chunks: string[]) => <strong>{chunks}</strong> }}
+              />
             </div>
           </div>
           <div className={s.listItem}>
             <div className={s.bullet}>3</div>
             <div>
-              La validation de votre paiement <strong>instantanée</strong> !
+              <FormattedMessage
+                id="eligibility-modal.bullet-3"
+                defaultMessage="La validation de votre paiement <strong>instantanée</strong> !"
+                values={{ strong: (...chunks: string[]) => <strong>{chunks}</strong> }}
+              />
             </div>
           </div>
         </div>
         <div className={s.logo}>
-          <LogoIcon color="#00425D" />
+          <LogoIcon underlineColor="#FF414D" />
         </div>
       </div>
     </Modal>

@@ -1,0 +1,16 @@
+'project_id': 7
+api_token_env: 'CROWDIN_PERSONAL_TOKEN'
+'base_url': https://almapay.crowdin.com
+
+'files':
+  - source: /src/intl/messages.json
+    translation: /src/intl/messages/%file_name%.%locale_with_underscore%.json
+    languages_mapping:
+      locale_with_underscore:
+        'de': 'de'
+        'en': 'en'
+        'es': 'es'
+        'fr': 'fr'
+        'it': 'it'
+        'nl': 'nl-NL'
+        'nl-BE': 'nl-BE'

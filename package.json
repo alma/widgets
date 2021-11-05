@@ -29,7 +29,10 @@
     "lint:fix": "npx eslint --fix src test --ext .js,.ts,.tsx",
     "prebuild": "rm -rf dist",
     "build": "NODE_ENV=production microbundle --name Alma --sourcemap --jsx React.createElement --jsxImportSource react --globals react/jsx-runtime=jsx --define process.env.NODE_ENV=development--css-modules true",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "translations:extract": "formatjs extract 'src/**/*.ts*' --out-file 'src/intl/messages.json' --format simple --ignore 'src/*.d.ts' && prettier ./src/intl --write",
+    "translations:upload": "crowdin upload sources",
+    "translations:download": "crowdin download && prettier ./src/intl --write"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.12.1",
@@ -41,6 +44,8 @@
     "@babel/preset-typescript": "^7.12.7",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@crowdin/cli": "^3.7.1",
+    "@formatjs/cli": "^4.4.0",
     "@google/semantic-release-replace-plugin": "^1.0.2",
     "@octokit/core": "^3.2.4",
     "@rollup/plugin-image": "^2.0.5",
