@@ -85,7 +85,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
     <>
       <button onClick={openModal} className={s.widgetButton} data-testid="widget-button">
         <div className={s.primaryContainer}>
-          <LogoIcon color="#00425D" className={s.logo} />
+          <LogoIcon className={s.logo} />
           <div className={s.paymentPlans}>
             {eligibilityPlans.map((eligibilityPlan, key) => (
               <div

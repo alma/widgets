@@ -46,7 +46,9 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
         </div>
         <div className={s.schedule} data-testid="modal-installments-element">
           <div className={cx(s.scheduleLine, s.total)}>
-            <span>Total</span>
+            <span>
+              <FormattedMessage defaultMessage="Total" />
+            </span>
             <span>
               <FormattedNumber value={total} style="currency" currency="EUR" />
             </span>
@@ -125,7 +127,7 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
           </div>
         </div>
         <div className={s.logo}>
-          <LogoIcon color="#00425D" />
+          <LogoIcon underlineColor="#FF414D" />
         </div>
       </div>
     </Modal>
