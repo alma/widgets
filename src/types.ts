@@ -27,6 +27,7 @@ export type PaymentPlan = {
   due_date: number
   purchase_amount: number
   total_amount: number
+  refunded_interest?: number
 }
 export type EligibilityPlan = {
   annual_interest_rate?: number

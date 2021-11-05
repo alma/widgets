@@ -137,6 +137,7 @@
   .container {
     flex-wrap: wrap;
     align-items: flex-start;
+    min-height: 396px;
   }
 
   .title {

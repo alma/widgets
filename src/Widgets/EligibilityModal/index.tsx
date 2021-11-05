@@ -6,6 +6,7 @@ import React, { FunctionComponent, useState } from 'react'
 import { FormattedDate, FormattedMessage, FormattedNumber, useIntl } from 'react-intl'
 import { EligibilityPlan } from 'types'
 import { priceFromCents } from 'utils'
+import { paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import s from './EligibilityModal.module.css'
 
 type Props = {
@@ -27,9 +28,9 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
   const isCredit = currentPlan && currentPlan.installments_count > 4
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} scrollable>
+    <Modal isOpen={isOpen} onClose={onClose} scrollable ariaHideApp={false}>
       <div className={s.container}>
-        <div className={s.title}>
+        <div className={s.title} data-testid="modal-title-element">
           <span>Payez en plusieurs fois</span> ou plus tard par carte bancaire avec Alma.
         </div>
         <div className={s.buttons}>
@@ -39,11 +40,11 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
               className={cx({ [s.active]: index === currentPlanIndex })}
               onClick={() => setCurrentPlanIndex(index)}
             >
-              {`${eligibilityPlan.installments_count}x`}
+              {paymentPlanShorthandName(eligibilityPlan)}
             </button>
           ))}
         </div>
-        <div className={s.schedule}>
+        <div className={s.schedule} data-testid="modal-installments-element">
           <div className={cx(s.scheduleLine, s.total)}>
             <span>Total</span>
             <span>
@@ -103,7 +104,7 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
             </p>
           )}
         </div>
-        <div className={s.list}>
+        <div className={s.list} data-testid="modal-info-element">
           <div className={s.listItem}>
             <div className={s.bullet}>1</div>
             <div>
