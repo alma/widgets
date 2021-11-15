@@ -1,10 +1,10 @@
 import LogoIcon from 'assets/Logo'
 import cx from 'classnames'
 import Loader from 'components/Loader'
-import LoadingIndicator from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import React, { useState } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { ApiConfig, apiStatus, configPlans } from 'types'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import EligibilityModal from './EligibilityModal'
@@ -70,10 +70,16 @@ const PaymentPlanWidget: React.FC<Props> = ({
           <LogoIcon color="#00425D" className={s.logo} />
           <div>
             <span className={s.errorText}>
-              Something went wrong...{' '}
-              <a className={s.errorButton} onClick={reloadEligibility}>
-                try again ?
-              </a>
+              <FormattedMessage
+                defaultMessage="Quelque chose n'a pas fonctionné... <a>Réessayer</a>"
+                values={{
+                  a: (...chunks: string[]) => (
+                    <a className={s.errorButton} onClick={reloadEligibility}>
+                      {chunks}
+                    </a>
+                  ),
+                }}
+              />
             </span>
           </div>
         </div>

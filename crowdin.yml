@@ -1,5 +1,5 @@
 'project_id': 7
-'api_token': 'CROWDIN_PERSONAL_TOKEN' #open project and go to Resources > Integrations & API > Integration tool
+api_token_env: 'CROWDIN_PERSONAL_TOKEN'
 'base_url': https://almapay.crowdin.com
 
 'files':

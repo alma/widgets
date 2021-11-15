@@ -47,7 +47,7 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
         <div className={s.schedule} data-testid="modal-installments-element">
           <div className={cx(s.scheduleLine, s.total)}>
             <span>
-              <FormattedMessage defaultMessage="Total" />
+              <FormattedMessage id="eligibility-modal.total" defaultMessage="Total" />
             </span>
             <span>
               <FormattedNumber value={total} style="currency" currency="EUR" />
@@ -101,8 +101,10 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
           ))}
           {isCredit && (
             <p className={s.creditMessage}>
-              Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement
-              avant de vous engager.
+              <FormattedMessage
+                defaultMessage="Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement
+              avant de vous engager."
+              />
             </p>
           )}
         </div>
@@ -110,7 +112,10 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
           <div className={s.listItem}>
             <div className={s.bullet}>1</div>
             <div>
-              Choisissez <strong>Alma</strong> au moment du paiement.
+              <FormattedMessage
+                defaultMessage="Choisissez <strong>Alma</strong> au moment du paiement."
+                values={{ strong: (...chunks: string[]) => <strong>{chunks}</strong> }}
+              />
             </div>
           </div>
           <div className={s.listItem}>
