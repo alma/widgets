@@ -10,8 +10,8 @@ import { integer } from '@/types'
 function eligiblePlan(eligibility: EligibleEligibility): JSX.Element {
   const { payment_plan: paymentPlan } = eligibility
 
-  const firstAmount = paymentPlan[0].purchase_amount + paymentPlan[0].customer_fee
-  const nextAmount = paymentPlan[1].purchase_amount + paymentPlan[1].customer_fee
+  const firstAmount = paymentPlan[0].purchase_amount + paymentPlan[0].customer_fee + paymentPlan[0].customer_interest
+  const nextAmount = paymentPlan[1].purchase_amount + paymentPlan[1].customer_fee + paymentPlan[1].customer_interest
 
   return (
     <span className="atw-leading-relaxed">
