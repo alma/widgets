@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/alma/alma-widgets/compare/v1.1.1...v1.1.2) (2021-11-19)
+
+
+### Bug Fixes
+
+* **widget:** add customer interest in first and next amount ([2a54db7](https://github.com/alma/alma-widgets/commit/2a54db7ee7a81449b482bbb57108374b8d46875b))
+
 ## [1.1.1](https://github.com/alma/alma-widgets/compare/v1.1.0...v1.1.1) (2021-10-13)
 
 
