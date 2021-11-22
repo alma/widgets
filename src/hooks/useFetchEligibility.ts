@@ -14,7 +14,7 @@ const useFetchEligibility = (
   purchaseAmount: number,
   { domain, merchantId }: ApiConfig,
   plans?: configPlans[],
-): [EligibilityPlanToDisplay[], apiStatusType, () => void] => {
+): [EligibilityPlanToDisplay[], apiStatusType] => {
   const [eligibility, setEligibility] = useState([] as EligibilityPlan[])
   const [status, setStatus] = useState(apiStatus.PENDING)
   useEffect(() => {
@@ -38,12 +38,6 @@ const useFetchEligibility = (
     }
   }, [status])
 
-  return [
-    filterELigibility(eligibility, plans),
-    status,
-    () => {
-      setStatus(apiStatus.PENDING)
-    },
-  ]
+  return [filterELigibility(eligibility, plans), status]
 }
 export default useFetchEligibility

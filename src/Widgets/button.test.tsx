@@ -252,7 +252,7 @@ describe('Button', () => {
     it('displays the button', () => {
       expect(screen.getByTestId('widget-button')).toBeInTheDocument()
     })
-    xit('Opens the modal on click', async () => {
+    it('Opens the modal on click', async () => {
       act(() => {
         fireEvent.click(screen.getByTestId('widget-button'))
       })
@@ -277,6 +277,14 @@ describe('Button', () => {
       expect(screen.getByText('4x')).toBeInTheDocument()
     })
     it(`display iterates on each message every ${animationDuration} ms then returns to the beginning`, () => {
+      expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
+      expect(screen.getByText('2 mensualités de 225 € (sans frais)')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
       expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
@@ -285,7 +293,11 @@ describe('Button', () => {
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
-      expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
+      expect(screen.getByText('10 mensualités de 47.73 € (+ frais)')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(animationDuration)
+      })
+      expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
     })
   })
   describe('paymentPlan includes credit', () => {
@@ -434,6 +446,14 @@ describe('Button', () => {
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
     it(`display iterates on each message every 500 ms then returns to the beginning`, () => {
+      expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(500)
+      })
+      expect(screen.getByText('2 mensualités de 225 € (sans frais)')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(500)
+      })
       expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(500)
@@ -442,7 +462,11 @@ describe('Button', () => {
       act(() => {
         jest.advanceTimersByTime(500)
       })
-      expect(screen.getByText('3 mensualités de 150 € (+ frais)')).toBeInTheDocument()
+      expect(screen.getByText('10 mensualités de 47.73 € (+ frais)')).toBeInTheDocument()
+      act(() => {
+        jest.advanceTimersByTime(500)
+      })
+      expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
     })
   })
 })

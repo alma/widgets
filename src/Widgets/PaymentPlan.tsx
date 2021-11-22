@@ -15,30 +15,15 @@ type Props = {
   configPlans?: configPlans[]
   transitionDelay?: number
 }
-const defaultConfigPlans = [
-  {
-    installmentsCount: 3,
-    minAmount: 0,
-    maxAmount: 200000,
-  },
-  {
-    installmentsCount: 4,
-    minAmount: 10000,
-    maxAmount: 200000,
-  },
-]
+
 const PaymentPlanWidget: React.FC<Props> = ({
   purchaseAmount,
   apiData,
   configPlans,
   transitionDelay,
 }) => {
-  const [eligibilityPlans, status, reloadEligibility] = useFetchEligibility(
-    purchaseAmount,
-    apiData,
-    configPlans ? configPlans : defaultConfigPlans,
-  )
-  console.log('status: ', status)
+  const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
+
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
