@@ -50,6 +50,7 @@ export type PaymentPlanWidgetOptions = {
   purchaseAmount: number
   plans?: configPlans[]
   transitionDelay?: number
+  hideIfNotApplicable?: boolean
 }
 export type HowItWorksWidgetOptions = {
   container: string

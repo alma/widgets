@@ -23,6 +23,7 @@ export class WidgetsController {
         purchaseAmount,
         plans,
         transitionDelay,
+        hideIfNotApplicable,
       } = options as PaymentPlanWidgetOptions
       render(
         <IntlProvider messages={{}} locale="fr">
@@ -31,6 +32,7 @@ export class WidgetsController {
             apiData={this.apiData}
             configPlans={plans}
             transitionDelay={transitionDelay}
+            hideIfNotApplicable={hideIfNotApplicable}
           />
         </IntlProvider>,
         document.querySelector(container),

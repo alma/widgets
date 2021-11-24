@@ -469,4 +469,31 @@ describe('Button', () => {
       expect(screen.getByText('450 € à payer le 31 janvier')).toBeInTheDocument()
     })
   })
+  describe('hide if not applicable', () => {
+    it('hides if hideIfNotApplicable is true', async () => {
+      render(
+        <IntlProvider messages={{}} locale="fr">
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            hideIfNotApplicable={true}
+            configPlans={[]}
+          />
+        </IntlProvider>,
+      )
+      await waitFor(() => expect(screen.queryByTestId('widget-button')).not.toBeInTheDocument())
+    })
+    it('hides if hideIfNotApplicable is not specified', async () => {
+      render(
+        <IntlProvider messages={{}} locale="fr">
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            configPlans={[]}
+          />
+        </IntlProvider>,
+      )
+      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    })
+  })
 })
