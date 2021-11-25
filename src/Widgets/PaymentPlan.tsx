@@ -14,7 +14,7 @@ type Props = {
   apiData: ApiConfig
   configPlans?: configPlans[]
   transitionDelay?: number
-  hideIfNotApplicable?: boolean
+  hideIfNotEligible?: boolean
 }
 
 const PaymentPlanWidget: React.FC<Props> = ({
@@ -22,7 +22,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
   apiData,
   configPlans,
   transitionDelay,
-  hideIfNotApplicable,
+  hideIfNotEligible,
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
 
@@ -41,10 +41,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
     activePlanKeys,
     transitionDelay ? transitionDelay : 5500,
   )
-  if (
-    hideIfNotApplicable &&
-    eligibilityPlans.filter((plan) => plan.eligible === true).length == 0
-  ) {
+  if (hideIfNotEligible && eligibilityPlans.filter((plan) => plan.eligible === true).length == 0) {
     return null
   }
   if (status === apiStatus.PENDING) {

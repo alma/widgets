@@ -461,18 +461,18 @@ describe('Button', () => {
     })
   })
   describe('hide if not applicable', () => {
-    it('hides if hideIfNotApplicable is true', async () => {
+    it('hides if hideIfNotEligible is true', async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          hideIfNotApplicable={true}
+          hideIfNotEligible={true}
           configPlans={[]}
         />,
       )
       await waitFor(() => expect(screen.queryByTestId('widget-button')).not.toBeInTheDocument())
     })
-    it('hides if hideIfNotApplicable is not specified', async () => {
+    it('hides if hideIfNotEligible is not specified', async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
