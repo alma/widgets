@@ -5,12 +5,10 @@ import { getTranslationsByLocale } from './utils'
 
 type Props = { children: ReactNode; locale: Locale }
 
-const Provider: FC<Props> = ({ children, locale }) => {
-  return (
-    <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale} defaultLocale="en">
-      {children}
-    </IntlProvider>
-  )
-}
+const Provider: FC<Props> = ({ children, locale }) => (
+  <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale} defaultLocale="en">
+    {children}
+  </IntlProvider>
+)
 
 export default Provider

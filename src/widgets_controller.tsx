@@ -1,7 +1,7 @@
 import { ApiMode } from 'consts'
+import IntlProvider from 'intl/IntlProvider'
 import React from 'react'
 import { render } from 'react-dom'
-import { IntlProvider } from 'react-intl'
 import {
   Locale,
   PaymentPlanWidgetOptions,
