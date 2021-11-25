@@ -1,5 +1,4 @@
 import { ApiMode } from 'consts'
-import { getTranslationsByLocale } from 'intl/utils'
 import React from 'react'
 import { render } from 'react-dom'
 import { IntlProvider } from 'react-intl'
@@ -27,7 +26,7 @@ export class WidgetsController {
         locale = Locale.en,
       } = options as PaymentPlanWidgetOptions
       render(
-        <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
+        <IntlProvider locale={locale}>
           <PaymentPlanWidget
             purchaseAmount={purchaseAmount}
             apiData={this.apiData}

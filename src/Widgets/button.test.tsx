@@ -1,10 +1,9 @@
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, screen, waitFor } from '@testing-library/react'
 import { ApiMode } from 'consts'
-import { getTranslationsByLocale } from 'intl/utils'
 import React from 'react'
-import { IntlProvider } from 'react-intl'
-import { Locale } from 'types'
+import render from '../test'
 import PaymentPlanWidget from './PaymentPlan'
+
 jest.mock('utils/fetch', () => {
   return {
     fetchFromApi: async () => [
@@ -241,14 +240,11 @@ jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
 describe('Button', () => {
   describe('Basics', () => {
     beforeEach(async () => {
-      const locale = Locale.fr
       render(
-        <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          />
-        </IntlProvider>,
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+        />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
@@ -265,14 +261,11 @@ describe('Button', () => {
 
   describe('No plans provided', () => {
     beforeEach(async () => {
-      const locale = Locale.fr
       render(
-        <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          />
-        </IntlProvider>,
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+        />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
@@ -306,42 +299,39 @@ describe('Button', () => {
   })
   describe('paymentPlan includes credit', () => {
     beforeEach(async () => {
-      const locale = Locale.fr
       render(
-        <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-            configPlans={[
-              {
-                installmentsCount: 1,
-                minAmount: 100,
-                maxAmount: 100000,
-              },
-              {
-                installmentsCount: 2,
-                minAmount: 100,
-                maxAmount: 100000,
-              },
-              {
-                installmentsCount: 1,
-                deferredDays: 30,
-                minAmount: 100,
-                maxAmount: 100000,
-              },
-              {
-                installmentsCount: 3,
-                minAmount: 100,
-                maxAmount: 100000,
-              },
-              {
-                installmentsCount: 10,
-                minAmount: 100,
-                maxAmount: 100000,
-              },
-            ]}
-          />
-        </IntlProvider>,
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          configPlans={[
+            {
+              installmentsCount: 1,
+              minAmount: 100,
+              maxAmount: 100000,
+            },
+            {
+              installmentsCount: 2,
+              minAmount: 100,
+              maxAmount: 100000,
+            },
+            {
+              installmentsCount: 1,
+              deferredDays: 30,
+              minAmount: 100,
+              maxAmount: 100000,
+            },
+            {
+              installmentsCount: 3,
+              minAmount: 100,
+              maxAmount: 100000,
+            },
+            {
+              installmentsCount: 10,
+              minAmount: 100,
+              maxAmount: 100000,
+            },
+          ]}
+        />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
@@ -373,42 +363,39 @@ describe('Button', () => {
   })
   describe('paymentPlan includes contains ineligible options', () => {
     beforeEach(async () => {
-      const locale = Locale.fr
       render(
-        <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            configPlans={[
-              {
-                installmentsCount: 1,
-                minAmount: 5000,
-                maxAmount: 20000,
-              },
-              {
-                installmentsCount: 2,
-                minAmount: 5000,
-                maxAmount: 20000,
-              },
-              {
-                installmentsCount: 1,
-                deferredDays: 30,
-                minAmount: 50000,
-                maxAmount: 70000,
-              },
-              {
-                installmentsCount: 3,
-                minAmount: 5000,
-                maxAmount: 50000,
-              },
-              {
-                installmentsCount: 8,
-                minAmount: 5000,
-                maxAmount: 50000,
-              },
-            ]}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          />
-        </IntlProvider>,
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          configPlans={[
+            {
+              installmentsCount: 1,
+              minAmount: 5000,
+              maxAmount: 20000,
+            },
+            {
+              installmentsCount: 2,
+              minAmount: 5000,
+              maxAmount: 20000,
+            },
+            {
+              installmentsCount: 1,
+              deferredDays: 30,
+              minAmount: 50000,
+              maxAmount: 70000,
+            },
+            {
+              installmentsCount: 3,
+              minAmount: 5000,
+              maxAmount: 50000,
+            },
+            {
+              installmentsCount: 8,
+              minAmount: 5000,
+              maxAmount: 50000,
+            },
+          ]}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+        />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
@@ -440,15 +427,12 @@ describe('Button', () => {
   })
   describe('custom transition delay', () => {
     beforeEach(async () => {
-      const locale = Locale.fr
       render(
-        <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-            transitionDelay={500}
-          />
-        </IntlProvider>,
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          transitionDelay={500}
+        />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
@@ -478,29 +462,23 @@ describe('Button', () => {
   })
   describe('hide if not applicable', () => {
     it('hides if hideIfNotApplicable is true', async () => {
-      const locale = Locale.fr
       render(
-        <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-            hideIfNotApplicable={true}
-            configPlans={[]}
-          />
-        </IntlProvider>,
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          hideIfNotApplicable={true}
+          configPlans={[]}
+        />,
       )
       await waitFor(() => expect(screen.queryByTestId('widget-button')).not.toBeInTheDocument())
     })
     it('hides if hideIfNotApplicable is not specified', async () => {
-      const locale = Locale.fr
       render(
-        <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-            configPlans={[]}
-          />
-        </IntlProvider>,
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          configPlans={[]}
+        />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
