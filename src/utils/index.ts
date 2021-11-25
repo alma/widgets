@@ -9,3 +9,5 @@ export function priceFromCents(cents: number): number {
 export function formatCents(cents: number): string {
   return String(priceFromCents(cents)).replace('.', ',')
 }
+
+export const secondsToMilliseconds = (date: number): number => date * 1000

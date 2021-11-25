@@ -31,7 +31,11 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
     <Modal isOpen={isOpen} onClose={onClose} scrollable ariaHideApp={false}>
       <div className={s.container}>
         <div className={s.title} data-testid="modal-title-element">
-          <span>Payez en plusieurs fois</span> ou plus tard par carte bancaire avec Alma.
+          <FormattedMessage
+            id="eligibility-modal.title"
+            defaultMessage="<highlighted>Payez en plusieurs fois</highlighted> ou plus tard par carte bancaire avec Alma."
+            values={{ highlighted: (...chunks: string[]) => <span>{chunks}</span> }}
+          />
         </div>
         <div className={s.buttons}>
           {eligibilityPlans.map((eligibilityPlan, index) => (
@@ -54,11 +58,22 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
             </span>
           </div>
           <div className={cx(s.scheduleLine, s.creditCost)}>
-            {isCredit ? <span>Dont coût du crédit</span> : <span>Dont frais</span>}
+            {isCredit ? (
+              <span>
+                <FormattedMessage
+                  id="eligibility-modal.credit-cost"
+                  defaultMessage="Dont coût du crédit"
+                />
+              </span>
+            ) : (
+              <span>
+                <FormattedMessage id="eligibility-modal.cost" defaultMessage="Dont frais" />
+              </span>
+            )}
             <span>
               {isCredit ? (
                 <FormattedMessage
-                  id="eligibility-modal.credit-cost"
+                  id="eligibility-modal.credit-cost-amount"
                   defaultMessage="{creditCost} (TAEG {TAEG})"
                   values={{
                     creditCost: intl.formatNumber(creditCost, {

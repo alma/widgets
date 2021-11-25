@@ -45,13 +45,26 @@ export type EligibilityPlanToDisplay = EligibilityPlan & {
   maxAmount: number
   eligible: boolean
 }
+
+export enum Locale {
+  en = 'en',
+  fr = 'fr',
+  de = 'de',
+  it = 'it',
+  es = 'es',
+  'nl-NL' = 'nl-NL',
+  'nl-BE' = 'nl-BE',
+}
+
 export type PaymentPlanWidgetOptions = {
   container: string
   purchaseAmount: number
   plans?: configPlans[]
   transitionDelay?: number
   hideIfNotApplicable?: boolean
+  locale?: Locale
 }
+
 export type HowItWorksWidgetOptions = {
   container: string
 }

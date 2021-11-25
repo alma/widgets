@@ -1,0 +1,18 @@
+{
+  "eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen.",
+  "eligibility-modal.bullet-2": "Vul de <strong>gevraagde informatie</strong> in.",
+  "eligibility-modal.bullet-3": "Validatie van uw betaling <strong>onmiddellijk</strong>!",
+  "eligibility-modal.cost": "Waarvan kosten",
+  "eligibility-modal.credit-commitment": "Een lening bindt je en moet worden terugbetaald. Ga na of u kunt terugbetalen voordat u zich vastlegt.",
+  "eligibility-modal.credit-cost": "Waarvan kosten van krediet",
+  "eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
+  "eligibility-modal.title": "<highlighted>Betaal in termijnen</highlighted> of later per credit card met Alma.",
+  "eligibility-modal.total": "Totaal",
+  "installments.today": "Tegenwoordig",
+  "payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
+  "payment-plan-strings.default-message": "Betaal in termijnen met Alma",
+  "payment-plan-strings.deferred": "{totalAmount} te betalen op {dueDate}",
+  "payment-plan-strings.ineligible-greater-than-max": "Tot {maxAmount}",
+  "payment-plan-strings.ineligible-lower-than-min": "Van {minAmount}",
+  "payment-plan-strings.multiple-installments": "{firstInstallmentAmount} dan {numberOfRemainingInstallments} maandelijkse termijnen van {othersInstallmentAmount}"
+}

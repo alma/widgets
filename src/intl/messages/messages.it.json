@@ -1,0 +1,18 @@
+{
+  "eligibility-modal.bullet-1": "Scegliete <strong>Alma</strong> alla cassa.",
+  "eligibility-modal.bullet-2": "Compila le informazioni <strong></strong> richieste.",
+  "eligibility-modal.bullet-3": "Convalida del vostro pagamento <strong>istantaneo</strong>!",
+  "eligibility-modal.cost": "Di cui costi",
+  "eligibility-modal.credit-commitment": "Un prestito ti impegna e deve essere ripagato. Controllate la vostra capacità di rimborso prima di impegnarvi.",
+  "eligibility-modal.credit-cost": "Di cui costo del credito",
+  "eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
+  "eligibility-modal.title": "<highlighted>Paga a rate</highlighted> o successivamente con carta di credito con Alma.",
+  "eligibility-modal.total": "Totale",
+  "installments.today": "Oggi",
+  "payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
+  "payment-plan-strings.default-message": "Paga a rate con Alma",
+  "payment-plan-strings.deferred": "{totalAmount} da pagare su {dueDate}",
+  "payment-plan-strings.ineligible-greater-than-max": "Fino a {maxAmount}",
+  "payment-plan-strings.ineligible-lower-than-min": "Da {minAmount}",
+  "payment-plan-strings.multiple-installments": "{firstInstallmentAmount} poi {numberOfRemainingInstallments} rate mensili di {othersInstallmentAmount}"
+}

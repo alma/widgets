@@ -1,16 +1,16 @@
 import { ApiMode } from 'consts'
+import { getTranslationsByLocale } from 'intl/utils'
 import React from 'react'
 import { render } from 'react-dom'
 import { IntlProvider } from 'react-intl'
 import {
-  HowItWorksWidgetOptions,
+  Locale,
   PaymentPlanWidgetOptions,
   WidgetName,
   WidgetNames,
   WidgetOptions,
   widgetTypes,
 } from 'types'
-import HowItWorksWidget from 'Widgets/HowItWorks'
 import PaymentPlanWidget from 'Widgets/PaymentPlan'
 
 export class WidgetsController {
@@ -24,9 +24,10 @@ export class WidgetsController {
         plans,
         transitionDelay,
         hideIfNotApplicable,
+        locale = Locale.en,
       } = options as PaymentPlanWidgetOptions
       render(
-        <IntlProvider messages={{}} locale="fr">
+        <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
           <PaymentPlanWidget
             purchaseAmount={purchaseAmount}
             apiData={this.apiData}
@@ -38,16 +39,16 @@ export class WidgetsController {
         document.querySelector(container),
       )
     }
-    if (widget === widgetTypes.HowItWorks) {
-      const { container } = options as HowItWorksWidgetOptions
-      const modalContainer = document.createElement('div')
-      document.querySelector(container)?.append(modalContainer)
-      render(
-        <IntlProvider messages={{}} locale="fr">
-          <HowItWorksWidget button={container} />
-        </IntlProvider>,
-        modalContainer,
-      )
-    }
+    // if (widget === widgetTypes.HowItWorks) {
+    //   const { container } = options as HowItWorksWidgetOptions
+    //   const modalContainer = document.createElement('div')
+    //   document.querySelector(container)?.append(modalContainer)
+    //   render(
+    //     <IntlProvider messages={getTranslationsByLocale(locale)} locale="fr">
+    //       <HowItWorksWidget button={container} />
+    //     </IntlProvider>,
+    //     modalContainer,
+    //   )
+    // }
   }
 }

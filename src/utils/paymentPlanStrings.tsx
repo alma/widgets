@@ -1,65 +1,115 @@
+import { secondsToMilliseconds } from 'date-fns'
+import React, { ReactNode } from 'react'
+import { FormattedDate, FormattedMessage, FormattedNumber } from 'react-intl'
 import { EligibilityPlan, EligibilityPlanToDisplay } from 'types'
 import { priceFromCents } from 'utils'
 
-export const paymentPlanShorthandName = (payment: EligibilityPlan): string => {
-  let result = `${payment.installments_count}x`
-  if (payment.deferred_days !== 0 || payment.deferred_months !== 0) {
-    const defered_count = payment.deferred_days + payment.deferred_months * 30
-    if (payment.installments_count === 1) {
-      result = 'J'
-    }
-    result += `+${defered_count}`
+export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
+  const { deferred_days, deferred_months, installments_count: installmentsCount } = payment
+  const deferredDaysCount = deferred_days + deferred_months * 30
+
+  if (installmentsCount === 1) {
+    return (
+      <FormattedMessage
+        id="payment-plan-strings.day-abbreviation"
+        defaultMessage="J{numberOfDeferredDays}"
+        values={{
+          numberOfDeferredDays: deferredDaysCount > 0 ? `+${deferredDaysCount}` : '',
+        }}
+      />
+    )
+  } else {
+    return `${installmentsCount}x`
   }
-  return result
 }
 
-export const paymentPlanInfoTextDeferred = (
-  payment: EligibilityPlanToDisplay,
-  deferredDays: number,
-): string => {
-  const date = new Date()
-  date.setDate(date.getDate() + deferredDays)
-  return `${priceFromCents(
-    payment.payment_plan[0].total_amount,
-  )} € à payer le ${new Intl.DateTimeFormat('fr-FR', {
-    month: 'long',
-    day: '2-digit',
-  }).format(date)} `
-}
-export const paymentPlanInfoTextInstallements = (payment: EligibilityPlanToDisplay): string => {
-  return `${payment.installments_count} mensualités de ${priceFromCents(
-    payment.payment_plan[0].purchase_amount,
-  )} € ${paymentPlanFeesText(payment)}`
-}
-export const paymentPlanInfoTextDeferredInstallements = (
-  payment: EligibilityPlanToDisplay,
-  deferredDays: number,
-): string => {
-  console.warn('TODO')
-  return `payez en plusieurs fois avec Alma`
-}
-const paymentPlanInfoTextIneligible = (payment: EligibilityPlanToDisplay) => {
-  if (payment.purchase_amount < payment.minAmount)
-    return `À partir de ${priceFromCents(payment.minAmount)} €`
-  if (payment.purchase_amount > payment.maxAmount)
-    return `Jusqu'à ${priceFromCents(payment.maxAmount)} €`
-  return `payez en plusieurs fois avec Alma`
-}
+export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNode => {
+  const {
+    deferred_days,
+    deferred_months,
+    installments_count: installmentsCount,
+    eligible,
+    purchase_amount: purchaseAmount,
+    minAmount,
+    maxAmount,
+  } = payment
+  const deferredDaysCount = deferred_days + deferred_months * 30
 
-export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): string => {
-  const deferredDays = payment.deferred_days + payment.deferred_months * 30
-  if (!payment.eligible) return paymentPlanInfoTextIneligible(payment)
-  if (deferredDays !== 0 && payment.installments_count === 1) {
-    return paymentPlanInfoTextDeferred(payment, deferredDays)
-  } else if (deferredDays !== 0) {
-    return paymentPlanInfoTextDeferredInstallements(payment, deferredDays)
-  } else if (payment.installments_count > 0) {
-    return paymentPlanInfoTextInstallements(payment)
+  if (!eligible) {
+    return purchaseAmount > maxAmount ? (
+      <FormattedMessage
+        id="payment-plan-strings.ineligible-greater-than-max"
+        defaultMessage="Jusqu'à {maxAmount}"
+        values={{
+          maxAmount: (
+            <FormattedNumber value={priceFromCents(maxAmount)} style="currency" currency="EUR" />
+          ),
+        }}
+      />
+    ) : (
+      <FormattedMessage
+        id="payment-plan-strings.ineligible-lower-than-min"
+        defaultMessage="À partir de {minAmount}"
+        values={{
+          minAmount: (
+            <FormattedNumber value={priceFromCents(minAmount)} style="currency" currency="EUR" />
+          ),
+        }}
+      />
+    )
+  } else if (deferredDaysCount !== 0 && installmentsCount === 1) {
+    return (
+      <FormattedMessage
+        id="payment-plan-strings.deferred"
+        defaultMessage="{totalAmount} à payer le {dueDate}"
+        values={{
+          totalAmount: (
+            <FormattedNumber
+              value={priceFromCents(payment.payment_plan[0].total_amount)}
+              style="currency"
+              currency="EUR"
+            />
+          ),
+          dueDate: (
+            <FormattedDate
+              value={secondsToMilliseconds(payment.payment_plan[0].due_date)}
+              day="numeric"
+              month="long"
+              year="numeric"
+            />
+          ),
+        }}
+      />
+    )
+  } else if (installmentsCount > 0) {
+    return (
+      <FormattedMessage
+        id="payment-plan-strings.multiple-installments"
+        defaultMessage="{firstInstallmentAmount} puis {numberOfRemainingInstallments} mensualités de {othersInstallmentAmount}"
+        values={{
+          firstInstallmentAmount: (
+            <FormattedNumber
+              value={priceFromCents(payment.payment_plan[0].total_amount)}
+              style="currency"
+              currency="EUR"
+            />
+          ),
+          numberOfRemainingInstallments: installmentsCount - 1,
+          othersInstallmentAmount: (
+            <FormattedNumber
+              value={priceFromCents(payment.payment_plan[1].total_amount)}
+              style="currency"
+              currency="EUR"
+            />
+          ),
+        }}
+      />
+    )
   }
-  return `Payez en plusieurs fois avec Alma`
-}
-
-export const paymentPlanFeesText = (payment: EligibilityPlan): string => {
-  if (payment.customer_total_cost_amount) return '(+ frais)'
-  return '(sans frais)'
+  return (
+    <FormattedMessage
+      id="payment-plan-strings.default-message"
+      defaultMessage="Payez en plusieurs fois avec Alma"
+    />
+  )
 }

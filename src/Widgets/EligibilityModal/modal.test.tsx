@@ -1,12 +1,16 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { getTranslationsByLocale } from 'intl/utils'
 import React from 'react'
 import { IntlProvider } from 'react-intl'
+import { Locale } from 'types'
 import EligibilityModal from '.'
+
+const locale = Locale.fr
 
 describe('Modal', () => {
   it('should display if the isOpen boolean is set to true', async () => {
     render(
-      <IntlProvider messages={{}} locale="fr">
+      <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
         <EligibilityModal
           eligibilityPlans={[]}
           isOpen={true}
@@ -20,7 +24,7 @@ describe('Modal', () => {
   })
   it('should not display if the isOpen boolean is set to false', async () => {
     render(
-      <IntlProvider messages={{}} locale="fr">
+      <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
         <EligibilityModal
           eligibilityPlans={[]}
           isOpen={false}
@@ -35,7 +39,7 @@ describe('Modal', () => {
   describe('plans provided', () => {
     beforeEach(async () => {
       render(
-        <IntlProvider messages={{}} locale="fr">
+        <IntlProvider messages={getTranslationsByLocale(locale)} locale={locale}>
           <EligibilityModal
             eligibilityPlans={[
               {
