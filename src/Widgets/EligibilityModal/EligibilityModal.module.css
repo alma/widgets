@@ -138,6 +138,8 @@
     flex-wrap: wrap;
     align-items: flex-start;
     min-height: 396px;
+    max-width: 633px;
+    max-height: 90%;
   }
 
   .title {
@@ -161,7 +163,6 @@
   }
 
   .schedule {
-    padding: 32px;
     max-height: 404px;
     width: calc(100% - 24px - 270px);
     overflow-y: auto;
@@ -175,5 +176,10 @@
     order: 3;
     flex-basis: 10%;
     padding: 0;
+  }
+  @media (min-height: 494px) {
+    .logo {
+      flex-basis: 20%;
+    }
   }
 }

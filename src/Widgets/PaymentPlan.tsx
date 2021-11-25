@@ -41,7 +41,10 @@ const PaymentPlanWidget: React.FC<Props> = ({
     activePlanKeys,
     transitionDelay ? transitionDelay : 5500,
   )
-  if (hideIfNotApplicable && eligibilityPlans.length == 0) {
+  if (
+    hideIfNotApplicable &&
+    eligibilityPlans.filter((plan) => plan.eligible === true).length == 0
+  ) {
     return null
   }
   if (status === apiStatus.PENDING) {
