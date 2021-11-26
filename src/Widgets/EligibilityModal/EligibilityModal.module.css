@@ -139,7 +139,7 @@
     align-items: flex-start;
     min-height: 396px;
     max-width: 633px;
-    max-height: 90%;
+    max-height: 100%;
   }
 
   .title {
@@ -158,13 +158,13 @@
   }
 
   .buttons {
-    width: calc(100% - 24px - 270px);
+    width: calc(100% - 190px);
     order: 4;
   }
 
   .schedule {
     max-height: 404px;
-    width: calc(100% - 24px - 270px);
+    width: calc(100% - 190px);
     overflow-y: auto;
     order: 5;
     margin: 0;

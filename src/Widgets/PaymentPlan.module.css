@@ -1,6 +1,6 @@
 .widgetButton {
-  width: 100%;
-  min-width: 150px;
+  width: 368px;
+  max-width: 100%;
   background-color: transparent;
   border: 1px solid var(--gray-300);
   display: flex;
