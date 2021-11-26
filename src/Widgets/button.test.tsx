@@ -467,7 +467,13 @@ describe('Button', () => {
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
           hideIfNotEligible={true}
-          configPlans={[]}
+          configPlans={[
+            {
+              installmentsCount: 1,
+              minAmount: 100,
+              maxAmount: 100000,
+            },
+          ]}
         />,
       )
       await waitFor(() => expect(screen.queryByTestId('widget-button')).not.toBeInTheDocument())
@@ -477,10 +483,26 @@ describe('Button', () => {
         <PaymentPlanWidget
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          configPlans={[
+            {
+              installmentsCount: 1,
+              minAmount: 100,
+              maxAmount: 100000,
+            },
+          ]}
+        />,
+      )
+      await waitFor(() => expect(screen.queryByTestId('widget-button')).not.toBeInTheDocument())
+    })
+    it('hides if there is no plan', async () => {
+      render(
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
           configPlans={[]}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+      await waitFor(() => expect(screen.queryByTestId('widget-button')).not.toBeInTheDocument())
     })
   })
 })

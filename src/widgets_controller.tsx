@@ -38,16 +38,5 @@ export class WidgetsController {
         document.querySelector(container),
       )
     }
-    // if (widget === widgetTypes.HowItWorks) {
-    //   const { container } = options as HowItWorksWidgetOptions
-    //   const modalContainer = document.createElement('div')
-    //   document.querySelector(container)?.append(modalContainer)
-    //   render(
-    //     <IntlProvider messages={getTranslationsByLocale(locale)} locale="fr">
-    //       <HowItWorksWidget button={container} />
-    //     </IntlProvider>,
-    //     modalContainer,
-    //   )
-    // }
   }
 }

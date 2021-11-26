@@ -20,7 +20,6 @@
       }
       .alma-logo {
         height: 20px;
-        filter: brightness(0);
         margin: 10px;
       }
       .body {
@@ -42,18 +41,13 @@
       .image img {
         width: 100%;
       }
-      .legal {
-        align-self: center;
-      }
-      .legal a {
-        margin: 10px;
-      }
       .product {
         width: 400px;
+        max-width: 100%;
         padding: 16px;
         background-color: white;
         box-shadow: 7px 8px 12px 3px #cccccc;
-        color: #2d2d2d;
+        color: #00425d;
       }
       .product h1 {
         font-family: 'Work Sans', Helvetica, Arial, 'Segoe UI', sans-serif;
@@ -73,15 +67,16 @@
       .product p {
         font-size: smaller;
       }
+      h1,
+      h3 {
+        margin-bottom: 16px;
+      }
     </style>
   </head>
   <body>
     <div class="body">
       <div>
-        <img
-          src="https://getalma.eu/static/website/new/img/logo.png?1606490652"
-          class="alma-logo"
-        />
+        <img src="../src/assets/alma.svg" class="alma-logo" />
       </div>
       <div class="main">
         <div class="image">
@@ -90,23 +85,16 @@
 
         <div class="product">
           <h1>Sac à main</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget ex nec ex
-            rhoncus consequat. Duis sit amet dui rhoncus arcu imperdiet tempus.
-          </p>
+
           <h3>450 €</h3>
           <div id="payment-plans"></div>
           <div class="add-to-cart">
-            <button>J'achète !</button>
+            <button>Ajouter au panier</button>
           </div>
         </div>
       </div>
 
-      <div class="legal">
-        <a href="#">Mentions legales</a>
-        <a href="#">CGU</a>
-        <a id="howItWorks" href="#">Comment ca marche ?</a>
-      </div>
+      <div></div>
     </div>
     <script src="../dist/alma-widgets.umd.js"></script>
     <script>
@@ -134,9 +122,6 @@
             },
             { installmentsCount: 10, minAmount: 5000, maxAmount: 500000 },
           ],
-        })
-        widgets.add(Alma.Widgets.HowItWorks, {
-          container: '#howItWorks',
         })
       })()
     </script>

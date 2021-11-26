@@ -19,20 +19,19 @@ domain: `Alma.ApiMode.TEST | Alma.ApiMode.PROD` [required]
 
 ### add
 
-> add(widget: widgetTypes.PaymentPlans | widgetTypes.HowItWorks, options: {} | {})
+> add(widget: widgetTypes.PaymentPlans, options: {} | {})
 
 Adds an element to the widget
 
 ###### parameters
 
-> widget: `widgetTypes.PaymentPlans | widgetTypes.HowItWorks` [required]
+> widget: `widgetTypes.PaymentPlans [required]
 
 will define the element to be added:
 
 - widgetTypes.PaymentPlans: A button with the your eligibilies for a given price that opens a modal
-- widgetTypes.HowItWorks: A modal attached to a button of your choice meant as an example for your customers
 
-> options: `PaymentPlansOptions | HowItWorksOptions`
+> options: `PaymentPlansOptions`
 
 > PaymentPlansOptions:`{container:string, purchaseAmount:number, plans: Plan[], transitionDelay:number}`
 
@@ -48,5 +47,3 @@ will define the element to be added:
 - **deferredMonths** [optionnal] the number of months by which the first payment will be deferred
 - **minAmount** [required] the minimum purchase amount required to activate the plan (in cents)
 - **maxAmount** [required] the minimum purchase amount allowed to activate the plan (in cents)
-
-> HowItWorksOptions : `{}`
