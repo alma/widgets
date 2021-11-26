@@ -1,60 +1,46 @@
-import { EligibilityPlan, EligibilityPlanToDisplay, configPlans } from 'types'
+import { ConfigPlan, EligibilityPlan, EligibilityPlanToDisplay } from 'types'
 
 const filterELigibility = (
   eligibilities: EligibilityPlan[],
-  configPlans?: configPlans[],
+  configPlans?: ConfigPlan[],
 ): EligibilityPlanToDisplay[] => {
-  if (!configPlans)
-    return eligibilities
-      .map((eligibility) => ({
-        ...eligibility,
-        eligible: true,
-        minAmount: 0,
-        maxAmount: 0,
-      }))
-      .filter(
-        (eligibility) =>
-          !(
-            eligibility.installments_count === 1 &&
-            eligibility.deferred_days === 0 &&
-            eligibility.deferred_months === 0
-          ),
-      )
-  return eligibilities.reduce((resultEligibilities: EligibilityPlanToDisplay[], eligibility) => {
-    const eligibilityDeferredDays =
-      (eligibility.deferred_months ? eligibility.deferred_months : 0) * 30 +
-      (eligibility.deferred_days ? eligibility.deferred_days : 0)
+  // Remove p1x
+  const filteredEligibilityPlans = eligibilities.filter(
+    (plan) =>
+      !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0),
+  )
 
-    //retirieve the plan that matches eligibility
-    const consideredPlan = configPlans.find((plan) => {
-      const planDeferredDays =
-        (plan.deferredMonths ? plan.deferredMonths : 0) * 30 +
-        (plan.deferredDays ? plan.deferredDays : 0)
+  // If no configPlans was provided, return eligibility response
+  if (!configPlans) {
+    return filteredEligibilityPlans
+  }
+
+  // Else check if the plan is eligible regarding the related configPlan
+  return filteredEligibilityPlans.map((plan) => {
+    const eligibilityDeferredDays =
+      (plan.deferred_months ? plan.deferred_months : 0) * 30 +
+      (plan.deferred_days ? plan.deferred_days : 0)
+
+    // find the related configPlan
+    const relatedConfigPlan = configPlans.find((configPlan) => {
+      const configPlanDeferredDays =
+        (configPlan.deferredMonths ? configPlan.deferredMonths : 0) * 30 +
+        (configPlan.deferredDays ? configPlan.deferredDays : 0)
       return (
-        eligibility.installments_count === plan.installmentsCount &&
-        eligibilityDeferredDays === planDeferredDays
+        plan.installments_count === configPlan.installmentsCount &&
+        eligibilityDeferredDays === configPlanDeferredDays
       )
     })
-
-    //filter P1x as will not offer it on widget
-    const isP1x =
-      eligibility.installments_count === 1 &&
-      eligibility.deferred_months === 0 &&
-      eligibility.deferred_days === 0
-
-    //return eligibilities that we will display
-    if (consideredPlan && !isP1x) {
-      resultEligibilities.push({
-        ...eligibility,
-        minAmount: consideredPlan.minAmount,
-        maxAmount: consideredPlan.maxAmount,
-        eligible:
-          eligibility.purchase_amount >= consideredPlan.minAmount &&
-          eligibility.purchase_amount <= consideredPlan.maxAmount,
-      })
+    return {
+      ...plan,
+      eligible: relatedConfigPlan
+        ? plan.purchase_amount > relatedConfigPlan?.minAmount &&
+          plan.purchase_amount < relatedConfigPlan?.maxAmount
+        : false,
+      minAmount: relatedConfigPlan?.minAmount,
+      maxAmount: relatedConfigPlan?.maxAmount,
     }
-    return resultEligibilities
-  }, [])
+  })
 }
 
 export default filterELigibility

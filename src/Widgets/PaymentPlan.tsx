@@ -4,7 +4,7 @@ import Loader from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import React, { useState } from 'react'
-import { ApiConfig, apiStatus, configPlans } from 'types'
+import { ApiConfig, apiStatus, ConfigPlan } from 'types'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import EligibilityModal from './EligibilityModal'
 import s from './PaymentPlan.module.css'
@@ -12,7 +12,7 @@ import s from './PaymentPlan.module.css'
 type Props = {
   purchaseAmount: number
   apiData: ApiConfig
-  configPlans?: configPlans[]
+  configPlans?: ConfigPlan[]
   transitionDelay?: number
   hideIfNotEligible?: boolean
 }

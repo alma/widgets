@@ -30,8 +30,8 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     installments_count: installmentsCount,
     eligible,
     purchase_amount: purchaseAmount,
-    minAmount,
-    maxAmount,
+    minAmount = 0,
+    maxAmount = 0,
   } = payment
   const deferredDaysCount = deferred_days + deferred_months * 30
 

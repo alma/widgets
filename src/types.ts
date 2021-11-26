@@ -12,7 +12,7 @@ export enum apiStatus {
 }
 export type apiStatusType = apiStatus.PENDING | apiStatus.SUCCESS | apiStatus.FAILED
 
-export type configPlans = {
+export type ConfigPlan = {
   installmentsCount: number
   deferredDays?: number
   deferredMonths?: number
@@ -40,9 +40,8 @@ export type EligibilityPlan = {
   purchase_amount: number
 }
 export type EligibilityPlanToDisplay = EligibilityPlan & {
-  minAmount: number
-  maxAmount: number
-  eligible: boolean
+  minAmount?: number
+  maxAmount?: number
 }
 
 export enum Locale {
@@ -58,7 +57,7 @@ export enum Locale {
 export type PaymentPlanWidgetOptions = {
   container: string
   purchaseAmount: number
-  plans?: configPlans[]
+  plans?: ConfigPlan[]
   transitionDelay?: number
   hideIfNotEligible?: boolean
   locale?: Locale
