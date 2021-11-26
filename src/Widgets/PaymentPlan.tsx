@@ -25,12 +25,13 @@ const PaymentPlanWidget: React.FC<Props> = ({
   hideIfNotEligible,
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
+  const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible === true)
 
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
-  const activePlanKeys = eligibilityPlans
+  const eligiblePlanKeys = eligibilityPlans
     .map((plan, key) => {
       if (plan.eligible) return key
       return undefined
@@ -38,12 +39,9 @@ const PaymentPlanWidget: React.FC<Props> = ({
     .filter((key) => key !== undefined) as number[]
 
   const { current, onHover, onLeave } = useButtonAnimation(
-    activePlanKeys,
+    eligiblePlanKeys,
     transitionDelay ? transitionDelay : 5500,
   )
-  if (hideIfNotEligible && eligibilityPlans.filter((plan) => plan.eligible === true).length == 0) {
-    return null
-  }
   if (status === apiStatus.PENDING) {
     return (
       <div className={cx(s.widgetButton, s.pending)}>
@@ -52,13 +50,29 @@ const PaymentPlanWidget: React.FC<Props> = ({
     )
   }
 
+  if ((hideIfNotEligible && eligiblePlans.length == 0) || eligibilityPlans.length === 0) {
+    return null
+  }
   if (status === apiStatus.FAILED) {
     return null
   }
 
+  const handleOpenModal = () => {
+    if (eligiblePlans.length > 0) {
+      openModal()
+    }
+  }
+
   return (
     <>
-      <button onClick={openModal} className={s.widgetButton} data-testid="widget-button">
+      <button
+        onClick={handleOpenModal}
+        className={s.widgetButton}
+        style={{
+          cursor: eligiblePlans.length > 0 ? 'pointer' : 'initial',
+        }}
+        data-testid="widget-button"
+      >
         <div className={s.primaryContainer}>
           <LogoIcon className={s.logo} />
           <div className={s.paymentPlans}>
