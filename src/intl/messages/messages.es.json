@@ -14,5 +14,5 @@
   "payment-plan-strings.deferred": "{totalAmount} a pagar en {dueDate}",
   "payment-plan-strings.ineligible-greater-than-max": "Hasta que {maxAmount}",
   "payment-plan-strings.ineligible-lower-than-min": "De {minAmount}",
-  "payment-plan-strings.multiple-installments": "{firstInstallmentAmount} entonces {numberOfRemainingInstallments} cuotas mensuales de {othersInstallmentAmount}"
+  "payment-plan-strings.multiple-installments": "{firstInstallmentAmount} entonces {numberOfRemainingInstallments, plural, one {# ¡facturación mensual} other {# ¡facturación mensual de}} de {othersInstallmentAmount}"
 }

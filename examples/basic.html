@@ -87,7 +87,7 @@
           <h1>Sac à main</h1>
 
           <h3>450 €</h3>
-          <div id="payment-plans"></div>
+          <div id="alma-widget"></div>
           <div class="add-to-cart">
             <button>Ajouter au panier</button>
           </div>
@@ -104,10 +104,11 @@
           Alma.ApiMode.TEST,
         )
         widgets.add(Alma.Widgets.PaymentPlans, {
-          container: '#payment-plans',
+          container: '#alma-widget',
           purchaseAmount: 45000,
           locale: 'fr',
-          hideIfNotEligible: true,
+          hideIfNotEligible: false,
+          transitionDelay: 5500,
           plans: [
             {
               installmentsCount: 1,
@@ -120,7 +121,7 @@
               minAmount: 5000,
               maxAmount: 50000,
             },
-            { installmentsCount: 10, minAmount: 5000, maxAmount: 500000 },
+            { installmentsCount: 10, minAmount: 5000, maxAmount: 50000 },
           ],
         })
       })()

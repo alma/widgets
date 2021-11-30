@@ -26,14 +26,14 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .buttons > button {
   position: relative;
   height: 50px;
   width: 50px;
-  margin: 0 4px;
+  margin: 0 4px 8px;
   border: 1px solid var(--gray-300);
   border-radius: 8px;
   font-family: 'Eina04';
@@ -84,6 +84,7 @@
 .bullet {
   flex: 0 0 30px;
   height: 30px;
+  line-height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -64,6 +64,7 @@
   font-size: 14px;
   line-height: 180%;
   color: var(--blue-300);
+  text-align: left;
 }
 .notEligible {
   color: var(--gray-600);

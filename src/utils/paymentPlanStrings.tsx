@@ -85,7 +85,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     return (
       <FormattedMessage
         id="payment-plan-strings.multiple-installments"
-        defaultMessage="{firstInstallmentAmount} puis {numberOfRemainingInstallments} mensualités de {othersInstallmentAmount}"
+        defaultMessage="{firstInstallmentAmount} puis {numberOfRemainingInstallments, plural, one {# mensualité} other {# mensualités}} de {othersInstallmentAmount}"
         values={{
           firstInstallmentAmount: (
             <FormattedNumber

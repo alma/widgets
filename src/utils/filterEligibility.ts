@@ -34,8 +34,8 @@ const filterELigibility = (
     return {
       ...plan,
       eligible: relatedConfigPlan
-        ? plan.purchase_amount > relatedConfigPlan?.minAmount &&
-          plan.purchase_amount < relatedConfigPlan?.maxAmount
+        ? plan.purchase_amount >= relatedConfigPlan?.minAmount &&
+          plan.purchase_amount <= relatedConfigPlan?.maxAmount
         : false,
       minAmount: relatedConfigPlan?.minAmount,
       maxAmount: relatedConfigPlan?.maxAmount,

@@ -1,49 +1,56 @@
 # Alma.Widgets
 
-### initialise
+## `initialize(merchantId: string, domain: Alma.ApiMode.TEST | Alma.ApiMode.LIVE)`
 
-> initialise(merchantId: string, domain: Alma.ApiMode.TEST | Alma.ApiMode.PROD)
+Initialize the widget library with your merchantID
 
-Initialises the widget library with your merchantID
-
-###### parameters
-
-> merchantId: `string` [required]
+### merchantId `string` [required]
 
 Your merchant id as it is found in the dashboard
 
-domain: `Alma.ApiMode.TEST | Alma.ApiMode.PROD` [required]
+### domain `Alma.ApiMode.TEST | Alma.ApiMode.LIVE` [required]
 
 - `Alma.ApiMode.TEST` Used to test the widget
 - `Alma.ApiMode.LIVE` Used in production mode. data will match what is provided in your dashboard
 
-### add
+## `add(widget: Alma.Widgets.PaymentPlans, options: PaymentPlansOptions )`
 
-> add(widget: widgetTypes.PaymentPlans, options: {} | {})
+### widget: `Alma.Widgets.PaymentPlans` [required]
 
-Adds an element to the widget
+Add a button with the eligibles payment plans for the given purchase amount
 
-###### parameters
+## Options: `PaymentPlansOptions`
 
-> widget: `widgetTypes.PaymentPlans [required]
+### container: `string` [required]
 
-will define the element to be added:
+Your container's selector
 
-- widgetTypes.PaymentPlans: A button with the your eligibilies for a given price that opens a modal
+### purchaseAmount: `number` [required]
 
-> options: `PaymentPlansOptions`
+The purchase amount (in euro cents)
 
-> PaymentPlansOptions:`{container:string, purchaseAmount:number, plans: Plan[], transitionDelay:number}`
+### plans: `Plan[]` [optional]
 
-- **container** [required]: a string with the selector of your container - must select a unique element
-- **purchaseAmount** [required]: the amount of the purchase (in cents)
-- **plans** [optionnal]: an array of the plans you intend to offer
-- **transitionDelay** [optionnal]: The ammount of time in between button animations
+An array of the plans you want to display. If not provided, the widget returns all your available payment plans.
 
-> Plan: `{installmentsCount:number,deferredDays:number, deferredMonths:number, minAmount:number, maxAmount:number}`
+### transitionDelay: `number` [optional, default: 5500]
 
-- **installmentsCount** [required]: the number of installement in the plan
-- **deferredDays** [optionnal]: the number of days by which the first payment will be deferred
-- **deferredMonths** [optionnal] the number of months by which the first payment will be deferred
-- **minAmount** [required] the minimum purchase amount required to activate the plan (in cents)
-- **maxAmount** [required] the minimum purchase amount allowed to activate the plan (in cents)
+The ammount of time in between button animations in ms.
+
+### locale: `fr|en|es|it|de|nl-NL|nl-BE` [optional, default: en]
+
+### hideIfNotEligible: `boolean` [optional, default: false]
+
+Totally hide the widget if set to true and no plan matches the purchase amount.
+
+## Plan: `Plan`
+
+### installmentsCount: `number` [required]: the number of installement in the plan
+
+### minAmount: `number` [required] the minimum purchase amount required to activate the plan (in euro cents)
+
+### maxAmount: `number` [required] the minimum purchase amount allowed to activate the plan (in euro cents)
+
+### deferredDays: `number` [optional]: the number of days by which the first payment will be deferred
+
+### deferredMonths: `number` [optional] the number of months by which the first payment will be deferred

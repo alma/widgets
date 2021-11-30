@@ -278,7 +278,7 @@ describe('Button', () => {
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
-      expect(screen.getByText('225,00 € puis 1 mensualités de 225,00 €')).toBeInTheDocument()
+      expect(screen.getByText('225,00 € puis 1 mensualité de 225,00 €')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
@@ -441,7 +441,7 @@ describe('Button', () => {
       act(() => {
         jest.advanceTimersByTime(500)
       })
-      expect(screen.getByText('225,00 € puis 1 mensualités de 225,00 €')).toBeInTheDocument()
+      expect(screen.getByText('225,00 € puis 1 mensualité de 225,00 €')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(500)
       })
