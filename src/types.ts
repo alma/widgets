@@ -1,121 +1,69 @@
-// For semantic purposes
-import { AnyArray, Builtin } from 'ts-essentials'
+import { ApiMode } from 'consts'
 
-export type integer = number
+export type ApiConfig = { domain: ApiMode; merchantId: string }
 
-export { DeepRequired } from 'ts-essentials'
+export enum widgetTypes {
+  PaymentPlans = 'PaymentPlans',
+}
+export enum apiStatus {
+  PENDING = 'pending',
+  SUCCESS = 'success',
+  FAILED = 'failed',
+}
+export type apiStatusType = apiStatus.PENDING | apiStatus.SUCCESS | apiStatus.FAILED
 
-export type DOMContent = string | HTMLElement | HTMLElement[]
-
-export interface IObject {
-  [key: string]: unknown
+export type ConfigPlan = {
+  installmentsCount: number
+  deferredDays?: number
+  deferredMonths?: number
+  minAmount: number
+  maxAmount: number
 }
 
-export type IsObject<T> = T extends AnyArray
-  ? false
-  : // eslint-disable-next-line @typescript-eslint/ban-types
-  T extends object
-  ? true
-  : false
+export type PaymentPlan = {
+  customer_fee: number
+  customer_interest: number
+  due_date: number
+  purchase_amount: number
+  total_amount: number
+  refunded_interest?: number
+}
+export type EligibilityPlan = {
+  annual_interest_rate?: number
+  customer_total_cost_amount: number
+  customer_total_cost_bps: number
+  deferred_days: number
+  deferred_months: number
+  eligible: boolean
+  installments_count: number
+  payment_plan: PaymentPlan[]
+  purchase_amount: number
+}
+export type EligibilityPlanToDisplay = EligibilityPlan & {
+  minAmount?: number
+  maxAmount?: number
+}
 
-/*
-  This type can be used as a "recursion stopper" in recursive helper types.
-  It's useful to prevent "mangling" types with DeepRequired<T> or Deep*, that would recurse into any
-  type used within `T`.
+export enum Locale {
+  en = 'en',
+  fr = 'fr',
+  de = 'de',
+  it = 'it',
+  es = 'es',
+  'nl-NL' = 'nl-NL',
+  'nl-BE' = 'nl-BE',
+}
 
-  Here's how to use it:
+export type PaymentPlanWidgetOptions = {
+  container: string
+  purchaseAmount: number
+  plans?: ConfigPlan[]
+  transitionDelay?: number
+  hideIfNotEligible?: boolean
+  locale?: Locale
+}
 
-  ```
-  interface Test {
-    prop1?: string,
-    prop2?: {
-      prop3?: Preserve<SomeTypeToPreserve>
-    },
-    prop4: number
-  }
-  ```
+export type WidgetNames = widgetTypes.PaymentPlans
 
-  Using a "Preserve-aware" recursive type allows casting `Preserve<SomeTypeToPreserve>` back to
-  `SomeTypeToPreserve` instead of recursing over all its properties.
-  i.e. `DeepRequired<Test>` gives:
-
-  ```
-  interface Test {
-    ...
-    prop2: {
-      prop3: DeepRequired<SomeTypeToPreserve>  // <- "mangles" SomeTypeToPreserve
-    }
-    ...
-  }
-  ```
-
-  ... while `PreservedDeepRequired` gives:
-
-  ```
-  interface Test {
-    ...
-    prop2: {
-      prop3: SomeTypeToPreserve
-    }
-    ...
-  }
-  ```
- */
-export type Preserve<T> = T & { readonly __preserve__: 'preserve' }
-
-/*
-  Transforms `T` into an identical shape, but with all `Preserve<P>` types mapped back to `P`:
-
-  ```
-    ResolvePreserve<Preserve<T>> == T
-  ```
-
-  It can be useful to make an interface more dev-friendly. Consider this:
-
-  ```
-  interface Test {
-    className?: string
-    container?: Preserve<HTMLElement>
-  }
-  ```
-
-  Because `container` uses `Preserve<HTMLElement>`, its type is actually:
-
-  ```
-  HTMLElement & { readonly __preserve__: 'preserve' }
-  ```
-
-  Since this is not assignable to `HTMLElement`, using `Test` directly requires using an explicit
-  casting for all its "preserved" properties, which is cumbersome:
-
-  ```
-  declare const test: Test
-  const container: HTMLElement = test.container as HTMLElement
-  ```
-
-  Using `ResolvePreserve`
- */
-export type ResolvePreserve<T> = NonNullable<T> extends Preserve<infer P>
-  ? P
-  : {
-      [K in keyof T]: NonNullable<T[K]> extends Builtin
-        ? T[K]
-        : NonNullable<T[K]> extends AnyArray
-        ? T[K]
-        : IsObject<NonNullable<T[K]>> extends true
-        ? ResolvePreserve<T[K]>
-        : T[K]
-    }
-
-// Just like DeepRequired, but will not recurse into `Preserve<P>` types: will map them back to `P`
-export type PreservedDeepRequired<T> = NonNullable<T> extends Preserve<infer P>
-  ? P
-  : {
-      [K in keyof T]-?: NonNullable<T[K]> extends Builtin
-        ? T[K]
-        : NonNullable<T[K]> extends AnyArray
-        ? T[K]
-        : IsObject<NonNullable<T[K]>> extends true
-        ? PreservedDeepRequired<T[K]>
-        : T[K]
-    }
+export type WidgetName<T> = T extends widgetTypes.PaymentPlans ? widgetTypes.PaymentPlans : never
+export type WidgetOptions<T> = T extends widgetTypes.PaymentPlans ? PaymentPlanWidgetOptions : never
