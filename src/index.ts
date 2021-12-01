@@ -1,17 +1,23 @@
 import 'core-js/stable/array/from'
-import { widgetTypes } from 'types'
-import { ApiMode } from './consts'
-import './main.css'
-import * as utils from './utils'
 import './utils/polyfills'
+
+import './scss/main.scss'
+
+import { ApiMode, Client } from '@alma/client'
 import { WidgetsController } from './widgets_controller'
+
+import * as widgets from './widgets'
+import * as utils from './utils'
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Widgets {
   export function initialize(merchantId: string, mode: ApiMode): WidgetsController {
-    return new WidgetsController({ domain: mode, merchantId })
+    const almaClient = Client.withMerchantId(merchantId, { mode })
+    return new WidgetsController(almaClient)
   }
-  export const PaymentPlans = widgetTypes.PaymentPlans
+
+  export const PaymentPlans = widgets.PaymentPlans
+  export const HowItWorks = widgets.HowItWorks
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -21,4 +27,4 @@ export namespace Utils {
   export const formatCents = utils.formatCents
 }
 
-export { ApiMode } from './consts'
+export { ApiMode } from '@alma/client'
