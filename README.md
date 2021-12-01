@@ -56,6 +56,6 @@
 </script>
 ```
 
-##Going further
+## Going further
 
 > read the full [documentation](./documentation.md)
