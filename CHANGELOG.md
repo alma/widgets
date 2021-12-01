@@ -1,3 +1,54 @@
+# [2.0.0](https://github.com/alma/alma-widgets/compare/v1.1.2...v2.0.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* **(widget):** fix css & eligibility filter ([b2c2399](https://github.com/alma/alma-widgets/commit/b2c2399191e0e7b5854b0a4480ee61f6f609d1a9))
+* **button:** fix animation ([930b830](https://github.com/alma/alma-widgets/commit/930b830a15febf9c58326c5eed4f4a6b9ecfe249))
+* **button:** fix animation + tests ([ea3616b](https://github.com/alma/alma-widgets/commit/ea3616b4cb143f5e5ed602737f44353a662c898a))
+* **button:** prevent opening modal when there is no eligible plan ([ec352f3](https://github.com/alma/alma-widgets/commit/ec352f3c4fc50f492b0550e9ffc018b07f2a3ade))
+* **dist:** remove dist from gitignore ([797d746](https://github.com/alma/alma-widgets/commit/797d7462f8739a107e0bec6f2d0e8da8fcf379aa))
+* **example:** remove old background ([d2d18f8](https://github.com/alma/alma-widgets/commit/d2d18f8d5b174ff877fd01a05b216c10afcb4921))
+* **example:** simpler example page ([75bef6d](https://github.com/alma/alma-widgets/commit/75bef6d3b7f4d73dc0581be01f7335ac44efa4ad))
+* **general:** fixed render ([0ddd9f8](https://github.com/alma/alma-widgets/commit/0ddd9f893c96a2e6fff1b49c3c9578fe92286bb5))
+* **gitignore:** remove dist from git cache ([c14dbb2](https://github.com/alma/alma-widgets/commit/c14dbb22c2fab1d8fd3da06d21b42bae1ff22718))
+* **i18n:** use IntlProvider ([d48811d](https://github.com/alma/alma-widgets/commit/d48811daa9735d71665d9d8dd3b3990b40a234e2))
+* **modal:** display customer fee for pnx ([b20497e](https://github.com/alma/alma-widgets/commit/b20497ef1cbeec4a766746c93d144033a2efea52))
+* **style:** repair broken CSS ([4228091](https://github.com/alma/alma-widgets/commit/4228091a9e4a263a070ea771b1096c6c8448fd99))
+* **widget:** remove default plans - fixed loader - remove reload ([95612af](https://github.com/alma/alma-widgets/commit/95612af47d4dda348e7b4a50c7b28adcc98d0326))
+* remove useless code ([8b1e371](https://github.com/alma/alma-widgets/commit/8b1e371bbb681c1c56b8de0e450869ea1a6f2261))
+
+
+### Documentation
+
+* complete readme ([f2b4036](https://github.com/alma/alma-widgets/commit/f2b4036df3f54a26b3673378faee0745c262a8ab))
+
+
+### Features
+
+* **(widgets):** added basic widgets ([2e53ea4](https://github.com/alma/alma-widgets/commit/2e53ea4e0f78a11617ab1b66a1f73ac372b817ec))
+* **button:** added active option handling & info msg ([d3bada5](https://github.com/alma/alma-widgets/commit/d3bada53b822403df0c119db4c1dfee8f732ddcb))
+* **button:** added default config + transition delay ([3ad73a4](https://github.com/alma/alma-widgets/commit/3ad73a485f20ce594a1cf65f1d10fad992187460))
+* **button:** added plan configuration ([47e7bfc](https://github.com/alma/alma-widgets/commit/47e7bfc2d46e01ae476bdedd4daa5dd19088eaaf))
+* **button:** filter p1x and send only active plans to modal ([6189bf0](https://github.com/alma/alma-widgets/commit/6189bf0b808a586819104acda5d990f84c01bdf2))
+* **button:** hide if not applicable ([8336fef](https://github.com/alma/alma-widgets/commit/8336fef091798c708c6f59ce0a81a915225c2fc3))
+* **fetch:** handle pending and error on api call ([99bb8a4](https://github.com/alma/alma-widgets/commit/99bb8a4c8c85aab0e74fd39ab2668ad06c062bc6))
+* **i18n:** add crowdin with translations ([3fe699e](https://github.com/alma/alma-widgets/commit/3fe699ea15b4da8a4e70ca5fd0c8616f78005c54))
+* **i18n:** add locale in options and add all translations ([5d51331](https://github.com/alma/alma-widgets/commit/5d513312283a68eff506bf26d6828f78d6cfa0db))
+* **modal:** add modal content ([80b60e7](https://github.com/alma/alma-widgets/commit/80b60e76ebfc4f48d6cde731ce1650eabd8fe4f5))
+* **paymentplanwidget:** added paymentplan button ([19a3af1](https://github.com/alma/alma-widgets/commit/19a3af12995c9a9278e6516a0d173ec8b35b36ed))
+* **readme:** trigger release ([8b22c04](https://github.com/alma/alma-widgets/commit/8b22c04bbf958dc28e5b412a4ca822c78fe4c868))
+
+
+### Reverts
+
+* **general:** restart from basics ([692fdc3](https://github.com/alma/alma-widgets/commit/692fdc37773062813e14cb1435de6a9f1c0320ed))
+
+
+### BREAKING CHANGES
+
+* Provide a new API. See README.md
+
 ## [1.1.2](https://github.com/alma/alma-widgets/compare/v1.1.1...v1.1.2) (2021-11-19)
 
 
