@@ -28,7 +28,7 @@
     "lint": "npx eslint src --ext .js,.ts,.tsx",
     "lint:fix": "npx eslint --fix src --ext .js,.ts,.tsx",
     "prebuild": "rm -rf dist",
-    "build": "NODE_ENV=production microbundle --name Alma --sourcemap --jsx React.createElement --jsxImportSource react --globals react/jsx-runtime=jsx --define process.env.NODE_ENV=development--css-modules true",
+    "build": "NODE_ENV=production microbundle --name Alma --sourcemap --jsx React.createElement --jsxImportSource react --globals react/jsx-runtime=jsx --define process.env.NODE_ENV=production --css-modules true",
     "semantic-release": "semantic-release",
     "translations:extract": "formatjs extract 'src/**/*.ts*' --out-file 'src/intl/messages.json' --format simple --ignore 'src/*.d.ts' && prettier ./src/intl --write",
     "translations:upload": "crowdin upload sources",
