@@ -15,9 +15,15 @@ module.exports =
           '@babel/preset-typescript',
         ],
         plugins: [
-          'css-modules-transform',
+          [
+            '@babel/plugin-transform-runtime',
+            {
+              regenerator: true,
+            },
+          ],
+          '@babel/plugin-proposal-class-properties',
           '@babel/plugin-proposal-export-default-from',
-          ['@babel/plugin-transform-react-jsx', { pragma: 'React.createElement' }],
+          ['@babel/plugin-transform-react-jsx', { pragma: 'h' }],
           ['@babel/plugin-transform-typescript', { allowNamespaces: true }],
         ],
       }

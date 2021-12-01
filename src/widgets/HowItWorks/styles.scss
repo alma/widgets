@@ -1,0 +1,11 @@
+.alma-howItWorks__steps li {
+  background: transparent inline("assets/list-bullet.svg") no-repeat left center;
+}
+
+.alma-howItWorks__planPanel {
+  @apply bg-beige;
+
+  background-image: inline('./images/bg-donut.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+}

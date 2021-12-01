@@ -1,10 +1,9 @@
-import { ApiMode } from 'consts';
-import { WidgetName, WidgetNames, WidgetOptions } from 'types';
+import { Client } from '@alma/client';
+import { ConstructorFor, SettingsFor } from './widgets/Widget';
 export declare class WidgetsController {
-    private readonly apiData;
-    constructor(apiData: {
-        domain: ApiMode;
-        merchantId: string;
-    });
-    add<T extends WidgetNames>(widget: WidgetName<T>, options: WidgetOptions<T>): void;
+    private readonly almaClient;
+    private widgets;
+    constructor(almaClient: Client);
+    add<T>(widgetCtor: ConstructorFor<T>, settings: SettingsFor<T>): T;
+    render(): Promise<void>;
 }
