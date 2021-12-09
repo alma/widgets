@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/alma/widgets/compare/v2.0.0...v2.1.0) (2021-12-09)
+
+
+### Features
+
+* trigger release ([9f34015](https://github.com/alma/widgets/commit/9f340150382328b12529f5b67d0b34d76ad32094))
+
 # [2.0.0](https://github.com/alma/widgets/compare/v1.1.2...v2.0.0) (2021-12-09)
 
 
