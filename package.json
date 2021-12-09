@@ -3,9 +3,9 @@
   "version": "1.1.2",
   "description": "Widgets to easily display information from Alma - https://getalma.eu",
   "keywords": [],
-  "main": "dist/alma-widgets.js",
-  "umd:main": "dist/alma-widgets.umd.js",
-  "module": "dist/alma-widgets.m.js",
+  "main": "dist/widgets.js",
+  "umd:main": "dist/widgets.umd.js",
+  "module": "dist/widgets.m.js",
   "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
@@ -13,7 +13,7 @@
   "author": "Olivier Lance <olivier.lance@getalma.eu>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alma/alma-widgets"
+    "url": "https://github.com/alma/widgets"
   },
   "license": "MIT",
   "engines": {

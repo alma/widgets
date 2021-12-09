@@ -9,16 +9,13 @@
 ##### CSS
 
 ```html
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@alma/widgets@2.x/dist/alma-widgets.min.css"
-/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alma/widgets@2.x/dist/widgets.min.css" />
 ```
 
 ##### JS
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@alma/widgets@2.x/dist/alma-widgets.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@alma/widgets@2.x/dist/widgets.umd.js"></script>
 ```
 
 ### Create the container
