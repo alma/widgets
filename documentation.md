@@ -45,12 +45,22 @@ Totally hide the widget if set to true and no plan matches the purchase amount.
 
 ## Plan: `Plan`
 
-### installmentsCount: `number` [required]: the number of installement in the plan
+### installmentsCount: `number` [required]:
 
-### minAmount: `number` [required] the minimum purchase amount required to activate the plan (in euro cents)
+the number of installement in the plan
 
-### maxAmount: `number` [required] the minimum purchase amount allowed to activate the plan (in euro cents)
+### minAmount: `number` [required]
 
-### deferredDays: `number` [optional]: the number of days by which the first payment will be deferred
+the minimum purchase amount required to activate the plan (in euro cents)
 
-### deferredMonths: `number` [optional] the number of months by which the first payment will be deferred
+### maxAmount: `number` [required]
+
+the minimum purchase amount allowed to activate the plan (in euro cents)
+
+### deferredDays: `number` [optional]:
+
+the number of days by which the first payment will be deferred
+
+### deferredMonths: `number` [optional]
+
+the number of months by which the first payment will be deferred
