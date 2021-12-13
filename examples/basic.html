@@ -85,7 +85,10 @@
 
         <div class="product">
           <h1>Sac à main</h1>
-
+          <select onchange="render()" id="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
           <h3>450 €</h3>
           <div id="alma-widget"></div>
           <div class="add-to-cart">
@@ -93,24 +96,34 @@
           </div>
         </div>
       </div>
-
-      <div></div>
     </div>
     <script src="../dist/widgets.umd.js"></script>
+
     <script>
-      ;(function () {
-        var widgets = Alma.Widgets.initialize(
-          '11gKoO333vEXacMNMUMUSc4c4g68g2Les4',
-          Alma.ApiMode.TEST,
-        )
+      var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
+      function render() {
         widgets.add(Alma.Widgets.PaymentPlans, {
           container: '#alma-widget',
-          purchaseAmount: 45000,
+          purchaseAmount: 45000 * document.getElementById('quantity').value,
           locale: 'fr',
           hideIfNotEligible: false,
           transitionDelay: 5500,
+          plans: [
+            {
+              installmentsCount: 1,
+              deferredDays: 30,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
+              installmentsCount: 3,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+          ],
         })
-      })()
+      }
+      render()
     </script>
   </body>
 </html>

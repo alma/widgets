@@ -172,15 +172,9 @@
   }
 
   .logo {
-    flex: 1;
     width: 270px;
     order: 3;
-    flex-basis: 10%;
     padding: 0;
-  }
-  @media (min-height: 494px) {
-    .logo {
-      flex-basis: 20%;
-    }
+    flex: 1 0 15%;
   }
 }
