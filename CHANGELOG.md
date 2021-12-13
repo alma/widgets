@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/alma/widgets/compare/v2.1.0...v2.1.1) (2021-12-13)
+
+
+### Bug Fixes
+
+* css update to keep layout consistent ([#2](https://github.com/alma/widgets/issues/2)) ([4856af2](https://github.com/alma/widgets/commit/4856af25226b08fc5d6c01a162ecea34762cc13f))
+
 # [2.1.0](https://github.com/alma/widgets/compare/v2.0.0...v2.1.0) (2021-12-09)
 
 
