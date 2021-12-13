@@ -1,7 +1,7 @@
 import { ApiMode } from 'consts'
 import IntlProvider from 'intl/IntlProvider'
 import React from 'react'
-import { render } from 'react-dom'
+import { render, unmountComponentAtNode } from 'react-dom'
 import {
   Locale,
   PaymentPlanWidgetOptions,
@@ -25,18 +25,22 @@ export class WidgetsController {
         hideIfNotEligible,
         locale = Locale.en,
       } = options as PaymentPlanWidgetOptions
-      render(
-        <IntlProvider locale={locale}>
-          <PaymentPlanWidget
-            purchaseAmount={purchaseAmount}
-            apiData={this.apiData}
-            configPlans={plans}
-            transitionDelay={transitionDelay}
-            hideIfNotEligible={hideIfNotEligible}
-          />
-        </IntlProvider>,
-        document.querySelector(container),
-      )
+      const containerDiv = document.querySelector(container)
+      if (containerDiv) {
+        unmountComponentAtNode(containerDiv)
+        render(
+          <IntlProvider locale={locale}>
+            <PaymentPlanWidget
+              purchaseAmount={purchaseAmount}
+              apiData={this.apiData}
+              configPlans={plans}
+              transitionDelay={transitionDelay}
+              hideIfNotEligible={hideIfNotEligible}
+            />
+          </IntlProvider>,
+          document.querySelector(container),
+        )
+      }
     }
   }
 }
