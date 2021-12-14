@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/alma/widgets/compare/v2.1.1...v2.2.0) (2021-12-14)
+
+
+### Features
+
+* update ui to fit figma design ([2e169ca](https://github.com/alma/widgets/commit/2e169ca2c3dff3334b9c6fc3977372bcad21dcfc))
+
 ## [2.1.1](https://github.com/alma/widgets/compare/v2.1.0...v2.1.1) (2021-12-13)
 
 
