@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/alma/widgets/compare/v2.2.0...v2.2.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* **eligibity-modal:** update missing div ([fa1d2b5](https://github.com/alma/widgets/commit/fa1d2b5e17f8adaf18ff4fbc7a2b40d0fb913877))
+
 # [2.2.0](https://github.com/alma/widgets/compare/v2.1.1...v2.2.0) (2021-12-14)
 
 
