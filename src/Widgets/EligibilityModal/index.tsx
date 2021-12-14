@@ -159,6 +159,7 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
         <div className={s.logo}>
           <LogoIcon underlineColor="#FF414D" />
         </div>
+        <div className={s.invisibleHackElement} />
       </div>
     </Modal>
   )

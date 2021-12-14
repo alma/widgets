@@ -35,26 +35,21 @@
   font-family: 'Eina04';
   font-weight: 600;
   color: var(--blue-300);
-  line-height: 16px;
+  line-height: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  height: 19px;
+  height: 23px;
   width: 30px;
-  margin: 4px 4px 4px 4px;
+  margin: 0 4px;
 }
-.plan::after {
-  content: '';
-  height: 3px;
-  width: 100%;
-  background-color: transparent;
+.plan.active {
+  border-bottom: 3px solid var(--blue-300);
 }
-.active::after {
-  background-color: var(--blue-300);
-}
-.active.notEligible::after {
-  background-color: var(--gray-600);
+
+.plan.active.notEligible {
+  border-bottom-color: var(--gray-600);
 }
 
 .info {
