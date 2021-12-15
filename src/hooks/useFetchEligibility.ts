@@ -10,7 +10,11 @@ const useFetchEligibility = (
 ): [EligibilityPlan[], apiStatusType] => {
   const [eligibility, setEligibility] = useState([] as EligibilityPlan[])
   const [status, setStatus] = useState(apiStatus.PENDING)
-  const configInstallments = plans?.map((plan) => ({ installments_count: plan.installmentsCount }))
+  const configInstallments = plans?.map((plan) => ({
+    installments_count: plan.installmentsCount,
+    deferred_days: plan?.deferredDays,
+    deferred_months: plan?.deferredMonths,
+  }))
   useEffect(() => {
     if (status === apiStatus.PENDING) {
       fetchFromApi(
