@@ -1,3 +1,10 @@
+## [2.2.3](https://github.com/alma/widgets/compare/v2.2.2...v2.2.3) (2021-12-15)
+
+
+### Bug Fixes
+
+* **payment-plan-button:** add prevent default on click ([3c228e5](https://github.com/alma/widgets/commit/3c228e5c96c4316fd915b5877ebf533a3d831cd4))
+
 ## [2.2.2](https://github.com/alma/widgets/compare/v2.2.1...v2.2.2) (2021-12-15)
 
 
