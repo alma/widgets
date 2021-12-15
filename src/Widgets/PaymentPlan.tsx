@@ -3,7 +3,7 @@ import cx from 'classnames'
 import Loader from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
-import React, { useState } from 'react'
+import React, { MouseEvent, useState } from 'react'
 import { ApiConfig, apiStatus, ConfigPlan } from 'types'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import EligibilityModal from './EligibilityModal'
@@ -57,7 +57,8 @@ const PaymentPlanWidget: React.FC<Props> = ({
     return null
   }
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     if (eligiblePlans.length > 0) {
       openModal()
     }
