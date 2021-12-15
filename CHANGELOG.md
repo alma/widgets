@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/alma/widgets/compare/v2.2.1...v2.2.2) (2021-12-15)
+
+
+### Bug Fixes
+
+* **eligibility:** handle deferred days and months in eligibility request ([48a3e96](https://github.com/alma/widgets/commit/48a3e96f67e776a6aaa73142e3c9799966454592))
+
 ## [2.2.1](https://github.com/alma/widgets/compare/v2.2.0...v2.2.1) (2021-12-14)
 
 
