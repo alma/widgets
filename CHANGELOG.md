@@ -1,3 +1,10 @@
+## [2.2.4](https://github.com/alma/widgets/compare/v2.2.3...v2.2.4) (2021-12-15)
+
+
+### Bug Fixes
+
+* z-index issue with prestashop header ([e9b2ffe](https://github.com/alma/widgets/commit/e9b2ffef6ad7baf6352916a48cabdfcbd6dbb62b))
+
 ## [2.2.3](https://github.com/alma/widgets/compare/v2.2.2...v2.2.3) (2021-12-15)
 
 
