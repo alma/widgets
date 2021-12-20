@@ -1,3 +1,10 @@
+## [2.2.5](https://github.com/alma/widgets/compare/v2.2.4...v2.2.5) (2021-12-20)
+
+
+### Bug Fixes
+
+* update spanish translations ([6c9cf7d](https://github.com/alma/widgets/commit/6c9cf7d3f26cd310d59f3a412a8bb453fedd6a5e))
+
 ## [2.2.4](https://github.com/alma/widgets/compare/v2.2.3...v2.2.4) (2021-12-15)
 
 
