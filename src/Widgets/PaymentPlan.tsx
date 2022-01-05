@@ -64,7 +64,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
     return null
   }
 
-  const handleOpenModal = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleOpenModal = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
     if (eligiblePlans.length > 0) {
       openModal()
@@ -80,7 +80,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
 
   return (
     <>
-      <button
+      <div
         onClick={handleOpenModal}
         className={s.widgetButton}
         style={{
@@ -125,7 +125,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
         >
           {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
         </div>
-      </button>
+      </div>
       {/* The eligibility modal needs to reinitialize on close hence the `isOpen &&` bit */}
       {isOpen && (
         <EligibilityModal
