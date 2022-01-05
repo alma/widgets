@@ -11,12 +11,18 @@ import s from './EligibilityModal.module.css'
 
 type Props = {
   isOpen: boolean
+  initialPlanIndex?: number
   onClose: () => void
   eligibilityPlans: EligibilityPlan[]
 }
-const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibilityPlans }) => {
+const EligibilityModal: FunctionComponent<Props> = ({
+  isOpen,
+  initialPlanIndex,
+  onClose,
+  eligibilityPlans,
+}) => {
   const intl = useIntl()
-  const [currentPlanIndex, setCurrentPlanIndex] = useState(0)
+  const [currentPlanIndex, setCurrentPlanIndex] = useState(initialPlanIndex || 0)
 
   const currentPlan = eligibilityPlans[currentPlanIndex]
   const total =
@@ -28,7 +34,7 @@ const EligibilityModal: FunctionComponent<Props> = ({ isOpen, onClose, eligibili
   const isCredit = currentPlan && currentPlan.installments_count > 4
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} scrollable ariaHideApp={false}>
+    <Modal isOpen={isOpen} onClose={onClose} ariaHideApp={false} scrollable>
       <div className={s.container}>
         <div className={s.title} data-testid="modal-title-element">
           <FormattedMessage
