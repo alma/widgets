@@ -1,237 +1,13 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react'
 import { ApiMode } from 'consts'
 import React from 'react'
+import { mockButtonPlans } from 'test/fixtures'
 import render from '../test'
 import PaymentPlanWidget from './PaymentPlan'
 
 jest.mock('utils/fetch', () => {
   return {
-    fetchFromApi: async () => [
-      {
-        customer_total_cost_amount: 0,
-        customer_total_cost_bps: 0,
-        deferred_days: 0,
-        deferred_months: 1,
-        eligible: true,
-        installments_count: 1,
-        payment_plan: [
-          {
-            customer_fee: 0,
-            customer_interest: 0,
-            due_date: 1637498000,
-            purchase_amount: 45000,
-            total_amount: 45000,
-          },
-        ],
-        purchase_amount: 45000,
-      },
-      {
-        customer_total_cost_amount: 0,
-        customer_total_cost_bps: 0,
-        deferred_days: 0,
-        deferred_months: 0,
-        eligible: true,
-        installments_count: 1,
-        payment_plan: [
-          {
-            customer_fee: 0,
-            customer_interest: 0,
-            due_date: 1634819600,
-            purchase_amount: 45000,
-            total_amount: 45000,
-          },
-        ],
-        purchase_amount: 45000,
-      },
-      {
-        customer_total_cost_amount: 0,
-        customer_total_cost_bps: 0,
-        deferred_days: 0,
-        deferred_months: 0,
-        eligible: true,
-        installments_count: 2,
-        payment_plan: [
-          {
-            customer_fee: 0,
-            customer_interest: 0,
-            due_date: 1634819600,
-            purchase_amount: 22500,
-            total_amount: 22500,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 0,
-            due_date: 1634819600,
-            purchase_amount: 22500,
-            total_amount: 22500,
-          },
-        ],
-        purchase_amount: 45000,
-      },
-      {
-        customer_total_cost_amount: 135,
-        customer_total_cost_bps: 30,
-        deferred_days: 0,
-        deferred_months: 0,
-        eligible: true,
-        installments_count: 3,
-        payment_plan: [
-          {
-            customer_fee: 135,
-            customer_interest: 0,
-            due_date: 1634819600,
-            purchase_amount: 15000,
-            total_amount: 15135,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 0,
-            due_date: 1637498000,
-            purchase_amount: 15000,
-            total_amount: 15000,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 0,
-            due_date: 1640090000,
-            purchase_amount: 15000,
-            total_amount: 15000,
-          },
-        ],
-        purchase_amount: 45000,
-      },
-      {
-        customer_total_cost_amount: 1202,
-        customer_total_cost_bps: 267,
-        deferred_days: 0,
-        deferred_months: 0,
-        eligible: true,
-        installments_count: 4,
-        payment_plan: [
-          {
-            customer_fee: 1202,
-            customer_interest: 0,
-            due_date: 1634819600,
-            purchase_amount: 11250,
-            total_amount: 12452,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 0,
-            due_date: 1637498000,
-            purchase_amount: 11250,
-            total_amount: 11250,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 0,
-            due_date: 1640090000,
-            purchase_amount: 11250,
-            total_amount: 11250,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 0,
-            due_date: 1642768400,
-            purchase_amount: 11250,
-            total_amount: 11250,
-          },
-        ],
-        purchase_amount: 45000,
-      },
-      {
-        annual_interest_rate: 1719,
-        customer_total_cost_amount: 2667,
-        customer_total_cost_bps: 593,
-        deferred_days: 0,
-        deferred_months: 0,
-        eligible: true,
-        installments_count: 10,
-        payment_plan: [
-          {
-            customer_fee: 0,
-            customer_interest: 0,
-            due_date: 1634819600,
-            purchase_amount: 4773,
-            refunded_interest: 0,
-            total_amount: 4773,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 492,
-            due_date: 1637498000,
-            purchase_amount: 4274,
-            refunded_interest: 0,
-            total_amount: 4766,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 472,
-            due_date: 1640090000,
-            purchase_amount: 4294,
-            refunded_interest: 0,
-            total_amount: 4766,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 429,
-            due_date: 1642768400,
-            purchase_amount: 4337,
-            refunded_interest: 0,
-            total_amount: 4766,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 371,
-            due_date: 1645446800,
-            purchase_amount: 4395,
-            refunded_interest: 0,
-            total_amount: 4766,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 281,
-            due_date: 1647866000,
-            purchase_amount: 4485,
-            refunded_interest: 0,
-            total_amount: 4766,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 250,
-            due_date: 1650544400,
-            purchase_amount: 4516,
-            refunded_interest: 0,
-            total_amount: 4766,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 183,
-            due_date: 1653136400,
-            purchase_amount: 4583,
-            refunded_interest: 0,
-            total_amount: 4766,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 127,
-            due_date: 1655814800,
-            purchase_amount: 4639,
-            refunded_interest: 0,
-            total_amount: 4766,
-          },
-          {
-            customer_fee: 0,
-            customer_interest: 62,
-            due_date: 1658406800,
-            purchase_amount: 4704,
-            refunded_interest: 0,
-            total_amount: 4766,
-          },
-        ],
-        purchase_amount: 45000,
-      },
-    ],
+    fetchFromApi: async () => mockButtonPlans,
   }
 })
 
@@ -278,7 +54,7 @@ describe('Button', () => {
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
-      expect(screen.getByText('225,00 € puis 1 mensualité de 225,00 €')).toBeInTheDocument()
+      expect(screen.getByText('2 mensualités de 225,00 €')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
@@ -441,7 +217,7 @@ describe('Button', () => {
       act(() => {
         jest.advanceTimersByTime(500)
       })
-      expect(screen.getByText('225,00 € puis 1 mensualité de 225,00 €')).toBeInTheDocument()
+      expect(screen.getByText('2 mensualités de 225,00 €')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(500)
       })

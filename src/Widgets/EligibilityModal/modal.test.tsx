@@ -1,5 +1,6 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react'
 import React from 'react'
+import { mockPlansAllEligible } from 'test/fixtures'
 import { secondsToMilliseconds } from 'utils'
 import EligibilityModal from '.'
 import render from '../../test'
@@ -34,236 +35,11 @@ describe('Modal', () => {
     beforeEach(async () => {
       render(
         <EligibilityModal
-          eligibilityPlans={[
-            {
-              customer_total_cost_amount: 0,
-              customer_total_cost_bps: 0,
-              deferred_days: 0,
-              deferred_months: 0,
-              eligible: true,
-              installments_count: 1,
-              payment_plan: [
-                {
-                  customer_fee: 0,
-                  customer_interest: 0,
-                  due_date: 1638350762,
-                  purchase_amount: 45000,
-                  total_amount: 45000,
-                },
-              ],
-              purchase_amount: 45000,
-            },
-            {
-              customer_total_cost_amount: 0,
-              customer_total_cost_bps: 0,
-              deferred_days: 0,
-              deferred_months: 1,
-              eligible: true,
-              installments_count: 1,
-              payment_plan: [
-                {
-                  customer_fee: 0,
-                  customer_interest: 0,
-                  due_date: 1641029162,
-                  purchase_amount: 45000,
-                  total_amount: 45000,
-                },
-              ],
-              purchase_amount: 45000,
-            },
-            {
-              customer_total_cost_amount: 0,
-              customer_total_cost_bps: 0,
-              deferred_days: 0,
-              deferred_months: 0,
-              eligible: true,
-              installments_count: 2,
-              payment_plan: [
-                {
-                  customer_fee: 0,
-                  customer_interest: 0,
-                  due_date: 1638350762,
-                  purchase_amount: 22500,
-                  total_amount: 22500,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 0,
-                  due_date: 1641029162,
-                  purchase_amount: 22500,
-                  total_amount: 22500,
-                },
-              ],
-              purchase_amount: 45000,
-            },
-            {
-              customer_total_cost_amount: 135,
-              customer_total_cost_bps: 30,
-              deferred_days: 0,
-              deferred_months: 0,
-              eligible: true,
-              installments_count: 3,
-              payment_plan: [
-                {
-                  customer_fee: 135,
-                  customer_interest: 0,
-                  due_date: 1638350762,
-                  purchase_amount: 15000,
-                  total_amount: 15135,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 0,
-                  due_date: 1641029162,
-                  purchase_amount: 15000,
-                  total_amount: 15000,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 0,
-                  due_date: 1643707562,
-                  purchase_amount: 15000,
-                  total_amount: 15000,
-                },
-              ],
-              purchase_amount: 45000,
-            },
-            {
-              customer_total_cost_amount: 1062,
-              customer_total_cost_bps: 236,
-              deferred_days: 0,
-              deferred_months: 0,
-              eligible: true,
-              installments_count: 4,
-              payment_plan: [
-                {
-                  customer_fee: 1062,
-                  customer_interest: 0,
-                  due_date: 1638350762,
-                  purchase_amount: 11250,
-                  total_amount: 12312,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 0,
-                  due_date: 1641029162,
-                  purchase_amount: 11250,
-                  total_amount: 11250,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 0,
-                  due_date: 1643707562,
-                  purchase_amount: 11250,
-                  total_amount: 11250,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 0,
-                  due_date: 1646126762,
-                  purchase_amount: 11250,
-                  total_amount: 11250,
-                },
-              ],
-              purchase_amount: 45000,
-            },
-            {
-              annual_interest_rate: 1720,
-              customer_total_cost_amount: 2664,
-              customer_total_cost_bps: 592,
-              deferred_days: 0,
-              deferred_months: 0,
-              eligible: true,
-              installments_count: 10,
-              payment_plan: [
-                {
-                  customer_fee: 0,
-                  customer_interest: 0,
-                  due_date: 1638350762,
-                  purchase_amount: 4770,
-                  refunded_interest: 0,
-                  total_amount: 4769,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 493,
-                  due_date: 1641029162,
-                  purchase_amount: 4273,
-                  refunded_interest: 0,
-                  total_amount: 4766,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 488,
-                  due_date: 1643707562,
-                  purchase_amount: 4278,
-                  refunded_interest: 0,
-                  total_amount: 4766,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 388,
-                  due_date: 1646126762,
-                  purchase_amount: 4378,
-                  refunded_interest: 0,
-                  total_amount: 4766,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 370,
-                  due_date: 1648805162,
-                  purchase_amount: 4396,
-                  refunded_interest: 0,
-                  total_amount: 4766,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 301,
-                  due_date: 1651397162,
-                  purchase_amount: 4465,
-                  refunded_interest: 0,
-                  total_amount: 4766,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 250,
-                  due_date: 1654075562,
-                  purchase_amount: 4516,
-                  refunded_interest: 0,
-                  total_amount: 4766,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 183,
-                  due_date: 1656667562,
-                  purchase_amount: 4583,
-                  refunded_interest: 0,
-                  total_amount: 4766,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 127,
-                  due_date: 1659345962,
-                  purchase_amount: 4639,
-                  refunded_interest: 0,
-                  total_amount: 4766,
-                },
-                {
-                  customer_fee: 0,
-                  customer_interest: 64,
-                  due_date: 1662024362,
-                  purchase_amount: 4702,
-                  refunded_interest: 0,
-                  total_amount: 4766,
-                },
-              ],
-              purchase_amount: 45000,
-            },
-          ]}
-          isOpen={true}
+          eligibilityPlans={mockPlansAllEligible}
           onClose={() => {
             console.log('modal closed')
           }}
+          isOpen
         />,
       )
       await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
@@ -331,6 +107,31 @@ describe('Modal', () => {
       expect(element).toHaveTextContent(
         'Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.',
       )
+    })
+  })
+  describe('plans and intial index provided', () => {
+    it('should open with the correct plan selected', () => {
+      render(
+        <EligibilityModal
+          eligibilityPlans={mockPlansAllEligible}
+          initialPlanIndex={3}
+          onClose={() => {
+            console.log('modal closed')
+          }}
+          isOpen
+        />,
+      )
+      const element = screen.getByTestId('modal-installments-element')
+      expect(element).toHaveTextContent('Total')
+      expect(element).toHaveTextContent('451,35 €')
+      expect(element).toHaveTextContent('Dont frais')
+      expect(element).toHaveTextContent('1,35 €')
+      expect(element).toHaveTextContent("Aujourd'hui")
+      expect(element).toHaveTextContent('151,35 €')
+      expect(element).toHaveTextContent('1 janvier 2022')
+      expect(element).toHaveTextContent('150,00 €')
+      expect(element).toHaveTextContent('1 février 2022')
+      expect(element).toHaveTextContent('150,00 €')
     })
   })
 })
