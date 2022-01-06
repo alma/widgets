@@ -10,13 +10,11 @@ import { paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import s from './EligibilityModal.module.css'
 
 type Props = {
-  isOpen: boolean
   initialPlanIndex?: number
   onClose: () => void
   eligibilityPlans: EligibilityPlan[]
 }
 const EligibilityModal: FunctionComponent<Props> = ({
-  isOpen,
   initialPlanIndex,
   onClose,
   eligibilityPlans,
@@ -34,7 +32,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
   const isCredit = currentPlan && currentPlan.installments_count > 4
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} ariaHideApp={false} scrollable>
+    <Modal onClose={onClose} ariaHideApp={false} scrollable isOpen>
       <div className={s.container}>
         <div className={s.title} data-testid="modal-title-element">
           <FormattedMessage

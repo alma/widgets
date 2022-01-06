@@ -126,13 +126,11 @@ const PaymentPlanWidget: React.FC<Props> = ({
           {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
         </div>
       </div>
-      {/* The eligibility modal needs to reinitialize on close hence the `isOpen &&` bit */}
       {isOpen && (
         <EligibilityModal
           initialPlanIndex={initialPlanIndex}
           onClose={closeModal}
           eligibilityPlans={eligiblePlans}
-          isOpen
         />
       )}
     </>

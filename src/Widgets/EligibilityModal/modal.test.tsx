@@ -7,30 +7,6 @@ import render from '../../test'
 
 global.Date.now = jest.fn(() => secondsToMilliseconds(1638350762))
 describe('Modal', () => {
-  it('should display if the isOpen boolean is set to true', async () => {
-    render(
-      <EligibilityModal
-        eligibilityPlans={[]}
-        isOpen={true}
-        onClose={() => {
-          console.log('modal closed')
-        }}
-      />,
-    )
-    await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
-  })
-  it('should not display if the isOpen boolean is set to false', async () => {
-    render(
-      <EligibilityModal
-        eligibilityPlans={[]}
-        isOpen={false}
-        onClose={() => {
-          console.log('modal closed')
-        }}
-      />,
-    )
-    expect(screen.queryByTestId('modal-close-button')).not.toBeInTheDocument()
-  })
   describe('plans provided', () => {
     beforeEach(async () => {
       render(
@@ -39,7 +15,6 @@ describe('Modal', () => {
           onClose={() => {
             console.log('modal closed')
           }}
-          isOpen
         />,
       )
       await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
@@ -118,7 +93,6 @@ describe('Modal', () => {
           onClose={() => {
             console.log('modal closed')
           }}
-          isOpen
         />,
       )
       const element = screen.getByTestId('modal-installments-element')
