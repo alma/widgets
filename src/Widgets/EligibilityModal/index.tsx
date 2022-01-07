@@ -33,7 +33,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
 
   return (
     <Modal onClose={onClose} ariaHideApp={false} scrollable isOpen>
-      <div className={s.container}>
+      <div className={s.container} data-testid="modal-container">
         <div className={s.title} data-testid="modal-title-element">
           <FormattedMessage
             id="eligibility-modal.title"
