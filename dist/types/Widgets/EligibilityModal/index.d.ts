@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { EligibilityPlan } from 'types';
 declare type Props = {
-    isOpen: boolean;
+    initialPlanIndex?: number;
     onClose: () => void;
     eligibilityPlans: EligibilityPlan[];
 };

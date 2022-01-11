@@ -1,3 +1,10 @@
+## [2.2.6](https://github.com/alma/widgets/compare/v2.2.5...v2.2.6) (2022-01-11)
+
+
+### Bug Fixes
+
+* improve modal's behavior, wording and styles, fix i18n options ([#9](https://github.com/alma/widgets/issues/9)) ([1a12fb2](https://github.com/alma/widgets/commit/1a12fb291d482c2ee3b836516b2859042e5390e2))
+
 ## [2.2.5](https://github.com/alma/widgets/compare/v2.2.4...v2.2.5) (2021-12-20)
 
 
