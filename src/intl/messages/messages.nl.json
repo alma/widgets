@@ -14,5 +14,6 @@
   "payment-plan-strings.deferred": "{totalAmount} te betalen op {dueDate}",
   "payment-plan-strings.ineligible-greater-than-max": "Tot {maxAmount}",
   "payment-plan-strings.ineligible-lower-than-min": "Van {minAmount}",
-  "payment-plan-strings.multiple-installments": "{firstInstallmentAmount} dan {numberOfRemainingInstallments, plural, one {# maandelijkse termijnen} other {# maandelijkse termijnen}} van {othersInstallmentAmount}"
+  "payment-plan-strings.multiple-installments": "{firstInstallmentAmount} dan {numberOfRemainingInstallments, plural, one {# maandelijkse termijnen} other {# maandelijkse termijnen}} van {othersInstallmentAmount}",
+  "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} maandelijkse termijnen van {totalAmount}"
 }

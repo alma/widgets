@@ -82,6 +82,30 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
       />
     )
   } else if (installmentsCount > 0) {
+    const areInstallmentsOfSameAmount = payment.payment_plan.every(
+      (installment, index) =>
+        index === 0 || installment.total_amount === payment.payment_plan[0].total_amount,
+    )
+
+    if (areInstallmentsOfSameAmount) {
+      return (
+        <FormattedMessage
+          id="payment-plan-strings.multiple-installments-same-amount"
+          defaultMessage="{installmentsCount} mensualités de {totalAmount}"
+          values={{
+            totalAmount: (
+              <FormattedNumber
+                value={priceFromCents(payment.payment_plan[0].total_amount)}
+                style="currency"
+                currency="EUR"
+              />
+            ),
+            installmentsCount,
+          }}
+        />
+      )
+    }
+
     return (
       <FormattedMessage
         id="payment-plan-strings.multiple-installments"

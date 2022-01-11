@@ -3,8 +3,7 @@ import messagesEN from 'intl/messages/messages.en.json'
 import messagesES from 'intl/messages/messages.es.json'
 import messagesFR from 'intl/messages/messages.fr.json'
 import messagesIT from 'intl/messages/messages.it.json'
-import messagesNLBE from 'intl/messages/messages.nl-BE.json'
-import messagesNLNL from 'intl/messages/messages.nl-NL.json'
+import messagesNL from 'intl/messages/messages.nl.json'
 import { Locale } from 'types'
 
 export const getTranslationsByLocale = (locale: Locale): Record<string, string> => {
@@ -19,10 +18,10 @@ export const getTranslationsByLocale = (locale: Locale): Record<string, string> 
       return messagesIT
     case Locale.de:
       return messagesDE
+    case Locale.nl:
     case Locale['nl-BE']:
-      return messagesNLBE
     case Locale['nl-NL']:
-      return messagesNLNL
+      return messagesNL
     default:
       return messagesEN
   }

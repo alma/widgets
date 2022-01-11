@@ -14,7 +14,7 @@ function LogoIcon({
   return (
     <svg
       className={className}
-      width="40"
+      width="35"
       height="23"
       viewBox="0 0 40 23"
       fill="none"

@@ -37,7 +37,7 @@ An array of the plans you want to display. If not provided, the widget returns a
 
 The ammount of time in between button animations in ms.
 
-### locale: `fr|en|es|it|de|nl-NL|nl-BE` [optional, default: en]
+### locale: `fr|en|es|it|de|nl` [optional, default: en]
 
 ### hideIfNotEligible: `boolean` [optional, default: false]
 
