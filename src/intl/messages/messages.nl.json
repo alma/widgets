@@ -15,5 +15,6 @@
   "payment-plan-strings.ineligible-greater-than-max": "Tot {maxAmount}",
   "payment-plan-strings.ineligible-lower-than-min": "Van {minAmount}",
   "payment-plan-strings.multiple-installments": "1 x {firstInstallmentAmount} dan {numberOfRemainingInstallments} x {othersInstallmentAmount}",
-  "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}"
+  "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
+  "payment-plan-strings.no-fee": "(gratis)"
 }

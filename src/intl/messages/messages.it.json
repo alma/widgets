@@ -15,5 +15,6 @@
   "payment-plan-strings.ineligible-greater-than-max": "Fino a {maxAmount}",
   "payment-plan-strings.ineligible-lower-than-min": "Da {minAmount}",
   "payment-plan-strings.multiple-installments": "1 x {firstInstallmentAmount} allora {numberOfRemainingInstallments} x {othersInstallmentAmount}",
-  "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}"
+  "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
+  "payment-plan-strings.no-fee": "(gratuito)"
 }
