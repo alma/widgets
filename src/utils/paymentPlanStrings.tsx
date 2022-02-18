@@ -91,7 +91,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
       return (
         <FormattedMessage
           id="payment-plan-strings.multiple-installments-same-amount"
-          defaultMessage="{installmentsCount} mensualités de {totalAmount}"
+          defaultMessage="{installmentsCount} x {totalAmount}"
           values={{
             totalAmount: (
               <FormattedNumber
@@ -109,7 +109,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     return (
       <FormattedMessage
         id="payment-plan-strings.multiple-installments"
-        defaultMessage="{firstInstallmentAmount} puis {numberOfRemainingInstallments, plural, one {# mensualité} other {# mensualités}} de {othersInstallmentAmount}"
+        defaultMessage="1 x {firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}"
         values={{
           firstInstallmentAmount: (
             <FormattedNumber
