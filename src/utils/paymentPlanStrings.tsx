@@ -129,7 +129,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
       <>
         <FormattedMessage
           id="payment-plan-strings.multiple-installments"
-          defaultMessage="1 x {firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}"
+          defaultMessage="{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}"
           values={{
             firstInstallmentAmount: (
               <FormattedNumber
