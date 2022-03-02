@@ -8,8 +8,6 @@ type Props = { locale: Locale }
 const renderWithProviders = (
   ui: React.ReactNode,
   { locale }: Props = { locale: Locale.fr },
-): React.ReactNode => {
-  return render(<IntlProvider locale={locale}>{ui}</IntlProvider>)
-}
+): React.ReactNode => render(<IntlProvider locale={locale}>{ui}</IntlProvider>)
 
 export default renderWithProviders
