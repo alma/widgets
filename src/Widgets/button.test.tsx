@@ -50,27 +50,30 @@ describe('Button', () => {
       expect(screen.getByText('4x')).toBeInTheDocument()
     })
     it(`display iterates on each message every ${animationDuration} ms then returns to the beginning`, () => {
-      expect(screen.getByText('450,00 € à payer le 21 novembre 2021')).toBeInTheDocument()
+      expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
-      expect(screen.getByText('2 mensualités de 225,00 €')).toBeInTheDocument()
+      expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
+      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
-      expect(screen.getByText('151,35 € puis 2 mensualités de 150,00 €')).toBeInTheDocument()
+      expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
-      expect(screen.getByText('124,52 € puis 3 mensualités de 112,50 €')).toBeInTheDocument()
+      expect(screen.getByText('124,52 € puis 3 x 112,50 €')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
-      expect(screen.getByText('47,73 € puis 9 mensualités de 47,66 €')).toBeInTheDocument()
+      expect(screen.getByText(/47,73 € puis 9 x 47,66 €/)).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
-      expect(screen.getByText('450,00 € à payer le 21 novembre 2021')).toBeInTheDocument()
+      expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
     })
   })
   describe('paymentPlan includes credit', () => {
@@ -112,15 +115,16 @@ describe('Button', () => {
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
     it('displays the message corresponding to the payment plan hovered', () => {
-      expect(screen.getByText('450,00 € à payer le 21 novembre 2021')).toBeInTheDocument()
+      expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
       act(() => {
         fireEvent.mouseEnter(screen.getByText('3x'))
       })
-      expect(screen.getByText('151,35 € puis 2 mensualités de 150,00 €')).toBeInTheDocument()
+      expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
       act(() => {
         fireEvent.mouseEnter(screen.getByText('10x'))
       })
-      expect(screen.getByText('47,73 € puis 9 mensualités de 47,66 €')).toBeInTheDocument()
+      expect(screen.getByText(/47,73 € puis 9 x 47,66 €/)).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
@@ -129,12 +133,12 @@ describe('Button', () => {
       act(() => {
         fireEvent.mouseEnter(screen.getByText('3x'))
       })
-      expect(screen.getByText('151,35 € puis 2 mensualités de 150,00 €')).toBeInTheDocument()
+      expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
 
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
-      expect(screen.getByText('151,35 € puis 2 mensualités de 150,00 €')).toBeInTheDocument()
+      expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
     })
   })
   describe('paymentPlan includes contains ineligible options', () => {
@@ -184,11 +188,11 @@ describe('Button', () => {
       expect(screen.queryByText('8x')).not.toBeInTheDocument()
     })
     it('Only iterates over active plans', () => {
-      expect(screen.getByText('151,35 € puis 2 mensualités de 150,00 €')).toBeInTheDocument()
+      expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
-      expect(screen.getByText('151,35 € puis 2 mensualités de 150,00 €')).toBeInTheDocument()
+      expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
     })
     it('display conditions when inactive plans are hovered', () => {
       act(() => {
@@ -213,27 +217,30 @@ describe('Button', () => {
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
     it(`display iterates on each message every 500 ms then returns to the beginning`, () => {
-      expect(screen.getByText('450,00 € à payer le 21 novembre 2021')).toBeInTheDocument()
+      expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(500)
       })
-      expect(screen.getByText('2 mensualités de 225,00 €')).toBeInTheDocument()
+      expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
+      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(500)
       })
-      expect(screen.getByText('151,35 € puis 2 mensualités de 150,00 €')).toBeInTheDocument()
+      expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(500)
       })
-      expect(screen.getByText('124,52 € puis 3 mensualités de 112,50 €')).toBeInTheDocument()
+      expect(screen.getByText('124,52 € puis 3 x 112,50 €')).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(500)
       })
-      expect(screen.getByText('47,73 € puis 9 mensualités de 47,66 €')).toBeInTheDocument()
+      expect(screen.getByText(/47,73 € puis 9 x 47,66 €/)).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(500)
       })
-      expect(screen.getByText('450,00 € à payer le 21 novembre 2021')).toBeInTheDocument()
+      expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
     })
   })
   describe('hide if not applicable', () => {
@@ -293,7 +300,7 @@ describe('Button', () => {
       act(() => {
         fireEvent.mouseEnter(screen.getByText('3x'))
       })
-      expect(screen.getByText('151,35 € puis 2 mensualités de 150,00 €')).toBeInTheDocument()
+      expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
       act(() => {
         fireEvent.click(screen.getByTestId('widget-button'))
       })
@@ -317,7 +324,7 @@ describe('Button', () => {
       act(() => {
         fireEvent.click(screen.getByText('3x'))
       })
-      expect(screen.getByText('151,35 € puis 2 mensualités de 150,00 €')).toBeInTheDocument()
+      expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
       expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
       const modalContainer = screen.getByTestId('modal-container')
       expect(within(modalContainer).getByText('21 octobre 2021')).toBeInTheDocument()
@@ -337,7 +344,8 @@ describe('Button', () => {
       act(() => {
         fireEvent.click(screen.getByTestId('widget-button'))
       })
-      expect(screen.getByText('450,00 € à payer le 21 novembre 2021')).toBeInTheDocument()
+      expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
       expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
       const modalContainer = screen.getByTestId('modal-container')
       expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()

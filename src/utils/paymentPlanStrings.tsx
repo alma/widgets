@@ -35,6 +35,19 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
   } = payment
   const deferredDaysCount = deferred_days + deferred_months * 30
 
+  const withNoFee = () => {
+    if (
+      payment.payment_plan.every((plan) => plan.customer_fee === 0 && plan.customer_interest === 0)
+    ) {
+      return (
+        <>
+          {' '}
+          <FormattedMessage id="payment-plan-strings.no-fee" defaultMessage={'(sans frais)'} />
+        </>
+      )
+    }
+  }
+
   if (!eligible) {
     return purchaseAmount > maxAmount ? (
       <FormattedMessage
@@ -59,27 +72,30 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     )
   } else if (deferredDaysCount !== 0 && installmentsCount === 1) {
     return (
-      <FormattedMessage
-        id="payment-plan-strings.deferred"
-        defaultMessage="{totalAmount} à payer le {dueDate}"
-        values={{
-          totalAmount: (
-            <FormattedNumber
-              value={priceFromCents(payment.payment_plan[0].total_amount)}
-              style="currency"
-              currency="EUR"
-            />
-          ),
-          dueDate: (
-            <FormattedDate
-              value={secondsToMilliseconds(payment.payment_plan[0].due_date)}
-              day="numeric"
-              month="long"
-              year="numeric"
-            />
-          ),
-        }}
-      />
+      <>
+        <FormattedMessage
+          id="payment-plan-strings.deferred"
+          defaultMessage="{totalAmount} à payer le {dueDate}"
+          values={{
+            totalAmount: (
+              <FormattedNumber
+                value={priceFromCents(payment.payment_plan[0].total_amount)}
+                style="currency"
+                currency="EUR"
+              />
+            ),
+            dueDate: (
+              <FormattedDate
+                value={secondsToMilliseconds(payment.payment_plan[0].due_date)}
+                day="numeric"
+                month="long"
+                year="numeric"
+              />
+            ),
+          }}
+        />
+        {withNoFee()}
+      </>
     )
   } else if (installmentsCount > 0) {
     const areInstallmentsOfSameAmount = payment.payment_plan.every(
@@ -89,45 +105,51 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
 
     if (areInstallmentsOfSameAmount) {
       return (
+        <>
+          <FormattedMessage
+            id="payment-plan-strings.multiple-installments-same-amount"
+            defaultMessage="{installmentsCount} x {totalAmount}"
+            values={{
+              totalAmount: (
+                <FormattedNumber
+                  value={priceFromCents(payment.payment_plan[0].total_amount)}
+                  style="currency"
+                  currency="EUR"
+                />
+              ),
+              installmentsCount,
+            }}
+          />
+          {withNoFee()}
+        </>
+      )
+    }
+
+    return (
+      <>
         <FormattedMessage
-          id="payment-plan-strings.multiple-installments-same-amount"
-          defaultMessage="{installmentsCount} mensualités de {totalAmount}"
+          id="payment-plan-strings.multiple-installments"
+          defaultMessage="{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}"
           values={{
-            totalAmount: (
+            firstInstallmentAmount: (
               <FormattedNumber
                 value={priceFromCents(payment.payment_plan[0].total_amount)}
                 style="currency"
                 currency="EUR"
               />
             ),
-            installmentsCount,
+            numberOfRemainingInstallments: installmentsCount - 1,
+            othersInstallmentAmount: (
+              <FormattedNumber
+                value={priceFromCents(payment.payment_plan[1].total_amount)}
+                style="currency"
+                currency="EUR"
+              />
+            ),
           }}
         />
-      )
-    }
-
-    return (
-      <FormattedMessage
-        id="payment-plan-strings.multiple-installments"
-        defaultMessage="{firstInstallmentAmount} puis {numberOfRemainingInstallments, plural, one {# mensualité} other {# mensualités}} de {othersInstallmentAmount}"
-        values={{
-          firstInstallmentAmount: (
-            <FormattedNumber
-              value={priceFromCents(payment.payment_plan[0].total_amount)}
-              style="currency"
-              currency="EUR"
-            />
-          ),
-          numberOfRemainingInstallments: installmentsCount - 1,
-          othersInstallmentAmount: (
-            <FormattedNumber
-              value={priceFromCents(payment.payment_plan[1].total_amount)}
-              style="currency"
-              currency="EUR"
-            />
-          ),
-        }}
-      />
+        {withNoFee()}
+      </>
     )
   }
   return (
