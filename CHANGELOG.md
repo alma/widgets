@@ -1,3 +1,10 @@
+## [2.2.7](https://github.com/alma/widgets/compare/v2.2.6...v2.2.7) (2022-03-02)
+
+
+### Bug Fixes
+
+* implicit return in renderWithProviders ([#11](https://github.com/alma/widgets/issues/11)) ([91dd95f](https://github.com/alma/widgets/commit/91dd95f7f069f143ff4c0ca4730eaad1e88f27c9))
+
 ## [2.2.6](https://github.com/alma/widgets/compare/v2.2.5...v2.2.6) (2022-01-11)
 
 
