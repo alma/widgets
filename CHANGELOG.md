@@ -1,3 +1,10 @@
+## [2.2.8](https://github.com/alma/widgets/compare/v2.2.7...v2.2.8) (2022-03-10)
+
+
+### Bug Fixes
+
+* update node in ci-cd script and nvm version ([#14](https://github.com/alma/widgets/issues/14)) ([201e192](https://github.com/alma/widgets/commit/201e1920f4251ced9f05214216e9eca95ce35b62))
+
 ## [2.2.7](https://github.com/alma/widgets/compare/v2.2.6...v2.2.7) (2022-03-02)
 
 
