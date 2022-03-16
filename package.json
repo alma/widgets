@@ -98,7 +98,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-intl": "^5.20.13",
-    "react-modal": "^3.14.3"
+    "react-modal": "^3.14.4"
   },
   "commitlint": {
     "extends": [
