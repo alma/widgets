@@ -3,9 +3,9 @@ import cx from 'classnames'
 import { EligibilityPlan } from 'types'
 
 import { paymentPlanShorthandName } from 'utils/paymentPlanStrings'
-import s from './EligibilityModal.module.css'
+import s from './EligibilityPlansButtons.module.css'
 
-const EligibilityPlans: FC<{
+const EligibilityPlansButtons: FC<{
   eligibilityPlans: EligibilityPlan[]
   currentPlanIndex: number
   setCurrentPlanIndex: (index: number) => void
@@ -23,4 +23,4 @@ const EligibilityPlans: FC<{
   </div>
 )
 
-export default EligibilityPlans
+export default EligibilityPlansButtons

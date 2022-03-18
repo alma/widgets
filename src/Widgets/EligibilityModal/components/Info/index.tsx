@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { FormattedMessage } from 'react-intl'
 
-import s from './EligibilityModal.module.css'
+import s from './Info.module.css'
 
 const Info: FC = () => (
   <div className={s.list} data-testid="modal-info-element">

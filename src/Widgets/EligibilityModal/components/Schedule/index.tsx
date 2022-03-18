@@ -5,9 +5,9 @@ import { EligibilityPlan } from 'types'
 import { priceFromCents } from 'utils'
 import { isToday } from 'date-fns'
 
-import s from './EligibilityModal.module.css'
+import s from './Schedule.module.css'
 
-const Installments: FC<{ currentPlan: EligibilityPlan }> = ({ currentPlan }) => {
+const Schedule: FC<{ currentPlan: EligibilityPlan }> = ({ currentPlan }) => {
   const total =
     currentPlan &&
     priceFromCents(currentPlan.purchase_amount + currentPlan.customer_total_cost_amount)
@@ -97,4 +97,4 @@ const Installments: FC<{ currentPlan: EligibilityPlan }> = ({ currentPlan }) => 
   )
 }
 
-export default Installments
+export default Schedule

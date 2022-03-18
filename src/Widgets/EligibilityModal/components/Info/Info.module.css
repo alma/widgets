@@ -1,0 +1,33 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  padding: 0 24px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  line-height: 180%;
+}
+
+.bullet {
+  flex: 0 0 30px;
+  height: 30px;
+  line-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--blue-300);
+  color: var(--white);
+  margin-right: 16px;
+}
+
+@media (min-width: 800px) {
+  .list {
+    margin: 0;
+    padding: 0;
+  }
+}
