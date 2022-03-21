@@ -1,3 +1,10 @@
+## [2.2.9](https://github.com/alma/widgets/compare/v2.2.8...v2.2.9) (2022-03-21)
+
+
+### Bug Fixes
+
+* schedule not displaying properly when many plans are eligible ([#20](https://github.com/alma/widgets/issues/20)) ([1e80565](https://github.com/alma/widgets/commit/1e805658c6488c7fe371170c36ed6dd8b1446500))
+
 ## [2.2.8](https://github.com/alma/widgets/compare/v2.2.7...v2.2.8) (2022-03-10)
 
 
