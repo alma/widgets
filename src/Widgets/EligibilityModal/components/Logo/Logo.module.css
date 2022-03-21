@@ -1,0 +1,14 @@
+.logo {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex: 1;
+  padding-bottom: 64px;
+}
+
+@media (min-width: 800px) {
+  .logo {
+    padding-bottom: 0;
+  }
+}

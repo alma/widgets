@@ -1,0 +1,23 @@
+.title {
+  font-family: 'Eina04';
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  margin: 24px 0;
+  color: var(--blue-400);
+  text-align: center;
+}
+
+.title > span {
+  background-color: rgba(253, 175, 111, 0.5);
+  border-radius: 2px;
+  padding: 8px 4px 2px 4px;
+}
+
+@media (min-width: 800px) {
+  .title {  
+    font-size: 24px;
+    text-align: start;
+    margin: 0 0 24px 0;
+  }
+}
