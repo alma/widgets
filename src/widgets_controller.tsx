@@ -10,7 +10,7 @@ import {
   WidgetOptions,
   widgetTypes,
 } from 'types'
-import PaymentPlanWidget from 'Widgets/PaymentPlan'
+import PaymentPlanWidget from 'Widgets/PaymentPlans'
 
 export class WidgetsController {
   constructor(private readonly apiData: { domain: ApiMode; merchantId: string }) {}

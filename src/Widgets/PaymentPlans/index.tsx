@@ -6,8 +6,8 @@ import useFetchEligibility from 'hooks/useFetchEligibility'
 import React, { MouseEvent, useEffect, useState } from 'react'
 import { ApiConfig, apiStatus, ConfigPlan } from 'types'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
-import EligibilityModal from './EligibilityModal'
-import s from './PaymentPlan.module.css'
+import EligibilityModal from '../EligibilityModal'
+import s from './PaymentPlans.module.css'
 
 type Props = {
   purchaseAmount: number
