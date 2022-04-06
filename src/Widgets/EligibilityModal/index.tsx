@@ -1,8 +1,7 @@
-import React, { FunctionComponent, useState } from 'react'
 import Modal from 'components/Modal'
-import { EligibilityPlan } from 'types'
+import React, { FunctionComponent, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
-
+import { apiStatus, EligibilityPlan } from 'types'
 import DesktopModal from './DesktopModal'
 import MobileModal from './MobileModal'
 
@@ -10,12 +9,14 @@ type Props = {
   initialPlanIndex?: number
   onClose: () => void
   eligibilityPlans: EligibilityPlan[]
+  status?: apiStatus
 }
 
 const EligibilityModal: FunctionComponent<Props> = ({
   initialPlanIndex,
   onClose,
   eligibilityPlans,
+  status,
 }) => {
   const [currentPlanIndex, setCurrentPlanIndex] = useState(initialPlanIndex || 0)
   const isBigScreen = useMediaQuery({ minWidth: 800 })
@@ -25,6 +26,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
     currentPlanIndex,
     setCurrentPlanIndex,
     currentPlan,
+    status,
   }
 
   return (

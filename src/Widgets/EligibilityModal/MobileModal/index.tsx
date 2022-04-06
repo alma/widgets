@@ -1,12 +1,10 @@
 import React, { FC } from 'react'
-import { EligibilityPlan } from 'types'
-
+import { apiStatus, EligibilityPlan } from 'types'
 import EligibilityPlansButtons from '../components/EligibilityPlansButtons'
 import Info from '../components/Info'
+import Logo from '../components/Logo'
 import Schedule from '../components/Schedule'
 import Title from '../components/Title'
-import Logo from '../components/Logo'
-
 import s from './MobileModal.module.css'
 
 type Props = {
@@ -14,6 +12,7 @@ type Props = {
   currentPlanIndex: number
   setCurrentPlanIndex: (index: number) => void
   currentPlan: EligibilityPlan
+  status?: apiStatus
 }
 
 const MobileModal: FC<Props> = ({
@@ -21,15 +20,20 @@ const MobileModal: FC<Props> = ({
   currentPlanIndex,
   setCurrentPlanIndex,
   currentPlan,
+  status = apiStatus.SUCCESS,
 }) => (
   <div className={s.container} data-testid="modal-container">
     <Title />
-    <EligibilityPlansButtons
-      eligibilityPlans={eligibilityPlans}
-      currentPlanIndex={currentPlanIndex}
-      setCurrentPlanIndex={setCurrentPlanIndex}
-    />
-    <Schedule currentPlan={currentPlan} />
+    {status === apiStatus.SUCCESS && (
+      <>
+        <EligibilityPlansButtons
+          eligibilityPlans={eligibilityPlans}
+          currentPlanIndex={currentPlanIndex}
+          setCurrentPlanIndex={setCurrentPlanIndex}
+        />
+        <Schedule currentPlan={currentPlan} />
+      </>
+    )}
     <Info />
     <Logo />
   </div>

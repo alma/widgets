@@ -4,18 +4,32 @@ import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import {
   Locale,
+  ModalOptions,
   PaymentPlanWidgetOptions,
-  WidgetName,
   WidgetNames,
   WidgetOptions,
   widgetTypes,
 } from 'types'
+import ModalContainer from 'Widgets/EligibilityModal/ModalContainer'
 import PaymentPlanWidget from 'Widgets/PaymentPlans'
+
+type AddReturnType =
+  | {
+      open: () => void
+      close: () => void
+    }
+  | undefined
 
 export class WidgetsController {
   constructor(private readonly apiData: { domain: ApiMode; merchantId: string }) {}
 
-  add<T extends WidgetNames>(widget: WidgetName<T>, options: WidgetOptions<T>): void {
+  add(widget: WidgetNames, options: WidgetOptions): AddReturnType {
+    const containerDiv = document.querySelector(options.container)
+
+    if (containerDiv) {
+      unmountComponentAtNode(containerDiv)
+    }
+
     if (widget === widgetTypes.PaymentPlans) {
       const {
         container,
@@ -25,9 +39,8 @@ export class WidgetsController {
         hideIfNotEligible,
         locale = Locale.en,
       } = options as PaymentPlanWidgetOptions
-      const containerDiv = document.querySelector(container)
+
       if (containerDiv) {
-        unmountComponentAtNode(containerDiv)
         render(
           <IntlProvider locale={locale}>
             <PaymentPlanWidget
@@ -40,6 +53,42 @@ export class WidgetsController {
           </IntlProvider>,
           document.querySelector(container),
         )
+      }
+    }
+
+    if (widget === widgetTypes.Modal) {
+      const {
+        container,
+        clickableSelector,
+        purchaseAmount,
+        plans,
+        locale = Locale.en,
+      } = options as ModalOptions
+
+      const close = () => containerDiv && unmountComponentAtNode(containerDiv)
+
+      const renderModal = () => {
+        render(
+          <IntlProvider locale={locale}>
+            <ModalContainer
+              purchaseAmount={purchaseAmount}
+              apiData={this.apiData}
+              configPlans={plans}
+              onClose={close}
+            />
+          </IntlProvider>,
+          document.querySelector(container),
+        )
+      }
+
+      // if clickableSelector is provided, add an onClick event handler to open the Modal.
+      if (clickableSelector) {
+        document.querySelector(clickableSelector)?.addEventListener('click', renderModal, false)
+      }
+
+      return {
+        open: renderModal,
+        close,
       }
     }
   }

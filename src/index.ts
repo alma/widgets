@@ -12,6 +12,7 @@ export namespace Widgets {
     return new WidgetsController({ domain: mode, merchantId })
   }
   export const PaymentPlans = widgetTypes.PaymentPlans
+  export const Modal = widgetTypes.Modal
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace

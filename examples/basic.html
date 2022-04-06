@@ -67,6 +67,17 @@
       .product p {
         font-size: smaller;
       }
+      .open-modal-ctas {
+        padding-top: 24px;
+        text-align: center;
+      }
+      .open-modal-ctas a,
+      .open-modal-ctas a:visited {
+        display: block;
+        margin: 8px 0;
+        font-size: 14px;
+        color: #00425d;
+      }
       h1,
       h3 {
         margin-bottom: 16px;
@@ -83,16 +94,23 @@
           <img src="./sac-a-main.jpeg" />
         </div>
 
-        <div class="product">
-          <h1>Sac à main</h1>
-          <select onchange="render()" id="quantity">
-            <option value="1">1</option>
-            <option value="2">2</option>
-          </select>
-          <h3>450 €</h3>
-          <div id="alma-widget"></div>
-          <div class="add-to-cart">
-            <button>Ajouter au panier</button>
+        <div>
+          <div class="product">
+            <h1>Sac à main</h1>
+            <select onchange="renderPaymentPlans()" id="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+            <h3>450 €</h3>
+            <div id="alma-widget-payment-plans"></div>
+            <div id="alma-widget-modal"></div>
+            <div class="add-to-cart">
+              <button>Ajouter au panier</button>
+            </div>
+          </div>
+          <div class="open-modal-ctas">
+            <a href="#" id="alma-open-modal-button">Open modal with clickableSelector</a>
+            <a href="#" onClick="openReference()">Open modal with open function</a>
           </div>
         </div>
       </div>
@@ -101,11 +119,12 @@
     <script src="../dist/widgets.umd.js"></script>
 
     <script>
+      let openReference
       var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
-      function render() {
+      function renderPaymentPlans() {
         widgets.add(Alma.Widgets.PaymentPlans, {
-          container: '#alma-widget',
-          purchaseAmount: 45000 * document.getElementById('quantity').value,
+          container: '#alma-widget-payment-plans',
+          purchaseAmount: 20000 * document.getElementById('quantity').value,
           locale: 'fr',
           hideIfNotEligible: false,
           transitionDelay: 5500,
@@ -124,7 +143,33 @@
           ],
         })
       }
-      render()
+      renderPaymentPlans()
+
+      function renderModal() {
+        var { open, close } = widgets.add(Alma.Widgets.Modal, {
+          container: '#alma-widget-modal',
+          clickableSelector: '#alma-open-modal-button',
+          purchaseAmount: 20000,
+          locale: 'fr',
+          hideIfNotEligible: false,
+          plans: [
+            {
+              installmentsCount: 1,
+              deferredDays: 30,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
+              installmentsCount: 3,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+          ],
+        })
+
+        openReference = open
+      }
+      renderModal()
     </script>
   </body>
 </html>
