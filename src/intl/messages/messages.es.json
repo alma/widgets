@@ -6,6 +6,7 @@
   "eligibility-modal.credit-commitment": "Un préstamo te compromete y debe ser devuelto. Comprueba tu capacidad financiera antes de comprometerte.",
   "eligibility-modal.credit-cost": "Coste de crédito (incl. en el total)",
   "eligibility-modal.credit-cost-amount": "{creditCost} (TAE {TAEG})",
+  "eligibility-modal.no-eligibility": "Uy, parece que la simulación no ha funcionado.",
   "eligibility-modal.title": "<highlighted>Paga a plazos</highlighted> o más adelante con tu tarjeta, a través de Alma.",
   "eligibility-modal.total": "Total",
   "installments.today": "Hoy",
@@ -14,7 +15,7 @@
   "payment-plan-strings.deferred": "{totalAmount} a pagar el {dueDate}",
   "payment-plan-strings.ineligible-greater-than-max": "Hasta {maxAmount}",
   "payment-plan-strings.ineligible-lower-than-min": "Desde {minAmount}",
-  "payment-plan-strings.multiple-installments": "{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} mensualidades de {othersInstallmentAmount}",
+  "payment-plan-strings.multiple-installments": "{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments, plural, one {# mensualidad} other {# mensualidades}} de {othersInstallmentAmount}",
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} plazos de {totalAmount}",
   "payment-plan-strings.no-fee": "(sin intereses)"
 }

@@ -6,6 +6,7 @@
   "eligibility-modal.credit-commitment": "Een lening bindt je en moet worden terugbetaald. Ga na of u kunt terugbetalen voordat u zich vastlegt.",
   "eligibility-modal.credit-cost": "Waarvan kosten van krediet",
   "eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
+  "eligibility-modal.no-eligibility": "Oeps, het lijkt erop dat de simulatie niet werkte.",
   "eligibility-modal.title": "<highlighted>Betaal in termijnen</highlighted> of later per credit card met Alma.",
   "eligibility-modal.total": "Totaal",
   "installments.today": "Tegenwoordig",
