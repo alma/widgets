@@ -3,7 +3,7 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import { mockButtonPlans } from 'test/fixtures'
 import PaymentPlanWidget from '.'
-import render from '../../test'
+import render from 'test'
 
 jest.mock('utils/fetch', () => {
   return {

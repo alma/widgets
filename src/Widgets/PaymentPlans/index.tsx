@@ -131,6 +131,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
           initialPlanIndex={initialPlanIndex}
           onClose={closeModal}
           eligibilityPlans={eligiblePlans}
+          status={status}
         />
       )}
     </>

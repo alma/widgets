@@ -14,21 +14,22 @@ type Props = {
   initialPlanIndex?: number
   onClose: () => void
   eligibilityPlans: EligibilityPlan[]
-  status?: apiStatus
+  status: apiStatus
 }
 
 const EligibilityModal: FunctionComponent<Props> = ({
   initialPlanIndex,
   onClose,
   eligibilityPlans,
-  status = apiStatus.SUCCESS,
+  status,
 }) => {
   const [currentPlanIndex, setCurrentPlanIndex] = useState(initialPlanIndex || 0)
   const isBigScreen = useMediaQuery({ minWidth: 800 })
   const ModalComponent = isBigScreen ? DesktopModal : MobileModal
-  const currentPlan = eligibilityPlans[currentPlanIndex]
+  const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
+  const currentPlan = eligiblePlans[currentPlanIndex]
   const modalProps = {
-    eligibilityPlans,
+    eligibilityPlans: eligiblePlans,
     currentPlanIndex,
     setCurrentPlanIndex,
     currentPlan,
@@ -43,7 +44,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
             <LoadingIndicator />
           </div>
         )}
-        {status === apiStatus.SUCCESS && eligibilityPlans.length === 0 && (
+        {status === apiStatus.SUCCESS && eligiblePlans.length === 0 && (
           <div className={s.noEligibility}>
             <FormattedMessage
               id="eligibility-modal.no-eligibility"
@@ -51,10 +52,10 @@ const EligibilityModal: FunctionComponent<Props> = ({
             />
           </div>
         )}
-        {status === apiStatus.SUCCESS && eligibilityPlans.length > 1 && (
+        {status === apiStatus.SUCCESS && eligiblePlans.length > 1 && (
           <>
             <EligibilityPlansButtons
-              eligibilityPlans={eligibilityPlans}
+              eligibilityPlans={eligiblePlans}
               currentPlanIndex={currentPlanIndex}
               setCurrentPlanIndex={setCurrentPlanIndex}
             />

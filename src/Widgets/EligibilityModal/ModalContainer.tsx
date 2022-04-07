@@ -11,17 +11,16 @@ type Props = {
 }
 
 /**
- * This component allow to display only the modal, without PaymentPlans.
+ * This component allows to display only the modal, without PaymentPlans.
  */
 const ModalContainer: React.FC<Props> = ({ purchaseAmount, apiData, configPlans, onClose }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
-  const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
 
   return (
     <EligibilityModal
       initialPlanIndex={0}
       onClose={onClose}
-      eligibilityPlans={eligiblePlans}
+      eligibilityPlans={eligibilityPlans}
       status={status}
     />
   )

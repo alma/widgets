@@ -110,7 +110,7 @@
           </div>
           <div class="open-modal-ctas">
             <a href="#" id="alma-open-modal-button">Open modal with clickableSelector</a>
-            <a href="#" onClick="openReference()">Open modal with open function</a>
+            <a href="#" onClick="openModal()">Open modal with open function</a>
           </div>
         </div>
       </div>
@@ -119,12 +119,13 @@
     <script src="../dist/widgets.umd.js"></script>
 
     <script>
-      let openReference
       var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
+      var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
+
       function renderPaymentPlans() {
         widgets.add(Alma.Widgets.PaymentPlans, {
           container: '#alma-widget-payment-plans',
-          purchaseAmount: 20000 * document.getElementById('quantity').value,
+          purchaseAmount,
           locale: 'fr',
           hideIfNotEligible: false,
           transitionDelay: 5500,
@@ -146,10 +147,10 @@
       renderPaymentPlans()
 
       function renderModal() {
-        var { open, close } = widgets.add(Alma.Widgets.Modal, {
+        return widgets.add(Alma.Widgets.Modal, {
           container: '#alma-widget-modal',
           clickableSelector: '#alma-open-modal-button',
-          purchaseAmount: 20000,
+          purchaseAmount,
           locale: 'fr',
           hideIfNotEligible: false,
           plans: [
@@ -166,10 +167,8 @@
             },
           ],
         })
-
-        openReference = open
       }
-      renderModal()
+      const { open: openModal, close } = renderModal()
     </script>
   </body>
 </html>

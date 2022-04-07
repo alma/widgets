@@ -41,5 +41,5 @@
   border: 0;
 }
 .buttons > button.active::after {
-  background-color: var(--red-300);
+  background-color: var(--red-600);
 }
