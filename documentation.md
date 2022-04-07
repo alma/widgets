@@ -15,9 +15,17 @@ Your merchant id as it is found in the dashboard
 
 ## `add(widget: Alma.Widgets.PaymentPlans, options: PaymentPlansOptions )`
 
+## `add(widget: Alma.Widgets.Modal, options: ModalOptions )`
+
 ### widget: `Alma.Widgets.PaymentPlans` [required]
 
 Add a button with the eligibles payment plans for the given purchase amount
+
+### widget: `Alma.Widgets.Modal` [required]
+
+Display a modal with the eligibles payment plans for the given purchase amount.
+Can be open with the `clickableSelector` option.
+Also returns `open` and `close` methods to control it.
 
 ## Options: `PaymentPlansOptions`
 
@@ -42,6 +50,10 @@ The ammount of time in between button animations in ms.
 ### hideIfNotEligible: `boolean` [optional, default: false]
 
 Totally hide the widget if set to true and no plan matches the purchase amount.
+
+### clickableSelector: `string` [optional, default: null]
+
+If provided, the modal will open when the element matching this query selector is clicked.
 
 ## Plan: `Plan`
 

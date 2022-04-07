@@ -108,4 +108,21 @@ describe('Modal', () => {
       expect(element).toHaveTextContent('150,00 €')
     })
   })
+  describe('empty plans', () => {
+    it('should display the error message', () => {
+      render(
+        <EligibilityModal
+          eligibilityPlans={[]}
+          initialPlanIndex={0}
+          onClose={() => {
+            console.log('modal closed')
+          }}
+        />,
+      )
+      const element = screen.getByTestId('modal-container')
+      expect(element).toHaveTextContent(
+        "Oups, il semblerait que la simulation n'aie pas fonctionné.",
+      )
+    })
+  })
 })
