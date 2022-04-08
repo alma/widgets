@@ -1,0 +1,7 @@
+@alma:registry=https://npm.pkg.github.com/
+registry=https://registry.npmjs.org
+# Add your own github access token. See README to learn how to generate one
+//npm.pkg.github.com/:_authToken=PERSONAL_TOKEN
+
+engine-strict=true
+
