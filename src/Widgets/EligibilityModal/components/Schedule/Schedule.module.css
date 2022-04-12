@@ -3,7 +3,6 @@
   margin-bottom: 40px;
   border-top: 1px solid var(--gray-300);
   border-bottom: 1px solid var(--gray-300);
-
 }
 
 .scheduleLine {
@@ -14,13 +13,13 @@
 }
 
 .total {
-  font-family: 'Eina04';
+  font-family: 'Eina04', sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 
 .creditCost {
-  font-family: 'Eina04';
+  font-family: 'Eina04', sans-serif;
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 24px;
