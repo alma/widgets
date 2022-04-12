@@ -6,6 +6,7 @@
   "eligibility-modal.credit-commitment": "A loan commits you and must be repaid. Check your ability to repay before committing yourself.",
   "eligibility-modal.credit-cost": "Of which cost of credit",
   "eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
+  "eligibility-modal.no-eligibility": "Oops, looks like the simulation didn't work.",
   "eligibility-modal.title": "<highlighted>Pay in installments</highlighted> or later by credit card with Alma.",
   "eligibility-modal.total": "Total",
   "installments.today": "Today",

@@ -6,6 +6,7 @@
   "eligibility-modal.credit-commitment": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
   "eligibility-modal.credit-cost": "Dont coût du crédit",
   "eligibility-modal.credit-cost-amount": "{creditCost} (TAEG {TAEG})",
+  "eligibility-modal.no-eligibility": "Oups, il semblerait que la simulation n'aie pas fonctionné.",
   "eligibility-modal.title": "<highlighted>Payez en plusieurs fois</highlighted> ou plus tard par carte bancaire avec Alma.",
   "eligibility-modal.total": "Total",
   "installments.today": "Aujourd'hui",

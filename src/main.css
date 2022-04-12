@@ -8,18 +8,20 @@
 
 :root {
   --white: #fff;
-  --blue-100: #588fe1;
+  --blue-100: #e9f4ff;
   --blue-300: #00425d;
   --blue-400: #003951;
   --blue-500: #337b99;
   --blue-600: #042736;
   --red-100: #ffedee;
-  --red-300: #ff414d;
+  --red-300: #ffa0a6;
+  --red-600: #ff414d;
   --orange: #ff7e55;
   --orange-100: #fff3ee;
   --orange-300: #fcd4b5;
   --yellow-100: #fff5de;
-  --yellow-300: #ffbb33;
+  --yellow-300: #ffde9d;
+  --yellow-600: #ffbb33;
   --beige: #fff7f0;
   --gray-100: #f7f9fb;
   --gray-200: #f4f6f6;
@@ -30,7 +32,8 @@
   --gray-700: #454f54;
   --gray-800: #2e3538;
   --green-100: #ddf8f1;
-  --green-300: #1dcda3;
+  --green-300: #9cebd6;
+  --green-600: #1dcda3;
 }
 @font-face {
   font-family: 'Eina04';

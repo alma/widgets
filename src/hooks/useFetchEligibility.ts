@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ApiConfig, apiStatus, apiStatusType, ConfigPlan, EligibilityPlan } from 'types'
+import { ApiConfig, apiStatus, ConfigPlan, EligibilityPlan } from 'types'
 import { fetchFromApi } from 'utils/fetch'
 import filterELigibility from 'utils/filterEligibility'
 
@@ -7,7 +7,7 @@ const useFetchEligibility = (
   purchaseAmount: number,
   { domain, merchantId }: ApiConfig,
   plans?: ConfigPlan[],
-): [EligibilityPlan[], apiStatusType] => {
+): [EligibilityPlan[], apiStatus] => {
   const [eligibility, setEligibility] = useState([] as EligibilityPlan[])
   const [status, setStatus] = useState(apiStatus.PENDING)
   const configInstallments = plans?.map((plan) => ({

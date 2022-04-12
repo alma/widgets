@@ -4,13 +4,13 @@ export type ApiConfig = { domain: ApiMode; merchantId: string }
 
 export enum widgetTypes {
   PaymentPlans = 'PaymentPlans',
+  Modal = 'Modal',
 }
 export enum apiStatus {
   PENDING = 'pending',
   SUCCESS = 'success',
   FAILED = 'failed',
 }
-export type apiStatusType = apiStatus.PENDING | apiStatus.SUCCESS | apiStatus.FAILED
 
 export type ConfigPlan = {
   installmentsCount: number
@@ -64,7 +64,14 @@ export type PaymentPlanWidgetOptions = {
   locale?: Locale
 }
 
-export type WidgetNames = widgetTypes.PaymentPlans
+export type ModalOptions = {
+  container: string
+  clickableSelector: string
+  purchaseAmount: number
+  plans?: ConfigPlan[]
+  locale?: Locale
+}
 
-export type WidgetName<T> = T extends widgetTypes.PaymentPlans ? widgetTypes.PaymentPlans : never
-export type WidgetOptions<T> = T extends widgetTypes.PaymentPlans ? PaymentPlanWidgetOptions : never
+export type WidgetNames = keyof typeof widgetTypes
+
+export type WidgetOptions = PaymentPlanWidgetOptions | ModalOptions

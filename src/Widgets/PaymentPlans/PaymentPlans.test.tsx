@@ -2,8 +2,8 @@ import { act, fireEvent, screen, waitFor, within } from '@testing-library/react'
 import { ApiMode } from 'consts'
 import React from 'react'
 import { mockButtonPlans } from 'test/fixtures'
-import render from '../test'
-import PaymentPlanWidget from './PaymentPlan'
+import PaymentPlanWidget from '.'
+import render from 'test'
 
 jest.mock('utils/fetch', () => {
   return {
