@@ -52,7 +52,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
             />
           </div>
         )}
-        {status === apiStatus.SUCCESS && eligiblePlans.length > 1 && (
+        {status === apiStatus.SUCCESS && eligiblePlans.length >= 1 && (
           <>
             <EligibilityPlansButtons
               eligibilityPlans={eligiblePlans}
