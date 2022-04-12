@@ -8,6 +8,7 @@ import { WidgetsController } from './widgets_controller';
 export declare namespace Widgets {
     function initialize(merchantId: string, mode: ApiMode): WidgetsController;
     const PaymentPlans = widgetTypes.PaymentPlans;
+    const Modal = widgetTypes.Modal;
 }
 export declare namespace Utils {
     const priceToCents: typeof utils.priceToCents;

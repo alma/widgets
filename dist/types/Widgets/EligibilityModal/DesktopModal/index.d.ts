@@ -1,10 +1,3 @@
 import { FC } from 'react';
-import { EligibilityPlan } from 'types';
-declare type Props = {
-    eligibilityPlans: EligibilityPlan[];
-    currentPlanIndex: number;
-    setCurrentPlanIndex: (index: number) => void;
-    currentPlan: EligibilityPlan;
-};
-declare const DesktopModal: FC<Props>;
+declare const DesktopModal: FC;
 export default DesktopModal;

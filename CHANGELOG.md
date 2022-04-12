@@ -1,3 +1,10 @@
+## [2.2.10](https://github.com/alma/widgets/compare/v2.2.9...v2.2.10) (2022-04-12)
+
+
+### Bug Fixes
+
+* updated build command to generate a raw folder with unminified JS/CSS ([#21](https://github.com/alma/widgets/issues/21)) ([e1729c1](https://github.com/alma/widgets/commit/e1729c1fd959eeee2e0fda1113db6ff2050b0ddb))
+
 ## [2.2.9](https://github.com/alma/widgets/compare/v2.2.8...v2.2.9) (2022-03-21)
 
 

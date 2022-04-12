@@ -4,14 +4,14 @@ export declare type ApiConfig = {
     merchantId: string;
 };
 export declare enum widgetTypes {
-    PaymentPlans = "PaymentPlans"
+    PaymentPlans = "PaymentPlans",
+    Modal = "Modal"
 }
 export declare enum apiStatus {
     PENDING = "pending",
     SUCCESS = "success",
     FAILED = "failed"
 }
-export declare type apiStatusType = apiStatus.PENDING | apiStatus.SUCCESS | apiStatus.FAILED;
 export declare type ConfigPlan = {
     installmentsCount: number;
     deferredDays?: number;
@@ -60,6 +60,12 @@ export declare type PaymentPlanWidgetOptions = {
     hideIfNotEligible?: boolean;
     locale?: Locale;
 };
-export declare type WidgetNames = widgetTypes.PaymentPlans;
-export declare type WidgetName<T> = T extends widgetTypes.PaymentPlans ? widgetTypes.PaymentPlans : never;
-export declare type WidgetOptions<T> = T extends widgetTypes.PaymentPlans ? PaymentPlanWidgetOptions : never;
+export declare type ModalOptions = {
+    container: string;
+    clickableSelector: string;
+    purchaseAmount: number;
+    plans?: ConfigPlan[];
+    locale?: Locale;
+};
+export declare type WidgetNames = keyof typeof widgetTypes;
+export declare type WidgetOptions = PaymentPlanWidgetOptions | ModalOptions;
