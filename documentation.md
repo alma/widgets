@@ -15,13 +15,13 @@ Your merchant id as it is found in the dashboard
 
 ## Add PaymentPlans
 
-`add(widget: Alma.Widgets.PaymentPlans, options: PaymentPlansOptions )`
+`add(widget: Alma.Widgets.PaymentPlans, options: PaymentPlansOptions)`
 
 ```
 widgets.add(Alma.Widgets.PaymentPlans, {
     container: '#alma-widget-payment-plans',
     purchaseAmount: 20000
-}
+})
 ```
 
 Add a button with the eligibles payment plans for the given purchase amount
@@ -52,13 +52,13 @@ Totally hide the widget if set to true and no plan matches the purchase amount.
 
 ## Add Modal
 
-`add(widget: Alma.Widgets.Modal, options: ModalOptions )`
+`add(widget: Alma.Widgets.Modal, options: ModalOptions)`
 
 ```
 const {open, close} = widgets.add(Alma.Widgets.Modal, {
     container: '#alma-widget-modal',
     purchaseAmount: 20000
-}
+})
 ```
 
 Display a modal with the eligibles payment plans for the given purchase amount.

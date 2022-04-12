@@ -94,4 +94,44 @@ describe('ModalContainer', () => {
       )
     })
   })
+
+  describe('Only one plan', () => {
+    beforeEach(async () => {
+      render(
+        <ModalContainer
+          purchaseAmount={40000}
+          configPlans={[
+            {
+              installmentsCount: 3,
+              minAmount: 5000,
+              maxAmount: 200000,
+            },
+          ]}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          onClose={() => {
+            console.log('modal closed')
+          }}
+        />,
+      )
+      await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
+    })
+
+    it('should display the the schedule for the selected payment plan', () => {
+      const element = screen.getByTestId('modal-container')
+      const expectedInstallments = [
+        'Total',
+        '451,35 €',
+        'Dont frais',
+        '1,35 €',
+        '21 octobre 20211',
+        '51,35 €',
+        '21 novembre 20211',
+        '50,00 €',
+        '21 décembre 20211',
+        '50,00 €',
+      ]
+
+      expect(element).toHaveTextContent(expectedInstallments.join(''))
+    })
+  })
 })
