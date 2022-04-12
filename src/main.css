@@ -36,7 +36,7 @@
   --green-600: #1dcda3;
 }
 @font-face {
-  font-family: 'Eina04';
+  font-family: 'Eina04', sans-serif;
   src: url('./assets/fonts/Eina04-Light.eot?#iefix') format('embedded-opentype'),
     url('./assets/fonts/Eina04-Light.woff') format('woff'),
     url('./assets/fonts/Eina04-Light.ttf') format('truetype'),
@@ -46,7 +46,7 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'Eina04';
+  font-family: 'Eina04', sans-serif;
   src: url('./assets/fonts/Eina04-Regular.eot?#iefix') format('embedded-opentype'),
     url('./assets/fonts/Eina04-Regular.woff') format('woff'),
     url('./assets/fonts/Eina04-Regular.ttf') format('truetype'),
@@ -56,7 +56,7 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'Eina04';
+  font-family: 'Eina04', sans-serif;
   src: url('./assets/fonts/Eina04-RegularItalic.eot?#iefix') format('embedded-opentype'),
     url('./assets/fonts/Eina04-RegularItalic.woff') format('woff'),
     url('./assets/fonts/Eina04-RegularItalic.ttf') format('truetype'),
@@ -66,7 +66,7 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'Eina04';
+  font-family: 'Eina04', sans-serif;
   src: url('./assets/fonts/Eina04-SemiBold.eot?#iefix') format('embedded-opentype'),
     url('./assets/fonts/Eina04-SemiBold.woff') format('woff'),
     url('./assets/fonts/Eina04-SemiBold.ttf') format('truetype'),
@@ -76,7 +76,7 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'Eina04';
+  font-family: 'Eina04', sans-serif;
   src: url('./assets/fonts/Eina04-SemiboldItalic.eot?#iefix') format('embedded-opentype'),
     url('./assets/fonts/Eina04-SemiboldItalic.woff') format('woff'),
     url('./assets/fonts/Eina04-SemiboldItalic.ttf') format('truetype'),
@@ -86,7 +86,7 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'Eina04';
+  font-family: 'Eina04', sans-serif;
   src: url('./assets/fonts/Eina04-Bold.eot?#iefix') format('embedded-opentype'),
     url('./assets/fonts/Eina04-Bold.woff') format('woff'),
     url('./assets/fonts/Eina04-Bold.ttf') format('truetype'),

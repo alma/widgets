@@ -13,7 +13,7 @@
   margin: 0 4px 8px;
   border: 1px solid var(--gray-300);
   border-radius: 8px;
-  font-family: 'Eina04';
+  font-family: 'Eina04', sans-serif;
   font-size: 18px;
   line-height: 150%;
   font-weight: 600;
