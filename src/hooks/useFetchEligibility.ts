@@ -28,8 +28,8 @@ const useFetchEligibility = (
         },
       )
         .then((res) => {
-          setStatus(apiStatus.SUCCESS)
           setEligibility(res)
+          setStatus(apiStatus.SUCCESS)
         })
         .catch(() => {
           setStatus(apiStatus.FAILED)

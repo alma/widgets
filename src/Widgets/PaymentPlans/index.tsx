@@ -5,8 +5,9 @@ import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import React, { MouseEvent, useEffect, useState } from 'react'
 import { ApiConfig, apiStatus, ConfigPlan } from 'types'
+import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
-import EligibilityModal from '../EligibilityModal'
+import EligibilityModal from 'Widgets/EligibilityModal'
 import s from './PaymentPlans.module.css'
 
 type Props = {
@@ -15,20 +16,27 @@ type Props = {
   configPlans?: ConfigPlan[]
   transitionDelay?: number
   hideIfNotEligible?: boolean
+  defaultInstallmentsCount?: number | number[]
 }
+
+const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365
 
 const PaymentPlanWidget: React.FC<Props> = ({
   purchaseAmount,
   apiData,
   configPlans,
-  transitionDelay,
+  transitionDelay = 5550,
   hideIfNotEligible,
+  defaultInstallmentsCount,
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
-
+  const activePlanIndex = getIndexOfActivePlan({
+    eligibilityPlans,
+    defaultInstallmentsCount: defaultInstallmentsCount ?? 0,
+  })
+  const isFixedOnActivePlan = defaultInstallmentsCount !== undefined // 👈  The merchant decided to focus a tab and remove animated transition.
   const [isOpen, setIsOpen] = useState(false)
-  const [initialPlanIndex, setInitialPlanIndex] = useState(0)
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
@@ -38,16 +46,19 @@ const PaymentPlanWidget: React.FC<Props> = ({
   )
   const { current, onHover, onLeave } = useButtonAnimation(
     eligiblePlanKeys,
-    transitionDelay ? transitionDelay : 5500,
+    isFixedOnActivePlan ? VERY_LONG_TIME_IN_MS : transitionDelay,
   )
 
-  // This hook is needed to update the initial plan index when useButtonAnimation
-  // updates the `current` value (i.e. without any hover / click callback).
   useEffect(() => {
-    if (current !== initialPlanIndex) {
-      setInitialPlanIndex(current)
-    }
-  }, [current, initialPlanIndex])
+    // TODO bien expliquer.
+    status === apiStatus.SUCCESS && isFixedOnActivePlan && onHover(activePlanIndex)
+  }, [status])
+
+  const getIndexWithinEligiblePlans = (planIndex: number) => {
+    const index = eligiblePlanKeys.findIndex((planKey) => planKey === planIndex)
+
+    return index === -1 ? 0 : index
+  }
 
   if (status === apiStatus.PENDING) {
     return (
@@ -57,10 +68,11 @@ const PaymentPlanWidget: React.FC<Props> = ({
     )
   }
 
-  if ((hideIfNotEligible && eligiblePlans.length == 0) || eligibilityPlans.length === 0) {
-    return null
-  }
-  if (status === apiStatus.FAILED) {
+  if (
+    (hideIfNotEligible && eligiblePlans.length === 0) ||
+    eligibilityPlans.length === 0 ||
+    status === apiStatus.FAILED
+  ) {
     return null
   }
 
@@ -69,13 +81,6 @@ const PaymentPlanWidget: React.FC<Props> = ({
     if (eligiblePlans.length > 0) {
       openModal()
     }
-  }
-
-  const handleHoverAndClick = (key: number, newInitialPlanIndex: number) => {
-    // This is needed to update the initial plan index and button style when hovering (desktop) or clicking (mobile).
-    // The actual modal opening is triggered by a click on the highest parent div in `handleOpenModal`.
-    onHover(key)
-    setInitialPlanIndex(newInitialPlanIndex)
   }
 
   return (
@@ -92,21 +97,13 @@ const PaymentPlanWidget: React.FC<Props> = ({
           <LogoIcon className={s.logo} />
           <div className={s.paymentPlans}>
             {eligibilityPlans.map((eligibilityPlan, key) => {
-              const newInitialPlanIndex = eligiblePlanKeys.includes(key)
-                ? eligiblePlanKeys.findIndex((planKey) => planKey === key)
-                : 0
               return (
                 <div
-                  onMouseEnter={() => {
-                    handleHoverAndClick(key, newInitialPlanIndex)
-                  }}
-                  onMouseOut={() => {
-                    onLeave()
-                  }}
-                  onClick={() => {
-                    handleHoverAndClick(key, newInitialPlanIndex)
-                  }}
                   key={key}
+                  onMouseEnter={() => {
+                    onHover(key)
+                  }}
+                  onMouseOut={onLeave}
                   className={cx(s.plan, {
                     [s.active]: current === key,
                     [s.notEligible]: !eligibilityPlan.eligible,
@@ -128,7 +125,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
       </div>
       {isOpen && (
         <EligibilityModal
-          initialPlanIndex={initialPlanIndex}
+          initialPlanIndex={getIndexWithinEligiblePlans(current)}
           onClose={closeModal}
           eligibilityPlans={eligiblePlans}
           status={status}
@@ -137,4 +134,5 @@ const PaymentPlanWidget: React.FC<Props> = ({
     </>
   )
 }
+
 export default PaymentPlanWidget

@@ -60,6 +60,7 @@ export type PaymentPlanWidgetOptions = {
   purchaseAmount: number
   plans?: ConfigPlan[]
   transitionDelay?: number
+  defaultInstallmentsCount?: number | number[]
   hideIfNotEligible?: boolean
   locale?: Locale
 }
