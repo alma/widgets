@@ -50,6 +50,7 @@
 
 .plan.active.notEligible {
   border-bottom-color: var(--gray-600);
+  cursor: not-allowed;
 }
 
 .info {
@@ -86,4 +87,11 @@
 }
 .pending {
   align-items: center;
+}
+
+.clickable {
+  cursor: pointer;
+}
+.unClickable {
+  cursor: not-allowed;
 }

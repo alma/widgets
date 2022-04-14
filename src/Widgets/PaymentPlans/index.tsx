@@ -3,7 +3,7 @@ import cx from 'classnames'
 import Loader from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
-import React, { MouseEvent, useEffect, useState } from 'react'
+import React, { MouseEvent, useEffect, useState, VoidFunctionComponent } from 'react'
 import { ApiConfig, apiStatus, ConfigPlan } from 'types'
 import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
@@ -21,7 +21,7 @@ type Props = {
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365
 
-const PaymentPlanWidget: React.FC<Props> = ({
+const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   purchaseAmount,
   apiData,
   configPlans,
@@ -50,13 +50,18 @@ const PaymentPlanWidget: React.FC<Props> = ({
   )
 
   useEffect(() => {
-    // TODO bien expliquer.
+    // When API has given a response AND the marchand set an active plan by default.
     status === apiStatus.SUCCESS && isFixedOnActivePlan && onHover(activePlanIndex)
   }, [status])
 
+  /**
+   * It takes a plan index and returns the index of that plan within the eligible plans
+   *
+   * @param {number} planIndex - The index of the plan that the user has selected.
+   * @returns The index of the planKey in the eligiblePlanKeys array.
+   */
   const getIndexWithinEligiblePlans = (planIndex: number) => {
     const index = eligiblePlanKeys.findIndex((planKey) => planKey === planIndex)
-
     return index === -1 ? 0 : index
   }
 
@@ -87,10 +92,10 @@ const PaymentPlanWidget: React.FC<Props> = ({
     <>
       <div
         onClick={handleOpenModal}
-        className={s.widgetButton}
-        style={{
-          cursor: eligiblePlans.length > 0 ? 'pointer' : 'initial',
-        }}
+        className={cx(s.widgetButton, {
+          [s.clickable]: eligiblePlans.length > 0,
+          [s.unClickable]: eligiblePlans.length === 0,
+        })}
         data-testid="widget-button"
       >
         <div className={s.primaryContainer}>
@@ -100,9 +105,7 @@ const PaymentPlanWidget: React.FC<Props> = ({
               return (
                 <div
                   key={key}
-                  onMouseEnter={() => {
-                    onHover(key)
-                  }}
+                  onMouseEnter={() => onHover(key)}
                   onMouseOut={onLeave}
                   className={cx(s.plan, {
                     [s.active]: current === key,

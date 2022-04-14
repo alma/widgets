@@ -5,6 +5,13 @@ type Args = {
   eligibilityPlans: EligibilityPlan[]
 }
 
+/**
+ * It returns the **index** of the **first eligible plan** that matches the default installments count
+ *
+ * @param {number | number[]} defaultInstallmentsCount
+ * @param {EligibilityPlan[]} eligibilityPlans
+ * @returns number (index of the first eligible plan that matches the default installments count)
+ */
 export const getIndexOfActivePlan = ({
   defaultInstallmentsCount,
   eligibilityPlans,
@@ -16,12 +23,12 @@ export const getIndexOfActivePlan = ({
   for (const index in defaultInstallmentsArray) {
     const installmentsCount = defaultInstallmentsArray[index]
 
-    const founded = eligibilityPlans.findIndex((plan) => {
+    const planFound = eligibilityPlans.findIndex((plan) => {
       return plan.installments_count === installmentsCount && plan.eligible
     })
 
-    if (founded !== -1) {
-      return founded
+    if (planFound !== -1) {
+      return planFound
     }
   }
 
