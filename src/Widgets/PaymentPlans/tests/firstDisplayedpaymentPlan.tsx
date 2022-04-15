@@ -113,6 +113,28 @@ export default function FirstDiplayedPaymentPlan(animationDuration: number): voi
       expect(screen.getByText('J+30').className).toContain('active')
     })
   })
-  //TODO Test with delay and firstDisplayedPaymentPlan to check active moved properly
-  // todo test without firstDisplayedPaymentPlan to check the default delay
+
+  describe('with a different transitionDelay', () => {
+    beforeEach(async () => {
+      render(
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          transitionDelay={1000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          firstDisplayedPaymentPlan={[2]}
+        />,
+      )
+      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    })
+
+    it('displays the message corresponding to the payment plan hovered', () => {
+      expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
+      expect(screen.getByText('2x').className).toContain('active')
+
+      act((): void => {
+        jest.advanceTimersByTime(1000)
+      })
+      expect(screen.getByText('3x').className).toContain('active')
+    })
+  })
 }
