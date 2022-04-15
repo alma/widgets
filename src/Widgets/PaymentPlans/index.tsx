@@ -16,26 +16,28 @@ type Props = {
   configPlans?: ConfigPlan[]
   transitionDelay?: number
   hideIfNotEligible?: boolean
-  defaultInstallmentsCount?: number | number[]
+  firstDisplayedPaymentPlan?: number | number[]
 }
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365
+const DEFAULT_TRANSITION_TIME = 5500
 
 const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   purchaseAmount,
   apiData,
   configPlans,
-  transitionDelay = 5550,
+  transitionDelay,
   hideIfNotEligible,
-  defaultInstallmentsCount,
+  firstDisplayedPaymentPlan,
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
   const activePlanIndex = getIndexOfActivePlan({
     eligibilityPlans,
-    defaultInstallmentsCount: defaultInstallmentsCount ?? 0,
+    firstDisplayedPaymentPlan: firstDisplayedPaymentPlan ?? 0,
   })
-  const isFixedOnActivePlan = defaultInstallmentsCount !== undefined // 👈  The merchant decided to focus a tab and remove animated transition.
+  const isfirstDisplayedPaymentPlanSpecified = firstDisplayedPaymentPlan !== undefined // 👈  The merchant decided to focus a tab and remove animated transition.
+  const isTransitionSpecified = transitionDelay !== undefined // 👈  The merchant has specified a transition time
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
@@ -44,14 +46,31 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
     (acc, plan, index) => (plan.eligible ? [...acc, index] : acc),
     [],
   )
-  const { current, onHover, onLeave } = useButtonAnimation(
-    eligiblePlanKeys,
-    isFixedOnActivePlan ? VERY_LONG_TIME_IN_MS : transitionDelay,
-  )
+
+  /**
+   * If merchand specify a firstDisplayedPaymentPlan and no transition, we set a very long transition delay.
+   * Otherwise, we set the transition delay specified by the merchant.
+   * If none of those properties are specified, we set a default transition delay.
+   * @returns
+   */
+  const realTransitionTime = () => {
+    if (isTransitionSpecified) {
+      return transitionDelay ?? DEFAULT_TRANSITION_TIME
+    }
+    if (isfirstDisplayedPaymentPlanSpecified) {
+      return VERY_LONG_TIME_IN_MS
+    }
+    return DEFAULT_TRANSITION_TIME
+  }
+
+  const { current, onHover, onLeave } = useButtonAnimation(eligiblePlanKeys, realTransitionTime())
 
   useEffect(() => {
     // When API has given a response AND the marchand set an active plan by default.
-    status === apiStatus.SUCCESS && isFixedOnActivePlan && onHover(activePlanIndex)
+    if (status === apiStatus.SUCCESS && isfirstDisplayedPaymentPlanSpecified) {
+      onHover(activePlanIndex) // We select the first active plan possible
+      onLeave() // We need to call onLeave to reset the animation
+    }
   }, [status])
 
   /**

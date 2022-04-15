@@ -4,7 +4,7 @@ import React from 'react'
 import render from 'test'
 import { mockButtonPlans } from 'test/fixtures'
 import PaymentPlanWidget from '.'
-
+import FirstDiplayedPaymentPlan from './tests/firstDisplayedpaymentPlan'
 jest.mock('utils/fetch', () => {
   return {
     fetchFromApi: async () => mockButtonPlans,
@@ -210,138 +210,10 @@ describe('Button', () => {
     })
   })
 
-  describe('paymentPlan includes defaultInstallmentsCount as a number', () => {
-    beforeEach(async () => {
-      render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          configPlans={[
-            {
-              installmentsCount: 1,
-              minAmount: 5000,
-              maxAmount: 20000,
-            },
-            {
-              installmentsCount: 2,
-              minAmount: 5000,
-              maxAmount: 70000,
-            },
-            {
-              installmentsCount: 1,
-              deferredDays: 30,
-              minAmount: 50000,
-              maxAmount: 70000,
-            },
-            {
-              installmentsCount: 3,
-              minAmount: 5000,
-              maxAmount: 50000,
-            },
-            {
-              installmentsCount: 8,
-              minAmount: 5000,
-              maxAmount: 50000,
-            },
-          ]}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          defaultInstallmentsCount={2}
-        />,
-      )
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-    })
-
-    it('displays the message corresponding to the payment plan hovered', () => {
-      expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
-      expect(screen.getByText('2x').className).toContain('active')
-    })
-  })
-  describe('paymentPlan includes defaultInstallmentsCount an array', () => {
-    beforeEach(async () => {
-      render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          defaultInstallmentsCount={[3, 2]}
-        />,
-      )
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-    })
-
-    it('displays the third item as selected', () => {
-      expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
-      expect(screen.getByText('3x').className).toContain('active')
-    })
-
-    it('should not rotate the active installment', () => {
-      jest.advanceTimersByTime(animationDuration)
-      expect(screen.getByText('3x').className).toContain('active')
-    })
-  })
-
-  describe('paymentPlan includes defaultInstallmentsCount as array with first item being illegible', () => {
-    beforeEach(async () => {
-      render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          configPlans={[
-            {
-              installmentsCount: 1,
-              minAmount: 5000,
-              maxAmount: 20000,
-            },
-            {
-              installmentsCount: 2,
-              minAmount: 0,
-              maxAmount: 0,
-            },
-            {
-              installmentsCount: 1,
-              deferredDays: 30,
-              minAmount: 50000,
-              maxAmount: 70000,
-            },
-            {
-              installmentsCount: 3,
-              minAmount: 5000,
-              maxAmount: 50000,
-            },
-            {
-              installmentsCount: 8,
-              minAmount: 5000,
-              maxAmount: 50000,
-            },
-          ]}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          defaultInstallmentsCount={[2, 3]}
-        />,
-      )
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-    })
-
-    it('displays the 3x as active (2 is illegible)', () => {
-      expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
-      expect(screen.getByText('3x').className).toContain('active')
-    })
-  })
-
-  describe('paymentPlan includes defaultInstallmentsCount with a wrong value', () => {
-    beforeEach(async () => {
-      render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          defaultInstallmentsCount={[20]}
-        />,
-      )
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-    })
-
-    it('should select the first installment', () => {
-      expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
-      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
-      expect(screen.getByText('J+30').className).toContain('active')
-    })
-  })
+  describe(
+    'paymentPlan includes firstDisplayedPaymentPlan',
+    FirstDiplayedPaymentPlan.bind(this, animationDuration),
+  )
 
   describe('custom transition delay', () => {
     beforeEach(async () => {
