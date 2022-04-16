@@ -52,7 +52,7 @@ Totally hide the widget if set to true and no plan matches the purchase amount.
 
 - firstDisplayedPaymentPlan: `number` | `number[]` [optional]
 
-Allow to choose which payement plan's tab will be displayed by default. It will have effect only if the selected plan is eligible. If an array is provided, it will select the first eligible plan from this array.
+Allow to choose which payment plan's tab will be displayed by default. It will have effect only if the selected plan is eligible. If an array is provided, it will select the first eligible plan from this array.
 
 ```
 firstDisplayedPaymentPlan: [10, 4],
