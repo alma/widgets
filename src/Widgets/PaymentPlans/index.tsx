@@ -16,7 +16,7 @@ type Props = {
   configPlans?: ConfigPlan[]
   transitionDelay?: number
   hideIfNotEligible?: boolean
-  firstDisplayedPaymentPlan?: number | number[]
+  priorizedPaymentPlan?: number | number[]
 }
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365
@@ -28,15 +28,15 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   configPlans,
   transitionDelay,
   hideIfNotEligible,
-  firstDisplayedPaymentPlan,
+  priorizedPaymentPlan,
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
   const activePlanIndex = getIndexOfActivePlan({
     eligibilityPlans,
-    firstDisplayedPaymentPlan: firstDisplayedPaymentPlan ?? 0,
+    priorizedPaymentPlan: priorizedPaymentPlan ?? 0,
   })
-  const isfirstDisplayedPaymentPlanSpecified = firstDisplayedPaymentPlan !== undefined // 👈  The merchant decided to focus a tab and remove animated transition.
+  const ispriorizedPaymentPlanSpecified = priorizedPaymentPlan !== undefined // 👈  The merchant decided to focus a tab and remove animated transition.
   const isTransitionSpecified = transitionDelay !== undefined // 👈  The merchant has specified a transition time
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true)
@@ -48,7 +48,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   )
 
   /**
-   * If merchand specify a firstDisplayedPaymentPlan and no transition, we set a very long transition delay.
+   * If merchand specify a priorizedPaymentPlan and no transition, we set a very long transition delay.
    * Otherwise, we set the transition delay specified by the merchant.
    * If none of those properties are specified, we set a default transition delay.
    * @returns
@@ -57,7 +57,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
     if (isTransitionSpecified) {
       return transitionDelay ?? DEFAULT_TRANSITION_TIME
     }
-    if (isfirstDisplayedPaymentPlanSpecified) {
+    if (ispriorizedPaymentPlanSpecified) {
       return VERY_LONG_TIME_IN_MS
     }
     return DEFAULT_TRANSITION_TIME
@@ -67,7 +67,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
 
   useEffect(() => {
     // When API has given a response AND the marchand set an active plan by default.
-    if (status === apiStatus.SUCCESS && isfirstDisplayedPaymentPlanSpecified) {
+    if (status === apiStatus.SUCCESS && ispriorizedPaymentPlanSpecified) {
       onHover(activePlanIndex) // We select the first active plan possible
       onLeave() // We need to call onLeave to reset the animation
     }

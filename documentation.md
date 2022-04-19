@@ -50,16 +50,16 @@ The amount of time in between button animations in ms.
 
 Totally hide the widget if set to true and no plan matches the purchase amount.
 
-- firstDisplayedPaymentPlan: `number` | `number[]` [optional]
+- priorizedPaymentPlan: `number` | `number[]` [optional]
 
 Allow to choose which payment plan's tab will be displayed by default. It will have effect only if the selected plan is eligible. If an array is provided, it will select the first eligible plan from this array.
 
 ```
-firstDisplayedPaymentPlan: [10, 4],
+priorizedPaymentPlan: [10, 4],
 ```
 
 In the above example, the 10 installments plan will be selected. If it's not eligible, the 4 installments plan will be selected. If the 4 installments plan is not eligible, it will select the first tab.
-When `firstDisplayedPaymentPlan` is used, the transition is disable. Unless `transitionDelay` is specified.
+When `priorizedPaymentPlan` is used, the transition is disable. Unless `transitionDelay` is specified.
 
 ## Add Modal
 
