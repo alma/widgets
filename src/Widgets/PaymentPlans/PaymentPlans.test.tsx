@@ -4,7 +4,7 @@ import React from 'react'
 import render from 'test'
 import { mockButtonPlans } from 'test/fixtures'
 import PaymentPlanWidget from '.'
-import FirstDiplayedPaymentPlan from './tests/PriorizedPaymentPlan'
+import SuggestedPaymentPlan from './tests/SuggestedPaymentPlan'
 
 jest.mock('utils/fetch', () => {
   return {
@@ -212,8 +212,8 @@ describe('Button', () => {
   })
 
   describe(
-    'paymentPlan includes priorizedPaymentPlan',
-    FirstDiplayedPaymentPlan.bind(this, animationDuration),
+    'paymentPlan includes suggestedPaymentPlan',
+    SuggestedPaymentPlan.bind(this, animationDuration),
   )
 
   describe('custom transition delay', () => {

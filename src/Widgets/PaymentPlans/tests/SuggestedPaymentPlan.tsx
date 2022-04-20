@@ -12,7 +12,7 @@ export default function FirstDiplayedPaymentPlan(animationDuration: number): voi
         <PaymentPlanWidget
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          priorizedPaymentPlan={2}
+          suggestedPaymentPlan={2}
         />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
@@ -30,7 +30,7 @@ export default function FirstDiplayedPaymentPlan(animationDuration: number): voi
         <PaymentPlanWidget
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          priorizedPaymentPlan={[3, 2]}
+          suggestedPaymentPlan={[3, 2]}
         />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
@@ -83,7 +83,7 @@ export default function FirstDiplayedPaymentPlan(animationDuration: number): voi
             },
           ]}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          priorizedPaymentPlan={[2, 3]}
+          suggestedPaymentPlan={[2, 3]}
         />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
@@ -101,7 +101,7 @@ export default function FirstDiplayedPaymentPlan(animationDuration: number): voi
         <PaymentPlanWidget
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          priorizedPaymentPlan={[20]}
+          suggestedPaymentPlan={[20]}
         />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
@@ -121,7 +121,7 @@ export default function FirstDiplayedPaymentPlan(animationDuration: number): voi
           purchaseAmount={40000}
           transitionDelay={1000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          priorizedPaymentPlan={[2]}
+          suggestedPaymentPlan={[2]}
         />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
