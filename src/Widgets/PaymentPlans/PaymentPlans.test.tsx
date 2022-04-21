@@ -1,5 +1,5 @@
 import { mockButtonPlans } from 'test/fixtures'
-import Basics from './tests/Basic'
+import Basics from './tests/Basics'
 import Credit from './tests/Credit'
 import CustomTransitionDelay from './tests/CustomTransitionDelay'
 import HideWidget from './tests/HideWidget'
