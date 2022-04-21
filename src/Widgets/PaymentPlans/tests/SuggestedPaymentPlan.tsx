@@ -5,6 +5,12 @@ import { act } from 'react-dom/test-utils'
 import render from 'test'
 import PaymentPlanWidget from '..'
 
+/**
+ * Tests how the widget handles different suggestedPaymentPlan values.
+ * It can be either a number or an array and should stop transition if delay is not specified.
+ *
+ * @param animationDuration default duration between plan switch
+ */
 export default function FirstDiplayedPaymentPlan(animationDuration: number): void {
   describe('as a number', () => {
     beforeEach(async () => {
@@ -42,7 +48,7 @@ export default function FirstDiplayedPaymentPlan(animationDuration: number): voi
     })
 
     it('should not rotate the active installment', () => {
-      act((): void => {
+      act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
       expect(screen.getByText('3x').className).toContain('active')
