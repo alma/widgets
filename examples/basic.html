@@ -129,6 +129,7 @@
           locale: 'fr',
           hideIfNotEligible: false,
           transitionDelay: 5500,
+          suggestedPaymentPlan: [10, 4],
           plans: [
             {
               installmentsCount: 1,
@@ -139,10 +140,15 @@
             {
               installmentsCount: 2,
               minAmount: 5000,
-              maxAmount: 90000,
+              maxAmount: 9000,
             },
             {
               installmentsCount: 4,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
+              installmentsCount: 10,
               minAmount: 5000,
               maxAmount: 90000,
             },
@@ -161,6 +167,11 @@
           plans: [
             {
               installmentsCount: 4,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
+              installmentsCount: 10,
               minAmount: 5000,
               maxAmount: 90000,
             },

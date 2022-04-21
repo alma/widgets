@@ -50,6 +50,17 @@ The amount of time in between button animations in ms.
 
 Totally hide the widget if set to true and no plan matches the purchase amount.
 
+- suggestedPaymentPlan: `number` | `number[]` [optional]
+
+Allow to choose which payment plan's tab will be displayed by default. It will have effect only if the selected plan is eligible. If an array is provided, it will select the first eligible plan from this array.
+
+```
+suggestedPaymentPlan: [10, 4],
+```
+
+In the above example, the 10 installments plan will be selected. If it's not eligible, the 4 installments plan will be selected. If the 4 installments plan is not eligible, it will select the first tab.
+When `suggestedPaymentPlan` is used, the transition is disable. Unless `transitionDelay` is specified.
+
 ## Add Modal
 
 `add(widget: Alma.Widgets.Modal, options: ModalOptions)`

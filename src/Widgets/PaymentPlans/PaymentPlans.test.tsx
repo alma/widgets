@@ -1,9 +1,10 @@
 import { act, fireEvent, screen, waitFor, within } from '@testing-library/react'
 import { ApiMode } from 'consts'
 import React from 'react'
+import render from 'test'
 import { mockButtonPlans } from 'test/fixtures'
 import PaymentPlanWidget from '.'
-import render from 'test'
+import SuggestedPaymentPlan from './tests/SuggestedPaymentPlan'
 
 jest.mock('utils/fetch', () => {
   return {
@@ -11,7 +12,7 @@ jest.mock('utils/fetch', () => {
   }
 })
 
-const animationDuration = 5500
+const animationDuration = 5600 // 5500 + Time for transition
 jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
 describe('Button', () => {
   describe('Basics', () => {
@@ -24,9 +25,11 @@ describe('Button', () => {
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
+
     it('displays the button', () => {
       expect(screen.getByTestId('widget-button')).toBeInTheDocument()
     })
+
     it('Opens the modal on click', async () => {
       act(() => {
         fireEvent.click(screen.getByTestId('widget-button'))
@@ -34,7 +37,6 @@ describe('Button', () => {
       expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
     })
   })
-
   describe('No plans provided', () => {
     beforeEach(async () => {
       render(
@@ -46,17 +48,20 @@ describe('Button', () => {
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
     it('displays all available payment plans', () => {
+      expect(screen.getByText('J+30')).toBeInTheDocument()
+      expect(screen.getByText('2x')).toBeInTheDocument()
       expect(screen.getByText('3x')).toBeInTheDocument()
       expect(screen.getByText('4x')).toBeInTheDocument()
+      expect(screen.getByText('10x')).toBeInTheDocument()
     })
     it(`display iterates on each message every ${animationDuration} ms then returns to the beginning`, () => {
       expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
-      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
+      expect(screen.getByText(/\(sans frais\)/)).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
-      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
+      expect(screen.getByText(/\(sans frais\)/)).toBeInTheDocument()
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
@@ -73,7 +78,7 @@ describe('Button', () => {
         jest.advanceTimersByTime(animationDuration)
       })
       expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
-      expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
+      expect(screen.getByText(/\(sans frais\)/)).toBeInTheDocument()
     })
   })
   describe('paymentPlan includes credit', () => {
@@ -141,7 +146,7 @@ describe('Button', () => {
       expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
     })
   })
-  describe('paymentPlan includes contains ineligible options', () => {
+  describe('paymentPlan includes ineligible options', () => {
     beforeEach(async () => {
       render(
         <PaymentPlanWidget
@@ -205,6 +210,12 @@ describe('Button', () => {
       expect(screen.getByText("Jusqu'à 200,00 €")).toBeInTheDocument()
     })
   })
+
+  describe(
+    'paymentPlan includes suggestedPaymentPlan',
+    SuggestedPaymentPlan.bind(this, animationDuration),
+  )
+
   describe('custom transition delay', () => {
     beforeEach(async () => {
       render(
@@ -322,9 +333,13 @@ describe('Button', () => {
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
       act(() => {
-        fireEvent.click(screen.getByText('3x'))
+        fireEvent.mouseOver(screen.getByText('3x'))
       })
       expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
+
+      act(() => {
+        fireEvent.click(screen.getByText('3x'))
+      })
       expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
       const modalContainer = screen.getByTestId('modal-container')
       expect(within(modalContainer).getByText('21 octobre 2021')).toBeInTheDocument()

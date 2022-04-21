@@ -37,6 +37,7 @@ export class WidgetsController {
         plans,
         transitionDelay,
         hideIfNotEligible,
+        suggestedPaymentPlan,
         locale = Locale.en,
       } = options as PaymentPlanWidgetOptions
 
@@ -49,6 +50,7 @@ export class WidgetsController {
               configPlans={plans}
               transitionDelay={transitionDelay}
               hideIfNotEligible={hideIfNotEligible}
+              suggestedPaymentPlan={suggestedPaymentPlan}
             />
           </IntlProvider>,
           document.querySelector(container),
