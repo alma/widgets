@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/alma/widgets/compare/v2.2.10...v2.3.0) (2022-04-21)
+
+
+### Features
+
+* **payment-plan:** add firstDisplayedPaymentPlan option ([#26](https://github.com/alma/widgets/issues/26)) ([f16fa4a](https://github.com/alma/widgets/commit/f16fa4a068a9e06aec261489065bc1282acee666))
+
 ## [2.2.10](https://github.com/alma/widgets/compare/v2.2.9...v2.2.10) (2022-04-12)
 
 

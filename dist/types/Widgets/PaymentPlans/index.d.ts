@@ -1,4 +1,4 @@
-import React from 'react';
+import { VoidFunctionComponent } from 'react';
 import { ApiConfig, ConfigPlan } from 'types';
 declare type Props = {
     purchaseAmount: number;
@@ -6,6 +6,7 @@ declare type Props = {
     configPlans?: ConfigPlan[];
     transitionDelay?: number;
     hideIfNotEligible?: boolean;
+    suggestedPaymentPlan?: number | number[];
 };
-declare const PaymentPlanWidget: React.FC<Props>;
+declare const PaymentPlanWidget: VoidFunctionComponent<Props>;
 export default PaymentPlanWidget;

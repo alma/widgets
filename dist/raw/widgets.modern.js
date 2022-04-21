@@ -1506,7 +1506,7 @@ var messagesDE = {
 	"payment-plan-strings.deferred": "{totalAmount} zu zahlen am {dueDate}",
 	"payment-plan-strings.ineligible-greater-than-max": "Bis zu {maxAmount}",
 	"payment-plan-strings.ineligible-lower-than-min": "Ab {minAmount}",
-	"payment-plan-strings.multiple-installments": "{firstInstallmentAmount} dann {numberOfRemainingInstallments} x {othersInstallmentAmount}",
+	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} dann {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} dann {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
 	"payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
 	"payment-plan-strings.no-fee": "(gebührenfrei)"
 };
@@ -1528,7 +1528,7 @@ var messagesEN = {
 	"payment-plan-strings.deferred": "{totalAmount} to be paid on {dueDate}",
 	"payment-plan-strings.ineligible-greater-than-max": "Until {maxAmount}",
 	"payment-plan-strings.ineligible-lower-than-min": "From {minAmount}",
-	"payment-plan-strings.multiple-installments": "{firstInstallmentAmount} then {numberOfRemainingInstallments} x {othersInstallmentAmount}",
+	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} then {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} then {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
 	"payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
 	"payment-plan-strings.no-fee": "(free of charge)"
 };
@@ -1550,7 +1550,7 @@ var messagesES = {
 	"payment-plan-strings.deferred": "{totalAmount} a pagar el {dueDate}",
 	"payment-plan-strings.ineligible-greater-than-max": "Hasta {maxAmount}",
 	"payment-plan-strings.ineligible-lower-than-min": "Desde {minAmount}",
-	"payment-plan-strings.multiple-installments": "{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments, plural, one {# mensualidad} other {# mensualidades}} de {othersInstallmentAmount}",
+	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} mensualidad de {othersInstallmentAmount}} other {{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} de {othersInstallmentAmount} mensualidades }}",
 	"payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} plazos de {totalAmount}",
 	"payment-plan-strings.no-fee": "(sin intereses)"
 };
@@ -1572,7 +1572,7 @@ var messagesFR = {
 	"payment-plan-strings.deferred": "{totalAmount} à payer le {dueDate}",
 	"payment-plan-strings.ineligible-greater-than-max": "Jusqu'à {maxAmount}",
 	"payment-plan-strings.ineligible-lower-than-min": "À partir de {minAmount}",
-	"payment-plan-strings.multiple-installments": "{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}",
+	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
 	"payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
 	"payment-plan-strings.no-fee": "(sans frais)"
 };
@@ -1594,7 +1594,7 @@ var messagesIT = {
 	"payment-plan-strings.deferred": "{totalAmount} da pagare il {dueDate}",
 	"payment-plan-strings.ineligible-greater-than-max": "Disponibile fino a {maxAmount}",
 	"payment-plan-strings.ineligible-lower-than-min": "Pagamento rateale disponibile a partire da {minAmount}",
-	"payment-plan-strings.multiple-installments": "Oggi paghi {firstInstallmentAmount} poi {numberOfRemainingInstallments} rate mensili di {othersInstallmentAmount}",
+	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {Oggi paghi {firstInstallmentAmount} poi {numberOfRemainingInstallments} rata mensile di {othersInstallmentAmount}} other {Oggi paghi {firstInstallmentAmount} poi {numberOfRemainingInstallments} rate mensili di {othersInstallmentAmount}}}",
 	"payment-plan-strings.multiple-installments-same-amount": "In {installmentsCount} rate mensili di {totalAmount}",
 	"payment-plan-strings.no-fee": "(senza interessi)"
 };
@@ -1616,7 +1616,7 @@ var messagesNL = {
 	"payment-plan-strings.deferred": "{totalAmount} te betalen op {dueDate}",
 	"payment-plan-strings.ineligible-greater-than-max": "Tot {maxAmount}",
 	"payment-plan-strings.ineligible-lower-than-min": "Van {minAmount}",
-	"payment-plan-strings.multiple-installments": "{firstInstallmentAmount} dan {numberOfRemainingInstallments} x {othersInstallmentAmount}",
+	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} dan {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} dan {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
 	"payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
 	"payment-plan-strings.no-fee": "(gratis)"
 };
@@ -1744,8 +1744,8 @@ const useFetchEligibility = (purchaseAmount, {
       }, {
         Authorization: `Alma-Merchant-Auth ${merchantId}`
       }).then(res => {
-        setStatus(apiStatus.SUCCESS);
         setEligibility(res);
+        setStatus(apiStatus.SUCCESS);
       }).catch(() => {
         setStatus(apiStatus.FAILED);
       });
@@ -1927,7 +1927,7 @@ const paymentPlanInfoText = payment => {
 
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FormattedMessage, {
       id: "payment-plan-strings.multiple-installments",
-      defaultMessage: "{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}",
+      defaultMessage: "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
       values: {
         firstInstallmentAmount: /*#__PURE__*/React.createElement(FormattedNumber, {
           value: priceFromCents(payment.payment_plan[0].total_amount),
@@ -2257,37 +2257,106 @@ const useButtonAnimation = (iterateValues, transitionDelay) => {
   };
 };
 
-var s$b = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","notEligible":"_3O1bg","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS"};
+/**
+ * It returns the **index** of the **first eligible plan** that matches the default installments count
+ *
+ * @param {number | number[]} suggestedPaymentPlan
+ * @param {EligibilityPlan[]} eligibilityPlans
+ * @returns number (index of the first eligible plan that matches the default installments count)
+ */
+const getIndexOfActivePlan = ({
+  suggestedPaymentPlan,
+  eligibilityPlans
+}) => {
+  const suggestedPaymentPlanArray = Array.isArray(suggestedPaymentPlan) ? suggestedPaymentPlan : [suggestedPaymentPlan];
+
+  for (const index in suggestedPaymentPlanArray) {
+    const installmentsCount = suggestedPaymentPlanArray[index];
+    const planFound = eligibilityPlans.findIndex(plan => {
+      return plan.installments_count === installmentsCount && plan.eligible;
+    });
+
+    if (planFound !== -1) {
+      return planFound;
+    }
+  }
+
+  return 0;
+};
+
+var s$b = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","notEligible":"_3O1bg","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
+
+const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365;
+const DEFAULT_TRANSITION_TIME = 5500;
 
 const PaymentPlanWidget = ({
   purchaseAmount,
   apiData,
   configPlans,
   transitionDelay,
-  hideIfNotEligible
+  hideIfNotEligible,
+  suggestedPaymentPlan
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans);
   const eligiblePlans = eligibilityPlans.filter(plan => plan.eligible);
+  const activePlanIndex = getIndexOfActivePlan({
+    eligibilityPlans,
+    suggestedPaymentPlan: suggestedPaymentPlan != null ? suggestedPaymentPlan : 0
+  });
+  const isSuggestedPaymentPlanSpecified = suggestedPaymentPlan !== undefined; // 👈  The merchant decided to focus a tab and remove animated transition.
+
+  const isTransitionSpecified = transitionDelay !== undefined; // 👈  The merchant has specified a transition time
+
   const [isOpen, setIsOpen] = useState(false);
-  const [initialPlanIndex, setInitialPlanIndex] = useState(0);
 
   const openModal = () => setIsOpen(true);
 
   const closeModal = () => setIsOpen(false);
 
   const eligiblePlanKeys = eligibilityPlans.reduce((acc, plan, index) => plan.eligible ? [...acc, index] : acc, []);
+  /**
+   * If merchand specify a suggestedPaymentPlan and no transition, we set a very long transition delay.
+   * Otherwise, we set the transition delay specified by the merchant.
+   * If none of those properties are specified, we set a default transition delay.
+   * @returns
+   */
+
+  const realTransitionTime = () => {
+    if (isTransitionSpecified) {
+      return transitionDelay != null ? transitionDelay : DEFAULT_TRANSITION_TIME;
+    }
+
+    if (isSuggestedPaymentPlanSpecified) {
+      return VERY_LONG_TIME_IN_MS;
+    }
+
+    return DEFAULT_TRANSITION_TIME;
+  };
+
   const {
     current,
     onHover,
     onLeave
-  } = useButtonAnimation(eligiblePlanKeys, transitionDelay ? transitionDelay : 5500); // This hook is needed to update the initial plan index when useButtonAnimation
-  // updates the `current` value (i.e. without any hover / click callback).
-
+  } = useButtonAnimation(eligiblePlanKeys, realTransitionTime());
   useEffect(() => {
-    if (current !== initialPlanIndex) {
-      setInitialPlanIndex(current);
+    // When API has given a response AND the marchand set an active plan by default.
+    if (status === apiStatus.SUCCESS && isSuggestedPaymentPlanSpecified) {
+      onHover(activePlanIndex); // We select the first active plan possible
+
+      onLeave(); // We need to call onLeave to reset the animation
     }
-  }, [current, initialPlanIndex]);
+  }, [status]);
+  /**
+   * It takes a plan index and returns the index of that plan within the eligible plans
+   *
+   * @param {number} planIndex - The index of the plan that the user has selected.
+   * @returns The index of the planKey in the eligiblePlanKeys array.
+   */
+
+  const getIndexWithinEligiblePlans = planIndex => {
+    const index = eligiblePlanKeys.findIndex(planKey => planKey === planIndex);
+    return index === -1 ? 0 : index;
+  };
 
   if (status === apiStatus.PENDING) {
     return /*#__PURE__*/React.createElement("div", {
@@ -2295,11 +2364,7 @@ const PaymentPlanWidget = ({
     }, /*#__PURE__*/React.createElement(Loader, null));
   }
 
-  if (hideIfNotEligible && eligiblePlans.length == 0 || eligibilityPlans.length === 0) {
-    return null;
-  }
-
-  if (status === apiStatus.FAILED) {
+  if (hideIfNotEligible && eligiblePlans.length === 0 || eligibilityPlans.length === 0 || status === apiStatus.FAILED) {
     return null;
   }
 
@@ -2311,19 +2376,12 @@ const PaymentPlanWidget = ({
     }
   };
 
-  const handleHoverAndClick = (key, newInitialPlanIndex) => {
-    // This is needed to update the initial plan index and button style when hovering (desktop) or clicking (mobile).
-    // The actual modal opening is triggered by a click on the highest parent div in `handleOpenModal`.
-    onHover(key);
-    setInitialPlanIndex(newInitialPlanIndex);
-  };
-
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     onClick: handleOpenModal,
-    className: s$b.widgetButton,
-    style: {
-      cursor: eligiblePlans.length > 0 ? 'pointer' : 'initial'
-    },
+    className: cx(s$b.widgetButton, {
+      [s$b.clickable]: eligiblePlans.length > 0,
+      [s$b.unClickable]: eligiblePlans.length === 0
+    }),
     "data-testid": "widget-button"
   }, /*#__PURE__*/React.createElement("div", {
     className: s$b.primaryContainer
@@ -2332,18 +2390,10 @@ const PaymentPlanWidget = ({
   }), /*#__PURE__*/React.createElement("div", {
     className: s$b.paymentPlans
   }, eligibilityPlans.map((eligibilityPlan, key) => {
-    const newInitialPlanIndex = eligiblePlanKeys.includes(key) ? eligiblePlanKeys.findIndex(planKey => planKey === key) : 0;
     return /*#__PURE__*/React.createElement("div", {
-      onMouseEnter: () => {
-        handleHoverAndClick(key, newInitialPlanIndex);
-      },
-      onMouseOut: () => {
-        onLeave();
-      },
-      onClick: () => {
-        handleHoverAndClick(key, newInitialPlanIndex);
-      },
       key: key,
+      onMouseEnter: () => onHover(key),
+      onMouseOut: onLeave,
       className: cx(s$b.plan, {
         [s$b.active]: current === key,
         [s$b.notEligible]: !eligibilityPlan.eligible
@@ -2354,7 +2404,7 @@ const PaymentPlanWidget = ({
       [s$b.notEligible]: eligibilityPlans[current] && !eligibilityPlans[current].eligible
     })
   }, eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current]))), isOpen && /*#__PURE__*/React.createElement(EligibilityModal, {
-    initialPlanIndex: initialPlanIndex,
+    initialPlanIndex: getIndexWithinEligiblePlans(current),
     onClose: closeModal,
     eligibilityPlans: eligiblePlans,
     status: status
@@ -2380,6 +2430,7 @@ class WidgetsController {
         plans,
         transitionDelay,
         hideIfNotEligible,
+        suggestedPaymentPlan,
         locale = Locale.en
       } = options;
 
@@ -2391,7 +2442,8 @@ class WidgetsController {
           apiData: this.apiData,
           configPlans: plans,
           transitionDelay: transitionDelay,
-          hideIfNotEligible: hideIfNotEligible
+          hideIfNotEligible: hideIfNotEligible,
+          suggestedPaymentPlan: suggestedPaymentPlan
         })), document.querySelector(container));
       }
     }
