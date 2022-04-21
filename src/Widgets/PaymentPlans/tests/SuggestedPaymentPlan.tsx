@@ -11,7 +11,7 @@ import PaymentPlanWidget from '..'
  *
  * @param animationDuration default duration between plan switch
  */
-export default function FirstDiplayedPaymentPlan(animationDuration: number): void {
+export default function SuggestedPaymentPlan(animationDuration: number): void {
   describe('as a number', () => {
     beforeEach(async () => {
       render(

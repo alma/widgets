@@ -15,6 +15,7 @@ export default function LaunchModal(): void {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
+
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     act(() => {
       fireEvent.mouseEnter(screen.getByText('3x'))
@@ -23,14 +24,8 @@ export default function LaunchModal(): void {
     act(() => {
       fireEvent.click(screen.getByTestId('widget-button'))
     })
-    expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
-    const modalContainer = screen.getByTestId('modal-container')
-    expect(within(modalContainer).getByText('3x')).toBeInTheDocument()
-    expect(within(modalContainer).getByText('21 octobre 2021')).toBeInTheDocument()
-    expect(within(modalContainer).getByText('151,35 €')).toBeInTheDocument()
-    expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
-    expect(within(modalContainer).getByText('21 décembre 2021')).toBeInTheDocument()
-    expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(2)
+
+    checkModalElements()
   })
 
   it('initializes correctly after clicking a plan (fallback for mobile)', async () => {
@@ -49,13 +44,7 @@ export default function LaunchModal(): void {
     act(() => {
       fireEvent.click(screen.getByText('3x'))
     })
-    expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
-    const modalContainer = screen.getByTestId('modal-container')
-    expect(within(modalContainer).getByText('21 octobre 2021')).toBeInTheDocument()
-    expect(within(modalContainer).getByText('151,35 €')).toBeInTheDocument()
-    expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
-    expect(within(modalContainer).getByText('21 décembre 2021')).toBeInTheDocument()
-    expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(2)
+    checkModalElements()
   })
 
   it('initializes correctly after a simple click on the badge, with no hover or click on a specific plan', async () => {
@@ -76,4 +65,15 @@ export default function LaunchModal(): void {
     expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
     expect(within(modalContainer).getAllByText('450,00 €')).toHaveLength(2)
   })
+}
+
+async function checkModalElements(): Promise<void> {
+  expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
+  const modalContainer = screen.getByTestId('modal-container')
+  expect(within(modalContainer).getByText('3x')).toBeInTheDocument()
+  expect(within(modalContainer).getByText('21 octobre 2021')).toBeInTheDocument()
+  expect(within(modalContainer).getByText('151,35 €')).toBeInTheDocument()
+  expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
+  expect(within(modalContainer).getByText('21 décembre 2021')).toBeInTheDocument()
+  expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(2)
 }
