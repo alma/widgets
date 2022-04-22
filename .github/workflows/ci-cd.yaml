@@ -31,7 +31,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.python.coverage.reportPaths=./coverage/lcov.info
+            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
             -Dsonar.projectVersion=${{github.ref_name}}
 
   release:
