@@ -8,6 +8,7 @@ import { ApiConfig, apiStatus, ConfigPlan } from 'types'
 import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import EligibilityModal from 'Widgets/EligibilityModal'
+import CLASSES from './classNames.const'
 import s from './PaymentPlans.module.css'
 
 type Props = {
@@ -36,7 +37,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
     eligibilityPlans,
     suggestedPaymentPlan: suggestedPaymentPlan ?? 0,
   })
-  const isSuggestedPaymentPlanSpecified = suggestedPaymentPlan !== undefined // 👈  The merchant decided to focus a tab and remove animated transition.
+  const isSuggestedPaymentPlanSpecified = suggestedPaymentPlan !== undefined // 👈  The merchant decided to focus a tab
   const isTransitionSpecified = transitionDelay !== undefined // 👈  The merchant has specified a transition time
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true)
@@ -111,15 +112,19 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
     <>
       <div
         onClick={handleOpenModal}
-        className={cx(s.widgetButton, {
-          [s.clickable]: eligiblePlans.length > 0,
-          [s.unClickable]: eligiblePlans.length === 0,
-        })}
+        className={cx(
+          s.widgetButton,
+          {
+            [s.clickable]: eligiblePlans.length > 0,
+            [s.unClickable]: eligiblePlans.length === 0,
+          },
+          CLASSES.container,
+        )}
         data-testid="widget-button"
       >
-        <div className={s.primaryContainer}>
+        <div className={cx(s.primaryContainer, CLASSES.eligibilityLine)}>
           <LogoIcon className={s.logo} />
-          <div className={s.paymentPlans}>
+          <div className={cx(s.paymentPlans, CLASSES.eligibilityOptions)}>
             {eligibilityPlans.map((eligibilityPlan, key) => {
               return (
                 <div
@@ -127,7 +132,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
                   onMouseEnter={() => onHover(key)}
                   onMouseOut={onLeave}
                   className={cx(s.plan, {
-                    [s.active]: current === key,
+                    [cx(s.active, CLASSES.activeOption)]: current === key,
                     [s.notEligible]: !eligibilityPlan.eligible,
                   })}
                 >
@@ -138,9 +143,14 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
           </div>
         </div>
         <div
-          className={cx(s.info, {
-            [s.notEligible]: eligibilityPlans[current] && !eligibilityPlans[current].eligible,
-          })}
+          className={cx(
+            s.info,
+            {
+              [cx(s.notEligible, CLASSES.notEligibleOptions)]:
+                eligibilityPlans[current] && !eligibilityPlans[current].eligible,
+            },
+            CLASSES.paymentInfo,
+          )}
         >
           {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
         </div>
