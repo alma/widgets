@@ -8,7 +8,7 @@ import { ApiConfig, apiStatus, ConfigPlan } from 'types'
 import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import EligibilityModal from 'Widgets/EligibilityModal'
-import CLASSES from './classNames.const'
+import STATIC_CUSTOMISATION_CLASSES from './classNames.const'
 import s from './PaymentPlans.module.css'
 
 type Props = {
@@ -118,13 +118,13 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
             [s.clickable]: eligiblePlans.length > 0,
             [s.unClickable]: eligiblePlans.length === 0,
           },
-          CLASSES.container,
+          STATIC_CUSTOMISATION_CLASSES.container,
         )}
         data-testid="widget-button"
       >
-        <div className={cx(s.primaryContainer, CLASSES.eligibilityLine)}>
+        <div className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}>
           <LogoIcon className={s.logo} />
-          <div className={cx(s.paymentPlans, CLASSES.eligibilityOptions)}>
+          <div className={cx(s.paymentPlans, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)}>
             {eligibilityPlans.map((eligibilityPlan, key) => {
               return (
                 <div
@@ -132,8 +132,9 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
                   onMouseEnter={() => onHover(key)}
                   onMouseOut={onLeave}
                   className={cx(s.plan, {
-                    [cx(s.active, CLASSES.activeOption)]: current === key,
-                    [s.notEligible]: !eligibilityPlan.eligible,
+                    [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: current === key,
+                    [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOptions)]:
+                      !eligibilityPlan.eligible,
                   })}
                 >
                   {paymentPlanShorthandName(eligibilityPlan)}
@@ -146,10 +147,10 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
           className={cx(
             s.info,
             {
-              [cx(s.notEligible, CLASSES.notEligibleOptions)]:
+              [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOptions)]:
                 eligibilityPlans[current] && !eligibilityPlans[current].eligible,
             },
-            CLASSES.paymentInfo,
+            STATIC_CUSTOMISATION_CLASSES.paymentInfo,
           )}
         >
           {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
