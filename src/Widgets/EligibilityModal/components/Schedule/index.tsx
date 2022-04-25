@@ -6,6 +6,7 @@ import { priceFromCents } from 'utils'
 import { isToday } from 'date-fns'
 
 import s from './Schedule.module.css'
+import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
 
 const Schedule: FC<{ currentPlan: EligibilityPlan }> = ({ currentPlan }) => {
   const total =
@@ -18,8 +19,11 @@ const Schedule: FC<{ currentPlan: EligibilityPlan }> = ({ currentPlan }) => {
   const intl = useIntl()
 
   return (
-    <div className={s.schedule} data-testid="modal-installments-element">
-      <div className={cx(s.scheduleLine, s.total)}>
+    <div
+      className={cx(s.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails)}
+      data-testid="modal-installments-element"
+    >
+      <div className={cx(s.scheduleLine, s.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)}>
         <span>
           <FormattedMessage id="eligibility-modal.total" defaultMessage="Total" />
         </span>
@@ -27,7 +31,9 @@ const Schedule: FC<{ currentPlan: EligibilityPlan }> = ({ currentPlan }) => {
           <FormattedNumber value={total} style="currency" currency="EUR" />
         </span>
       </div>
-      <div className={cx(s.scheduleLine, s.creditCost)}>
+      <div
+        className={cx(s.scheduleLine, s.creditCost, STATIC_CUSTOMISATION_CLASSES.scheduleCredit)}
+      >
         {isCredit ? (
           <span>
             <FormattedMessage

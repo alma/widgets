@@ -4,10 +4,10 @@
 const prefix = 'ALMA-PaymentPlans'
 
 /**
- * Class names for the payment plans widget.
- * Thoses classes are intended to be used by the merchant developer.
+ * Class names for the **payment plans** widget.
+ * Thoses classes are intended to be used by the **merchant developer**.
  */
-const CLASSES = {
+const STATIC_CUSTOMISATION_CLASSES = {
   container: prefix + '-container',
   eligibilityLine: prefix + '-eligibility-line',
   eligibilityOptions: prefix + '-eligibility-options',
@@ -16,4 +16,4 @@ const CLASSES = {
   activeOption: prefix + '-active-option',
 }
 
-export default CLASSES
+export default STATIC_CUSTOMISATION_CLASSES

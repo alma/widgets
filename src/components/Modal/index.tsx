@@ -6,6 +6,7 @@ import cx from 'classnames'
 
 import s from './Modal.module.css'
 import CrossIcon from 'assets/Cross'
+import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
 
 export type Props = Modal.Props & {
   children: ReactNode
@@ -44,7 +45,11 @@ const ControlledModal: FunctionComponent<Props> = ({
       {...props}
     >
       <div className={s.header}>
-        <button onClick={onClose} className={s.closeButton} data-testid="modal-close-button">
+        <button
+          onClick={onClose}
+          className={cx(s.closeButton, STATIC_CUSTOMISATION_CLASSES.closeButton)}
+          data-testid="modal-close-button"
+        >
           <CrossIcon />
         </button>
       </div>
