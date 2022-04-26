@@ -116,3 +116,12 @@ the number of days by which the first payment will be deferred
 - deferredMonths: `number` [optional]
 
 the number of months by which the first payment will be deferred
+
+## Customize CSS
+
+If you inspect the widgets, you can see two types of classes :
+
+- one that looks gibberish
+- one starting with `alma-`
+
+You want to use those starting with `alma-` to add your own css style.
