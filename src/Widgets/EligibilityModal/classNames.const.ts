@@ -1,7 +1,7 @@
 /**
  * Prefix classes to avoid name collisions.
  */
-const prefix = 'ALMA-EligibilityModal'
+const prefix = 'alma-EligibilityModal'
 
 /**
  * Class names for the **eligibility modale** widget.

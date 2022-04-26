@@ -1,7 +1,7 @@
 /**
  * Prefix classes to avoid name collisions.
  */
-const prefix = 'ALMA-PaymentPlans'
+const prefix = 'alma-PaymentPlans'
 
 /**
  * Class names for the **payment plans** widget.
