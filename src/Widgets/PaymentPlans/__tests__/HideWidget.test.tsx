@@ -3,11 +3,15 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
 import PaymentPlanWidget from '..'
+import { mockButtonPlans } from 'test/fixtures'
 
-/**
- * Tests that the widget hides completly if option is set to true or there is no plan.
- */
-export default function HideWidget(): void {
+jest.mock('utils/fetch', () => {
+  return {
+    fetchFromApi: async () => mockButtonPlans,
+  }
+})
+
+describe('Hide if not applicable', () => {
   it('hides if hideIfNotEligible is true', async () => {
     render(
       <PaymentPlanWidget
@@ -51,4 +55,4 @@ export default function HideWidget(): void {
     )
     await waitFor(() => expect(screen.queryByTestId('widget-button')).not.toBeInTheDocument())
   })
-}
+})

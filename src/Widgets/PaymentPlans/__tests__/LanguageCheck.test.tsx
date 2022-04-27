@@ -4,12 +4,15 @@ import React from 'react'
 import render from 'test'
 import { Locale } from 'types'
 import PaymentPlanWidget from '..'
+import { mockButtonPlans } from 'test/fixtures'
 
-/**
- * Tests the widget changes the text if the locale is changed
- *
- */
-export default function LanguageCheck(): void {
+jest.mock('utils/fetch', () => {
+  return {
+    fetchFromApi: async () => mockButtonPlans,
+  }
+})
+
+describe('Change language', () => {
   it(`into ${Locale.en}`, async () => {
     render(
       <PaymentPlanWidget
@@ -94,4 +97,4 @@ export default function LanguageCheck(): void {
     expect(screen.getByText(/te betalen op/)).toBeInTheDocument()
     expect(screen.getByText(/\(gratis\)/)).toBeInTheDocument()
   })
-}
+})

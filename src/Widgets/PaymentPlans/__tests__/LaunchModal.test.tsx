@@ -3,12 +3,16 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
 import PaymentPlanWidget from '..'
+import { mockButtonPlans } from 'test/fixtures'
 
-/**
- * Test that the modal can be launched properly and the proper plan is selected.
- */
-export default function LaunchModal(): void {
-  it('initializes correctly after hovering a plan', async () => {
+jest.mock('utils/fetch', () => {
+  return {
+    fetchFromApi: async () => mockButtonPlans,
+  }
+})
+
+describe('Modal initializes with the correct plan', () => {
+  it('after hovering a plan', async () => {
     render(
       <PaymentPlanWidget
         purchaseAmount={40000}
@@ -28,7 +32,7 @@ export default function LaunchModal(): void {
     checkModalElements()
   })
 
-  it('initializes correctly after clicking a plan (fallback for mobile)', async () => {
+  it('after clicking a plan (fallback for mobile)', async () => {
     render(
       <PaymentPlanWidget
         purchaseAmount={40000}
@@ -47,7 +51,7 @@ export default function LaunchModal(): void {
     checkModalElements()
   })
 
-  it('initializes correctly after a simple click on the badge, with no hover or click on a specific plan', async () => {
+  it('after a simple click on the badge, with no hover or click on a specific plan', async () => {
     render(
       <PaymentPlanWidget
         purchaseAmount={40000}
@@ -65,7 +69,7 @@ export default function LaunchModal(): void {
     expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
     expect(within(modalContainer).getAllByText('450,00 €')).toHaveLength(2)
   })
-}
+})
 
 async function checkModalElements(): Promise<void> {
   expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()

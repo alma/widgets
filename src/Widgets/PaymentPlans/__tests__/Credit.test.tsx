@@ -3,8 +3,18 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
 import PaymentPlanWidget from '..'
+import { mockButtonPlans } from 'test/fixtures'
 
-export default function Credit(animationDuration: number): void {
+jest.mock('utils/fetch', () => {
+  return {
+    fetchFromApi: async () => mockButtonPlans,
+  }
+})
+jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
+
+const animationDuration = 5600 // 5500 + Time for transition
+
+describe('PaymentPlan has credit', () => {
   beforeEach(async () => {
     render(
       <PaymentPlanWidget
@@ -59,4 +69,4 @@ export default function Credit(animationDuration: number): void {
     jest.advanceTimersByTime(animationDuration)
     expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
   })
-}
+})
