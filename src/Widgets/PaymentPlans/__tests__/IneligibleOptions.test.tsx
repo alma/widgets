@@ -3,14 +3,18 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
 import PaymentPlanWidget from '..'
+import { mockButtonPlans } from 'test/fixtures'
 
-/**
- * Test how the widget handles ineligible options.
- * What it shows and how it's displayed.
- *
- * @param animationDuration default duration between plan switch
- */
-export default function IneligibleOptions(animationDuration: number): void {
+jest.mock('utils/fetch', () => {
+  return {
+    fetchFromApi: async () => mockButtonPlans,
+  }
+})
+jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
+
+const animationDuration = 5600
+
+describe('PaymentPlan has ineligible options', () => {
   beforeEach(async () => {
     render(
       <PaymentPlanWidget
@@ -77,4 +81,4 @@ export default function IneligibleOptions(animationDuration: number): void {
     })
     expect(screen.getByText("Jusqu'à 200,00 €")).toBeInTheDocument()
   })
-}
+})

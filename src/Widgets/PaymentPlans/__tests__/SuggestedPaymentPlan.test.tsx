@@ -4,14 +4,18 @@ import React from 'react'
 import { act } from 'react-dom/test-utils'
 import render from 'test'
 import PaymentPlanWidget from '..'
+import { mockButtonPlans } from 'test/fixtures'
 
-/**
- * Tests how the widget handles different suggestedPaymentPlan values.
- * It can be either a number or an array and should stop transition if delay is not specified.
- *
- * @param animationDuration default duration between plan switch
- */
-export default function SuggestedPaymentPlan(animationDuration: number): void {
+jest.mock('utils/fetch', () => {
+  return {
+    fetchFromApi: async () => mockButtonPlans,
+  }
+})
+jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
+
+const animationDuration = 5600
+
+describe('PaymentPlan has suggestedPaymentPlan', () => {
   describe('as a number', () => {
     beforeEach(async () => {
       render(
@@ -143,4 +147,4 @@ export default function SuggestedPaymentPlan(animationDuration: number): void {
       expect(screen.getByText('3x').className).toContain('active')
     })
   })
-}
+})
