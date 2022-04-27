@@ -34,30 +34,13 @@ describe('No plans provided', () => {
     expect(screen.getByText('10x')).toBeInTheDocument()
   })
 
-  it(`iterates on each plan every ${animationDuration}ms then returns to the beginning`, () => {
+  it(`goes on next plan after ${animationDuration}ms`, () => {
     expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
     expect(screen.getByText(/\(sans frais\)/)).toBeInTheDocument()
     act(() => {
       jest.advanceTimersByTime(animationDuration)
     })
     expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
-    expect(screen.getByText(/\(sans frais\)/)).toBeInTheDocument()
-    act(() => {
-      jest.advanceTimersByTime(animationDuration)
-    })
-    expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
-    act(() => {
-      jest.advanceTimersByTime(animationDuration)
-    })
-    expect(screen.getByText('124,52 € puis 3 x 112,50 €')).toBeInTheDocument()
-    act(() => {
-      jest.advanceTimersByTime(animationDuration)
-    })
-    expect(screen.getByText(/47,73 € puis 9 x 47,66 €/)).toBeInTheDocument()
-    act(() => {
-      jest.advanceTimersByTime(animationDuration)
-    })
-    expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
     expect(screen.getByText(/\(sans frais\)/)).toBeInTheDocument()
   })
 })
