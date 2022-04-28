@@ -5,10 +5,15 @@ const filterELigibility = (
   configPlans?: ConfigPlan[],
 ): EligibilityPlanToDisplay[] => {
   // Remove p1x
-  const filteredEligibilityPlans = eligibilities.filter(
-    (plan) =>
-      !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0),
-  )
+  const filteredEligibilityPlans = eligibilities
+    .filter(
+      (plan) =>
+        !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0),
+    )
+    // Remove plan that has no payment_plan
+    .filter((plan) => plan.payment_plan)
+    // Remove plan that has a reason
+    .filter((plan) => !plan.reasons)
 
   // If no configPlans was provided, return eligibility response
   if (!configPlans) {
