@@ -10,9 +10,9 @@ const filterELigibility = (
       (plan) =>
         !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0),
     )
-    // Remove plan that has no payment_plan
+    // Keeps the plans that have a payment_plan property
     .filter((plan) => plan.payment_plan)
-    // Remove plan that has a reason
+    // Remove plans that have a reasons property
     .filter((plan) => !plan.reasons)
 
   // If no configPlans was provided, return eligibility response
