@@ -1735,6 +1735,12 @@ var filterELigibility = function filterELigibility(eligibilities, configPlans) {
   // Remove p1x
   var filteredEligibilityPlans = eligibilities.filter(function (plan) {
     return !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0);
+  }) // Keeps the plans that have a payment_plan property
+  .filter(function (plan) {
+    return plan.payment_plan;
+  }) // Remove plans that have a reasons property
+  .filter(function (plan) {
+    return !plan.reasons;
   }); // If no configPlans was provided, return eligibility response
 
   if (!configPlans) {

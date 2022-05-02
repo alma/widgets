@@ -34,6 +34,7 @@ export declare type EligibilityPlan = {
     deferred_days: number;
     deferred_months: number;
     eligible: boolean;
+    reasons?: Record<string, unknown>;
     installments_count: number;
     payment_plan: PaymentPlan[];
     purchase_amount: number;

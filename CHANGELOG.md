@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/alma/widgets/compare/v2.3.1...v2.3.2) (2022-05-02)
+
+
+### Bug Fixes
+
+* **eligibility:** filter plans that have no payment_plan and a reason ([#32](https://github.com/alma/widgets/issues/32)) ([7f8e3ac](https://github.com/alma/widgets/commit/7f8e3ac95f8c38f7a79d2058e2d072f7b5598fe7))
+
 ## [2.3.1](https://github.com/alma/widgets/compare/v2.3.0...v2.3.1) (2022-05-02)
 
 

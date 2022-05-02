@@ -1703,7 +1703,9 @@ async function fetchFromApi(url = '', data, headers) {
 
 const filterELigibility = (eligibilities, configPlans) => {
   // Remove p1x
-  const filteredEligibilityPlans = eligibilities.filter(plan => !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0)); // If no configPlans was provided, return eligibility response
+  const filteredEligibilityPlans = eligibilities.filter(plan => !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0)) // Keeps the plans that have a payment_plan property
+  .filter(plan => plan.payment_plan) // Remove plans that have a reasons property
+  .filter(plan => !plan.reasons); // If no configPlans was provided, return eligibility response
 
   if (!configPlans) {
     return filteredEligibilityPlans;
