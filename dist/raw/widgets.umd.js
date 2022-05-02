@@ -6178,7 +6178,7 @@
   	"payment-plan-strings.deferred": "{totalAmount} a pagar el {dueDate}",
   	"payment-plan-strings.ineligible-greater-than-max": "Hasta {maxAmount}",
   	"payment-plan-strings.ineligible-lower-than-min": "Desde {minAmount}",
-  	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} mensualidad de {othersInstallmentAmount}} other {{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} de {othersInstallmentAmount} mensualidades }}",
+  	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} mensualidad de {othersInstallmentAmount}} other {{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} mensualidades de {othersInstallmentAmount}}}",
   	"payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} plazos de {totalAmount}",
   	"payment-plan-strings.no-fee": "(sin intereses)"
   };
@@ -6222,7 +6222,7 @@
   	"payment-plan-strings.deferred": "{totalAmount} da pagare il {dueDate}",
   	"payment-plan-strings.ineligible-greater-than-max": "Disponibile fino a {maxAmount}",
   	"payment-plan-strings.ineligible-lower-than-min": "Pagamento rateale disponibile a partire da {minAmount}",
-  	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {Oggi paghi {firstInstallmentAmount} poi {numberOfRemainingInstallments} rata mensile di {othersInstallmentAmount}} other {Oggi paghi {firstInstallmentAmount} poi {numberOfRemainingInstallments} rate mensili di {othersInstallmentAmount}}}",
+  	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {Oggi paghi {firstInstallmentAmount} poi tra {numberOfRemainingInstallments} mese {othersInstallmentAmount}} other {Oggi paghi {firstInstallmentAmount} poi {numberOfRemainingInstallments} rate mensili di {othersInstallmentAmount}}}",
   	"payment-plan-strings.multiple-installments-same-amount": "In {installmentsCount} rate mensili di {totalAmount}",
   	"payment-plan-strings.no-fee": "(senza interessi)"
   };
@@ -6230,7 +6230,7 @@
   var messagesNL = {
   	"eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen.",
   	"eligibility-modal.bullet-2": "Vul de <strong>gevraagde informatie</strong> in.",
-  	"eligibility-modal.bullet-3": "Validatie van uw betaling <strong>onmiddellijk</strong>!",
+  	"eligibility-modal.bullet-3": "Onmiddelijke validatie van uw betaling ",
   	"eligibility-modal.cost": "Waarvan kosten",
   	"eligibility-modal.credit-commitment": "Een lening bindt je en moet worden terugbetaald. Ga na of u kunt terugbetalen voordat u zich vastlegt.",
   	"eligibility-modal.credit-cost": "Waarvan kosten van krediet",

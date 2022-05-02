@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/alma/widgets/compare/v2.3.0...v2.3.1) (2022-05-02)
+
+
+### Bug Fixes
+
+* update wrong translation ([#33](https://github.com/alma/widgets/issues/33)) ([578e6cd](https://github.com/alma/widgets/commit/578e6cd7550df6cc01fd7ad9968a4e8c9bb745e8))
+
 # [2.3.0](https://github.com/alma/widgets/compare/v2.2.10...v2.3.0) (2022-04-21)
 
 
