@@ -15,7 +15,7 @@
   "payment-plan-strings.deferred": "{totalAmount} a pagar el {dueDate}",
   "payment-plan-strings.ineligible-greater-than-max": "Hasta {maxAmount}",
   "payment-plan-strings.ineligible-lower-than-min": "Desde {minAmount}",
-  "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} mensualidad de {othersInstallmentAmount}} other {{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} de {othersInstallmentAmount} mensualidades }}",
+  "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} mensualidad de {othersInstallmentAmount}} other {{firstInstallmentAmount} hoy, después {numberOfRemainingInstallments} mensualidades de {othersInstallmentAmount}}}",
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} plazos de {totalAmount}",
   "payment-plan-strings.no-fee": "(sin intereses)"
 }
