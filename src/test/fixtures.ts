@@ -521,3 +521,7 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
     reasons: { purchase_amount: 'invalid_value' },
   },
 ]
+
+export const mockPlansWithoutDeferred = mockPlansAllEligible.filter(
+  (plan) => plan.deferred_days === 0 && plan.deferred_months === 0,
+)

@@ -28,17 +28,14 @@ const EligibilityModal: FunctionComponent<Props> = ({
   const ModalComponent = isBigScreen ? DesktopModal : MobileModal
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
   const currentPlan = eligiblePlans[currentPlanIndex]
-  const modalProps = {
-    eligibilityPlans: eligiblePlans,
-    currentPlanIndex,
-    setCurrentPlanIndex,
-    currentPlan,
-    status,
-  }
+
+  const isSomePlanDeferred = eligibilityPlans.some(
+    (plan) => plan.deferred_days > 0 || plan.deferred_months > 0,
+  )
 
   return (
     <Modal onClose={onClose} ariaHideApp={false} scrollable isOpen>
-      <ModalComponent {...modalProps}>
+      <ModalComponent isSomePlanDeferred={isSomePlanDeferred}>
         {status === apiStatus.PENDING && (
           <div className={s.loader}>
             <LoadingIndicator />
@@ -48,7 +45,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
           <div className={s.noEligibility}>
             <FormattedMessage
               id="eligibility-modal.no-eligibility"
-              defaultMessage="Oups, il semblerait que la simulation n'aie pas fonctionné."
+              defaultMessage="Oups, il semblerait que la simulation n'ait pas fonctionné."
             />
           </div>
         )}

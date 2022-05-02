@@ -6,10 +6,10 @@ import Logo from '../components/Logo'
 import Title from '../components/Title'
 import s from './DesktopModal.module.css'
 
-const DesktopModal: FC = ({ children }) => (
+const DesktopModal: FC<{ isSomePlanDeferred: boolean }> = ({ children, isSomePlanDeferred }) => (
   <div className={s.container} data-testid="modal-container">
     <div className={cx([s.block, s.left, STATIC_CUSTOMISATION_CLASSES.leftSide])}>
-      <Title />
+      <Title isSomePlanDeferred={isSomePlanDeferred} />
       <Info />
       <Logo />
     </div>

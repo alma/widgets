@@ -4,9 +4,9 @@ import Logo from '../components/Logo'
 import Title from '../components/Title'
 import s from './MobileModal.module.css'
 
-const MobileModal: FC = ({ children }) => (
+const MobileModal: FC<{ isSomePlanDeferred: boolean }> = ({ children, isSomePlanDeferred }) => (
   <div className={s.container} data-testid="modal-container">
-    <Title />
+    <Title isSomePlanDeferred={isSomePlanDeferred} />
     {children}
     <Info />
     <Logo />
