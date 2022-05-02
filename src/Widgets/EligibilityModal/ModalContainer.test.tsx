@@ -90,7 +90,7 @@ describe('ModalContainer', () => {
     it('should display error message', () => {
       const element = screen.getByTestId('modal-container')
       expect(element).toHaveTextContent(
-        "Oups, il semblerait que la simulation n'aie pas fonctionné.",
+        "Oups, il semblerait que la simulation n'ait pas fonctionné.",
       )
     })
   })

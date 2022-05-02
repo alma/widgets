@@ -1,6 +1,6 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react'
 import React from 'react'
-import { mockPlansAllEligible } from 'test/fixtures'
+import { mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
 import { apiStatus } from 'types'
 import { secondsToMilliseconds } from 'utils'
 import EligibilityModal from '.'
@@ -28,7 +28,7 @@ describe('Modal', () => {
       })
       expect(console.log).toBeCalledWith('modal closed')
     })
-    it('should display the payments plans provided in elgibility', () => {
+    it('should display the payments plans provided in eligibility', () => {
       expect(screen.getByTestId('modal-title-element')).toHaveTextContent(
         'Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.',
       )
@@ -42,7 +42,7 @@ describe('Modal', () => {
         'La validation de votre paiement instantanée !',
       )
     })
-    it('should display the payments plans provided in elgibility', () => {
+    it('should display the payments plans provided in eligibility', () => {
       expect(screen.getByText('J+30')).toBeInTheDocument()
       expect(screen.getByText('2x')).toBeInTheDocument()
       expect(screen.getByText('3x')).toBeInTheDocument()
@@ -57,7 +57,7 @@ describe('Modal', () => {
       expect(element).toHaveTextContent('0,00 €')
       expect(element).toHaveTextContent("Aujourd'hui")
     })
-    it('should display the the schedule for the selected payment plan', () => {
+    it('should display the schedule for the selected payment plan', () => {
       act(() => {
         fireEvent.click(screen.getByText('4x'))
       })
@@ -74,7 +74,7 @@ describe('Modal', () => {
       expect(element).toHaveTextContent('1 mars 2022')
       expect(element).toHaveTextContent('112,50 €')
     })
-    it('should display creadit specific features', () => {
+    it('should display credit specific features', () => {
       act(() => {
         fireEvent.click(screen.getByText('10x'))
       })
@@ -86,7 +86,24 @@ describe('Modal', () => {
       )
     })
   })
-  describe('plans and intial index provided', () => {
+  describe('No deferred plan provided', () => {
+    it('should display a different title', () => {
+      render(
+        <EligibilityModal
+          eligibilityPlans={mockPlansWithoutDeferred}
+          initialPlanIndex={0}
+          status={apiStatus.SUCCESS}
+          onClose={() => {
+            console.log('modal closed')
+          }}
+        />,
+      )
+      expect(screen.getByTestId('modal-title-element')).toHaveTextContent(
+        'Payez en plusieurs fois par carte bancaire avec Alma.',
+      )
+    })
+  })
+  describe('plans and initial index provided', () => {
     it('should open with the correct plan selected', () => {
       render(
         <EligibilityModal
@@ -125,7 +142,7 @@ describe('Modal', () => {
       )
       const element = screen.getByTestId('modal-container')
       expect(element).toHaveTextContent(
-        "Oups, il semblerait que la simulation n'aie pas fonctionné.",
+        "Oups, il semblerait que la simulation n'ait pas fonctionné.",
       )
     })
   })
