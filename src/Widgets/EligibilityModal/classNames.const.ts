@@ -1,11 +1,11 @@
 /**
  * Prefix classes to avoid name collisions.
  */
-const prefix = 'alma-EligibilityModal'
+const prefix = 'alma-eligibility-modal'
 
 /**
  * Class names for the **eligibility modale** widget.
- * Thoses classes are intended to be used by the **merchant developer**.
+ * Those classes are intended to be used by the **merchant developer**.
  */
 const STATIC_CUSTOMISATION_CLASSES = {
   leftSide: prefix + '-left-side',
@@ -14,7 +14,7 @@ const STATIC_CUSTOMISATION_CLASSES = {
   info: prefix + '-info',
   infoMessage: prefix + '-info-message',
   eligibilityOptions: prefix + '-eligibility-options',
-  activeOption: prefix + '-action-option',
+  activeOption: prefix + '-active-option',
   closeButton: prefix + '-close-button',
   scheduleDetails: prefix + '-schedule-details',
   scheduleTotal: prefix + '-schedule-total',
