@@ -147,7 +147,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
           className={cx(
             s.info,
             {
-              [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOptions)]:
+              [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
                 eligibilityPlans[current] && !eligibilityPlans[current].eligible,
             },
             STATIC_CUSTOMISATION_CLASSES.paymentInfo,
