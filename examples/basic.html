@@ -100,6 +100,8 @@
             <select onchange="renderPaymentPlans()" id="quantity">
               <option value="1">1</option>
               <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="10">10</option>
             </select>
             <h3>450 €</h3>
             <div id="alma-widget-payment-plans"></div>
@@ -120,9 +122,9 @@
 
     <script>
       var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
-      var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
 
       function renderPaymentPlans() {
+        var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
         widgets.add(Alma.Widgets.PaymentPlans, {
           container: '#alma-widget-payment-plans',
           purchaseAmount,
@@ -137,10 +139,11 @@
               minAmount: 5000,
               maxAmount: 90000,
             },
+
             {
               installmentsCount: 2,
               minAmount: 5000,
-              maxAmount: 9000,
+              maxAmount: 90000,
             },
             {
               installmentsCount: 4,
@@ -149,8 +152,8 @@
             },
             {
               installmentsCount: 10,
-              minAmount: 5000,
-              maxAmount: 90000,
+              minAmount: 45000,
+              maxAmount: 800000,
             },
           ],
         })
@@ -158,6 +161,7 @@
       renderPaymentPlans()
 
       function renderModal() {
+        var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
         return widgets.add(Alma.Widgets.Modal, {
           container: '#alma-widget-modal',
           clickableSelector: '#alma-open-modal-button',

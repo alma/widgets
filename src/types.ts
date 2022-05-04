@@ -37,9 +37,13 @@ export type EligibilityPlan = {
   eligible: boolean
   reasons?: Record<string, unknown>
   installments_count: number
-  payment_plan: PaymentPlan[]
+  payment_plan?: PaymentPlan[]
   purchase_amount: number
+  constraints?: {
+    purchase_amount?: { minimum: number; maximum: number }
+  }
 }
+
 export type EligibilityPlanToDisplay = EligibilityPlan & {
   minAmount?: number
   maxAmount?: number

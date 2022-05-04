@@ -1,19 +1,35 @@
 import { ConfigPlan, EligibilityPlan, EligibilityPlanToDisplay } from 'types'
 
+const isPlanEligible = (plan: EligibilityPlan, configPlan?: ConfigPlan) => {
+  if (!plan.eligible) {
+    return false
+  }
+  return configPlan
+    ? plan.purchase_amount >= configPlan?.minAmount && plan.purchase_amount <= configPlan?.maxAmount
+    : false
+}
+
+const getPaymentPlanBoundaries = (plan: EligibilityPlan, configPlan?: ConfigPlan) => {
+  // When the plan is not eligible, the purchase amount constraints is given from the merchant config
+  const purchaseAmountConstraints = plan.constraints?.purchase_amount
+  if (purchaseAmountConstraints && configPlan) {
+    return {
+      minAmount: Math.max(configPlan.minAmount, purchaseAmountConstraints?.minimum),
+      maxAmount: Math.min(configPlan.maxAmount, purchaseAmountConstraints?.maximum),
+    }
+  }
+  return configPlan ?? {}
+}
+
 const filterELigibility = (
   eligibilities: EligibilityPlan[],
   configPlans?: ConfigPlan[],
 ): EligibilityPlanToDisplay[] => {
   // Remove p1x
-  const filteredEligibilityPlans = eligibilities
-    .filter(
-      (plan) =>
-        !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0),
-    )
-    // Keeps the plans that have a payment_plan property
-    .filter((plan) => plan.payment_plan)
-    // Remove plans that have a reasons property
-    .filter((plan) => !plan.reasons)
+  const filteredEligibilityPlans = eligibilities.filter(
+    (plan) =>
+      !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0),
+  )
 
   // If no configPlans was provided, return eligibility response
   if (!configPlans) {
@@ -36,14 +52,11 @@ const filterELigibility = (
         eligibilityDeferredDays === configPlanDeferredDays
       )
     })
+
     return {
       ...plan,
-      eligible: relatedConfigPlan
-        ? plan.purchase_amount >= relatedConfigPlan?.minAmount &&
-          plan.purchase_amount <= relatedConfigPlan?.maxAmount
-        : false,
-      minAmount: relatedConfigPlan?.minAmount,
-      maxAmount: relatedConfigPlan?.maxAmount,
+      eligible: isPlanEligible(plan, relatedConfigPlan),
+      ...getPaymentPlanBoundaries(plan, relatedConfigPlan),
     }
   })
 }
