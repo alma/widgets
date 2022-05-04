@@ -133,7 +133,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
                   onMouseOut={onLeave}
                   className={cx(s.plan, {
                     [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: current === key,
-                    [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOptions)]:
+                    [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
                       !eligibilityPlan.eligible,
                   })}
                 >
