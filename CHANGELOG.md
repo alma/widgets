@@ -1,3 +1,12 @@
+## [2.3.3](https://github.com/alma/widgets/compare/v2.3.2...v2.3.3) (2022-05-04)
+
+
+### Bug Fixes
+
+* **sonar:** duplicate code ([82c8cab](https://github.com/alma/widgets/commit/82c8cabe92150a95a5fe7f2b51511f293cefbced))
+* **sonar:** duplicate code in tests ([4c25672](https://github.com/alma/widgets/commit/4c256723049589d5587b13da4697ad308d31a019))
+* **tests:** update files to have a .test suffix and renaming the folder tests into __tests__ ([0aa1336](https://github.com/alma/widgets/commit/0aa1336318fa39a80eacfea8a22de2b71a3e8d0e))
+
 ## [2.3.2](https://github.com/alma/widgets/compare/v2.3.1...v2.3.2) (2022-05-02)
 
 
