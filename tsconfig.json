@@ -18,6 +18,5 @@
     "jsx": "react",
     "resolveJsonModule": true,
   },
-  "include": ["src", "node_modules/microbundle/index.d.ts"],
-  "exclude": ["**/*.test.tsx"]
+  "include": ["src", "node_modules/microbundle/index.d.ts"]
 }
