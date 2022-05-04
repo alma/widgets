@@ -1,3 +1,10 @@
+## [2.3.4](https://github.com/alma/widgets/compare/v2.3.3...v2.3.4) (2022-05-04)
+
+
+### Bug Fixes
+
+* **dist-test:** exclude declaration file from dist/ ([#35](https://github.com/alma/widgets/issues/35)) ([94b3ce7](https://github.com/alma/widgets/commit/94b3ce76c7f41fa32e70bad94fb4f49e9197f8d5))
+
 ## [2.3.3](https://github.com/alma/widgets/compare/v2.3.2...v2.3.3) (2022-05-04)
 
 
