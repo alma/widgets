@@ -52,12 +52,9 @@ describe('ModalContainer', () => {
       act(() => {
         fireEvent.click(screen.getByText('4x'))
       })
-      const element = screen.getByTestId('modal-container')
+      const installmentElement = screen.getByTestId('modal-container')
+      const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [
-        'Total',
-        '462,02 €',
-        'Dont frais',
-        '12,02 €',
         '21 octobre 2021',
         '124,52 €',
         '21 novembre 2021',
@@ -67,8 +64,10 @@ describe('ModalContainer', () => {
         '21 janvier 2022',
         '112,50 €',
       ]
+      const expectedTotal = ['Total', '462,02 €', 'Dont frais', '12,02 €']
 
-      expect(element).toHaveTextContent(expectedInstallments.join(''))
+      expect(installmentElement).toHaveTextContent(expectedInstallments.join(''))
+      expect(totalElement).toHaveTextContent(expectedTotal.join(''))
     })
   })
 
@@ -117,12 +116,9 @@ describe('ModalContainer', () => {
     })
 
     it('should display the the schedule for the selected payment plan', () => {
-      const element = screen.getByTestId('modal-container')
+      const installmentElement = screen.getByTestId('modal-container')
+      const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [
-        'Total',
-        '451,35 €',
-        'Dont frais',
-        '1,35 €',
         '21 octobre 20211',
         '51,35 €',
         '21 novembre 20211',
@@ -130,8 +126,10 @@ describe('ModalContainer', () => {
         '21 décembre 20211',
         '50,00 €',
       ]
+      const expectedTotal = ['Total', '451,35 €', 'Dont frais', '1,35 €']
 
-      expect(element).toHaveTextContent(expectedInstallments.join(''))
+      expect(installmentElement).toHaveTextContent(expectedInstallments.join(''))
+      expect(totalElement).toHaveTextContent(expectedTotal.join(''))
     })
   })
 })

@@ -14,5 +14,6 @@ declare const STATIC_CUSTOMISATION_CLASSES: {
     scheduleDetails: string;
     scheduleTotal: string;
     scheduleCredit: string;
+    summary: string;
 };
 export default STATIC_CUSTOMISATION_CLASSES;
