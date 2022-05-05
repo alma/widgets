@@ -19,87 +19,94 @@ const Schedule: FC<{ currentPlan: EligibilityPlan }> = ({ currentPlan }) => {
   const intl = useIntl()
 
   return (
-    <div
-      className={cx(s.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails)}
-      data-testid="modal-installments-element"
-    >
-      <div className={cx(s.scheduleLine, s.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)}>
-        <span>
-          <FormattedMessage id="eligibility-modal.total" defaultMessage="Total" />
-        </span>
-        <span>
-          <FormattedNumber value={total} style="currency" currency="EUR" />
-        </span>
+    <>
+      <div
+        className={cx(s.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails)}
+        data-testid="modal-installments-element"
+      >
+        {(currentPlan?.payment_plan || []).map((installment, index) => (
+          <div className={s.scheduleLine} key={index}>
+            <span>
+              {isToday(installment.due_date * 1000) ? (
+                <FormattedMessage id="installments.today" defaultMessage="Aujourd'hui" />
+              ) : (
+                <FormattedDate
+                  value={installment.due_date * 1000}
+                  day="numeric"
+                  month="long"
+                  year="numeric"
+                />
+              )}
+            </span>
+            <span>
+              <FormattedNumber
+                value={priceFromCents(installment.total_amount)}
+                style="currency"
+                currency="EUR"
+              />
+            </span>
+          </div>
+        ))}
       </div>
       <div
-        className={cx(s.scheduleLine, s.creditCost, STATIC_CUSTOMISATION_CLASSES.scheduleCredit)}
+        className={cx(s.summary, STATIC_CUSTOMISATION_CLASSES.summary)}
+        data-testid="modal-summary"
       >
-        {isCredit ? (
+        <div className={cx(s.scheduleLine, s.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)}>
           <span>
-            <FormattedMessage
-              id="eligibility-modal.credit-cost"
-              defaultMessage="Dont coût du crédit"
-            />
-          </span>
-        ) : (
-          <span>
-            <FormattedMessage id="eligibility-modal.cost" defaultMessage="Dont frais" />
-          </span>
-        )}
-        <span>
-          {isCredit ? (
-            <FormattedMessage
-              id="eligibility-modal.credit-cost-amount"
-              defaultMessage="{creditCost} (TAEG {TAEG})"
-              values={{
-                creditCost: intl.formatNumber(creditCost, {
-                  style: 'currency',
-                  currency: 'EUR',
-                }),
-                TAEG: intl.formatNumber(TAEG ?? 0, {
-                  style: 'percent',
-                  maximumFractionDigits: 2,
-                }),
-              }}
-            />
-          ) : (
-            <FormattedNumber value={customerFees} style="currency" currency="EUR" />
-          )}
-        </span>
-      </div>
-      {(currentPlan?.payment_plan || []).map((installment, index) => (
-        <div className={s.scheduleLine} key={index}>
-          <span>
-            {isToday(installment.due_date * 1000) ? (
-              <FormattedMessage id="installments.today" defaultMessage="Aujourd'hui" />
-            ) : (
-              <FormattedDate
-                value={installment.due_date * 1000}
-                day="numeric"
-                month="long"
-                year="numeric"
-              />
-            )}
+            <FormattedMessage id="eligibility-modal.total" defaultMessage="Total" />
           </span>
           <span>
-            <FormattedNumber
-              value={priceFromCents(installment.total_amount)}
-              style="currency"
-              currency="EUR"
-            />
+            <FormattedNumber value={total} style="currency" currency="EUR" />
           </span>
         </div>
-      ))}
-      {isCredit && (
-        <p className={s.creditMessage}>
-          <FormattedMessage
-            id="eligibility-modal.credit-commitment"
-            defaultMessage="Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement
+        <div
+          className={cx(s.scheduleLine, s.creditCost, STATIC_CUSTOMISATION_CLASSES.scheduleCredit)}
+        >
+          {isCredit ? (
+            <span>
+              <FormattedMessage
+                id="eligibility-modal.credit-cost"
+                defaultMessage="Dont coût du crédit"
+              />
+            </span>
+          ) : (
+            <span>
+              <FormattedMessage id="eligibility-modal.cost" defaultMessage="Dont frais" />
+            </span>
+          )}
+          <span className={s.creditCostAmount}>
+            {isCredit ? (
+              <FormattedMessage
+                id="eligibility-modal.credit-cost-amount"
+                defaultMessage="{creditCost} (TAEG {TAEG})"
+                values={{
+                  creditCost: intl.formatNumber(creditCost, {
+                    style: 'currency',
+                    currency: 'EUR',
+                  }),
+                  TAEG: intl.formatNumber(TAEG ?? 0, {
+                    style: 'percent',
+                    maximumFractionDigits: 2,
+                  }),
+                }}
+              />
+            ) : (
+              <FormattedNumber value={customerFees} style="currency" currency="EUR" />
+            )}
+          </span>
+        </div>
+        {isCredit && (
+          <p className={s.creditMessage}>
+            <FormattedMessage
+              id="eligibility-modal.credit-commitment"
+              defaultMessage="Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement
               avant de vous engager."
-          />
-        </p>
-      )}
-    </div>
+            />
+          </p>
+        )}
+      </div>
+    </>
   )
 }
 
