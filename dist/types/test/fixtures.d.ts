@@ -74,3 +74,4 @@ export declare const mockEligibilityPaymentPlanWithIneligiblePlan: ({
     customer_total_cost_bps?: undefined;
     payment_plan?: undefined;
 })[];
+export declare const mockPlansWithoutDeferred: EligibilityPlan[];

@@ -1835,8 +1835,9 @@ var messagesDE = {
 	"eligibility-modal.credit-commitment": "Ein Kredit verpflichtet Sie und muss zurückgezahlt werden. Prüfen Sie Ihre Rückzahlungsfähigkeit, bevor Sie sich verpflichten.",
 	"eligibility-modal.credit-cost": "Davon Kreditkosten",
 	"eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
-	"eligibility-modal.no-eligibility": "Ups, die Simulation scheint nicht funktioniert zu haben.",
-	"eligibility-modal.title": "<highlighted>Bezahlen Sie in Raten</highlighted> oder später per Kreditkarte mit Alma.",
+	"eligibility-modal.no-eligibility": "Ups, die Simulation hat anscheinend nicht funktioniert.",
+	"eligibility-modal.title": "<highlighted>Bezahlen Sie in Raten</highlighted> per Kreditkarte mit Alma.",
+	"eligibility-modal.title-deferred": "<highlighted>Bezahlen Sie in Raten</highlighted> oder später per Kreditkarte mit Alma.",
 	"eligibility-modal.total": "Insgesamt",
 	"installments.today": "Heutzutage",
 	"payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
@@ -1858,7 +1859,8 @@ var messagesEN = {
 	"eligibility-modal.credit-cost": "Of which cost of credit",
 	"eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
 	"eligibility-modal.no-eligibility": "Oops, looks like the simulation didn't work.",
-	"eligibility-modal.title": "<highlighted>Pay in installments</highlighted> or later by credit card with Alma.",
+	"eligibility-modal.title": "<highlighted>Pay in installments</highlighted> by credit card with Alma.",
+	"eligibility-modal.title-deferred": "<highlighted>Pay in installments</highlighted> or later by credit card with Alma.",
 	"eligibility-modal.total": "Total",
 	"installments.today": "Today",
 	"payment-plan-strings.day-abbreviation": "T{numberOfDeferredDays}",
@@ -1880,7 +1882,8 @@ var messagesES = {
 	"eligibility-modal.credit-cost": "Coste de crédito (incl. en el total)",
 	"eligibility-modal.credit-cost-amount": "{creditCost} (TAE {TAEG})",
 	"eligibility-modal.no-eligibility": "Uy, parece que la simulación no ha funcionado.",
-	"eligibility-modal.title": "<highlighted>Paga a plazos</highlighted> o más adelante con tu tarjeta, a través de Alma.",
+	"eligibility-modal.title": "<highlighted>Paga a plazos</highlighted> con tarjeta de crédito con Alma.",
+	"eligibility-modal.title-deferred": "<highlighted>Paga a plazos</highlighted> o más adelante con tu tarjeta, a través de Alma.",
 	"eligibility-modal.total": "Total",
 	"installments.today": "Hoy",
 	"payment-plan-strings.day-abbreviation": "D{numberOfDeferredDays}",
@@ -1901,8 +1904,9 @@ var messagesFR = {
 	"eligibility-modal.credit-commitment": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
 	"eligibility-modal.credit-cost": "Dont coût du crédit",
 	"eligibility-modal.credit-cost-amount": "{creditCost} (TAEG {TAEG})",
-	"eligibility-modal.no-eligibility": "Oups, il semblerait que la simulation n'aie pas fonctionné.",
-	"eligibility-modal.title": "<highlighted>Payez en plusieurs fois</highlighted> ou plus tard par carte bancaire avec Alma.",
+	"eligibility-modal.no-eligibility": "Oups, il semblerait que la simulation n'ait pas fonctionné.",
+	"eligibility-modal.title": "<highlighted>Payez en plusieurs fois</highlighted> par carte bancaire avec Alma.",
+	"eligibility-modal.title-deferred": "<highlighted>Payez en plusieurs fois</highlighted> ou plus tard par carte bancaire avec Alma.",
 	"eligibility-modal.total": "Total",
 	"installments.today": "Aujourd'hui",
 	"payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
@@ -1924,7 +1928,8 @@ var messagesIT = {
 	"eligibility-modal.credit-cost": "Di cui commissioni",
 	"eligibility-modal.credit-cost-amount": "{creditCost} (TAEG {TAEG})",
 	"eligibility-modal.no-eligibility": "Ops, sembra che la simulazione non abbia funzionato.",
-	"eligibility-modal.title": "<highlighted>Paga a rate</highlighted> e posticipa il pagamento con Alma, senza interessi.",
+	"eligibility-modal.title": "<highlighted>Paga a rate</highlighted> con carta di credito con Alma.",
+	"eligibility-modal.title-deferred": "<highlighted>Paga a rate</highlighted> e posticipa il pagamento con Alma, senza interessi.",
 	"eligibility-modal.total": "Totale",
 	"installments.today": "Oggi",
 	"payment-plan-strings.day-abbreviation": "G{numberOfDeferredDays}",
@@ -1946,7 +1951,8 @@ var messagesNL = {
 	"eligibility-modal.credit-cost": "Waarvan kosten van krediet",
 	"eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
 	"eligibility-modal.no-eligibility": "Oeps, het lijkt erop dat de simulatie niet werkte.",
-	"eligibility-modal.title": "<highlighted>Betaal in termijnen</highlighted> of later per credit card met Alma.",
+	"eligibility-modal.title": "<highlighted>Betaal in termijnen</highlighted> met kredietkaart bij Alma.",
+	"eligibility-modal.title-deferred": "<highlighted>Betaal in termijnen</highlighted> of later per credit card met Alma.",
 	"eligibility-modal.total": "Totaal",
 	"installments.today": "Tegenwoordig",
 	"payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
@@ -2553,13 +2559,22 @@ var Logo = function Logo() {
 
 var s$6 = {"title":"_3ERx-"};
 
-var Title = function Title() {
+var Title = function Title(_ref) {
+  var isSomePlanDeferred = _ref.isSomePlanDeferred;
   return /*#__PURE__*/React.createElement("div", {
     className: cx(s$6.title, STATIC_CUSTOMISATION_CLASSES.title),
     "data-testid": "modal-title-element"
-  }, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "eligibility-modal.title",
+  }, isSomePlanDeferred ? /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: 'eligibility-modal.title-deferred',
     defaultMessage: "<highlighted>Payez en plusieurs fois</highlighted> ou plus tard par carte bancaire avec Alma.",
+    values: {
+      highlighted: function highlighted() {
+        return /*#__PURE__*/React.createElement("span", null, [].slice.call(arguments));
+      }
+    }
+  }) : /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: 'eligibility-modal.title',
+    defaultMessage: "<highlighted>Payez en plusieurs fois</highlighted> par carte bancaire avec Alma.",
     values: {
       highlighted: function highlighted() {
         return /*#__PURE__*/React.createElement("span", null, [].slice.call(arguments));
@@ -2571,13 +2586,16 @@ var Title = function Title() {
 var s$7 = {"container":"_21g6u","block":"_3zaP5","left":"_2SBRC"};
 
 var DesktopModal = function DesktopModal(_ref) {
-  var children = _ref.children;
+  var children = _ref.children,
+      isSomePlanDeferred = _ref.isSomePlanDeferred;
   return /*#__PURE__*/React.createElement("div", {
     className: s$7.container,
     "data-testid": "modal-container"
   }, /*#__PURE__*/React.createElement("div", {
     className: cx([s$7.block, s$7.left, STATIC_CUSTOMISATION_CLASSES.leftSide])
-  }, /*#__PURE__*/React.createElement(Title, null), /*#__PURE__*/React.createElement(Info, null), /*#__PURE__*/React.createElement(Logo, null)), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(Title, {
+    isSomePlanDeferred: isSomePlanDeferred
+  }), /*#__PURE__*/React.createElement(Info, null), /*#__PURE__*/React.createElement(Logo, null)), /*#__PURE__*/React.createElement("div", {
     className: cx(s$7.block, STATIC_CUSTOMISATION_CLASSES.rightSide)
   }, children));
 };
@@ -2587,11 +2605,14 @@ var s$8 = {"noEligibility":"_17qNJ","loader":"_2oTJq"};
 var s$9 = {"container":"_2G7Ch"};
 
 var MobileModal = function MobileModal(_ref) {
-  var children = _ref.children;
+  var children = _ref.children,
+      isSomePlanDeferred = _ref.isSomePlanDeferred;
   return /*#__PURE__*/React.createElement("div", {
     className: s$9.container,
     "data-testid": "modal-container"
-  }, /*#__PURE__*/React.createElement(Title, null), children, /*#__PURE__*/React.createElement(Info, null), /*#__PURE__*/React.createElement(Logo, null));
+  }, /*#__PURE__*/React.createElement(Title, {
+    isSomePlanDeferred: isSomePlanDeferred
+  }), children, /*#__PURE__*/React.createElement(Info, null), /*#__PURE__*/React.createElement(Logo, null));
 };
 
 var EligibilityModal = function EligibilityModal(_ref) {
@@ -2612,25 +2633,23 @@ var EligibilityModal = function EligibilityModal(_ref) {
     return plan.eligible;
   });
   var currentPlan = eligiblePlans[currentPlanIndex];
-  var modalProps = {
-    eligibilityPlans: eligiblePlans,
-    currentPlanIndex: currentPlanIndex,
-    setCurrentPlanIndex: setCurrentPlanIndex,
-    currentPlan: currentPlan,
-    status: status
-  };
+  var isSomePlanDeferred = eligibilityPlans.some(function (plan) {
+    return plan.deferred_days > 0 || plan.deferred_months > 0;
+  });
   return /*#__PURE__*/React.createElement(ControlledModal, {
     onClose: onClose,
     ariaHideApp: false,
     scrollable: true,
     isOpen: true
-  }, /*#__PURE__*/React.createElement(ModalComponent, Object.assign({}, modalProps), status === apiStatus.PENDING && /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(ModalComponent, {
+    isSomePlanDeferred: isSomePlanDeferred
+  }, status === apiStatus.PENDING && /*#__PURE__*/React.createElement("div", {
     className: s$8.loader
   }, /*#__PURE__*/React.createElement(LoadingIndicator, null)), status === apiStatus.SUCCESS && eligiblePlans.length === 0 && /*#__PURE__*/React.createElement("div", {
     className: s$8.noEligibility
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "eligibility-modal.no-eligibility",
-    defaultMessage: "Oups, il semblerait que la simulation n'aie pas fonctionn\xE9."
+    defaultMessage: "Oups, il semblerait que la simulation n'ait pas fonctionn\xE9."
   })), status === apiStatus.SUCCESS && eligiblePlans.length >= 1 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(EligibilityPlansButtons, {
     eligibilityPlans: eligiblePlans,
     currentPlanIndex: currentPlanIndex,
