@@ -23,6 +23,19 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
   }
 }
 
+const withNoFee = (payment: EligibilityPlanToDisplay) => {
+  if (
+    payment.payment_plan?.every((plan) => plan.customer_fee === 0 && plan.customer_interest === 0)
+  ) {
+    return (
+      <>
+        {' '}
+        <FormattedMessage id="payment-plan-strings.no-fee" defaultMessage={'(sans frais)'} />
+      </>
+    )
+  }
+}
+
 export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNode => {
   const {
     deferred_days,
@@ -32,21 +45,9 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     purchase_amount: purchaseAmount,
     minAmount = 0,
     maxAmount = 0,
+    payment_plan,
   } = payment
   const deferredDaysCount = deferred_days + deferred_months * 30
-
-  const withNoFee = () => {
-    if (
-      payment.payment_plan.every((plan) => plan.customer_fee === 0 && plan.customer_interest === 0)
-    ) {
-      return (
-        <>
-          {' '}
-          <FormattedMessage id="payment-plan-strings.no-fee" defaultMessage={'(sans frais)'} />
-        </>
-      )
-    }
-  }
 
   if (!eligible) {
     return purchaseAmount > maxAmount ? (
@@ -70,6 +71,13 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
         }}
       />
     )
+  } else if (!payment_plan) {
+    /* This error should never happen. We added this condition to avoid a typescript warning on
+         payment_plan possibly undefined. As far as we know, it only happens when the plan is not
+         eligible, which is checked above. */
+    throw Error(
+      `No payment plan provided for payment in ${installmentsCount} installments. Please contact us if you see this error.`,
+    )
   } else if (deferredDaysCount !== 0 && installmentsCount === 1) {
     return (
       <>
@@ -79,14 +87,14 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
           values={{
             totalAmount: (
               <FormattedNumber
-                value={priceFromCents(payment.payment_plan[0].total_amount)}
+                value={priceFromCents(payment_plan[0].total_amount)}
                 style="currency"
                 currency="EUR"
               />
             ),
             dueDate: (
               <FormattedDate
-                value={secondsToMilliseconds(payment.payment_plan[0].due_date)}
+                value={secondsToMilliseconds(payment_plan[0].due_date)}
                 day="numeric"
                 month="long"
                 year="numeric"
@@ -94,13 +102,13 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
             ),
           }}
         />
-        {withNoFee()}
+        {withNoFee(payment)}
       </>
     )
   } else if (installmentsCount > 0) {
-    const areInstallmentsOfSameAmount = payment.payment_plan.every(
+    const areInstallmentsOfSameAmount = payment_plan?.every(
       (installment, index) =>
-        index === 0 || installment.total_amount === payment.payment_plan[0].total_amount,
+        index === 0 || installment.total_amount === payment_plan[0].total_amount,
     )
 
     if (areInstallmentsOfSameAmount) {
@@ -112,7 +120,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
             values={{
               totalAmount: (
                 <FormattedNumber
-                  value={priceFromCents(payment.payment_plan[0].total_amount)}
+                  value={priceFromCents(payment_plan[0].total_amount)}
                   style="currency"
                   currency="EUR"
                 />
@@ -120,7 +128,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
               installmentsCount,
             }}
           />
-          {withNoFee()}
+          {withNoFee(payment)}
         </>
       )
     }
@@ -133,7 +141,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
           values={{
             firstInstallmentAmount: (
               <FormattedNumber
-                value={priceFromCents(payment.payment_plan[0].total_amount)}
+                value={priceFromCents(payment_plan[0].total_amount)}
                 style="currency"
                 currency="EUR"
               />
@@ -141,14 +149,14 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
             numberOfRemainingInstallments: installmentsCount - 1,
             othersInstallmentAmount: (
               <FormattedNumber
-                value={priceFromCents(payment.payment_plan[1].total_amount)}
+                value={priceFromCents(payment_plan[1].total_amount)}
                 style="currency"
                 currency="EUR"
               />
             ),
           }}
         />
-        {withNoFee()}
+        {withNoFee(payment)}
       </>
     )
   }

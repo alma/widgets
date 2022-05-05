@@ -453,3 +453,71 @@ export const mockButtonPlans = [
     purchase_amount: 45000,
   },
 ]
+
+export const mockEligibilityPaymentPlanWithIneligiblePlan = [
+  {
+    customer_fee: 0,
+    customer_interest: 0,
+    customer_total_cost_amount: 0,
+    customer_total_cost_bps: 0,
+    deferred_days: 30,
+    deferred_months: 0,
+    eligible: true,
+    installments_count: 1,
+    payment_plan: [
+      {
+        customer_fee: 0,
+        customer_interest: 0,
+        due_date: 1654262242,
+        purchase_amount: 45000,
+        total_amount: 45000,
+      },
+    ],
+    purchase_amount: 45000,
+  },
+  {
+    customer_fee: 0,
+    customer_interest: 0,
+    customer_total_cost_amount: 0,
+    customer_total_cost_bps: 0,
+    deferred_days: 0,
+    deferred_months: 0,
+    eligible: true,
+    installments_count: 2,
+    payment_plan: [
+      {
+        customer_fee: 0,
+        customer_interest: 0,
+        due_date: 1651670242,
+        purchase_amount: 22500,
+        total_amount: 22500,
+      },
+      {
+        customer_fee: 0,
+        customer_interest: 0,
+        due_date: 1654348642,
+        purchase_amount: 22500,
+        total_amount: 22500,
+      },
+    ],
+    purchase_amount: 45000,
+  },
+  {
+    constraints: { purchase_amount: { maximum: 20000, minimum: 9000 } },
+    deferred_days: 0,
+    deferred_months: 0,
+    eligible: false,
+    installments_count: 4,
+    purchase_amount: 45000,
+    reasons: { purchase_amount: 'invalid_value' },
+  },
+  {
+    constraints: { purchase_amount: { maximum: 135000, minimum: 90000 } },
+    deferred_days: 0,
+    deferred_months: 0,
+    eligible: false,
+    installments_count: 10,
+    purchase_amount: 45000,
+    reasons: { purchase_amount: 'invalid_value' },
+  },
+]
