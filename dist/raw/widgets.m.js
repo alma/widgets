@@ -2049,16 +2049,34 @@ var fetchFromApi = function fetchFromApi(url, data, headers) {
   }
 };
 
+var isPlanEligible = function isPlanEligible(plan, configPlan) {
+  if (!plan.eligible) {
+    return false;
+  }
+
+  return configPlan ? plan.purchase_amount >= (configPlan == null ? void 0 : configPlan.minAmount) && plan.purchase_amount <= (configPlan == null ? void 0 : configPlan.maxAmount) : false;
+};
+
+var getPaymentPlanBoundaries = function getPaymentPlanBoundaries(plan, configPlan) {
+  var _plan$constraints;
+
+  // When the plan is not eligible, the purchase amount constraints is given from the merchant config
+  var purchaseAmountConstraints = (_plan$constraints = plan.constraints) == null ? void 0 : _plan$constraints.purchase_amount;
+
+  if (purchaseAmountConstraints && configPlan) {
+    return {
+      minAmount: Math.max(configPlan.minAmount, purchaseAmountConstraints == null ? void 0 : purchaseAmountConstraints.minimum),
+      maxAmount: Math.min(configPlan.maxAmount, purchaseAmountConstraints == null ? void 0 : purchaseAmountConstraints.maximum)
+    };
+  }
+
+  return configPlan != null ? configPlan : {};
+};
+
 var filterELigibility = function filterELigibility(eligibilities, configPlans) {
   // Remove p1x
   var filteredEligibilityPlans = eligibilities.filter(function (plan) {
     return !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0);
-  }) // Keeps the plans that have a payment_plan property
-  .filter(function (plan) {
-    return plan.payment_plan;
-  }) // Remove plans that have a reasons property
-  .filter(function (plan) {
-    return !plan.reasons;
   }); // If no configPlans was provided, return eligibility response
 
   if (!configPlans) {
@@ -2074,10 +2092,8 @@ var filterELigibility = function filterELigibility(eligibilities, configPlans) {
       return plan.installments_count === configPlan.installmentsCount && eligibilityDeferredDays === configPlanDeferredDays;
     });
     return _extends({}, plan, {
-      eligible: relatedConfigPlan ? plan.purchase_amount >= (relatedConfigPlan == null ? void 0 : relatedConfigPlan.minAmount) && plan.purchase_amount <= (relatedConfigPlan == null ? void 0 : relatedConfigPlan.maxAmount) : false,
-      minAmount: relatedConfigPlan == null ? void 0 : relatedConfigPlan.minAmount,
-      maxAmount: relatedConfigPlan == null ? void 0 : relatedConfigPlan.maxAmount
-    });
+      eligible: isPlanEligible(plan, relatedConfigPlan)
+    }, getPaymentPlanBoundaries(plan, relatedConfigPlan));
   });
 };
 
@@ -2151,6 +2167,29 @@ function CrossIcon(_ref) {
   }));
 }
 
+/**
+ * Prefix classes to avoid name collisions.
+ */
+var prefix = 'alma-eligibility-modal';
+/**
+ * Class names for the **eligibility modale** widget.
+ * Those classes are intended to be used by the **merchant developer**.
+ */
+
+var STATIC_CUSTOMISATION_CLASSES = {
+  leftSide: prefix + '-left-side',
+  rightSide: prefix + '-right-side',
+  title: prefix + '-title',
+  info: prefix + '-info',
+  infoMessage: prefix + '-info-message',
+  eligibilityOptions: prefix + '-eligibility-options',
+  activeOption: prefix + '-active-option',
+  closeButton: prefix + '-close-button',
+  scheduleDetails: prefix + '-schedule-details',
+  scheduleTotal: prefix + '-schedule-total',
+  scheduleCredit: prefix + '-schedule-credit'
+};
+
 var _excluded = ["children", "isOpen", "onClose", "className", "contentClassName", "scrollable"];
 
 var ControlledModal = function ControlledModal(_ref) {
@@ -2183,7 +2222,7 @@ var ControlledModal = function ControlledModal(_ref) {
     className: s$1.header
   }, /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
-    className: s$1.closeButton,
+    className: cx(s$1.closeButton, STATIC_CUSTOMISATION_CLASSES.closeButton),
     "data-testid": "modal-close-button"
   }, /*#__PURE__*/React.createElement(CrossIcon, null))), /*#__PURE__*/React.createElement("div", {
     className: cx(s$1.content, contentClassName, (_cx = {}, _cx[s$1.contentScrollable] = scrollable, _cx))
@@ -2208,6 +2247,20 @@ var paymentPlanShorthandName = function paymentPlanShorthandName(payment) {
     return installmentsCount + "x";
   }
 };
+
+var withNoFee = function withNoFee(payment) {
+  var _payment$payment_plan;
+
+  if ((_payment$payment_plan = payment.payment_plan) != null && _payment$payment_plan.every(function (plan) {
+    return plan.customer_fee === 0 && plan.customer_interest === 0;
+  })) {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, ' ', /*#__PURE__*/React.createElement(FormattedMessage, {
+      id: "payment-plan-strings.no-fee",
+      defaultMessage: '(sans frais)'
+    }));
+  }
+};
+
 var paymentPlanInfoText = function paymentPlanInfoText(payment) {
   var deferred_days = payment.deferred_days,
       deferred_months = payment.deferred_months,
@@ -2217,19 +2270,9 @@ var paymentPlanInfoText = function paymentPlanInfoText(payment) {
       _payment$minAmount = payment.minAmount,
       minAmount = _payment$minAmount === void 0 ? 0 : _payment$minAmount,
       _payment$maxAmount = payment.maxAmount,
-      maxAmount = _payment$maxAmount === void 0 ? 0 : _payment$maxAmount;
+      maxAmount = _payment$maxAmount === void 0 ? 0 : _payment$maxAmount,
+      payment_plan = payment.payment_plan;
   var deferredDaysCount = deferred_days + deferred_months * 30;
-
-  var withNoFee = function withNoFee() {
-    if (payment.payment_plan.every(function (plan) {
-      return plan.customer_fee === 0 && plan.customer_interest === 0;
-    })) {
-      return /*#__PURE__*/React.createElement(React.Fragment, null, ' ', /*#__PURE__*/React.createElement(FormattedMessage, {
-        id: "payment-plan-strings.no-fee",
-        defaultMessage: '(sans frais)'
-      }));
-    }
-  };
 
   if (!eligible) {
     return purchaseAmount > maxAmount ? /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2253,27 +2296,32 @@ var paymentPlanInfoText = function paymentPlanInfoText(payment) {
         })
       }
     });
+  } else if (!payment_plan) {
+    /* This error should never happen. We added this condition to avoid a typescript warning on
+         payment_plan possibly undefined. As far as we know, it only happens when the plan is not
+         eligible, which is checked above. */
+    throw Error("No payment plan provided for payment in " + installmentsCount + " installments. Please contact us if you see this error.");
   } else if (deferredDaysCount !== 0 && installmentsCount === 1) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FormattedMessage, {
       id: "payment-plan-strings.deferred",
       defaultMessage: "{totalAmount} \xE0 payer le {dueDate}",
       values: {
         totalAmount: /*#__PURE__*/React.createElement(FormattedNumber, {
-          value: priceFromCents(payment.payment_plan[0].total_amount),
+          value: priceFromCents(payment_plan[0].total_amount),
           style: "currency",
           currency: "EUR"
         }),
         dueDate: /*#__PURE__*/React.createElement(FormattedDate, {
-          value: secondsToMilliseconds(payment.payment_plan[0].due_date),
+          value: secondsToMilliseconds(payment_plan[0].due_date),
           day: "numeric",
           month: "long",
           year: "numeric"
         })
       }
-    }), withNoFee());
+    }), withNoFee(payment));
   } else if (installmentsCount > 0) {
-    var areInstallmentsOfSameAmount = payment.payment_plan.every(function (installment, index) {
-      return index === 0 || installment.total_amount === payment.payment_plan[0].total_amount;
+    var areInstallmentsOfSameAmount = payment_plan == null ? void 0 : payment_plan.every(function (installment, index) {
+      return index === 0 || installment.total_amount === payment_plan[0].total_amount;
     });
 
     if (areInstallmentsOfSameAmount) {
@@ -2282,13 +2330,13 @@ var paymentPlanInfoText = function paymentPlanInfoText(payment) {
         defaultMessage: "{installmentsCount} x {totalAmount}",
         values: {
           totalAmount: /*#__PURE__*/React.createElement(FormattedNumber, {
-            value: priceFromCents(payment.payment_plan[0].total_amount),
+            value: priceFromCents(payment_plan[0].total_amount),
             style: "currency",
             currency: "EUR"
           }),
           installmentsCount: installmentsCount
         }
-      }), withNoFee());
+      }), withNoFee(payment));
     }
 
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2296,18 +2344,18 @@ var paymentPlanInfoText = function paymentPlanInfoText(payment) {
       defaultMessage: "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
       values: {
         firstInstallmentAmount: /*#__PURE__*/React.createElement(FormattedNumber, {
-          value: priceFromCents(payment.payment_plan[0].total_amount),
+          value: priceFromCents(payment_plan[0].total_amount),
           style: "currency",
           currency: "EUR"
         }),
         numberOfRemainingInstallments: installmentsCount - 1,
         othersInstallmentAmount: /*#__PURE__*/React.createElement(FormattedNumber, {
-          value: priceFromCents(payment.payment_plan[1].total_amount),
+          value: priceFromCents(payment_plan[1].total_amount),
           style: "currency",
           currency: "EUR"
         })
       }
-    }), withNoFee());
+    }), withNoFee(payment));
   }
 
   return /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2323,13 +2371,13 @@ var EligibilityPlansButtons = function EligibilityPlansButtons(_ref) {
       currentPlanIndex = _ref.currentPlanIndex,
       setCurrentPlanIndex = _ref.setCurrentPlanIndex;
   return /*#__PURE__*/React.createElement("div", {
-    className: s$2.buttons
+    className: cx(s$2.buttons, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)
   }, eligibilityPlans.map(function (eligibilityPlan, index) {
     var _cx;
 
     return /*#__PURE__*/React.createElement("button", {
       key: index,
-      className: cx((_cx = {}, _cx[s$2.active] = index === currentPlanIndex, _cx)),
+      className: cx((_cx = {}, _cx[cx(s$2.active, STATIC_CUSTOMISATION_CLASSES.activeOption)] = index === currentPlanIndex, _cx)),
       onClick: function onClick() {
         return setCurrentPlanIndex(index);
       }
@@ -2348,10 +2396,10 @@ var Schedule = function Schedule(_ref) {
   var isCredit = currentPlan && currentPlan.installments_count > 4;
   var intl = useIntl();
   return /*#__PURE__*/React.createElement("div", {
-    className: s$3.schedule,
+    className: cx(s$3.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails),
     "data-testid": "modal-installments-element"
   }, /*#__PURE__*/React.createElement("div", {
-    className: cx(s$3.scheduleLine, s$3.total)
+    className: cx(s$3.scheduleLine, s$3.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)
   }, /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "eligibility-modal.total",
     defaultMessage: "Total"
@@ -2360,7 +2408,7 @@ var Schedule = function Schedule(_ref) {
     style: "currency",
     currency: "EUR"
   }))), /*#__PURE__*/React.createElement("div", {
-    className: cx(s$3.scheduleLine, s$3.creditCost)
+    className: cx(s$3.scheduleLine, s$3.creditCost, STATIC_CUSTOMISATION_CLASSES.scheduleCredit)
   }, isCredit ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "eligibility-modal.credit-cost",
     defaultMessage: "Dont co\xFBt du cr\xE9dit"
@@ -2413,13 +2461,15 @@ var s$4 = {"list":"_180ro","listItem":"_1HqCO","bullet":"_3B8wx"};
 
 var Info = function Info() {
   return /*#__PURE__*/React.createElement("div", {
-    className: s$4.list,
+    className: cx(s$4.list, STATIC_CUSTOMISATION_CLASSES.info),
     "data-testid": "modal-info-element"
   }, /*#__PURE__*/React.createElement("div", {
     className: s$4.listItem
   }, /*#__PURE__*/React.createElement("div", {
     className: s$4.bullet
-  }, "1"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+  }, "1"), /*#__PURE__*/React.createElement("div", {
+    className: STATIC_CUSTOMISATION_CLASSES.infoMessage
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "eligibility-modal.bullet-1",
     defaultMessage: "Choisissez <strong>Alma</strong> au moment du paiement.",
     values: {
@@ -2431,7 +2481,9 @@ var Info = function Info() {
     className: s$4.listItem
   }, /*#__PURE__*/React.createElement("div", {
     className: s$4.bullet
-  }, "2"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+  }, "2"), /*#__PURE__*/React.createElement("div", {
+    className: STATIC_CUSTOMISATION_CLASSES.infoMessage
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "eligibility-modal.bullet-2",
     defaultMessage: "Renseignez les <strong>informations</strong> demand\xE9es.",
     values: {
@@ -2443,7 +2495,9 @@ var Info = function Info() {
     className: s$4.listItem
   }, /*#__PURE__*/React.createElement("div", {
     className: s$4.bullet
-  }, "3"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+  }, "3"), /*#__PURE__*/React.createElement("div", {
+    className: STATIC_CUSTOMISATION_CLASSES.infoMessage
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "eligibility-modal.bullet-3",
     defaultMessage: "La validation de votre paiement <strong>instantan\xE9e</strong> !",
     values: {
@@ -2501,7 +2555,7 @@ var s$6 = {"title":"_3ERx-"};
 
 var Title = function Title() {
   return /*#__PURE__*/React.createElement("div", {
-    className: s$6.title,
+    className: cx(s$6.title, STATIC_CUSTOMISATION_CLASSES.title),
     "data-testid": "modal-title-element"
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "eligibility-modal.title",
@@ -2522,9 +2576,9 @@ var DesktopModal = function DesktopModal(_ref) {
     className: s$7.container,
     "data-testid": "modal-container"
   }, /*#__PURE__*/React.createElement("div", {
-    className: cx([s$7.block, s$7.left])
+    className: cx([s$7.block, s$7.left, STATIC_CUSTOMISATION_CLASSES.leftSide])
   }, /*#__PURE__*/React.createElement(Title, null), /*#__PURE__*/React.createElement(Info, null), /*#__PURE__*/React.createElement(Logo, null)), /*#__PURE__*/React.createElement("div", {
-    className: s$7.block
+    className: cx(s$7.block, STATIC_CUSTOMISATION_CLASSES.rightSide)
   }, children));
 };
 
@@ -2693,6 +2747,24 @@ var getIndexOfActivePlan = function getIndexOfActivePlan(_ref) {
   return 0;
 };
 
+/**
+ * Prefix classes to avoid name collisions.
+ */
+var prefix$1 = 'alma-payment-plans';
+/**
+ * Class names for the **payment plans** widget.
+ * Those classes are intended to be used by the **merchant developer**.
+ */
+
+var STATIC_CUSTOMISATION_CLASSES$1 = {
+  container: prefix$1 + '-container',
+  eligibilityLine: prefix$1 + '-eligibility-line',
+  eligibilityOptions: prefix$1 + '-eligibility-options',
+  notEligibleOption: prefix$1 + '-not-eligible-option',
+  paymentInfo: prefix$1 + '-payment-info',
+  activeOption: prefix$1 + '-active-option'
+};
+
 var s$b = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","notEligible":"_3O1bg","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
 
 var VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365;
@@ -2719,7 +2791,7 @@ var PaymentPlanWidget = function PaymentPlanWidget(_ref) {
     eligibilityPlans: eligibilityPlans,
     suggestedPaymentPlan: suggestedPaymentPlan != null ? suggestedPaymentPlan : 0
   });
-  var isSuggestedPaymentPlanSpecified = suggestedPaymentPlan !== undefined; // 👈  The merchant decided to focus a tab and remove animated transition.
+  var isSuggestedPaymentPlanSpecified = suggestedPaymentPlan !== undefined; // 👈  The merchant decided to focus a tab
 
   var isTransitionSpecified = transitionDelay !== undefined; // 👈  The merchant has specified a transition time
 
@@ -2804,14 +2876,14 @@ var PaymentPlanWidget = function PaymentPlanWidget(_ref) {
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     onClick: handleOpenModal,
-    className: cx(s$b.widgetButton, (_cx = {}, _cx[s$b.clickable] = eligiblePlans.length > 0, _cx[s$b.unClickable] = eligiblePlans.length === 0, _cx)),
+    className: cx(s$b.widgetButton, (_cx = {}, _cx[s$b.clickable] = eligiblePlans.length > 0, _cx[s$b.unClickable] = eligiblePlans.length === 0, _cx), STATIC_CUSTOMISATION_CLASSES$1.container),
     "data-testid": "widget-button"
   }, /*#__PURE__*/React.createElement("div", {
-    className: s$b.primaryContainer
+    className: cx(s$b.primaryContainer, STATIC_CUSTOMISATION_CLASSES$1.eligibilityLine)
   }, /*#__PURE__*/React.createElement(LogoIcon, {
     className: s$b.logo
   }), /*#__PURE__*/React.createElement("div", {
-    className: s$b.paymentPlans
+    className: cx(s$b.paymentPlans, STATIC_CUSTOMISATION_CLASSES$1.eligibilityOptions)
   }, eligibilityPlans.map(function (eligibilityPlan, key) {
     var _cx2;
 
@@ -2821,10 +2893,10 @@ var PaymentPlanWidget = function PaymentPlanWidget(_ref) {
         return onHover(key);
       },
       onMouseOut: onLeave,
-      className: cx(s$b.plan, (_cx2 = {}, _cx2[s$b.active] = current === key, _cx2[s$b.notEligible] = !eligibilityPlan.eligible, _cx2))
+      className: cx(s$b.plan, (_cx2 = {}, _cx2[cx(s$b.active, STATIC_CUSTOMISATION_CLASSES$1.activeOption)] = current === key, _cx2[cx(s$b.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)] = !eligibilityPlan.eligible, _cx2))
     }, paymentPlanShorthandName(eligibilityPlan));
   }))), /*#__PURE__*/React.createElement("div", {
-    className: cx(s$b.info, (_cx3 = {}, _cx3[s$b.notEligible] = eligibilityPlans[current] && !eligibilityPlans[current].eligible, _cx3))
+    className: cx(s$b.info, (_cx3 = {}, _cx3[cx(s$b.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)] = eligibilityPlans[current] && !eligibilityPlans[current].eligible, _cx3), STATIC_CUSTOMISATION_CLASSES$1.paymentInfo)
   }, eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current]))), isOpen && /*#__PURE__*/React.createElement(EligibilityModal, {
     initialPlanIndex: getIndexWithinEligiblePlans(current),
     onClose: closeModal,

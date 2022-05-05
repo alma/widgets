@@ -1,3 +1,18 @@
+# [2.4.0](https://github.com/alma/widgets/compare/v2.3.4...v2.4.0) (2022-05-05)
+
+
+### Bug Fixes
+
+* **css-names:** fix css classes names and typo ([cd48fa1](https://github.com/alma/widgets/commit/cd48fa1d0e858b5a2510c1d23f502da013f8b049))
+* **typo:** class name update ([95b05ce](https://github.com/alma/widgets/commit/95b05cefe17241a329ef496158913ce76f4d15a4))
+* **typo:** css class name ([f5a2917](https://github.com/alma/widgets/commit/f5a291742bb227692bcdfff24856049427883be8))
+
+
+### Features
+
+* **css-customisation:** proposal : fixed names classes for merchant ([e87bb6b](https://github.com/alma/widgets/commit/e87bb6ba07aa13d176dfb3230aa281d7866e61cf))
+* **css-modale:** add static css classes for merchant for modale widget ([6f09fdf](https://github.com/alma/widgets/commit/6f09fdf5c994db1ef41d4d23e5575c1fec3cea76))
+
 ## [2.3.4](https://github.com/alma/widgets/compare/v2.3.3...v2.3.4) (2022-05-04)
 
 
