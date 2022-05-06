@@ -46,6 +46,11 @@ The amount of time in between button animations in ms.
 
 - locale: `fr|en|es|it|de|nl` [optional, default: en]
 
+- condensedView: `boolean` [optional, default: false]
+
+If true display the description below the plans on two lines,
+If false display the description next to the plans in one line
+
 - hideIfNotEligible: `boolean` [optional, default: false]
 
 Totally hide the widget if set to true and no plan matches the purchase amount.

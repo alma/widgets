@@ -18,6 +18,7 @@ type Props = {
   transitionDelay?: number
   hideIfNotEligible?: boolean
   suggestedPaymentPlan?: number | number[]
+  condensedView?: boolean
 }
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365
@@ -30,6 +31,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   transitionDelay,
   hideIfNotEligible,
   suggestedPaymentPlan,
+  condensedView = false,
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
@@ -114,6 +116,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
         onClick={handleOpenModal}
         className={cx(
           s.widgetButton,
+          condensedView && s.condensedView,
           {
             [s.clickable]: eligiblePlans.length > 0,
             [s.unClickable]: eligiblePlans.length === 0,
@@ -133,8 +136,10 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
                   onMouseOut={onLeave}
                   className={cx(s.plan, {
                     [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: current === key,
-                    [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
-                      !eligibilityPlan.eligible,
+                    [cx(
+                      s.notEligible,
+                      STATIC_CUSTOMISATION_CLASSES.notEligibleOption,
+                    )]: !eligibilityPlan.eligible,
                   })}
                 >
                   {paymentPlanShorthandName(eligibilityPlan)}
@@ -146,6 +151,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
         <div
           className={cx(
             s.info,
+            condensedView && s.condensedViewInfo,
             {
               [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
                 eligibilityPlans[current] && !eligibilityPlans[current].eligible,

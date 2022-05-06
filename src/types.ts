@@ -68,6 +68,7 @@ export type PaymentPlanWidgetOptions = {
   suggestedPaymentPlan?: number | number[]
   hideIfNotEligible?: boolean
   locale?: Locale
+  condensedView?: boolean
 }
 
 export type ModalOptions = {
