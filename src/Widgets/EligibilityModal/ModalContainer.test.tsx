@@ -6,7 +6,7 @@ import render from 'test'
 import { mockButtonPlans } from 'test/fixtures'
 import { secondsToMilliseconds } from 'utils'
 import ModalContainer from './ModalContainer'
-
+import { Context as ResponsiveContext } from 'react-responsive'
 jest.mock('utils/fetch', () => {
   return {
     fetchFromApi: async () => mockButtonPlans,
@@ -16,6 +16,28 @@ jest.mock('utils/fetch', () => {
 global.Date.now = jest.fn(() => secondsToMilliseconds(1638350762))
 
 describe('ModalContainer', () => {
+  describe('test responsiveness', () => {
+    beforeEach(async () => {
+      render(
+        <ResponsiveContext.Provider value={{ width: 801 }}>
+          <ModalContainer
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            onClose={() => {
+              console.log('modal closed')
+            }}
+          />
+        </ResponsiveContext.Provider>,
+      )
+      await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
+    })
+
+    it('should display the payments plans provided in eligibility', () => {
+      expect(screen.getByText('J+30')).toBeInTheDocument()
+      expect(screen.getByText('2x')).toBeInTheDocument()
+    })
+  })
+
   describe('No plans provided', () => {
     beforeEach(async () => {
       render(
