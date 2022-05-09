@@ -16,8 +16,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "jsx": "react",
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
-  "include": ["src", "node_modules/microbundle/index.d.ts"],
-  "exclude": ["**/*.test.tsx"]
+  "include": ["src", "node_modules/microbundle/index.d.ts"]
 }
