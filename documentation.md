@@ -48,7 +48,7 @@ The amount of time in between button animations in ms.
 
 - hideIfNotEligible: `boolean` [optional, default: false]
 
-Totally hide the widget if set to true and no plan matches the purchase amount.
+Totally hides the widget if set to true and no plan matches the purchase amount.
 
 - suggestedPaymentPlan: `number` | `number[]` [optional]
 

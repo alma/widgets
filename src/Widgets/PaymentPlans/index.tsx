@@ -17,6 +17,7 @@ type Props = {
   configPlans?: ConfigPlan[]
   transitionDelay?: number
   hideIfNotEligible?: boolean
+  monochrome: boolean
   suggestedPaymentPlan?: number | number[]
   cards?: Card[]
 }
@@ -25,13 +26,14 @@ const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365
 const DEFAULT_TRANSITION_TIME = 5500
 
 const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
-  purchaseAmount,
   apiData,
   configPlans,
-  transitionDelay,
   hideIfNotEligible,
+  monochrome,
+  purchaseAmount,
   suggestedPaymentPlan,
   cards,
+  transitionDelay,
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
@@ -125,16 +127,18 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
         data-testid="widget-button"
       >
         <div className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}>
-          <LogoIcon className={s.logo} />
+          <LogoIcon className={s.logo} monochrome={monochrome} />
           <div className={cx(s.paymentPlans, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)}>
             {eligibilityPlans.map((eligibilityPlan, key) => {
+              const isCurrent = key === current
               return (
                 <div
                   key={key}
                   onMouseEnter={() => onHover(key)}
                   onMouseOut={onLeave}
                   className={cx(s.plan, {
-                    [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: current === key,
+                    [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: isCurrent,
+                    [s.polychrome]: !monochrome && isCurrent,
                     [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
                       !eligibilityPlan.eligible,
                   })}

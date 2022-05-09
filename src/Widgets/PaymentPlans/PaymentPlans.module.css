@@ -48,6 +48,10 @@
   border-bottom: 3px solid var(--blue-300);
 }
 
+.plan.active.polychrome {
+  border-bottom-color: var(--red-600);
+}
+
 .plan.active.notEligible {
   border-bottom-color: var(--gray-600);
   cursor: not-allowed;

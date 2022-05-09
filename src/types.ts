@@ -64,13 +64,14 @@ export type Card = 'cb' | 'amex' | 'mastercard' | 'visa'
 
 export type PaymentPlanWidgetOptions = {
   container: string
-  purchaseAmount: number
-  plans?: ConfigPlan[]
-  transitionDelay?: number
-  suggestedPaymentPlan?: number | number[]
   hideIfNotEligible?: boolean
   locale?: Locale
   cards?: Card[]
+  monochrome?: boolean
+  plans?: ConfigPlan[]
+  purchaseAmount: number
+  suggestedPaymentPlan?: number | number[]
+  transitionDelay?: number
 }
 
 export type ModalOptions = {

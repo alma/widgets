@@ -37,6 +37,7 @@ export class WidgetsController {
         plans,
         transitionDelay,
         hideIfNotEligible,
+        monochrome = true,
         suggestedPaymentPlan,
         locale = Locale.en,
         cards,
@@ -46,13 +47,14 @@ export class WidgetsController {
         render(
           <IntlProvider locale={locale}>
             <PaymentPlanWidget
-              purchaseAmount={purchaseAmount}
               apiData={this.apiData}
               configPlans={plans}
-              transitionDelay={transitionDelay}
               hideIfNotEligible={hideIfNotEligible}
+              monochrome={monochrome}
+              purchaseAmount={purchaseAmount}
               suggestedPaymentPlan={suggestedPaymentPlan}
               cards={cards}
+              transitionDelay={transitionDelay}
             />
           </IntlProvider>,
           document.querySelector(container),
