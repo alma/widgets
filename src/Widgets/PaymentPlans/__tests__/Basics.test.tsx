@@ -25,7 +25,9 @@ it('displays the button', () => {
   expect(screen.getByTestId('widget-button')).toBeInTheDocument()
 })
 
-it('opens the modal on click', async () => {
+it('opens the modal on click and close it', async () => {
   fireEvent.click(screen.getByTestId('widget-button'))
   expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
+  fireEvent.click(screen.getByTestId('modal-close-button'))
+  expect(screen.queryByTestId('modal-close-button')).not.toBeInTheDocument()
 })
