@@ -35,7 +35,6 @@
       purchaseAmount: 45000,
       locale: 'fr',
       hideIfNotEligible: false,
-      condensedView: false,
       plans: [
         {
           installmentsCount: 1,
