@@ -33,6 +33,8 @@ jobs:
           args: >
             -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
             -Dsonar.projectVersion=${{github.ref_name}}
+            -Dsonar.sonar.projectKey=alma_widgets
+            -Dsonar.organization=almapay
 
   release:
     name: Release
