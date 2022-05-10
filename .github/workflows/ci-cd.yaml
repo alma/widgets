@@ -31,10 +31,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
             -Dsonar.projectVersion=${{github.ref_name}}
-            -Dsonar.projectKey=alma_widgets
-            -Dsonar.organization=almapay
 
   release:
     name: Release
