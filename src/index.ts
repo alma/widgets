@@ -1,9 +1,9 @@
-import 'core-js/stable/array/from'
+import 'core-js/stable/array/from' // todo Looks like legacy code, needs to be tested
 import { widgetTypes } from 'types'
 import { ApiMode } from './consts'
 import './main.css'
 import * as utils from './utils'
-import './utils/polyfills'
+import './utils/polyfills' // todo Looks like legacy code, needs to be tested on multiple browsers (old ones too)
 import { WidgetsController } from './widgets_controller'
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
