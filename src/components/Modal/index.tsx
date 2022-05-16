@@ -1,6 +1,5 @@
-import { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import Modal from 'react-modal'
-import React from 'react'
 import noScroll from 'no-scroll'
 import cx from 'classnames'
 
