@@ -1,3 +1,10 @@
+## [2.5.1](https://github.com/alma/widgets/compare/v2.5.0...v2.5.1) (2022-05-16)
+
+
+### Bug Fixes
+
+* javascript lcov parameter ([1f91417](https://github.com/alma/widgets/commit/1f91417a8f330dbdd850bf9467ab608b926b6aef))
+
 # [2.5.0](https://github.com/alma/widgets/compare/v2.4.0...v2.5.0) (2022-05-05)
 
 
