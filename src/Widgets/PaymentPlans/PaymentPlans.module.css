@@ -58,7 +58,7 @@
 }
 
 .info {
-  font-family: Public Sans;
+  font-family: Public Sans, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -79,7 +79,7 @@
   line-height: 100%;
 }
 .errorText {
-  font-family: Public Sans;
+  font-family: Public Sans, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
