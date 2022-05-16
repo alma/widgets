@@ -2196,7 +2196,8 @@ var STATIC_CUSTOMISATION_CLASSES = {
   closeButton: prefix + '-close-button',
   scheduleDetails: prefix + '-schedule-details',
   scheduleTotal: prefix + '-schedule-total',
-  scheduleCredit: prefix + '-schedule-credit'
+  scheduleCredit: prefix + '-schedule-credit',
+  summary: prefix + '-summary'
 };
 
 var _excluded = ["children", "isOpen", "onClose", "className", "contentClassName", "scrollable"];
@@ -2394,7 +2395,7 @@ var EligibilityPlansButtons = function EligibilityPlansButtons(_ref) {
   }));
 };
 
-var s$3 = {"schedule":"_MPKjS","scheduleLine":"_1A7Qv","total":"_14Ejo","creditCost":"_1ZIgu","creditMessage":"_1BUr8"};
+var s$3 = {"schedule":"_MPKjS","scheduleLine":"_1A7Qv","total":"_14Ejo","summary":"_65ZpD","creditCost":"_1ZIgu","creditCostAmount":"_tUTZp","creditMessage":"_1BUr8"};
 
 var Schedule = function Schedule(_ref) {
   var currentPlan = _ref.currentPlan;
@@ -2404,9 +2405,29 @@ var Schedule = function Schedule(_ref) {
   var customerFees = priceFromCents(currentPlan ? currentPlan.customer_total_cost_amount : 0);
   var isCredit = currentPlan && currentPlan.installments_count > 4;
   var intl = reactIntl.useIntl();
-  return /*#__PURE__*/React__default.createElement("div", {
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
     className: cx(s$3.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails),
     "data-testid": "modal-installments-element"
+  }, ((currentPlan == null ? void 0 : currentPlan.payment_plan) || []).map(function (installment, index) {
+    return /*#__PURE__*/React__default.createElement("div", {
+      className: s$3.scheduleLine,
+      key: index
+    }, /*#__PURE__*/React__default.createElement("span", null, dateFns.isToday(installment.due_date * 1000) ? /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+      id: "installments.today",
+      defaultMessage: "Aujourd'hui"
+    }) : /*#__PURE__*/React__default.createElement(reactIntl.FormattedDate, {
+      value: installment.due_date * 1000,
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    })), /*#__PURE__*/React__default.createElement("span", null, /*#__PURE__*/React__default.createElement(reactIntl.FormattedNumber, {
+      value: priceFromCents(installment.total_amount),
+      style: "currency",
+      currency: "EUR"
+    })));
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: cx(s$3.summary, STATIC_CUSTOMISATION_CLASSES.summary),
+    "data-testid": "modal-summary"
   }, /*#__PURE__*/React__default.createElement("div", {
     className: cx(s$3.scheduleLine, s$3.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)
   }, /*#__PURE__*/React__default.createElement("span", null, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
@@ -2424,7 +2445,9 @@ var Schedule = function Schedule(_ref) {
   })) : /*#__PURE__*/React__default.createElement("span", null, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
     id: "eligibility-modal.cost",
     defaultMessage: "Dont frais"
-  })), /*#__PURE__*/React__default.createElement("span", null, isCredit ? /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
+  })), /*#__PURE__*/React__default.createElement("span", {
+    className: s$3.creditCostAmount
+  }, isCredit ? /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
     id: "eligibility-modal.credit-cost-amount",
     defaultMessage: "{creditCost} (TAEG {TAEG})",
     values: {
@@ -2441,29 +2464,12 @@ var Schedule = function Schedule(_ref) {
     value: customerFees,
     style: "currency",
     currency: "EUR"
-  }))), ((currentPlan == null ? void 0 : currentPlan.payment_plan) || []).map(function (installment, index) {
-    return /*#__PURE__*/React__default.createElement("div", {
-      className: s$3.scheduleLine,
-      key: index
-    }, /*#__PURE__*/React__default.createElement("span", null, dateFns.isToday(installment.due_date * 1000) ? /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
-      id: "installments.today",
-      defaultMessage: "Aujourd'hui"
-    }) : /*#__PURE__*/React__default.createElement(reactIntl.FormattedDate, {
-      value: installment.due_date * 1000,
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    })), /*#__PURE__*/React__default.createElement("span", null, /*#__PURE__*/React__default.createElement(reactIntl.FormattedNumber, {
-      value: priceFromCents(installment.total_amount),
-      style: "currency",
-      currency: "EUR"
-    })));
-  }), isCredit && /*#__PURE__*/React__default.createElement("p", {
+  }))), isCredit && /*#__PURE__*/React__default.createElement("p", {
     className: s$3.creditMessage
   }, /*#__PURE__*/React__default.createElement(reactIntl.FormattedMessage, {
     id: "eligibility-modal.credit-commitment",
     defaultMessage: "Un cr\xE9dit vous engage et doit \xEAtre rembours\xE9. V\xE9rifiez vos capacit\xE9s de remboursement\n              avant de vous engager."
-  })));
+  }))));
 };
 
 var s$4 = {"list":"_180ro","listItem":"_1HqCO","bullet":"_3B8wx"};

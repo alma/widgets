@@ -16780,7 +16780,8 @@
     closeButton: prefix + '-close-button',
     scheduleDetails: prefix + '-schedule-details',
     scheduleTotal: prefix + '-schedule-total',
-    scheduleCredit: prefix + '-schedule-credit'
+    scheduleCredit: prefix + '-schedule-credit',
+    summary: prefix + '-summary'
   };
 
   var _excluded = ["children", "isOpen", "onClose", "className", "contentClassName", "scrollable"];
@@ -18322,7 +18323,7 @@
     }));
   };
 
-  var s$3 = {"schedule":"_MPKjS","scheduleLine":"_1A7Qv","total":"_14Ejo","creditCost":"_1ZIgu","creditMessage":"_1BUr8"};
+  var s$3 = {"schedule":"_MPKjS","scheduleLine":"_1A7Qv","total":"_14Ejo","summary":"_65ZpD","creditCost":"_1ZIgu","creditCostAmount":"_tUTZp","creditMessage":"_1BUr8"};
 
   var Schedule = function Schedule(_ref) {
     var currentPlan = _ref.currentPlan;
@@ -18332,9 +18333,29 @@
     var customerFees = priceFromCents(currentPlan ? currentPlan.customer_total_cost_amount : 0);
     var isCredit = currentPlan && currentPlan.installments_count > 4;
     var intl = useIntl();
-    return /*#__PURE__*/react.createElement("div", {
+    return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", {
       className: classnames(s$3.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails),
       "data-testid": "modal-installments-element"
+    }, ((currentPlan == null ? void 0 : currentPlan.payment_plan) || []).map(function (installment, index) {
+      return /*#__PURE__*/react.createElement("div", {
+        className: s$3.scheduleLine,
+        key: index
+      }, /*#__PURE__*/react.createElement("span", null, isToday(installment.due_date * 1000) ? /*#__PURE__*/react.createElement(MemoizedFormattedMessage, {
+        id: "installments.today",
+        defaultMessage: "Aujourd'hui"
+      }) : /*#__PURE__*/react.createElement(FormattedDate, {
+        value: installment.due_date * 1000,
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      })), /*#__PURE__*/react.createElement("span", null, /*#__PURE__*/react.createElement(FormattedNumber, {
+        value: priceFromCents(installment.total_amount),
+        style: "currency",
+        currency: "EUR"
+      })));
+    })), /*#__PURE__*/react.createElement("div", {
+      className: classnames(s$3.summary, STATIC_CUSTOMISATION_CLASSES.summary),
+      "data-testid": "modal-summary"
     }, /*#__PURE__*/react.createElement("div", {
       className: classnames(s$3.scheduleLine, s$3.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)
     }, /*#__PURE__*/react.createElement("span", null, /*#__PURE__*/react.createElement(MemoizedFormattedMessage, {
@@ -18352,7 +18373,9 @@
     })) : /*#__PURE__*/react.createElement("span", null, /*#__PURE__*/react.createElement(MemoizedFormattedMessage, {
       id: "eligibility-modal.cost",
       defaultMessage: "Dont frais"
-    })), /*#__PURE__*/react.createElement("span", null, isCredit ? /*#__PURE__*/react.createElement(MemoizedFormattedMessage, {
+    })), /*#__PURE__*/react.createElement("span", {
+      className: s$3.creditCostAmount
+    }, isCredit ? /*#__PURE__*/react.createElement(MemoizedFormattedMessage, {
       id: "eligibility-modal.credit-cost-amount",
       defaultMessage: "{creditCost} (TAEG {TAEG})",
       values: {
@@ -18369,29 +18392,12 @@
       value: customerFees,
       style: "currency",
       currency: "EUR"
-    }))), ((currentPlan == null ? void 0 : currentPlan.payment_plan) || []).map(function (installment, index) {
-      return /*#__PURE__*/react.createElement("div", {
-        className: s$3.scheduleLine,
-        key: index
-      }, /*#__PURE__*/react.createElement("span", null, isToday(installment.due_date * 1000) ? /*#__PURE__*/react.createElement(MemoizedFormattedMessage, {
-        id: "installments.today",
-        defaultMessage: "Aujourd'hui"
-      }) : /*#__PURE__*/react.createElement(FormattedDate, {
-        value: installment.due_date * 1000,
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      })), /*#__PURE__*/react.createElement("span", null, /*#__PURE__*/react.createElement(FormattedNumber, {
-        value: priceFromCents(installment.total_amount),
-        style: "currency",
-        currency: "EUR"
-      })));
-    }), isCredit && /*#__PURE__*/react.createElement("p", {
+    }))), isCredit && /*#__PURE__*/react.createElement("p", {
       className: s$3.creditMessage
     }, /*#__PURE__*/react.createElement(MemoizedFormattedMessage, {
       id: "eligibility-modal.credit-commitment",
       defaultMessage: "Un cr\xE9dit vous engage et doit \xEAtre rembours\xE9. V\xE9rifiez vos capacit\xE9s de remboursement\n              avant de vous engager."
-    })));
+    }))));
   };
 
   var s$4 = {"list":"_180ro","listItem":"_1HqCO","bullet":"_3B8wx"};

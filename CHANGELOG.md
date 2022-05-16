@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/alma/widgets/compare/v2.5.1...v2.6.0) (2022-05-16)
+
+
+### Features
+
+* display total modal ([26cca67](https://github.com/alma/widgets/commit/26cca670aec1e1cb7eb379a074820b4ed3780e7f))
+
 ## [2.5.1](https://github.com/alma/widgets/compare/v2.5.0...v2.5.1) (2022-05-16)
 
 
