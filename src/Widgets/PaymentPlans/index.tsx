@@ -4,7 +4,7 @@ import Loader from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import React, { MouseEvent, useEffect, useState, VoidFunctionComponent } from 'react'
-import { ApiConfig, apiStatus, ConfigPlan } from 'types'
+import { ApiConfig, apiStatus, Card, ConfigPlan } from 'types'
 import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import EligibilityModal from 'Widgets/EligibilityModal'
@@ -18,6 +18,7 @@ type Props = {
   transitionDelay?: number
   hideIfNotEligible?: boolean
   suggestedPaymentPlan?: number | number[]
+  cards?: Card[]
 }
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365
@@ -30,6 +31,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   transitionDelay,
   hideIfNotEligible,
   suggestedPaymentPlan,
+  cards
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
@@ -162,6 +164,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
           onClose={closeModal}
           eligibilityPlans={eligiblePlans}
           status={status}
+          cards={cards}
         />
       )}
     </>

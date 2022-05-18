@@ -1,6 +1,6 @@
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import React from 'react'
-import { ApiConfig, ConfigPlan } from 'types'
+import { ApiConfig, Card, ConfigPlan } from 'types'
 import EligibilityModal from '.'
 
 type Props = {
@@ -8,12 +8,13 @@ type Props = {
   apiData: ApiConfig
   configPlans?: ConfigPlan[]
   onClose: () => void
+  cards?: Card[]
 }
 
 /**
  * This component allows to display only the modal, without PaymentPlans.
  */
-const ModalContainer: React.FC<Props> = ({ purchaseAmount, apiData, configPlans, onClose }) => {
+const ModalContainer: React.FC<Props> = ({ purchaseAmount, apiData, configPlans, onClose, cards }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
 
   return (
@@ -22,6 +23,7 @@ const ModalContainer: React.FC<Props> = ({ purchaseAmount, apiData, configPlans,
       onClose={onClose}
       eligibilityPlans={eligibilityPlans}
       status={status}
+      cards={cards}
     />
   )
 }

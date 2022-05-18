@@ -1,5 +1,5 @@
 import { VoidFunctionComponent } from 'react';
-import { ApiConfig, ConfigPlan } from 'types';
+import { ApiConfig, Card, ConfigPlan } from 'types';
 declare type Props = {
     purchaseAmount: number;
     apiData: ApiConfig;
@@ -7,6 +7,7 @@ declare type Props = {
     transitionDelay?: number;
     hideIfNotEligible?: boolean;
     suggestedPaymentPlan?: number | number[];
+    cards?: Card[];
 };
 declare const PaymentPlanWidget: VoidFunctionComponent<Props>;
 export default PaymentPlanWidget;
