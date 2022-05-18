@@ -3,7 +3,7 @@ import Modal from 'components/Modal'
 import React, { FunctionComponent, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useMediaQuery } from 'react-responsive'
-import { apiStatus, EligibilityPlan } from 'types'
+import { apiStatus, Card, EligibilityPlan } from 'types'
 import EligibilityPlansButtons from './components/EligibilityPlansButtons'
 import Schedule from './components/Schedule'
 import DesktopModal from './DesktopModal'
@@ -15,6 +15,7 @@ type Props = {
   onClose: () => void
   eligibilityPlans: EligibilityPlan[]
   status: apiStatus
+  cards?: Card[]
 }
 
 const EligibilityModal: FunctionComponent<Props> = ({
@@ -22,6 +23,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
   onClose,
   eligibilityPlans,
   status,
+  cards
 }) => {
   const [currentPlanIndex, setCurrentPlanIndex] = useState(initialPlanIndex || 0)
   const isBigScreen = useMediaQuery({ minWidth: 800 })
@@ -35,7 +37,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
 
   return (
     <Modal onClose={onClose} ariaHideApp={false} scrollable isOpen>
-      <ModalComponent isSomePlanDeferred={isSomePlanDeferred}>
+      <ModalComponent isSomePlanDeferred={isSomePlanDeferred} cards={cards}>
         {status === apiStatus.PENDING && (
           <div className={s.loader}>
             <LoadingIndicator />

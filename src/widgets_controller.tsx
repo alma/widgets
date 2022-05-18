@@ -39,6 +39,7 @@ export class WidgetsController {
         hideIfNotEligible,
         suggestedPaymentPlan,
         locale = Locale.en,
+        cards
       } = options as PaymentPlanWidgetOptions
 
       if (containerDiv) {
@@ -51,6 +52,7 @@ export class WidgetsController {
               transitionDelay={transitionDelay}
               hideIfNotEligible={hideIfNotEligible}
               suggestedPaymentPlan={suggestedPaymentPlan}
+              cards={cards}
             />
           </IntlProvider>,
           document.querySelector(container),
@@ -65,6 +67,7 @@ export class WidgetsController {
         purchaseAmount,
         plans,
         locale = Locale.en,
+        cards
       } = options as ModalOptions
 
       const close = () => containerDiv && unmountComponentAtNode(containerDiv)
@@ -77,6 +80,7 @@ export class WidgetsController {
               apiData={this.apiData}
               configPlans={plans}
               onClose={close}
+              cards={cards}
             />
           </IntlProvider>,
           document.querySelector(container),

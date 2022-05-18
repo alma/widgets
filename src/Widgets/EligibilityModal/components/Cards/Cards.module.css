@@ -1,0 +1,9 @@
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+.card {
+  margin: 8px 10px 0 0;
+}

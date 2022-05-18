@@ -59,6 +59,7 @@ export declare enum Locale {
     'nl-NL' = "nl-NL",
     'nl-BE' = "nl-BE"
 }
+export declare type Card = 'cb' | 'amex' | 'mastercard' | 'visa';
 export declare type PaymentPlanWidgetOptions = {
     container: string;
     purchaseAmount: number;
@@ -67,6 +68,7 @@ export declare type PaymentPlanWidgetOptions = {
     suggestedPaymentPlan?: number | number[];
     hideIfNotEligible?: boolean;
     locale?: Locale;
+    cards?: Card[];
 };
 export declare type ModalOptions = {
     container: string;

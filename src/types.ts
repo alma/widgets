@@ -60,6 +60,8 @@ export enum Locale {
   'nl-BE' = 'nl-BE',
 }
 
+export type Card = 'cb' | 'amex' | 'mastercard' | 'visa'
+
 export type PaymentPlanWidgetOptions = {
   container: string
   purchaseAmount: number
@@ -68,6 +70,7 @@ export type PaymentPlanWidgetOptions = {
   suggestedPaymentPlan?: number | number[]
   hideIfNotEligible?: boolean
   locale?: Locale
+  cards?: Card[]
 }
 
 export type ModalOptions = {
@@ -76,6 +79,7 @@ export type ModalOptions = {
   purchaseAmount: number
   plans?: ConfigPlan[]
   locale?: Locale
+  cards?: Card[]
 }
 
 export type WidgetNames = keyof typeof widgetTypes
