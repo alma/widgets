@@ -29,7 +29,6 @@ module.exports = {
               'src/assets/fonts/PublicSans-VariableFont_wght.ttf',
               'src/assets/fonts/Eina04-Bold.woff',
               'src/assets/fonts/Eina04-Bold.ttf',
-              'src/assets/cards/cb.svg',
             ],
             dest: 'dist/assets/fonts',
           },

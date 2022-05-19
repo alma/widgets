@@ -2423,15 +2423,173 @@ const Schedule = ({
   }))));
 };
 
-var s$4 = {"list":"_180ro","listItem":"_1HqCO","bullet":"_3B8wx"};
+const AmexCard = () => /*#__PURE__*/React.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: "24",
+  height: "16",
+  viewBox: "0 0 24 16"
+}, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+  id: "cardamex",
+  x1: "10.914%",
+  x2: "87.432%",
+  y1: "86.279%",
+  y2: "15.035%"
+}, /*#__PURE__*/React.createElement("stop", {
+  offset: "0%",
+  stopColor: "#3FA9F5"
+}), /*#__PURE__*/React.createElement("stop", {
+  offset: "100%",
+  stopColor: "#0071BC"
+}))), /*#__PURE__*/React.createElement("g", {
+  fill: "none",
+  fillRule: "evenodd"
+}, /*#__PURE__*/React.createElement("path", {
+  fill: "url(#cardamex)",
+  fillRule: "nonzero",
+  d: "M22.559 16H1.379C.627 16 0 15.392 0 14.662V1.338C0 .608.627 0 1.379 0H22.62C23.373 0 24 .608 24 1.338v13.324c-.063.73-.627 1.338-1.441 1.338z"
+}), /*#__PURE__*/React.createElement("g", {
+  fill: "#FFF"
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M10.115 8.711L8.889 6.044H7.295v3.852L5.517 6.044H4.17l-1.778 4.03h1.103l.368-.889h2.023l.368.89h2.084V7.11l1.349 2.963h.92l1.348-2.904v2.904h.98v-4.03H11.28l-1.165 2.667zm-5.272-.474H4.23l.613-1.422v.06l.613 1.362h-.613z"
+}), /*#__PURE__*/React.createElement("path", {
+  fillRule: "nonzero",
+  d: "M19.372 7.94l.735-.77 1.042-1.185h-1.287L18.697 7.23l-1.164-1.245h-3.985v3.97h3.923l1.226-1.303 1.165 1.304h1.287L20.107 8.71l-.735-.77zM16.92 9.186h-2.33v-.77h2.268v-.77H14.59v-.712h2.33L18.084 8 16.92 9.185z"
+}))));
+
+const VisaCard = () => /*#__PURE__*/React.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: "24",
+  height: "16",
+  viewBox: "0 0 24 16"
+}, /*#__PURE__*/React.createElement("g", {
+  fill: "none",
+  "fill-rule": "nonzero"
+}, /*#__PURE__*/React.createElement("path", {
+  fill: "#FCFCFC",
+  d: "M22.684 16H1.38C.627 16 0 15.39 0 14.656V1.344C0 .61.627 0 1.379 0H22.62C23.373 0 24 .61 24 1.344v13.374c0 .671-.564 1.282-1.316 1.282z"
+}), ' ', /*#__PURE__*/React.createElement("path", {
+  fill: "#005098",
+  d: "M8.889 10.726l.948-5.393h1.482l-.949 5.393zM15.704 5.452a3.658 3.658 0 0 0-1.304-.237c-1.481 0-2.489.71-2.489 1.778 0 .77.711 1.185 1.304 1.481.592.237.77.415.77.652 0 .355-.474.533-.889.533-.592 0-.889-.059-1.363-.296l-.177-.06-.178 1.186c.355.178 1.007.296 1.659.296 1.54 0 2.548-.71 2.548-1.837 0-.592-.415-1.067-1.244-1.481-.534-.237-.83-.415-.83-.652 0-.237.237-.474.83-.474.474 0 .83.118 1.126.178l.118.059.119-1.126M19.496 5.333H18.37c-.355 0-.592.119-.77.474l-2.193 4.919h1.541s.237-.652.296-.83h1.897c.059.178.178.83.178.83h1.362l-1.185-5.393zM17.66 8.77l.593-1.481s.118-.296.178-.533l.118.474s.296 1.303.356 1.54h-1.245zM7.644 5.333L6.222 9.007l-.178-.77C5.748 7.348 4.92 6.459 4.03 5.985l1.303 4.682h1.541l2.311-5.393h-1.54"
+}), /*#__PURE__*/React.createElement("path", {
+  fill: "#F6A500",
+  d: "M4.919 5.333h-2.37v.119c1.836.474 3.08 1.54 3.555 2.844L5.57 5.807c-.118-.414-.355-.474-.651-.474"
+}), /*#__PURE__*/React.createElement("path", {
+  fill: "#0A5296",
+  d: "M23.937 3.23H0V1.316C0 .598.627 0 1.379 0H22.62C23.373 0 24 .598 24 1.316V3.23h-.063z"
+}), /*#__PURE__*/React.createElement("path", {
+  fill: "#F4A428",
+  d: "M.063 13H24v1.8c0 .655-.625 1.2-1.375 1.2H1.375C.625 16 0 15.455 0 14.8V13h.063z"
+})));
+
+const MasterCard = () => /*#__PURE__*/React.createElement("svg", {
+  width: "24px",
+  height: "16px",
+  viewBox: "0 0 24 16",
+  version: "1.1",
+  xmlns: "http://www.w3.org/2000/svg"
+}, /*#__PURE__*/React.createElement("g", {
+  id: "Parcours-1C-B",
+  stroke: "none",
+  "stroke-width": "1",
+  fill: "none",
+  "fill-rule": "evenodd"
+}, /*#__PURE__*/React.createElement("g", {
+  id: "mobile-1C-Paiement-V1",
+  transform: "translate(-269.000000, -313.000000)"
+}, /*#__PURE__*/React.createElement("g", {
+  id: "mastercard",
+  transform: "translate(269.000000, 313.000000)"
+}, /*#__PURE__*/React.createElement("rect", {
+  id: "Rectangle",
+  fill: "#FFFFFF",
+  x: "0",
+  y: "0",
+  width: "24",
+  height: "16",
+  rx: "1"
+}), /*#__PURE__*/React.createElement("g", {
+  id: "Group-6",
+  transform: "translate(4.000000, 3.000000)"
+}, /*#__PURE__*/React.createElement("circle", {
+  id: "Oval-4-Copy",
+  fill: "#EA001B",
+  cx: "5.05263158",
+  cy: "5.05263158",
+  r: "5.05263158"
+}), /*#__PURE__*/React.createElement("circle", {
+  id: "Oval-4",
+  "fill-opacity": "0.25",
+  fill: "#F79F1A",
+  cx: "10.9473684",
+  cy: "5.05263158",
+  r: "5.05263158"
+}), /*#__PURE__*/React.createElement("circle", {
+  id: "Oval-4-Copy-2",
+  "fill-opacity": "0.9",
+  fill: "#F79F1A",
+  cx: "10.9473684",
+  cy: "5.05263158",
+  r: "5.05263158"
+}), /*#__PURE__*/React.createElement("circle", {
+  id: "Oval-4-Copy-3",
+  "fill-opacity": "0.3",
+  fill: "#EA001B",
+  cx: "5.05263158",
+  cy: "5.05263158",
+  r: "5.05263158"
+}))))));
+
+const CbCard = () => /*#__PURE__*/React.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: "24",
+  height: "16",
+  viewBox: "0 0 24 16"
+}, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+  id: "cardcb",
+  x1: "5.842%",
+  x2: "95.393%",
+  y1: "81.753%",
+  y2: "17.344%"
+}, /*#__PURE__*/React.createElement("stop", {
+  offset: "0%",
+  stopColor: "#39B54A"
+}), ' ', /*#__PURE__*/React.createElement("stop", {
+  offset: "100%",
+  stopColor: "#0A5296"
+}))), /*#__PURE__*/React.createElement("g", {
+  fill: "none",
+  fillRule: "nonzero"
+}, /*#__PURE__*/React.createElement("path", {
+  fill: "url(#cardcb)",
+  d: "M22.621 16H1.38C.627 16 0 15.392 0 14.662V1.338C0 .608.627 0 1.379 0H22.62C23.373 0 24 .608 24 1.338v13.324c-.063.73-.627 1.338-1.379 1.338z"
+}), /*#__PURE__*/React.createElement("g", {
+  fill: "#FFF"
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M19.094 4.03h-6.437V8h6.498c1.165 0 2.084-.889 2.084-2.015-.06-1.066-.98-1.955-2.145-1.955zM19.094 8.593h-6.437v3.97h6.498c1.165 0 2.084-.889 2.084-2.015-.06-1.067-.98-1.955-2.145-1.955zM7.017 8.06h4.966c-.245-2.371-2.391-4.267-4.966-4.267-2.758 0-5.027 2.074-5.027 4.681s2.269 4.682 5.027 4.682c2.698 0 4.904-2.015 5.027-4.563H7.017v-.534z"
+}))));
+
+var s$4 = {"cardContainer":"_1N3yO","card":"_83cGn"};
+
+const Cards = ({
+  cards
+}) => {
+  return /*#__PURE__*/React.createElement("div", {
+    className: s$4.cardContainer
+  }, cards.map(card => /*#__PURE__*/React.createElement("div", {
+    key: card,
+    className: s$4.card
+  }, card === 'cb' && /*#__PURE__*/React.createElement(CbCard, null), card === 'amex' && /*#__PURE__*/React.createElement(AmexCard, null), card === 'mastercard' && /*#__PURE__*/React.createElement(MasterCard, null), card === 'visa' && /*#__PURE__*/React.createElement(VisaCard, null))));
+};
+
+var s$5 = {"list":"_180ro","listItem":"_1HqCO","bullet":"_3B8wx"};
 
 const Info = () => /*#__PURE__*/React.createElement("div", {
-  className: cx(s$4.list, STATIC_CUSTOMISATION_CLASSES.info),
+  className: cx(s$5.list, STATIC_CUSTOMISATION_CLASSES.info),
   "data-testid": "modal-info-element"
 }, /*#__PURE__*/React.createElement("div", {
-  className: s$4.listItem
+  className: s$5.listItem
 }, /*#__PURE__*/React.createElement("div", {
-  className: s$4.bullet
+  className: s$5.bullet
 }, "1"), /*#__PURE__*/React.createElement("div", {
   className: STATIC_CUSTOMISATION_CLASSES.infoMessage
 }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2441,9 +2599,9 @@ const Info = () => /*#__PURE__*/React.createElement("div", {
     strong: (...chunks) => /*#__PURE__*/React.createElement("strong", null, chunks)
   }
 }))), /*#__PURE__*/React.createElement("div", {
-  className: s$4.listItem
+  className: s$5.listItem
 }, /*#__PURE__*/React.createElement("div", {
-  className: s$4.bullet
+  className: s$5.bullet
 }, "2"), /*#__PURE__*/React.createElement("div", {
   className: STATIC_CUSTOMISATION_CLASSES.infoMessage
 }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2453,9 +2611,9 @@ const Info = () => /*#__PURE__*/React.createElement("div", {
     strong: (...chunks) => /*#__PURE__*/React.createElement("strong", null, chunks)
   }
 }))), /*#__PURE__*/React.createElement("div", {
-  className: s$4.listItem
+  className: s$5.listItem
 }, /*#__PURE__*/React.createElement("div", {
-  className: s$4.bullet
+  className: s$5.bullet
 }, "3"), /*#__PURE__*/React.createElement("div", {
   className: STATIC_CUSTOMISATION_CLASSES.infoMessage
 }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2498,20 +2656,20 @@ function LogoIcon({
   }));
 }
 
-var s$5 = {"logo":"_3Oyv_"};
+var s$6 = {"logo":"_3Oyv_"};
 
 const Logo = () => /*#__PURE__*/React.createElement("div", {
-  className: s$5.logo
+  className: s$6.logo
 }, /*#__PURE__*/React.createElement(LogoIcon, {
   underlineColor: "#FF414D"
 }));
 
-var s$6 = {"title":"_3ERx-"};
+var s$7 = {"title":"_3ERx-"};
 
 const Title = ({
   isSomePlanDeferred
 }) => /*#__PURE__*/React.createElement("div", {
-  className: cx(s$6.title, STATIC_CUSTOMISATION_CLASSES.title),
+  className: cx(s$7.title, STATIC_CUSTOMISATION_CLASSES.title),
   "data-testid": "modal-title-element"
 }, isSomePlanDeferred ? /*#__PURE__*/React.createElement(FormattedMessage, {
   id: 'eligibility-modal.title-deferred',
@@ -2527,31 +2685,34 @@ const Title = ({
   }
 }));
 
-var s$7 = {"container":"_21g6u","block":"_3zaP5","left":"_2SBRC"};
+var s$8 = {"container":"_21g6u","block":"_3zaP5","left":"_2SBRC"};
 
 const DesktopModal = ({
   children,
-  isSomePlanDeferred
+  isSomePlanDeferred,
+  cards
 }) => /*#__PURE__*/React.createElement("div", {
-  className: s$7.container,
+  className: s$8.container,
   "data-testid": "modal-container"
 }, /*#__PURE__*/React.createElement("div", {
-  className: cx([s$7.block, s$7.left, STATIC_CUSTOMISATION_CLASSES.leftSide])
+  className: cx([s$8.block, s$8.left, STATIC_CUSTOMISATION_CLASSES.leftSide])
 }, /*#__PURE__*/React.createElement(Title, {
   isSomePlanDeferred: isSomePlanDeferred
-}), /*#__PURE__*/React.createElement(Info, null), /*#__PURE__*/React.createElement(Logo, null)), /*#__PURE__*/React.createElement("div", {
-  className: cx(s$7.block, STATIC_CUSTOMISATION_CLASSES.rightSide)
+}), /*#__PURE__*/React.createElement(Info, null), cards && /*#__PURE__*/React.createElement(Cards, {
+  cards: cards
+}), /*#__PURE__*/React.createElement(Logo, null)), /*#__PURE__*/React.createElement("div", {
+  className: cx(s$8.block, STATIC_CUSTOMISATION_CLASSES.rightSide)
 }, children));
 
-var s$8 = {"noEligibility":"_17qNJ","loader":"_2oTJq"};
+var s$9 = {"noEligibility":"_17qNJ","loader":"_2oTJq"};
 
-var s$9 = {"container":"_2G7Ch"};
+var s$a = {"container":"_2G7Ch"};
 
 const MobileModal = ({
   children,
   isSomePlanDeferred
 }) => /*#__PURE__*/React.createElement("div", {
-  className: s$9.container,
+  className: s$a.container,
   "data-testid": "modal-container"
 }, /*#__PURE__*/React.createElement(Title, {
   isSomePlanDeferred: isSomePlanDeferred
@@ -2561,7 +2722,8 @@ const EligibilityModal = ({
   initialPlanIndex,
   onClose,
   eligibilityPlans,
-  status
+  status,
+  cards
 }) => {
   const [currentPlanIndex, setCurrentPlanIndex] = useState(initialPlanIndex || 0);
   const isBigScreen = useMediaQuery({
@@ -2577,11 +2739,12 @@ const EligibilityModal = ({
     scrollable: true,
     isOpen: true
   }, /*#__PURE__*/React.createElement(ModalComponent, {
-    isSomePlanDeferred: isSomePlanDeferred
+    isSomePlanDeferred: isSomePlanDeferred,
+    cards: cards
   }, status === apiStatus.PENDING && /*#__PURE__*/React.createElement("div", {
-    className: s$8.loader
+    className: s$9.loader
   }, /*#__PURE__*/React.createElement(LoadingIndicator, null)), status === apiStatus.SUCCESS && eligiblePlans.length === 0 && /*#__PURE__*/React.createElement("div", {
-    className: s$8.noEligibility
+    className: s$9.noEligibility
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "eligibility-modal.no-eligibility",
     defaultMessage: "Oups, il semblerait que la simulation n'ait pas fonctionn\u00E9."
@@ -2602,29 +2765,31 @@ const ModalContainer = ({
   purchaseAmount,
   apiData,
   configPlans,
-  onClose
+  onClose,
+  cards
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans);
   return /*#__PURE__*/React.createElement(EligibilityModal, {
     initialPlanIndex: 0,
     onClose: onClose,
     eligibilityPlans: eligibilityPlans,
-    status: status
+    status: status,
+    cards: cards
   });
 };
 
-var s$a = {"loadingIndicator":"_2SwwZ","line1":"_2qODo","line2":"_2YO01"};
+var s$b = {"loadingIndicator":"_2SwwZ","line1":"_2qODo","line2":"_2YO01"};
 
 const Loader = ({
   className
 }) => {
   return /*#__PURE__*/React.createElement("div", {
-    className: cx(s$a.loadingIndicator, className),
+    className: cx(s$b.loadingIndicator, className),
     "data-testid": "loader"
   }, /*#__PURE__*/React.createElement("div", {
-    className: s$a.line1
+    className: s$b.line1
   }), /*#__PURE__*/React.createElement("div", {
-    className: s$a.line2
+    className: s$b.line2
   }));
 };
 
@@ -2704,7 +2869,7 @@ const STATIC_CUSTOMISATION_CLASSES$1 = {
   activeOption: prefix$1 + '-active-option'
 };
 
-var s$b = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","notEligible":"_3O1bg","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
+var s$c = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","notEligible":"_3O1bg","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365;
 const DEFAULT_TRANSITION_TIME = 5500;
@@ -2715,7 +2880,8 @@ const PaymentPlanWidget = ({
   configPlans,
   transitionDelay,
   hideIfNotEligible,
-  suggestedPaymentPlan
+  suggestedPaymentPlan,
+  cards
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans);
   const eligiblePlans = eligibilityPlans.filter(plan => plan.eligible);
@@ -2780,7 +2946,7 @@ const PaymentPlanWidget = ({
 
   if (status === apiStatus.PENDING) {
     return /*#__PURE__*/React.createElement("div", {
-      className: cx(s$b.widgetButton, s$b.pending)
+      className: cx(s$c.widgetButton, s$c.pending)
     }, /*#__PURE__*/React.createElement(Loader, null));
   }
 
@@ -2798,36 +2964,37 @@ const PaymentPlanWidget = ({
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     onClick: handleOpenModal,
-    className: cx(s$b.widgetButton, {
-      [s$b.clickable]: eligiblePlans.length > 0,
-      [s$b.unClickable]: eligiblePlans.length === 0
+    className: cx(s$c.widgetButton, {
+      [s$c.clickable]: eligiblePlans.length > 0,
+      [s$c.unClickable]: eligiblePlans.length === 0
     }, STATIC_CUSTOMISATION_CLASSES$1.container),
     "data-testid": "widget-button"
   }, /*#__PURE__*/React.createElement("div", {
-    className: cx(s$b.primaryContainer, STATIC_CUSTOMISATION_CLASSES$1.eligibilityLine)
+    className: cx(s$c.primaryContainer, STATIC_CUSTOMISATION_CLASSES$1.eligibilityLine)
   }, /*#__PURE__*/React.createElement(LogoIcon, {
-    className: s$b.logo
+    className: s$c.logo
   }), /*#__PURE__*/React.createElement("div", {
-    className: cx(s$b.paymentPlans, STATIC_CUSTOMISATION_CLASSES$1.eligibilityOptions)
+    className: cx(s$c.paymentPlans, STATIC_CUSTOMISATION_CLASSES$1.eligibilityOptions)
   }, eligibilityPlans.map((eligibilityPlan, key) => {
     return /*#__PURE__*/React.createElement("div", {
       key: key,
       onMouseEnter: () => onHover(key),
       onMouseOut: onLeave,
-      className: cx(s$b.plan, {
-        [cx(s$b.active, STATIC_CUSTOMISATION_CLASSES$1.activeOption)]: current === key,
-        [cx(s$b.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)]: !eligibilityPlan.eligible
+      className: cx(s$c.plan, {
+        [cx(s$c.active, STATIC_CUSTOMISATION_CLASSES$1.activeOption)]: current === key,
+        [cx(s$c.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)]: !eligibilityPlan.eligible
       })
     }, paymentPlanShorthandName(eligibilityPlan));
   }))), /*#__PURE__*/React.createElement("div", {
-    className: cx(s$b.info, {
-      [cx(s$b.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)]: eligibilityPlans[current] && !eligibilityPlans[current].eligible
+    className: cx(s$c.info, {
+      [cx(s$c.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)]: eligibilityPlans[current] && !eligibilityPlans[current].eligible
     }, STATIC_CUSTOMISATION_CLASSES$1.paymentInfo)
   }, eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current]))), isOpen && /*#__PURE__*/React.createElement(EligibilityModal, {
     initialPlanIndex: getIndexWithinEligiblePlans(current),
     onClose: closeModal,
     eligibilityPlans: eligiblePlans,
-    status: status
+    status: status,
+    cards: cards
   }));
 };
 
@@ -2851,7 +3018,8 @@ class WidgetsController {
         transitionDelay,
         hideIfNotEligible,
         suggestedPaymentPlan,
-        locale = Locale.en
+        locale = Locale.en,
+        cards
       } = options;
 
       if (containerDiv) {
@@ -2863,7 +3031,8 @@ class WidgetsController {
           configPlans: plans,
           transitionDelay: transitionDelay,
           hideIfNotEligible: hideIfNotEligible,
-          suggestedPaymentPlan: suggestedPaymentPlan
+          suggestedPaymentPlan: suggestedPaymentPlan,
+          cards: cards
         })), document.querySelector(container));
       }
     }
@@ -2874,7 +3043,8 @@ class WidgetsController {
         clickableSelector,
         purchaseAmount,
         plans,
-        locale = Locale.en
+        locale = Locale.en,
+        cards
       } = options;
 
       const close = () => containerDiv && unmountComponentAtNode(containerDiv);
@@ -2886,7 +3056,8 @@ class WidgetsController {
           purchaseAmount: purchaseAmount,
           apiData: this.apiData,
           configPlans: plans,
-          onClose: close
+          onClose: close,
+          cards: cards
         })), document.querySelector(container));
       }; // if clickableSelector is provided, add an onClick event handler to open the Modal.
 

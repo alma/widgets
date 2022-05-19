@@ -99,6 +99,10 @@ An array of the plans you want to display. If not provided, the widget returns a
 
 If provided, the modal will open when the element matching this query selector is clicked.
 
+- cards: ('cb' | 'visa' | 'amex' | 'mastercard')[] [optional]
+
+Display card logos in the modal
+
 ## Plan option: `Plan`
 
 - installmentsCount: `number` [required]:

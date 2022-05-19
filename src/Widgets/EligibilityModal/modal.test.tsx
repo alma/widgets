@@ -105,6 +105,24 @@ describe('Modal', () => {
         'Payez en plusieurs fois par carte bancaire avec Alma.',
       )
     })
+    it('should display card logos if they are provided', ()=> {
+       render(
+        <EligibilityModal
+          eligibilityPlans={mockPlansWithoutDeferred}
+          initialPlanIndex={0}
+          status={apiStatus.SUCCESS}
+          onClose={() => {
+            console.log('modal closed')
+          }}
+          cards={ ['amex', 'cb'] }
+        />,
+      )
+      expect(screen.getByTestId('card-logo-amex')).toBeInTheDocument()
+      expect(screen.getByTestId('card-logo-cb')).toBeInTheDocument()
+      expect(screen.queryByTestId('card-logo-mastercard')).not.toBeInTheDocument()
+      expect(screen.queryByTestId('card-logo-visa')).not.toBeInTheDocument()
+
+    })
   })
   describe('plans and initial index provided', () => {
     it('should open with the correct plan selected', () => {
