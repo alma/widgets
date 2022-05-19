@@ -61,6 +61,10 @@ suggestedPaymentPlan: [10, 4],
 In the above example, the 10 installments plan will be selected. If it's not eligible, the 4 installments plan will be selected. If the 4 installments plan is not eligible, it will select the first tab.
 When `suggestedPaymentPlan` is used, the transition is disable. Unless `transitionDelay` is specified.
 
+- cards: ('cb' | 'visa' | 'amex' | 'mastercard')[] [optional]
+
+Display card logos in the modal
+
 ## Add Modal
 
 `add(widget: Alma.Widgets.Modal, options: ModalOptions)`
