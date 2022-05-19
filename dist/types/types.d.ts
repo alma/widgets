@@ -76,6 +76,7 @@ export declare type ModalOptions = {
     purchaseAmount: number;
     plans?: ConfigPlan[];
     locale?: Locale;
+    cards?: Card[];
 };
 export declare type WidgetNames = keyof typeof widgetTypes;
 export declare type WidgetOptions = PaymentPlanWidgetOptions | ModalOptions;

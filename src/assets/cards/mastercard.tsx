@@ -7,7 +7,7 @@ const MasterCard: FC = () => (
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g id="Parcours-1C-B" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Parcours-1C-B" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="mobile-1C-Paiement-V1" transform="translate(-269.000000, -313.000000)">
         <g id="mastercard" transform="translate(269.000000, 313.000000)">
           <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="24" height="16" rx="1"></rect>
@@ -21,7 +21,7 @@ const MasterCard: FC = () => (
             ></circle>
             <circle
               id="Oval-4"
-              fill-opacity="0.25"
+              fillOpacity="0.25"
               fill="#F79F1A"
               cx="10.9473684"
               cy="5.05263158"
@@ -29,7 +29,7 @@ const MasterCard: FC = () => (
             ></circle>
             <circle
               id="Oval-4-Copy-2"
-              fill-opacity="0.9"
+              fillOpacity="0.9"
               fill="#F79F1A"
               cx="10.9473684"
               cy="5.05263158"
@@ -37,7 +37,7 @@ const MasterCard: FC = () => (
             ></circle>
             <circle
               id="Oval-4-Copy-3"
-              fill-opacity="0.3"
+              fillOpacity="0.3"
               fill="#EA001B"
               cx="5.05263158"
               cy="5.05263158"

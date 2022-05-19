@@ -19,6 +19,7 @@ const STATIC_CUSTOMISATION_CLASSES = {
   scheduleDetails: prefix + '-schedule-details',
   scheduleTotal: prefix + '-schedule-total',
   scheduleCredit: prefix + '-schedule-credit',
+  cardContainer: prefix + '-card-logos',
   summary: prefix + '-summary',
 }
 

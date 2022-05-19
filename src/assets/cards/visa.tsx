@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 const VisaCard: FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16">
-    <g fill="none" fill-rule="nonzero">
+    <g fill="none" fillRule="nonzero">
       <path
         fill="#FCFCFC"
         d="M22.684 16H1.38C.627 16 0 15.39 0 14.656V1.344C0 .61.627 0 1.379 0H22.62C23.373 0 24 .61 24 1.344v13.374c0 .671-.564 1.282-1.316 1.282z"

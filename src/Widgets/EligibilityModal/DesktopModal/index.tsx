@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import React, { FC } from 'react'
-import {Card} from 'types'
+import { Card } from 'types'
 import STATIC_CUSTOMISATION_CLASSES from '../classNames.const'
 import Cards from '../components/Cards'
 import Info from '../components/Info'

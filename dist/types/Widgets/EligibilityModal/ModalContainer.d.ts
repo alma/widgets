@@ -1,10 +1,11 @@
 import React from 'react';
-import { ApiConfig, ConfigPlan } from 'types';
+import { ApiConfig, Card, ConfigPlan } from 'types';
 declare type Props = {
     purchaseAmount: number;
     apiData: ApiConfig;
     configPlans?: ConfigPlan[];
     onClose: () => void;
+    cards?: Card[];
 };
 /**
  * This component allows to display only the modal, without PaymentPlans.
