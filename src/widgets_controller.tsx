@@ -13,7 +13,7 @@ import {
 import ModalContainer from 'Widgets/EligibilityModal/ModalContainer'
 import PaymentPlanWidget from 'Widgets/PaymentPlans'
 
-type AddReturnType =
+export type AddReturnType =
   | {
       open: () => void
       close: () => void
@@ -39,7 +39,7 @@ export class WidgetsController {
         hideIfNotEligible,
         suggestedPaymentPlan,
         locale = Locale.en,
-        cards
+        cards,
       } = options as PaymentPlanWidgetOptions
 
       if (containerDiv) {
@@ -67,7 +67,7 @@ export class WidgetsController {
         purchaseAmount,
         plans,
         locale = Locale.en,
-        cards
+        cards,
       } = options as ModalOptions
 
       const close = () => containerDiv && unmountComponentAtNode(containerDiv)

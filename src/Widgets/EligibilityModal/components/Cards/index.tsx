@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react'
 import { Card } from 'types'
 import AmexCard from 'assets/cards/amex'
 import VisaCard from 'assets/cards/visa'
@@ -14,8 +14,10 @@ type Props = {
 
 const Cards: FC<Props> = ({ cards }) => {
   return (
-
-    <div className={cx(s.cardContainer, STATIC_CUSTOMISATION_CLASSES.cardContainer)}>
+    <div
+      data-testid="card-logos"
+      className={cx(s.cardContainer, STATIC_CUSTOMISATION_CLASSES.cardContainer)}
+    >
       {cards.map((card: Card) => (
         <div key={card} className={s.card} data-testid={`card-logo-${card}`}>
           {card === 'cb' && <CbCard />}
