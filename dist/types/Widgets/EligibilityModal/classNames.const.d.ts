@@ -14,6 +14,7 @@ declare const STATIC_CUSTOMISATION_CLASSES: {
     scheduleDetails: string;
     scheduleTotal: string;
     scheduleCredit: string;
+    cardContainer: string;
     summary: string;
 };
 export default STATIC_CUSTOMISATION_CLASSES;

@@ -2194,6 +2194,7 @@ var STATIC_CUSTOMISATION_CLASSES = {
   scheduleDetails: prefix + '-schedule-details',
   scheduleTotal: prefix + '-schedule-total',
   scheduleCredit: prefix + '-schedule-credit',
+  cardContainer: prefix + '-card-logos',
   summary: prefix + '-summary'
 };
 
@@ -2512,7 +2513,7 @@ var VisaCard = function VisaCard() {
     viewBox: "0 0 24 16"
   }, /*#__PURE__*/React.createElement("g", {
     fill: "none",
-    "fill-rule": "nonzero"
+    fillRule: "nonzero"
   }, /*#__PURE__*/React.createElement("path", {
     fill: "#FCFCFC",
     d: "M22.684 16H1.38C.627 16 0 15.39 0 14.656V1.344C0 .61.627 0 1.379 0H22.62C23.373 0 24 .61 24 1.344v13.374c0 .671-.564 1.282-1.316 1.282z"
@@ -2541,9 +2542,9 @@ var MasterCard = function MasterCard() {
   }, /*#__PURE__*/React.createElement("g", {
     id: "Parcours-1C-B",
     stroke: "none",
-    "stroke-width": "1",
+    strokeWidth: "1",
     fill: "none",
-    "fill-rule": "evenodd"
+    fillRule: "evenodd"
   }, /*#__PURE__*/React.createElement("g", {
     id: "mobile-1C-Paiement-V1",
     transform: "translate(-269.000000, -313.000000)"
@@ -2569,21 +2570,21 @@ var MasterCard = function MasterCard() {
     r: "5.05263158"
   }), /*#__PURE__*/React.createElement("circle", {
     id: "Oval-4",
-    "fill-opacity": "0.25",
+    fillOpacity: "0.25",
     fill: "#F79F1A",
     cx: "10.9473684",
     cy: "5.05263158",
     r: "5.05263158"
   }), /*#__PURE__*/React.createElement("circle", {
     id: "Oval-4-Copy-2",
-    "fill-opacity": "0.9",
+    fillOpacity: "0.9",
     fill: "#F79F1A",
     cx: "10.9473684",
     cy: "5.05263158",
     r: "5.05263158"
   }), /*#__PURE__*/React.createElement("circle", {
     id: "Oval-4-Copy-3",
-    "fill-opacity": "0.3",
+    fillOpacity: "0.3",
     fill: "#EA001B",
     cx: "5.05263158",
     cy: "5.05263158",
@@ -2627,11 +2628,12 @@ var s$4 = {"cardContainer":"_1N3yO","card":"_83cGn"};
 var Cards = function Cards(_ref) {
   var cards = _ref.cards;
   return /*#__PURE__*/React.createElement("div", {
-    className: s$4.cardContainer
+    className: cx(s$4.cardContainer, STATIC_CUSTOMISATION_CLASSES.cardContainer)
   }, cards.map(function (card) {
     return /*#__PURE__*/React.createElement("div", {
       key: card,
-      className: s$4.card
+      className: s$4.card,
+      "data-testid": "card-logo-" + card
     }, card === 'cb' && /*#__PURE__*/React.createElement(CbCard, null), card === 'amex' && /*#__PURE__*/React.createElement(AmexCard, null), card === 'mastercard' && /*#__PURE__*/React.createElement(MasterCard, null), card === 'visa' && /*#__PURE__*/React.createElement(VisaCard, null));
   }));
 };
@@ -2782,13 +2784,16 @@ var s$a = {"container":"_2G7Ch"};
 
 var MobileModal = function MobileModal(_ref) {
   var children = _ref.children,
-      isSomePlanDeferred = _ref.isSomePlanDeferred;
+      isSomePlanDeferred = _ref.isSomePlanDeferred,
+      cards = _ref.cards;
   return /*#__PURE__*/React.createElement("div", {
     className: s$a.container,
     "data-testid": "modal-container"
   }, /*#__PURE__*/React.createElement(Title, {
     isSomePlanDeferred: isSomePlanDeferred
-  }), children, /*#__PURE__*/React.createElement(Info, null), /*#__PURE__*/React.createElement(Logo, null));
+  }), children, /*#__PURE__*/React.createElement(Info, null), cards && /*#__PURE__*/React.createElement(Cards, {
+    cards: cards
+  }), /*#__PURE__*/React.createElement(Logo, null));
 };
 
 var EligibilityModal = function EligibilityModal(_ref) {

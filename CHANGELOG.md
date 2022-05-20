@@ -1,3 +1,15 @@
+# [2.7.0](https://github.com/alma/widgets/compare/v2.6.0...v2.7.0) (2022-05-20)
+
+
+### Bug Fixes
+
+* svg ([51d82e5](https://github.com/alma/widgets/commit/51d82e546660e9b793c0ef9d596303ebb29180f4))
+
+
+### Features
+
+* added the possibility of displaying card ([dfba5f9](https://github.com/alma/widgets/commit/dfba5f9f7d15a4753e16e40a0ea748c9898fb6b1))
+
 # [2.6.0](https://github.com/alma/widgets/compare/v2.5.1...v2.6.0) (2022-05-16)
 
 
