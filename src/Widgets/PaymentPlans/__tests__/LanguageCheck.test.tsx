@@ -13,26 +13,6 @@ jest.mock('utils/fetch', () => {
 })
 
 describe('Change language', () => {
-  it(`into a non existing language`, async () => {
-    // We mock the console.error to avoid a console.error from intl library
-    jest.spyOn(console, 'error').mockImplementation(() => jest.fn())
-
-    render(
-      <PaymentPlanWidget
-        purchaseAmount={40000}
-        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-      />,
-      {
-        locale: 'AA', // Inexisting locale to get into the fallback one
-      },
-    )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-
-    expect(screen.getByText('T+30')).toBeInTheDocument()
-    expect(screen.getByText(/to be paid on/)).toBeInTheDocument()
-    expect(screen.getByText(/\(free of charge\)/)).toBeInTheDocument()
-  })
-
   it(`into ${Locale.en}`, async () => {
     render(
       <PaymentPlanWidget

@@ -10,8 +10,6 @@ export const getTranslationsByLocale = (locale: Locale): Record<string, string> 
   switch (locale) {
     case Locale.fr:
       return messagesFR
-    case Locale.en:
-      return messagesEN
     case Locale.es:
       return messagesES
     case Locale.it:
@@ -22,6 +20,7 @@ export const getTranslationsByLocale = (locale: Locale): Record<string, string> 
     case Locale['nl-BE']:
     case Locale['nl-NL']:
       return messagesNL
+    case Locale.en:
     default:
       return messagesEN
   }

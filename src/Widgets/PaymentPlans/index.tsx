@@ -31,7 +31,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   transitionDelay,
   hideIfNotEligible,
   suggestedPaymentPlan,
-  cards
+  cards,
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)

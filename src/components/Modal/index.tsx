@@ -26,6 +26,7 @@ const ControlledModal: FunctionComponent<Props> = ({
   scrollable = false,
   ...props
 }) => {
+  /* istanbul ignore next */
   if (process.env.NODE_ENV !== 'test') Modal.setAppElement('body')
 
   return (
