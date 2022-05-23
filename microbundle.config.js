@@ -51,11 +51,6 @@ module.exports = {
         }
         return _external(id, ...args)
       }
-      // Make sure @alma/client is exported on the `Alma` global object, and deactivate cache to
-      // ensure the lib is indeed inlined into the bundle
-      // (see https://github.com/rollup/rollup/issues/3874)
-      config.outputOptions.globals['@alma/client'] = 'Alma'
-      config.inputOptions.cache = false
     }
 
     return config
