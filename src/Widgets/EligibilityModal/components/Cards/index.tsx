@@ -13,12 +13,15 @@ type Props = {
 }
 
 const Cards: FC<Props> = ({ cards }) => {
+  // We transform to a Set and back to avoid duplicate values (ex : amex, amex)
+  const uniqueCards = Array.from(new Set(cards))
+
   return (
     <div
       data-testid="card-logos"
       className={cx(s.cardContainer, STATIC_CUSTOMISATION_CLASSES.cardContainer)}
     >
-      {cards.map((card: Card) => (
+      {uniqueCards.map((card: Card) => (
         <div key={card} className={s.card} data-testid={`card-logo-${card}`}>
           {card === 'cb' && <CbCard />}
           {card === 'amex' && <AmexCard />}
