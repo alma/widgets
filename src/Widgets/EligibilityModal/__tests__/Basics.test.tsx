@@ -6,22 +6,22 @@ import { mockButtonPlans } from 'test/fixtures'
 import { apiStatus } from 'types'
 import EligibilityModal from '..'
 
-describe('Test responsiveness', () => {
-  beforeEach(async () => {
-    render(
-      <ResponsiveContext.Provider value={{ width: 801 }}>
-        <EligibilityModal
-          eligibilityPlans={mockButtonPlans}
-          status={apiStatus.SUCCESS}
-          onClose={() => {
-            console.log('modal closed')
-          }}
-        />
-      </ResponsiveContext.Provider>,
-    )
-    await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
-  })
+beforeEach(async () => {
+  render(
+    <ResponsiveContext.Provider value={{ width: 801 }}>
+      <EligibilityModal
+        eligibilityPlans={mockButtonPlans}
+        status={apiStatus.SUCCESS}
+        onClose={() => {
+          console.log('modal closed')
+        }}
+      />
+    </ResponsiveContext.Provider>,
+  )
+  await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
+})
 
+describe('Test responsiveness', () => {
   it('should display the payments plans provided in eligibility', () => {
     expect(screen.getByText('J+30')).toBeInTheDocument()
     expect(screen.getByText('2x')).toBeInTheDocument()
@@ -29,21 +29,6 @@ describe('Test responsiveness', () => {
 })
 
 describe('onClose event test', () => {
-  beforeEach(async () => {
-    render(
-      <ResponsiveContext.Provider value={{ width: 801 }}>
-        <EligibilityModal
-          eligibilityPlans={mockButtonPlans}
-          status={apiStatus.SUCCESS}
-          onClose={() => {
-            console.log('modal closed')
-          }}
-        />
-      </ResponsiveContext.Provider>,
-    )
-    await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
-  })
-
   it('should be launched when close button is clicked', () => {
     console.log = jest.fn()
     act(() => {
