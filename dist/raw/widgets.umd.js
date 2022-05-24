@@ -6296,7 +6296,7 @@
   	"eligibility-modal.title": "<highlighted>Bezahlen Sie in Raten</highlighted> per Kreditkarte mit Alma.",
   	"eligibility-modal.title-deferred": "<highlighted>Bezahlen Sie in Raten</highlighted> oder später per Kreditkarte mit Alma.",
   	"eligibility-modal.total": "Insgesamt",
-  	"installments.today": "Heutzutage",
+  	"installments.today": "Heute",
   	"payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
   	"payment-plan-strings.default-message": "Bezahlen Sie in Raten mit Alma",
   	"payment-plan-strings.deferred": "{totalAmount} zu zahlen am {dueDate}",
@@ -6339,7 +6339,7 @@
   	"eligibility-modal.credit-cost": "Coste de crédito (incl. en el total)",
   	"eligibility-modal.credit-cost-amount": "{creditCost} (TAE {TAEG})",
   	"eligibility-modal.no-eligibility": "Uy, parece que la simulación no ha funcionado.",
-  	"eligibility-modal.title": "<highlighted>Paga a plazos</highlighted> con tarjeta de crédito con Alma.",
+  	"eligibility-modal.title": "<highlighted>Paga a plazos</highlighted> con tu tarjeta, a través de Alma.",
   	"eligibility-modal.title-deferred": "<highlighted>Paga a plazos</highlighted> o más adelante con tu tarjeta, a través de Alma.",
   	"eligibility-modal.total": "Total",
   	"installments.today": "Hoy",
@@ -6385,8 +6385,8 @@
   	"eligibility-modal.credit-cost": "Di cui commissioni",
   	"eligibility-modal.credit-cost-amount": "{creditCost} (TAEG {TAEG})",
   	"eligibility-modal.no-eligibility": "Ops, sembra che la simulazione non abbia funzionato.",
-  	"eligibility-modal.title": "<highlighted>Paga a rate</highlighted> con carta di credito con Alma.",
-  	"eligibility-modal.title-deferred": "<highlighted>Paga a rate</highlighted> e posticipa il pagamento con Alma, senza interessi.",
+  	"eligibility-modal.title": "<highlighted>Paga a rate</highlighted> con Alma, senza interessi.",
+  	"eligibility-modal.title-deferred": "<highlighted>Paga a rate</highlighted> o posticipa il pagamento con Alma, senza interessi.",
   	"eligibility-modal.total": "Totale",
   	"installments.today": "Oggi",
   	"payment-plan-strings.day-abbreviation": "G{numberOfDeferredDays}",
@@ -6427,9 +6427,6 @@
       case Locale.fr:
         return messagesFR;
 
-      case Locale.en:
-        return messagesEN;
-
       case Locale.es:
         return messagesES;
 
@@ -6444,6 +6441,7 @@
       case Locale['nl-NL']:
         return messagesNL;
 
+      case Locale.en:
       default:
         return messagesEN;
     }
@@ -16799,6 +16797,7 @@
         scrollable = _ref$scrollable === void 0 ? false : _ref$scrollable,
         props = _objectWithoutPropertiesLoose(_ref, _excluded);
 
+    /* istanbul ignore next */
     Modal.setAppElement('body');
     return /*#__PURE__*/react.createElement(Modal, Object.assign({
       className: classnames(s$1.modal, className),
@@ -18558,9 +18557,12 @@
 
   var Cards = function Cards(_ref) {
     var cards = _ref.cards;
+    // We transform to a Set and back to avoid duplicate values (ex : amex, amex)
+    var uniqueCards = Array.from(new Set(cards));
     return /*#__PURE__*/react.createElement("div", {
+      "data-testid": "card-logos",
       className: classnames(s$4.cardContainer, STATIC_CUSTOMISATION_CLASSES.cardContainer)
-    }, cards.map(function (card) {
+    }, uniqueCards.map(function (card) {
       return /*#__PURE__*/react.createElement("div", {
         key: card,
         className: s$4.card,

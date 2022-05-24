@@ -1,3 +1,11 @@
+## [2.7.1](https://github.com/alma/widgets/compare/v2.7.0...v2.7.1) (2022-05-24)
+
+
+### Bug Fixes
+
+* **cards:** duplicate value is not removed ([80b4ad3](https://github.com/alma/widgets/commit/80b4ad31731317fadc0492213c9241be6431998a))
+* **i18n:** update translations ([7e394f3](https://github.com/alma/widgets/commit/7e394f3bcb8e9cbf8c9b87f44e6bc1f2145d7b58))
+
 # [2.7.0](https://github.com/alma/widgets/compare/v2.6.0...v2.7.0) (2022-05-20)
 
 

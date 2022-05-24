@@ -1,6 +1,6 @@
 import { ApiMode } from 'consts';
 import { WidgetNames, WidgetOptions } from 'types';
-declare type AddReturnType = {
+export declare type AddReturnType = {
     open: () => void;
     close: () => void;
 } | undefined;
@@ -12,4 +12,3 @@ export declare class WidgetsController {
     });
     add(widget: WidgetNames, options: WidgetOptions): AddReturnType;
 }
-export {};
