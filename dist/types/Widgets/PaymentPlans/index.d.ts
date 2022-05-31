@@ -6,6 +6,7 @@ declare type Props = {
     configPlans?: ConfigPlan[];
     transitionDelay?: number;
     hideIfNotEligible?: boolean;
+    monochrome: boolean;
     suggestedPaymentPlan?: number | number[];
     cards?: Card[];
 };

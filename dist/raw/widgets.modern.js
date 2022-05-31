@@ -2628,11 +2628,20 @@ const Info = () => /*#__PURE__*/React.createElement("div", {
   }
 }))));
 
+var COLORS;
+
+(function (COLORS) {
+  COLORS["ALMA"] = "#FF414D";
+  COLORS["MONOCHROME"] = "#00425D";
+})(COLORS || (COLORS = {}));
+
 function LogoIcon({
-  color = '#00425D',
-  underlineColor = '#00425D',
-  className
+  className,
+  color = COLORS.MONOCHROME,
+  monochrome = true,
+  underlineColor
 }) {
+  const defaultUnderlineColor = monochrome ? COLORS.MONOCHROME : COLORS.ALMA;
   return /*#__PURE__*/React.createElement("svg", {
     className: className,
     width: "35",
@@ -2656,7 +2665,7 @@ function LogoIcon({
     y: "20",
     width: "40",
     height: "3",
-    fill: underlineColor
+    fill: underlineColor || defaultUnderlineColor
   }));
 }
 
@@ -2876,19 +2885,20 @@ const STATIC_CUSTOMISATION_CLASSES$1 = {
   activeOption: prefix$1 + '-active-option'
 };
 
-var s$c = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","notEligible":"_3O1bg","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
+var s$c = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","polychrome":"_2icEF","notEligible":"_3O1bg","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365;
 const DEFAULT_TRANSITION_TIME = 5500;
 
 const PaymentPlanWidget = ({
-  purchaseAmount,
   apiData,
   configPlans,
-  transitionDelay,
   hideIfNotEligible,
+  monochrome,
+  purchaseAmount,
   suggestedPaymentPlan,
-  cards
+  cards,
+  transitionDelay
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans);
   const eligiblePlans = eligibilityPlans.filter(plan => plan.eligible);
@@ -2979,16 +2989,19 @@ const PaymentPlanWidget = ({
   }, /*#__PURE__*/React.createElement("div", {
     className: cx(s$c.primaryContainer, STATIC_CUSTOMISATION_CLASSES$1.eligibilityLine)
   }, /*#__PURE__*/React.createElement(LogoIcon, {
-    className: s$c.logo
+    className: s$c.logo,
+    monochrome: monochrome
   }), /*#__PURE__*/React.createElement("div", {
     className: cx(s$c.paymentPlans, STATIC_CUSTOMISATION_CLASSES$1.eligibilityOptions)
   }, eligibilityPlans.map((eligibilityPlan, key) => {
+    const isCurrent = key === current;
     return /*#__PURE__*/React.createElement("div", {
       key: key,
       onMouseEnter: () => onHover(key),
       onMouseOut: onLeave,
       className: cx(s$c.plan, {
-        [cx(s$c.active, STATIC_CUSTOMISATION_CLASSES$1.activeOption)]: current === key,
+        [cx(s$c.active, STATIC_CUSTOMISATION_CLASSES$1.activeOption)]: isCurrent,
+        [s$c.polychrome]: !monochrome && isCurrent,
         [cx(s$c.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)]: !eligibilityPlan.eligible
       })
     }, paymentPlanShorthandName(eligibilityPlan));
@@ -3024,6 +3037,7 @@ class WidgetsController {
         plans,
         transitionDelay,
         hideIfNotEligible,
+        monochrome = true,
         suggestedPaymentPlan,
         locale = Locale.en,
         cards
@@ -3033,13 +3047,14 @@ class WidgetsController {
         render( /*#__PURE__*/React.createElement(Provider, {
           locale: locale
         }, /*#__PURE__*/React.createElement(PaymentPlanWidget, {
-          purchaseAmount: purchaseAmount,
           apiData: this.apiData,
           configPlans: plans,
-          transitionDelay: transitionDelay,
           hideIfNotEligible: hideIfNotEligible,
+          monochrome: monochrome,
+          purchaseAmount: purchaseAmount,
           suggestedPaymentPlan: suggestedPaymentPlan,
-          cards: cards
+          cards: cards,
+          transitionDelay: transitionDelay
         })), document.querySelector(container));
       }
     }

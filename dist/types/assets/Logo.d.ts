@@ -1,8 +1,9 @@
 /// <reference types="react" />
 declare type Props = {
-    color?: string;
     className?: string;
+    color?: string;
+    monochrome?: boolean;
     underlineColor?: string;
 };
-declare function LogoIcon({ color, underlineColor, className, }: Props): JSX.Element;
+declare function LogoIcon({ className, color, monochrome, underlineColor, }: Props): JSX.Element;
 export default LogoIcon;

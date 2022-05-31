@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/alma/widgets/compare/v2.7.1...v2.8.0) (2022-05-31)
+
+
+### Features
+
+* add "monochrome" option to the widgets ([ea11a7e](https://github.com/alma/widgets/commit/ea11a7e223d6cb791e9508d3be781bf024c03618))
+
 ## [2.7.1](https://github.com/alma/widgets/compare/v2.7.0...v2.7.1) (2022-05-24)
 
 
