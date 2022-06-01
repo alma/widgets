@@ -42,7 +42,7 @@ describe('Change language', () => {
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
-    expect(screen.getByText('J+30')).toBeInTheDocument() // Change that with T+30 when proofreading is done
+    expect(screen.getByText('T+30')).toBeInTheDocument()
     expect(screen.getByText(/zu zahlen am/)).toBeInTheDocument()
     expect(screen.getByText(/\(gebührenfrei\)/)).toBeInTheDocument()
   })
