@@ -9,13 +9,11 @@ import s from './Schedule.module.css'
 import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
 
 const Schedule: FC<{ currentPlan: EligibilityPlan }> = ({ currentPlan }) => {
-  const total =
-    currentPlan &&
-    priceFromCents(currentPlan.purchase_amount + currentPlan.customer_total_cost_amount)
-  const creditCost = currentPlan ? priceFromCents(currentPlan.customer_total_cost_amount) : 0
+  const total = priceFromCents(currentPlan.purchase_amount + currentPlan.customer_total_cost_amount)
+  const creditCost = priceFromCents(currentPlan.customer_total_cost_amount)
   const TAEG = currentPlan?.annual_interest_rate && currentPlan.annual_interest_rate / 10000
-  const customerFees = priceFromCents(currentPlan ? currentPlan.customer_total_cost_amount : 0)
-  const isCredit = currentPlan && currentPlan.installments_count > 4
+  const customerFees = priceFromCents(currentPlan.customer_total_cost_amount)
+  const isCredit = currentPlan.installments_count > 4
   const intl = useIntl()
 
   return (
