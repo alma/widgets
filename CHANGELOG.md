@@ -1,3 +1,10 @@
+## [2.8.2](https://github.com/alma/widgets/compare/v2.8.1...v2.8.2) (2022-06-06)
+
+
+### Bug Fixes
+
+* upgrade react-modal from 3.14.4 to 3.15.1 ([c263c0f](https://github.com/alma/widgets/commit/c263c0fbe1f6bbff41d251fc36867f5fff39c0c1))
+
 ## [2.8.1](https://github.com/alma/widgets/compare/v2.8.0...v2.8.1) (2022-06-06)
 
 
