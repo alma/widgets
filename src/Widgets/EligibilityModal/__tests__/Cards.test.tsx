@@ -4,6 +4,7 @@ import render from 'test'
 import { mockButtonPlans } from 'test/fixtures'
 import { apiStatus } from 'types'
 import EligibilityModal from '..'
+import { Context as ResponsiveContext } from 'react-responsive'
 
 jest.mock('utils/fetch', () => {
   return {
@@ -55,6 +56,25 @@ it('should display provided card logos', () => {
       onClose={() => jest.fn()}
       cards={['amex', 'cb']}
     />,
+  )
+  expect(screen.queryByTestId('card-logos')).toBeInTheDocument()
+  expect(screen.getByTestId('card-logo-amex')).toBeInTheDocument()
+  expect(screen.getByTestId('card-logo-cb')).toBeInTheDocument()
+  expect(screen.queryByTestId('card-logo-mastercard')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('card-logo-visa')).not.toBeInTheDocument()
+})
+
+it('should display provided card logos with Desktop Modal', () => {
+  render(
+    <ResponsiveContext.Provider value={{ width: 801 }}>
+      <EligibilityModal
+        eligibilityPlans={mockButtonPlans}
+        initialPlanIndex={0}
+        status={apiStatus.SUCCESS}
+        onClose={() => jest.fn()}
+        cards={['amex', 'cb']}
+      />
+    </ResponsiveContext.Provider>,
   )
   expect(screen.queryByTestId('card-logos')).toBeInTheDocument()
   expect(screen.getByTestId('card-logo-amex')).toBeInTheDocument()
