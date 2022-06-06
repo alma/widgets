@@ -1,3 +1,13 @@
+## [2.8.1](https://github.com/alma/widgets/compare/v2.8.0...v2.8.1) (2022-06-06)
+
+
+### Bug Fixes
+
+* upgrade @types/node from 14.18.13 to 14.18.17 ([b84aa4b](https://github.com/alma/widgets/commit/b84aa4bbe4ed24a1051084988e369c3aaf0c8e0e))
+* upgrade @types/react-dom from 17.0.15 to 17.0.17 ([d6ce605](https://github.com/alma/widgets/commit/d6ce605ff1a96a630c946fce149c5d8334a2d99b))
+* upgrade core-js from 3.22.1 to 3.22.5 ([66af66a](https://github.com/alma/widgets/commit/66af66a779acc360601d6caf2ccc43c0e9759600))
+* upgrade expect-type from 0.9.2 to 0.13.0 ([3e1487b](https://github.com/alma/widgets/commit/3e1487b29cb56d4b3828073a05f457bd2f5bc605))
+
 # [2.8.0](https://github.com/alma/widgets/compare/v2.7.1...v2.8.0) (2022-05-31)
 
 

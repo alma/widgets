@@ -99,10 +99,10 @@ var shared = createCommonjsModule(function (module) {
   (module.exports = function (key, value) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
-    version: '3.22.1',
+    version: '3.22.5',
     mode:  'global',
     copyright: '© 2014-2022 Denis Pushkarev (zloirock.ru)',
-    license: 'https://github.com/zloirock/core-js/blob/v3.22.1/LICENSE',
+    license: 'https://github.com/zloirock/core-js/blob/v3.22.5/LICENSE',
     source: 'https://github.com/zloirock/core-js'
   });
 });
@@ -628,48 +628,87 @@ var functionName = {
   CONFIGURABLE: CONFIGURABLE$1
 };
 
-var redefine = createCommonjsModule(function (module) {
+var makeBuiltIn_1 = createCommonjsModule(function (module) {
   var CONFIGURABLE_FUNCTION_NAME = functionName.CONFIGURABLE;
-  var getInternalState = internalState.get;
   var enforceInternalState = internalState.enforce;
-  var TEMPLATE = String(String).split('String');
-  (module.exports = function (O, key, value, options) {
-    var unsafe = options ? !!options.unsafe : false;
-    var simple = options ? !!options.enumerable : false;
-    var noTargetGet = options ? !!options.noTargetGet : false;
-    var name = options && options.name !== undefined ? options.name : key;
-    var state;
+  var getInternalState = internalState.get; // eslint-disable-next-line es-x/no-object-defineproperty -- safe
 
-    if (isCallable(value)) {
-      if (String(name).slice(0, 7) === 'Symbol(') {
-        name = '[' + String(name).replace(/^Symbol\(([^)]*)\)/, '$1') + ']';
-      }
-
-      if (!hasOwnProperty_1(value, 'name') || CONFIGURABLE_FUNCTION_NAME && value.name !== name) {
-        createNonEnumerableProperty(value, 'name', name);
-      }
-
-      state = enforceInternalState(value);
-
-      if (!state.source) {
-        state.source = TEMPLATE.join(typeof name == 'string' ? name : '');
-      }
-    }
-
-    if (O === global_1) {
-      if (simple) O[key] = value;else setGlobal(key, value);
-      return;
-    } else if (!unsafe) {
-      delete O[key];
-    } else if (!noTargetGet && O[key]) {
-      simple = true;
-    }
-
-    if (simple) O[key] = value;else createNonEnumerableProperty(O, key, value); // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
-  })(Function.prototype, 'toString', function toString() {
-    return isCallable(this) && getInternalState(this).source || inspectSource(this);
+  var defineProperty = Object.defineProperty;
+  var CONFIGURABLE_LENGTH = descriptors && !fails(function () {
+    return defineProperty(function () {
+      /* empty */
+    }, 'length', {
+      value: 8
+    }).length !== 8;
   });
+  var TEMPLATE = String(String).split('String');
+
+  var makeBuiltIn = module.exports = function (value, name, options) {
+    if (String(name).slice(0, 7) === 'Symbol(') {
+      name = '[' + String(name).replace(/^Symbol\(([^)]*)\)/, '$1') + ']';
+    }
+
+    if (options && options.getter) name = 'get ' + name;
+    if (options && options.setter) name = 'set ' + name;
+
+    if (!hasOwnProperty_1(value, 'name') || CONFIGURABLE_FUNCTION_NAME && value.name !== name) {
+      defineProperty(value, 'name', {
+        value: name,
+        configurable: true
+      });
+    }
+
+    if (CONFIGURABLE_LENGTH && options && hasOwnProperty_1(options, 'arity') && value.length !== options.arity) {
+      defineProperty(value, 'length', {
+        value: options.arity
+      });
+    }
+
+    if (options && hasOwnProperty_1(options, 'constructor') && options.constructor) {
+      if (descriptors) try {
+        defineProperty(value, 'prototype', {
+          writable: false
+        });
+      } catch (error) {
+        /* empty */
+      }
+    } else value.prototype = undefined;
+
+    var state = enforceInternalState(value);
+
+    if (!hasOwnProperty_1(state, 'source')) {
+      state.source = TEMPLATE.join(typeof name == 'string' ? name : '');
+    }
+
+    return value;
+  }; // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+  // eslint-disable-next-line no-extend-native -- required
+
+
+  Function.prototype.toString = makeBuiltIn(function toString() {
+    return isCallable(this) && getInternalState(this).source || inspectSource(this);
+  }, 'toString');
 });
+
+var defineBuiltIn = function (O, key, value, options) {
+  var unsafe = options ? !!options.unsafe : false;
+  var simple = options ? !!options.enumerable : false;
+  var noTargetGet = options ? !!options.noTargetGet : false;
+  var name = options && options.name !== undefined ? options.name : key;
+  if (isCallable(value)) makeBuiltIn_1(value, name, options);
+
+  if (O === global_1) {
+    if (simple) O[key] = value;else setGlobal(key, value);
+    return O;
+  } else if (!unsafe) {
+    delete O[key];
+  } else if (!noTargetGet && O[key]) {
+    simple = true;
+  }
+
+  if (simple) O[key] = value;else createNonEnumerableProperty(O, key, value);
+  return O;
+};
 
 var max = Math.max;
 var min = Math.min; // Helper for a popular repeating case of the spec:
@@ -849,10 +888,9 @@ var _export = function (options, source) {
 
     if (options.sham || targetProperty && targetProperty.sham) {
       createNonEnumerableProperty(sourceProperty, 'sham', true);
-    } // extend global
+    }
 
-
-    redefine(target, key, sourceProperty, options);
+    defineBuiltIn(target, key, sourceProperty, options);
   }
 };
 
@@ -1021,7 +1059,7 @@ if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype = {}; // `%IteratorPrototype%[@@it
 // https://tc39.es/ecma262/#sec-%iteratorprototype%-@@iterator
 
 if (!isCallable(IteratorPrototype[ITERATOR])) {
-  redefine(IteratorPrototype, ITERATOR, function () {
+  defineBuiltIn(IteratorPrototype, ITERATOR, function () {
     return this;
   });
 }
@@ -1157,7 +1195,7 @@ var defineIterator = function (Iterable, NAME, IteratorConstructor, next, DEFAUL
         if (objectSetPrototypeOf) {
           objectSetPrototypeOf(CurrentIteratorPrototype, IteratorPrototype$2);
         } else if (!isCallable(CurrentIteratorPrototype[ITERATOR$1])) {
-          redefine(CurrentIteratorPrototype, ITERATOR$1, returnThis$1);
+          defineBuiltIn(CurrentIteratorPrototype, ITERATOR$1, returnThis$1);
         }
       } // Set @@toStringTag to native iterators
 
@@ -1188,7 +1226,7 @@ var defineIterator = function (Iterable, NAME, IteratorConstructor, next, DEFAUL
     };
     if (FORCED) for (KEY in methods) {
       if (BUGGY_SAFARI_ITERATORS$1 || INCORRECT_VALUES_NAME || !(KEY in IterablePrototype)) {
-        redefine(IterablePrototype, KEY, methods[KEY]);
+        defineBuiltIn(IterablePrototype, KEY, methods[KEY]);
       }
     } else _export({
       target: NAME,
@@ -1199,7 +1237,7 @@ var defineIterator = function (Iterable, NAME, IteratorConstructor, next, DEFAUL
 
 
   if ( IterablePrototype[ITERATOR$1] !== defaultIterator) {
-    redefine(IterablePrototype, ITERATOR$1, defaultIterator, {
+    defineBuiltIn(IterablePrototype, ITERATOR$1, defaultIterator, {
       name: DEFAULT
     });
   }
@@ -1820,7 +1858,7 @@ var messagesDE = {
 	"eligibility-modal.title-deferred": "<highlighted>Bezahlen Sie in Raten</highlighted> oder später per Kreditkarte mit Alma.",
 	"eligibility-modal.total": "Insgesamt",
 	"installments.today": "Heute",
-	"payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
+	"payment-plan-strings.day-abbreviation": "T{numberOfDeferredDays}",
 	"payment-plan-strings.default-message": "Bezahlen Sie in Raten mit Alma",
 	"payment-plan-strings.deferred": "{totalAmount} zu zahlen am {dueDate}",
 	"payment-plan-strings.ineligible-greater-than-max": "Bis zu {maxAmount}",
