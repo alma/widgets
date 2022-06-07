@@ -11,7 +11,7 @@
   "eligibility-modal.title-deferred": "<highlighted>Bezahlen Sie in Raten</highlighted> oder später per Kreditkarte mit Alma.",
   "eligibility-modal.total": "Insgesamt",
   "installments.today": "Heute",
-  "payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
+  "payment-plan-strings.day-abbreviation": "T{numberOfDeferredDays}",
   "payment-plan-strings.default-message": "Bezahlen Sie in Raten mit Alma",
   "payment-plan-strings.deferred": "{totalAmount} zu zahlen am {dueDate}",
   "payment-plan-strings.ineligible-greater-than-max": "Bis zu {maxAmount}",
