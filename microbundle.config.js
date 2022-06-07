@@ -51,6 +51,7 @@ module.exports = {
         }
         return _external(id, ...args)
       }
+      config.inputOptions.cache = false
     }
 
     return config
