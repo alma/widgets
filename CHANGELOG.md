@@ -1,3 +1,10 @@
+## [2.8.3](https://github.com/alma/widgets/compare/v2.8.2...v2.8.3) (2022-06-07)
+
+
+### Bug Fixes
+
+* **package-json:** rollback snyk upgrades ([5cf1d80](https://github.com/alma/widgets/commit/5cf1d80c2def5878a93329d41514bb5a5f79dc5b))
+
 ## [2.8.2](https://github.com/alma/widgets/compare/v2.8.1...v2.8.2) (2022-06-06)
 
 
