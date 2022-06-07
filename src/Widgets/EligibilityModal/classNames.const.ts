@@ -21,6 +21,7 @@ const STATIC_CUSTOMISATION_CLASSES = {
   scheduleCredit: prefix + '-schedule-credit',
   cardContainer: prefix + '-card-logos',
   summary: prefix + '-summary',
+  bullet: prefix + '-bullet',
 }
 
 export default STATIC_CUSTOMISATION_CLASSES
