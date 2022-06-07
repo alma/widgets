@@ -70,6 +70,7 @@ export declare type PaymentPlanWidgetOptions = {
     purchaseAmount: number;
     suggestedPaymentPlan?: number | number[];
     transitionDelay?: number;
+    hideBorder?: boolean;
 };
 export declare type ModalOptions = {
     container: string;

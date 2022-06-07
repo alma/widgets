@@ -57,6 +57,10 @@
   cursor: not-allowed;
 }
 
+.hideBorder {
+  border: none;
+}
+
 .info {
   font-family: Public Sans, sans-serif;
   font-style: normal;

@@ -72,6 +72,7 @@ export type PaymentPlanWidgetOptions = {
   purchaseAmount: number
   suggestedPaymentPlan?: number | number[]
   transitionDelay?: number
+  hideBorder?: boolean
 }
 
 export type ModalOptions = {

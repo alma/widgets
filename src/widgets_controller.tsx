@@ -37,6 +37,7 @@ export class WidgetsController {
         plans,
         transitionDelay,
         hideIfNotEligible,
+        hideBorder = false,
         monochrome = true,
         suggestedPaymentPlan,
         locale = Locale.en,
@@ -55,6 +56,7 @@ export class WidgetsController {
               suggestedPaymentPlan={suggestedPaymentPlan}
               cards={cards}
               transitionDelay={transitionDelay}
+              hideBorder={hideBorder}
             />
           </IntlProvider>,
           document.querySelector(container),
