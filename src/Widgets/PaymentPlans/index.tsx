@@ -20,6 +20,7 @@ type Props = {
   monochrome: boolean
   suggestedPaymentPlan?: number | number[]
   cards?: Card[]
+  hideBorder?: boolean
 }
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365
@@ -34,6 +35,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   suggestedPaymentPlan,
   cards,
   transitionDelay,
+  hideBorder = false
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
@@ -121,6 +123,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
           {
             [s.clickable]: eligiblePlans.length > 0,
             [s.unClickable]: eligiblePlans.length === 0,
+            [s.hideBorder]: hideBorder
           },
           STATIC_CUSTOMISATION_CLASSES.container,
         )}

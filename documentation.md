@@ -54,6 +54,10 @@ Totally hides the widget if set to true and no plan matches the purchase amount.
 
 Allow to choose which payment plan's tab will be displayed by default. It will have effect only if the selected plan is eligible. If an array is provided, it will select the first eligible plan from this array.
 
+- hideBorder: `boolean` [optional, default: false]
+
+Hide the border if set to true, set to false as default
+
 ```
 suggestedPaymentPlan: [10, 4],
 ```

@@ -9,6 +9,7 @@ declare type Props = {
     monochrome: boolean;
     suggestedPaymentPlan?: number | number[];
     cards?: Card[];
+    hideBorder?: boolean;
 };
 declare const PaymentPlanWidget: VoidFunctionComponent<Props>;
 export default PaymentPlanWidget;
