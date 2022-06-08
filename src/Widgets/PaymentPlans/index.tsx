@@ -135,7 +135,9 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
                 <div
                   key={key}
                   onMouseEnter={() => onHover(key)}
+                  onTouchStart={() => onHover(key)}
                   onMouseOut={onLeave}
+                  onTouchEnd={onLeave}
                   className={cx(s.plan, {
                     [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: isCurrent,
                     [s.polychrome]: !monochrome && isCurrent,
