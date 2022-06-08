@@ -1,0 +1,52 @@
+name: Comment to create a beta version
+
+on:
+  issue_comment:
+    types:
+      - created
+      - edited
+
+jobs:
+  comment-beta-release:
+    name: Release beta version
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/beta' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          # Do not persist the GH token, so that the release step uses its own credentials.
+          persist-credentials: false
+      - name: Create tag artifact
+        id: tag
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{github.ref_name}}
+          path: Release
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      # - name: Release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
+      #     GIT_AUTHOR_NAME: github-actions
+      #     GIT_AUTHOR_EMAIL: 44210433+github-actions@users.noreply.github.com
+      #     GIT_COMMITTER_NAME: github-actions
+      #     GIT_COMMITTER_EMAIL: 44210433+github-actions@users.noreply.github.com
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   run: npx semantic-release -t beta-v${{github.ref_name}}
+      - name: reply to comment
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'The beta version has been released with the name beta-v${{github.ref_name}}',
+            });
