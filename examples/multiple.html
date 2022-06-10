@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Alma Widgets basic example</title>
+    <title>Alma Widgets multiple configuration example</title>
 
     <link rel="stylesheet" href="../dist/widgets.umd.css" />
     <link rel="stylesheet" href="./style.css" />
@@ -18,24 +18,28 @@
         <img src="../src/assets/alma.svg" class="alma-logo" />
       </div>
       <div class="menu">
-        <a href="./multiple.html">Multiple widgets</a>
+        <a href="./basic.html">Basic page</a>
       </div>
       <div class="main">
         <div class="image">
           <img src="./sac-a-main.jpeg" />
         </div>
-
         <div>
           <div class="product">
             <h1>Sac à main</h1>
-            <select onchange="renderPaymentPlans()" id="quantity">
+            <select onchange="generateRenderer()" id="quantity">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="10">10</option>
             </select>
             <h3>450 €</h3>
+            <p>Deluxe edition, bigger price, same product</p>
             <div id="alma-widget-payment-plans"></div>
+            <h3>250 €</h3>
+            <p>Basic edition, lower price, smarter purchase</p>
+
+            <div id="alma-widget-payment-plans2"></div>
             <div id="alma-widget-modal"></div>
             <div class="add-to-cart">
               <button>Ajouter au panier</button>
@@ -54,11 +58,10 @@
     <script>
       var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
 
-      function renderPaymentPlans() {
-        var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
+      function renderPaymentPlans(purchaseAmount, container, config) {
         widgets.add(Alma.Widgets.PaymentPlans, {
-          container: '#alma-widget-payment-plans',
-          purchaseAmount,
+          container,
+          purchaseAmount: purchaseAmount * document.getElementById('quantity').value,
           locale: 'fr',
           hideIfNotEligible: false,
           transitionDelay: 5500,
@@ -88,9 +91,20 @@
               maxAmount: 800000,
             },
           ],
+          ...config,
         })
       }
-      renderPaymentPlans()
+
+      function generateRenderer() {
+        renderPaymentPlans(450 * 100, '#alma-widget-payment-plans')
+        renderPaymentPlans(250 * 100, '#alma-widget-payment-plans2', {
+          monochrome: false,
+          transitionDelay: 2500,
+          cards: ['visa'],
+          suggestedPaymentPlan: [2],
+        })
+      }
+      generateRenderer()
 
       function renderModal() {
         var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
