@@ -20356,11 +20356,12 @@
         setUpdate = _useState2[1];
 
     react.useEffect(function () {
+      var timeout;
       var isMounted = true;
 
       if (iterateValues.length !== 0) {
         if (!iterateValues.includes(current) && update) setCurrent(iterateValues[0]);
-        setTimeout(function () {
+        timeout = setTimeout(function () {
           if (update && isMounted) {
             setCurrent(iterateValues[iterateValues.includes(current) ? (iterateValues.indexOf(current) + 1) % iterateValues.length : 0]);
           }
@@ -20369,6 +20370,7 @@
 
       return function () {
         isMounted = false;
+        clearTimeout(timeout);
       };
     }, [iterateValues, current]);
     return {
@@ -20566,7 +20568,11 @@
         onMouseEnter: function onMouseEnter() {
           return onHover(key);
         },
+        onTouchStart: function onTouchStart() {
+          return onHover(key);
+        },
         onMouseOut: onLeave,
+        onTouchEnd: onLeave,
         className: classnames(s$c.plan, (_cx2 = {}, _cx2[classnames(s$c.active, STATIC_CUSTOMISATION_CLASSES$1.activeOption)] = isCurrent, _cx2[s$c.polychrome] = !monochrome && isCurrent, _cx2[classnames(s$c.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)] = !eligibilityPlan.eligible, _cx2))
       }, paymentPlanShorthandName(eligibilityPlan));
     }))), /*#__PURE__*/react.createElement("div", {

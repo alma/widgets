@@ -1,3 +1,11 @@
+## [2.8.4](https://github.com/alma/widgets/compare/v2.8.3...v2.8.4) (2022-06-10)
+
+
+### Bug Fixes
+
+* **mobile-click:** showing the proper plan on modal for mobile is now working ([36c4520](https://github.com/alma/widgets/commit/36c4520f39b1bdb5e5efd84aa58e02bcca398a60))
+* **timeout-cleanup:** timeout is now reset on useEffect for SPA applications ([c910e15](https://github.com/alma/widgets/commit/c910e1545797c9ac2cbdceaa77437c40485a603c))
+
 ## [2.8.3](https://github.com/alma/widgets/compare/v2.8.2...v2.8.3) (2022-06-07)
 
 

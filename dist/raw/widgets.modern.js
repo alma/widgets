@@ -2855,11 +2855,12 @@ const useButtonAnimation = (iterateValues, transitionDelay) => {
   const [current, setCurrent] = useState(0);
   const [update, setUpdate] = useState(true);
   useEffect(() => {
+    let timeout;
     let isMounted = true;
 
     if (iterateValues.length !== 0) {
       if (!iterateValues.includes(current) && update) setCurrent(iterateValues[0]);
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         if (update && isMounted) {
           setCurrent(iterateValues[iterateValues.includes(current) ? (iterateValues.indexOf(current) + 1) % iterateValues.length : 0]);
         }
@@ -2868,6 +2869,7 @@ const useButtonAnimation = (iterateValues, transitionDelay) => {
 
     return () => {
       isMounted = false;
+      clearTimeout(timeout);
     };
   }, [iterateValues, current]);
   return {
@@ -3040,7 +3042,9 @@ const PaymentPlanWidget = ({
     return /*#__PURE__*/React.createElement("div", {
       key: key,
       onMouseEnter: () => onHover(key),
+      onTouchStart: () => onHover(key),
       onMouseOut: onLeave,
+      onTouchEnd: onLeave,
       className: cx(s$c.plan, {
         [cx(s$c.active, STATIC_CUSTOMISATION_CLASSES$1.activeOption)]: isCurrent,
         [s$c.polychrome]: !monochrome && isCurrent,
