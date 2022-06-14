@@ -21,4 +21,5 @@ beforeEach(async () => {
 
 it('should be displayed', async () => {
   await waitFor(() => expect(screen.getByTestId('modal-installments-element')).toBeInTheDocument())
+  await waitFor(() => expect(screen.getByText('0,00 €')).toBeInTheDocument())
 })

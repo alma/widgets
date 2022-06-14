@@ -4,7 +4,7 @@ import { Widgets } from 'index'
 import React from 'react'
 import render from 'test'
 
-describe('ModalContainer', () => {
+describe('PaymentPlanContainer', () => {
   beforeEach(() => {
     render(<div id="alma-widget-payment-plans"></div>)
 
@@ -15,7 +15,7 @@ describe('ModalContainer', () => {
     })
   })
 
-  it('should show the paymentPlan widget loader', async () => {
+  it('should show the PaymentPlan widget loader', async () => {
     await waitFor(() => expect(screen.getByTestId('loader')).toBeInTheDocument())
   })
 })
