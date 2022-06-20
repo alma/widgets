@@ -3024,7 +3024,7 @@ var STATIC_CUSTOMISATION_CLASSES$1 = {
   activeOption: prefix$1 + '-active-option'
 };
 
-var s$c = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","polychrome":"_2icEF","notEligible":"_3O1bg","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
+var s$c = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","polychrome":"_2icEF","notEligible":"_3O1bg","hideBorder":"_3_qcn","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
 
 var VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365;
 var DEFAULT_TRANSITION_TIME = 5500;
@@ -3039,7 +3039,9 @@ var PaymentPlanWidget = function PaymentPlanWidget(_ref) {
       purchaseAmount = _ref.purchaseAmount,
       suggestedPaymentPlan = _ref.suggestedPaymentPlan,
       cards = _ref.cards,
-      transitionDelay = _ref.transitionDelay;
+      transitionDelay = _ref.transitionDelay,
+      _ref$hideBorder = _ref.hideBorder,
+      hideBorder = _ref$hideBorder === void 0 ? false : _ref$hideBorder;
 
   var _useFetchEligibility = useFetchEligibility(purchaseAmount, apiData, configPlans),
       eligibilityPlans = _useFetchEligibility[0],
@@ -3137,7 +3139,7 @@ var PaymentPlanWidget = function PaymentPlanWidget(_ref) {
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     onClick: handleOpenModal,
-    className: cx(s$c.widgetButton, (_cx = {}, _cx[s$c.clickable] = eligiblePlans.length > 0, _cx[s$c.unClickable] = eligiblePlans.length === 0, _cx), STATIC_CUSTOMISATION_CLASSES$1.container),
+    className: cx(s$c.widgetButton, (_cx = {}, _cx[s$c.clickable] = eligiblePlans.length > 0, _cx[s$c.unClickable] = eligiblePlans.length === 0, _cx[s$c.hideBorder] = hideBorder, _cx), STATIC_CUSTOMISATION_CLASSES$1.container),
     "data-testid": "widget-button"
   }, /*#__PURE__*/React.createElement("div", {
     className: cx(s$c.primaryContainer, STATIC_CUSTOMISATION_CLASSES$1.eligibilityLine)
@@ -3195,6 +3197,8 @@ var WidgetsController = /*#__PURE__*/function () {
           plans = options.plans,
           transitionDelay = options.transitionDelay,
           hideIfNotEligible = options.hideIfNotEligible,
+          _options$hideBorder = options.hideBorder,
+          hideBorder = _options$hideBorder === void 0 ? false : _options$hideBorder,
           _options$monochrome = options.monochrome,
           monochrome = _options$monochrome === void 0 ? true : _options$monochrome,
           suggestedPaymentPlan = options.suggestedPaymentPlan,
@@ -3213,7 +3217,8 @@ var WidgetsController = /*#__PURE__*/function () {
           purchaseAmount: purchaseAmount,
           suggestedPaymentPlan: suggestedPaymentPlan,
           cards: cards,
-          transitionDelay: transitionDelay
+          transitionDelay: transitionDelay,
+          hideBorder: hideBorder
         })), document.querySelector(container));
       }
     }

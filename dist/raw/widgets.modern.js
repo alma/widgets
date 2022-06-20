@@ -2929,7 +2929,7 @@ const STATIC_CUSTOMISATION_CLASSES$1 = {
   activeOption: prefix$1 + '-active-option'
 };
 
-var s$c = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","polychrome":"_2icEF","notEligible":"_3O1bg","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
+var s$c = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","polychrome":"_2icEF","notEligible":"_3O1bg","hideBorder":"_3_qcn","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365;
 const DEFAULT_TRANSITION_TIME = 5500;
@@ -2942,7 +2942,8 @@ const PaymentPlanWidget = ({
   purchaseAmount,
   suggestedPaymentPlan,
   cards,
-  transitionDelay
+  transitionDelay,
+  hideBorder: _hideBorder = false
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans);
   const eligiblePlans = eligibilityPlans.filter(plan => plan.eligible);
@@ -3027,7 +3028,8 @@ const PaymentPlanWidget = ({
     onClick: handleOpenModal,
     className: cx(s$c.widgetButton, {
       [s$c.clickable]: eligiblePlans.length > 0,
-      [s$c.unClickable]: eligiblePlans.length === 0
+      [s$c.unClickable]: eligiblePlans.length === 0,
+      [s$c.hideBorder]: _hideBorder
     }, STATIC_CUSTOMISATION_CLASSES$1.container),
     "data-testid": "widget-button"
   }, /*#__PURE__*/React.createElement("div", {
@@ -3083,6 +3085,7 @@ class WidgetsController {
         plans,
         transitionDelay,
         hideIfNotEligible,
+        hideBorder = false,
         monochrome = true,
         suggestedPaymentPlan,
         locale = Locale.en,
@@ -3100,7 +3103,8 @@ class WidgetsController {
           purchaseAmount: purchaseAmount,
           suggestedPaymentPlan: suggestedPaymentPlan,
           cards: cards,
-          transitionDelay: transitionDelay
+          transitionDelay: transitionDelay,
+          hideBorder: hideBorder
         })), document.querySelector(container));
       }
     }

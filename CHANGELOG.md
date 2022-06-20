@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/alma/widgets/compare/v2.8.4...v2.9.0) (2022-06-20)
+
+
+### Features
+
+* add hideBorder props ([a5f0c67](https://github.com/alma/widgets/commit/a5f0c673a16494848f05f183c8a19dac6e480033))
+
 ## [2.8.4](https://github.com/alma/widgets/compare/v2.8.3...v2.8.4) (2022-06-10)
 
 
