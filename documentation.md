@@ -50,6 +50,10 @@ The amount of time in between button animations in ms.
 
 Totally hides the widget if set to true and no plan matches the purchase amount.
 
+- monochrome: `boolean` [optional, default: true]
+
+If set to `false`, Alma's logo and the active payments plan will be underlined in red (#FF414D).
+
 - suggestedPaymentPlan: `number` | `number[]` [optional]
 
 Allow to choose which payment plan's tab will be displayed by default. It will have effect only if the selected plan is eligible. If an array is provided, it will select the first eligible plan from this array.
