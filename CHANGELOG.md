@@ -1,3 +1,17 @@
+# [2.11.0](https://github.com/alma/widgets/compare/v2.10.0...v2.11.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* **content:** change text above widget and update cdn version ([ef06a81](https://github.com/alma/widgets/commit/ef06a81185d6f5b17cd155e16ce2fa0e0e116f16))
+* **indent:** css ([de889f2](https://github.com/alma/widgets/commit/de889f2701e25eedc60adc5712b4ec4166fcc326))
+* **text:** typo ([c057d8c](https://github.com/alma/widgets/commit/c057d8cf473765417e2b69dc1192fa595ed076f5))
+
+
+### Features
+
+* **exmples:** new page for multiple configuration on paymentPlan Widget. Also css fixes ([82191fb](https://github.com/alma/widgets/commit/82191fb4aaf0335ac8b1ce808bafb70b58ad2c1a))
+
 # [2.10.0](https://github.com/alma/widgets/compare/v2.9.0...v2.10.0) (2022-06-28)
 
 
