@@ -11,3 +11,5 @@ export function formatCents(cents: number): string {
 }
 
 export const secondsToMilliseconds = (date: number): number => date * 1000
+
+export const desktopWidth = 800
