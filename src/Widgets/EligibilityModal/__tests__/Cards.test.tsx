@@ -5,6 +5,7 @@ import { mockButtonPlans } from 'test/fixtures'
 import { apiStatus } from 'types'
 import EligibilityModal from '..'
 import { Context as ResponsiveContext } from 'react-responsive'
+import { desktopWidth } from 'utils'
 
 jest.mock('utils/fetch', () => {
   return {
@@ -66,7 +67,7 @@ it('should display provided card logos', () => {
 
 it('should display provided card logos with Desktop Modal', () => {
   render(
-    <ResponsiveContext.Provider value={{ width: 801 }}>
+    <ResponsiveContext.Provider value={{ width: desktopWidth }}>
       <EligibilityModal
         eligibilityPlans={mockButtonPlans}
         initialPlanIndex={0}

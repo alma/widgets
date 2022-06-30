@@ -4,6 +4,7 @@ import React, { FunctionComponent, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useMediaQuery } from 'react-responsive'
 import { apiStatus, Card, EligibilityPlan } from 'types'
+import { desktopWidth } from 'utils'
 import EligibilityPlansButtons from './components/EligibilityPlansButtons'
 import Schedule from './components/Schedule'
 import DesktopModal from './DesktopModal'
@@ -23,10 +24,10 @@ const EligibilityModal: FunctionComponent<Props> = ({
   onClose,
   eligibilityPlans,
   status,
-  cards
+  cards,
 }) => {
   const [currentPlanIndex, setCurrentPlanIndex] = useState(initialPlanIndex || 0)
-  const isBigScreen = useMediaQuery({ minWidth: 800 })
+  const isBigScreen = useMediaQuery({ minWidth: desktopWidth })
   const ModalComponent = isBigScreen ? DesktopModal : MobileModal
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
   const currentPlan = eligiblePlans[currentPlanIndex]
