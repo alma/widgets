@@ -78,7 +78,7 @@
     "lint-staged": "^10.5.3",
     "microbundle": "github:olance/microbundle#rollup/config-override",
     "postcss-assets": "^5.0.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.7.0",
     "rollup": "^1.32.1",
     "rollup-plugin-copy": "^3.4.0",
     "semantic-release": "^17.3.0",
