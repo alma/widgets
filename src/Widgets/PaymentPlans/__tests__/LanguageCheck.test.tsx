@@ -16,6 +16,7 @@ describe('Change language', () => {
   it(`into ${Locale.en}`, async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
@@ -33,6 +34,7 @@ describe('Change language', () => {
   it(`into ${Locale.de}`, async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
@@ -50,6 +52,7 @@ describe('Change language', () => {
   it(`into ${Locale.es}`, async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
@@ -67,6 +70,7 @@ describe('Change language', () => {
   it(`into ${Locale.it}`, async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
@@ -84,6 +88,7 @@ describe('Change language', () => {
   it(`into ${Locale.nl}`, async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
@@ -96,5 +101,23 @@ describe('Change language', () => {
     expect(screen.getByText('J+30')).toBeInTheDocument() // Change that with T+30 when proofreading is done
     expect(screen.getByText(/te betalen op/)).toBeInTheDocument()
     expect(screen.getByText(/\(gratis\)/)).toBeInTheDocument()
+  })
+
+  it(`into ${Locale.pt}`, async () => {
+    render(
+      <PaymentPlanWidget
+        monochrome={false}
+        purchaseAmount={40000}
+        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+      />,
+      {
+        locale: Locale.pt,
+      },
+    )
+    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+
+    expect(screen.getByText('D+30')).toBeInTheDocument()
+    expect(screen.getByText(/a pagar em/)).toBeInTheDocument()
+    expect(screen.getByText(/\(sem encargos\)/)).toBeInTheDocument()
   })
 })

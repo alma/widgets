@@ -56,6 +56,7 @@ export declare enum Locale {
     it = "it",
     es = "es",
     nl = "nl",
+    pt = "pt",
     'nl-NL' = "nl-NL",
     'nl-BE' = "nl-BE"
 }
