@@ -59,35 +59,6 @@
         widgets.add(Alma.Widgets.PaymentPlans, {
           container: '#alma-widget-payment-plans',
           purchaseAmount,
-          locale: 'fr',
-          hideIfNotEligible: false,
-          transitionDelay: 5500,
-          suggestedPaymentPlan: [10, 4],
-          cards: ['amex', 'visa', 'mastercard'],
-          plans: [
-            {
-              installmentsCount: 1,
-              deferredDays: 30,
-              minAmount: 5000,
-              maxAmount: 90000,
-            },
-
-            {
-              installmentsCount: 2,
-              minAmount: 5000,
-              maxAmount: 90000,
-            },
-            {
-              installmentsCount: 4,
-              minAmount: 5000,
-              maxAmount: 90000,
-            },
-            {
-              installmentsCount: 10,
-              minAmount: 45000,
-              maxAmount: 800000,
-            },
-          ],
         })
       }
       renderPaymentPlans()
