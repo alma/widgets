@@ -18,6 +18,7 @@ describe('PaymentPlan has ineligible options from configPlans', () => {
   beforeEach(async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={45000}
         configPlans={[
           {
@@ -76,6 +77,7 @@ describe('PaymentPlan has ineligible options from merchant config', () => {
   beforeEach(async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={45000}
         configPlans={[
           {

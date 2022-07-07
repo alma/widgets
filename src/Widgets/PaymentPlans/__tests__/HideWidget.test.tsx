@@ -15,6 +15,7 @@ describe('Hide if not applicable', () => {
   it('hides if hideIfNotEligible is true', async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
         hideIfNotEligible={true}
@@ -32,6 +33,7 @@ describe('Hide if not applicable', () => {
   it('hides if hideIfNotEligible is not specified', async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
         configPlans={[
@@ -48,6 +50,7 @@ describe('Hide if not applicable', () => {
   it('hides if there is no plan', async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
         configPlans={[]}

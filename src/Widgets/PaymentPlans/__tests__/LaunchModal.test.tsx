@@ -15,6 +15,7 @@ describe('Modal initializes with the correct plan', () => {
   it('after hovering a plan', async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
@@ -35,6 +36,7 @@ describe('Modal initializes with the correct plan', () => {
   it('after clicking a plan (fallback for mobile)', async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
@@ -54,6 +56,7 @@ describe('Modal initializes with the correct plan', () => {
   it('after a simple click on the badge, with no hover or click on a specific plan', async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,

@@ -20,6 +20,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
     beforeEach(async () => {
       render(
         <PaymentPlanWidget
+          monochrome={false}
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
           suggestedPaymentPlan={2}
@@ -38,6 +39,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
     beforeEach(async () => {
       render(
         <PaymentPlanWidget
+          monochrome={false}
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
           suggestedPaymentPlan={[3, 2]}
@@ -63,6 +65,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
     beforeEach(async () => {
       render(
         <PaymentPlanWidget
+          monochrome={false}
           purchaseAmount={40000}
           configPlans={[
             {
@@ -109,6 +112,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
     beforeEach(async () => {
       render(
         <PaymentPlanWidget
+          monochrome={false}
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
           suggestedPaymentPlan={[20]}
@@ -128,6 +132,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
     beforeEach(async () => {
       render(
         <PaymentPlanWidget
+          monochrome={false}
           purchaseAmount={40000}
           transitionDelay={1000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}

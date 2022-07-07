@@ -14,6 +14,7 @@ jest.mock('utils/fetch', () => {
 beforeEach(async () => {
   render(
     <PaymentPlanWidget
+      monochrome={false}
       purchaseAmount={40000}
       apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
     />,

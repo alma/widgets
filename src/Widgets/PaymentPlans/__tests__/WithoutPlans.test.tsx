@@ -19,6 +19,7 @@ describe('No plans provided', () => {
   beforeEach(async () => {
     render(
       <PaymentPlanWidget
+        monochrome={false}
         purchaseAmount={mockButtonPlans[0].purchase_amount}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
