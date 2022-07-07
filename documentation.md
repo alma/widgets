@@ -36,7 +36,7 @@ Your container's selector
 
 The purchase amount (in euro cents)
 
-- plans: `Plan[]` [optional]
+- plans: `Plan[]` [optional] : [more info below](#plan-option-plan)
 
 An array of the plans you want to display. If not provided, the widget returns all your available payment plans.
 
@@ -44,7 +44,7 @@ An array of the plans you want to display. If not provided, the widget returns a
 
 The amount of time in between button animations in ms.
 
-- locale: `fr|en|es|it|de|nl` [optional, default: en]
+- locale: `fr|en|es|it|de|nl|pt` [optional, default: en]
 
 - hideIfNotEligible: `boolean` [optional, default: false]
 
@@ -58,10 +58,6 @@ If set to `false`, Alma's logo and the active payments plan will be underlined i
 
 Allow to choose which payment plan's tab will be displayed by default. It will have effect only if the selected plan is eligible. If an array is provided, it will select the first eligible plan from this array.
 
-- hideBorder: `boolean` [optional, default: false]
-
-Hide the border if set to true, set to false as default
-
 ```
 suggestedPaymentPlan: [10, 4],
 ```
@@ -69,7 +65,11 @@ suggestedPaymentPlan: [10, 4],
 In the above example, the 10 installments plan will be selected. If it's not eligible, the 4 installments plan will be selected. If the 4 installments plan is not eligible, it will select the first tab.
 When `suggestedPaymentPlan` is used, the transition is disable. Unless `transitionDelay` is specified.
 
-- cards: ('cb' | 'visa' | 'amex' | 'mastercard')[] [optional]
+- hideBorder: `boolean` [optional, default: false]
+
+Hide the border if set to true, set to false as default
+
+- cards: `cb|visa|amex|mastercard`[] [optional]
 
 Display card logos in the modal
 
@@ -97,21 +97,23 @@ Your container's selector
 
 The purchase amount (in euro cents)
 
-- plans: `Plan[]` [optional]
+- plans: `Plan[]` [optional] : [more info below](#plan-option-plan)
 
 An array of the plans you want to display. If not provided, the widget returns all your available payment plans.
 
-- locale: `fr|en|es|it|de|nl` [optional, default: en]
+- locale: `fr|en|es|it|de|nl|pt` [optional, default: en]
 
 - clickableSelector: `string` [optional, default: null]
 
 If provided, the modal will open when the element matching this query selector is clicked.
 
-- cards: ('cb' | 'visa' | 'amex' | 'mastercard')[] [optional]
+- cards: `cb|visa|amex|mastercard`[] [optional]
 
 Display card logos in the modal
 
 ## Plan option: `Plan`
+
+You can customize the displayed plans with this parameter. You can hide a plan that would be displayed otherwise by adding the other plans with those information:
 
 - installmentsCount: `number` [required]:
 
@@ -133,11 +135,10 @@ the number of days by which the first payment will be deferred
 
 the number of months by which the first payment will be deferred
 
+By default, the widget will display all your available payment plans.
+
 ## Customize CSS
 
-If you inspect the widgets, you can see two types of classes :
+If you want to customize the look of the widget, you can edit all classes that start with `alma-`
 
-- one that looks gibberish
-- one starting with `alma-`
-
-You want to use those starting with `alma-` to add your own css style.
+You can see the list by inspecting the element with your dev tools. Don't use the classes that have an unpronounceable name, they will change at each new version of the widget.
