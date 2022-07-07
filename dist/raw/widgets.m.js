@@ -1531,6 +1531,7 @@ var Locale;
   Locale["it"] = "it";
   Locale["es"] = "es";
   Locale["nl"] = "nl";
+  Locale["pt"] = "pt";
   Locale["nl-NL"] = "nl-NL";
   Locale["nl-BE"] = "nl-BE";
 })(Locale || (Locale = {}));
@@ -1544,6 +1545,7 @@ function priceFromCents(cents) {
 function formatCents(cents) {
   return String(priceFromCents(cents)).replace('.', ',');
 }
+var desktopWidth = 800;
 
 /* eslint-disable */
 
@@ -1988,7 +1990,7 @@ var messagesIT = {
 var messagesNL = {
 	"eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen.",
 	"eligibility-modal.bullet-2": "Vul de <strong>gevraagde informatie</strong> in.",
-	"eligibility-modal.bullet-3": "Onmiddelijke validatie van uw betaling ",
+	"eligibility-modal.bullet-3": "Onmiddellijke validatie van uw betaling ",
 	"eligibility-modal.cost": "Waarvan kosten",
 	"eligibility-modal.credit-commitment": "Een lening bindt je en moet worden terugbetaald. Ga na of u kunt terugbetalen voordat u zich vastlegt.",
 	"eligibility-modal.credit-cost": "Waarvan kosten van krediet",
@@ -2008,6 +2010,29 @@ var messagesNL = {
 	"payment-plan-strings.no-fee": "(gratis)"
 };
 
+var messagesPT = {
+	"eligibility-modal.bullet-1": "Escolha a <strong>Alma</strong> no checkout.",
+	"eligibility-modal.bullet-2": "Preencha os <strong>dados</strong> solicitados.",
+	"eligibility-modal.bullet-3": "Validação do seu pagamento <strong>imediata</strong>!",
+	"eligibility-modal.cost": "Incluindo encargos",
+	"eligibility-modal.credit-commitment": "Um crédito é um compromisso e deve ser reembolsado. Verifique a sua capacidade de pagar antes de se comprometer.",
+	"eligibility-modal.credit-cost": "Incluindo custo do crédito",
+	"eligibility-modal.credit-cost-amount": "{creditCost} (TAEG {TAEG})",
+	"eligibility-modal.no-eligibility": "Ups, parece que a simulação não funcionou.",
+	"eligibility-modal.title": "<highlighted>Pague em prestações</highlighted> com cartão bancário através da Alma.",
+	"eligibility-modal.title-deferred": "<highlighted>Pague em prestações</highlighted> ou mais tarde com cartão bancário através da Alma.",
+	"eligibility-modal.total": "Total",
+	"installments.today": "Hoje",
+	"payment-plan-strings.day-abbreviation": "D{numberOfDeferredDays}",
+	"payment-plan-strings.default-message": "Pague em prestações através da Alma",
+	"payment-plan-strings.deferred": "{totalAmount} a pagar em {dueDate}",
+	"payment-plan-strings.ineligible-greater-than-max": "Até {maxAmount}",
+	"payment-plan-strings.ineligible-lower-than-min": "A partir de {minAmount}",
+	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} depois {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} depois {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
+	"payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
+	"payment-plan-strings.no-fee": "(sem encargos)"
+};
+
 var getTranslationsByLocale = function getTranslationsByLocale(locale) {
   switch (locale) {
     case Locale.fr:
@@ -2021,6 +2046,9 @@ var getTranslationsByLocale = function getTranslationsByLocale(locale) {
 
     case Locale.de:
       return messagesDE;
+
+    case Locale.pt:
+      return messagesPT;
 
     case Locale.nl:
     case Locale['nl-BE']:
@@ -2438,11 +2466,11 @@ var s$3 = {"schedule":"_MPKjS","scheduleLine":"_1A7Qv","total":"_14Ejo","summary
 
 var Schedule = function Schedule(_ref) {
   var currentPlan = _ref.currentPlan;
-  var total = currentPlan && priceFromCents(currentPlan.purchase_amount + currentPlan.customer_total_cost_amount);
-  var creditCost = currentPlan ? priceFromCents(currentPlan.customer_total_cost_amount) : 0;
+  var total = priceFromCents(currentPlan.purchase_amount + currentPlan.customer_total_cost_amount);
+  var creditCost = priceFromCents(currentPlan.customer_total_cost_amount);
   var TAEG = (currentPlan == null ? void 0 : currentPlan.annual_interest_rate) && currentPlan.annual_interest_rate / 10000;
-  var customerFees = priceFromCents(currentPlan ? currentPlan.customer_total_cost_amount : 0);
-  var isCredit = currentPlan && currentPlan.installments_count > 4;
+  var customerFees = priceFromCents(currentPlan.customer_total_cost_amount);
+  var isCredit = currentPlan.installments_count > 4;
   var intl = useIntl();
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: cx(s$3.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails),
@@ -2861,7 +2889,7 @@ var EligibilityModal = function EligibilityModal(_ref) {
       setCurrentPlanIndex = _useState[1];
 
   var isBigScreen = useMediaQuery({
-    minWidth: 800
+    minWidth: desktopWidth
   });
   var ModalComponent = isBigScreen ? DesktopModal : MobileModal;
   var eligiblePlans = eligibilityPlans.filter(function (plan) {

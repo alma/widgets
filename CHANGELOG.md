@@ -1,3 +1,10 @@
+## [2.11.1](https://github.com/alma/widgets/compare/v2.11.0...v2.11.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* linting and fix to launch a new version ([a350d58](https://github.com/alma/widgets/commit/a350d58fb20d6e860136b5123d2022fe7aff83e5))
+
 # [2.11.0](https://github.com/alma/widgets/compare/v2.10.0...v2.11.0) (2022-06-30)
 
 
