@@ -1,5 +1,6 @@
 import { priceToCents, formatCents } from './index'
 import { paymentPlanInfoText } from './paymentPlanStrings'
+
 it('transform euros in cents', () => {
   expect(priceToCents(100)).toBe(10000)
   expect(priceToCents(200)).toBe(20000)
