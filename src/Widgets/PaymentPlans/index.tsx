@@ -35,7 +35,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   suggestedPaymentPlan,
   cards,
   transitionDelay,
-  hideBorder = false
+  hideBorder = false,
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
@@ -123,7 +123,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
           {
             [s.clickable]: eligiblePlans.length > 0,
             [s.unClickable]: eligiblePlans.length === 0,
-            [s.hideBorder]: hideBorder
+            [s.hideBorder]: hideBorder,
           },
           STATIC_CUSTOMISATION_CLASSES.container,
         )}
