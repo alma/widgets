@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alma Widgets designed example</title>
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <link rel="stylesheet" href="../dist/widgets.umd.css" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@alma/widgets@2.11.1/dist/widgets.min.css"
+    /> -->
+
+    <!-- This is an example of how to customize the widget -->
+    <style>
+      /* This is an example of how to customize the widget */
+      .alma-payment-plans-container {
+        background-color: #5d86d4;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 10px;
+        color: white !important;
+      }
+
+      .alma-payment-plans-eligibility-line {
+        background-color: #5d86d4;
+        border-radius: 5px;
+        border: 1px solid #46539a;
+
+        padding: 5px 10px;
+        margin: auto;
+      }
+      .alma-payment-plans-eligibility-line div {
+        color: white;
+      }
+      .alma-payment-plans-eligibility-line:hover {
+        background-color: white;
+        border: 1px solid #8492e3;
+      }
+      .alma-payment-plans-eligibility-line:hover div {
+        color: black;
+      }
+      .alma-payment-plans-active-option {
+        font-size: 1.2em;
+        margin-right: 15px;
+        margin-left: 15px;
+        border-bottom-color: transparent !important;
+      }
+
+      .alma-payment-plans-not-eligible-option {
+        color: rgb(168, 167, 167) !important;
+      }
+      .alma-payment-plans-payment-info {
+        margin: 20px auto 10px;
+        color: white;
+        font-size: 1em;
+        height: 50px;
+      }
+
+      /* This is an example of how to customize the modal */
+      .alma-eligibility-modal-left-side {
+        background-color: #46539a;
+        color: white;
+        margin-left: -32px;
+        margin-top: -32px;
+        padding: 15px;
+        height: 114%;
+        padding-bottom: 22px;
+      }
+
+      .alma-eligibility-modal-title {
+        color: white;
+      }
+
+      .alma-eligibility-modal-bullet {
+        background-color: #5d86d4;
+        font-size: 1.3em;
+        border-radius: 7px;
+      }
+      .alma-eligibility-modal-title span {
+        background-color: #49aaff;
+      }
+      .alma-eligibility-modal-right-side {
+        background-color: #cbcbcb;
+        margin-top: -32px;
+        margin-right: -32px;
+        padding: 15px;
+        height: 114%;
+      }
+
+      .alma-eligibility-modal-schedule-details {
+        border-top: none;
+      }
+      .alma-eligibility-modal-eligibility-options button {
+        background-color: #46539a;
+        color: white;
+      }
+
+      .alma-eligibility-modal-active-option {
+        background-color: #5d86d4 !important;
+        color: white !important;
+      }
+
+      .alma-eligibility-modal-active-option::after {
+        background-color: transparent !important;
+      }
+
+      .alma-eligibility-modal-summary {
+        background-color: transparent;
+        padding: 10px;
+        border-radius: 8px;
+      }
+
+      .alma-eligibility-modal-close-button {
+        visibility: hidden;
+      }
+
+      .alma-eligibility-modal-close-button:hover {
+        color: green;
+      }
+      .alma-eligibility-modal-close-button::after {
+        content: 'Close';
+        font-size: 1.1em;
+        visibility: visible;
+      }
+
+      .alma-eligibility-modal-mobile-modal {
+        background-color: #c8d0ff;
+        margin: -24px;
+        padding-top: 40px;
+        height: 106%;
+      }
+
+      .alma-eligibility-modal-mobile-modal .alma-eligibility-modal-title {
+        color: black;
+      }
+
+      .alma-eligibility-modal-mobile-modal .alma-eligibility-modal-schedule-details {
+        border-bottom: 1px solid black;
+      }
+      .alma-eligibility-modal-mobile-modal .alma-eligibility-modal-summary {
+        background-color: #5d86d4;
+        margin: 15px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body">
+      <div>
+        <img src="../src/assets/alma.svg" class="alma-logo" alt="alma" />
+      </div>
+      <div class="menu">
+        <a href="./basic.html">Basic page</a>
+        <a href="./multiple.html">Multiple widgets</a>
+      </div>
+      <div class="main">
+        <div class="image">
+          <img src="./sac-a-main.jpeg" alt="product" />
+        </div>
+
+        <div>
+          <div class="product">
+            <h1>Sac à main</h1>
+            <select onchange="renderPaymentPlans()" id="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="10">10</option>
+            </select>
+            <h3>450 €</h3>
+            <div id="alma-widget-payment-plans"></div>
+            <div id="alma-widget-modal"></div>
+            <div class="add-to-cart">
+              <button>Ajouter au panier</button>
+            </div>
+          </div>
+          <div class="open-modal-ctas">
+            <a href="#" id="alma-open-modal-button">Open modal with clickableSelector</a>
+            <a href="#" onClick="openModal()">Open modal with open function</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../dist/widgets.umd.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@alma/widgets@2.11.1/dist/widgets.umd.js"></script> -->
+
+    <script>
+      var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
+
+      function renderPaymentPlans() {
+        var purchaseAmount = 510 * 100 * document.getElementById('quantity').value
+        widgets.add(Alma.Widgets.PaymentPlans, {
+          container: '#alma-widget-payment-plans',
+          purchaseAmount,
+          monochrome: false,
+          plans: [
+            {
+              installmentsCount: 1,
+              deferredDays: 30,
+              minAmount: 5000,
+              maxAmount: 9000,
+            },
+
+            {
+              installmentsCount: 2,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
+              installmentsCount: 4,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
+              installmentsCount: 10,
+              minAmount: 45000,
+              maxAmount: 800000,
+            },
+          ],
+        })
+      }
+      renderPaymentPlans()
+
+      function renderModal() {
+        var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
+        return widgets.add(Alma.Widgets.Modal, {
+          container: '#alma-widget-modal',
+          clickableSelector: '#alma-open-modal-button',
+          purchaseAmount,
+          locale: 'fr',
+          plans: [
+            {
+              installmentsCount: 4,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
+              installmentsCount: 10,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+          ],
+        })
+      }
+      const { open: openModal, close } = renderModal()
+    </script>
+  </body>
+</html>
