@@ -23,6 +23,9 @@ body {
   .menu {
     text-align: center;
   }
+  .menu a {
+    margin-right: 15px;
+  }
   .image {
     width: 50vw;
   }
