@@ -32,7 +32,7 @@ const Info: FC = () => (
       <div className={STATIC_CUSTOMISATION_CLASSES.infoMessage}>
         <FormattedMessage
           id="eligibility-modal.bullet-3"
-          defaultMessage="La validation de votre paiement <strong>instantanée</strong> !"
+          defaultMessage="La validation de votre paiement est <strong>instantanée</strong> !"
           values={{ strong: (...chunks: string[]) => <strong>{chunks}</strong> }}
         />
       </div>
