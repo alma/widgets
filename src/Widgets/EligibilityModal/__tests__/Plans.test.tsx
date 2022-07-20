@@ -31,7 +31,7 @@ describe('plans provided', () => {
       'Renseignez les informations demandées.',
     )
     expect(screen.getByTestId('modal-info-element')).toHaveTextContent(
-      'La validation de votre paiement instantanée !',
+      'La validation de votre paiement est instantanée !',
     )
   })
   it('should display the payments plans provided in eligibility', () => {

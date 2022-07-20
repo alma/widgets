@@ -98,9 +98,9 @@ describe('Change language', () => {
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
-    expect(screen.getByText('J+30')).toBeInTheDocument() // Change that with T+30 when proofreading is done
+    expect(screen.getByText('D+30')).toBeInTheDocument()
     expect(screen.getByText(/te betalen op/)).toBeInTheDocument()
-    expect(screen.getByText(/\(gratis\)/)).toBeInTheDocument()
+    expect(screen.getByText(/\(zonder kosten\)/)).toBeInTheDocument()
   })
 
   it(`into ${Locale.pt}`, async () => {

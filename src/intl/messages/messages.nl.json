@@ -1,22 +1,22 @@
 {
   "eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen.",
   "eligibility-modal.bullet-2": "Vul de <strong>gevraagde informatie</strong> in.",
-  "eligibility-modal.bullet-3": "Onmiddellijke validatie van uw betaling ",
+  "eligibility-modal.bullet-3": "De validatie van uw betaling is <strong>onmiddellijk</strong> !",
   "eligibility-modal.cost": "Waarvan kosten",
   "eligibility-modal.credit-commitment": "Een lening bindt je en moet worden terugbetaald. Ga na of u kunt terugbetalen voordat u zich vastlegt.",
   "eligibility-modal.credit-cost": "Waarvan kosten van krediet",
-  "eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
+  "eligibility-modal.credit-cost-amount": "{creditCost} (gemiddeld rente percentage {TAEG})",
   "eligibility-modal.no-eligibility": "Oeps, het lijkt erop dat de simulatie niet werkte.",
-  "eligibility-modal.title": "<highlighted>Betaal in termijnen</highlighted> met kredietkaart bij Alma.",
-  "eligibility-modal.title-deferred": "<highlighted>Betaal in termijnen</highlighted> of later per credit card met Alma.",
+  "eligibility-modal.title": "<highlighted>Betaal in termijnen</highlighted> met bank- en kredietkaart bij Alma.",
+  "eligibility-modal.title-deferred": "<highlighted>Betaal in termijnen</highlighted> of later per bank- en kredietkaart met Alma.",
   "eligibility-modal.total": "Totaal",
   "installments.today": "Tegenwoordig",
-  "payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
+  "payment-plan-strings.day-abbreviation": "D{numberOfDeferredDays}",
   "payment-plan-strings.default-message": "Betaal in termijnen met Alma",
   "payment-plan-strings.deferred": "{totalAmount} te betalen op {dueDate}",
   "payment-plan-strings.ineligible-greater-than-max": "Tot {maxAmount}",
   "payment-plan-strings.ineligible-lower-than-min": "Van {minAmount}",
   "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} dan {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} dan {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
-  "payment-plan-strings.no-fee": "(gratis)"
+  "payment-plan-strings.no-fee": "(zonder kosten)"
 }
