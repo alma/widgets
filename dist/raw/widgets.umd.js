@@ -17215,7 +17215,10 @@
    */
 
   var STATIC_CUSTOMISATION_CLASSES = {
+    desktopModal: prefix + '-desktop-modal',
+    mobileModal: prefix + '-mobile-modal',
     leftSide: prefix + '-left-side',
+    bullet: prefix + '-bullet',
     rightSide: prefix + '-right-side',
     title: prefix + '-title',
     info: prefix + '-info',
@@ -20132,7 +20135,7 @@
     }, /*#__PURE__*/react.createElement("div", {
       className: s$5.listItem
     }, /*#__PURE__*/react.createElement("div", {
-      className: s$5.bullet
+      className: classnames(s$5.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
     }, "1"), /*#__PURE__*/react.createElement("div", {
       className: STATIC_CUSTOMISATION_CLASSES.infoMessage
     }, /*#__PURE__*/react.createElement(MemoizedFormattedMessage, {
@@ -20146,7 +20149,7 @@
     }))), /*#__PURE__*/react.createElement("div", {
       className: s$5.listItem
     }, /*#__PURE__*/react.createElement("div", {
-      className: s$5.bullet
+      className: classnames(s$5.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
     }, "2"), /*#__PURE__*/react.createElement("div", {
       className: STATIC_CUSTOMISATION_CLASSES.infoMessage
     }, /*#__PURE__*/react.createElement(MemoizedFormattedMessage, {
@@ -20160,7 +20163,7 @@
     }))), /*#__PURE__*/react.createElement("div", {
       className: s$5.listItem
     }, /*#__PURE__*/react.createElement("div", {
-      className: s$5.bullet
+      className: classnames(s$5.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
     }, "3"), /*#__PURE__*/react.createElement("div", {
       className: STATIC_CUSTOMISATION_CLASSES.infoMessage
     }, /*#__PURE__*/react.createElement(MemoizedFormattedMessage, {
@@ -20259,7 +20262,7 @@
         isSomePlanDeferred = _ref.isSomePlanDeferred,
         cards = _ref.cards;
     return /*#__PURE__*/react.createElement("div", {
-      className: s$8.container,
+      className: classnames(s$8.container, STATIC_CUSTOMISATION_CLASSES.desktopModal),
       "data-testid": "modal-container"
     }, /*#__PURE__*/react.createElement("div", {
       className: classnames([s$8.block, s$8.left, STATIC_CUSTOMISATION_CLASSES.leftSide])
@@ -20281,7 +20284,7 @@
         isSomePlanDeferred = _ref.isSomePlanDeferred,
         cards = _ref.cards;
     return /*#__PURE__*/react.createElement("div", {
-      className: s$a.container,
+      className: classnames(s$a.container, STATIC_CUSTOMISATION_CLASSES.mobileModal),
       "data-testid": "modal-container"
     }, /*#__PURE__*/react.createElement(Title, {
       isSomePlanDeferred: isSomePlanDeferred

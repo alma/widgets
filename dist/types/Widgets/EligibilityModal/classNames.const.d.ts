@@ -3,7 +3,10 @@
  * Those classes are intended to be used by the **merchant developer**.
  */
 declare const STATIC_CUSTOMISATION_CLASSES: {
+    desktopModal: string;
+    mobileModal: string;
     leftSide: string;
+    bullet: string;
     rightSide: string;
     title: string;
     info: string;

@@ -2212,7 +2212,10 @@ const prefix = 'alma-eligibility-modal';
  */
 
 const STATIC_CUSTOMISATION_CLASSES = {
+  desktopModal: prefix + '-desktop-modal',
+  mobileModal: prefix + '-mobile-modal',
   leftSide: prefix + '-left-side',
+  bullet: prefix + '-bullet',
   rightSide: prefix + '-right-side',
   title: prefix + '-title',
   info: prefix + '-info',
@@ -2663,7 +2666,7 @@ const Info = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("div", {
   className: s$5.listItem
 }, /*#__PURE__*/React.createElement("div", {
-  className: s$5.bullet
+  className: cx(s$5.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
 }, "1"), /*#__PURE__*/React.createElement("div", {
   className: STATIC_CUSTOMISATION_CLASSES.infoMessage
 }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2675,7 +2678,7 @@ const Info = () => /*#__PURE__*/React.createElement("div", {
 }))), /*#__PURE__*/React.createElement("div", {
   className: s$5.listItem
 }, /*#__PURE__*/React.createElement("div", {
-  className: s$5.bullet
+  className: cx(s$5.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
 }, "2"), /*#__PURE__*/React.createElement("div", {
   className: STATIC_CUSTOMISATION_CLASSES.infoMessage
 }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2687,7 +2690,7 @@ const Info = () => /*#__PURE__*/React.createElement("div", {
 }))), /*#__PURE__*/React.createElement("div", {
   className: s$5.listItem
 }, /*#__PURE__*/React.createElement("div", {
-  className: s$5.bullet
+  className: cx(s$5.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
 }, "3"), /*#__PURE__*/React.createElement("div", {
   className: STATIC_CUSTOMISATION_CLASSES.infoMessage
 }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2775,7 +2778,7 @@ const DesktopModal = ({
   isSomePlanDeferred,
   cards
 }) => /*#__PURE__*/React.createElement("div", {
-  className: s$8.container,
+  className: cx(s$8.container, STATIC_CUSTOMISATION_CLASSES.desktopModal),
   "data-testid": "modal-container"
 }, /*#__PURE__*/React.createElement("div", {
   className: cx([s$8.block, s$8.left, STATIC_CUSTOMISATION_CLASSES.leftSide])
@@ -2796,7 +2799,7 @@ const MobileModal = ({
   isSomePlanDeferred,
   cards
 }) => /*#__PURE__*/React.createElement("div", {
-  className: s$a.container,
+  className: cx(s$a.container, STATIC_CUSTOMISATION_CLASSES.mobileModal),
   "data-testid": "modal-container"
 }, /*#__PURE__*/React.createElement(Title, {
   isSomePlanDeferred: isSomePlanDeferred

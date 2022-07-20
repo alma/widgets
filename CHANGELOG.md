@@ -1,3 +1,16 @@
+# [2.12.0](https://github.com/alma/widgets/compare/v2.11.1...v2.12.0) (2022-07-20)
+
+
+### Bug Fixes
+
+* css order in example page and bump example jsdelivr version to 2.11.1 ([586bf60](https://github.com/alma/widgets/commit/586bf6007a9dac2f21a6b04bf6e0508bffd98f49))
+* english typo ([d624a55](https://github.com/alma/widgets/commit/d624a5573daea7cdadef748e8917cb9784b80b2f))
+
+
+### Features
+
+* add one more widget example with the custom css. More static css added ([4e04c9a](https://github.com/alma/widgets/commit/4e04c9a4b815713e7a9fbae8686671ee630df1a1))
+
 ## [2.11.1](https://github.com/alma/widgets/compare/v2.11.0...v2.11.1) (2022-07-07)
 
 
