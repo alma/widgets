@@ -113,7 +113,7 @@ Display card logos in the modal
 
 ## Plan option: `Plan`
 
-You can customize the displayed plans with this parameter. You can hide a plan that would be displayed otherwise by adding the other plans with those information:
+You can customize the displayed plans with this parameter. You can hide a plan that would be displayed otherwise by adding the other plans with this information:
 
 - installmentsCount: `number` [required]:
 
