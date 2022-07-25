@@ -1855,7 +1855,7 @@ if (!''.trim) String.prototype.trim = function () {
 var messagesDE = {
 	"eligibility-modal.bullet-1": "Wählen Sie an der Kasse <strong>Alma</strong> .",
 	"eligibility-modal.bullet-2": "Füllen Sie die <strong>angeforderten</strong> Informationen aus.",
-	"eligibility-modal.bullet-3": "Die Bestätigung Ihrer Zahlung <strong>sofort</strong> !",
+	"eligibility-modal.bullet-3": "Die Bestätigung Ihrer Zahlung erfolgt <strong>sofort</strong> !",
 	"eligibility-modal.cost": "Davon Kosten",
 	"eligibility-modal.credit-commitment": "Ein Kredit verpflichtet Sie und muss zurückgezahlt werden. Prüfen Sie Ihre Rückzahlungsfähigkeit, bevor Sie sich verpflichten.",
 	"eligibility-modal.credit-cost": "Davon Kreditkosten",
@@ -1878,7 +1878,7 @@ var messagesDE = {
 var messagesEN = {
 	"eligibility-modal.bullet-1": "Choose <strong>Alma</strong> at checkout.",
 	"eligibility-modal.bullet-2": "Fill in the <strong>information</strong> requested.",
-	"eligibility-modal.bullet-3": "Validation of your payment <strong>instantaneous</strong>!",
+	"eligibility-modal.bullet-3": "The validation of your payment is <strong>instantaneous</strong> !",
 	"eligibility-modal.cost": "Of which costs",
 	"eligibility-modal.credit-commitment": "A loan commits you and must be repaid. Check your ability to repay before committing yourself.",
 	"eligibility-modal.credit-cost": "Of which cost of credit",
@@ -1901,7 +1901,7 @@ var messagesEN = {
 var messagesES = {
 	"eligibility-modal.bullet-1": "Elige <strong>Alma</strong> como método de pago.",
 	"eligibility-modal.bullet-2": "Completa la <strong>información</strong> solicitada.",
-	"eligibility-modal.bullet-3": "¡Validación <strong>inmediata</strong> de tu pago!",
+	"eligibility-modal.bullet-3": "¡La validación de su pago es <strong>instantánea</strong> !",
 	"eligibility-modal.cost": "Gastos (incl. en el total)",
 	"eligibility-modal.credit-commitment": "Un préstamo te compromete y debe ser devuelto. Comprueba tu capacidad financiera antes de comprometerte.",
 	"eligibility-modal.credit-cost": "Coste de crédito (incl. en el total)",
@@ -1924,7 +1924,7 @@ var messagesES = {
 var messagesFR = {
 	"eligibility-modal.bullet-1": "Choisissez <strong>Alma</strong> au moment du paiement.",
 	"eligibility-modal.bullet-2": "Renseignez les <strong>informations</strong> demandées.",
-	"eligibility-modal.bullet-3": "La validation de votre paiement <strong>instantanée</strong> !",
+	"eligibility-modal.bullet-3": "La validation de votre paiement est <strong>instantanée</strong> !",
 	"eligibility-modal.cost": "Dont frais",
 	"eligibility-modal.credit-commitment": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
 	"eligibility-modal.credit-cost": "Dont coût du crédit",
@@ -1947,7 +1947,7 @@ var messagesFR = {
 var messagesIT = {
 	"eligibility-modal.bullet-1": "Scegli <strong>Alma</strong> alla cassa.",
 	"eligibility-modal.bullet-2": "Compila le informazioni <strong></strong> richieste.",
-	"eligibility-modal.bullet-3": "Convalida del tuo pagamento <strong>istantanea</strong>!",
+	"eligibility-modal.bullet-3": "La convalida del pagamento è <strong>istantanea</strong> !",
 	"eligibility-modal.cost": "Di cui commissioni",
 	"eligibility-modal.credit-commitment": "Un pagamento rateale ti impegna e deve essere ripagato. Verifica la tua capacità di rimborso prima di impegnarti.",
 	"eligibility-modal.credit-cost": "Di cui commissioni",
@@ -1970,30 +1970,30 @@ var messagesIT = {
 var messagesNL = {
 	"eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen.",
 	"eligibility-modal.bullet-2": "Vul de <strong>gevraagde informatie</strong> in.",
-	"eligibility-modal.bullet-3": "Onmiddellijke validatie van uw betaling ",
+	"eligibility-modal.bullet-3": "De validatie van uw betaling is <strong>onmiddellijk</strong> !",
 	"eligibility-modal.cost": "Waarvan kosten",
 	"eligibility-modal.credit-commitment": "Een lening bindt je en moet worden terugbetaald. Ga na of u kunt terugbetalen voordat u zich vastlegt.",
 	"eligibility-modal.credit-cost": "Waarvan kosten van krediet",
-	"eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
+	"eligibility-modal.credit-cost-amount": "{creditCost} (gemiddeld rente percentage {TAEG})",
 	"eligibility-modal.no-eligibility": "Oeps, het lijkt erop dat de simulatie niet werkte.",
-	"eligibility-modal.title": "<highlighted>Betaal in termijnen</highlighted> met kredietkaart bij Alma.",
-	"eligibility-modal.title-deferred": "<highlighted>Betaal in termijnen</highlighted> of later per credit card met Alma.",
+	"eligibility-modal.title": "<highlighted>Betaal in termijnen</highlighted> met bank- en kredietkaart bij Alma.",
+	"eligibility-modal.title-deferred": "<highlighted>Betaal in termijnen</highlighted> of later per bank- en kredietkaart met Alma.",
 	"eligibility-modal.total": "Totaal",
 	"installments.today": "Tegenwoordig",
-	"payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
+	"payment-plan-strings.day-abbreviation": "D{numberOfDeferredDays}",
 	"payment-plan-strings.default-message": "Betaal in termijnen met Alma",
 	"payment-plan-strings.deferred": "{totalAmount} te betalen op {dueDate}",
 	"payment-plan-strings.ineligible-greater-than-max": "Tot {maxAmount}",
 	"payment-plan-strings.ineligible-lower-than-min": "Van {minAmount}",
 	"payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} dan {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} dan {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
 	"payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
-	"payment-plan-strings.no-fee": "(gratis)"
+	"payment-plan-strings.no-fee": "(zonder kosten)"
 };
 
 var messagesPT = {
 	"eligibility-modal.bullet-1": "Escolha a <strong>Alma</strong> no checkout.",
 	"eligibility-modal.bullet-2": "Preencha os <strong>dados</strong> solicitados.",
-	"eligibility-modal.bullet-3": "Validação do seu pagamento <strong>imediata</strong>!",
+	"eligibility-modal.bullet-3": "A validação do seu pagamento é <strong>instantaneamente</strong> !",
 	"eligibility-modal.cost": "Incluindo encargos",
 	"eligibility-modal.credit-commitment": "Um crédito é um compromisso e deve ser reembolsado. Verifique a sua capacidade de pagar antes de se comprometer.",
 	"eligibility-modal.credit-cost": "Incluindo custo do crédito",
@@ -2695,7 +2695,7 @@ const Info = () => /*#__PURE__*/React.createElement("div", {
   className: STATIC_CUSTOMISATION_CLASSES.infoMessage
 }, /*#__PURE__*/React.createElement(FormattedMessage, {
   id: "eligibility-modal.bullet-3",
-  defaultMessage: "La validation de votre paiement <strong>instantan\u00E9e</strong> !",
+  defaultMessage: "La validation de votre paiement est <strong>instantan\u00E9e</strong> !",
   values: {
     strong: (...chunks) => /*#__PURE__*/React.createElement("strong", null, chunks)
   }

@@ -1,3 +1,10 @@
+## [2.12.1](https://github.com/alma/widgets/compare/v2.12.0...v2.12.1) (2022-07-25)
+
+
+### Bug Fixes
+
+* typo in i18n string ([5f3e5d7](https://github.com/alma/widgets/commit/5f3e5d793c207e42e8d0abf2d7c5a099681e97ab))
+
 # [2.12.0](https://github.com/alma/widgets/compare/v2.11.1...v2.12.0) (2022-07-20)
 
 
