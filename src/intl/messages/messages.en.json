@@ -11,7 +11,7 @@
   "eligibility-modal.title-deferred": "<highlighted>Pay in installments</highlighted> or later by credit card with Alma.",
   "eligibility-modal.total": "Total",
   "installments.today": "Today",
-  "payment-plan-strings.day-abbreviation": "T{numberOfDeferredDays}",
+  "payment-plan-strings.day-abbreviation": "D{numberOfDeferredDays}",
   "payment-plan-strings.default-message": "Pay in installments with Alma",
   "payment-plan-strings.deferred": "{totalAmount} to be paid on {dueDate}",
   "payment-plan-strings.ineligible-greater-than-max": "Until {maxAmount}",
