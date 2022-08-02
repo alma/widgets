@@ -1,3 +1,10 @@
+## [2.12.2](https://github.com/alma/widgets/compare/v2.12.1...v2.12.2) (2022-08-02)
+
+
+### Bug Fixes
+
+* fix deferred translations ([512ff31](https://github.com/alma/widgets/commit/512ff311c72a02b3f67025cf00d155a65d928885))
+
 ## [2.12.1](https://github.com/alma/widgets/compare/v2.12.0...v2.12.1) (2022-07-25)
 
 

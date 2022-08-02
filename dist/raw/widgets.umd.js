@@ -6742,7 +6742,7 @@
   	"eligibility-modal.title-deferred": "<highlighted>Pay in installments</highlighted> or later by credit card with Alma.",
   	"eligibility-modal.total": "Total",
   	"installments.today": "Today",
-  	"payment-plan-strings.day-abbreviation": "T{numberOfDeferredDays}",
+  	"payment-plan-strings.day-abbreviation": "D{numberOfDeferredDays}",
   	"payment-plan-strings.default-message": "Pay in installments with Alma",
   	"payment-plan-strings.deferred": "{totalAmount} to be paid on {dueDate}",
   	"payment-plan-strings.ineligible-greater-than-max": "Until {maxAmount}",
@@ -6755,7 +6755,7 @@
   var messagesES = {
   	"eligibility-modal.bullet-1": "Elige <strong>Alma</strong> como método de pago.",
   	"eligibility-modal.bullet-2": "Completa la <strong>información</strong> solicitada.",
-  	"eligibility-modal.bullet-3": "¡La validación de su pago es <strong>instantánea</strong> !",
+  	"eligibility-modal.bullet-3": "¡La validación de tu pago es <strong>instantánea</strong> !",
   	"eligibility-modal.cost": "Gastos (incl. en el total)",
   	"eligibility-modal.credit-commitment": "Un préstamo te compromete y debe ser devuelto. Comprueba tu capacidad financiera antes de comprometerte.",
   	"eligibility-modal.credit-cost": "Coste de crédito (incl. en el total)",
