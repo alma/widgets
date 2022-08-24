@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;600&family=Work+Sans:wght@700&display=swap');
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 :root {
   --white: #fff;
   --blue-100: #e9f4ff;
