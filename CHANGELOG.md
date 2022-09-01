@@ -1,3 +1,10 @@
+## [2.12.3](https://github.com/alma/widgets/compare/v2.12.2...v2.12.3) (2022-09-01)
+
+
+### Bug Fixes
+
+* commit to create new release. Add CSS variable ([0125551](https://github.com/alma/widgets/commit/012555198f191f84e3baf8bb695c5db732abaedc))
+
 ## [2.12.2](https://github.com/alma/widgets/compare/v2.12.1...v2.12.2) (2022-08-02)
 
 
