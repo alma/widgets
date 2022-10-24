@@ -29,7 +29,7 @@ describe('Modal initializes with the correct plan', () => {
       fireEvent.click(screen.getByTestId('widget-button'))
     })
 
-    checkModalElements()
+    await checkModalElements()
   })
 
   it('after clicking a plan (fallback for mobile)', async () => {
@@ -48,7 +48,7 @@ describe('Modal initializes with the correct plan', () => {
     act(() => {
       fireEvent.click(screen.getByText('3x'))
     })
-    checkModalElements()
+    await checkModalElements()
   })
 
   it('after a simple click on the badge, with no hover or click on a specific plan', async () => {
@@ -76,8 +76,7 @@ async function checkModalElements(): Promise<void> {
   const modalContainer = screen.getByTestId('modal-container')
   expect(within(modalContainer).getByText('3x')).toBeInTheDocument()
   expect(within(modalContainer).getByText('21 octobre 2021')).toBeInTheDocument()
-  expect(within(modalContainer).getByText('151,35 €')).toBeInTheDocument()
   expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
   expect(within(modalContainer).getByText('21 décembre 2021')).toBeInTheDocument()
-  expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(2)
+  expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(3)
 }

@@ -1,0 +1,33 @@
+.container {
+  margin: 16px 0;
+  font-family: 'Argent CF', sans-serif;
+  background-color: var(--soft-blue);
+  border-radius: 20px;
+  padding: 24px;
+  z-index: 2;
+  position: relative;
+}
+.container h3 {
+  margin: 4px 0;
+}
+.total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px;
+
+}
+
+.fees {
+  display: flex;
+  font-family: 'Venn', sans-serif;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: var(--weight-bold);
+  font-size: 14px;
+  line-height: 135%;
+}
+
+.creditCost {
+  text-align: right;
+}

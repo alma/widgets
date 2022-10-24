@@ -55,7 +55,7 @@ describe('plans provided', () => {
     const installmentElement = screen.getByTestId('modal-installments-element')
 
     expect(installmentElement).toHaveTextContent("Aujourd'hui")
-    expect(installmentElement).toHaveTextContent('123,12 €')
+    expect(installmentElement).toHaveTextContent('112,50 €')
     expect(installmentElement).toHaveTextContent('1 janvier 2022')
     expect(installmentElement).toHaveTextContent('112,50 €')
     expect(installmentElement).toHaveTextContent('1 février 2022')
@@ -71,9 +71,11 @@ describe('plans provided', () => {
     const totalElement = screen.getByTestId('modal-summary')
     expect(totalElement).toHaveTextContent('Dont coût du crédit')
     expect(totalElement).toHaveTextContent('26,64 € (TAEG 17,2 %)')
-    expect(totalElement).toHaveTextContent(
-      'Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.',
-    )
+    expect(
+      screen.getByText(
+        'Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.',
+      ),
+    ).toBeInTheDocument()
   })
 })
 
@@ -107,9 +109,8 @@ describe('plans and initial index provided', () => {
       />,
     )
     const installmentElement = screen.getByTestId('modal-installments-element')
-    expect(installmentElement).toHaveTextContent('1,35 €')
     expect(installmentElement).toHaveTextContent("Aujourd'hui")
-    expect(installmentElement).toHaveTextContent('151,35 €')
+    expect(installmentElement).toHaveTextContent('150,00 €')
     expect(installmentElement).toHaveTextContent('1 janvier 2022')
     expect(installmentElement).toHaveTextContent('150,00 €')
     expect(installmentElement).toHaveTextContent('1 février 2022')
@@ -117,7 +118,7 @@ describe('plans and initial index provided', () => {
     const totalElement = screen.getByTestId('modal-summary')
     expect(totalElement).toHaveTextContent('Total')
     expect(totalElement).toHaveTextContent('451,35 €')
-    expect(totalElement).toHaveTextContent('Dont frais')
+    expect(totalElement).toHaveTextContent('Dont frais (TTC)')
   })
 })
 describe('empty plans', () => {

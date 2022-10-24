@@ -12,15 +12,13 @@ const Title: FC<{ isSomePlanDeferred: boolean }> = ({ isSomePlanDeferred }) => (
   >
     {isSomePlanDeferred ? (
       <FormattedMessage
-        id={'eligibility-modal.title-deferred'}
-        defaultMessage="<highlighted>Payez en plusieurs fois</highlighted> ou plus tard par carte bancaire avec Alma."
-        values={{ highlighted: (...chunks: string[]) => <span>{chunks}</span> }}
+        id="eligibility-modal.title-deferred-plan"
+        defaultMessage="Payez en plusieurs fois ou plus tard par carte bancaire avec Alma."
       />
     ) : (
       <FormattedMessage
-        id={'eligibility-modal.title'}
-        defaultMessage="<highlighted>Payez en plusieurs fois</highlighted> par carte bancaire avec Alma."
-        values={{ highlighted: (...chunks: string[]) => <span>{chunks}</span> }}
+        id="eligibility-modal.title-normal"
+        defaultMessage="Payez en plusieurs fois par carte bancaire avec Alma."
       />
     )}
   </div>

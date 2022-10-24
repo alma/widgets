@@ -3,26 +3,30 @@
   flex-direction: column;
   margin-bottom: 40px;
   padding: 0 24px;
+  gap: 20px;
 }
 
 .listItem {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
-  line-height: 180%;
+  line-height: 135%;
+  gap: 16px;
 }
 
 .bullet {
-  flex: 0 0 30px;
-  height: 30px;
-  line-height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: var(--blue-300);
-  color: var(--white);
-  margin-right: 16px;
+  font-family: 'Argent CF', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 110%;
+  color: var(--alma-blue);
+}
+
+.listItem:first-child .bullet {
+  color: var(--alma-orange);
+}
+
+.listItem:last-child .bullet {
+  color: var(--alma-yellow);
 }
 
 @media (min-width: 800px) {
