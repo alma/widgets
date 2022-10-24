@@ -2,11 +2,12 @@
   width: 368px;
   max-width: 100%;
   background-color: transparent;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--light-gray);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 12px;
+  gap: 8px;
 }
 
 .widgetButton:focus,
@@ -15,45 +16,52 @@
 }
 
 .logo {
-  color: var(--blue-300);
   margin-right: 12px;
 }
+
 .primaryContainer {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
+
 .paymentPlans {
   display: flex;
   flex-direction: row;
+  gap: 8px;
   align-items: flex-start;
   max-width: 310px;
   flex-wrap: wrap;
 }
+
 .plan {
+  font-family: 'Venn', sans-serif;
+  text-transform: lowercase;
+  color: var(--off-black);
+  border-radius: 4px;
+  font-weight: 700;
   font-size: 12px;
-  font-family: 'Eina04', sans-serif;
-  font-weight: 600;
-  color: var(--blue-300);
-  line-height: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  text-align: center;
-  height: 22px;
-  width: 30px;
-  margin: 0 4px;
-}
-.plan.active {
-  border-bottom: 3px solid var(--blue-300);
+  height: 24px;
+  min-width: 24px;
+  padding: 2px 4px; /* The 4px is made for Deferred plans */
 }
 
-.plan.active.polychrome {
-  border-bottom-color: var(--red-600);
+.plan.active {
+  color: var(--white);
+  background: var(--alma-orange);
+}
+
+.plan.active.monochrome {
+  background: var(--off-black);
 }
 
 .plan.active.notEligible {
-  border-bottom-color: var(--gray-600);
+  background-color: var(--white);
+  color: var(--dark-gray);
   cursor: not-allowed;
 }
 
@@ -62,37 +70,39 @@
 }
 
 .info {
-  font-family: Public Sans, sans-serif;
-  font-style: normal;
-  font-weight: normal;
+  font-family: 'Venn', sans-serif;
   font-size: 12px;
   line-height: 180%;
-  color: var(--blue-300);
-  text-align: left;
-  margin-top: 8px;
+  color: var(--off-black);
 }
+
 .notEligible {
-  color: var(--gray-600);
+  color: var(--dark-gray);
 }
+
 .loader {
   overflow: hidden;
   align-items: center;
 }
+
 .error {
   align-items: center;
   line-height: 100%;
 }
+
 .errorText {
-  font-family: Public Sans, sans-serif;
+  font-family: 'Venn', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  color: var(--blue-300);
+  color: var(--off-black);
 }
+
 .errorButton {
   cursor: pointer;
   text-decoration: underline;
 }
+
 .pending {
   align-items: center;
 }
@@ -100,6 +110,7 @@
 .clickable {
   cursor: pointer;
 }
+
 .unClickable {
   cursor: not-allowed;
 }

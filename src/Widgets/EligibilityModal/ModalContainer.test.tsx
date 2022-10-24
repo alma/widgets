@@ -66,11 +66,11 @@ describe('ModalContainer', () => {
         'Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.',
       )
       expect(element).toHaveTextContent('Total450,00 €')
-      expect(element).toHaveTextContent('Dont frais0,00 €')
+      expect(element).toHaveTextContent('Dont frais (TTC)0,00 €')
       expect(element).toHaveTextContent('21 novembre 2021')
     })
 
-    it('should display the the schedule for the selected payment plan', () => {
+    it('should display the schedule for the selected payment plan', () => {
       act(() => {
         fireEvent.click(screen.getByText('4x'))
       })
@@ -78,7 +78,7 @@ describe('ModalContainer', () => {
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [
         '21 octobre 2021',
-        '124,52 €',
+        '112,50 €',
         '21 novembre 2021',
         '112,50 €',
         '21 décembre 2021',
@@ -86,7 +86,7 @@ describe('ModalContainer', () => {
         '21 janvier 2022',
         '112,50 €',
       ]
-      const expectedTotal = ['Total', '462,02 €', 'Dont frais', '12,02 €']
+      const expectedTotal = ['Total', '462,02 €', 'Dont frais (TTC)', '12,02 €']
 
       expect(installmentElement).toHaveTextContent(expectedInstallments.join(''))
       expect(totalElement).toHaveTextContent(expectedTotal.join(''))
@@ -137,18 +137,18 @@ describe('ModalContainer', () => {
       await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
     })
 
-    it('should display the the schedule for the selected payment plan', () => {
+    it('should display the schedule for the selected payment plan', () => {
       const installmentElement = screen.getByTestId('modal-container')
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [
         '21 octobre 20211',
-        '51,35 €',
+        '50,00 €',
         '21 novembre 20211',
         '50,00 €',
         '21 décembre 20211',
         '50,00 €',
       ]
-      const expectedTotal = ['Total', '451,35 €', 'Dont frais', '1,35 €']
+      const expectedTotal = ['Total', '451,35 €', 'Dont frais (TTC)', '1,35 €']
 
       expect(installmentElement).toHaveTextContent(expectedInstallments.join(''))
       expect(totalElement).toHaveTextContent(expectedTotal.join(''))

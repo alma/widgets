@@ -25,11 +25,7 @@ module.exports = {
       copy({
         targets: [
           {
-            src: [
-              'src/assets/fonts/PublicSans-VariableFont_wght.ttf',
-              'src/assets/fonts/Eina04-Bold.woff',
-              'src/assets/fonts/Eina04-Bold.ttf',
-            ],
+            src: ['src/assets/fonts/Argent/*', 'src/assets/fonts/Venn/*'],
             dest: 'dist/assets/fonts',
           },
         ],

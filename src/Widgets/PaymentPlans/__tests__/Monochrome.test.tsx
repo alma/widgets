@@ -25,9 +25,9 @@ it.each([true, false])(
     expect(screen.getByTestId('widget-button')).toBeInTheDocument()
     expect(screen.getByText('J+30').className).toContain('active')
     if (monochrome) {
-      expect(screen.getByText('J+30').className).not.toContain('polychrome')
+      expect(screen.getByText('J+30').className).toContain('monochrome')
     } else {
-      expect(screen.getByText('J+30').className).toContain('polychrome')
+      expect(screen.getByText('J+30').className).not.toContain('polychrome')
     }
   },
 )

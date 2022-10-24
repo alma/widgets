@@ -1,4 +1,5 @@
-import LoadingIndicator from 'components/LoadingIndicator'
+import TotalBlock from 'components/Installments/TotalBlock'
+import { LoadingIndicator } from 'components/LoadingIndicator/LoadingIndicator'
 import Modal from 'components/Modal'
 import React, { FunctionComponent, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
@@ -59,7 +60,11 @@ const EligibilityModal: FunctionComponent<Props> = ({
               currentPlanIndex={currentPlanIndex}
               setCurrentPlanIndex={setCurrentPlanIndex}
             />
-            <Schedule currentPlan={currentPlan} />
+            <div className={s.scheduleArea}>
+              <div className={s.verticalLine} />
+              <Schedule currentPlan={currentPlan} />
+              <TotalBlock currentPlan={currentPlan} />
+            </div>
           </>
         )}
       </ModalComponent>

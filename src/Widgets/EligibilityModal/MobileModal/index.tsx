@@ -3,10 +3,10 @@ import { Card } from 'types'
 import STATIC_CUSTOMISATION_CLASSES from '../classNames.const'
 import Cards from '../components/Cards'
 import Info from '../components/Info'
-import Logo from '../components/Logo'
 import Title from '../components/Title'
 import s from './MobileModal.module.css'
 import cx from 'classnames'
+import { AlmaLogo } from 'assets/almaLogo'
 
 const MobileModal: FC<{ isSomePlanDeferred: boolean; cards?: Card[] }> = ({
   children,
@@ -21,7 +21,7 @@ const MobileModal: FC<{ isSomePlanDeferred: boolean; cards?: Card[] }> = ({
     {children}
     <Info />
     {cards && <Cards cards={cards} />}
-    <Logo />
+    <AlmaLogo className={s.logo} width="75" />
   </div>
 )
 

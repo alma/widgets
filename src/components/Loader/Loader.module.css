@@ -8,13 +8,13 @@
 .line1 {
   width: 100%;
   height: 20px;
-  background-color: #f7f9fb;
+  background-color: var(--light-gray);
   border-radius: 2px;
 }
 .line2 {
   width: 60%;
   height: 15px;
   margin-top: 16px;
-  background-color: #f7f9fb;
+  background-color: var(--light-gray);
   border-radius: 2px;
 }

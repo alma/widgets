@@ -1,4 +1,4 @@
-import LogoIcon from 'assets/Logo'
+import { AlmaLogo } from 'assets/almaLogo'
 import cx from 'classnames'
 import Loader from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
@@ -130,7 +130,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
         data-testid="widget-button"
       >
         <div className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}>
-          <LogoIcon className={s.logo} monochrome={monochrome} />
+          <AlmaLogo className={s.logo} color={monochrome ? 'var(--off-black)' : undefined} />
           <div className={cx(s.paymentPlans, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)}>
             {eligibilityPlans.map((eligibilityPlan, key) => {
               const isCurrent = key === current
@@ -143,7 +143,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
                   onTouchEnd={onLeave}
                   className={cx(s.plan, {
                     [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: isCurrent,
-                    [s.polychrome]: !monochrome && isCurrent,
+                    [s.monochrome]: monochrome && isCurrent,
                     [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
                       !eligibilityPlan.eligible,
                   })}

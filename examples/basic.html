@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../dist/widgets.umd.css" />
     <!-- <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@alma/widgets@2.11.1/dist/widgets.min.css"
+      href="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.min.css"
     /> -->
   </head>
   <body>
@@ -19,7 +19,6 @@
       </div>
       <div class="menu">
         <a href="./multiple.html">Multiple widgets</a>
-        <a href="./designed.html">Designed widget</a>
       </div>
       <div class="main">
         <div class="image">
@@ -50,7 +49,7 @@
       </div>
     </div>
     <script src="../dist/widgets.umd.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@alma/widgets@2.11.1/dist/widgets.umd.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.umd.js"></script> -->
 
     <script>
       var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
@@ -59,6 +58,7 @@
         var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
         widgets.add(Alma.Widgets.PaymentPlans, {
           container: '#alma-widget-payment-plans',
+          locale: 'fr',
           purchaseAmount,
         })
       }

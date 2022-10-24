@@ -14,4 +14,9 @@
 .left {
   max-width: 300px;
   padding-right: 24px;
+  gap: 20px;
+}
+
+.logo {
+  margin: auto;
 }

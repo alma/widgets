@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../dist/widgets.umd.css" />
     <!-- <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@alma/widgets@2.11.1/dist/widgets.min.css"
+      href="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.min.css"
     /> -->
   </head>
   <body>
@@ -19,7 +19,6 @@
       </div>
       <div class="menu">
         <a href="./basic.html">Basic page</a>
-        <a href="./designed.html">Designed page</a>
       </div>
       <div class="main">
         <div class="image">
@@ -54,7 +53,7 @@
       </div>
     </div>
     <script src="../dist/widgets.umd.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@alma/widgets@2.11.1/dist/widgets.umd.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.umd.js"></script> -->
 
     <script>
       var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
@@ -64,8 +63,8 @@
           container,
           purchaseAmount: purchaseAmount * document.getElementById('quantity').value,
           locale: 'fr',
+          transitionDelay: 2000,
           hideIfNotEligible: false,
-          transitionDelay: 5500,
           suggestedPaymentPlan: [10, 4],
           cards: ['amex', 'visa', 'mastercard'],
           plans: [
@@ -87,9 +86,14 @@
               maxAmount: 90000,
             },
             {
+              installmentsCount: 6,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
               installmentsCount: 10,
-              minAmount: 45000,
-              maxAmount: 800000,
+              minAmount: 5000,
+              maxAmount: 90000,
             },
           ],
           ...config,
@@ -100,7 +104,6 @@
         renderPaymentPlans(450 * 100, '#alma-widget-payment-plans')
         renderPaymentPlans(250 * 100, '#alma-widget-payment-plans2', {
           monochrome: false,
-          transitionDelay: 2500,
           cards: ['visa'],
           suggestedPaymentPlan: [2],
         })

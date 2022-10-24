@@ -12,3 +12,26 @@
   align-items: center;
   justify-content: center;
 }
+
+.scheduleArea {
+  position: relative;
+}
+
+.verticalLine {
+  position: absolute;
+  top: 15px;
+  left: 5px;
+  width: 2px;
+  /* 120px is a magic number, to avoid seeing the line under the TotalBlock */
+  height: calc(100% - 120px);
+  background-color: var(--soft-blue);
+}
+
+@media screen and (min-width: 800px) {
+  .scheduleArea {
+    overflow: auto;
+  }
+  .verticalLine {
+    display: none;
+  }
+}

@@ -4,42 +4,28 @@
   flex-direction: row;
   justify-content: center;
   margin-bottom: 24px;
+  padding-bottom: 12px;
+  gap: 8px;
+  border-bottom: 1px solid var(--light-gray);
 }
 
 .buttons > button {
-  position: relative;
   height: 50px;
-  width: 50px;
-  margin: 0 4px 8px;
-  border: 1px solid var(--gray-300);
-  border-radius: 8px;
-  font-family: 'Eina04', sans-serif;
-  font-size: 18px;
-  line-height: 150%;
+  min-width: 50px;
+  border: 1px solid var(--dark-gray);
+  text-transform: lowercase;
+  border-radius: 16px;
+  font-family: 'Argent CF', sans-serif;
+  font-size: 20px;
+  line-height: 120%;
   font-weight: 600;
-  color: var(--blue-400);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
   cursor: pointer;
   background-color: var(--white);
   transition: all 0.1s ease;
 }
 
-.buttons > button::after {
-  content: '';
-  width: 100%;
-  height: 4px;
-  position: absolute;
-  bottom: 0;
-}
-
 .buttons > button.active {
-  background-color: var(--blue-300);
+  background-color: var(--alma-orange);
   color: var(--white);
   border: 0;
-}
-.buttons > button.active::after {
-  background-color: var(--red-600);
 }

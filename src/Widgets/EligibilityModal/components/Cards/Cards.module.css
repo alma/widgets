@@ -3,7 +3,6 @@
   flex-direction: row;
   width: 100%;
   justify-content: center;
-}
-.card {
-  margin: 8px 10px 0 0;
+  gap: 10px;
+  margin: 24px 0;
 }

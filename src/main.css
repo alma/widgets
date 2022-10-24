@@ -1,115 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;600&family=Work+Sans:wght@700&display=swap');
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 :root {
   --white: #fff;
-  --blue-100: #e9f4ff;
-  --blue-300: #00425d;
-  --blue-400: #003951;
-  --blue-500: #337b99;
-  --blue-600: #042736;
-  --red-100: #ffedee;
-  --red-300: #ffa0a6;
-  --red-600: #ff414d;
-  --orange: #ff7e55;
-  --orange-100: #fff3ee;
-  --orange-300: #fcd4b5;
-  --yellow-100: #fff5de;
-  --yellow-300: #ffde9d;
-  --yellow-600: #ffbb33;
-  --beige: #fff7f0;
-  --gray-100: #f7f9fb;
-  --gray-200: #f4f6f6;
-  --gray-300: #e1e4e6;
-  --gray-400: #c2d0d8;
-  --gray-500: #b2bbc0;
-  --gray-600: #819098;
-  --gray-700: #454f54;
-  --gray-800: #2e3538;
-  --green-100: #ddf8f1;
-  --green-300: #9cebd6;
-  --green-600: #1dcda3;
   --weight-normal: 400;
   --weight-medium: 500;
   --weight-semi-bold: 600;
   --weight-bold: 700;
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-base: 12px;
-  --spacing-lg: 16px;
-  --spacing-xl: 20px;
-  --spacing-2xl: 24px;
-  --spacing-3xl: 32px;
+
+  /** Colors **/
+  --alma-orange: #fa5022;
+  --soft-orange: #ffeadb;
+  --alma-blue: #60d2df;
+  --soft-blue: #e7f8fa;
+  --alma-yellow: #ffcf00;
+  --soft-yellow: #fff5cc;
+  --alma-green: #4bb543;
+  --soft-green: #e2f3e1;
+  --alma-red: #f00;
+  --soft-red: #ffecec;
+  --background: #fefefe;
+  --off-white: #f9f9f9;
+  --light-gray: #d4d4d4;
+  --dark-gray: #8c8c8c;
+  --off-black: #1a1a1a;
+  --white: #fff;
+  --black: #000;
 }
+
+/** Venn **/
 @font-face {
-  font-family: 'Eina04', sans-serif;
-  src: url('./assets/fonts/Eina04-Light.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/Eina04-Light.woff') format('woff'),
-    url('./assets/fonts/Eina04-Light.ttf') format('truetype'),
-    url('./assets/fonts/Eina04-Light.svg#Eina04-Light') format('svg');
-  font-weight: 300;
+  font-family: Venn;
+  src: url('./assets/fonts/Venn-Bold.eot') format('embedded-opentype'),
+    url('./assets/fonts/Venn-Bold.woff') format('woff'),
+    url('./assets/fonts/Venn-Bold.ttf') format('truetype');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Eina04', sans-serif;
-  src: url('./assets/fonts/Eina04-Regular.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/Eina04-Regular.woff') format('woff'),
-    url('./assets/fonts/Eina04-Regular.ttf') format('truetype'),
-    url('./assets/fonts/Eina04-Regular.svg#Eina04-Regular') format('svg');
+  font-family: Venn;
+  src: url('./assets/fonts/Venn-Regular.eot?#iefix') format('embedded-opentype'),
+    url('./assets/fonts/Venn-Regular.woff') format('woff'),
+    url('./assets/fonts/Venn-Regular.ttf') format('truetype');
   font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Eina04', sans-serif;
-  src: url('./assets/fonts/Eina04-RegularItalic.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/Eina04-RegularItalic.woff') format('woff'),
-    url('./assets/fonts/Eina04-RegularItalic.ttf') format('truetype'),
-    url('./assets/fonts/Eina04-RegularItalic.svg#Eina04-RegularItalic') format('svg');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Eina04', sans-serif;
-  src: url('./assets/fonts/Eina04-SemiBold.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/Eina04-SemiBold.woff') format('woff'),
-    url('./assets/fonts/Eina04-SemiBold.ttf') format('truetype'),
-    url('./assets/fonts/Eina04-SemiBold.svg#Eina04-SemiBold') format('svg');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Eina04', sans-serif;
-  src: url('./assets/fonts/Eina04-SemiboldItalic.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/Eina04-SemiboldItalic.woff') format('woff'),
-    url('./assets/fonts/Eina04-SemiboldItalic.ttf') format('truetype'),
-    url('./assets/fonts/Eina04-SemiboldItalic.svg#Eina04-SemiboldItalic') format('svg');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Eina04', sans-serif;
-  src: url('./assets/fonts/Eina04-Bold.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/Eina04-Bold.woff') format('woff'),
-    url('./assets/fonts/Eina04-Bold.ttf') format('truetype'),
-    url('./assets/fonts/Eina04-Bold.svg#Eina04-Bold') format('svg');
-  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
+/** Argent **/
 @font-face {
-  font-family: 'Public Sans';
-  src: url('./assets/fonts/PublicSans-VariableFont_wght.ttf');
+  font-family: 'Argent CF';
+  src: url('./assets/fonts/ArgentCF-DemiBold.eot') format('embedded-opentype'),
+    url('./assets/fonts/ArgentCF-DemiBold.woff') format('woff'),
+    url('./assets/fonts/ArgentCF-DemiBold.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
