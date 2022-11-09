@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IntlProvider, FormattedMessage, FormattedNumber, FormattedDate, useIntl } from 'react-intl';
+import { IntlProvider, useIntl, FormattedMessage, FormattedNumber, FormattedDate } from 'react-intl';
 import { unmountComponentAtNode, render } from 'react-dom';
 import cx from 'classnames';
 import Modal from 'react-modal';
@@ -1853,18 +1853,18 @@ if (!''.trim) String.prototype.trim = function () {
 })(window);
 
 var messagesDE = {
-	"eligibility-modal.bullet-1": "Wählen Sie an der Kasse <strong>Alma</strong> .",
+	"credit-features.credit-cost-display": "{creditCost} (APR {taegPercentage})",
+	"credit-features.information": "Ein Kredit verpflichtet Sie und muss zurückgezahlt werden. Prüfen Sie Ihre Rückzahlungsfähigkeit, bevor Sie sich verpflichten.",
+	"credit-features.total-credit-cost": "Davon Kreditkosten",
+	"eligibility-modal.bullet-1": "Wählen Sie <strong>Alma</strong> bei der Bezahlung.",
 	"eligibility-modal.bullet-2": "Füllen Sie die <strong>angeforderten</strong> Informationen aus.",
-	"eligibility-modal.bullet-3": "Die Bestätigung Ihrer Zahlung erfolgt <strong>sofort</strong> !",
-	"eligibility-modal.cost": "Davon Kosten",
-	"eligibility-modal.credit-commitment": "Ein Kredit verpflichtet Sie und muss zurückgezahlt werden. Prüfen Sie Ihre Rückzahlungsfähigkeit, bevor Sie sich verpflichten.",
-	"eligibility-modal.credit-cost": "Davon Kreditkosten",
-	"eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
+	"eligibility-modal.bullet-3": "Ihre Zahlung wird <strong>sofort</strong> bestätigt!",
 	"eligibility-modal.no-eligibility": "Ups, die Simulation hat anscheinend nicht funktioniert.",
-	"eligibility-modal.title": "<highlighted>Bezahlen Sie in Raten</highlighted> per Kreditkarte mit Alma.",
-	"eligibility-modal.title-deferred": "<highlighted>Bezahlen Sie in Raten</highlighted> oder später per Kreditkarte mit Alma.",
-	"eligibility-modal.total": "Insgesamt",
+	"eligibility-modal.title-deferred-plan": "Bezahlen Sie mit Alma in Raten oder später per Kreditkarte.",
+	"eligibility-modal.title-normal": "Bezahlen Sie mit Alma in mehreren Raten per Kreditkarte.",
 	"installments.today": "Heute",
+	"installments.total-amount": "Gesamtsumme",
+	"installments.total-fees": "Davon Kosten (inkl. MwSt.)",
 	"payment-plan-strings.day-abbreviation": "T{numberOfDeferredDays}",
 	"payment-plan-strings.default-message": "Bezahlen Sie in Raten mit Alma",
 	"payment-plan-strings.deferred": "{totalAmount} zu zahlen am {dueDate}",
@@ -1876,18 +1876,18 @@ var messagesDE = {
 };
 
 var messagesEN = {
+	"credit-features.credit-cost-display": "{creditCost} (APR {taegPercentage})",
+	"credit-features.information": "A loan commits you and must be repaid. Check your ability to repay before committing yourself.",
+	"credit-features.total-credit-cost": "Of which cost of credit",
 	"eligibility-modal.bullet-1": "Choose <strong>Alma</strong> at checkout.",
 	"eligibility-modal.bullet-2": "Fill in the <strong>information</strong> requested.",
 	"eligibility-modal.bullet-3": "The validation of your payment is <strong>instantaneous</strong> !",
-	"eligibility-modal.cost": "Of which costs",
-	"eligibility-modal.credit-commitment": "A loan commits you and must be repaid. Check your ability to repay before committing yourself.",
-	"eligibility-modal.credit-cost": "Of which cost of credit",
-	"eligibility-modal.credit-cost-amount": "{creditCost} (APR {TAEG})",
 	"eligibility-modal.no-eligibility": "Oops, looks like the simulation didn't work.",
-	"eligibility-modal.title": "<highlighted>Pay in installments</highlighted> by credit card with Alma.",
-	"eligibility-modal.title-deferred": "<highlighted>Pay in installments</highlighted> or later by credit card with Alma.",
-	"eligibility-modal.total": "Total",
+	"eligibility-modal.title-deferred-plan": "Pay in installments or later by credit card with Alma.",
+	"eligibility-modal.title-normal": "Pay in installments by credit card with Alma.",
 	"installments.today": "Today",
+	"installments.total-amount": "Total",
+	"installments.total-fees": "Of which costs (incl. VAT)",
 	"payment-plan-strings.day-abbreviation": "D{numberOfDeferredDays}",
 	"payment-plan-strings.default-message": "Pay in installments with Alma",
 	"payment-plan-strings.deferred": "{totalAmount} to be paid on {dueDate}",
@@ -1899,18 +1899,18 @@ var messagesEN = {
 };
 
 var messagesES = {
+	"credit-features.credit-cost-display": "{creditCost} (TAE {taegPercentage})",
+	"credit-features.information": "Un préstamo te compromete y debe ser devuelto. Comprueba tu capacidad financiera antes de comprometerte.",
+	"credit-features.total-credit-cost": "Coste de crédito (incl. en el total)",
 	"eligibility-modal.bullet-1": "Elige <strong>Alma</strong> como método de pago.",
 	"eligibility-modal.bullet-2": "Completa la <strong>información</strong> solicitada.",
 	"eligibility-modal.bullet-3": "¡La validación de tu pago es <strong>instantánea</strong> !",
-	"eligibility-modal.cost": "Gastos (incl. en el total)",
-	"eligibility-modal.credit-commitment": "Un préstamo te compromete y debe ser devuelto. Comprueba tu capacidad financiera antes de comprometerte.",
-	"eligibility-modal.credit-cost": "Coste de crédito (incl. en el total)",
-	"eligibility-modal.credit-cost-amount": "{creditCost} (TAE {TAEG})",
 	"eligibility-modal.no-eligibility": "Uy, parece que la simulación no ha funcionado.",
-	"eligibility-modal.title": "<highlighted>Paga a plazos</highlighted> con tu tarjeta, a través de Alma.",
-	"eligibility-modal.title-deferred": "<highlighted>Paga a plazos</highlighted> o más adelante con tu tarjeta, a través de Alma.",
-	"eligibility-modal.total": "Total",
+	"eligibility-modal.title-deferred-plan": "Pague a plazos o posteriormente con tarjeta de crédito con Alma.",
+	"eligibility-modal.title-normal": "Pagar a plazos con tarjeta de crédito con Alma.",
 	"installments.today": "Hoy",
+	"installments.total-amount": "Total",
+	"installments.total-fees": "De los cuales, costes (IVA incluido)",
 	"payment-plan-strings.day-abbreviation": "D{numberOfDeferredDays}",
 	"payment-plan-strings.default-message": "Pagar a plazos con Alma",
 	"payment-plan-strings.deferred": "{totalAmount} a pagar el {dueDate}",
@@ -1922,18 +1922,18 @@ var messagesES = {
 };
 
 var messagesFR = {
+	"credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
+	"credit-features.information": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
+	"credit-features.total-credit-cost": "Dont coût du crédit",
 	"eligibility-modal.bullet-1": "Choisissez <strong>Alma</strong> au moment du paiement.",
 	"eligibility-modal.bullet-2": "Renseignez les <strong>informations</strong> demandées.",
 	"eligibility-modal.bullet-3": "La validation de votre paiement est <strong>instantanée</strong> !",
-	"eligibility-modal.cost": "Dont frais",
-	"eligibility-modal.credit-commitment": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
-	"eligibility-modal.credit-cost": "Dont coût du crédit",
-	"eligibility-modal.credit-cost-amount": "{creditCost} (TAEG {TAEG})",
 	"eligibility-modal.no-eligibility": "Oups, il semblerait que la simulation n'ait pas fonctionné.",
-	"eligibility-modal.title": "<highlighted>Payez en plusieurs fois</highlighted> par carte bancaire avec Alma.",
-	"eligibility-modal.title-deferred": "<highlighted>Payez en plusieurs fois</highlighted> ou plus tard par carte bancaire avec Alma.",
-	"eligibility-modal.total": "Total",
+	"eligibility-modal.title-deferred-plan": "Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.",
+	"eligibility-modal.title-normal": "Payez en plusieurs fois par carte bancaire avec Alma.",
 	"installments.today": "Aujourd'hui",
+	"installments.total-amount": "Total",
+	"installments.total-fees": "Dont frais (TTC)",
 	"payment-plan-strings.day-abbreviation": "J{numberOfDeferredDays}",
 	"payment-plan-strings.default-message": "Payez en plusieurs fois avec Alma",
 	"payment-plan-strings.deferred": "{totalAmount} à payer le {dueDate}",
@@ -1945,18 +1945,18 @@ var messagesFR = {
 };
 
 var messagesIT = {
+	"credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
+	"credit-features.information": "Un pagamento rateale ti impegna e deve essere ripagato. Verifica la tua capacità di rimborso prima di impegnarti.",
+	"credit-features.total-credit-cost": "Di cui commissioni",
 	"eligibility-modal.bullet-1": "Scegli <strong>Alma</strong> alla cassa.",
 	"eligibility-modal.bullet-2": "Compila le informazioni <strong></strong> richieste.",
 	"eligibility-modal.bullet-3": "La convalida del pagamento è <strong>istantanea</strong>!",
-	"eligibility-modal.cost": "Di cui commissioni",
-	"eligibility-modal.credit-commitment": "Un pagamento rateale ti impegna e deve essere ripagato. Verifica la tua capacità di rimborso prima di impegnarti.",
-	"eligibility-modal.credit-cost": "Di cui commissioni",
-	"eligibility-modal.credit-cost-amount": "{creditCost} (TAEG {TAEG})",
 	"eligibility-modal.no-eligibility": "Ops, sembra che qualcosa non abbia funzionato.",
-	"eligibility-modal.title": "<highlighted>Paga a rate</highlighted> con Alma, senza registrazione.",
-	"eligibility-modal.title-deferred": "<highlighted>Paga a rate</highlighted> o posticipa il pagamento con Alma, senza registrazione.",
-	"eligibility-modal.total": "Totale",
+	"eligibility-modal.title-deferred-plan": "Pagate a rate o in seguito con carta di credito con Alma.",
+	"eligibility-modal.title-normal": "Pagamenti rateali con carta di credito con Alma.",
 	"installments.today": "Oggi",
+	"installments.total-amount": "Totale",
+	"installments.total-fees": "Di cui costi (IVA inclusa)",
 	"payment-plan-strings.day-abbreviation": "G{numberOfDeferredDays}",
 	"payment-plan-strings.default-message": "Paga a rate con Alma",
 	"payment-plan-strings.deferred": "{totalAmount} da pagare il {dueDate}",
@@ -1968,18 +1968,18 @@ var messagesIT = {
 };
 
 var messagesNL = {
+	"credit-features.credit-cost-display": "{creditCost} (gemiddeld rente percentage {taegPercentage})",
+	"credit-features.information": "Een lening bindt je en moet worden terugbetaald. Ga na of u kunt terugbetalen voordat u zich vastlegt.",
+	"credit-features.total-credit-cost": "Waarvan kosten van krediet",
 	"eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen.",
 	"eligibility-modal.bullet-2": "Vul de <strong>gevraagde informatie</strong> in.",
 	"eligibility-modal.bullet-3": "De validatie van uw betaling is <strong>onmiddellijk</strong> !",
-	"eligibility-modal.cost": "Waarvan kosten",
-	"eligibility-modal.credit-commitment": "Een lening bindt je en moet worden terugbetaald. Ga na of u kunt terugbetalen voordat u zich vastlegt.",
-	"eligibility-modal.credit-cost": "Waarvan kosten van krediet",
-	"eligibility-modal.credit-cost-amount": "{creditCost} (gemiddeld rente percentage {TAEG})",
 	"eligibility-modal.no-eligibility": "Oeps, het lijkt erop dat de simulatie niet werkte.",
-	"eligibility-modal.title": "<highlighted>Betaal in termijnen</highlighted> met bank- en kredietkaart bij Alma.",
-	"eligibility-modal.title-deferred": "<highlighted>Betaal in termijnen</highlighted> of later per bank- en kredietkaart met Alma.",
-	"eligibility-modal.total": "Totaal",
+	"eligibility-modal.title-deferred-plan": "Betaal in termijnen of later per creditcard met Alma.",
+	"eligibility-modal.title-normal": "Betaal in termijnen met een creditcard bij Alma.",
 	"installments.today": "Tegenwoordig",
+	"installments.total-amount": "Totaal",
+	"installments.total-fees": "Waarvan kosten (incl. BTW)",
 	"payment-plan-strings.day-abbreviation": "D{numberOfDeferredDays}",
 	"payment-plan-strings.default-message": "Betaal in termijnen met Alma",
 	"payment-plan-strings.deferred": "{totalAmount} te betalen op {dueDate}",
@@ -1991,18 +1991,18 @@ var messagesNL = {
 };
 
 var messagesPT = {
+	"credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
+	"credit-features.information": "Um crédito é um compromisso e deve ser reembolsado. Verifique a sua capacidade de pagar antes de se comprometer.",
+	"credit-features.total-credit-cost": "Incluindo custo do crédito",
 	"eligibility-modal.bullet-1": "Escolha a <strong>Alma</strong> no checkout.",
 	"eligibility-modal.bullet-2": "Preencha os <strong>dados</strong> solicitados.",
 	"eligibility-modal.bullet-3": "A validação do seu pagamento é <strong>instantaneamente</strong> !",
-	"eligibility-modal.cost": "Incluindo encargos",
-	"eligibility-modal.credit-commitment": "Um crédito é um compromisso e deve ser reembolsado. Verifique a sua capacidade de pagar antes de se comprometer.",
-	"eligibility-modal.credit-cost": "Incluindo custo do crédito",
-	"eligibility-modal.credit-cost-amount": "{creditCost} (TAEG {TAEG})",
 	"eligibility-modal.no-eligibility": "Ups, parece que a simulação não funcionou.",
-	"eligibility-modal.title": "<highlighted>Pague em prestações</highlighted> com cartão bancário através da Alma.",
-	"eligibility-modal.title-deferred": "<highlighted>Pague em prestações</highlighted> ou mais tarde com cartão bancário através da Alma.",
-	"eligibility-modal.total": "Total",
+	"eligibility-modal.title-deferred-plan": "Pagar em prestações ou mais tarde por cartão de crédito com Alma.",
+	"eligibility-modal.title-normal": "Pagar em prestações por cartão de crédito com Alma.",
 	"installments.today": "Hoje",
+	"installments.total-amount": "Total",
+	"installments.total-fees": "Dos quais custos (incl. IVA)",
 	"payment-plan-strings.day-abbreviation": "D{numberOfDeferredDays}",
 	"payment-plan-strings.default-message": "Pague em prestações através da Alma",
 	"payment-plan-strings.deferred": "{totalAmount} a pagar em {dueDate}",
@@ -2168,39 +2168,7 @@ const useFetchEligibility = (purchaseAmount, {
   return [filterELigibility(eligibility, plans), status];
 };
 
-var s = {"loadingIndicator":"_31lrj","letter":"_2p94X","loading-indicator-letter":"_229P7","bar":"_1k0PM","loading-indicator-bar":"_2cX7o"};
-
-const LoadingIndicator = ({
-  className
-}) => {
-  return /*#__PURE__*/React.createElement("div", {
-    className: cx(s.loadingIndicator, className),
-    "data-testid": "loader"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: s.letter
-  }, "a"), /*#__PURE__*/React.createElement("div", {
-    className: s.bar
-  }));
-};
-
-var s$1 = {"modal":"_D8SjB","content":"_ocM9x","contentScrollable":"_1GP2F","overlay":"_1yxCb","header":"_12LLh","closeButton":"_3YRro"};
-
-function CrossIcon({
-  color = '#fff',
-  className
-}) {
-  return /*#__PURE__*/React.createElement("svg", {
-    className: className,
-    width: "16",
-    height: "16",
-    viewBox: "0 0 16 16",
-    fill: "none",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M12.5964 11.404L9.41445 8.22205L12.5964 5.04007C12.7732 4.86329 12.7732 4.50974 12.5964 4.33296L11.8893 3.62585C11.6904 3.42698 11.359 3.44908 11.1822 3.62585L8.00023 6.80783L4.81825 3.62585C4.61938 3.42698 4.28792 3.44908 4.11114 3.62585L3.40404 4.33296C3.20516 4.53183 3.20516 4.84119 3.40404 5.04007L6.58602 8.22205L3.40404 11.404C3.20516 11.6029 3.20517 11.9123 3.40404 12.1111L4.11115 12.8182C4.28792 12.995 4.61938 13.0171 4.81825 12.8182L8.00023 9.63626L11.1822 12.8182C11.359 12.995 11.6904 13.0171 11.8893 12.8182L12.5964 12.1111C12.7732 11.9344 12.7732 11.5808 12.5964 11.404Z",
-    fill: color
-  }));
-}
+var s = {"container":"_GTTk7","total":"_34s2g","fees":"_W7qIA","creditCost":"_24KmE"};
 
 /**
  * Prefix classes to avoid name collisions.
@@ -2230,6 +2198,96 @@ const STATIC_CUSTOMISATION_CLASSES = {
   summary: prefix + '-summary'
 };
 
+const TotalBlock = ({
+  currentPlan
+}) => {
+  const intl = useIntl();
+  const total = priceFromCents(currentPlan.purchase_amount + currentPlan.customer_total_cost_amount);
+  const creditCost = priceFromCents(currentPlan.customer_total_cost_amount);
+  const TAEG = (currentPlan == null ? void 0 : currentPlan.annual_interest_rate) && currentPlan.annual_interest_rate / 10000 || 0;
+  const customerFees = priceFromCents(currentPlan.customer_total_cost_amount);
+  const isCredit = currentPlan.installments_count > 4;
+  return /*#__PURE__*/React.createElement("div", {
+    className: cx(s.container, STATIC_CUSTOMISATION_CLASSES.summary),
+    "data-testid": "modal-summary"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: cx(s.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
+    tagName: "div",
+    id: "installments.total-amount",
+    defaultMessage: "Total"
+  }), /*#__PURE__*/React.createElement(FormattedNumber, {
+    value: total || 0,
+    style: "currency",
+    currency: "EUR"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: cx(s.fees, STATIC_CUSTOMISATION_CLASSES.scheduleCredit)
+  }, isCredit ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "credit-features.total-credit-cost",
+    defaultMessage: "Dont co\u00FBt du cr\u00E9dit"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: s.creditCost
+  }, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "credit-features.credit-cost-display",
+    defaultMessage: "{creditCost} (TAEG {taegPercentage})",
+    values: {
+      creditCost: intl.formatNumber(creditCost, {
+        style: 'currency',
+        currency: 'EUR'
+      }),
+      taegPercentage: intl.formatNumber(TAEG, {
+        style: 'percent',
+        maximumFractionDigits: 2
+      })
+    }
+  }))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "installments.total-fees",
+    defaultMessage: "Dont frais (TTC)",
+    tagName: "div"
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FormattedNumber, {
+    value: customerFees,
+    style: "currency",
+    currency: "EUR"
+  })))));
+};
+
+var s$1 = {"loadingIndicator":"_31lrj","bounce":"_3NtDa"};
+
+const LoadingIndicator = ({
+  className
+}) => /*#__PURE__*/React.createElement("div", {
+  className: cx(s$1.loadingIndicator, className),
+  "data-testid": "loader"
+}, /*#__PURE__*/React.createElement("svg", {
+  width: "120",
+  height: "134",
+  viewBox: "0 0 120 134",
+  fill: "none",
+  xmlns: "http://www.w3.org/2000/svg"
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M83.8164 41.0325C79.1708 22.8241 69.3458 17 59.9939 17C50.642 17 40.8171 22.8241 36.1715 41.0325L16 117H35.8804C39.119 104.311 49.1016 97.2436 59.9939 97.2436C70.8863 97.2436 80.8689 104.324 84.1075 117H104L83.8164 41.0325ZM59.9939 79.5428C53.6623 79.5428 47.925 82.0552 43.6918 86.1283L55.0936 41.9207C56.1853 37.6953 57.7985 36.3503 60.0061 36.3503C62.2136 36.3503 63.8269 37.6953 64.9185 41.9207L76.3082 86.1283C72.075 82.0552 66.3256 79.5428 59.9939 79.5428Z",
+  fill: "#FA5022"
+})));
+
+var s$2 = {"modal":"_D8SjB","content":"_ocM9x","contentScrollable":"_1GP2F","overlay":"_1yxCb","header":"_12LLh","closeButton":"_3YRro"};
+
+function CrossIcon({
+  color = '#fff',
+  className
+}) {
+  return /*#__PURE__*/React.createElement("svg", {
+    className: className,
+    width: "16",
+    height: "16",
+    viewBox: "0 0 16 16",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M12.5964 11.404L9.41445 8.22205L12.5964 5.04007C12.7732 4.86329 12.7732 4.50974 12.5964 4.33296L11.8893 3.62585C11.6904 3.42698 11.359 3.44908 11.1822 3.62585L8.00023 6.80783L4.81825 3.62585C4.61938 3.42698 4.28792 3.44908 4.11114 3.62585L3.40404 4.33296C3.20516 4.53183 3.20516 4.84119 3.40404 5.04007L6.58602 8.22205L3.40404 11.404C3.20516 11.6029 3.20517 11.9123 3.40404 12.1111L4.11115 12.8182C4.28792 12.995 4.61938 13.0171 4.81825 12.8182L8.00023 9.63626L11.1822 12.8182C11.359 12.995 11.6904 13.0171 11.8893 12.8182L12.5964 12.1111C12.7732 11.9344 12.7732 11.5808 12.5964 11.404Z",
+    fill: color
+  }));
+}
+
 const _excluded = ["children", "isOpen", "onClose", "className", "contentClassName", "scrollable"];
 
 const ControlledModal = _ref => {
@@ -2246,8 +2304,8 @@ const ControlledModal = _ref => {
   /* istanbul ignore next */
   Modal.setAppElement('body');
   return /*#__PURE__*/React.createElement(Modal, Object.assign({
-    className: cx(s$1.modal, className),
-    overlayClassName: s$1.overlay,
+    className: cx(s$2.modal, className),
+    overlayClassName: s$2.overlay,
     onAfterOpen: () => {
       noScroll.on();
     },
@@ -2259,14 +2317,14 @@ const ControlledModal = _ref => {
     shouldCloseOnOverlayClick: true,
     shouldCloseOnEsc: true
   }, props), /*#__PURE__*/React.createElement("div", {
-    className: s$1.header
+    className: s$2.header
   }, /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
-    className: cx(s$1.closeButton, STATIC_CUSTOMISATION_CLASSES.closeButton),
+    className: cx(s$2.closeButton, STATIC_CUSTOMISATION_CLASSES.closeButton),
     "data-testid": "modal-close-button"
   }, /*#__PURE__*/React.createElement(CrossIcon, null))), /*#__PURE__*/React.createElement("div", {
-    className: cx(s$1.content, contentClassName, {
-      [s$1.contentScrollable]: scrollable
+    className: cx(s$2.content, contentClassName, {
+      [s$2.contentScrollable]: scrollable
     })
   }, children));
 };
@@ -2404,96 +2462,95 @@ const paymentPlanInfoText = payment => {
   });
 };
 
-var s$2 = {"buttons":"_1l2Oa","active":"_3rue7"};
+var s$3 = {"buttons":"_1l2Oa","active":"_3rue7"};
 
 const EligibilityPlansButtons = ({
   eligibilityPlans,
   currentPlanIndex,
   setCurrentPlanIndex
 }) => /*#__PURE__*/React.createElement("div", {
-  className: cx(s$2.buttons, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)
+  className: cx(s$3.buttons, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)
 }, eligibilityPlans.map((eligibilityPlan, index) => /*#__PURE__*/React.createElement("button", {
   key: index,
   className: cx({
-    [cx(s$2.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: index === currentPlanIndex
+    [cx(s$3.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: index === currentPlanIndex
   }),
   onClick: () => setCurrentPlanIndex(index)
 }, paymentPlanShorthandName(eligibilityPlan))));
 
-var s$3 = {"schedule":"_MPKjS","scheduleLine":"_1A7Qv","total":"_14Ejo","summary":"_65ZpD","creditCost":"_1ZIgu","creditCostAmount":"_tUTZp","creditMessage":"_1BUr8"};
+var s$4 = {"installment":"_z2Uiv","date":"_2lJQy","dot":"_1Z9wr","isCurrent":"_2Nmkl","bold":"_ezY-3"};
 
-const Schedule = ({
-  currentPlan
+const Installment = ({
+  installment,
+  index
 }) => {
-  const total = priceFromCents(currentPlan.purchase_amount + currentPlan.customer_total_cost_amount);
-  const creditCost = priceFromCents(currentPlan.customer_total_cost_amount);
-  const TAEG = (currentPlan == null ? void 0 : currentPlan.annual_interest_rate) && currentPlan.annual_interest_rate / 10000;
-  const customerFees = priceFromCents(currentPlan.customer_total_cost_amount);
-  const isCredit = currentPlan.installments_count > 4;
-  const intl = useIntl();
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    className: cx(s$3.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails),
-    "data-testid": "modal-installments-element"
-  }, ((currentPlan == null ? void 0 : currentPlan.payment_plan) || []).map((installment, index) => /*#__PURE__*/React.createElement("div", {
-    className: s$3.scheduleLine,
-    key: index
-  }, /*#__PURE__*/React.createElement("span", null, isToday(installment.due_date * 1000) ? /*#__PURE__*/React.createElement(FormattedMessage, {
+  return /*#__PURE__*/React.createElement("div", {
+    className: s$4.installment,
+    "data-testid": `installment-${index}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: s$4.date
+  }, /*#__PURE__*/React.createElement("div", {
+    className: cx(s$4.dot, {
+      [s$4.isCurrent]: index === 0
+    })
+  }), isToday(installment.due_date * 1000) ? /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "installments.today",
-    defaultMessage: "Aujourd'hui"
+    defaultMessage: "Aujourd'hui",
+    tagName: "strong"
   }) : /*#__PURE__*/React.createElement(FormattedDate, {
     value: installment.due_date * 1000,
     day: "numeric",
     month: "long",
     year: "numeric"
-  })), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FormattedNumber, {
-    value: priceFromCents(installment.total_amount),
+  })), /*#__PURE__*/React.createElement("div", {
+    className: cx({
+      [s$4.bold]: index === 0
+    })
+  }, /*#__PURE__*/React.createElement(FormattedNumber, {
+    value: installment.purchase_amount / 100,
     style: "currency",
     currency: "EUR"
-  }))))), /*#__PURE__*/React.createElement("div", {
-    className: cx(s$3.summary, STATIC_CUSTOMISATION_CLASSES.summary),
-    "data-testid": "modal-summary"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: cx(s$3.scheduleLine, s$3.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)
-  }, /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "eligibility-modal.total",
-    defaultMessage: "Total"
-  })), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FormattedNumber, {
-    value: total,
-    style: "currency",
-    currency: "EUR"
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: cx(s$3.scheduleLine, s$3.creditCost, STATIC_CUSTOMISATION_CLASSES.scheduleCredit)
-  }, isCredit ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "eligibility-modal.credit-cost",
-    defaultMessage: "Dont co\u00FBt du cr\u00E9dit"
-  })) : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "eligibility-modal.cost",
-    defaultMessage: "Dont frais"
-  })), /*#__PURE__*/React.createElement("span", {
-    className: s$3.creditCostAmount
-  }, isCredit ? /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "eligibility-modal.credit-cost-amount",
-    defaultMessage: "{creditCost} (TAEG {TAEG})",
-    values: {
-      creditCost: intl.formatNumber(creditCost, {
-        style: 'currency',
-        currency: 'EUR'
-      }),
-      TAEG: intl.formatNumber(TAEG != null ? TAEG : 0, {
-        style: 'percent',
-        maximumFractionDigits: 2
-      })
-    }
-  }) : /*#__PURE__*/React.createElement(FormattedNumber, {
-    value: customerFees,
-    style: "currency",
-    currency: "EUR"
-  }))), isCredit && /*#__PURE__*/React.createElement("p", {
-    className: s$3.creditMessage
+  })));
+};
+
+var s$5 = {"schedule":"_MPKjS","creditInfo":"_3a7er"};
+
+const Schedule = ({
+  currentPlan
+}) => {
+  const isCredit = currentPlan.installments_count > 4;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: cx(s$5.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails),
+    "data-testid": "modal-installments-element"
+  }, ((currentPlan == null ? void 0 : currentPlan.payment_plan) || []).map((installment, index) => /*#__PURE__*/React.createElement(Installment, {
+    key: installment.due_date * 1000,
+    installment: installment,
+    index: index
+  })), isCredit && /*#__PURE__*/React.createElement("div", {
+    className: s$5.creditInfo
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
-    id: "eligibility-modal.credit-commitment",
-    defaultMessage: "Un cr\u00E9dit vous engage et doit \u00EAtre rembours\u00E9. V\u00E9rifiez vos capacit\u00E9s de remboursement\n              avant de vous engager."
+    id: "credit-features.information",
+    defaultMessage: "Un cr\u00E9dit vous engage et doit \u00EAtre rembours\u00E9. V\u00E9rifiez vos capacit\u00E9s de remboursement avant de vous engager."
   }))));
+};
+
+const _excluded$1 = ["color"];
+const AlmaLogo = _ref => {
+  let {
+    color = '#FA5022'
+  } = _ref,
+      svgProps = _objectWithoutPropertiesLoose(_ref, _excluded$1);
+
+  return /*#__PURE__*/React.createElement("svg", Object.assign({
+    width: "50",
+    height: "25",
+    viewBox: "0 0 360 109",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, svgProps), /*#__PURE__*/React.createElement("path", {
+    d: "M333.24 28.3462V38.4459C327.504 31.1018 319.176 26.5132 309.288 26.5132C290.208 26.5132 275.424 43.5497 275.424 64.5757C275.424 85.6018 290.208 102.638 309.288 102.638C319.872 102.638 328.668 97.3908 334.416 89.1241V100.817H352.668V28.3462H333.24ZM314.028 84.4876C303.42 84.4876 294.828 75.574 294.828 64.5757C294.828 53.5775 303.42 44.6639 314.028 44.6639C324.636 44.6639 333.228 53.5775 333.228 64.5757C333.228 75.574 324.636 84.4876 314.028 84.4876ZM109.5 8.23073H128.916V100.805H109.5V8.23073ZM151.248 59.7356C151.248 39.8117 163.5 26.5252 180.468 26.5252C191.004 26.5252 199.332 31.1976 204.348 39.1648C209.376 31.1976 217.692 26.5252 228.228 26.5252C245.196 26.5252 257.448 39.8117 257.448 59.7356V100.817H238.032V57.639C238.032 49.8635 232.872 44.7957 226.044 44.7957C219.216 44.7957 214.056 49.8755 214.056 57.639V100.817H194.64V57.639C194.64 49.8635 189.48 44.7957 182.652 44.7957C175.824 44.7957 170.664 49.8755 170.664 57.639V100.817H151.248V59.7356ZM74.34 29.101C69.744 11.9088 60.0241 6.40967 50.772 6.40967C41.5201 6.40967 31.8 11.9088 27.204 29.101L7.24805 100.829H26.916C30.12 88.8485 39.996 82.1753 50.772 82.1753C61.548 82.1753 71.424 88.8605 74.6281 100.829H94.3081L74.34 29.101ZM50.772 65.4623C44.508 65.4623 38.8321 67.8345 34.6441 71.6803L45.924 29.9397C47.0041 25.9501 48.6001 24.6802 50.784 24.6802C52.9681 24.6802 54.5641 25.9501 55.6441 29.9397L66.912 71.6803C62.724 67.8345 57.036 65.4623 50.772 65.4623Z",
+    fill: color
+  }));
 };
 
 const AmexCard = () => /*#__PURE__*/React.createElement("svg", {
@@ -2641,7 +2698,7 @@ const CbCard = () => /*#__PURE__*/React.createElement("svg", {
   d: "M19.094 4.03h-6.437V8h6.498c1.165 0 2.084-.889 2.084-2.015-.06-1.066-.98-1.955-2.145-1.955zM19.094 8.593h-6.437v3.97h6.498c1.165 0 2.084-.889 2.084-2.015-.06-1.067-.98-1.955-2.145-1.955zM7.017 8.06h4.966c-.245-2.371-2.391-4.267-4.966-4.267-2.758 0-5.027 2.074-5.027 4.681s2.269 4.682 5.027 4.682c2.698 0 4.904-2.015 5.027-4.563H7.017v-.534z"
 }))));
 
-var s$4 = {"cardContainer":"_1N3yO","card":"_83cGn"};
+var s$6 = {"cardContainer":"_1N3yO"};
 
 const Cards = ({
   cards
@@ -2650,23 +2707,23 @@ const Cards = ({
   const uniqueCards = Array.from(new Set(cards));
   return /*#__PURE__*/React.createElement("div", {
     "data-testid": "card-logos",
-    className: cx(s$4.cardContainer, STATIC_CUSTOMISATION_CLASSES.cardContainer)
+    className: cx(s$6.cardContainer, STATIC_CUSTOMISATION_CLASSES.cardContainer)
   }, uniqueCards.map(card => /*#__PURE__*/React.createElement("div", {
     key: card,
-    className: s$4.card,
+    className: s$6.card,
     "data-testid": `card-logo-${card}`
   }, card === 'cb' && /*#__PURE__*/React.createElement(CbCard, null), card === 'amex' && /*#__PURE__*/React.createElement(AmexCard, null), card === 'mastercard' && /*#__PURE__*/React.createElement(MasterCard, null), card === 'visa' && /*#__PURE__*/React.createElement(VisaCard, null))));
 };
 
-var s$5 = {"list":"_180ro","listItem":"_1HqCO","bullet":"_3B8wx"};
+var s$7 = {"list":"_180ro","listItem":"_1HqCO","bullet":"_3B8wx"};
 
 const Info = () => /*#__PURE__*/React.createElement("div", {
-  className: cx(s$5.list, STATIC_CUSTOMISATION_CLASSES.info),
+  className: cx(s$7.list, STATIC_CUSTOMISATION_CLASSES.info),
   "data-testid": "modal-info-element"
 }, /*#__PURE__*/React.createElement("div", {
-  className: s$5.listItem
+  className: s$7.listItem
 }, /*#__PURE__*/React.createElement("div", {
-  className: cx(s$5.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
+  className: cx(s$7.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
 }, "1"), /*#__PURE__*/React.createElement("div", {
   className: STATIC_CUSTOMISATION_CLASSES.infoMessage
 }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2676,9 +2733,9 @@ const Info = () => /*#__PURE__*/React.createElement("div", {
     strong: (...chunks) => /*#__PURE__*/React.createElement("strong", null, chunks)
   }
 }))), /*#__PURE__*/React.createElement("div", {
-  className: s$5.listItem
+  className: s$7.listItem
 }, /*#__PURE__*/React.createElement("div", {
-  className: cx(s$5.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
+  className: cx(s$7.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
 }, "2"), /*#__PURE__*/React.createElement("div", {
   className: STATIC_CUSTOMISATION_CLASSES.infoMessage
 }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2688,9 +2745,9 @@ const Info = () => /*#__PURE__*/React.createElement("div", {
     strong: (...chunks) => /*#__PURE__*/React.createElement("strong", null, chunks)
   }
 }))), /*#__PURE__*/React.createElement("div", {
-  className: s$5.listItem
+  className: s$7.listItem
 }, /*#__PURE__*/React.createElement("div", {
-  className: cx(s$5.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
+  className: cx(s$7.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)
 }, "3"), /*#__PURE__*/React.createElement("div", {
   className: STATIC_CUSTOMISATION_CLASSES.infoMessage
 }, /*#__PURE__*/React.createElement(FormattedMessage, {
@@ -2701,111 +2758,62 @@ const Info = () => /*#__PURE__*/React.createElement("div", {
   }
 }))));
 
-var COLORS;
-
-(function (COLORS) {
-  COLORS["ALMA"] = "#FF414D";
-  COLORS["MONOCHROME"] = "#00425D";
-})(COLORS || (COLORS = {}));
-
-function LogoIcon({
-  className,
-  color = COLORS.MONOCHROME,
-  monochrome = true,
-  underlineColor
-}) {
-  const defaultUnderlineColor = monochrome ? COLORS.MONOCHROME : COLORS.ALMA;
-  return /*#__PURE__*/React.createElement("svg", {
-    className: className,
-    width: "35",
-    height: "23",
-    viewBox: "0 0 40 23",
-    fill: "none",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M6.38546 10.1313V10.029H4.92542C4.23835 10.029 3.72877 10.0972 3.39668 10.2337C3.07605 10.3587 2.91573 10.6374 2.91573 11.0695C2.91573 11.7177 3.37378 12.0418 4.28988 12.0418C5.05711 12.0418 5.59532 11.8826 5.9045 11.5642C6.22514 11.2344 6.38546 10.7568 6.38546 10.1313ZM3.72304 13.9182C2.64663 13.9182 1.85076 13.6567 1.33546 13.1335C0.820153 12.599 0.5625 11.911 0.5625 11.0695C0.5625 10.0574 0.894586 9.32958 1.55876 8.88606C2.22293 8.43118 3.23636 8.20374 4.59906 8.20374H6.38546V7.82846C6.38546 6.98693 5.84725 6.56616 4.77083 6.56616C3.80893 6.56616 3.27644 6.93007 3.17338 7.65788H0.768622C0.848781 6.78223 1.21522 6.04873 1.86794 5.45738C2.52066 4.86603 3.50547 4.57036 4.82236 4.57036C6.1278 4.57036 7.11261 4.86035 7.77678 5.44032C8.44095 6.0203 8.77304 6.83909 8.77304 7.89669V13.7135H6.60875V12.7241C6.09345 13.5202 5.13155 13.9182 3.72304 13.9182Z",
-    fill: color
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M14.2554 11.6324V13.6965C14.0149 13.7306 13.763 13.7476 13.4996 13.7476C12.5492 13.7476 11.8736 13.5486 11.4728 13.1506C11.072 12.7412 10.8716 12.0873 10.8716 11.1889V0.919922H13.3107V11.0183C13.3107 11.2344 13.3508 11.3936 13.4309 11.496C13.5111 11.5983 13.6771 11.6495 13.929 11.6495C13.9863 11.6495 14.0493 11.6495 14.118 11.6495C14.1982 11.6381 14.244 11.6324 14.2554 11.6324Z",
-    fill: color
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M23.8943 8.63019V13.7135H21.4552V8.40844C21.4552 7.23711 20.9742 6.65145 20.0123 6.65145C19.4512 6.65145 19.0161 6.82203 18.7069 7.16319C18.4092 7.50436 18.2603 7.9763 18.2603 8.57902V13.7135H15.8212V4.77506H18.0714V5.86678C18.5409 5.0025 19.4054 4.57036 20.6651 4.57036C21.856 4.57036 22.7263 4.99113 23.2759 5.83266C24.0432 4.99113 25.0394 4.57036 26.2647 4.57036C27.3182 4.57036 28.1255 4.89446 28.6867 5.54267C29.2478 6.19088 29.5283 7.05516 29.5283 8.13551V13.7135H27.0892V8.40844C27.0892 7.23711 26.6083 6.65145 25.6464 6.65145C25.0738 6.65145 24.6386 6.82772 24.3409 7.18025C24.0432 7.52141 23.8943 8.00473 23.8943 8.63019Z",
-    fill: color
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M37.0321 10.1313V10.029H35.572C34.885 10.029 34.3754 10.0972 34.0433 10.2337C33.7227 10.3587 33.5623 10.6374 33.5623 11.0695C33.5623 11.7177 34.0204 12.0418 34.9365 12.0418C35.7037 12.0418 36.2419 11.8826 36.5511 11.5642C36.8717 11.2344 37.0321 10.7568 37.0321 10.1313ZM34.3696 13.9182C33.2932 13.9182 32.4974 13.6567 31.9821 13.1335C31.4668 12.599 31.2091 11.911 31.2091 11.0695C31.2091 10.0574 31.5412 9.32958 32.2054 8.88606C32.8695 8.43118 33.883 8.20374 35.2457 8.20374H37.0321V7.82846C37.0321 6.98693 36.4939 6.56616 35.4174 6.56616C34.4555 6.56616 33.923 6.93007 33.82 7.65788H31.4152C31.4954 6.78223 31.8618 6.04873 32.5145 5.45738C33.1673 4.86603 34.1521 4.57036 35.469 4.57036C36.7744 4.57036 37.7592 4.86035 38.4234 5.44032C39.0876 6.0203 39.4196 6.83909 39.4196 7.89669V13.7135H37.2554V12.7241C36.7401 13.5202 35.7781 13.9182 34.3696 13.9182Z",
-    fill: color
-  }), /*#__PURE__*/React.createElement("rect", {
-    y: "20",
-    width: "40",
-    height: "3",
-    fill: underlineColor || defaultUnderlineColor
-  }));
-}
-
-var s$6 = {"logo":"_3Oyv_"};
-
-const Logo = () => /*#__PURE__*/React.createElement("div", {
-  className: s$6.logo
-}, /*#__PURE__*/React.createElement(LogoIcon, {
-  underlineColor: "#FF414D"
-}));
-
-var s$7 = {"title":"_3ERx-"};
+var s$8 = {"title":"_3ERx-"};
 
 const Title = ({
   isSomePlanDeferred
 }) => /*#__PURE__*/React.createElement("div", {
-  className: cx(s$7.title, STATIC_CUSTOMISATION_CLASSES.title),
+  className: cx(s$8.title, STATIC_CUSTOMISATION_CLASSES.title),
   "data-testid": "modal-title-element"
 }, isSomePlanDeferred ? /*#__PURE__*/React.createElement(FormattedMessage, {
-  id: 'eligibility-modal.title-deferred',
-  defaultMessage: "<highlighted>Payez en plusieurs fois</highlighted> ou plus tard par carte bancaire avec Alma.",
-  values: {
-    highlighted: (...chunks) => /*#__PURE__*/React.createElement("span", null, chunks)
-  }
+  id: "eligibility-modal.title-deferred-plan",
+  defaultMessage: "Payez en plusieurs fois ou plus tard par carte bancaire avec Alma."
 }) : /*#__PURE__*/React.createElement(FormattedMessage, {
-  id: 'eligibility-modal.title',
-  defaultMessage: "<highlighted>Payez en plusieurs fois</highlighted> par carte bancaire avec Alma.",
-  values: {
-    highlighted: (...chunks) => /*#__PURE__*/React.createElement("span", null, chunks)
-  }
+  id: "eligibility-modal.title-normal",
+  defaultMessage: "Payez en plusieurs fois par carte bancaire avec Alma."
 }));
 
-var s$8 = {"container":"_21g6u","block":"_3zaP5","left":"_2SBRC"};
+var s$9 = {"container":"_21g6u","block":"_3zaP5","left":"_2SBRC","logo":"_xW3wt"};
 
 const DesktopModal = ({
   children,
   isSomePlanDeferred,
   cards
 }) => /*#__PURE__*/React.createElement("div", {
-  className: cx(s$8.container, STATIC_CUSTOMISATION_CLASSES.desktopModal),
+  className: cx(s$9.container, STATIC_CUSTOMISATION_CLASSES.desktopModal),
   "data-testid": "modal-container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: cx([s$8.block, s$8.left, STATIC_CUSTOMISATION_CLASSES.leftSide])
+}, /*#__PURE__*/React.createElement("aside", {
+  className: cx([s$9.block, s$9.left, STATIC_CUSTOMISATION_CLASSES.leftSide])
 }, /*#__PURE__*/React.createElement(Title, {
   isSomePlanDeferred: isSomePlanDeferred
 }), /*#__PURE__*/React.createElement(Info, null), cards && /*#__PURE__*/React.createElement(Cards, {
   cards: cards
-}), /*#__PURE__*/React.createElement(Logo, null)), /*#__PURE__*/React.createElement("div", {
-  className: cx(s$8.block, STATIC_CUSTOMISATION_CLASSES.rightSide)
+}), /*#__PURE__*/React.createElement(AlmaLogo, {
+  className: s$9.logo,
+  width: "75"
+})), /*#__PURE__*/React.createElement("div", {
+  className: cx(s$9.block, STATIC_CUSTOMISATION_CLASSES.rightSide)
 }, children));
 
-var s$9 = {"noEligibility":"_17qNJ","loader":"_2oTJq"};
+var s$a = {"noEligibility":"_17qNJ","loader":"_2oTJq","scheduleArea":"_2u9rj","verticalLine":"_VRdAU"};
 
-var s$a = {"container":"_2G7Ch"};
+var s$b = {"container":"_2G7Ch","logo":"_2779r"};
 
 const MobileModal = ({
   children,
   isSomePlanDeferred,
   cards
 }) => /*#__PURE__*/React.createElement("div", {
-  className: cx(s$a.container, STATIC_CUSTOMISATION_CLASSES.mobileModal),
+  className: cx(s$b.container, STATIC_CUSTOMISATION_CLASSES.mobileModal),
   "data-testid": "modal-container"
 }, /*#__PURE__*/React.createElement(Title, {
   isSomePlanDeferred: isSomePlanDeferred
 }), children, /*#__PURE__*/React.createElement(Info, null), cards && /*#__PURE__*/React.createElement(Cards, {
   cards: cards
-}), /*#__PURE__*/React.createElement(Logo, null));
+}), /*#__PURE__*/React.createElement(AlmaLogo, {
+  className: s$b.logo,
+  width: "75"
+}));
 
 const EligibilityModal = ({
   initialPlanIndex,
@@ -2831,9 +2839,9 @@ const EligibilityModal = ({
     isSomePlanDeferred: isSomePlanDeferred,
     cards: cards
   }, status === apiStatus.PENDING && /*#__PURE__*/React.createElement("div", {
-    className: s$9.loader
+    className: s$a.loader
   }, /*#__PURE__*/React.createElement(LoadingIndicator, null)), status === apiStatus.SUCCESS && eligiblePlans.length === 0 && /*#__PURE__*/React.createElement("div", {
-    className: s$9.noEligibility
+    className: s$a.noEligibility
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     id: "eligibility-modal.no-eligibility",
     defaultMessage: "Oups, il semblerait que la simulation n'ait pas fonctionn\u00E9."
@@ -2841,9 +2849,15 @@ const EligibilityModal = ({
     eligibilityPlans: eligiblePlans,
     currentPlanIndex: currentPlanIndex,
     setCurrentPlanIndex: setCurrentPlanIndex
+  }), /*#__PURE__*/React.createElement("div", {
+    className: s$a.scheduleArea
+  }, /*#__PURE__*/React.createElement("div", {
+    className: s$a.verticalLine
   }), /*#__PURE__*/React.createElement(Schedule, {
     currentPlan: currentPlan
-  }))));
+  }), /*#__PURE__*/React.createElement(TotalBlock, {
+    currentPlan: currentPlan
+  })))));
 };
 
 /**
@@ -2867,18 +2881,18 @@ const ModalContainer = ({
   });
 };
 
-var s$b = {"loadingIndicator":"_2SwwZ","line1":"_2qODo","line2":"_2YO01"};
+var s$c = {"loadingIndicator":"_2SwwZ","line1":"_2qODo","line2":"_2YO01"};
 
 const Loader = ({
   className
 }) => {
   return /*#__PURE__*/React.createElement("div", {
-    className: cx(s$b.loadingIndicator, className),
+    className: cx(s$c.loadingIndicator, className),
     "data-testid": "loader"
   }, /*#__PURE__*/React.createElement("div", {
-    className: s$b.line1
+    className: s$c.line1
   }), /*#__PURE__*/React.createElement("div", {
-    className: s$b.line2
+    className: s$c.line2
   }));
 };
 
@@ -2960,7 +2974,7 @@ const STATIC_CUSTOMISATION_CLASSES$1 = {
   activeOption: prefix$1 + '-active-option'
 };
 
-var s$c = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","polychrome":"_2icEF","notEligible":"_3O1bg","hideBorder":"_3_qcn","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
+var s$d = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","monochrome":"_2hx83","notEligible":"_3O1bg","hideBorder":"_3_qcn","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365;
 const DEFAULT_TRANSITION_TIME = 5500;
@@ -3039,7 +3053,7 @@ const PaymentPlanWidget = ({
 
   if (status === apiStatus.PENDING) {
     return /*#__PURE__*/React.createElement("div", {
-      className: cx(s$c.widgetButton, s$c.pending)
+      className: cx(s$d.widgetButton, s$d.pending)
     }, /*#__PURE__*/React.createElement(Loader, null));
   }
 
@@ -3057,19 +3071,19 @@ const PaymentPlanWidget = ({
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     onClick: handleOpenModal,
-    className: cx(s$c.widgetButton, {
-      [s$c.clickable]: eligiblePlans.length > 0,
-      [s$c.unClickable]: eligiblePlans.length === 0,
-      [s$c.hideBorder]: _hideBorder
+    className: cx(s$d.widgetButton, {
+      [s$d.clickable]: eligiblePlans.length > 0,
+      [s$d.unClickable]: eligiblePlans.length === 0,
+      [s$d.hideBorder]: _hideBorder
     }, STATIC_CUSTOMISATION_CLASSES$1.container),
     "data-testid": "widget-button"
   }, /*#__PURE__*/React.createElement("div", {
-    className: cx(s$c.primaryContainer, STATIC_CUSTOMISATION_CLASSES$1.eligibilityLine)
-  }, /*#__PURE__*/React.createElement(LogoIcon, {
-    className: s$c.logo,
-    monochrome: monochrome
+    className: cx(s$d.primaryContainer, STATIC_CUSTOMISATION_CLASSES$1.eligibilityLine)
+  }, /*#__PURE__*/React.createElement(AlmaLogo, {
+    className: s$d.logo,
+    color: monochrome ? 'var(--off-black)' : undefined
   }), /*#__PURE__*/React.createElement("div", {
-    className: cx(s$c.paymentPlans, STATIC_CUSTOMISATION_CLASSES$1.eligibilityOptions)
+    className: cx(s$d.paymentPlans, STATIC_CUSTOMISATION_CLASSES$1.eligibilityOptions)
   }, eligibilityPlans.map((eligibilityPlan, key) => {
     const isCurrent = key === current;
     return /*#__PURE__*/React.createElement("div", {
@@ -3078,15 +3092,15 @@ const PaymentPlanWidget = ({
       onTouchStart: () => onHover(key),
       onMouseOut: onLeave,
       onTouchEnd: onLeave,
-      className: cx(s$c.plan, {
-        [cx(s$c.active, STATIC_CUSTOMISATION_CLASSES$1.activeOption)]: isCurrent,
-        [s$c.polychrome]: !monochrome && isCurrent,
-        [cx(s$c.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)]: !eligibilityPlan.eligible
+      className: cx(s$d.plan, {
+        [cx(s$d.active, STATIC_CUSTOMISATION_CLASSES$1.activeOption)]: isCurrent,
+        [s$d.monochrome]: monochrome && isCurrent,
+        [cx(s$d.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)]: !eligibilityPlan.eligible
       })
     }, paymentPlanShorthandName(eligibilityPlan));
   }))), /*#__PURE__*/React.createElement("div", {
-    className: cx(s$c.info, {
-      [cx(s$c.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)]: eligibilityPlans[current] && !eligibilityPlans[current].eligible
+    className: cx(s$d.info, {
+      [cx(s$d.notEligible, STATIC_CUSTOMISATION_CLASSES$1.notEligibleOption)]: eligibilityPlans[current] && !eligibilityPlans[current].eligible
     }, STATIC_CUSTOMISATION_CLASSES$1.paymentInfo)
   }, eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current]))), isOpen && /*#__PURE__*/React.createElement(EligibilityModal, {
     initialPlanIndex: getIndexWithinEligiblePlans(current),

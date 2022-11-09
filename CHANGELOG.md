@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/alma/widgets/compare/v2.12.3...v3.0.0) (2022-11-09)
+
+
+### Features
+
+* new design for the rebranding ([3f135bb](https://github.com/alma/widgets/commit/3f135bb4a3db3b9596c685b81fbb9ffe5de89542))
+
+
+### BREAKING CHANGES
+
+* the design has changed, this must be a major release
+
 ## [2.12.3](https://github.com/alma/widgets/compare/v2.12.2...v2.12.3) (2022-09-01)
 
 
