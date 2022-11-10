@@ -18,13 +18,13 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--soft-blue);
+  background-color: var(--soft-orange);
   margin-right: 16px;
   z-index: 1;
 }
 
 .isCurrent {
-  background-color: var(--alma-blue);
+  background-color: var(--alma-orange);
 }
 
 .bold {
@@ -37,7 +37,7 @@
   }
 
   .dot::after {
-    border-left: 2px solid var(--soft-blue);
+    border-left: 2px solid var(--off-white);
     height: 85px;
     margin-left: 4px;
     content: " ";
