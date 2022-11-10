@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/alma/widgets/compare/v3.0.0...v3.0.1) (2022-11-10)
+
+
+### Bug Fixes
+
+* **css:** update css to reflect the design update ([a40473e](https://github.com/alma/widgets/commit/a40473e1b484d7c5534b1022a1f14d9da19c80e7))
+
 # [3.0.0](https://github.com/alma/widgets/compare/v2.12.3...v3.0.0) (2022-11-09)
 
 
