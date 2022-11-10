@@ -18,5 +18,7 @@
 }
 
 .logo {
-  margin: auto;
+  position: absolute;
+  bottom: 35px;
+  left: 150px;
 }

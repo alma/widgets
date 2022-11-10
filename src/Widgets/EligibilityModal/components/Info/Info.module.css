@@ -17,6 +17,7 @@
   font-family: 'Argent CF', sans-serif;
   font-weight: 600;
   font-size: 32px;
+  min-width: 20px;
   line-height: 110%;
   color: var(--alma-blue);
 }

@@ -24,7 +24,7 @@
   width: 2px;
   /* 120px is a magic number, to avoid seeing the line under the TotalBlock */
   height: calc(100% - 120px);
-  background-color: var(--soft-blue);
+  background-color: var(--off-white);
 }
 
 @media screen and (min-width: 800px) {
