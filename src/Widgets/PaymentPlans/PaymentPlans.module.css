@@ -1,7 +1,7 @@
 .widgetButton {
   width: 368px;
   max-width: 100%;
-  background-color: transparent;
+  background-color: var(--white);
   border: 1px solid var(--light-gray);
   display: flex;
   flex-direction: column;
@@ -83,24 +83,6 @@
 .loader {
   overflow: hidden;
   align-items: center;
-}
-
-.error {
-  align-items: center;
-  line-height: 100%;
-}
-
-.errorText {
-  font-family: 'Venn', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  color: var(--off-black);
-}
-
-.errorButton {
-  cursor: pointer;
-  text-decoration: underline;
 }
 
 .pending {

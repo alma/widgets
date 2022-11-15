@@ -22,6 +22,8 @@
   cursor: pointer;
   background-color: var(--white);
   transition: all 0.1s ease;
+  color: var(--off-black);
+  padding: initial; /* To avoid CSS surcharge on this. */
 }
 
 .buttons > button.active {
