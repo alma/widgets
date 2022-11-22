@@ -3059,7 +3059,7 @@ var STATIC_CUSTOMISATION_CLASSES$1 = {
   activeOption: prefix$1 + '-active-option'
 };
 
-var s$d = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","monochrome":"_2hx83","notEligible":"_3O1bg","hideBorder":"_3_qcn","info":"_25GrF","loader":"_30j1O","error":"_R0YlN","errorText":"_2kGhu","errorButton":"_73d_Y","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
+var s$d = {"widgetButton":"_TSkFv","logo":"_LJ4nZ","primaryContainer":"_bMClc","paymentPlans":"_17c_S","plan":"_2Kqjn","active":"_3dG_J","monochrome":"_2hx83","notEligible":"_3O1bg","hideBorder":"_3_qcn","info":"_25GrF","loader":"_30j1O","pending":"_1ZDMS","clickable":"_UksZa","unClickable":"_1lr-q"};
 
 var VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365;
 var DEFAULT_TRANSITION_TIME = 5500;

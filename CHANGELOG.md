@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/alma/widgets/compare/v3.0.1...v3.0.2) (2022-11-22)
+
+
+### Bug Fixes
+
+* css on modal to have a better branding on it and fix a few glitch ([a707435](https://github.com/alma/widgets/commit/a7074351f76124717c625e0ae18542aa20c602eb))
+
 ## [3.0.1](https://github.com/alma/widgets/compare/v3.0.0...v3.0.1) (2022-11-10)
 
 
