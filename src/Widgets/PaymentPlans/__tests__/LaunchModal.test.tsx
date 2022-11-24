@@ -78,5 +78,5 @@ async function checkModalElements(): Promise<void> {
   expect(within(modalContainer).getByText('21 octobre 2021')).toBeInTheDocument()
   expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
   expect(within(modalContainer).getByText('21 décembre 2021')).toBeInTheDocument()
-  expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(3)
+  expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(2)
 }

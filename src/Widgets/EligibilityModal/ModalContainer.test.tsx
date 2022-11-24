@@ -78,7 +78,7 @@ describe('ModalContainer', () => {
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [
         '21 octobre 2021',
-        '112,50 €',
+        '124,52 €',
         '21 novembre 2021',
         '112,50 €',
         '21 décembre 2021',
@@ -141,12 +141,12 @@ describe('ModalContainer', () => {
       const installmentElement = screen.getByTestId('modal-container')
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [
-        '21 octobre 20211',
-        '50,00 €',
-        '21 novembre 20211',
-        '50,00 €',
-        '21 décembre 20211',
-        '50,00 €',
+        '21 octobre 2021',
+        '151,35 €',
+        '21 novembre 2021',
+        '150,00 €',
+        '21 décembre 2021',
+        '150,00 €',
       ]
       const expectedTotal = ['Total', '451,35 €', 'Dont frais (TTC)', '1,35 €']
 
