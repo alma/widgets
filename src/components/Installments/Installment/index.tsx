@@ -28,11 +28,7 @@ const Installment: FC<Props> = ({ installment, index }) => {
         )}
       </div>
       <div className={cx({ [s.bold]: index === 0 })}>
-        <FormattedNumber
-          value={installment.purchase_amount / 100}
-          style="currency"
-          currency="EUR"
-        />
+        <FormattedNumber value={installment.total_amount / 100} style="currency" currency="EUR" />
       </div>
     </div>
   )
