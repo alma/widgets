@@ -2550,7 +2550,7 @@ var Installment = function Installment(_ref) {
   })), /*#__PURE__*/React.createElement("div", {
     className: cx((_cx2 = {}, _cx2[s$4.bold] = index === 0, _cx2))
   }, /*#__PURE__*/React.createElement(FormattedNumber, {
-    value: installment.purchase_amount / 100,
+    value: installment.total_amount / 100,
     style: "currency",
     currency: "EUR"
   })));

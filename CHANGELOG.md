@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/alma/widgets/compare/v3.0.2...v3.0.3) (2022-11-25)
+
+
+### Bug Fixes
+
+* variable for installment should be updated for fee variables ([ae103ee](https://github.com/alma/widgets/commit/ae103eeb6fde716b833ca61825c03e0befec535a))
+
 ## [3.0.2](https://github.com/alma/widgets/compare/v3.0.1...v3.0.2) (2022-11-22)
 
 

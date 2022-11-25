@@ -1,6 +1,6 @@
 {
   "name": "@alma/widgets",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Widgets to easily display information from Alma - https://getalma.eu",
   "keywords": [],
   "main": "dist/widgets.js",
