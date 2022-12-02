@@ -8,7 +8,10 @@ import messagesPT from 'intl/messages/messages.pt.json'
 import { Locale } from 'types'
 
 export const getTranslationsByLocale = (locale: Locale): Record<string, string> => {
-  switch (locale) {
+  // A CMS plugin can add LCID format like : 'fr-FR' instead of 'fr'.
+  // Instead of specifying all possibilities we just remove the last part of the string.
+  const merchantLocale = locale.slice(0, 2)
+  switch (merchantLocale) {
     case Locale.fr:
       return messagesFR
     case Locale.es:
@@ -20,8 +23,6 @@ export const getTranslationsByLocale = (locale: Locale): Record<string, string> 
     case Locale.pt:
       return messagesPT
     case Locale.nl:
-    case Locale['nl-BE']:
-    case Locale['nl-NL']:
       return messagesNL
     case Locale.en:
     default:

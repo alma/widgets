@@ -85,6 +85,24 @@ describe('Change language', () => {
     expect(screen.getByText(/\(senza interessi\)/)).toBeInTheDocument()
   })
 
+  it(`into ${Locale['it-IT']}`, async () => {
+    render(
+      <PaymentPlanWidget
+        monochrome={false}
+        purchaseAmount={40000}
+        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+      />,
+      {
+        locale: Locale['it-IT'],
+      },
+    )
+    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+
+    expect(screen.getByText('G+30')).toBeInTheDocument()
+    expect(screen.getByText(/da pagare il/)).toBeInTheDocument()
+    expect(screen.getByText(/\(senza interessi\)/)).toBeInTheDocument()
+  })
+
   it(`into ${Locale.nl}`, async () => {
     render(
       <PaymentPlanWidget
