@@ -51,12 +51,17 @@ export type EligibilityPlanToDisplay = EligibilityPlan & {
 
 export enum Locale {
   en = 'en',
+  'fr-FR' = 'fr-FR',
   fr = 'fr',
+  'de-DE' = 'de-DE',
   de = 'de',
   it = 'it',
+  'it-IT' = 'it-IT',
   es = 'es',
-  nl = 'nl',
+  'es-ES' = 'es-ES',
   pt = 'pt',
+  'pt-PT' = 'pt-PT',
+  nl = 'nl',
   'nl-NL' = 'nl-NL',
   'nl-BE' = 'nl-BE',
 }

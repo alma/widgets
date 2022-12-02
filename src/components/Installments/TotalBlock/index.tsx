@@ -19,10 +19,10 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
       className={cx(s.container, STATIC_CUSTOMISATION_CLASSES.summary)}
       data-testid="modal-summary"
     >
-      <h3 className={cx(s.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)}>
+      <div className={cx(s.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)}>
         <FormattedMessage tagName="div" id="installments.total-amount" defaultMessage="Total" />
         <FormattedNumber value={total || 0} style="currency" currency="EUR" />
-      </h3>
+      </div>
       <div className={cx(s.fees, STATIC_CUSTOMISATION_CLASSES.scheduleCredit)}>
         {isCredit ? (
           <>
