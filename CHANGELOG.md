@@ -1,3 +1,10 @@
+## [3.0.4](https://github.com/alma/widgets/compare/v3.0.3...v3.0.4) (2022-12-02)
+
+
+### Bug Fixes
+
+* update locale to adapt to more options ([dc51935](https://github.com/alma/widgets/commit/dc5193590cea0041af8a7dfb996fe35605558b92))
+
 ## [3.0.3](https://github.com/alma/widgets/compare/v3.0.2...v3.0.3) (2022-11-25)
 
 

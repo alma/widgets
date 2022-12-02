@@ -1526,12 +1526,17 @@ var Locale;
 
 (function (Locale) {
   Locale["en"] = "en";
+  Locale["fr-FR"] = "fr-FR";
   Locale["fr"] = "fr";
+  Locale["de-DE"] = "de-DE";
   Locale["de"] = "de";
   Locale["it"] = "it";
+  Locale["it-IT"] = "it-IT";
   Locale["es"] = "es";
-  Locale["nl"] = "nl";
+  Locale["es-ES"] = "es-ES";
   Locale["pt"] = "pt";
+  Locale["pt-PT"] = "pt-PT";
+  Locale["nl"] = "nl";
   Locale["nl-NL"] = "nl-NL";
   Locale["nl-BE"] = "nl-BE";
 })(Locale || (Locale = {}));
@@ -2014,7 +2019,11 @@ var messagesPT = {
 };
 
 const getTranslationsByLocale = locale => {
-  switch (locale) {
+  // A CMS plugin can add LCID format like : 'fr-FR' instead of 'fr'.
+  // Instead of specifying all possibilities we just remove the last part of the string.
+  const merchantLocale = locale.slice(0, 2);
+
+  switch (merchantLocale) {
     case Locale.fr:
       return messagesFR;
 
@@ -2031,8 +2040,6 @@ const getTranslationsByLocale = locale => {
       return messagesPT;
 
     case Locale.nl:
-    case Locale['nl-BE']:
-    case Locale['nl-NL']:
       return messagesNL;
 
     case Locale.en:
@@ -2210,7 +2217,7 @@ const TotalBlock = ({
   return /*#__PURE__*/React.createElement("div", {
     className: cx(s.container, STATIC_CUSTOMISATION_CLASSES.summary),
     "data-testid": "modal-summary"
-  }, /*#__PURE__*/React.createElement("h3", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: cx(s.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)
   }, /*#__PURE__*/React.createElement(FormattedMessage, {
     tagName: "div",
