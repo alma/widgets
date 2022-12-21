@@ -1,3 +1,10 @@
+## [3.0.5](https://github.com/alma/widgets/compare/v3.0.4...v3.0.5) (2022-12-21)
+
+
+### Bug Fixes
+
+* remove google font and old assets ([4a02010](https://github.com/alma/widgets/commit/4a02010e566a819b10e7e208feb7da13bfafffac))
+
 ## [3.0.4](https://github.com/alma/widgets/compare/v3.0.3...v3.0.4) (2022-12-02)
 
 
