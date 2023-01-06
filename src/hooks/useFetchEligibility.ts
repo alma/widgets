@@ -7,6 +7,8 @@ const useFetchEligibility = (
   purchaseAmount: number,
   { domain, merchantId }: ApiConfig,
   plans?: ConfigPlan[],
+  customerBillingCountry?: string,
+  customerShippingCountry?: string,
 ): [EligibilityPlan[], apiStatus] => {
   const [eligibility, setEligibility] = useState([] as EligibilityPlan[])
   const [status, setStatus] = useState(apiStatus.PENDING)
@@ -17,11 +19,26 @@ const useFetchEligibility = (
   }))
   useEffect(() => {
     if (status === apiStatus.PENDING) {
+      let billing_address = null
+      if (customerBillingCountry) {
+        billing_address = {
+          country: customerBillingCountry,
+        }
+      }
+
+      let shipping_address = null
+      if (customerShippingCountry) {
+        shipping_address = {
+          country: customerShippingCountry,
+        }
+      }
       fetchFromApi(
         domain + '/v2/payments/eligibility',
         {
           purchase_amount: purchaseAmount,
           queries: configInstallments,
+          billing_address,
+          shipping_address,
         },
         {
           Authorization: `Alma-Merchant-Auth ${merchantId}`,
