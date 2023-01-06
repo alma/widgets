@@ -16,6 +16,8 @@ type Props = {
   apiData: ApiConfig
   configPlans?: ConfigPlan[]
   transitionDelay?: number
+  customerBillingCountry?: string
+  customerShippingCountry?: string
   hideIfNotEligible?: boolean
   monochrome?: boolean
   suggestedPaymentPlan?: number | number[]
@@ -34,10 +36,18 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   purchaseAmount,
   suggestedPaymentPlan,
   cards,
+  customerBillingCountry,
+  customerShippingCountry,
   transitionDelay,
   hideBorder = false,
 }) => {
-  const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
+  const [eligibilityPlans, status] = useFetchEligibility(
+    purchaseAmount,
+    apiData,
+    configPlans,
+    customerBillingCountry,
+    customerShippingCountry,
+  )
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
   const activePlanIndex = getIndexOfActivePlan({
     eligibilityPlans,

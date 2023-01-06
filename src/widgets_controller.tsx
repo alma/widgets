@@ -40,6 +40,8 @@ export class WidgetsController {
         hideBorder = false,
         monochrome = true,
         suggestedPaymentPlan,
+        customerBillingCountry,
+        customerShippingCountry,
         locale = Locale.en,
         cards,
       } = options as PaymentPlanWidgetOptions
@@ -55,6 +57,8 @@ export class WidgetsController {
               purchaseAmount={purchaseAmount}
               suggestedPaymentPlan={suggestedPaymentPlan}
               cards={cards}
+              customerBillingCountry={customerBillingCountry}
+              customerShippingCountry={customerShippingCountry}
               transitionDelay={transitionDelay}
               hideBorder={hideBorder}
             />
@@ -71,6 +75,8 @@ export class WidgetsController {
         purchaseAmount,
         plans,
         locale = Locale.en,
+        customerBillingCountry,
+        customerShippingCountry,
         cards,
       } = options as ModalOptions
 
@@ -83,6 +89,8 @@ export class WidgetsController {
               purchaseAmount={purchaseAmount}
               apiData={this.apiData}
               configPlans={plans}
+              customerBillingCountry={customerBillingCountry}
+              customerShippingCountry={customerShippingCountry}
               onClose={close}
               cards={cards}
             />

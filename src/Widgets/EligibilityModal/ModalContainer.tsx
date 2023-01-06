@@ -7,6 +7,8 @@ type Props = {
   purchaseAmount: number
   apiData: ApiConfig
   configPlans?: ConfigPlan[]
+  customerBillingCountry?: string
+  customerShippingCountry?: string
   onClose: () => void
   cards?: Card[]
 }
@@ -14,8 +16,22 @@ type Props = {
 /**
  * This component allows to display only the modal, without PaymentPlans.
  */
-const ModalContainer: React.FC<Props> = ({ purchaseAmount, apiData, configPlans, onClose, cards }) => {
-  const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans)
+const ModalContainer: React.FC<Props> = ({
+  purchaseAmount,
+  apiData,
+  configPlans,
+  customerBillingCountry,
+  customerShippingCountry,
+  onClose,
+  cards,
+}) => {
+  const [eligibilityPlans, status] = useFetchEligibility(
+    purchaseAmount,
+    apiData,
+    configPlans,
+    customerBillingCountry,
+    customerShippingCountry,
+  )
 
   return (
     <EligibilityModal

@@ -10,8 +10,8 @@ Your merchant id as it is found in the dashboard
 
 ### domain `Alma.ApiMode.TEST | Alma.ApiMode.LIVE` [required]
 
-- `Alma.ApiMode.TEST` Used to test the widget
-- `Alma.ApiMode.LIVE` Used in production mode. data will match what is provided in your dashboard
+- `Alma.ApiMode.TEST` Used to test the widget. Data will match what is provided in your sandbox dashboard
+- `Alma.ApiMode.LIVE` Used in production mode. Data will match what is provided in your production dashboard
 
 ## Add PaymentPlans
 
@@ -57,6 +57,12 @@ If set to `false`, Alma's logo and the active payments plan will be underlined i
 - suggestedPaymentPlan: `number` | `number[]` [optional]
 
 Allow to choose which payment plan's tab will be displayed by default. It will have effect only if the selected plan is eligible. If an array is provided, it will select the first eligible plan from this array.
+
+- customerBillingCountry: `string` (e.g `fr|es|it|de|nl|pt|en`) [optional]
+- customerShippingCountry: `string` (e.g `fr|es|it|de|nl|pt|en`) [optional]
+
+Allow to display fee plans specific for a country. Example: you're selling in France and Germany, the credit options are only available in France, so you can specify this option to 'fr' to show credits on the widget for french customers.
+Both options offer the same result, they allow to simplify the integration if there is no information about customer's shipping address.
 
 ```
 suggestedPaymentPlan: [10, 4],
@@ -110,6 +116,12 @@ If provided, the modal will open when the element matching this query selector i
 - cards: `cb|visa|amex|mastercard`[] [optional]
 
 Display card logos in the modal
+
+- customerBillingCountry: `string` (e.g `fr|es|it|de|nl|pt|en`) [optional]
+- customerShippingCountry: `string` (e.g `fr|es|it|de|nl|pt|en`) [optional]
+
+Allow to display fee plans specific for a country. Example: you're selling in France and Germany, the credit options are only available in France, so you can specify this option to 'fr' to show credits on the widget for french customers.
+Both options offer the same result, they allow to simplify the integration if there is no information about customer's shipping address.
 
 ## Plan option: `Plan`
 
