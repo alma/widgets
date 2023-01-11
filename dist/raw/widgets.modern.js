@@ -2149,7 +2149,7 @@ const filterELigibility = (eligibilities, configPlans) => {
 const useFetchEligibility = (purchaseAmount, {
   domain,
   merchantId
-}, plans) => {
+}, plans, customerBillingCountry, customerShippingCountry) => {
   const [eligibility, setEligibility] = useState([]);
   const [status, setStatus] = useState(apiStatus.PENDING);
   const configInstallments = plans == null ? void 0 : plans.map(plan => ({
@@ -2159,9 +2159,27 @@ const useFetchEligibility = (purchaseAmount, {
   }));
   useEffect(() => {
     if (status === apiStatus.PENDING) {
+      let billing_address = null;
+
+      if (customerBillingCountry) {
+        billing_address = {
+          country: customerBillingCountry
+        };
+      }
+
+      let shipping_address = null;
+
+      if (customerShippingCountry) {
+        shipping_address = {
+          country: customerShippingCountry
+        };
+      }
+
       fetchFromApi(domain + '/v2/payments/eligibility', {
         purchase_amount: purchaseAmount,
-        queries: configInstallments
+        queries: configInstallments,
+        billing_address,
+        shipping_address
       }, {
         Authorization: `Alma-Merchant-Auth ${merchantId}`
       }).then(res => {
@@ -2875,10 +2893,12 @@ const ModalContainer = ({
   purchaseAmount,
   apiData,
   configPlans,
+  customerBillingCountry,
+  customerShippingCountry,
   onClose,
   cards
 }) => {
-  const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans);
+  const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans, customerBillingCountry, customerShippingCountry);
   return /*#__PURE__*/React.createElement(EligibilityModal, {
     initialPlanIndex: 0,
     onClose: onClose,
@@ -2994,10 +3014,12 @@ const PaymentPlanWidget = ({
   purchaseAmount,
   suggestedPaymentPlan,
   cards,
+  customerBillingCountry,
+  customerShippingCountry,
   transitionDelay,
   hideBorder: _hideBorder = false
 }) => {
-  const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans);
+  const [eligibilityPlans, status] = useFetchEligibility(purchaseAmount, apiData, configPlans, customerBillingCountry, customerShippingCountry);
   const eligiblePlans = eligibilityPlans.filter(plan => plan.eligible);
   const activePlanIndex = getIndexOfActivePlan({
     eligibilityPlans,
@@ -3140,6 +3162,8 @@ class WidgetsController {
         hideBorder = false,
         monochrome = true,
         suggestedPaymentPlan,
+        customerBillingCountry,
+        customerShippingCountry,
         locale = Locale.en,
         cards
       } = options;
@@ -3155,6 +3179,8 @@ class WidgetsController {
           purchaseAmount: purchaseAmount,
           suggestedPaymentPlan: suggestedPaymentPlan,
           cards: cards,
+          customerBillingCountry: customerBillingCountry,
+          customerShippingCountry: customerShippingCountry,
           transitionDelay: transitionDelay,
           hideBorder: hideBorder
         })), document.querySelector(container));
@@ -3168,6 +3194,8 @@ class WidgetsController {
         purchaseAmount,
         plans,
         locale = Locale.en,
+        customerBillingCountry,
+        customerShippingCountry,
         cards
       } = options;
 
@@ -3180,6 +3208,8 @@ class WidgetsController {
           purchaseAmount: purchaseAmount,
           apiData: this.apiData,
           configPlans: plans,
+          customerBillingCountry: customerBillingCountry,
+          customerShippingCountry: customerShippingCountry,
           onClose: close,
           cards: cards
         })), document.querySelector(container));

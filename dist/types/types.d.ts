@@ -77,11 +77,15 @@ export declare type PaymentPlanWidgetOptions = {
     suggestedPaymentPlan?: number | number[];
     transitionDelay?: number;
     hideBorder?: boolean;
+    customerBillingCountry?: string;
+    customerShippingCountry?: string;
 };
 export declare type ModalOptions = {
     container: string;
     clickableSelector: string;
     purchaseAmount: number;
+    customerBillingCountry?: string;
+    customerShippingCountry?: string;
     plans?: ConfigPlan[];
     locale?: Locale;
     cards?: Card[];

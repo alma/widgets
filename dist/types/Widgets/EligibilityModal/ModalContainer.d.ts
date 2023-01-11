@@ -4,6 +4,8 @@ declare type Props = {
     purchaseAmount: number;
     apiData: ApiConfig;
     configPlans?: ConfigPlan[];
+    customerBillingCountry?: string;
+    customerShippingCountry?: string;
     onClose: () => void;
     cards?: Card[];
 };

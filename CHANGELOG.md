@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/alma/widgets/compare/v3.0.5...v3.1.0) (2023-01-11)
+
+
+### Features
+
+* add shipping/billing country to eligibility to fetch the proper feeplans ([b6de64c](https://github.com/alma/widgets/commit/b6de64c9416523e241674074fa40799747ef18a6))
+
 ## [3.0.5](https://github.com/alma/widgets/compare/v3.0.4...v3.0.5) (2022-12-21)
 
 

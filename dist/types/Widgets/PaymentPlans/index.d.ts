@@ -5,6 +5,8 @@ declare type Props = {
     apiData: ApiConfig;
     configPlans?: ConfigPlan[];
     transitionDelay?: number;
+    customerBillingCountry?: string;
+    customerShippingCountry?: string;
     hideIfNotEligible?: boolean;
     monochrome?: boolean;
     suggestedPaymentPlan?: number | number[];

@@ -2181,7 +2181,7 @@ var filterELigibility = function filterELigibility(eligibilities, configPlans) {
   });
 };
 
-var useFetchEligibility = function useFetchEligibility(purchaseAmount, _ref, plans) {
+var useFetchEligibility = function useFetchEligibility(purchaseAmount, _ref, plans, customerBillingCountry, customerShippingCountry) {
   var domain = _ref.domain,
       merchantId = _ref.merchantId;
 
@@ -2202,9 +2202,27 @@ var useFetchEligibility = function useFetchEligibility(purchaseAmount, _ref, pla
   });
   React.useEffect(function () {
     if (status === apiStatus.PENDING) {
+      var billing_address = null;
+
+      if (customerBillingCountry) {
+        billing_address = {
+          country: customerBillingCountry
+        };
+      }
+
+      var shipping_address = null;
+
+      if (customerShippingCountry) {
+        shipping_address = {
+          country: customerShippingCountry
+        };
+      }
+
       fetchFromApi(domain + '/v2/payments/eligibility', {
         purchase_amount: purchaseAmount,
-        queries: configInstallments
+        queries: configInstallments,
+        billing_address: billing_address,
+        shipping_address: shipping_address
       }, {
         Authorization: "Alma-Merchant-Auth " + merchantId
       }).then(function (res) {
@@ -2948,10 +2966,12 @@ var ModalContainer = function ModalContainer(_ref) {
   var purchaseAmount = _ref.purchaseAmount,
       apiData = _ref.apiData,
       configPlans = _ref.configPlans,
+      customerBillingCountry = _ref.customerBillingCountry,
+      customerShippingCountry = _ref.customerShippingCountry,
       onClose = _ref.onClose,
       cards = _ref.cards;
 
-  var _useFetchEligibility = useFetchEligibility(purchaseAmount, apiData, configPlans),
+  var _useFetchEligibility = useFetchEligibility(purchaseAmount, apiData, configPlans, customerBillingCountry, customerShippingCountry),
       eligibilityPlans = _useFetchEligibility[0],
       status = _useFetchEligibility[1];
 
@@ -3084,11 +3104,13 @@ var PaymentPlanWidget = function PaymentPlanWidget(_ref) {
       purchaseAmount = _ref.purchaseAmount,
       suggestedPaymentPlan = _ref.suggestedPaymentPlan,
       cards = _ref.cards,
+      customerBillingCountry = _ref.customerBillingCountry,
+      customerShippingCountry = _ref.customerShippingCountry,
       transitionDelay = _ref.transitionDelay,
       _ref$hideBorder = _ref.hideBorder,
       hideBorder = _ref$hideBorder === void 0 ? false : _ref$hideBorder;
 
-  var _useFetchEligibility = useFetchEligibility(purchaseAmount, apiData, configPlans),
+  var _useFetchEligibility = useFetchEligibility(purchaseAmount, apiData, configPlans, customerBillingCountry, customerShippingCountry),
       eligibilityPlans = _useFetchEligibility[0],
       status = _useFetchEligibility[1];
 
@@ -3247,6 +3269,8 @@ var WidgetsController = /*#__PURE__*/function () {
           _options$monochrome = options.monochrome,
           monochrome = _options$monochrome === void 0 ? true : _options$monochrome,
           suggestedPaymentPlan = options.suggestedPaymentPlan,
+          customerBillingCountry = options.customerBillingCountry,
+          customerShippingCountry = options.customerShippingCountry,
           _options$locale = options.locale,
           locale = _options$locale === void 0 ? Locale.en : _options$locale,
           cards = options.cards;
@@ -3262,6 +3286,8 @@ var WidgetsController = /*#__PURE__*/function () {
           purchaseAmount: purchaseAmount,
           suggestedPaymentPlan: suggestedPaymentPlan,
           cards: cards,
+          customerBillingCountry: customerBillingCountry,
+          customerShippingCountry: customerShippingCountry,
           transitionDelay: transitionDelay,
           hideBorder: hideBorder
         })), document.querySelector(container));
@@ -3275,6 +3301,8 @@ var WidgetsController = /*#__PURE__*/function () {
           _plans = options.plans,
           _options$locale2 = options.locale,
           _locale = _options$locale2 === void 0 ? Locale.en : _options$locale2,
+          _customerBillingCountry = options.customerBillingCountry,
+          _customerShippingCountry = options.customerShippingCountry,
           _cards = options.cards;
 
       var close = function close() {
@@ -3288,6 +3316,8 @@ var WidgetsController = /*#__PURE__*/function () {
           purchaseAmount: _purchaseAmount,
           apiData: _this.apiData,
           configPlans: _plans,
+          customerBillingCountry: _customerBillingCountry,
+          customerShippingCountry: _customerShippingCountry,
           onClose: close,
           cards: _cards
         })), document.querySelector(_container));
