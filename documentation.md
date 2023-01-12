@@ -58,18 +58,18 @@ If set to `false`, Alma's logo and the active payments plan will be underlined i
 
 Allow to choose which payment plan's tab will be displayed by default. It will have effect only if the selected plan is eligible. If an array is provided, it will select the first eligible plan from this array.
 
-- customerBillingCountry: `string` (e.g `fr|es|it|de|nl|pt|en`) [optional]
-- customerShippingCountry: `string` (e.g `fr|es|it|de|nl|pt|en`) [optional]
-
-Allow to display fee plans specific for a country. Example: you're selling in France and Germany, the credit options are only available in France, so you can specify this option to 'fr' to show credits on the widget for french customers.
-Both options offer the same result, they allow to simplify the integration if there is no information about customer's shipping address.
-
 ```
 suggestedPaymentPlan: [10, 4],
 ```
 
 In the above example, the 10 installments plan will be selected. If it's not eligible, the 4 installments plan will be selected. If the 4 installments plan is not eligible, it will select the first tab.
 When `suggestedPaymentPlan` is used, the transition is disable. Unless `transitionDelay` is specified.
+
+- customerBillingCountry: `string` (e.g `fr|es|it|de|nl|pt|en`) [optional]
+- customerShippingCountry: `string` (e.g `fr|es|it|de|nl|pt|en`) [optional]
+
+Allow to display fee plans specific for a country. Example: you're selling in France and Germany, the credit options are only available in France, so you can specify this option to 'fr' to show credits on the widget for french customers.
+Both options offer the same result, they allow to simplify the integration if there is no information about customer's shipping address.
 
 - hideBorder: `boolean` [optional, default: false]
 
