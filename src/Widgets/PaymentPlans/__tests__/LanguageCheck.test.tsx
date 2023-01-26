@@ -46,7 +46,7 @@ describe('Change language', () => {
 
     expect(screen.getByText('T+30')).toBeInTheDocument()
     expect(screen.getByText(/zu zahlen am/)).toBeInTheDocument()
-    expect(screen.getByText(/\(gebührenfrei\)/)).toBeInTheDocument()
+    expect(screen.getByText(/\(0% Finanzierung\)/)).toBeInTheDocument()
   })
 
   it(`into ${Locale.es}`, async () => {
