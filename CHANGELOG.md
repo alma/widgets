@@ -1,3 +1,11 @@
+## [3.1.1](https://github.com/alma/widgets/compare/v3.1.0...v3.1.1) (2023-01-30)
+
+
+### Bug Fixes
+
+* new property was breaking a widget parameter ([612f418](https://github.com/alma/widgets/commit/612f4181ca6cc43745f7f55af4fe02da6633fa23))
+* **wording:** update translations for italian, spanish and german ([e12385f](https://github.com/alma/widgets/commit/e12385f40ee05479201bc2ba84395a91bda6ef11))
+
 # [3.1.0](https://github.com/alma/widgets/compare/v3.0.5...v3.1.0) (2023-01-11)
 
 
