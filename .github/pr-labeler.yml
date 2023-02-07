@@ -1,0 +1,9 @@
+'type: chore': ['chore/*', 'dependabot/*', 'chore(deps):*', 'snyk-*']
+'type: ci': ci/*
+'type: perf': perf/*
+'type: refactor': refactor/*
+'type: test': test/*
+'type: docs': docs/*
+'type: bugfix': fix/*
+'type: feature': feature/*
+'type: security': security/*

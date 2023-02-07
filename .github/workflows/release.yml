@@ -1,0 +1,89 @@
+# This action handles the automatic publishing of new releases
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-package:
+    name: Publish package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: |
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+          cat .npmrc
+        # We do not create a commit with the update package version
+        # Therefore the package.*.json in the repository will always have out-of-sync versions
+      - run: npm --no-git-tag-version version ${{ github.event.release.tag_name }}
+      - run: npm run build && npm run publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+# Do not activate sending changelog into slack until we have the secret SLACK_RELEASE_CHANGELOG_BOT_TOKEN configured for the repo
+  # Send changelog to Slack
+#  slack-notification:
+#    name: Publish changelog to Slack
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v3
+#        with:
+#          # Fetch the latest commit, only
+#          fetch-depth: 1
+#
+#      - name: Get release notes
+#        id: release-notes
+#        run: |
+#            # Retrieve the release notes from the repository itself to prevent release notes from being truncated
+#            # cf. https://github.community/t/set-output-truncates-multiline-strings/16852
+#            RELEASE_NOTES="$(cat $GITHUB_EVENT_PATH | jq -r .release.body)"
+#            RELEASE_NOTES="${RELEASE_NOTES//'%'/'%25'}"
+#            RELEASE_NOTES="${RELEASE_NOTES//$'\n'/'%0A'}"
+#            RELEASE_NOTES="${RELEASE_NOTES//$'\r'/'%0D'}"
+#
+#            # Add URLs to GitHub pull requests
+#            PULL_REQUEST_URL_START=${{ github.event.repository.html_url }}/pull/
+#            ESCAPED_PULL_REQUEST_URL_START=$(printf '%s\n' "$PULL_REQUEST_URL_START" | sed -e 's/[\/&]/\\&/g')
+#            RELEASE_NOTES=$(echo $RELEASE_NOTES | sed -E "s/#([0-9]+)/[#\1](${ESCAPED_PULL_REQUEST_URL_START}\1)/g")
+#
+#            # Add URLs to GitHub profiles
+#            PROFILE_URL_START=${{ github.server_url }}/
+#            ESCAPED_PROFILE_URL_START=$(printf '%s\n' "$PROFILE_URL_START" | sed -e 's/[\/&]/\\&/g')
+#            RELEASE_NOTES=$(echo $RELEASE_NOTES | sed -E "s/@([[:alnum:]-]+)/[@\1](${ESCAPED_PROFILE_URL_START}\1)/g")
+#            echo ::set-output name=RELEASE_NOTES::"$RELEASE_NOTES"
+#
+#      - name: Use Slack markdown
+#        uses: LoveToKnow/slackify-markdown-action@v1.0.0
+#        id: slack-markdown-release-notes
+#        with:
+#          text: |
+#
+#            Deployment of `alma/widgets`, release **[${{ github.event.release.name }}](${{
+#              github.event.release.html_url
+#            }})**:
+#
+#
+#            ${{ steps.release-notes.outputs.RELEASE_NOTES }}
+#
+#      - name: Send changelog to Slack
+#        uses: slackapi/slack-github-action@v1.16.0
+#        with:
+#          # Channel `#alma_changelog`
+#          channel-id: 'CR9C57YM6'
+#          slack-message: ${{ steps.slack-markdown-release-notes.outputs.text }}
+#          payload: |
+#            {
+#              "username": "${{ github.event.sender.login }}",
+#              "icon_url": "${{ github.event.sender.avatar_url }}"
+#            }
+#        env:
+#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_RELEASE_CHANGELOG_BOT_TOKEN }}
+
