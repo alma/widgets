@@ -23,6 +23,15 @@ jobs:
         # Therefore the package.*.json in the repository will always have out-of-sync versions
       - run: npm --no-git-tag-version version ${{ github.event.release.tag_name }}
       - run: npm run build && npm run publish
+      - name: Publish build assets to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./dist/widgets.umd.js
+            ./dist/widgets.modern.js
+            ./dist/widgets.m.js
+            ./dist/widgets.js
+            ./dist/widgets.css
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
