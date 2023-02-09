@@ -28,10 +28,10 @@ describe('plans provided', () => {
       'Choisissez Alma au moment du paiement.',
     )
     expect(screen.getByTestId('modal-info-element')).toHaveTextContent(
-      'Renseignez les informations demandées.',
+      'Laissez-vous guider et validez votre paiement en 2 minutes.',
     )
     expect(screen.getByTestId('modal-info-element')).toHaveTextContent(
-      'La validation de votre paiement est instantanée !',
+      'Gardez le contrôle en avançant ou reculant vos échéances à votre rythme.',
     )
   })
   it('should display the payments plans provided in eligibility', () => {
