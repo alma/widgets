@@ -16,13 +16,16 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - run: |
-          echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' > .npmrc
-          cat .npmrc
         # We do not create a commit with the update package version
         # Therefore the package.*.json in the repository will always have out-of-sync versions
-      - run: npm --no-git-tag-version version ${{ github.event.release.tag_name }}
-      - run: npm run build && npm run publish
+      - name: Set version in code (update package.json)
+        run: npm --no-git-tag-version version ${{ github.event.release.tag_name }}
+      - name: Build library
+        run: npm run build
+      - name: Publish library
+        run: npm run publish
+        env:
+          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish build assets to release
         uses: softprops/action-gh-release@v1
         with:
@@ -34,7 +37,6 @@ jobs:
             ./dist/widgets.css
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   # Send changelog to Slack
   slack-notification:
