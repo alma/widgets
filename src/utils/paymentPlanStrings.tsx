@@ -8,7 +8,8 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
   const { deferred_days, deferred_months, installments_count: installmentsCount } = payment
   const deferredDaysCount = deferred_days + deferred_months * 30
 
-  if (installmentsCount === 1) {
+  if (installmentsCount === 1 && deferredDaysCount > 0) {
+    // For now there is no distinction between deferred days and deferred months, it will be J+ anyway
     return (
       <FormattedMessage
         id="payment-plan-strings.day-abbreviation"
