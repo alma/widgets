@@ -25,7 +25,7 @@ type Props = {
   hideBorder?: boolean
 }
 
-const VERY_LONG_TIME_IN_MS = 1000 * 3600 * 24 * 365
+const VERY_LONG_TIME_IN_MS = 1000 * 3600
 const DEFAULT_TRANSITION_TIME = 5500
 
 const PaymentPlanWidget: VoidFunctionComponent<Props> = ({

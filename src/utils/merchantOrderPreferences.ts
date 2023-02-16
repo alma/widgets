@@ -21,7 +21,14 @@ export const getIndexOfActivePlan = ({ suggestedPaymentPlan, eligibilityPlans }:
     const installmentsCount = suggestedPaymentPlanArray[index]
 
     const planFound = eligibilityPlans.findIndex((plan) => {
-      return plan.installments_count === installmentsCount && plan.eligible
+      return (
+        plan.installments_count === installmentsCount &&
+        plan.eligible &&
+        // Remove the PayLater plans from the plan to target, we will code a better solution later
+        // To differentiate P1X from PayLater while using the `suggestedPaymentPlan` property.
+        !plan.deferred_days &&
+        !plan.deferred_months
+      )
     })
 
     if (planFound !== -1) {
