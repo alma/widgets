@@ -2,7 +2,7 @@ import { secondsToMilliseconds } from 'date-fns'
 import React, { ReactNode } from 'react'
 import { FormattedDate, FormattedMessage, FormattedNumber } from 'react-intl'
 import { EligibilityPlan, EligibilityPlanToDisplay } from 'types'
-import { priceFromCents } from 'utils'
+import { isP1X, priceFromCents } from 'utils'
 
 export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
   const { deferred_days, deferred_months, installments_count: installmentsCount } = payment
@@ -111,6 +111,28 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
       (installment, index) =>
         index === 0 || installment.total_amount === payment_plan[0].total_amount,
     )
+
+    if (isP1X(payment)) {
+      return (
+        <>
+          <FormattedMessage
+            id="payment-plan-strings.pay-now"
+            defaultMessage="Payez maintenant {totalAmount}"
+            values={{
+              totalAmount: (
+                <FormattedNumber
+                  value={priceFromCents(payment_plan[0].total_amount)}
+                  style="currency"
+                  currency="EUR"
+                />
+              ),
+              installmentsCount,
+            }}
+          />
+          {withNoFee(payment)}
+        </>
+      )
+    }
 
     if (areInstallmentsOfSameAmount) {
       return (
