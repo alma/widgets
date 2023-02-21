@@ -128,7 +128,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
     it('should select the first installment', () => {
       expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
       expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
-      expect(screen.getByText('J+30').className).toContain('active')
+      expect(screen.getByText('M+1').className).toContain('active')
     })
   })
 

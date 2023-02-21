@@ -30,29 +30,32 @@ describe('utils', () => {
         expect(paymentPlanShorthandName(plan)).toEqual(result)
       })
       describe('Pay Later', () => {
-        it.each([
-          [
-            '+30',
-            { installments_count: 1, deferred_days: 0, deferred_months: 1 } as EligibilityPlan,
-          ],
-          [
-            '+30',
-            { installments_count: 1, deferred_days: 30, deferred_months: 0 } as EligibilityPlan,
-          ],
-          [
-            '+15',
-            { installments_count: 1, deferred_days: 15, deferred_months: 0 } as EligibilityPlan,
-          ],
-        ])('should get the short plan name %s', (result, plan) => {
+        
+        it('should get the short plan name for deferred days', () => {
+          const plan = { installments_count: 1, deferred_days: 30, deferred_months: 0 } as EligibilityPlan
+          const result = '+30'
           expect(paymentPlanShorthandName(plan)).toEqual(
             <FormattedMessage
               id="payment-plan-strings.day-abbreviation"
-              defaultMessage="J{numberOfDeferredDays}"
+              defaultMessage="J{deferredDays}"
               values={{
-                numberOfDeferredDays: result,
+                deferredDays: result,
               }}
             />,
-          )
+          ) 
+        })
+        it('should get the short plan name for deferred months', () => {
+          const plan = { installments_count: 1, deferred_days: 0, deferred_months: 1 } as EligibilityPlan
+          const result = '+1'
+          expect(paymentPlanShorthandName(plan)).toEqual(
+            <FormattedMessage
+              id="payment-plan-strings.month-abbreviation"
+              defaultMessage="M{deferredMonths}"
+              values={{
+                deferredMonths: result,
+              }}
+            />,
+          ) 
         })
       })
     })

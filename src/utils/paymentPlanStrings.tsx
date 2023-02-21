@@ -21,7 +21,7 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
   if (deferred_months) {
     return (
       <FormattedMessage
-        id="payment-plan-strings.day-abbreviation"
+        id="payment-plan-strings.month-abbreviation"
         defaultMessage="M{deferredMonths}"
         values={{
           deferredMonths: `+${deferred_months}`,

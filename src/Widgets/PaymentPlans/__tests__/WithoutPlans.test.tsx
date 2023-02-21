@@ -27,7 +27,7 @@ describe('No plans provided', () => {
   })
 
   it('displays all available payment plans', () => {
-    expect(screen.getByText('J+30')).toBeInTheDocument()
+    expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.queryByText('1x')).not.toBeInTheDocument() // By default P1X is filtered
     expect(screen.getByText('2x')).toBeInTheDocument()
     expect(screen.getByText('3x')).toBeInTheDocument()

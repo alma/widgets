@@ -26,7 +26,7 @@ describe('Change language', () => {
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
-    expect(screen.getByText('D+30')).toBeInTheDocument()
+    expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/to be paid on/)).toBeInTheDocument()
     expect(screen.getByText(/\(free of charge\)/)).toBeInTheDocument()
   })
@@ -44,7 +44,7 @@ describe('Change language', () => {
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
-    expect(screen.getByText('T+30')).toBeInTheDocument()
+    expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/zu zahlen am/)).toBeInTheDocument()
     expect(screen.getByText(/\(0% Finanzierung\)/)).toBeInTheDocument()
   })
@@ -62,7 +62,7 @@ describe('Change language', () => {
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
-    expect(screen.getByText('D+30')).toBeInTheDocument()
+    expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/a pagar el/)).toBeInTheDocument()
     expect(screen.getByText(/\(sin intereses\)/)).toBeInTheDocument()
   })
@@ -80,7 +80,7 @@ describe('Change language', () => {
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
-    expect(screen.getByText('G+30')).toBeInTheDocument()
+    expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/da pagare il/)).toBeInTheDocument()
     expect(screen.getByText(/\(senza interessi\)/)).toBeInTheDocument()
   })
@@ -98,7 +98,7 @@ describe('Change language', () => {
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
-    expect(screen.getByText('G+30')).toBeInTheDocument()
+    expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/da pagare il/)).toBeInTheDocument()
     expect(screen.getByText(/\(senza interessi\)/)).toBeInTheDocument()
   })
@@ -116,7 +116,7 @@ describe('Change language', () => {
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
-    expect(screen.getByText('D+30')).toBeInTheDocument()
+    expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/te betalen op/)).toBeInTheDocument()
     expect(screen.getByText(/\(zonder kosten\)/)).toBeInTheDocument()
   })
@@ -134,7 +134,7 @@ describe('Change language', () => {
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
-    expect(screen.getByText('D+30')).toBeInTheDocument()
+    expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/a pagar em/)).toBeInTheDocument()
     expect(screen.getByText(/\(sem encargos\)/)).toBeInTheDocument()
   })
