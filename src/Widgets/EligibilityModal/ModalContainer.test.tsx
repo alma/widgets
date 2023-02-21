@@ -33,7 +33,7 @@ describe('ModalContainer', () => {
     })
 
     it('should display the payments plans provided in eligibility', () => {
-      expect(screen.getByText('J+30')).toBeInTheDocument()
+      expect(screen.getByText('M+1')).toBeInTheDocument()
       expect(screen.getByText('2x')).toBeInTheDocument()
     })
   })
@@ -53,7 +53,7 @@ describe('ModalContainer', () => {
     })
 
     it('should display the payments plans provided in eligibility', () => {
-      expect(screen.getByText('J+30')).toBeInTheDocument()
+      expect(screen.getByText('M+1')).toBeInTheDocument()
       expect(screen.getByText('2x')).toBeInTheDocument()
       expect(screen.getByText('3x')).toBeInTheDocument()
       expect(screen.getByText('4x')).toBeInTheDocument()

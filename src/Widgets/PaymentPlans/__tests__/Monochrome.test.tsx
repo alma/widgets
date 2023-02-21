@@ -23,11 +23,11 @@ it.each([true, false])(
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     expect(screen.getByTestId('widget-button')).toBeInTheDocument()
-    expect(screen.getByText('J+30').className).toContain('active')
+    expect(screen.getByText('M+1').className).toContain('active')
     if (monochrome) {
-      expect(screen.getByText('J+30').className).toContain('monochrome')
+      expect(screen.getByText('M+1').className).toContain('monochrome')
     } else {
-      expect(screen.getByText('J+30').className).not.toContain('polychrome')
+      expect(screen.getByText('M+1').className).not.toContain('polychrome')
     }
   },
 )
