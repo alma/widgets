@@ -6,16 +6,25 @@ import { isP1X, priceFromCents } from 'utils'
 
 export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
   const { deferred_days, deferred_months, installments_count: installmentsCount } = payment
-  const deferredDaysCount = deferred_days + deferred_months * 30
-
-  if (installmentsCount === 1 && deferredDaysCount > 0) {
-    // For now there is no distinction between deferred days and deferred months, it will be J+ anyway
+  
+  if (deferred_days) {
     return (
       <FormattedMessage
         id="payment-plan-strings.day-abbreviation"
-        defaultMessage="J{numberOfDeferredDays}"
+        defaultMessage="J{deferredDays}"
         values={{
-          numberOfDeferredDays: deferredDaysCount > 0 ? `+${deferredDaysCount}` : '',
+          deferredDays: `+${deferred_days}`,
+        }}
+      />
+    )
+  } 
+  if (deferred_months) {
+    return (
+      <FormattedMessage
+        id="payment-plan-strings.day-abbreviation"
+        defaultMessage="M{deferredMonths}"
+        values={{
+          deferredMonths: `+${deferred_months}`,
         }}
       />
     )
