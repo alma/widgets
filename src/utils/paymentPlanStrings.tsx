@@ -7,7 +7,7 @@ import { isP1X, priceFromCents } from 'utils'
 export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
   const { deferred_days, deferred_months, installments_count: installmentsCount } = payment
   
-  if (deferred_days) {
+  if (installmentsCount === 1 && deferred_days) {
     return (
       <FormattedMessage
         id="payment-plan-strings.day-abbreviation"
