@@ -18,7 +18,7 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
       />
     )
   } 
-  if (installmentsCount === 1 && deferred_days) {
+  if (installmentsCount === 1 && deferred_months) {
     return (
       <FormattedMessage
         id="payment-plan-strings.month-abbreviation"
