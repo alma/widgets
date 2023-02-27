@@ -5,7 +5,7 @@ import React, { FunctionComponent, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useMediaQuery } from 'react-responsive'
 import { apiStatus, Card, EligibilityPlan } from 'types'
-import { desktopWidth, isP1X } from 'utils'
+import { desktopWidth } from 'utils'
 import EligibilityPlansButtons from './components/EligibilityPlansButtons'
 import Schedule from './components/Schedule'
 import DesktopModal from './DesktopModal'
@@ -39,11 +39,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
 
   return (
     <Modal onClose={onClose} ariaHideApp={false} scrollable isOpen>
-      <ModalComponent
-        isSomePlanDeferred={isSomePlanDeferred}
-        cards={cards}
-        isCurrentPlanP1X={isP1X(currentPlan)}
-      >
+      <ModalComponent isSomePlanDeferred={isSomePlanDeferred} cards={cards}>
         {status === apiStatus.PENDING && (
           <div className={s.loader}>
             <LoadingIndicator />
