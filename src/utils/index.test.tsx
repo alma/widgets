@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl'
 import { EligibilityPlan } from '../types'
-import { priceToCents, formatCents, isP1X } from './index'
+import { priceToCents, formatCents } from './index'
 import { paymentPlanInfoText, paymentPlanShorthandName } from './paymentPlanStrings'
 import React from 'react'
 describe('utils', () => {
@@ -72,36 +72,5 @@ describe('utils', () => {
     ).toThrow(
       'No payment plan provided for payment in 10 installments. Please contact us if you see this error.',
     )
-  })
-  it('should return true if plan is P1X', () => {
-    const result = isP1X({
-      installments_count: 1,
-      deferred_months: 0,
-      deferred_days: 0,
-    } as EligibilityPlan)
-    expect(result).toBe(true)
-  })
-  it('should return false if plan is not P1X', () => {
-    const result1 = isP1X({
-      installments_count: 2,
-      deferred_months: 0,
-      deferred_days: 0,
-    } as EligibilityPlan)
-
-    const result2 = isP1X({
-      installments_count: 1,
-      deferred_months: 1,
-      deferred_days: 0,
-    } as EligibilityPlan)
-
-    const result3 = isP1X({
-      installments_count: 1,
-      deferred_months: 0,
-      deferred_days: 1,
-    } as EligibilityPlan)
-
-    expect(result1).toBe(false)
-    expect(result2).toBe(false)
-    expect(result3).toBe(false)
   })
 })
