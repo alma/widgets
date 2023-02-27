@@ -17,26 +17,20 @@ const animationDuration = 5600
 
 describe('PaymentPlan has suggestedPaymentPlan', () => {
   describe('as a number', () => {
-    const renderPlans = (suggestedPlan: number) =>
+    beforeEach(async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          suggestedPaymentPlan={suggestedPlan}
+          suggestedPaymentPlan={2}
         />,
       )
-
-    it('displays the message corresponding to the payment plan hovered', async () => {
-      renderPlans(2)
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    })
+
+    it('displays the message corresponding to the payment plan hovered', () => {
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
       expect(screen.getByText('2x').className).toContain('active')
-    })
-    it('should target the P1X and not a PayLater plan when suggested plan is 1', async () => {
-      renderPlans(1)
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-      expect(screen.getByText(/1 x 450,00 €/)).toBeInTheDocument()
-      expect(screen.getByText('1x').className).toContain('active')
     })
   })
 
