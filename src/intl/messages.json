@@ -21,6 +21,5 @@
   "payment-plan-strings.ineligible-lower-than-min": "À partir de {minAmount}",
   "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
-  "payment-plan-strings.no-fee": "(sans frais)",
-  "payment-plan-strings.pay-now": "Payez maintenant {totalAmount}"
+  "payment-plan-strings.no-fee": "(sans frais)"
 }
