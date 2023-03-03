@@ -8,18 +8,19 @@ import s from './MobileModal.module.css'
 import cx from 'classnames'
 import { AlmaLogo } from 'assets/almaLogo'
 
-const MobileModal: FC<{ isSomePlanDeferred: boolean; cards?: Card[] }> = ({
-  children,
-  isSomePlanDeferred,
-  cards,
-}) => (
+type Props = {
+  isCurrentPlanP1X: boolean
+  isSomePlanDeferred: boolean
+  cards?: Card[]
+}
+const MobileModal: FC<Props> = ({ children, isSomePlanDeferred, cards, isCurrentPlanP1X }) => (
   <div
     className={cx(s.container, STATIC_CUSTOMISATION_CLASSES.mobileModal)}
     data-testid="modal-container"
   >
     <Title isSomePlanDeferred={isSomePlanDeferred} />
     {children}
-    <Info />
+    <Info isCurrentPlanP1X={isCurrentPlanP1X} />
     {cards && <Cards cards={cards} />}
     <AlmaLogo className={s.logo} width="75" />
   </div>

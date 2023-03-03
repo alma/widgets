@@ -8,18 +8,19 @@ import Info from '../components/Info'
 import Title from '../components/Title'
 import s from './DesktopModal.module.css'
 
-const DesktopModal: FC<{ isSomePlanDeferred: boolean; cards?: Card[] }> = ({
-  children,
-  isSomePlanDeferred,
-  cards,
-}) => (
+type Props = {
+  isCurrentPlanP1X: boolean
+  isSomePlanDeferred: boolean
+  cards?: Card[]
+}
+const DesktopModal: FC<Props> = ({ children, isSomePlanDeferred, cards, isCurrentPlanP1X }) => (
   <div
     className={cx(s.container, STATIC_CUSTOMISATION_CLASSES.desktopModal)}
     data-testid="modal-container"
   >
     <aside className={cx([s.block, s.left, STATIC_CUSTOMISATION_CLASSES.leftSide])}>
       <Title isSomePlanDeferred={isSomePlanDeferred} />
-      <Info />
+      <Info isCurrentPlanP1X={isCurrentPlanP1X} />
       {cards && <Cards cards={cards} />}
       <AlmaLogo className={s.logo} width="75" />
     </aside>
