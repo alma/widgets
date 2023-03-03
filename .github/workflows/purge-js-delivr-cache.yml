@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  test-curl-action:
+    name: "Curl to purge JSDelivr cache"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Curl"
+        uses: indiesdev/curl@v1.1
+        with:
+          url: https://purge.jsdelivr.net/
+          method: "POST"
+          headers: '{ "cache-control": "no-cache", "content-type": "application/json" }'
+          body: "{'path': ['/npm/@alma/widgets@3.x.x/dist/widgets.umd.js','/npm/@alma/widgets@3.x/dist/widgets.umd.js','/npm/@alma/widgets@3.x.x/dist/widgets.module.css','/npm/@alma/widgets@3.x/dist/widgets.module.css','/npm/@alma/widgets@3.x.x/dist/widgets.css','/npm/@alma/widgets@3.x/dist/widgets.css','/npm/@alma/widgets@3.x.x/dist/widgets.min.css','/npm/@alma/widgets@3.x/dist/widgets.min.css']}"
+
+          # If it is set to true, it will show the response log in the GitHub UI
+          log-response: true
+
