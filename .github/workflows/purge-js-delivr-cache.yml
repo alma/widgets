@@ -16,6 +16,7 @@ jobs:
         with:
           url: https://purge.jsdelivr.net/
           method: "POST"
+          accept: 200,201,204,202
           headers: '{ "cache-control": "no-cache", "content-type": "application/json" }'
           body: "{'path': ['/npm/@alma/widgets@3.x.x/dist/widgets.umd.js','/npm/@alma/widgets@3.x/dist/widgets.umd.js','/npm/@alma/widgets@3.x.x/dist/widgets.module.css','/npm/@alma/widgets@3.x/dist/widgets.module.css','/npm/@alma/widgets@3.x.x/dist/widgets.css','/npm/@alma/widgets@3.x/dist/widgets.css','/npm/@alma/widgets@3.x.x/dist/widgets.min.css','/npm/@alma/widgets@3.x/dist/widgets.min.css']}"
 
