@@ -28,6 +28,7 @@ describe('No plans provided', () => {
 
   it('displays all available payment plans', () => {
     expect(screen.getByText('J+30')).toBeInTheDocument()
+    expect(screen.getByText('1x')).toBeInTheDocument()
     expect(screen.getByText('2x')).toBeInTheDocument()
     expect(screen.getByText('3x')).toBeInTheDocument()
     expect(screen.getByText('4x')).toBeInTheDocument()
@@ -40,7 +41,7 @@ describe('No plans provided', () => {
     act(() => {
       jest.advanceTimersByTime(animationDuration)
     })
-    expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
+    expect(screen.getByText(/1 x 450,00 €/)).toBeInTheDocument()
     expect(screen.getByText(/\(sans frais\)/)).toBeInTheDocument()
   })
 })
