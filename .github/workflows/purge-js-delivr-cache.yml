@@ -1,13 +1,8 @@
-# Temporary trigger workflow on PR to test the job
-#on:
-#  workflow_dispatch:
-
 on:
-  pull_request:
-    branches: [master]
+  workflow_dispatch:
 
 jobs:
-  test-curl-action:
+  purge-jsdelivr-cache:
     name: "Curl to purge JSDelivr cache"
     runs-on: ubuntu-latest
     steps:
