@@ -4,7 +4,8 @@ import React from 'react'
 import { act } from 'react-dom/test-utils'
 import render from 'test'
 import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
+import { mockButtonPlans, configPlans } from 'test/fixtures'
+import { ConfigPlan } from '../../../types'
 
 jest.mock('utils/fetch', () => {
   return {
@@ -17,12 +18,13 @@ const animationDuration = 5600
 
 describe('PaymentPlan has suggestedPaymentPlan', () => {
   describe('as a number', () => {
-    const renderPlans = (suggestedPlan: number) =>
+    const renderPlans = (suggestedPlan: number, plans?: ConfigPlan[]) =>
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
           suggestedPaymentPlan={suggestedPlan}
+          configPlans={plans}
         />,
       )
 
@@ -33,7 +35,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
       expect(screen.getByText('2x').className).toContain('active')
     })
     it('should target the P1X and not a PayLater plan when suggested plan is 1', async () => {
-      renderPlans(1)
+      renderPlans(1, configPlans) // specify all plans explicitly to display P1X. P1X is only displayed if provided in configPlans.
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
       expect(screen.getByText(/Payez maintenant 450,00 €/)).toBeInTheDocument()
       expect(screen.getByText('1x').className).toContain('active')

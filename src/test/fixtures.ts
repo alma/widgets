@@ -1,4 +1,4 @@
-import { EligibilityPlan } from 'types'
+import { ConfigPlan, EligibilityPlan } from 'types'
 
 export const mockPlansAllEligible: EligibilityPlan[] = [
   {
@@ -525,3 +525,11 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
 export const mockPlansWithoutDeferred = mockPlansAllEligible.filter(
   (plan) => plan.deferred_days === 0 && plan.deferred_months === 0,
 )
+
+export const configPlans: ConfigPlan[] = mockPlansAllEligible.map((plan) => ({
+  installmentsCount: plan.installments_count,
+  deferredDays: plan.deferred_days,
+  deferredMonths: plan.deferred_months,
+  minAmount: 90_00,
+  maxAmount: 3350_00,
+}))
