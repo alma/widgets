@@ -3,7 +3,7 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
 import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
+import { configPlans, mockButtonPlans } from 'test/fixtures'
 
 jest.mock('utils/fetch', () => {
   return {
@@ -21,6 +21,7 @@ describe('Custom transition delay', () => {
         purchaseAmount={40000}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
         transitionDelay={animationDuration}
+        configPlans={configPlans} // specify all plans explicitly to display P1X. P1X is only displayed if provided in configPlans.
       />,
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
@@ -32,6 +33,7 @@ describe('Custom transition delay', () => {
     act(() => {
       jest.advanceTimersByTime(animationDuration)
     })
+    // P1X
     expect(screen.getByText(/Payez maintenant 450,00 €/)).toBeInTheDocument()
     expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
     act(() => {
