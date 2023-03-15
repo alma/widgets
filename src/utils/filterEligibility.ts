@@ -25,23 +25,12 @@ const filterELigibility = (
   eligibilities: EligibilityPlan[],
   configPlans?: ConfigPlan[],
 ): EligibilityPlanToDisplay[] => {
-  let eligibilitiesToDisplay = eligibilities
-
-  const askedForP1X = configPlans?.find(
-    (plan) => plan.installmentsCount === 1 && plan.deferredDays === 0 && plan.deferredMonths === 0,
-  )
-
-  // Remove p1x
-  if (!askedForP1X) {
-    eligibilitiesToDisplay = eligibilities.filter(
+  // Remove P1X if no configuration is provided
+  if (!configPlans) {
+    return eligibilities.filter(
       (plan) =>
         !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0),
     )
-  }
-
-  // If no configPlans was provided, return eligibility response
-  if (!configPlans) {
-    return eligibilitiesToDisplay
   }
 
   // Else check if the plan is eligible regarding the related configPlan
