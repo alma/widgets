@@ -16,7 +16,7 @@
   "installments.total-fees": "Of which costs (incl. VAT)",
   "payment-plan-strings.day-abbreviation": "D{deferredDays}",
   "payment-plan-strings.default-message": "Pay in installments with Alma",
-  "payment-plan-strings.deferred": "{totalAmount} to be paid on {dueDate}",
+  "payment-plan-strings.deferred": "{totalAmount} to pay the {dueDate}",
   "payment-plan-strings.ineligible-greater-than-max": "Until {maxAmount}",
   "payment-plan-strings.ineligible-lower-than-min": "From {minAmount}",
   "payment-plan-strings.month-abbreviation": "M{deferredMonths}",
