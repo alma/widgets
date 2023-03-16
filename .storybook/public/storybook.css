@@ -1,0 +1,176 @@
+:root {
+  --white: #fff;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semi-bold: 600;
+  --weight-bold: 700;
+
+  /** Colors **/
+  --alma-orange: #fa5022;
+  --soft-orange: #ffeadb;
+  --alma-blue: #60d2df;
+  --soft-blue: #e7f8fa;
+  --alma-yellow: #ffcf00;
+  --soft-yellow: #fff5cc;
+  --alma-green: #4bb543;
+  --soft-green: #e2f3e1;
+  --alma-red: #f00;
+  --soft-red: #ffecec;
+  --off-white: #f9f9f9;
+  --light-gray: #d4d4d4;
+  --dark-gray: #8c8c8c;
+  --off-black: #1a1a1a;
+  --white: #fff;
+  --black: #000;
+}
+
+/** Venn **/
+@font-face {
+  font-family: Venn;
+  src: url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.eot') format('embedded-opentype'),
+  url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.woff') format('woff'),
+  url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Venn;
+  src: url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.eot?#iefix') format('embedded-opentype'),
+  url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.woff') format('woff'),
+  url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/** Argent **/
+@font-face {
+  font-family: Argent;
+  src: url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.eot') format('embedded-opentype'),
+  url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.woff') format('woff'),
+  url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background-color: var(--off-white);
+  font-family: 'Venn', sans-serif;
+  color: var(--off-black);
+}
+
+h1, h2 {
+  font-family: 'Argent CF', sans-serif;
+}
+
+a, a:visited {
+  color: var(--off-black);
+}
+
+a:hover {
+  color: var(--dark-gray);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+code {
+  background: var(--light-gray);
+  border: 1px solid var(--dark-gray);
+  border-left: 3px solid var(--alma-orange);
+  color: var(--off-black);
+  page-break-inside: avoid;
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1em 1.5em;
+  display: block;
+  word-wrap: break-word;
+}
+
+.copyButton {
+  font-family: 'Venn', sans-serif;
+  background-color: var(--alma-yellow);
+  font-weight: var(--weight-bold);
+  line-height: 135%;
+  color: var(--off-black);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border: 1.5px solid transparent;
+  border-radius: 13px;
+  padding: calc(8 - 1px) 20px;
+  font-size: 14px;
+}
+
+.copyButton:hover {
+  background-color: var(--soft-yellow);
+}
+
+.link {
+  padding: 0;
+  border: none;
+  width: fit-content;
+  background: transparent;
+  text-transform: unset;
+  font-weight: unset;
+  font-size: 16px;
+  line-height: 135%;
+  text-decoration-line: underline;
+  letter-spacing: 0;
+  border-radius: 0;
+  text-underline-offset: 4px;
+}
+
+.link:hover {
+  color: var(--alma-orange);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+td, th {
+  padding: 8px;
+}
+
+tr:nth-child(even){
+  background-color: #fff3ea;
+}
+
+td > span, td > * > span, .code-string {
+  font-family: monospace;
+  font-size: 16px;
+  color: var(--dark-gray);
+}
+
+th {
+  background-color: var(--light-gray);
+}
+
+.colorShow {
+background-color: var(--alma-orange);
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+

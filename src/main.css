@@ -27,9 +27,9 @@
 /** Venn **/
 @font-face {
   font-family: Venn;
-  src: url('./assets/fonts/Venn-Bold.eot') format('embedded-opentype'),
-    url('./assets/fonts/Venn-Bold.woff') format('woff'),
-    url('./assets/fonts/Venn-Bold.ttf') format('truetype');
+  src: url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.eot') format('embedded-opentype'),
+  url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.woff') format('woff'),
+  url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
