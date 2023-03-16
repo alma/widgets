@@ -27,7 +27,7 @@ describe('Change language', () => {
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
-    expect(screen.getByText(/to be paid on/)).toBeInTheDocument()
+    expect(screen.getByText(/to pay the/)).toBeInTheDocument()
     expect(screen.getByText(/\(free of charge\)/)).toBeInTheDocument()
   })
 
