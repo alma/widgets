@@ -17,7 +17,7 @@
   --alma-red: #f00;
   --soft-red: #ffecec;
   --off-white: #f9f9f9;
-  --light-gray: #d4d4d4;
+  --light-gray: #F0F0F0;
   --dark-gray: #8c8c8c;
   --off-black: #1a1a1a;
   --white: #fff;
@@ -36,9 +36,9 @@
 }
 @font-face {
   font-family: Venn;
-  src: url('./assets/fonts/Venn-Regular.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/Venn-Regular.woff') format('woff'),
-    url('./assets/fonts/Venn-Regular.ttf') format('truetype');
+  src: url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.eot?#iefix') format('embedded-opentype'),
+  url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.woff') format('woff'),
+  url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -46,10 +46,10 @@
 
 /** Argent **/
 @font-face {
-  font-family: 'Argent CF';
-  src: url('./assets/fonts/ArgentCF-DemiBold.eot') format('embedded-opentype'),
-    url('./assets/fonts/ArgentCF-DemiBold.woff') format('woff'),
-    url('./assets/fonts/ArgentCF-DemiBold.ttf') format('truetype');
+  font-family: Argent;
+  src: url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.eot') format('embedded-opentype'),
+  url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.woff') format('woff'),
+  url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;

@@ -36,7 +36,6 @@ export const Monochrome: Story = (args) => {
   const snippet = `widgets.add(Alma.Widgets.PaymentPlans, {
       container: '#alma-widget',
       purchaseAmount: ${args.amount / 100},
-      locale: "${args.locale}",
       monochrome: ${isMonochrome},
     })`
   return (
