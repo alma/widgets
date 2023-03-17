@@ -1,5 +1,3 @@
-const copy = require('rollup-plugin-copy')
-
 module.exports = {
   plugins: {
     typescript: function (config) {
@@ -18,19 +16,6 @@ module.exports = {
       format,
       options: { pkg },
     } = context
-
-    config.inputOptions.plugins.splice(
-      0,
-      0,
-      copy({
-        targets: [
-          {
-            src: ['src/assets/fonts/Argent/*', 'src/assets/fonts/Venn/*'],
-            dest: 'dist/assets/fonts',
-          },
-        ],
-      }),
-    )
 
     // When building browser "standalone" bundles, make sure we inline dependencies
     if (format === 'umd') {
