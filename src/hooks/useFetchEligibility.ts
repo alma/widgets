@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ApiConfig, apiStatus, ConfigPlan, EligibilityPlan } from 'types'
 import { fetchFromApi } from 'utils/fetch'
-import filterELigibility from 'utils/filterEligibility'
+import filterEligibility from 'utils/filterEligibility'
 
 const useFetchEligibility = (
   purchaseAmount: number,
@@ -54,6 +54,6 @@ const useFetchEligibility = (
     }
   }, [status])
 
-  return [filterELigibility(eligibility, plans), status]
+  return [filterEligibility(eligibility, plans), status]
 }
 export default useFetchEligibility
