@@ -21,7 +21,7 @@ const getPaymentPlanBoundaries = (plan: EligibilityPlan, configPlan?: ConfigPlan
   return configPlan ?? {}
 }
 
-const filterELigibility = (
+const filterEligibility = (
   eligibilities: EligibilityPlan[],
   configPlans?: ConfigPlan[],
 ): EligibilityPlanToDisplay[] => {
@@ -58,4 +58,4 @@ const filterELigibility = (
   })
 }
 
-export default filterELigibility
+export default filterEligibility
