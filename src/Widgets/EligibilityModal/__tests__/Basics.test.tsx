@@ -30,8 +30,8 @@ describe('Test responsiveness', () => {
 })
 
 describe('onClose event test', () => {
-  it('should be launched when close button is clicked', () => {
-    userEvent.click(screen.getByTestId('modal-close-button'))
+  it('should be launched when close button is clicked', async () => {
+    await userEvent.click(screen.getByTestId('modal-close-button'))
     expect(onClose).toHaveBeenCalledTimes(1)
   })
 })
