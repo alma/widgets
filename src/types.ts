@@ -92,6 +92,7 @@ export type ModalOptions = {
   plans?: ConfigPlan[]
   locale?: Locale
   cards?: Card[]
+  onClose: () => void
 }
 
 export type WidgetNames = keyof typeof widgetTypes

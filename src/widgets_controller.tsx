@@ -78,9 +78,14 @@ export class WidgetsController {
         customerBillingCountry,
         customerShippingCountry,
         cards,
+        onClose,
       } = options as ModalOptions
 
-      const close = () => containerDiv && unmountComponentAtNode(containerDiv)
+      const close = () => {
+        if (!containerDiv) return
+        unmountComponentAtNode(containerDiv)
+        onClose()
+      }
 
       const renderModal = () => {
         render(
