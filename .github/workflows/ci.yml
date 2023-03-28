@@ -52,15 +52,15 @@ jobs:
       - run: npm ci
       - run: npm run build
 
- sonarcloud-scan:
-   steps:
-     - uses: SonarSource/sonarcloud-github-action@master
-       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-       with:
-        args: >
-          -Dsonar.projectVersion=${{github.ref_name}}
+  sonarcloud-scan:
+    steps:
+      - uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectVersion=${{github.ref_name}}
 
   update-release-draft:
     if: github.ref == 'refs/heads/master'
