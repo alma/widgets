@@ -1,4 +1,5 @@
-import { act, screen, waitFor, fireEvent, within } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
@@ -21,13 +22,12 @@ describe('Modal initializes with the correct plan', () => {
     )
 
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-    act(() => {
-      fireEvent.mouseEnter(screen.getByText('3x'))
-    })
+
+    await userEvent.hover(screen.getByText('3x'))
+
     expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
-    act(() => {
-      fireEvent.click(screen.getByTestId('widget-button'))
-    })
+
+    await userEvent.click(screen.getByTestId('widget-button'))
 
     await checkModalElements()
   })
@@ -40,14 +40,13 @@ describe('Modal initializes with the correct plan', () => {
       />,
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-    act(() => {
-      fireEvent.mouseOver(screen.getByText('3x'))
-    })
+
+    await userEvent.hover(screen.getByText('3x'))
+
     expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
 
-    act(() => {
-      fireEvent.click(screen.getByText('3x'))
-    })
+    await userEvent.click(screen.getByText('3x'))
+
     await checkModalElements()
   })
 
@@ -59,15 +58,34 @@ describe('Modal initializes with the correct plan', () => {
       />,
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-    act(() => {
-      fireEvent.click(screen.getByTestId('widget-button'))
-    })
+
+    await userEvent.click(screen.getByTestId('widget-button'))
+
     expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
     expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
     expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
     const modalContainer = screen.getByTestId('modal-container')
     expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
     expect(within(modalContainer).getAllByText('450,00 €')).toHaveLength(2)
+  })
+  it('should call onModalClose on close', async () => {
+    const onModalClose = jest.fn()
+    render(
+      <PaymentPlanWidget
+        purchaseAmount={40000}
+        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+        onModalClose={onModalClose}
+      />,
+    )
+    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+
+    await userEvent.click(screen.getByTestId('widget-button'))
+
+    expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
+
+    await userEvent.click(screen.getByTestId('modal-close-button'))
+
+    expect(onModalClose).toHaveBeenCalledTimes(1)
   })
 })
 

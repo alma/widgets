@@ -1,4 +1,5 @@
-import { act, fireEvent, screen, waitFor } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import React from 'react'
 import { Context as ResponsiveContext } from 'react-responsive'
 import render from 'test'
@@ -6,15 +7,15 @@ import { mockButtonPlans } from 'test/fixtures'
 import { apiStatus } from 'types'
 import EligibilityModal from '..'
 
+const onClose = jest.fn()
+
 beforeEach(async () => {
   render(
     <ResponsiveContext.Provider value={{ width: 801 }}>
       <EligibilityModal
         eligibilityPlans={mockButtonPlans}
         status={apiStatus.SUCCESS}
-        onClose={() => {
-          console.log('modal closed')
-        }}
+        onClose={onClose}
       />
     </ResponsiveContext.Provider>,
   )
@@ -30,10 +31,7 @@ describe('Test responsiveness', () => {
 
 describe('onClose event test', () => {
   it('should be launched when close button is clicked', () => {
-    console.log = jest.fn()
-    act(() => {
-      fireEvent.click(screen.getByTestId('modal-close-button'))
-    })
-    expect(console.log).toBeCalledWith('modal closed')
+    userEvent.click(screen.getByTestId('modal-close-button'))
+    expect(onClose).toHaveBeenCalledTimes(1)
   })
 })
