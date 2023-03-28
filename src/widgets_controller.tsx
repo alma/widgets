@@ -16,7 +16,7 @@ import PaymentPlanWidget from 'Widgets/PaymentPlans'
 export type AddReturnType =
   | {
       open: () => void
-      close: () => void
+      close: (event: React.MouseEvent | React.KeyboardEvent) => void
     }
   | undefined
 
@@ -44,6 +44,7 @@ export class WidgetsController {
         customerShippingCountry,
         locale = Locale.en,
         cards,
+        onModalClose,
       } = options as PaymentPlanWidgetOptions
 
       if (containerDiv) {
@@ -61,6 +62,7 @@ export class WidgetsController {
               customerShippingCountry={customerShippingCountry}
               transitionDelay={transitionDelay}
               hideBorder={hideBorder}
+              onModalClose={onModalClose}
             />
           </IntlProvider>,
           document.querySelector(container),
@@ -78,10 +80,14 @@ export class WidgetsController {
         customerBillingCountry,
         customerShippingCountry,
         cards,
+        onClose,
       } = options as ModalOptions
 
-      const close = () => containerDiv && unmountComponentAtNode(containerDiv)
-
+      const close = (event: React.MouseEvent | React.KeyboardEvent) => {
+        if (!containerDiv) return
+        unmountComponentAtNode(containerDiv)
+        onClose && onClose(event)
+      }
       const renderModal = () => {
         render(
           <IntlProvider locale={locale}>

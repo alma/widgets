@@ -10,7 +10,7 @@ import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.co
 export type Props = Modal.Props & {
   children: ReactNode
   isOpen: boolean
-  onClose: () => void
+  onClose: (event: React.MouseEvent | React.KeyboardEvent) => void
   className?: string
   contentClassName?: string
   scrollable?: boolean

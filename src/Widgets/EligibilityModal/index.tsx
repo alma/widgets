@@ -14,7 +14,7 @@ import MobileModal from './MobileModal'
 
 type Props = {
   initialPlanIndex?: number
-  onClose: () => void
+  onClose: (event: React.MouseEvent | React.KeyboardEvent) => void
   eligibilityPlans: EligibilityPlan[]
   status: apiStatus
   cards?: Card[]
