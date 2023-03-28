@@ -76,10 +76,8 @@ jobs:
         with:
           text: |
 
-            Deployment of `alma/widgets`, release **[${{ github.event.release.name }}](${{
-              github.event.release.html_url
-            }})**:
-
+            New release of `alma/widgets` published, **[${{ github.event.release.name }}](${{
+              github.event.release.html_url }})**:
 
             ${{ steps.release-notes.outputs.RELEASE_NOTES }}
 
