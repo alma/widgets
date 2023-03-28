@@ -23,6 +23,7 @@ type Props = {
   suggestedPaymentPlan?: number | number[]
   cards?: Card[]
   hideBorder?: boolean
+  onModalClose?: (event: React.MouseEvent | React.KeyboardEvent) => void
 }
 
 const VERY_LONG_TIME_IN_MS = 1000 * 3600
@@ -40,6 +41,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   customerShippingCountry,
   transitionDelay,
   hideBorder = false,
+  onModalClose,
 }) => {
   const [eligibilityPlans, status] = useFetchEligibility(
     purchaseAmount,
@@ -57,7 +59,10 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   const isTransitionSpecified = transitionDelay !== undefined // 👈  The merchant has specified a transition time
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true)
-  const closeModal = () => setIsOpen(false)
+  const closeModal = (event: React.MouseEvent | React.KeyboardEvent) => {
+    setIsOpen(false)
+    onModalClose && onModalClose(event)
+  }
 
   const eligiblePlanKeys = eligibilityPlans.reduce<number[]>(
     (acc, plan, index) => (plan.eligible ? [...acc, index] : acc),

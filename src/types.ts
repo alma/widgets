@@ -1,4 +1,5 @@
 import { ApiMode } from 'consts'
+import * as React from 'react'
 
 export type ApiConfig = { domain: ApiMode; merchantId: string }
 
@@ -81,6 +82,7 @@ export type PaymentPlanWidgetOptions = {
   hideBorder?: boolean
   customerBillingCountry?: string
   customerShippingCountry?: string
+  onModalClose?: (event: React.MouseEvent | React.KeyboardEvent) => void
 }
 
 export type ModalOptions = {
@@ -92,6 +94,7 @@ export type ModalOptions = {
   plans?: ConfigPlan[]
   locale?: Locale
   cards?: Card[]
+  onClose?: (event: React.MouseEvent | React.KeyboardEvent) => void
 }
 
 export type WidgetNames = keyof typeof widgetTypes

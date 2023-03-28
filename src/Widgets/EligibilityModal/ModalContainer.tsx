@@ -9,7 +9,7 @@ type Props = {
   configPlans?: ConfigPlan[]
   customerBillingCountry?: string
   customerShippingCountry?: string
-  onClose: () => void
+  onClose: (event: React.MouseEvent | React.KeyboardEvent) => void
   cards?: Card[]
 }
 
