@@ -10,6 +10,7 @@
 }
 
 .buttons > button {
+  display: initial;
   height: 50px;
   min-width: 50px;
   border: 1px solid var(--dark-gray);
