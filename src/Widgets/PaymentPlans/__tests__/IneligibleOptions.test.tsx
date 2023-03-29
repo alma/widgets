@@ -1,4 +1,5 @@
-import { act, fireEvent, screen, waitFor } from '@testing-library/react'
+import { act, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
@@ -10,11 +11,18 @@ jest.mock('utils/fetch', () => {
     fetchFromApi: async () => mockEligibilityPaymentPlanWithIneligiblePlan,
   }
 })
-jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
 
 const animationDuration = 5600
 
 describe('PaymentPlan has ineligible options from configPlans', () => {
+  beforeAll(() => {
+    jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
+  })
+
+  afterAll(() => {
+    jest.useRealTimers()
+  })
+
   beforeEach(async () => {
     render(
       <PaymentPlanWidget
@@ -66,8 +74,10 @@ describe('PaymentPlan has ineligible options from configPlans', () => {
     expect(screen.getByText('2 x 225,00 € (sans frais)')).toBeInTheDocument()
   })
 
-  it('display conditions when inactive plans are hovered', () => {
-    fireEvent.mouseEnter(screen.getByText('4x'))
+  it('display conditions when inactive plans are hovered', async () => {
+    const user = userEvent.setup({ delay: null })
+
+    await user.hover(screen.getByText('4x'))
     expect(screen.getByText("Jusqu'à 150,00 €")).toBeInTheDocument()
   })
 })
@@ -95,10 +105,12 @@ describe('PaymentPlan has ineligible options from merchant config', () => {
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
   })
 
-  it('display conditions when non eligible plans are hovered', () => {
-    fireEvent.mouseEnter(screen.getByText('10x'))
+  it('display conditions when non eligible plans are hovered', async () => {
+    const user = userEvent.setup({ delay: null })
+
+    await user.hover(screen.getByText('10x'))
     expect(screen.getByText('À partir de 900,00 €')).toBeInTheDocument()
-    fireEvent.mouseEnter(screen.getByText('4x'))
+    await user.hover(screen.getByText('4x'))
     expect(screen.getByText("Jusqu'à 200,00 €")).toBeInTheDocument()
   })
 })

@@ -1,10 +1,9 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { ApiMode } from 'consts'
 import React from 'react'
-import { act } from 'react-dom/test-utils'
 import render from 'test'
 import { mockButtonPlans } from 'test/fixtures'
-import { secondsToMilliseconds } from 'utils'
 import ModalContainer from './ModalContainer'
 import { Context as ResponsiveContext } from 'react-responsive'
 jest.mock('utils/fetch', () => {
@@ -12,8 +11,6 @@ jest.mock('utils/fetch', () => {
     fetchFromApi: async () => mockButtonPlans,
   }
 })
-
-global.Date.now = jest.fn(() => secondsToMilliseconds(1638350762))
 
 describe('ModalContainer', () => {
   describe('test responsiveness', () => {
@@ -70,10 +67,9 @@ describe('ModalContainer', () => {
       expect(element).toHaveTextContent('21 novembre 2021')
     })
 
-    it('should display the schedule for the selected payment plan', () => {
-      act(() => {
-        fireEvent.click(screen.getByText('4x'))
-      })
+    it('should display the schedule for the selected payment plan', async () => {
+      await userEvent.click(screen.getByText('4x'))
+
       const installmentElement = screen.getByTestId('modal-container')
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [

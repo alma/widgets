@@ -1,12 +1,10 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
-import secondsToMilliseconds from 'date-fns/secondsToMilliseconds'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import React from 'react'
 import render from 'test'
 import { mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
 import { apiStatus } from 'types'
 import EligibilityModal from '..'
-
-global.Date.now = jest.fn(() => secondsToMilliseconds(1638350762))
 
 describe('plans provided', () => {
   describe('default behaviour', () => {
@@ -56,8 +54,8 @@ describe('plans provided', () => {
       expect(totalElement).toHaveTextContent('Total')
       expect(totalElement).toHaveTextContent('Dont frais')
     })
-    it('should display the schedule for the selected payment plan', () => {
-      fireEvent.click(screen.getByText('4x'))
+    it('should display the schedule for the selected payment plan', async () => {
+      await userEvent.click(screen.getByText('4x'))
       const installmentElement = screen.getByTestId('modal-installments-element')
 
       expect(installmentElement).toHaveTextContent("Aujourd'hui")
@@ -72,8 +70,8 @@ describe('plans provided', () => {
       expect(totalElement).toHaveTextContent('Total')
       expect(totalElement).toHaveTextContent('460,62 €')
     })
-    it('should display credit specific features', () => {
-      fireEvent.click(screen.getByText('10x'))
+    it('should display credit specific features', async () => {
+      await userEvent.click(screen.getByText('10x'))
       const totalElement = screen.getByTestId('modal-summary')
       expect(totalElement).toHaveTextContent('Dont coût du crédit')
       expect(totalElement).toHaveTextContent('26,64 € (TAEG 17,2 %)')

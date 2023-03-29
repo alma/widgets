@@ -3,5 +3,11 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect'
+import secondsToMilliseconds from 'date-fns/secondsToMilliseconds'
 
 jest.mock('no-scroll', () => ({ on: jest.fn(), off: jest.fn() }))
+
+beforeEach(() => {
+  // Mock jest's "Today"
+  Date.now = jest.fn(() => secondsToMilliseconds(1638350762)) // 01.12.2021
+})
