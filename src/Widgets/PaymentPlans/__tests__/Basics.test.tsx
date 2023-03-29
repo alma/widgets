@@ -1,4 +1,5 @@
-import { screen, waitFor, fireEvent } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
@@ -27,9 +28,9 @@ describe('Basic PaymentPlan test', () => {
   })
 
   it('opens the modal on click and close it', async () => {
-    fireEvent.click(screen.getByTestId('widget-button'))
+    await userEvent.click(screen.getByTestId('widget-button'))
     expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
-    fireEvent.click(screen.getByTestId('modal-close-button'))
+    await userEvent.click(screen.getByTestId('modal-close-button'))
     expect(screen.queryByTestId('modal-close-button')).not.toBeInTheDocument()
   })
   describe('PayNow handle', () => {

@@ -1,4 +1,5 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
@@ -10,12 +11,14 @@ jest.mock('utils/fetch', () => {
     fetchFromApi: async () => mockButtonPlans,
   }
 })
-jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
 
 const animationDuration = 5600 // 5500 + Time for transition
 
 describe('PaymentPlan has credit', () => {
-  beforeEach(async () => {
+  afterAll(() => {
+    jest.useRealTimers()
+  })
+  const setUpTest = async () => {
     render(
       <PaymentPlanWidget
         purchaseAmount={40000}
@@ -51,22 +54,31 @@ describe('PaymentPlan has credit', () => {
       />,
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-  })
+  }
 
-  it('displays the message corresponding to the payment plan hovered', () => {
+  it('displays the message corresponding to the payment plan hovered', async () => {
+    await setUpTest()
+
     expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
     expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
-    fireEvent.mouseEnter(screen.getByText('3x'))
+    await userEvent.hover(screen.getByText('3x'))
     expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
-    fireEvent.mouseEnter(screen.getByText('10x'))
+    await userEvent.hover(screen.getByText('10x'))
     expect(screen.getByText(/47,73 € puis 9 x 47,66 €/)).toBeInTheDocument()
   })
 
-  it('stops iterating when an element has been hovered', () => {
-    fireEvent.mouseEnter(screen.getByText('3x'))
-    expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
+  it('stops iterating when an element has been hovered', async () => {
+    const user = userEvent.setup({ delay: null })
+
+    jest.useFakeTimers()
+    await setUpTest()
+
+    await user.hover(screen.getByText('3x'))
+
+    await waitFor(() => expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument())
 
     jest.advanceTimersByTime(animationDuration)
-    expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
+
+    await waitFor(() => expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()) // Does not change
   })
 })

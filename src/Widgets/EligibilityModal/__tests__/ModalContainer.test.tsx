@@ -1,4 +1,5 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { Widgets } from 'index'
 import { ApiMode } from 'consts'
 import React from 'react'
@@ -28,13 +29,13 @@ describe('ModalContainer', () => {
   it('should open with clickableSelector and open method', async () => {
     console.error = jest.fn()
     const openModalButton = screen.getByText('Open modal with clickableSelector')
-    fireEvent.click(openModalButton)
+    await userEvent.click(openModalButton)
     expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
-    fireEvent.click(screen.getByTestId('modal-close-button'))
+    await userEvent.click(screen.getByTestId('modal-close-button'))
 
     ModalWidget?.open()
     await waitFor(() => expect(screen.queryByTestId('modal-close-button')).toBeInTheDocument())
-    ModalWidget?.close()
+    ModalWidget?.close({} as React.MouseEvent)
     await waitFor(() => expect(screen.queryByTestId('modal-close-button')).not.toBeInTheDocument())
   })
 })
