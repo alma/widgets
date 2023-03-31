@@ -4,7 +4,7 @@ import React, { FC } from 'react'
 import s from './Installment.module.css'
 import { PaymentPlan } from 'types'
 import cx from 'classnames'
-import { isToday } from 'date-fns'
+import { isToday, secondsToMilliseconds } from '../../../utils'
 
 type Props = {
   installment: PaymentPlan
@@ -16,7 +16,7 @@ const Installment: FC<Props> = ({ installment, index }) => {
     <div className={s.installment} data-testid={`installment-${index}`}>
       <div className={s.date}>
         <div className={cx(s.dot, { [s.isCurrent]: index === 0 })} />
-        {isToday(installment.due_date * 1000) ? (
+        {isToday(secondsToMilliseconds(installment.due_date)) ? (
           <FormattedMessage id="installments.today" defaultMessage="Aujourd'hui" tagName="strong" />
         ) : (
           <FormattedDate

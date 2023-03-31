@@ -1,4 +1,4 @@
-import { secondsToMilliseconds } from 'date-fns'
+import { secondsToMilliseconds } from '../utils'
 import React, { ReactNode } from 'react'
 import { FormattedDate, FormattedMessage, FormattedNumber } from 'react-intl'
 import { EligibilityPlan, EligibilityPlanToDisplay } from 'types'
@@ -6,7 +6,7 @@ import { isP1X, priceFromCents } from 'utils'
 
 export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
   const { deferred_days, deferred_months, installments_count: installmentsCount } = payment
-  
+
   if (installmentsCount === 1 && deferred_days) {
     return (
       <FormattedMessage
@@ -17,7 +17,7 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
         }}
       />
     )
-  } 
+  }
   if (installmentsCount === 1 && deferred_months) {
     return (
       <FormattedMessage

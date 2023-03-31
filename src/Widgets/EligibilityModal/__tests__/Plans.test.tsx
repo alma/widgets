@@ -1,5 +1,5 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react'
-import secondsToMilliseconds from 'date-fns/secondsToMilliseconds'
+import { secondsToMilliseconds } from '../../../utils'
 import React from 'react'
 import render from 'test'
 import { mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'

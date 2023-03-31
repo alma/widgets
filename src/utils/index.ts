@@ -18,3 +18,10 @@ export const desktopWidth = 800
 
 export const isP1X = (plan: EligibilityPlan): boolean =>
   plan?.installments_count === 1 && plan?.deferred_days === 0 && plan?.deferred_months === 0
+
+export const isToday = (timestamp: number): boolean => {
+  const today = new Date(Date.now()).setHours(0, 0, 0, 0)
+  const dateToCompare = new Date(timestamp).setHours(0, 0, 0, 0)
+
+  return today === dateToCompare
+}
