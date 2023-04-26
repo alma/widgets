@@ -42,6 +42,7 @@ const useFetchEligibility = (
         },
         {
           Authorization: `Alma-Merchant-Auth ${merchantId}`,
+          'X-Alma-Agent': 'Alma Widget',
         },
       )
         .then((res) => {
