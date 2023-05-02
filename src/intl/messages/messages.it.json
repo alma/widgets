@@ -23,5 +23,6 @@
   "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {Oggi paghi {firstInstallmentAmount} poi tra {numberOfRemainingInstallments} mese {othersInstallmentAmount}} other {Oggi paghi {firstInstallmentAmount} poi {numberOfRemainingInstallments} rate mensili di {othersInstallmentAmount}}}",
   "payment-plan-strings.multiple-installments-same-amount": "In {installmentsCount} rate mensili di {totalAmount}",
   "payment-plan-strings.no-fee": "(senza interessi)",
-  "payment-plan-strings.pay-now": "Paga ora {totalAmount}"
+  "payment-plan-strings.pay-now": "Paga ora {totalAmount}",
+  "payment-plan-strings.pay.now.button": "Paga ora"
 }

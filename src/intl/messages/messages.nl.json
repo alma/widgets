@@ -23,5 +23,6 @@
   "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} dan {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} dan {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(zonder kosten)",
-  "payment-plan-strings.pay-now": "Betaal nu {totalAmount}"
+  "payment-plan-strings.pay-now": "Betaal nu {totalAmount}",
+  "payment-plan-strings.pay.now.button": "Betaal nu"
 }
