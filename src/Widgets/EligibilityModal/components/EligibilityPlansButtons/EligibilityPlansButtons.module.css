@@ -14,7 +14,6 @@
   height: 50px;
   min-width: 50px;
   border: 1px solid var(--dark-gray);
-  text-transform: lowercase;
   border-radius: 16px;
   font-family: 'Argent', sans-serif;
   font-size: 20px;
@@ -24,11 +23,15 @@
   background-color: var(--white);
   transition: all 0.1s ease;
   color: var(--off-black);
-  padding: initial; /* To avoid CSS surcharge on this. */
+  padding-right: initial; /* To avoid CSS surcharge on this. */
 }
 
 .buttons > button.active {
   background-color: var(--alma-orange);
   color: var(--white);
   border: 0;
+}
+
+.textButton {
+  margin: 32px;
 }

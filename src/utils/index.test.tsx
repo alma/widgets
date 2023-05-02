@@ -20,7 +20,6 @@ describe('utils', () => {
   describe('paymentPlanShorthandName', () => {
     describe('PNX', () => {
       it.each([
-        ['1x', { installments_count: 1, deferred_days: 0, deferred_months: 0 } as EligibilityPlan],
         ['2x', { installments_count: 2, deferred_days: 0, deferred_months: 0 } as EligibilityPlan],
         [
           '12x',
@@ -30,6 +29,21 @@ describe('utils', () => {
         expect(paymentPlanShorthandName(plan)).toEqual(result)
       })
       describe('Pay Later', () => {
+
+        it('should display "Pay now" for one installment count and no deferred days or months', () => {
+          const plan = {
+            installments_count: 1,
+            deferred_days: 0,
+            deferred_months: 0,
+           } as EligibilityPlan
+           
+           expect(paymentPlanShorthandName(plan)).toEqual(
+             <FormattedMessage
+               id="payment-plan-strings.pay.now.button"
+               defaultMessage="Payer maintenant"
+             />
+           )
+        })
         
         it('should get the short plan name for deferred days', () => {
           const plan = { installments_count: 1, deferred_days: 30, deferred_months: 0 } as EligibilityPlan

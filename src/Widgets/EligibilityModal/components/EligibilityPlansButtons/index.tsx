@@ -20,7 +20,7 @@ const EligibilityPlansButtons: FC<{
         })}
         onClick={() => setCurrentPlanIndex(index)}
       >
-        {paymentPlanShorthandName(eligibilityPlan)}
+        <span className={s.textButton}>{paymentPlanShorthandName(eligibilityPlan)}</span>
       </button>
     ))}
   </div>

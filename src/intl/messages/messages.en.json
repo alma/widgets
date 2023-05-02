@@ -23,5 +23,6 @@
   "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} then {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} then {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(free of charge)",
-  "payment-plan-strings.pay-now": "Pay now {totalAmount}"
+  "payment-plan-strings.pay-now": "Pay now {totalAmount}",
+  "payment-plan-strings.pay.now.button": "Pay Now"
 }
