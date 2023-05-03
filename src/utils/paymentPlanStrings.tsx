@@ -11,7 +11,7 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
     return (
       <FormattedMessage
         id="payment-plan-strings.pay.now.button"
-        defaultMessage="Payer maintenant"
+        defaultMessage="Payez maintenant"
         
       />
     )

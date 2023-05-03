@@ -14,7 +14,7 @@ const Info: FC<{ isCurrentPlanP1X: boolean }> = ({ isCurrentPlanP1X }) => (
         {isCurrentPlanP1X ? (
           <FormattedMessage
             id="eligibility-modal.p1x-bullet-1"
-            defaultMessage="Choisissez <strong>Alma - 1X</strong> au moment du paiement."
+            defaultMessage="Choisissez <strong>Alma - Payez maintenant</strong> au moment du paiement."
             values={{ strong: (...chunks: string[]) => <strong>{chunks}</strong> }}
           />
         ) : (

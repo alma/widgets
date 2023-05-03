@@ -523,7 +523,11 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
 ]
 
 export const mockPlansWithoutDeferred = mockPlansAllEligible.filter(
-  (plan) => plan.deferred_days === 0 && plan.deferred_months === 0,
+  (plan) => plan.deferred_days === 0 && plan.deferred_months === 0 && plan.installments_count >= 2,
+)
+
+export const mockPayNowPlan = mockPlansAllEligible.filter(
+  (plan) => plan.deferred_days === 0 && plan.deferred_months === 0 && plan.installments_count === 1,
 )
 
 export const configPlans: ConfigPlan[] = mockPlansAllEligible.map((plan) => ({

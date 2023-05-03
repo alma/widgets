@@ -18,7 +18,7 @@ const MobileModal: FC<Props> = ({ children, isSomePlanDeferred, cards, isCurrent
     className={cx(s.container, STATIC_CUSTOMISATION_CLASSES.mobileModal)}
     data-testid="modal-container"
   >
-    <Title isSomePlanDeferred={isSomePlanDeferred} />
+    <Title isSomePlanDeferred={isSomePlanDeferred} isCurrentPlanP1X={isCurrentPlanP1X} />
     {children}
     <Info isCurrentPlanP1X={isCurrentPlanP1X} />
     {cards && <Cards cards={cards} />}

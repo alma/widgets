@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
 import render from 'test'
-import { mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
+import { mockPayNowPlan, mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
 import { apiStatus } from 'types'
 import EligibilityModal from '..'
 
@@ -36,7 +36,7 @@ describe('plans provided', () => {
       )
     })
     it('should display the payments plans provided in eligibility', () => {
-      expect(screen.getByText('Payer maintenant')).toBeInTheDocument()
+      expect(screen.getByText('Payez maintenant')).toBeInTheDocument()
       expect(screen.getByText('M+1')).toBeInTheDocument()
       expect(screen.getByText('2x')).toBeInTheDocument()
       expect(screen.getByText('3x')).toBeInTheDocument()
@@ -87,7 +87,7 @@ describe('plans provided', () => {
     beforeEach(async () => {
       render(
         <EligibilityModal
-          eligibilityPlans={mockPlansAllEligible}
+          eligibilityPlans={mockPayNowPlan}
           status={apiStatus.SUCCESS}
           onClose={() => jest.fn()}
           // 1st plan is P1X
@@ -99,10 +99,10 @@ describe('plans provided', () => {
 
     it('should display the payments plans provided in eligibility', () => {
       expect(screen.getByTestId('modal-title-element')).toHaveTextContent(
-        'Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.',
+        'Payez en une fois par carte bancaire avec Alma.',
       )
       expect(screen.getByTestId('modal-info-element')).toHaveTextContent(
-        'Choisissez Alma - 1X au moment du paiement.',
+        'Choisissez Alma - Payez maintenant au moment du paiement.',
       )
       expect(screen.getByTestId('modal-info-element')).toHaveTextContent(
         'Renseignez les informations de votre carte bancaire.',
