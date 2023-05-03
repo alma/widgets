@@ -66,19 +66,21 @@
 
       function renderModal() {
         var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
-        return widgets.add(Alma.Widgets.Modal, {
+        return widgets.add(Alma.Widgets.PaymentPlans, {
           container: '#alma-widget-modal',
           clickableSelector: '#alma-open-modal-button',
           purchaseAmount,
           locale: 'fr',
           plans: [
-            {
-              installmentsCount: 4,
+          {
+              installmentsCount: 1,
+              deferredDays: 0,
+              deferredMonths: 0,
               minAmount: 5000,
               maxAmount: 90000,
             },
             {
-              installmentsCount: 10,
+              installmentsCount: 4,
               minAmount: 5000,
               maxAmount: 90000,
             },

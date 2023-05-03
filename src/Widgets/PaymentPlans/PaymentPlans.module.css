@@ -36,7 +36,6 @@
 
 .plan {
   font-family: 'Venn', sans-serif;
-  text-transform: lowercase;
   color: var(--off-black);
   border-radius: 4px;
   font-weight: 700;

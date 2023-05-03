@@ -40,7 +40,7 @@ describe('utils', () => {
            expect(paymentPlanShorthandName(plan)).toEqual(
              <FormattedMessage
                id="payment-plan-strings.pay.now.button"
-               defaultMessage="Payer maintenant"
+               defaultMessage="Payez maintenant"
              />
            )
         })

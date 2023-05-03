@@ -19,7 +19,7 @@ const DesktopModal: FC<Props> = ({ children, isSomePlanDeferred, cards, isCurren
     data-testid="modal-container"
   >
     <aside className={cx([s.block, s.left, STATIC_CUSTOMISATION_CLASSES.leftSide])}>
-      <Title isSomePlanDeferred={isSomePlanDeferred} />
+      <Title isSomePlanDeferred={isSomePlanDeferred} isCurrentPlanP1X={isCurrentPlanP1X}/>
       <Info isCurrentPlanP1X={isCurrentPlanP1X} />
       {cards && <Cards cards={cards} />}
       <AlmaLogo className={s.logo} width="75" />
