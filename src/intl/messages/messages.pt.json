@@ -12,7 +12,6 @@
   "eligibility-modal.title-deferred-plan": "Pagar em prestações ou mais tarde por cartão de crédito com Alma.",
   "eligibility-modal.title-normal": "Pagar em prestações por cartão de crédito com Alma.",
   "eligibility-modal.title-pay-now": "Pagar de uma só vez com cartão de crédito com a Alma.",
-  "eligibility-modal.title-pay-now": "Pagar de uma só vez com cartão de crédito com a Alma.",
   "installments.today": "Hoje",
   "installments.total-amount": "Total",
   "installments.total-fees": "Dos quais custos (incl. IVA)",
@@ -25,6 +24,5 @@
   "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} depois {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} depois {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(sem encargos)",
-  "payment-plan-strings.pay-now": "Pague agora {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Pagar agora"
+  "payment-plan-strings.pay-now": "Pague agora {totalAmount}"
 }
