@@ -24,5 +24,6 @@
   "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} depois {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} depois {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(sem encargos)",
-  "payment-plan-strings.pay-now": "Pague agora {totalAmount}"
+  "payment-plan-strings.pay-now": "Pague agora {totalAmount}",
+  "payment-plan-strings.pay.now.button": "Pagar agora"
 }
