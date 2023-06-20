@@ -11,7 +11,7 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
     return (
       <FormattedMessage
         id="payment-plan-strings.pay.now.button"
-        defaultMessage="Payez maintenant"
+        defaultMessage="Payer maintenant"
         
       />
     )
@@ -135,7 +135,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
         <>
           <FormattedMessage
             id="payment-plan-strings.pay-now"
-            defaultMessage="Payez maintenant {totalAmount}"
+            defaultMessage="Payer maintenant {totalAmount}"
             values={{
               totalAmount: (
                 <FormattedNumber

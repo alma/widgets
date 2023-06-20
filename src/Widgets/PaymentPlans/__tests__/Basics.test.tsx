@@ -43,7 +43,7 @@ describe('Basic PaymentPlan test', () => {
         />,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-      expect(screen.queryByText(/Payez maintenant 450,00 €/)).not.toBeInTheDocument()
+      expect(screen.queryByText(/Payer maintenant 450,00 €/)).not.toBeInTheDocument()
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
     })
     it('should display P1X button if specifically asked for from widgets config', async () => {
@@ -64,7 +64,7 @@ describe('Basic PaymentPlan test', () => {
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
       expect(screen.queryByText(/2 x 225,00 €/)).not.toBeInTheDocument()
-      expect(screen.getByText(/Payez maintenant 450,00 €/)).toBeInTheDocument()
+      expect(screen.getByText(/Payer maintenant 450,00 €/)).toBeInTheDocument()
     })
   })
 })

@@ -34,7 +34,7 @@ describe('Custom transition delay', () => {
       jest.advanceTimersByTime(animationDuration)
     })
     // P1X
-    expect(screen.getByText(/Payez maintenant 450,00 €/)).toBeInTheDocument()
+    expect(screen.getByText(/Payer maintenant 450,00 €/)).toBeInTheDocument()
     expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
     act(() => {
       jest.advanceTimersByTime(animationDuration)

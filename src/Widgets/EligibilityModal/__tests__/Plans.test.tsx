@@ -36,7 +36,7 @@ describe('plans provided', () => {
       )
     })
     it('should display the payments plans provided in eligibility', () => {
-      expect(screen.getByText('Payez maintenant')).toBeInTheDocument()
+      expect(screen.getByText('Payer maintenant')).toBeInTheDocument()
       expect(screen.getByText('M+1')).toBeInTheDocument()
       expect(screen.getByText('2x')).toBeInTheDocument()
       expect(screen.getByText('3x')).toBeInTheDocument()
@@ -102,7 +102,7 @@ describe('plans provided', () => {
         'Payez en une fois par carte bancaire avec Alma.',
       )
       expect(screen.getByTestId('modal-info-element')).toHaveTextContent(
-        'Choisissez Alma - Payez maintenant au moment du paiement.',
+        'Choisissez Alma - Payer maintenant au moment du paiement.',
       )
       expect(screen.getByTestId('modal-info-element')).toHaveTextContent(
         'Renseignez les informations de votre carte bancaire.',

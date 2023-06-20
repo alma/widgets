@@ -6,7 +6,7 @@
   "eligibility-modal.bullet-2": "Laissez-vous guider et validez votre paiement en <strong>2 minutes.</strong>",
   "eligibility-modal.bullet-3": "<strong>Gardez le contrôle</strong> en avançant ou reculant vos échéances à votre rythme.",
   "eligibility-modal.no-eligibility": "Oups, il semblerait que la simulation n'ait pas fonctionné.",
-  "eligibility-modal.p1x-bullet-1": "Choisissez <strong>Alma - Payez maintenant</strong> au moment du paiement.",
+  "eligibility-modal.p1x-bullet-1": "Choisissez <strong>Alma - Payer maintenant</strong> au moment du paiement.",
   "eligibility-modal.p1x-bullet-2": "Renseignez les informations de votre <strong>carte bancaire.</strong>",
   "eligibility-modal.p1x-bullet-3": "<strong>La validation </strong> de votre paiement est instantanée !",
   "eligibility-modal.title-deferred-plan": "Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.",
@@ -24,6 +24,6 @@
   "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(sans frais)",
-  "payment-plan-strings.pay-now": "Payez maintenant {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Payez maintenant"
+  "payment-plan-strings.pay-now": "Payer maintenant {totalAmount}",
+  "payment-plan-strings.pay.now.button": "Payer maintenant"
 }
