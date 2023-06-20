@@ -37,8 +37,8 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
     it('should target the P1X and not a PayLater plan when suggested plan is 1', async () => {
       renderPlans(1, configPlans) // specify all plans explicitly to display P1X. P1X is only displayed if provided in configPlans.
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-      expect(screen.getByText(/Payez maintenant 450,00 €/)).toBeInTheDocument()
-      expect(screen.getByText('Payez maintenant').className).toContain('active')
+      expect(screen.getByText(/Payer maintenant 450,00 €/)).toBeInTheDocument()
+      expect(screen.getByText('Payer maintenant').className).toContain('active')
     })
   })
 
