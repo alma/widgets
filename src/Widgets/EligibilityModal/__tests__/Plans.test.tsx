@@ -99,7 +99,7 @@ describe('plans provided', () => {
 
     it('should display the payments plans provided in eligibility', () => {
       expect(screen.getByTestId('modal-title-element')).toHaveTextContent(
-        'Payez en une fois par carte bancaire avec Alma.',
+        'Payez comptant par carte bancaire avec Alma.',
       )
       expect(screen.getByTestId('modal-info-element')).toHaveTextContent(
         'Choisissez Alma - Payer maintenant au moment du paiement.',

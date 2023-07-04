@@ -17,7 +17,7 @@ const Title: FC<{ isSomePlanDeferred: boolean, isCurrentPlanP1X:boolean }> = ({ 
       />
     ) : isCurrentPlanP1X ? (<FormattedMessage
       id="eligibility-modal.title-pay-now"
-      defaultMessage="Payez en une fois par carte bancaire avec Alma."
+      defaultMessage="Payez comptant par carte bancaire avec Alma."
     />
     ) : (
       <FormattedMessage
