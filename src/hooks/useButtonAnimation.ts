@@ -15,7 +15,7 @@ const useButtonAnimation = (iterateValues: number[], transitionDelay: number): P
     if (iterateValues.length !== 0) {
       if (!iterateValues.includes(current) && update) setCurrent(iterateValues[0])
       timeout = setTimeout(() => {
-        if (update && isMounted) {
+        if (update && isMounted && transitionDelay !== -1) {
           setCurrent(
             iterateValues[
               iterateValues.includes(current)
