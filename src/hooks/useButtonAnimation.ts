@@ -12,10 +12,15 @@ const useButtonAnimation = (iterateValues: number[], transitionDelay: number): P
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>
     let isMounted = true
+
+    if (transitionDelay === -1) {
+      return
+    }
+
     if (iterateValues.length !== 0) {
       if (!iterateValues.includes(current) && update) setCurrent(iterateValues[0])
       timeout = setTimeout(() => {
-        if (update && isMounted && transitionDelay !== -1) {
+        if (update && isMounted) {
           setCurrent(
             iterateValues[
               iterateValues.includes(current)
