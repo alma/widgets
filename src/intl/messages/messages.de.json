@@ -11,7 +11,7 @@
   "eligibility-modal.p1x-bullet-3": "<strong> Ihre Zahlung wird sofort bestätigt! </strong>",
   "eligibility-modal.title-deferred-plan": "Zahlen Sie mit Alma in Raten oder später.",
   "eligibility-modal.title-normal": "Zahlen Sie mit Alma in mehreren Raten.",
-  "eligibility-modal.title-pay-now": "Bezahlen Sie mit Alma bar per Kreditkarte.",
+  "eligibility-modal.title-pay-now": "Bezahlen Sie auf einmal mit Alma per Kreditkarte.",
   "installments.today": "Heute",
   "installments.total-amount": "Gesamtsumme",
   "installments.total-fees": "Davon Kosten",
@@ -24,6 +24,6 @@
   "payment-plan-strings.multiple-installments": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} dann {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} dann {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(0% Finanzierung)",
-  "payment-plan-strings.pay-now": "Jetzt bezahlen {totalAmount}",
+  "payment-plan-strings.pay-now": "Zahlen Sie jetzt {totalAmount}",
   "payment-plan-strings.pay.now.button": "Jetzt bezahlen"
 }
