@@ -37,6 +37,7 @@ jobs:
             ./dist/widgets.m.js
             ./dist/widgets.js
             ./dist/widgets.css
+            ./dist/widgets-wc.umd.js
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
