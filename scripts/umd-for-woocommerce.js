@@ -9,13 +9,14 @@
  */
 
 const { writeFile, readFile } = require('fs')
-const sourceUmd = './dist/widgets.umd.js'
-const targetUmd = './dist/widgets-wc.umd.js'
-const sourceMapUmd = './dist/widgets.umd.js.map'
-const targetMapUmd = './dist/widgets-wc.umd.js.map'
+const sourceUmd = 'widgets.umd.js'
+const targetUmd = 'widgets-wc.umd.js'
+const sourceMapUmd = 'widgets.umd.js.map'
+const targetMapUmd = 'widgets-wc.umd.js.map'
 
-const replaceInnerHtmlInFile = (sourceName, targetName) => {
-  readFile(sourceName, { encoding: 'utf8' }, function (err, fileContent) {
+const replaceInnerHtmlInFile = (sourceName, targetName, raw = false) => {
+  const fileBase = raw ? './dist/raw/' : './dist/'
+  readFile(`${fileBase}${sourceName}`, { encoding: 'utf8' }, function (err, fileContent) {
     if (err) {
       // If file does not exist or if there is any issue with the file,
       // process exit 1 and log the error
@@ -25,12 +26,12 @@ const replaceInnerHtmlInFile = (sourceName, targetName) => {
       const fileContentForWC = fileContent
         .replace(/innerHTML/g, 'innerText')
         .replace(/sourceMappingURL=widgets.umd.js.map/g, 'sourceMappingURL=widgets-wc.umd.js.map')
-      writeFile(targetName, fileContentForWC, 'utf8', (err) => {
+      writeFile(`${fileBase}${targetName}`, fileContentForWC, 'utf8', (err) => {
         if (err) {
           console.error(err)
           process.exit(1)
         } else {
-          console.log(`wooCommerce ${targetName} has been created successfully.`)
+          console.log(`${fileBase}${targetName} has been created successfully.`)
           process.exit(0)
         }
       })
@@ -41,8 +42,12 @@ const replaceInnerHtmlInFile = (sourceName, targetName) => {
 const prepareWCFiles = () => {
   // We need to replace innerHTML with innerText in the UMD file
   replaceInnerHtmlInFile(sourceUmd, targetUmd)
+  // Same for raw build
+  replaceInnerHtmlInFile(sourceUmd, targetUmd, true)
   // We also need to replace innerHTML with innerText in the UMD map file
   replaceInnerHtmlInFile(sourceMapUmd, targetMapUmd)
+  // Same for raw build
+  replaceInnerHtmlInFile(sourceMapUmd, targetMapUmd, true)
 }
 
 prepareWCFiles()
