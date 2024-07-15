@@ -4,19 +4,20 @@ import Modal from 'components/Modal'
 import React, { FunctionComponent, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useMediaQuery } from 'react-responsive'
-import { apiStatus, Card, EligibilityPlan } from 'types'
+import { Card, EligibilityPlan } from 'types'
 import { desktopWidth, isP1X } from 'utils'
 import EligibilityPlansButtons from './components/EligibilityPlansButtons'
 import Schedule from './components/Schedule'
 import DesktopModal from './DesktopModal'
 import s from './EligibilityModal.module.css'
 import MobileModal from './MobileModal'
+import { QueryStatus } from 'react-query'
 
 type Props = {
   initialPlanIndex?: number
   onClose: (event: React.MouseEvent | React.KeyboardEvent) => void
   eligibilityPlans: EligibilityPlan[]
-  status: apiStatus
+  status: QueryStatus
   cards?: Card[]
 }
 
@@ -30,8 +31,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
   const [currentPlanIndex, setCurrentPlanIndex] = useState(initialPlanIndex || 0)
   const isBigScreen = useMediaQuery({ minWidth: desktopWidth })
   const ModalComponent = isBigScreen ? DesktopModal : MobileModal
-  const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
-  const currentPlan = eligiblePlans[currentPlanIndex]
+  const currentPlan = eligibilityPlans[currentPlanIndex]
 
   const isSomePlanDeferred = eligibilityPlans.some(
     (plan) => plan.deferred_days > 0 || plan.deferred_months > 0,
@@ -44,12 +44,12 @@ const EligibilityModal: FunctionComponent<Props> = ({
         cards={cards}
         isCurrentPlanP1X={isP1X(currentPlan)}
       >
-        {status === apiStatus.PENDING && (
+        {status === 'loading' && (
           <div className={s.loader}>
             <LoadingIndicator />
           </div>
         )}
-        {status === apiStatus.SUCCESS && eligiblePlans.length === 0 && (
+        {status === 'success' && eligibilityPlans.length === 0 && (
           <div className={s.noEligibility}>
             <FormattedMessage
               id="eligibility-modal.no-eligibility"
@@ -57,10 +57,10 @@ const EligibilityModal: FunctionComponent<Props> = ({
             />
           </div>
         )}
-        {status === apiStatus.SUCCESS && eligiblePlans.length >= 1 && (
+        {status === 'success' && eligibilityPlans.length >= 1 && (
           <>
             <EligibilityPlansButtons
-              eligibilityPlans={eligiblePlans}
+              eligibilityPlans={eligibilityPlans}
               currentPlanIndex={currentPlanIndex}
               setCurrentPlanIndex={setCurrentPlanIndex}
             />

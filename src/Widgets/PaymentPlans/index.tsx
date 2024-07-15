@@ -2,12 +2,12 @@ import { AlmaLogo } from 'assets/almaLogo'
 import cx from 'classnames'
 import Loader from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
-import useFetchEligibility from 'hooks/useFetchEligibility'
 import React, { MouseEvent, useEffect, useState, VoidFunctionComponent } from 'react'
-import { ApiConfig, apiStatus, Card, ConfigPlan } from 'types'
+import { ApiConfig, Card, ConfigPlan } from 'types'
 import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import EligibilityModal from 'Widgets/EligibilityModal'
+import { useEligibilityQuery } from 'hooks/useEligibility'
 import STATIC_CUSTOMISATION_CLASSES from './classNames.const'
 import s from './PaymentPlans.module.css'
 
@@ -43,14 +43,15 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   hideBorder = false,
   onModalClose,
 }) => {
-  const [eligibilityPlans, status] = useFetchEligibility(
+  const { data, status, isSuccess, isError, isLoading } = useEligibilityQuery(apiData, {
     purchaseAmount,
-    apiData,
-    configPlans,
+    plans: configPlans,
     customerBillingCountry,
     customerShippingCountry,
-  )
-  const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
+  })
+
+  const eligibilityPlans = data ?? []
+
   const activePlanIndex = getIndexOfActivePlan({
     eligibilityPlans,
     suggestedPaymentPlan: suggestedPaymentPlan ?? 0,
@@ -89,7 +90,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
 
   useEffect(() => {
     // When API has given a response AND the marchand set an active plan by default.
-    if (status === apiStatus.SUCCESS && isSuggestedPaymentPlanSpecified) {
+    if (isSuccess && isSuggestedPaymentPlanSpecified) {
       onHover(activePlanIndex) // We select the first active plan possible
       onLeave() // We need to call onLeave to reset the animation
     }
@@ -106,7 +107,17 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
     return index === -1 ? 0 : index
   }
 
-  if (status === apiStatus.PENDING) {
+  // Return null if there is an error or if there is no data
+  if (
+    isError ||
+    (hideIfNotEligible && eligibilityPlans.length === 0) ||
+    eligibilityPlans.length === 0
+  ) {
+    return null
+  }
+
+  // Return Loader when API is still fetching
+  if (isLoading) {
     return (
       <div className={cx(s.widgetButton, s.pending)}>
         <Loader />
@@ -114,17 +125,9 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
     )
   }
 
-  if (
-    (hideIfNotEligible && eligiblePlans.length === 0) ||
-    eligibilityPlans.length === 0 ||
-    status === apiStatus.FAILED
-  ) {
-    return null
-  }
-
   const handleOpenModal = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
-    if (eligiblePlans.length > 0) {
+    if (eligibilityPlans.length > 0) {
       openModal()
     }
   }
@@ -136,8 +139,8 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
         className={cx(
           s.widgetButton,
           {
-            [s.clickable]: eligiblePlans.length > 0,
-            [s.unClickable]: eligiblePlans.length === 0,
+            [s.clickable]: eligibilityPlans.length > 0,
+            [s.unClickable]: eligibilityPlans.length === 0,
             [s.hideBorder]: hideBorder,
           },
           STATIC_CUSTOMISATION_CLASSES.container,
@@ -186,7 +189,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
         <EligibilityModal
           initialPlanIndex={getIndexWithinEligiblePlans(current)}
           onClose={closeModal}
-          eligibilityPlans={eligiblePlans}
+          eligibilityPlans={eligibilityPlans}
           status={status}
           cards={cards}
         />

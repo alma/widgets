@@ -12,6 +12,7 @@ import {
 } from 'types'
 import ModalContainer from 'Widgets/EligibilityModal/ModalContainer'
 import PaymentPlanWidget from 'Widgets/PaymentPlans'
+import ReactQueryProvider from './providers/ReactQuery'
 
 export type AddReturnType =
   | {
@@ -50,20 +51,22 @@ export class WidgetsController {
       if (containerDiv) {
         render(
           <IntlProvider locale={locale}>
-            <PaymentPlanWidget
-              apiData={this.apiData}
-              configPlans={plans}
-              hideIfNotEligible={hideIfNotEligible}
-              monochrome={monochrome}
-              purchaseAmount={purchaseAmount}
-              suggestedPaymentPlan={suggestedPaymentPlan}
-              cards={cards}
-              customerBillingCountry={customerBillingCountry}
-              customerShippingCountry={customerShippingCountry}
-              transitionDelay={transitionDelay}
-              hideBorder={hideBorder}
-              onModalClose={onModalClose}
-            />
+            <ReactQueryProvider>
+              <PaymentPlanWidget
+                apiData={this.apiData}
+                configPlans={plans}
+                hideIfNotEligible={hideIfNotEligible}
+                monochrome={monochrome}
+                purchaseAmount={purchaseAmount}
+                suggestedPaymentPlan={suggestedPaymentPlan}
+                cards={cards}
+                customerBillingCountry={customerBillingCountry}
+                customerShippingCountry={customerShippingCountry}
+                transitionDelay={transitionDelay}
+                hideBorder={hideBorder}
+                onModalClose={onModalClose}
+              />
+            </ReactQueryProvider>
           </IntlProvider>,
           document.querySelector(container),
         )
@@ -91,15 +94,17 @@ export class WidgetsController {
       const renderModal = () => {
         render(
           <IntlProvider locale={locale}>
-            <ModalContainer
-              purchaseAmount={purchaseAmount}
-              apiData={this.apiData}
-              configPlans={plans}
-              customerBillingCountry={customerBillingCountry}
-              customerShippingCountry={customerShippingCountry}
-              onClose={close}
-              cards={cards}
-            />
+            <ReactQueryProvider>
+              <ModalContainer
+                purchaseAmount={purchaseAmount}
+                apiData={this.apiData}
+                configPlans={plans}
+                customerBillingCountry={customerBillingCountry}
+                customerShippingCountry={customerShippingCountry}
+                onClose={close}
+                cards={cards}
+              />
+            </ReactQueryProvider>
           </IntlProvider>,
           document.querySelector(container),
         )

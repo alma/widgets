@@ -1,7 +1,7 @@
-import useFetchEligibility from 'hooks/useFetchEligibility'
 import React from 'react'
 import { ApiConfig, Card, ConfigPlan } from 'types'
 import EligibilityModal from '.'
+import { useEligibilityQuery } from 'hooks/useEligibility'
 
 type Props = {
   purchaseAmount: number
@@ -25,13 +25,13 @@ const ModalContainer: React.FC<Props> = ({
   onClose,
   cards,
 }) => {
-  const [eligibilityPlans, status] = useFetchEligibility(
+  const { data, status } = useEligibilityQuery(apiData, {
     purchaseAmount,
-    apiData,
-    configPlans,
+    plans: configPlans,
     customerBillingCountry,
     customerShippingCountry,
-  )
+  })
+  const eligibilityPlans = data ?? []
 
   return (
     <EligibilityModal

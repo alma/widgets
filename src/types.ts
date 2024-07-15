@@ -1,6 +1,5 @@
 import { ApiMode } from 'consts'
 import React from 'react'
-
 export type ApiConfig = { domain: ApiMode; merchantId: string }
 
 export enum widgetTypes {
@@ -10,7 +9,7 @@ export enum widgetTypes {
 export enum apiStatus {
   PENDING = 'pending',
   SUCCESS = 'success',
-  FAILED = 'failed',
+  ERROR = 'error',
 }
 
 export type ConfigPlan = {
