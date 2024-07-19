@@ -12,7 +12,7 @@ type Props = {
   cards: Card[]
 }
 
-const Cards: FC<Props> = ({ cards }) => {
+export const Cards: FC<Props> = ({ cards }) => {
   // We transform to a Set and back to avoid duplicate values (ex : amex, amex)
   const uniqueCards = Array.from(new Set(cards))
 
@@ -32,5 +32,3 @@ const Cards: FC<Props> = ({ cards }) => {
     </div>
   )
 }
-
-export default Cards

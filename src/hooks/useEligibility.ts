@@ -7,7 +7,7 @@ export const useEligibilityQuery = (
   eligibilityRequest: EligibilityRequest,
   options?: UseQueryOptions<EligibilityPlan[], unknown, EligibilityPlan[]>,
 ) => {
-  const client = makeClient(`${domain}`, merchantId)
+  const client = makeClient(domain, merchantId)
   const eligibilityCall = eligibilityCallGenerator(client)
 
   return useQuery<EligibilityPlan[], unknown, EligibilityPlan[]>(

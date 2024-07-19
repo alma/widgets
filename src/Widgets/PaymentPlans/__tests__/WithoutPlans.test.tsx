@@ -3,14 +3,9 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import { act } from 'react-dom/test-utils'
 import render from 'test'
-import PaymentPlanWidget from '..'
 import { mockButtonPlans } from 'test/fixtures'
+import PaymentPlanWidget from '..'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
 jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
 
 const animationDuration = 5600

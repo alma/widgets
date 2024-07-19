@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Card } from 'types'
 import STATIC_CUSTOMISATION_CLASSES from '../classNames.const'
-import Cards from '../components/Cards'
+import { Cards } from '../components/Cards'
 import Info from '../components/Info'
 import Title from '../components/Title'
 import s from './MobileModal.module.css'

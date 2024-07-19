@@ -25,9 +25,6 @@ const filterEligibility = (
   eligibilities: EligibilityPlan[],
   configPlans?: ConfigPlan[],
 ): EligibilityPlanToDisplay[] => {
-  // Remove non eligible plans
-  const eligiblePlans = eligibilities.filter((plan) => plan.eligible)
-
   // Remove P1X if no configuration is provided
   if (!configPlans) {
     return eligibilities.filter(
@@ -41,7 +38,7 @@ const filterEligibility = (
   }
 
   // Else check if the plan is eligible regarding the related configPlan
-  return eligiblePlans.map((plan) => {
+  return eligibilities.map((plan) => {
     const eligibilityDeferredDays =
       (plan.deferred_months ? plan.deferred_months : 0) * 30 +
       (plan.deferred_days ? plan.deferred_days : 0)

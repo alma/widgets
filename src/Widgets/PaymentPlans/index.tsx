@@ -102,6 +102,14 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
    * @param {number} planIndex - The index of the plan that the user has selected.
    * @returns The index of the planKey in the eligiblePlanKeys array.
    */
+  // Return Loader when API is still fetching
+  if (isLoading) {
+    return (
+      <div className={cx(s.widgetButton, s.pending)}>
+        <Loader />
+      </div>
+    )
+  }
   const getIndexWithinEligiblePlans = (planIndex: number) => {
     const index = eligiblePlanKeys.findIndex((planKey) => planKey === planIndex)
     return index === -1 ? 0 : index
@@ -114,15 +122,6 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
     eligibilityPlans.length === 0
   ) {
     return null
-  }
-
-  // Return Loader when API is still fetching
-  if (isLoading) {
-    return (
-      <div className={cx(s.widgetButton, s.pending)}>
-        <Loader />
-      </div>
-    )
   }
 
   const handleOpenModal = (e: MouseEvent<HTMLDivElement>) => {
@@ -155,7 +154,9 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
               return (
                 <div
                   key={key}
-                  onMouseEnter={() => onHover(key)}
+                  onMouseEnter={() => {
+                    onHover(key)
+                  }}
                   onTouchStart={() => onHover(key)}
                   onMouseOut={onLeave}
                   onTouchEnd={onLeave}

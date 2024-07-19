@@ -227,7 +227,7 @@ export const mockPlansAllEligible: EligibilityPlan[] = [
   },
 ]
 
-export const mockButtonPlans = [
+export const mockButtonPlans: EligibilityPlan[] = [
   {
     customer_total_cost_amount: 0,
     customer_total_cost_bps: 0,
@@ -239,7 +239,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 0,
-        due_date: 1637498000,
+        due_date: 1637498000, // 21 november 2021
         purchase_amount: 45000,
         total_amount: 45000,
       },
@@ -257,7 +257,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 0,
-        due_date: 1634819600,
+        due_date: 1634819600, // 21 october 2021
         purchase_amount: 45000,
         total_amount: 45000,
       },
@@ -275,14 +275,14 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 0,
-        due_date: 1634819600,
+        due_date: 1634819600, // 21 october 2021
         purchase_amount: 22500,
         total_amount: 22500,
       },
       {
         customer_fee: 0,
         customer_interest: 0,
-        due_date: 1634819600,
+        due_date: 1637498000, // 21 november 2021
         purchase_amount: 22500,
         total_amount: 22500,
       },
@@ -300,21 +300,21 @@ export const mockButtonPlans = [
       {
         customer_fee: 135,
         customer_interest: 0,
-        due_date: 1634819600,
+        due_date: 1634819600, // 21 october 2021
         purchase_amount: 15000,
         total_amount: 15135,
       },
       {
         customer_fee: 0,
         customer_interest: 0,
-        due_date: 1637498000,
+        due_date: 1637498000, // 21 november 2021
         purchase_amount: 15000,
         total_amount: 15000,
       },
       {
         customer_fee: 0,
         customer_interest: 0,
-        due_date: 1640090000,
+        due_date: 1640090000, // 21 december 2021
         purchase_amount: 15000,
         total_amount: 15000,
       },
@@ -332,28 +332,28 @@ export const mockButtonPlans = [
       {
         customer_fee: 1202,
         customer_interest: 0,
-        due_date: 1634819600,
+        due_date: 1634819600, // 21 october 2021
         purchase_amount: 11250,
         total_amount: 12452,
       },
       {
         customer_fee: 0,
         customer_interest: 0,
-        due_date: 1637498000,
+        due_date: 1637498000, // 21 november 2021
         purchase_amount: 11250,
         total_amount: 11250,
       },
       {
         customer_fee: 0,
         customer_interest: 0,
-        due_date: 1640090000,
+        due_date: 1640090000, // 21 december 2021
         purchase_amount: 11250,
         total_amount: 11250,
       },
       {
         customer_fee: 0,
         customer_interest: 0,
-        due_date: 1642768400,
+        due_date: 1642768400, // 21 january 2022
         purchase_amount: 11250,
         total_amount: 11250,
       },
@@ -372,7 +372,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 0,
-        due_date: 1634819600,
+        due_date: 1634819600, // 21 october 2021
         purchase_amount: 4773,
         refunded_interest: 0,
         total_amount: 4773,
@@ -380,7 +380,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 492,
-        due_date: 1637498000,
+        due_date: 1637498000, // 21 november 2021
         purchase_amount: 4274,
         refunded_interest: 0,
         total_amount: 4766,
@@ -388,7 +388,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 472,
-        due_date: 1640090000,
+        due_date: 1640090000, // 21 december 2021
         purchase_amount: 4294,
         refunded_interest: 0,
         total_amount: 4766,
@@ -396,7 +396,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 429,
-        due_date: 1642768400,
+        due_date: 1642768400, // 21 january 2022
         purchase_amount: 4337,
         refunded_interest: 0,
         total_amount: 4766,
@@ -404,7 +404,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 371,
-        due_date: 1645446800,
+        due_date: 1645446800, // 21 february 2022
         purchase_amount: 4395,
         refunded_interest: 0,
         total_amount: 4766,
@@ -412,7 +412,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 281,
-        due_date: 1647866000,
+        due_date: 1647866000, // 21 march 2022
         purchase_amount: 4485,
         refunded_interest: 0,
         total_amount: 4766,
@@ -420,7 +420,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 250,
-        due_date: 1650544400,
+        due_date: 1650544400, // 21 april 2022
         purchase_amount: 4516,
         refunded_interest: 0,
         total_amount: 4766,
@@ -428,7 +428,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 183,
-        due_date: 1653136400,
+        due_date: 1653136400, // 21 may 2022
         purchase_amount: 4583,
         refunded_interest: 0,
         total_amount: 4766,
@@ -436,7 +436,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 127,
-        due_date: 1655814800,
+        due_date: 1655814800, // 21 june 2022
         purchase_amount: 4639,
         refunded_interest: 0,
         total_amount: 4766,
@@ -444,7 +444,7 @@ export const mockButtonPlans = [
       {
         customer_fee: 0,
         customer_interest: 62,
-        due_date: 1658406800,
+        due_date: 1658406800, // 21 july 2022
         purchase_amount: 4704,
         refunded_interest: 0,
         total_amount: 4766,
@@ -452,12 +452,28 @@ export const mockButtonPlans = [
     ],
     purchase_amount: 45000,
   },
+  {
+    customer_total_cost_amount: 0,
+    customer_total_cost_bps: 0,
+    deferred_days: 30,
+    deferred_months: 0,
+    eligible: true,
+    installments_count: 1,
+    payment_plan: [
+      {
+        customer_fee: 0,
+        customer_interest: 0,
+        due_date: 1654262242, // 3 june 2022
+        purchase_amount: 45000,
+        total_amount: 45000,
+      },
+    ],
+    purchase_amount: 45000,
+  },
 ]
 
-export const mockEligibilityPaymentPlanWithIneligiblePlan = [
+export const mockEligibilityPaymentPlanWithIneligiblePlan: EligibilityPlan[] = [
   {
-    customer_fee: 0,
-    customer_interest: 0,
     customer_total_cost_amount: 0,
     customer_total_cost_bps: 0,
     deferred_days: 30,
@@ -476,8 +492,6 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
     purchase_amount: 45000,
   },
   {
-    customer_fee: 0,
-    customer_interest: 0,
     customer_total_cost_amount: 0,
     customer_total_cost_bps: 0,
     deferred_days: 0,
@@ -503,6 +517,8 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
     purchase_amount: 45000,
   },
   {
+    customer_total_cost_amount: 0,
+    customer_total_cost_bps: 0,
     constraints: { purchase_amount: { maximum: 20000, minimum: 9000 } },
     deferred_days: 0,
     deferred_months: 0,
@@ -512,6 +528,8 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
     reasons: { purchase_amount: 'invalid_value' },
   },
   {
+    customer_total_cost_amount: 0,
+    customer_total_cost_bps: 0,
     constraints: { purchase_amount: { maximum: 135000, minimum: 90000 } },
     deferred_days: 0,
     deferred_months: 0,

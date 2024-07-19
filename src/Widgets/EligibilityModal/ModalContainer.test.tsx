@@ -1,20 +1,22 @@
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { ApiMode } from 'consts'
+import { rest } from 'msw'
 import React from 'react'
+import { Context as ResponsiveContext } from 'react-responsive'
 import render from 'test'
+import { server } from 'mocks/server'
 import { mockButtonPlans } from 'test/fixtures'
 import ModalContainer from './ModalContainer'
-import { Context as ResponsiveContext } from 'react-responsive'
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
 
 describe('ModalContainer', () => {
   describe('test responsiveness', () => {
-    beforeEach(async () => {
+    it('should display the payments plans provided in eligibility', async () => {
+      server.use(
+        rest.post(`${ApiMode.TEST}/v2/payments/eligibility`, async (req, res, ctx) => {
+          return res(ctx.status(200), ctx.json(mockButtonPlans))
+        }),
+      )
       render(
         <ResponsiveContext.Provider value={{ width: 801 }}>
           <ModalContainer
@@ -27,9 +29,6 @@ describe('ModalContainer', () => {
         </ResponsiveContext.Provider>,
       )
       await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
-    })
-
-    it('should display the payments plans provided in eligibility', () => {
       expect(screen.getByText('M+1')).toBeInTheDocument()
       expect(screen.getByText('2x')).toBeInTheDocument()
     })
@@ -90,7 +89,12 @@ describe('ModalContainer', () => {
   })
 
   describe('No eligibility', () => {
-    beforeEach(async () => {
+    it('should display error message', async () => {
+      server.use(
+        rest.post(`${ApiMode.TEST}/v2/payments/eligibility`, async (req, res, ctx) => {
+          return res(ctx.json([]))
+        }),
+      )
       render(
         <ModalContainer
           purchaseAmount={40000}
@@ -102,9 +106,6 @@ describe('ModalContainer', () => {
         />,
       )
       await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
-    })
-
-    it('should display error message', () => {
       const element = screen.getByTestId('modal-container')
       expect(element).toHaveTextContent(
         "Oups, il semblerait que la simulation n'ait pas fonctionné.",
@@ -113,7 +114,41 @@ describe('ModalContainer', () => {
   })
 
   describe('Only one plan', () => {
-    beforeEach(async () => {
+    it('should display the schedule for the selected payment plan', async () => {
+      server.use(
+        rest.post(`${ApiMode.TEST}/v2/payments/eligibility`, async (req, res, ctx) => {
+          return res(
+            ctx.json([
+              {
+                ...mockButtonPlans[3],
+                payment_plan: [
+                  {
+                    customer_fee: 135,
+                    customer_interest: 0,
+                    due_date: 1634808362, // Timestamp to match "21 octobre 2021"
+                    purchase_amount: 15000,
+                    total_amount: 15135,
+                  },
+                  {
+                    customer_fee: 0,
+                    customer_interest: 0,
+                    due_date: 1637486762, // Timestamp to match "21 novembre 2021"
+                    purchase_amount: 15000,
+                    total_amount: 15000,
+                  },
+                  {
+                    customer_fee: 0,
+                    customer_interest: 0,
+                    due_date: 1640078762, // Timestamp to match "21 décembre 2021"
+                    purchase_amount: 15000,
+                    total_amount: 15000,
+                  },
+                ],
+              },
+            ]),
+          )
+        }),
+      )
       render(
         <ModalContainer
           purchaseAmount={40000}
@@ -131,9 +166,6 @@ describe('ModalContainer', () => {
         />,
       )
       await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
-    })
-
-    it('should display the schedule for the selected payment plan', () => {
       const installmentElement = screen.getByTestId('modal-container')
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [

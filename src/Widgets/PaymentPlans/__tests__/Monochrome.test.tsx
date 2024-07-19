@@ -3,23 +3,19 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
 import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
-
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
+import ReactQueryProvider from 'providers/ReactQuery'
 
 it.each([true, false])(
   'renders the monochrome version of the widget when expected',
   async (monochrome) => {
     render(
-      <PaymentPlanWidget
-        purchaseAmount={40000}
-        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-        monochrome={monochrome}
-      />,
+      <ReactQueryProvider>
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          monochrome={monochrome}
+        />
+      </ReactQueryProvider>,
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     expect(screen.getByTestId('widget-button')).toBeInTheDocument()

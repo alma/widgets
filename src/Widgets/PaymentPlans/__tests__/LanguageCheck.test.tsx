@@ -4,13 +4,6 @@ import React from 'react'
 import render from 'test'
 import { Locale } from 'types'
 import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
-
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
 
 describe('Change language', () => {
   it(`into ${Locale.en}`, async () => {

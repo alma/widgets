@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 
-export const makeClient = (baseUrl = '', merchantId = '') => {
+export const makeClient = (baseUrl = '', merchantId = ''): AxiosInstance => {
   return axios.create({
     baseURL: baseUrl,
     headers: {

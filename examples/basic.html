@@ -1,91 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Alma Widgets basic example</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alma Widgets basic example</title>
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="../dist/widgets.umd.css" />
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.min.css"
-    /> -->
-  </head>
-  <body>
-    <div class="body">
-      <div>
-        <img src="../src/assets/alma.svg" class="alma-logo" alt="alma" />
-      </div>
-      <div class="menu">
-        <a href="./multiple.html">Multiple widgets</a>
-      </div>
-      <div class="main">
-        <div class="image">
-          <img src="./sac-a-main.jpeg" alt="product" />
-        </div>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="../dist/widgets.umd.css" />
+  <!-- <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.min.css"
+  /> -->
+</head>
+<body>
+<div class="body">
+  <div>
+    <img src="../src/assets/alma.svg" class="alma-logo" alt="alma" />
+  </div>
+  <div class="menu">
+    <a href="./multiple.html">Multiple widgets</a>
+  </div>
+  <div class="main">
+    <div class="image">
+      <img src="./sac-a-main.jpeg" alt="product" />
+    </div>
 
-        <div>
-          <div class="product">
-            <h1>Sac à main</h1>
-            <select onchange="renderPaymentPlans()" id="quantity">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="10">10</option>
-            </select>
-            <h3>450 €</h3>
-            <div id="alma-widget-payment-plans"></div>
-            <div id="alma-widget-modal"></div>
-            <div class="add-to-cart">
-              <button>Ajouter au panier</button>
-            </div>
-          </div>
-          <div class="open-modal-ctas">
-            <a href="#" id="alma-open-modal-button">Open modal with clickableSelector</a>
-            <a href="#" onClick="openModal()">Open modal with open function</a>
-          </div>
+    <div>
+      <div class="product">
+        <h1>Sac à main</h1>
+        <select onchange="renderPaymentPlans()" id="quantity">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="10">10</option>
+        </select>
+        <h3>450 €</h3>
+        <div id="alma-widget-payment-plans"></div>
+        <div id="alma-widget-modal"></div>
+        <div class="add-to-cart">
+          <button>Ajouter au panier</button>
         </div>
+      </div>
+      <div class="open-modal-ctas">
+        <a href="#" id="alma-open-modal-button">Open modal with clickableSelector</a>
+        <a href="#" onClick="openModal()">Open modal with open function</a>
       </div>
     </div>
-    <script src="../dist/widgets.umd.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.umd.js"></script> -->
+  </div>
+</div>
+<script src="../dist/widgets.umd.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.umd.js"></script> -->
 
-    <script>
-      var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
+<script>
+  var widgets = Alma.Widgets.initialize('merchant_11v6dQL1wLe7MswAkSRJJehnISl3W2P0RB', Alma.ApiMode.TEST)
 
-      function renderPaymentPlans() {
-        var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
-        widgets.add(Alma.Widgets.PaymentPlans, {
-          container: '#alma-widget-payment-plans',
-          locale: 'fr',
-          purchaseAmount,
-        })
-      }
-      renderPaymentPlans()
+  function renderPaymentPlans() {
+    var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
+    widgets.add(Alma.Widgets.PaymentPlans, {
+      container: '#alma-widget-payment-plans',
+      locale: 'fr',
+      purchaseAmount,
+      hideIfNotEligible: false,
+      plans: [
+        {
+          installmentsCount: 1,
+          deferredDays: 0,
+          minAmount: 5000,
+          maxAmount: 90000,
+        },
+        {
+          installmentsCount: 1,
+          deferredDays: 15,
+          minAmount: 5000,
+          maxAmount: 90000,
+        },
+        {
+          installmentsCount: 2,
+          minAmount: 5000,
+          maxAmount: 90000,
+        },
+        {
+          installmentsCount: 3,
+          minAmount: 5000,
+          maxAmount: 90000,
+        },
+        {
+          installmentsCount: 4,
+          minAmount: 5000,
+          maxAmount: 90000,
+        },
+        {
+          installmentsCount: 5,
+          minAmount: 5000,
+          maxAmount: 90000,
+        },
+        {
+          installmentsCount: 10,
+          minAmount: 5000,
+          maxAmount: 90000,
+        },
+      ]
+    })
+  }
+  renderPaymentPlans()
 
-      function renderModal() {
-        var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
-        return widgets.add(Alma.Widgets.Modal, {
-          container: '#alma-widget-modal',
-          clickableSelector: '#alma-open-modal-button',
-          purchaseAmount,
-          locale: 'fr',
-          plans: [
-            {
-              installmentsCount: 4,
-              minAmount: 5000,
-              maxAmount: 90000,
-            },
-            {
-              installmentsCount: 10,
-              minAmount: 5000,
-              maxAmount: 90000,
-            },
-          ],
-        })
-      }
-      const { open: openModal, close } = renderModal()
-    </script>
-  </body>
+  function renderModal() {
+    var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
+    return widgets.add(Alma.Widgets.Modal, {
+      container: '#alma-widget-modal',
+      clickableSelector: '#alma-open-modal-button',
+      purchaseAmount,
+      locale: 'fr',
+      plans: [
+        {
+          installmentsCount: 4,
+          minAmount: 5000,
+          maxAmount: 90000,
+        },
+        {
+          installmentsCount: 10,
+          minAmount: 5000,
+          maxAmount: 90000,
+        },
+      ],
+    })
+  }
+  const { open: openModal, close } = renderModal()
+</script>
+</body>
 </html>

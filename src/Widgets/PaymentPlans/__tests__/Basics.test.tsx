@@ -4,30 +4,28 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
 import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
+import ReactQueryProvider from 'providers/ReactQuery'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
-
-beforeEach(async () => {
+const renderDefault = async () => {
   render(
-    <PaymentPlanWidget
-      purchaseAmount={40000}
-      apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-    />,
+    <ReactQueryProvider>
+      <PaymentPlanWidget
+        purchaseAmount={40000}
+        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+      />
+    </ReactQueryProvider>,
   )
   await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-})
-
+}
 describe('Basic PaymentPlan test', () => {
-  it('displays the button', () => {
+  it('displays the button', async () => {
+    await renderDefault()
     expect(screen.getByTestId('widget-button')).toBeInTheDocument()
   })
 
   it('opens the modal on click and close it', async () => {
+    await renderDefault()
+
     await userEvent.click(screen.getByTestId('widget-button'))
     expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
     await userEvent.click(screen.getByTestId('modal-close-button'))
@@ -36,11 +34,13 @@ describe('Basic PaymentPlan test', () => {
   describe('PayNow handle', () => {
     it('should not display P1X button if not specifically asked for from widgets config', async () => {
       render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          suggestedPaymentPlan={[2]}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-        />,
+        <ReactQueryProvider>
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            suggestedPaymentPlan={[2]}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          />
+        </ReactQueryProvider>,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
       expect(screen.queryByText(/Payer maintenant 450,00 €/)).not.toBeInTheDocument()
@@ -48,19 +48,21 @@ describe('Basic PaymentPlan test', () => {
     })
     it('should display P1X button if specifically asked for from widgets config', async () => {
       render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          configPlans={[
-            {
-              installmentsCount: 1,
-              deferredDays: 0,
-              deferredMonths: 0,
-              minAmount: 5000,
-              maxAmount: 90000,
-            },
-          ]}
-        />,
+        <ReactQueryProvider>
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            configPlans={[
+              {
+                installmentsCount: 1,
+                deferredDays: 0,
+                deferredMonths: 0,
+                minAmount: 5000,
+                maxAmount: 90000,
+              },
+            ]}
+          />
+        </ReactQueryProvider>,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
       expect(screen.queryByText(/2 x 225,00 €/)).not.toBeInTheDocument()

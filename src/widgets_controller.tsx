@@ -12,6 +12,7 @@ import {
 } from 'types'
 import ModalContainer from 'Widgets/EligibilityModal/ModalContainer'
 import PaymentPlanWidget from 'Widgets/PaymentPlans'
+import { enableMocking } from './mocks/server'
 import ReactQueryProvider from './providers/ReactQuery'
 
 export type AddReturnType =

@@ -1,6 +1,8 @@
-import { screen, waitFor } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { ApiMode } from 'consts'
 import { Widgets } from 'index'
+import { server } from 'mocks/server'
+import { rest } from 'msw'
 import React from 'react'
 import render from 'test'
 
@@ -16,6 +18,12 @@ describe('PaymentPlanContainer', () => {
   })
 
   it('should show the PaymentPlan widget loader', async () => {
-    await waitFor(() => expect(screen.getByTestId('loader')).toBeInTheDocument())
+    server.use(
+      rest.post(`${ApiMode.TEST}/v2/payments/eligibility`, async (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json({}), ctx.delay('infinite'))
+      }),
+    )
+
+    expect(await screen.findByTestId('loader')).toBeInTheDocument()
   })
 })

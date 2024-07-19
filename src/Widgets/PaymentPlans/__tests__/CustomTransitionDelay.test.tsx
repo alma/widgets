@@ -2,14 +2,9 @@ import { act, screen, waitFor } from '@testing-library/react'
 import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
+import { configPlans } from 'test/fixtures'
 import PaymentPlanWidget from '..'
-import { configPlans, mockButtonPlans } from 'test/fixtures'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
 jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
 
 const animationDuration = 500
@@ -56,7 +51,7 @@ describe('Custom transition delay', () => {
     act(() => {
       jest.advanceTimersByTime(animationDuration)
     })
-    expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+    expect(screen.getByText(/450,00 € à payer le 3 juin 2022/)).toBeInTheDocument()
     expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
   })
 })

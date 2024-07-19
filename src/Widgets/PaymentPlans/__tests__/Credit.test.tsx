@@ -4,13 +4,6 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
 import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
-
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
 
 const animationDuration = 5600 // 5500 + Time for transition
 

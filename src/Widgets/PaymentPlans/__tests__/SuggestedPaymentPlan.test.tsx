@@ -3,16 +3,12 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import { act } from 'react-dom/test-utils'
 import render from 'test'
+import { configPlans } from 'test/fixtures'
 import PaymentPlanWidget from '..'
-import { mockButtonPlans, configPlans } from 'test/fixtures'
-import { ConfigPlan } from '../../../types'
+import { ConfigPlan } from 'types'
+import ReactQueryProvider, { queryClient } from 'providers/ReactQuery'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
-jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
+jest.useFakeTimers('modern').setSystemTime(1634819600)
 
 const animationDuration = 5600
 
@@ -20,12 +16,14 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   describe('as a number', () => {
     const renderPlans = (suggestedPlan: number, plans?: ConfigPlan[]) =>
       render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          suggestedPaymentPlan={suggestedPlan}
-          configPlans={plans}
-        />,
+        <ReactQueryProvider>
+          <PaymentPlanWidget
+            purchaseAmount={45000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            suggestedPaymentPlan={suggestedPlan}
+            configPlans={plans}
+          />
+        </ReactQueryProvider>,
       )
 
     it('displays the message corresponding to the payment plan hovered', async () => {
@@ -37,7 +35,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
     it('should target the P1X and not a PayLater plan when suggested plan is 1', async () => {
       renderPlans(1, configPlans) // specify all plans explicitly to display P1X. P1X is only displayed if provided in configPlans.
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-      expect(screen.getByText(/Payer maintenant 450,00 €/)).toBeInTheDocument()
+      expect(await screen.findByText(/Payer maintenant 450,00 €/)).toBeInTheDocument()
       expect(screen.getByText('Payer maintenant').className).toContain('active')
     })
   })
@@ -45,11 +43,13 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   describe('as an array', () => {
     beforeEach(async () => {
       render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          suggestedPaymentPlan={[3, 2]}
-        />,
+        <ReactQueryProvider>
+          <PaymentPlanWidget
+            purchaseAmount={45000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            suggestedPaymentPlan={[3, 2]}
+          />
+        </ReactQueryProvider>,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
@@ -70,39 +70,41 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   describe('as an array with first item being illegible', () => {
     beforeEach(async () => {
       render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          configPlans={[
-            {
-              installmentsCount: 1,
-              minAmount: 5000,
-              maxAmount: 20000,
-            },
-            {
-              installmentsCount: 2,
-              minAmount: 0,
-              maxAmount: 0,
-            },
-            {
-              installmentsCount: 1,
-              deferredDays: 30,
-              minAmount: 50000,
-              maxAmount: 70000,
-            },
-            {
-              installmentsCount: 3,
-              minAmount: 5000,
-              maxAmount: 50000,
-            },
-            {
-              installmentsCount: 8,
-              minAmount: 5000,
-              maxAmount: 50000,
-            },
-          ]}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          suggestedPaymentPlan={[2, 3]}
-        />,
+        <ReactQueryProvider>
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            configPlans={[
+              {
+                installmentsCount: 1,
+                minAmount: 5000,
+                maxAmount: 20000,
+              },
+              {
+                installmentsCount: 2,
+                minAmount: 0,
+                maxAmount: 0,
+              },
+              {
+                installmentsCount: 1,
+                deferredDays: 30,
+                minAmount: 50000,
+                maxAmount: 70000,
+              },
+              {
+                installmentsCount: 3,
+                minAmount: 5000,
+                maxAmount: 50000,
+              },
+              {
+                installmentsCount: 8,
+                minAmount: 5000,
+                maxAmount: 50000,
+              },
+            ]}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            suggestedPaymentPlan={[2, 3]}
+          />
+        </ReactQueryProvider>,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
@@ -116,11 +118,13 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   describe('with a wrong value', () => {
     beforeEach(async () => {
       render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          suggestedPaymentPlan={[20]}
-        />,
+        <ReactQueryProvider>
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            suggestedPaymentPlan={[20]}
+          />
+        </ReactQueryProvider>,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })
@@ -135,12 +139,14 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   describe('with a different transitionDelay', () => {
     beforeEach(async () => {
       render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          transitionDelay={1000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-          suggestedPaymentPlan={[2]}
-        />,
+        <ReactQueryProvider>
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            transitionDelay={1000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            suggestedPaymentPlan={[2]}
+          />
+        </ReactQueryProvider>,
       )
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
     })

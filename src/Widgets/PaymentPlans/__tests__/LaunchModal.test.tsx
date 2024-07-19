@@ -4,21 +4,17 @@ import { ApiMode } from 'consts'
 import React from 'react'
 import render from 'test'
 import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
-
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
+import ReactQueryProvider from 'providers/ReactQuery'
 
 describe('Modal initializes with the correct plan', () => {
   it('after hovering a plan', async () => {
     render(
-      <PaymentPlanWidget
-        purchaseAmount={40000}
-        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-      />,
+      <ReactQueryProvider>
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+        />
+      </ReactQueryProvider>,
     )
 
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
@@ -34,10 +30,12 @@ describe('Modal initializes with the correct plan', () => {
 
   it('after clicking a plan (fallback for mobile)', async () => {
     render(
-      <PaymentPlanWidget
-        purchaseAmount={40000}
-        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-      />,
+      <ReactQueryProvider>
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+        />
+      </ReactQueryProvider>,
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
@@ -52,10 +50,12 @@ describe('Modal initializes with the correct plan', () => {
 
   it('after a simple click on the badge, with no hover or click on a specific plan', async () => {
     render(
-      <PaymentPlanWidget
-        purchaseAmount={40000}
-        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-      />,
+      <ReactQueryProvider>
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+        />
+      </ReactQueryProvider>,
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 
@@ -71,11 +71,13 @@ describe('Modal initializes with the correct plan', () => {
   it('should call onModalClose on close', async () => {
     const onModalClose = jest.fn()
     render(
-      <PaymentPlanWidget
-        purchaseAmount={40000}
-        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-        onModalClose={onModalClose}
-      />,
+      <ReactQueryProvider>
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          onModalClose={onModalClose}
+        />
+      </ReactQueryProvider>,
     )
     await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
 

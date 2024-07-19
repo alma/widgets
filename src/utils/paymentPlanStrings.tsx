@@ -6,16 +6,15 @@ import { isP1X, priceFromCents } from 'utils'
 
 export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
   const { deferred_days, deferred_months, installments_count: installmentsCount } = payment
-  
+
   if (installmentsCount === 1 && !deferred_days && !deferred_months) {
     return (
       <FormattedMessage
         id="payment-plan-strings.pay.now.button"
         defaultMessage="Payer maintenant"
-        
       />
     )
-  } 
+  }
   if (installmentsCount === 1 && deferred_days) {
     return (
       <FormattedMessage
@@ -26,7 +25,7 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
         }}
       />
     )
-  } 
+  }
   if (installmentsCount === 1 && deferred_months) {
     return (
       <FormattedMessage
@@ -62,12 +61,12 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     installments_count: installmentsCount,
     eligible,
     purchase_amount: purchaseAmount,
+    payment_plan,
     minAmount = 0,
     maxAmount = 0,
-    payment_plan,
   } = payment
-  const deferredDaysCount = deferred_days + deferred_months * 30
 
+  const deferredDaysCount = deferred_days + deferred_months * 30
   if (!eligible) {
     return purchaseAmount > maxAmount ? (
       <FormattedMessage

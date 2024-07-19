@@ -5,18 +5,21 @@ import render from 'test'
 import { mockPayNowPlan, mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
 import { apiStatus } from 'types'
 import EligibilityModal from '..'
+import ReactQueryProvider from 'providers/ReactQuery'
 
 describe('plans provided', () => {
   describe('default behaviour', () => {
     beforeEach(async () => {
       render(
-        <EligibilityModal
-          eligibilityPlans={mockPlansAllEligible}
-          status={apiStatus.SUCCESS}
-          onClose={() => jest.fn()}
-          // 1st plan is P1X. P1X has a specific wording so let's check the default wording on the 2nd plan
-          initialPlanIndex={1}
-        />,
+        <ReactQueryProvider>
+          <EligibilityModal
+            eligibilityPlans={mockPlansAllEligible}
+            status={apiStatus.SUCCESS}
+            onClose={() => jest.fn()}
+            // 1st plan is P1X. P1X has a specific wording so let's check the default wording on the 2nd plan
+            initialPlanIndex={1}
+          />
+        </ReactQueryProvider>,
       )
       await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
     })
@@ -142,14 +145,16 @@ describe('plans provided', () => {
   describe('plans and initial index provided', () => {
     it('should open with the correct plan selected', () => {
       render(
-        <EligibilityModal
-          eligibilityPlans={mockPlansAllEligible}
-          initialPlanIndex={3}
-          status={apiStatus.SUCCESS}
-          onClose={() => {
-            console.log('modal closed')
-          }}
-        />,
+        <ReactQueryProvider>
+          <EligibilityModal
+            eligibilityPlans={mockPlansAllEligible}
+            initialPlanIndex={3}
+            status={apiStatus.SUCCESS}
+            onClose={() => {
+              console.log('modal closed')
+            }}
+          />
+        </ReactQueryProvider>,
       )
       const installmentElement = screen.getByTestId('modal-installments-element')
       expect(installmentElement).toHaveTextContent("Aujourd'hui")
