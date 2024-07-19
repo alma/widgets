@@ -7,9 +7,7 @@ export enum widgetTypes {
   Modal = 'Modal',
 }
 export enum apiStatus {
-  PENDING = 'pending',
   SUCCESS = 'success',
-  ERROR = 'error',
 }
 
 export type ConfigPlan = {

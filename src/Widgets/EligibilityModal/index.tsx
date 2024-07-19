@@ -4,7 +4,7 @@ import Modal from 'components/Modal'
 import React, { FunctionComponent, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useMediaQuery } from 'react-responsive'
-import { Card, EligibilityPlan } from 'types'
+import { apiStatus, Card, EligibilityPlan } from 'types'
 import { desktopWidth, isP1X } from 'utils'
 import EligibilityPlansButtons from './components/EligibilityPlansButtons'
 import Schedule from './components/Schedule'
@@ -44,12 +44,12 @@ const EligibilityModal: FunctionComponent<Props> = ({
         cards={cards}
         isCurrentPlanP1X={isP1X(currentPlan)}
       >
-        {status === 'loading' && (
+        {status === apiStatus.SUCCESS && (
           <div className={s.loader}>
             <LoadingIndicator />
           </div>
         )}
-        {status === 'success' && eligibilityPlans.length === 0 && (
+        {status === apiStatus.SUCCESS && eligibilityPlans.length === 0 && (
           <div className={s.noEligibility}>
             <FormattedMessage
               id="eligibility-modal.no-eligibility"
@@ -57,7 +57,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
             />
           </div>
         )}
-        {status === 'success' && eligibilityPlans.length >= 1 && (
+        {status === apiStatus.SUCCESS && eligibilityPlans.length >= 1 && (
           <>
             <EligibilityPlansButtons
               eligibilityPlans={eligibilityPlans}
