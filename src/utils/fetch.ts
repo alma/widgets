@@ -11,6 +11,7 @@ export async function fetchFromApi(
       'Content-Type': 'application/json',
       ...headers,
     },
+    cache: 'force-cache',
     body: JSON.stringify(data),
   })
   return response.json()

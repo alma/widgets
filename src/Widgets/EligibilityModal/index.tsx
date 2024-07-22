@@ -49,28 +49,30 @@ const EligibilityModal: FunctionComponent<Props> = ({
             <LoadingIndicator />
           </div>
         )}
-        {status === apiStatus.SUCCESS && eligiblePlans.length === 0 && (
-          <div className={s.noEligibility}>
-            <FormattedMessage
-              id="eligibility-modal.no-eligibility"
-              defaultMessage="Oups, il semblerait que la simulation n'ait pas fonctionné."
-            />
-          </div>
-        )}
-        {status === apiStatus.SUCCESS && eligiblePlans.length >= 1 && (
-          <>
-            <EligibilityPlansButtons
-              eligibilityPlans={eligiblePlans}
-              currentPlanIndex={currentPlanIndex}
-              setCurrentPlanIndex={setCurrentPlanIndex}
-            />
-            <div className={s.scheduleArea}>
-              <div className={s.verticalLine} />
-              <Schedule currentPlan={currentPlan} />
-              <TotalBlock currentPlan={currentPlan} />
+        {(status === apiStatus.SUCCESS || status === apiStatus.CACHE_SUCCESS) &&
+          eligiblePlans.length === 0 && (
+            <div className={s.noEligibility}>
+              <FormattedMessage
+                id="eligibility-modal.no-eligibility"
+                defaultMessage="Oups, il semblerait que la simulation n'ait pas fonctionné."
+              />
             </div>
-          </>
-        )}
+          )}
+        {(status === apiStatus.SUCCESS || status === apiStatus.CACHE_SUCCESS) &&
+          eligiblePlans.length >= 1 && (
+            <>
+              <EligibilityPlansButtons
+                eligibilityPlans={eligiblePlans}
+                currentPlanIndex={currentPlanIndex}
+                setCurrentPlanIndex={setCurrentPlanIndex}
+              />
+              <div className={s.scheduleArea}>
+                <div className={s.verticalLine} />
+                <Schedule currentPlan={currentPlan} />
+                <TotalBlock currentPlan={currentPlan} />
+              </div>
+            </>
+          )}
       </ModalComponent>
     </Modal>
   )

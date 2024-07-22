@@ -12,7 +12,7 @@ jest.mock('utils/fetch', () => {
   }
 })
 
-beforeEach(async () => {
+const defaultRender = async () => {
   render(
     <PaymentPlanWidget
       purchaseAmount={40000}
@@ -20,14 +20,18 @@ beforeEach(async () => {
     />,
   )
   await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
-})
+}
 
 describe('Basic PaymentPlan test', () => {
-  it('displays the button', () => {
+  it('displays the button', async () => {
+    await defaultRender()
+
     expect(screen.getByTestId('widget-button')).toBeInTheDocument()
   })
 
   it('opens the modal on click and close it', async () => {
+    await defaultRender()
+
     await userEvent.click(screen.getByTestId('widget-button'))
     expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
     await userEvent.click(screen.getByTestId('modal-close-button'))
@@ -42,6 +46,7 @@ describe('Basic PaymentPlan test', () => {
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
         />,
       )
+
       await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
       expect(screen.queryByText(/Payer maintenant 450,00 €/)).not.toBeInTheDocument()
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()

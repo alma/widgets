@@ -4,6 +4,7 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect'
 import secondsToMilliseconds from 'date-fns/secondsToMilliseconds'
+import { EligibilityPlan } from './types'
 
 jest.mock('no-scroll', () => ({ on: jest.fn(), off: jest.fn() }))
 
@@ -11,3 +12,6 @@ beforeEach(() => {
   // Mock jest's "Today"
   Date.now = jest.fn(() => secondsToMilliseconds(1638350762)) // 01.12.2021
 })
+
+// Clean sessionStorage between all tests
+afterEach(() => sessionStorage.clear())

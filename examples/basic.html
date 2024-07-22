@@ -52,7 +52,7 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.umd.js"></script> -->
 
     <script>
-      var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
+      var widgets = Alma.Widgets.initialize('merchant_11y01pX1qXqx7HEtQUfQMdXVWJIabIE5f9', 'http://localhost:1337')
 
       function renderPaymentPlans() {
         var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
@@ -60,6 +60,18 @@
           container: '#alma-widget-payment-plans',
           locale: 'fr',
           purchaseAmount,
+          plans: [
+            {
+              installmentsCount: 4,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
+              installmentsCount: 10,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+          ],
         })
       }
       renderPaymentPlans()
