@@ -1,4 +1,3 @@
-import React from 'react'
 import { ConfigPlan, EligibilityPlan } from 'types'
 import { hashStringForStorage } from 'utils/utilsForStorage'
 
