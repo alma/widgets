@@ -11,6 +11,7 @@ export enum apiStatus {
   PENDING = 'pending',
   SUCCESS = 'success',
   FAILED = 'failed',
+  CACHE_SUCCESS = 'cache_success',
 }
 
 export type ConfigPlan = {

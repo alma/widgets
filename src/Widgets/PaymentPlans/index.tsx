@@ -89,7 +89,10 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
 
   useEffect(() => {
     // When API has given a response AND the marchand set an active plan by default.
-    if (status === apiStatus.SUCCESS && isSuggestedPaymentPlanSpecified) {
+    if (
+      (status === apiStatus.SUCCESS || status === apiStatus.CACHE_SUCCESS) &&
+      isSuggestedPaymentPlanSpecified
+    ) {
       onHover(activePlanIndex) // We select the first active plan possible
       onLeave() // We need to call onLeave to reset the animation
     }
