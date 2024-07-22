@@ -4,7 +4,6 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect'
 import secondsToMilliseconds from 'date-fns/secondsToMilliseconds'
-import { EligibilityPlan } from './types'
 
 jest.mock('no-scroll', () => ({ on: jest.fn(), off: jest.fn() }))
 
