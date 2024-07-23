@@ -7,11 +7,10 @@ export enum widgetTypes {
   PaymentPlans = 'PaymentPlans',
   Modal = 'Modal',
 }
-export enum apiStatus {
+export enum statusResponse {
   PENDING = 'pending',
   SUCCESS = 'success',
   FAILED = 'failed',
-  CACHE_SUCCESS = 'cache_success',
 }
 
 export type ConfigPlan = {

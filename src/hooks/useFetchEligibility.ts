@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ApiConfig, apiStatus, ConfigPlan, EligibilityPlan } from 'types'
+import { ApiConfig, statusResponse, ConfigPlan, EligibilityPlan } from 'types'
 import { fetchFromApi } from 'utils/fetch'
 import filterEligibility from 'utils/filterEligibility'
 import { useSessionStorage } from 'hooks/useSessionStorage'
@@ -10,13 +10,18 @@ const useFetchEligibility = (
   plans?: ConfigPlan[],
   customerBillingCountry?: string,
   customerShippingCountry?: string,
-): [EligibilityPlan[], apiStatus] => {
+): [EligibilityPlan[], statusResponse] => {
   const [eligibility, setEligibility] = useState([] as EligibilityPlan[])
-  const [status, setStatus] = useState(apiStatus.PENDING)
+  const [status, setStatus] = useState(statusResponse.PENDING)
 
   // caching
   const { getCache, setCache, createKey } = useSessionStorage()
-  const key = createKey(purchaseAmount, plans, customerBillingCountry, customerShippingCountry)
+  const key = createKey({
+    purchaseAmount,
+    plans,
+    customerBillingCountry,
+    customerShippingCountry,
+  })
   const currentCache = getCache(key)
 
   const configInstallments = plans?.map((plan) => ({
@@ -25,7 +30,7 @@ const useFetchEligibility = (
     deferred_months: plan?.deferredMonths,
   }))
   useEffect(() => {
-    if (status === apiStatus.PENDING) {
+    if (status === statusResponse.PENDING) {
       let billing_address = null
       if (customerBillingCountry) {
         billing_address = {
@@ -41,7 +46,7 @@ const useFetchEligibility = (
       }
       if (currentCache) {
         setEligibility(currentCache)
-        setStatus(apiStatus.CACHE_SUCCESS)
+        setStatus(statusResponse.SUCCESS)
       }
 
       if (!currentCache) {
@@ -61,10 +66,10 @@ const useFetchEligibility = (
           .then((res) => {
             setCache(key, res)
             setEligibility(res)
-            setStatus(apiStatus.SUCCESS)
+            setStatus(statusResponse.SUCCESS)
           })
           .catch(() => {
-            setStatus(apiStatus.FAILED)
+            setStatus(statusResponse.FAILED)
           })
       }
     }

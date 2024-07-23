@@ -4,7 +4,7 @@ import Modal from 'components/Modal'
 import React, { FunctionComponent, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useMediaQuery } from 'react-responsive'
-import { apiStatus, Card, EligibilityPlan } from 'types'
+import { statusResponse, Card, EligibilityPlan } from 'types'
 import { desktopWidth, isP1X } from 'utils'
 import EligibilityPlansButtons from './components/EligibilityPlansButtons'
 import Schedule from './components/Schedule'
@@ -16,7 +16,7 @@ type Props = {
   initialPlanIndex?: number
   onClose: (event: React.MouseEvent | React.KeyboardEvent) => void
   eligibilityPlans: EligibilityPlan[]
-  status: apiStatus
+  status: statusResponse
   cards?: Card[]
 }
 
@@ -44,35 +44,33 @@ const EligibilityModal: FunctionComponent<Props> = ({
         cards={cards}
         isCurrentPlanP1X={isP1X(currentPlan)}
       >
-        {status === apiStatus.PENDING && (
+        {status === statusResponse.PENDING && (
           <div className={s.loader}>
             <LoadingIndicator />
           </div>
         )}
-        {(status === apiStatus.SUCCESS || status === apiStatus.CACHE_SUCCESS) &&
-          eligiblePlans.length === 0 && (
-            <div className={s.noEligibility}>
-              <FormattedMessage
-                id="eligibility-modal.no-eligibility"
-                defaultMessage="Oups, il semblerait que la simulation n'ait pas fonctionné."
-              />
+        {status === statusResponse.SUCCESS && eligiblePlans.length === 0 && (
+          <div className={s.noEligibility}>
+            <FormattedMessage
+              id="eligibility-modal.no-eligibility"
+              defaultMessage="Oups, il semblerait que la simulation n'ait pas fonctionné."
+            />
+          </div>
+        )}
+        {status === statusResponse.SUCCESS && eligiblePlans.length >= 1 && (
+          <>
+            <EligibilityPlansButtons
+              eligibilityPlans={eligiblePlans}
+              currentPlanIndex={currentPlanIndex}
+              setCurrentPlanIndex={setCurrentPlanIndex}
+            />
+            <div className={s.scheduleArea}>
+              <div className={s.verticalLine} />
+              <Schedule currentPlan={currentPlan} />
+              <TotalBlock currentPlan={currentPlan} />
             </div>
-          )}
-        {(status === apiStatus.SUCCESS || status === apiStatus.CACHE_SUCCESS) &&
-          eligiblePlans.length >= 1 && (
-            <>
-              <EligibilityPlansButtons
-                eligibilityPlans={eligiblePlans}
-                currentPlanIndex={currentPlanIndex}
-                setCurrentPlanIndex={setCurrentPlanIndex}
-              />
-              <div className={s.scheduleArea}>
-                <div className={s.verticalLine} />
-                <Schedule currentPlan={currentPlan} />
-                <TotalBlock currentPlan={currentPlan} />
-              </div>
-            </>
-          )}
+          </>
+        )}
       </ModalComponent>
     </Modal>
   )

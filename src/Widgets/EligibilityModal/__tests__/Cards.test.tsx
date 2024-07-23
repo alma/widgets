@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react'
 import React from 'react'
 import render from 'test'
 import { mockButtonPlans } from 'test/fixtures'
-import { apiStatus } from 'types'
+import { statusResponse } from 'types'
 import EligibilityModal from '..'
 import { Context as ResponsiveContext } from 'react-responsive'
 import { desktopWidth } from 'utils'
@@ -18,7 +18,7 @@ it('should not display card logos if they are not provided', () => {
     <EligibilityModal
       eligibilityPlans={mockButtonPlans}
       initialPlanIndex={0}
-      status={apiStatus.SUCCESS}
+      status={statusResponse.SUCCESS}
       onClose={() => jest.fn()}
     />,
   )
@@ -36,7 +36,7 @@ it('should not display card logos if an empty array is provided', () => {
       eligibilityPlans={mockButtonPlans}
       initialPlanIndex={0}
       cards={[]}
-      status={apiStatus.SUCCESS}
+      status={statusResponse.SUCCESS}
       onClose={() => jest.fn()}
     />,
   )
@@ -53,7 +53,7 @@ it('should display provided card logos', () => {
     <EligibilityModal
       eligibilityPlans={mockButtonPlans}
       initialPlanIndex={0}
-      status={apiStatus.SUCCESS}
+      status={statusResponse.SUCCESS}
       onClose={() => jest.fn()}
       cards={['amex', 'cb']}
     />,
@@ -71,7 +71,7 @@ it('should display provided card logos with Desktop Modal', () => {
       <EligibilityModal
         eligibilityPlans={mockButtonPlans}
         initialPlanIndex={0}
-        status={apiStatus.SUCCESS}
+        status={statusResponse.SUCCESS}
         onClose={() => jest.fn()}
         cards={['amex', 'cb']}
       />
@@ -89,7 +89,7 @@ it('should display all cards logos', () => {
     <EligibilityModal
       eligibilityPlans={mockButtonPlans}
       initialPlanIndex={0}
-      status={apiStatus.SUCCESS}
+      status={statusResponse.SUCCESS}
       onClose={() => jest.fn()}
       cards={['amex', 'cb', 'mastercard', 'visa']}
     />,

@@ -4,7 +4,7 @@ import Loader from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import React, { MouseEvent, useEffect, useState, VoidFunctionComponent } from 'react'
-import { ApiConfig, apiStatus, Card, ConfigPlan } from 'types'
+import { ApiConfig, statusResponse, Card, ConfigPlan } from 'types'
 import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
 import EligibilityModal from 'Widgets/EligibilityModal'
@@ -89,10 +89,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
 
   useEffect(() => {
     // When API has given a response AND the marchand set an active plan by default.
-    if (
-      (status === apiStatus.SUCCESS || status === apiStatus.CACHE_SUCCESS) &&
-      isSuggestedPaymentPlanSpecified
-    ) {
+    if (status === statusResponse.SUCCESS && isSuggestedPaymentPlanSpecified) {
       onHover(activePlanIndex) // We select the first active plan possible
       onLeave() // We need to call onLeave to reset the animation
     }
@@ -109,7 +106,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
     return index === -1 ? 0 : index
   }
 
-  if (status === apiStatus.PENDING) {
+  if (status === statusResponse.PENDING) {
     return (
       <div className={cx(s.widgetButton, s.pending)}>
         <Loader />
@@ -120,7 +117,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   if (
     (hideIfNotEligible && eligiblePlans.length === 0) ||
     eligibilityPlans.length === 0 ||
-    status === apiStatus.FAILED
+    status === statusResponse.FAILED
   ) {
     return null
   }
