@@ -3,6 +3,7 @@ import { ApiConfig, statusResponse, ConfigPlan, EligibilityPlan } from 'types'
 import { fetchFromApi } from 'utils/fetch'
 import filterEligibility from 'utils/filterEligibility'
 import { useSessionStorage } from 'hooks/useSessionStorage'
+import { isMoreThanOneHourAgo } from '../utils/utilsForStorage'
 
 const useFetchEligibility = (
   purchaseAmount: number,
@@ -22,7 +23,10 @@ const useFetchEligibility = (
     customerBillingCountry,
     customerShippingCountry,
   })
-  const currentCache = getCache(key)
+  const currentCache = getCache(key)?.value
+  const lastCacheTimestamp = getCache(key)?.timestamp
+  // If the stored date is more than an hour ago, we should invalidate the cache
+  const shouldInvalidate = lastCacheTimestamp && isMoreThanOneHourAgo(lastCacheTimestamp)
 
   const configInstallments = plans?.map((plan) => ({
     installments_count: plan.installmentsCount,
@@ -44,12 +48,12 @@ const useFetchEligibility = (
           country: customerShippingCountry,
         }
       }
-      if (currentCache) {
+      if (currentCache && !shouldInvalidate) {
         setEligibility(currentCache)
         setStatus(statusResponse.SUCCESS)
       }
 
-      if (!currentCache) {
+      if (!currentCache || shouldInvalidate) {
         fetchFromApi(
           domain + '/v2/payments/eligibility',
           {

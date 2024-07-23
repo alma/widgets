@@ -15,3 +15,11 @@ export const hashStringForStorage = (str: string): string => {
       .replace('-', 'A')
   ) // If the hash is negative (which is represented by a leading '-'), it's replaced with 'A' to ensure the hash is alphanumeric.
 }
+
+export const isMoreThanOneHourAgo = (date: number): boolean => {
+  const ONE_HOUR_IN_MILLISECONDS = 1000 * 60 * 60
+  const currentTime = Date.now()
+  const difference = currentTime - date
+
+  return difference >= ONE_HOUR_IN_MILLISECONDS
+}
