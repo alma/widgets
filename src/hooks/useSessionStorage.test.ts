@@ -37,7 +37,11 @@ describe('useSessionStorage', () => {
     act(() => result.current.setCache('someKey', mockButtonPlans))
 
     // We check that storage has been updated
-    expect(result.current.getCache('someKey')).toStrictEqual(mockButtonPlans)
+    expect(result.current.getCache('someKey')).toStrictEqual({
+      value: mockButtonPlans,
+      // Date.now() is mocked to return 1638350762000 in setupTests.ts
+      timestamp: 1638350762000,
+    })
 
     // We set another value for the another key
     act(() => result.current.setCache('otherKey', [mockButtonPlans[0]]))
@@ -47,7 +51,11 @@ describe('useSessionStorage', () => {
     // We check that storage is empty again for this key
     expect(result.current.getCache('someKey')).toEqual(null)
     // But it's still filled for the other key
-    expect(result.current.getCache('otherKey')).toStrictEqual([mockButtonPlans[0]])
+    expect(result.current.getCache('otherKey')).toStrictEqual({
+      value: [mockButtonPlans[0]],
+      // Date.now() is mocked to return 1638350762000 in setupTests.ts
+      timestamp: 1638350762000,
+    })
 
     // We clean the storage
     act(() => result.current.clearCache())

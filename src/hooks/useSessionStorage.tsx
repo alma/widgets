@@ -8,8 +8,13 @@ type CreateKeyType = {
   customerShippingCountry?: string
 }
 
+type StorageType = {
+  value: EligibilityPlan[]
+  timestamp: number
+}
+
 type UseSessionStorageType = {
-  getCache: (key: string) => EligibilityPlan[] | null
+  getCache: (key: string) => StorageType | null
   setCache: (key: string, value: EligibilityPlan[]) => void
   clearCache: () => void
   deleteCache: (key: string) => void
@@ -18,11 +23,12 @@ type UseSessionStorageType = {
 
 export const useSessionStorage: () => UseSessionStorageType = () => {
   const setCache = (key: string, value: EligibilityPlan[]) => {
-    // Save data to sessionStorage
-    sessionStorage.setItem(key, JSON.stringify(value))
+    // Save data to sessionStorage and create timestamp
+    const timestamp = Date.now()
+    sessionStorage.setItem(key, JSON.stringify({ value, timestamp }))
   }
 
-  const getCache = (key: string): EligibilityPlan[] | null => {
+  const getCache = (key: string): StorageType | null => {
     // Get saved data from sessionStorage
     const stringData = sessionStorage.getItem(key) || ''
     // Parse cached data to use it directly as an array of EligibilityPlan
