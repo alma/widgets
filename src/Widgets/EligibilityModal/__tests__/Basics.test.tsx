@@ -4,7 +4,7 @@ import React from 'react'
 import { Context as ResponsiveContext } from 'react-responsive'
 import render from 'test'
 import { mockButtonPlans } from 'test/fixtures'
-import { apiStatus } from 'types'
+import { statusResponse } from 'types'
 import EligibilityModal from '..'
 
 const onClose = jest.fn()
@@ -14,7 +14,7 @@ beforeEach(async () => {
     <ResponsiveContext.Provider value={{ width: 801 }}>
       <EligibilityModal
         eligibilityPlans={mockButtonPlans}
-        status={apiStatus.SUCCESS}
+        status={statusResponse.SUCCESS}
         onClose={onClose}
       />
     </ResponsiveContext.Provider>,

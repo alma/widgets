@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import React from 'react'
 import render from 'test'
 import { mockPayNowPlan, mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
-import { apiStatus } from 'types'
+import { statusResponse } from 'types'
 import EligibilityModal from '..'
 
 describe('plans provided', () => {
@@ -12,7 +12,7 @@ describe('plans provided', () => {
       render(
         <EligibilityModal
           eligibilityPlans={mockPlansAllEligible}
-          status={apiStatus.SUCCESS}
+          status={statusResponse.SUCCESS}
           onClose={() => jest.fn()}
           // 1st plan is P1X. P1X has a specific wording so let's check the default wording on the 2nd plan
           initialPlanIndex={1}
@@ -88,7 +88,7 @@ describe('plans provided', () => {
       render(
         <EligibilityModal
           eligibilityPlans={mockPayNowPlan}
-          status={apiStatus.SUCCESS}
+          status={statusResponse.SUCCESS}
           onClose={() => jest.fn()}
           // 1st plan is P1X
           initialPlanIndex={0}
@@ -127,7 +127,7 @@ describe('plans provided', () => {
       render(
         <EligibilityModal
           eligibilityPlans={mockPlansWithoutDeferred}
-          status={apiStatus.SUCCESS}
+          status={statusResponse.SUCCESS}
           onClose={() => {
             console.log('modal closed')
           }}
@@ -145,7 +145,7 @@ describe('plans provided', () => {
         <EligibilityModal
           eligibilityPlans={mockPlansAllEligible}
           initialPlanIndex={3}
-          status={apiStatus.SUCCESS}
+          status={statusResponse.SUCCESS}
           onClose={() => {
             console.log('modal closed')
           }}

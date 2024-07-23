@@ -1,17 +1,19 @@
 import { ConfigPlan, EligibilityPlan } from 'types'
 import { hashStringForStorage } from 'utils/utilsForStorage'
 
+type CreateKeyType = {
+  purchaseAmount: number
+  plans?: ConfigPlan[]
+  customerBillingCountry?: string
+  customerShippingCountry?: string
+}
+
 type UseSessionStorageType = {
   getCache: (key: string) => EligibilityPlan[] | null
   setCache: (key: string, value: EligibilityPlan[]) => void
   clearCache: () => void
   deleteCache: (key: string) => void
-  createKey: (
-    amount: number,
-    plans?: ConfigPlan[],
-    customerBillingCountry?: string,
-    customerShippingCountry?: string,
-  ) => string
+  createKey: (params: CreateKeyType) => string
 }
 
 export const useSessionStorage: () => UseSessionStorageType = () => {
@@ -37,13 +39,10 @@ export const useSessionStorage: () => UseSessionStorageType = () => {
     sessionStorage.clear()
   }
 
-  const createKey = (
-    amount: number,
-    plans?: ConfigPlan[],
-    customerBillingCountry = '',
-    customerShippingCountry = '',
-  ): string => {
-    const stringAmount = amount.toString()
+  const createKey = (params: CreateKeyType): string => {
+    const { purchaseAmount, plans, customerBillingCountry, customerShippingCountry } = params
+
+    const stringAmount = purchaseAmount.toString()
     const stringPlans = JSON.stringify(plans)
     return hashStringForStorage(
       `${stringAmount}${stringPlans}${customerBillingCountry}${customerShippingCountry}`,
