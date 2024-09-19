@@ -1,0 +1,21 @@
+# This file is only used for vulnerability alerts for NPM, not for automatic updates.
+# Renovate has trouble patching NPM lockfile-only vulnerabilities.
+
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 0  # only allow vulnerabilities
+    groups:
+      npm-vulnerabilities:
+        applies-to: security-updates
+        patterns:
+          - "*"
+    labels:
+      - "type: security"
+    reviewers:
+      - alma/squad-e-commerce-integrations
+      - alma/it-and-security-operation
