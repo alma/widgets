@@ -10,9 +10,9 @@ jobs:
     name: Publish package
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js 16
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: 16
       - run: npm ci
@@ -29,7 +29,7 @@ jobs:
         env:
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish build assets to release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             ./dist/widgets.umd.js
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           # Fetch the latest commit, only
           fetch-depth: 1
@@ -74,7 +74,7 @@ jobs:
             echo ::set-output name=RELEASE_NOTES::"$RELEASE_NOTES"
 
       - name: Use Slack markdown
-        uses: LoveToKnow/slackify-markdown-action@v1.0.0
+        uses: LoveToKnow/slackify-markdown-action@v1.1.1
         id: slack-markdown-release-notes
         with:
           text: |
@@ -85,7 +85,7 @@ jobs:
             ${{ steps.release-notes.outputs.RELEASE_NOTES }}
 
       - name: Send changelog to Slack
-        uses: slackapi/slack-github-action@v1.16.0
+        uses: slackapi/slack-github-action@v1.27.0
         with:
           # Channel `#alma_changelog`
           channel-id: 'CR9C57YM6'
