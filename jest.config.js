@@ -8,7 +8,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   rootDir: 'src',
   moduleNameMapper: {
-    '\\.s?css': '<rootDir>/__mocks__/styleMock.js',
+    '^.+\\.css$': 'identity-obj-proxy',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/__mocks__/fileMock.js',
     '^@/(.*)$': ['<rootDir>/$1'],
@@ -23,5 +23,8 @@ module.exports = {
       lines: 0,
       statements: 0,
     },
+  },
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
   },
 }

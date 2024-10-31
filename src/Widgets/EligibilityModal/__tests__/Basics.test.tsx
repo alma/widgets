@@ -12,7 +12,7 @@ import EligibilityModal from 'Widgets/EligibilityModal'
 const onClose = jest.fn()
 
 describe('Test responsiveness', () => {
-  it('should display the payments plans provided in eligibility', () => {
+  it('should display the payments plans provided in eligibility', async () => {
     render(
       <ResponsiveContext.Provider value={{ width: 801 }}>
         <EligibilityModal

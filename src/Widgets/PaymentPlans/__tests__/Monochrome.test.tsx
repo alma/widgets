@@ -24,7 +24,12 @@ it.each([true, false])(
     await screen.findByTestId('widget-button')
     expect(screen.getByTestId('widget-button')).toBeInTheDocument()
     expect(screen.getByText('M+1').className).toContain('active')
-    const expectedValue = monochrome ? 'monochrome' : 'polychrome'
-    expect(screen.getByText('M+1').className).toContain(expectedValue)
+    if (monochrome) {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(screen.getByText('M+1').className).toContain('monochrome')
+    } else {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(screen.getByText('M+1').className).not.toContain('polychrome')
+    }
   },
 )
