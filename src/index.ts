@@ -1,10 +1,9 @@
-import 'core-js/stable/array/from' // todo Looks like legacy code, needs to be tested
-import { widgetTypes } from 'types'
-import { ApiMode } from './consts'
-import './main.css'
-import * as utils from './utils'
-import './utils/polyfills' // todo Looks like legacy code, needs to be tested on multiple browsers (old ones too)
-import { WidgetsController } from './widgets_controller'
+import { ApiMode } from '@/consts'
+import { widgetTypes } from '@/types'
+import '@/main.css'
+import * as utils from '@/utils'
+import 'utils/polyfills' // todo Looks like legacy code, needs to be tested on multiple browsers (old ones too)
+import { WidgetsController } from '@/widgets_controller'
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Widgets {
@@ -22,4 +21,4 @@ export namespace Utils {
   export const formatCents = utils.formatCents
 }
 
-export { ApiMode } from './consts'
+export { ApiMode } from '@/consts'

@@ -1,32 +1,37 @@
-import { screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { ApiMode } from 'consts'
 import React from 'react'
-import render from 'test'
-import { mockButtonPlans } from 'test/fixtures'
-import ModalContainer from './ModalContainer'
+
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { Context as ResponsiveContext } from 'react-responsive'
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
+
+import { ApiMode } from '@/consts'
+import render from '@/test'
+import { mockButtonPlans } from 'test/fixtures'
+import { ModalContainer } from 'Widgets/EligibilityModal/ModalContainer'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockButtonPlans,
+}))
 
 describe('ModalContainer', () => {
   describe('test responsiveness', () => {
-    beforeEach(async () => {
+    const setup = async () => {
       render(
         <ResponsiveContext.Provider value={{ width: 801 }}>
           <ModalContainer
             purchaseAmount={40000}
             apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
             onClose={() => {
+              // eslint-disable-next-line no-console
               console.log('modal closed')
             }}
           />
         </ResponsiveContext.Provider>,
       )
-      await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
+      await screen.findByTestId('modal-close-button')
+    }
+    beforeEach(async () => {
+      await setup()
     })
 
     it('should display the payments plans provided in eligibility', () => {
@@ -36,17 +41,21 @@ describe('ModalContainer', () => {
   })
 
   describe('No plans provided', () => {
-    beforeEach(async () => {
+    const setup = async () => {
       render(
         <ModalContainer
           purchaseAmount={40000}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
           onClose={() => {
+            // eslint-disable-next-line no-console
             console.log('modal closed')
           }}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
+      await screen.findByTestId('modal-close-button')
+    }
+    beforeEach(async () => {
+      await setup()
     })
 
     it('should display the payments plans provided in eligibility', () => {
@@ -90,21 +99,19 @@ describe('ModalContainer', () => {
   })
 
   describe('No eligibility', () => {
-    beforeEach(async () => {
+    it('should display error message', async () => {
       render(
         <ModalContainer
           purchaseAmount={40000}
           configPlans={[]}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
           onClose={() => {
+            // eslint-disable-next-line no-console
             console.log('modal closed')
           }}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
-    })
-
-    it('should display error message', () => {
+      await screen.findByTestId('modal-close-button')
       const element = screen.getByTestId('modal-container')
       expect(element).toHaveTextContent(
         "Oups, il semblerait que la simulation n'ait pas fonctionné.",
@@ -113,7 +120,7 @@ describe('ModalContainer', () => {
   })
 
   describe('Only one plan', () => {
-    beforeEach(async () => {
+    it('should display the schedule for the selected payment plan', async () => {
       render(
         <ModalContainer
           purchaseAmount={40000}
@@ -126,14 +133,12 @@ describe('ModalContainer', () => {
           ]}
           apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
           onClose={() => {
+            // eslint-disable-next-line no-console
             console.log('modal closed')
           }}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
-    })
-
-    it('should display the schedule for the selected payment plan', () => {
+      await screen.findByTestId('modal-close-button')
       const installmentElement = screen.getByTestId('modal-container')
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [

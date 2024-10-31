@@ -3,7 +3,7 @@
     "declarationDir": "dist/types",
     "outDir": "dist/lib",
     "typeRoots": ["node_modules/@types"],
-    "baseUrl": "src",
+    "baseUrl": ".",
     "moduleResolution": "node",
     "target": "ES2019",
     "module": "commonjs",
@@ -16,7 +16,18 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "jsx": "react",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "paths": {
+      "assets/*": ["src/assets/*"],
+      "components/*": ["src/components/*"],
+      "hooks/*": ["src/hooks/*"],
+      "intl/*": ["src/intl/*"],
+      "test/*": ["src/test/*"],
+      "utils/*": ["src/utils/*"],
+      "Widgets/*": ["src/Widgets/*"],
+      "@/*": ["src/*"],
+    }
   },
   "include": ["src", "node_modules/microbundle/index.d.ts"]
 }

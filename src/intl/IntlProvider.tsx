@@ -1,7 +1,9 @@
 import React, { FC, ReactNode } from 'react'
+
 import { IntlProvider } from 'react-intl'
-import { Locale } from 'types'
-import { getTranslationsByLocale } from './utils'
+
+import { Locale } from '@/types'
+import { getTranslationsByLocale } from 'intl/utils'
 
 type Props = { children: ReactNode; locale: Locale }
 

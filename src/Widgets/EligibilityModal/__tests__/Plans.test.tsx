@@ -1,14 +1,16 @@
-import { screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import React from 'react'
-import render from 'test'
+
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
+import render from '@/test'
+import { statusResponse } from '@/types'
 import { mockPayNowPlan, mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
-import { statusResponse } from 'types'
-import EligibilityModal from '..'
+import EligibilityModal from 'Widgets/EligibilityModal'
 
 describe('plans provided', () => {
   describe('default behaviour', () => {
-    beforeEach(async () => {
+    const setup = async () => {
       render(
         <EligibilityModal
           eligibilityPlans={mockPlansAllEligible}
@@ -18,7 +20,10 @@ describe('plans provided', () => {
           initialPlanIndex={1}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
+      await screen.findByTestId('modal-close-button')
+    }
+    beforeEach(async () => {
+      await setup()
     })
 
     it('should display the payments plans provided in eligibility', () => {
@@ -34,8 +39,6 @@ describe('plans provided', () => {
       expect(screen.getByTestId('modal-info-element')).toHaveTextContent(
         'Gardez le contrôle en avançant ou reculant vos échéances à votre rythme.',
       )
-    })
-    it('should display the payments plans provided in eligibility', () => {
       expect(screen.getByText('Payer maintenant')).toBeInTheDocument()
       expect(screen.getByText('M+1')).toBeInTheDocument()
       expect(screen.getByText('2x')).toBeInTheDocument()
@@ -43,6 +46,7 @@ describe('plans provided', () => {
       expect(screen.getByText('4x')).toBeInTheDocument()
       expect(screen.getByText('10x')).toBeInTheDocument()
     })
+
     it('should display the first payment plans when initially opened', () => {
       const installmentElement = screen.getByTestId('modal-installments-element')
       expect(installmentElement).toHaveTextContent('450,00 €')
@@ -84,7 +88,7 @@ describe('plans provided', () => {
   })
 
   describe('P1X case', () => {
-    beforeEach(async () => {
+    const setup = async () => {
       render(
         <EligibilityModal
           eligibilityPlans={mockPayNowPlan}
@@ -94,7 +98,10 @@ describe('plans provided', () => {
           initialPlanIndex={0}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('modal-close-button')).toBeInTheDocument())
+      await screen.findByTestId('modal-close-button')
+    }
+    beforeEach(async () => {
+      await setup()
     })
 
     it('should display the payments plans provided in eligibility', () => {
@@ -129,6 +136,7 @@ describe('plans provided', () => {
           eligibilityPlans={mockPlansWithoutDeferred}
           status={statusResponse.SUCCESS}
           onClose={() => {
+            // eslint-disable-next-line no-console
             console.log('modal closed')
           }}
         />,
@@ -147,6 +155,7 @@ describe('plans provided', () => {
           initialPlanIndex={3}
           status={statusResponse.SUCCESS}
           onClose={() => {
+            // eslint-disable-next-line no-console
             console.log('modal closed')
           }}
         />,

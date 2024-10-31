@@ -1,10 +1,11 @@
 import React, { FunctionComponent, ReactNode } from 'react'
-import Modal from 'react-modal'
-import noScroll from 'no-scroll'
-import cx from 'classnames'
 
-import s from './Modal.module.css'
+import cx from 'classnames'
+import noScroll from 'no-scroll'
+import Modal from 'react-modal'
+
 import CrossIcon from 'assets/Cross'
+import s from 'components/Modal/Modal.module.css'
 import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
 
 export type Props = Modal.Props & {
@@ -46,6 +47,7 @@ const ControlledModal: FunctionComponent<Props> = ({
     >
       <div className={s.header}>
         <button
+          type="button"
           onClick={onClose}
           className={cx(s.closeButton, STATIC_CUSTOMISATION_CLASSES.closeButton)}
           data-testid="modal-close-button"

@@ -1,12 +1,14 @@
 import React, { FC } from 'react'
-import { Card } from 'types'
-import AmexCard from 'assets/cards/amex'
-import VisaCard from 'assets/cards/visa'
-import MasterCard from 'assets/cards/mastercard'
-import CbCard from 'assets/cards/cb'
-import s from './Cards.module.css'
-import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
+
 import cx from 'classnames'
+
+import { Card } from '@/types'
+import AmexCard from 'assets/cards/amex'
+import CbCard from 'assets/cards/cb'
+import MasterCard from 'assets/cards/mastercard'
+import VisaCard from 'assets/cards/visa'
+import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
+import s from 'Widgets/EligibilityModal/components/Cards/Cards.module.css'
 
 type Props = {
   cards: Card[]

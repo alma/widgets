@@ -1,4 +1,4 @@
-import { ConfigPlan, EligibilityPlan } from 'types'
+import { ConfigPlan, EligibilityPlan } from '@/types'
 
 export const mockPlansAllEligible: EligibilityPlan[] = [
   {

@@ -1,16 +1,16 @@
-import { screen, waitFor } from '@testing-library/react'
-import { ApiMode } from 'consts'
 import React from 'react'
-import render from 'test'
-import { Locale } from 'types'
-import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
+import { screen } from '@testing-library/react'
+
+import { ApiMode } from '@/consts'
+import render from '@/test'
+import { Locale } from '@/types'
+import { mockButtonPlans } from 'test/fixtures'
+import PaymentPlanWidget from 'Widgets/PaymentPlans'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockButtonPlans,
+}))
 
 describe('Change language', () => {
   it(`into ${Locale.en}`, async () => {
@@ -24,7 +24,7 @@ describe('Change language', () => {
         locale: Locale.en,
       },
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/to pay the/)).toBeInTheDocument()
@@ -42,7 +42,7 @@ describe('Change language', () => {
         locale: Locale.de,
       },
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/zu zahlen am/)).toBeInTheDocument()
@@ -60,7 +60,7 @@ describe('Change language', () => {
         locale: Locale.es,
       },
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/a pagar el/)).toBeInTheDocument()
@@ -78,7 +78,7 @@ describe('Change language', () => {
         locale: Locale.it,
       },
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/da pagare il/)).toBeInTheDocument()
@@ -96,7 +96,7 @@ describe('Change language', () => {
         locale: Locale['it-IT'],
       },
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/da pagare il/)).toBeInTheDocument()
@@ -114,7 +114,7 @@ describe('Change language', () => {
         locale: Locale.nl,
       },
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/te betalen op/)).toBeInTheDocument()
@@ -132,7 +132,7 @@ describe('Change language', () => {
         locale: Locale.pt,
       },
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/a pagar em/)).toBeInTheDocument()

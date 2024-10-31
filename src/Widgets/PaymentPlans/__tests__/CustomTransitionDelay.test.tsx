@@ -1,21 +1,21 @@
-import { act, screen, waitFor } from '@testing-library/react'
-import { ApiMode } from 'consts'
 import React from 'react'
-import render from 'test'
-import PaymentPlanWidget from '..'
-import { configPlans, mockButtonPlans } from 'test/fixtures'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
-jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
+import { act, screen } from '@testing-library/react'
+
+import { ApiMode } from '@/consts'
+import render from '@/test'
+import { configPlans, mockButtonPlans } from 'test/fixtures'
+import PaymentPlanWidget from 'Widgets/PaymentPlans'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockButtonPlans,
+}))
+jest.useFakeTimers().setSystemTime(new Date('2020-01-01').getTime())
 
 const animationDuration = 500
 
 describe('Custom transition delay', () => {
-  beforeEach(async () => {
+  const setup = async () => {
     render(
       <PaymentPlanWidget
         purchaseAmount={40000}
@@ -24,7 +24,10 @@ describe('Custom transition delay', () => {
         configPlans={configPlans} // specify all plans explicitly to display P1X. P1X is only displayed if provided in configPlans.
       />,
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
+  }
+  beforeEach(async () => {
+    await setup()
   })
 
   it(`iterates on each plan every ${animationDuration}ms then returns to the beginning`, () => {

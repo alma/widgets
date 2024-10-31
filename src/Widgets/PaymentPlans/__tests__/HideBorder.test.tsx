@@ -1,15 +1,15 @@
-import { screen, waitFor } from '@testing-library/react'
-import { ApiMode } from 'consts'
 import React from 'react'
-import render from 'test'
-import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
+import { screen } from '@testing-library/react'
+
+import { ApiMode } from '@/consts'
+import render from '@/test'
+import { mockButtonPlans } from 'test/fixtures'
+import PaymentPlanWidget from 'Widgets/PaymentPlans'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockButtonPlans,
+}))
 
 it.each([true, false])(
   'renders the widget without border when expected (hideBorder = %s)',
@@ -22,11 +22,13 @@ it.each([true, false])(
         monochrome
       />,
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
     expect(screen.getByTestId('widget-button')).toBeInTheDocument()
     if (hideBorder) {
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(screen.getByTestId('widget-button').className).toContain('hideBorder')
     } else {
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(screen.getByTestId('widget-button').className).not.toContain('hideBorder')
     }
   },

@@ -1,8 +1,11 @@
-import { FormattedMessage } from 'react-intl'
-import { EligibilityPlan } from '../types'
-import { priceToCents, formatCents, isP1X } from './index'
-import { paymentPlanInfoText, paymentPlanShorthandName } from './paymentPlanStrings'
 import React from 'react'
+
+import { FormattedMessage } from 'react-intl'
+
+import { EligibilityPlan } from '@/types'
+import { formatCents, isP1X, priceToCents } from 'utils/index'
+import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
+
 describe('utils', () => {
   it('transform euros in cents', () => {
     expect(priceToCents(100)).toBe(10000)
@@ -29,24 +32,27 @@ describe('utils', () => {
         expect(paymentPlanShorthandName(plan)).toEqual(result)
       })
       describe('Pay Later', () => {
-
         it('should display "Pay now" for one installment count and no deferred days or months', () => {
           const plan = {
             installments_count: 1,
             deferred_days: 0,
             deferred_months: 0,
-           } as EligibilityPlan
-           
-           expect(paymentPlanShorthandName(plan)).toEqual(
-             <FormattedMessage
-               id="payment-plan-strings.pay.now.button"
-               defaultMessage="Payer maintenant"
-             />
-           )
+          } as EligibilityPlan
+
+          expect(paymentPlanShorthandName(plan)).toEqual(
+            <FormattedMessage
+              id="payment-plan-strings.pay.now.button"
+              defaultMessage="Payer maintenant"
+            />,
+          )
         })
-        
+
         it('should get the short plan name for deferred days', () => {
-          const plan = { installments_count: 1, deferred_days: 30, deferred_months: 0 } as EligibilityPlan
+          const plan = {
+            installments_count: 1,
+            deferred_days: 30,
+            deferred_months: 0,
+          } as EligibilityPlan
           const result = '+30'
           expect(paymentPlanShorthandName(plan)).toEqual(
             <FormattedMessage
@@ -56,10 +62,14 @@ describe('utils', () => {
                 deferredDays: result,
               }}
             />,
-          ) 
+          )
         })
         it('should get the short plan name for deferred months', () => {
-          const plan = { installments_count: 1, deferred_days: 0, deferred_months: 1 } as EligibilityPlan
+          const plan = {
+            installments_count: 1,
+            deferred_days: 0,
+            deferred_months: 1,
+          } as EligibilityPlan
           const result = '+1'
           expect(paymentPlanShorthandName(plan)).toEqual(
             <FormattedMessage
@@ -69,7 +79,7 @@ describe('utils', () => {
                 deferredMonths: result,
               }}
             />,
-          ) 
+          )
         })
       })
     })

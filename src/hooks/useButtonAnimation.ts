@@ -31,16 +31,17 @@ const useButtonAnimation = (iterateValues: number[], transitionDelay: number): P
         }
       }, transitionDelay)
     }
+    // eslint-disable-next-line consistent-return
     return () => {
       isMounted = false
       clearTimeout(timeout)
     }
-  }, [iterateValues, current])
+  }, [iterateValues, current, transitionDelay, update])
 
   return {
     current,
-    onHover: (current: number) => {
-      setCurrent(current)
+    onHover: (currentIndex: number) => {
+      setCurrent(currentIndex)
       setUpdate(false)
     },
     onLeave: () => {

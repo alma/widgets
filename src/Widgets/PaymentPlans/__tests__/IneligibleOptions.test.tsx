@@ -1,29 +1,21 @@
-import { act, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { ApiMode } from 'consts'
 import React from 'react'
-import render from 'test'
-import { mockEligibilityPaymentPlanWithIneligiblePlan } from 'test/fixtures'
-import PaymentPlanWidget from '..'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockEligibilityPaymentPlanWithIneligiblePlan,
-  }
-})
+import { act, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
+import { ApiMode } from '@/consts'
+import render from '@/test'
+import { mockEligibilityPaymentPlanWithIneligiblePlan } from 'test/fixtures'
+import PaymentPlanWidget from 'Widgets/PaymentPlans'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockEligibilityPaymentPlanWithIneligiblePlan,
+}))
 
 const animationDuration = 5600
 
 describe('PaymentPlan has ineligible options from configPlans', () => {
-  beforeAll(() => {
-    jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
-  })
-
-  afterAll(() => {
-    jest.useRealTimers()
-  })
-
-  beforeEach(async () => {
+  const setup = async () => {
     render(
       <PaymentPlanWidget
         purchaseAmount={45000}
@@ -53,7 +45,18 @@ describe('PaymentPlan has ineligible options from configPlans', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
+  }
+  beforeAll(() => {
+    jest.useFakeTimers().setSystemTime(new Date('2020-01-01').getTime())
+  })
+
+  afterAll(() => {
+    jest.useRealTimers()
+  })
+
+  beforeEach(async () => {
+    await setup()
   })
 
   it('displays only provided plans (except p1x)', () => {
@@ -83,7 +86,7 @@ describe('PaymentPlan has ineligible options from configPlans', () => {
 })
 
 describe('PaymentPlan has ineligible options from merchant config', () => {
-  beforeEach(async () => {
+  const setup = async () => {
     render(
       <PaymentPlanWidget
         purchaseAmount={45000}
@@ -102,7 +105,10 @@ describe('PaymentPlan has ineligible options from merchant config', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
+  }
+  beforeEach(async () => {
+    await setup()
   })
 
   it('display conditions when non eligible plans are hovered', async () => {

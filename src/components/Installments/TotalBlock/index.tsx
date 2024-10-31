@@ -1,9 +1,11 @@
 import React, { FunctionComponent } from 'react'
-import { FormattedMessage, FormattedNumber, useIntl } from 'react-intl'
-import { EligibilityPlan } from 'types'
-import { priceFromCents } from 'utils'
+
 import cx from 'classnames'
-import s from './TotalBlock.module.css'
+import { FormattedMessage, FormattedNumber, useIntl } from 'react-intl'
+
+import { EligibilityPlan } from '@/types'
+import { priceFromCents } from '@/utils'
+import s from 'components/Installments/TotalBlock/TotalBlock.module.css'
 import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
 
 const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ currentPlan }) => {

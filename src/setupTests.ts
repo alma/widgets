@@ -2,8 +2,10 @@
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom/extend-expect'
-import secondsToMilliseconds from 'date-fns/secondsToMilliseconds'
+import '@testing-library/jest-dom'
+
+// TODO create utils
+const secondsToMilliseconds = (seconds: number) => seconds * 1000
 
 jest.mock('no-scroll', () => ({ on: jest.fn(), off: jest.fn() }))
 

@@ -1,18 +1,18 @@
-import { screen, waitFor } from '@testing-library/react'
-import { ApiMode } from 'consts'
 import React from 'react'
-import { act } from 'react-dom/test-utils'
-import render from 'test'
-import PaymentPlanWidget from '..'
-import { mockButtonPlans, configPlans } from 'test/fixtures'
-import { ConfigPlan } from '../../../types'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
-jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
+import { screen } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
+
+import { ApiMode } from '@/consts'
+import render from '@/test'
+import { ConfigPlan } from '@/types'
+import { configPlans, mockButtonPlans } from 'test/fixtures'
+import PaymentPlanWidget from 'Widgets/PaymentPlans'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockButtonPlans,
+}))
+jest.useFakeTimers().setSystemTime(new Date('2020-01-01').getTime())
 
 const animationDuration = 5600
 
@@ -30,20 +30,20 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
 
     it('displays the message corresponding to the payment plan hovered', async () => {
       renderPlans(2)
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+      await screen.findByTestId('widget-button')
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
       expect(screen.getByText('2x').className).toContain('active')
     })
     it('should target the P1X and not a PayLater plan when suggested plan is 1', async () => {
       renderPlans(1, configPlans) // specify all plans explicitly to display P1X. P1X is only displayed if provided in configPlans.
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+      await screen.findByTestId('widget-button')
       expect(screen.getByText(/Payer maintenant 450,00 €/)).toBeInTheDocument()
       expect(screen.getByText('Payer maintenant').className).toContain('active')
     })
   })
 
   describe('as an array', () => {
-    beforeEach(async () => {
+    const setup = async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
@@ -51,7 +51,10 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
           suggestedPaymentPlan={[3, 2]}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+      await screen.findByTestId('widget-button')
+    }
+    beforeEach(async () => {
+      await setup()
     })
 
     it('displays the third item as selected', () => {
@@ -68,7 +71,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   })
 
   describe('as an array with first item being illegible', () => {
-    beforeEach(async () => {
+    const setup = async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
@@ -104,7 +107,10 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
           suggestedPaymentPlan={[2, 3]}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+      await screen.findByTestId('widget-button')
+    }
+    beforeEach(async () => {
+      await setup()
     })
 
     it('displays the 3x as active (2 is illegible)', () => {
@@ -114,7 +120,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   })
 
   describe('with a wrong value', () => {
-    beforeEach(async () => {
+    const setup = async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
@@ -122,7 +128,10 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
           suggestedPaymentPlan={[20]}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+      await screen.findByTestId('widget-button')
+    }
+    beforeEach(async () => {
+      await setup()
     })
 
     it('should select the first installment', () => {
@@ -133,7 +142,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   })
 
   describe('with a different transitionDelay', () => {
-    beforeEach(async () => {
+    const setUp = async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
@@ -142,7 +151,10 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
           suggestedPaymentPlan={[2]}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+      await screen.findByTestId('widget-button')
+    }
+    beforeEach(async () => {
+      await setUp()
     })
 
     it('displays the message corresponding to the payment plan hovered', () => {
