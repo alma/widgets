@@ -28,9 +28,8 @@
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx ./src/",
     "lint:fix": "npx eslint --fix --ext .js,.jsx,.ts,.tsx ./src/",
     "prebuild": "rm -rf dist",
-    "build:minified": "NODE_ENV=production microbundle --name Alma --sourcemap --jsx React.createElement --jsxImportSource react --globals react/jsx-runtime=jsx --define process.env.NODE_ENV=production,process.env.VERSION=${BUILD_VERSION} --css-modules true",
-    "build:raw": "NODE_ENV=production microbundle --name Alma --sourcemap --jsx React.createElement --jsxImportSource react --globals react/jsx-runtime=jsx --define process.env.NODE_ENV=production,process.env.VERSION=${BUILD_VERSION} --css-modules true --compress false -o ./raw",
-    "build": "npm run build:minified && npm run build:raw && mv ./raw ./dist/ && npm run create:wc:umd",
+    "build": "npx tsc && npx vite build",
+    "build:has-reacr": "npx tsc && npx vite build -c vite.config.hasReact.ts",
     "create:wc:umd": "node scripts/umd-for-woocommerce.js",
     "translations:extract": "formatjs extract 'src/**/*.ts*' --out-file 'src/intl/messages.json' --format simple --ignore 'src/*.d.ts' && prettier ./src/intl --write",
     "translations:upload": "crowdin upload sources",
@@ -89,7 +88,9 @@
     "rollup": "^4.24.3",
     "ts-essentials": "^10.0.2",
     "ts-jest": "^29.2.5",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vite-plugin-dts": "^4.3.0"
   },
   "dependencies": {
     "classnames": "^2.5.1",

@@ -29,5 +29,5 @@
       "@/*": ["src/*"],
     }
   },
-  "include": ["src", "node_modules/microbundle/index.d.ts", "setupTests.ts"],
+  "include": ["src", "node_modules/microbundle/index.d.ts", "setupTests.ts", "vite.config.ts"],
 }
