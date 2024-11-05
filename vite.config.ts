@@ -17,6 +17,9 @@ export function generateViteConfig(hasReact: boolean = false): UserConfig {
         watch: {
           exclude: ['node_modules/**', 'examples'],
         },
+        // To make the widget work in standalone, we need to bundle react and all dependencies
+        // But it increases the build size, so we want to create an option for users that already have a
+        // React environment to use the widget without react bundled.
         external: hasReact ? Object.keys(packageJson.dependencies) : [],
       },
       sourcemap: true,

@@ -82,7 +82,6 @@
     "jest-config": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.2.10",
-    "microbundle": "github:olance/microbundle#rollup/config-override",
     "postcss-assets": "^6.0.0",
     "prettier": "^3.3.3",
     "rollup": "^4.24.3",
