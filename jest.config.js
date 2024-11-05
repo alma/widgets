@@ -3,7 +3,6 @@ const path = require('path')
 module.exports = {
   moduleDirectories: ['node_modules', path.join(__dirname, 'src')],
   setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
-  collectCoverageFrom: ['src/**/*.tsx', 'src/**/*.ts', '!src/*/polyfills.js'],
   testPathIgnorePatterns: ['<rootDir>/dist/'],
   testEnvironment: 'jsdom',
   rootDir: 'src',
@@ -16,12 +15,13 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
+  collectCoverageFrom: ['<rootDir>/**/*.tsx', '<rootDir>/**/*.ts', '!<rootDir>/*/polyfills.js'],
   coverageThreshold: {
     global: {
-      branches: 0,
-      functions: 0,
-      lines: 0,
-      statements: 0,
+      branches: 88,
+      functions: 95,
+      lines: 95,
+      statements: 95,
     },
   },
   transform: {
