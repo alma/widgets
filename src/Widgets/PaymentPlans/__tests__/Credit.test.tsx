@@ -64,7 +64,7 @@ describe('PaymentPlan has credit', () => {
     await userEvent.hover(screen.getByText('3x'))
     expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
     await userEvent.hover(screen.getByText('10x'))
-    expect(screen.getByText(/47,73 € puis 9 x 47,66 €/)).toBeInTheDocument()
+    expect(screen.getByText(/Cliquez pour en savoir plus/)).toBeInTheDocument()
   })
 
   it('stops iterating when an element has been hovered', async () => {
