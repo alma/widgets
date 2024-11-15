@@ -21,13 +21,7 @@ module.exports = {
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: [
-    'react',
-    'react-hooks',
-    'prettier',
-    'jsx-a11y',
-    'import',
-  ],
+  plugins: ['react', 'react-hooks', 'prettier', 'jsx-a11y', 'import'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -36,9 +30,9 @@ module.exports = {
     sourceType: 'module',
     project: ['./tsconfig.json'],
   },
-  ignorePatterns: ['/*.*'],
+  ignorePatterns: ['/*.*', 'src/utils/polyfills.js'],
   rules: {
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx", '.jsx'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
     'prettier/prettier': ['error'],
     'react/style-prop-object': [
       'error',
@@ -86,12 +80,7 @@ module.exports = {
     'react/jsx-props-no-spreading': [
       'error',
       {
-        exceptions: [
-          'div',
-          'input',
-          'svg',
-          'Modal',
-        ],
+        exceptions: ['div', 'input', 'svg', 'Modal'],
       },
     ],
     'react-hooks/rules-of-hooks': 'error',
@@ -128,15 +117,15 @@ module.exports = {
         ],
       },
     ],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
+    'import/extensions': [
+      'error',
+      'ignorePackages',
       {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
     ],
     'import/order': [
       'warn',
@@ -184,8 +173,8 @@ module.exports = {
     ],
   },
   settings: {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     'import/resolver': {
       typescript: {
