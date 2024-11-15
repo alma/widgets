@@ -1,6 +1,7 @@
 {
   "credit-features.credit-cost-display": "{creditCost} (gemiddeld rente percentage {taegPercentage})",
-  "credit-features.information": "Een lening is bindend en moet worden terugbetaald. Ga na of je het kunt terugbetalen voordat je jezelf vastlegt.",
+  "credit-features.information": "Controleer je terugbetalingscapaciteit voordat je een toezegging doet.",
+  "credit-features.information.title": "Un crédit vous engage et doit être remboursé.",
   "credit-features.total-credit-cost": "Waarvan kredietkosten",
   "eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.",
   "eligibility-modal.bullet-2": "Betaal gemakkelijk <strong>binnen 1 minuut </strong>. Je hebt hier geen account voor nodig.",
@@ -15,6 +16,7 @@
   "installments.today": "Vandaag",
   "installments.total-amount": "Totaal",
   "installments.total-fees": "Waarvan kosten (incl. BTW)",
+  "payment-plan-strings.credit": "Klik hier voor meer informatie",
   "payment-plan-strings.day-abbreviation": "D{deferredDays}",
   "payment-plan-strings.default-message": "Betaal in termijnen bij Alma - helemaal rentevrij",
   "payment-plan-strings.deferred": "{totalAmount} te betalen op {dueDate}",
