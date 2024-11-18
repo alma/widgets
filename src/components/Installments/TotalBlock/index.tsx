@@ -13,6 +13,12 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
   const TAEG = (currentPlan?.annual_interest_rate && currentPlan.annual_interest_rate / 10000) || 0
   const customerFees = priceFromCents(currentPlan.customer_total_cost_amount)
   const isCredit = currentPlan.installments_count > 4
+  const firstInstallmentAmount = priceFromCents(currentPlan.payment_plan?.[0]?.total_amount ?? 0)
+  const totalWithoutFirstInstallment = priceFromCents(
+    currentPlan.purchase_amount +
+      currentPlan.customer_total_cost_amount -
+      (currentPlan.payment_plan?.[0]?.total_amount ?? 0),
+  )
 
   return (
     <>
@@ -83,7 +89,26 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
           <div className={s.creditInfoLegalText}>
             <FormattedMessage
               id="credit-features.legal-text"
-              defaultMessage="Crédit d'un montant de 668,83€ au taux débiteur fixe de 20,54% sur une durée de 9 mois. Permettant, en complément d'un acompte de 80,17€, de financer un achat d'un montant de 749€. Sous réserve d'étude et d'acceptation par Alma. Délai légal de rétractation de 14 jours. Simulation présentée par Alma, immatriculée au RCS Nanterre sous le numéro 839 100 575, établissement de paiement et société de financement agréée par l’ACPR sous le n° 17408 (numéro CIB / Code banque)."
+              defaultMessage="Crédit d'un montant de {totalWithoutFirstInstallment} au taux débiteur fixe de {taegPercentage} sur une durée de {installmeentsCountWithoutFirst} mois. Permettant, en complément d'un acompte de {firstInstallmentAmount}, de financer un achat d'un montant de {productPriceWithoutCreditCost}. Sous réserve d'étude et d'acceptation par Alma. Délai légal de rétractation de 14 jours. Simulation présentée par Alma, immatriculée au RCS Nanterre sous le numéro 839 100 575, établissement de paiement et société de financement agréée par l’ACPR sous le n° 17408 (numéro CIB / Code banque)."
+              values={{
+                totalWithoutFirstInstallment: intl.formatNumber(totalWithoutFirstInstallment, {
+                  style: 'currency',
+                  currency: 'EUR',
+                }),
+                taegPercentage: intl.formatNumber(TAEG, {
+                  style: 'percent',
+                  maximumFractionDigits: 2,
+                }),
+                installmeentsCountWithoutFirst: currentPlan.installments_count - 1,
+                firstInstallmentAmount: intl.formatNumber(firstInstallmentAmount, {
+                  style: 'currency',
+                  currency: 'EUR',
+                }),
+                productPriceWithoutCreditCost: intl.formatNumber(total - creditCost, {
+                  style: 'currency',
+                  currency: 'EUR',
+                }),
+              }}
             />
           </div>
         )}
