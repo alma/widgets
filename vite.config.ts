@@ -12,6 +12,12 @@ export default defineConfig({
       fileName: (format) => `widgets.${format}.js`,
     },
     rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') return 'widgets.umd.css'
+          return assetInfo?.name || '[name].[ext]'
+        },
+      },
       watch: {
         exclude: ['node_modules/**', 'examples'],
       },
