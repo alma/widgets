@@ -82,9 +82,6 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
             </>
           )}
         </div>
-        {
-          // TODO: Add dynamic values according to the Figma
-        }
         {isCredit && (
           <div className={s.creditInfoLegalText}>
             <FormattedMessage
