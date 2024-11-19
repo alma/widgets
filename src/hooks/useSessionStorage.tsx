@@ -1,4 +1,4 @@
-import { ConfigPlan, EligibilityPlan } from 'types'
+import { ConfigPlan, EligibilityPlan } from '@/types'
 import { hashStringForStorage } from 'utils/utilsForStorage'
 
 type CreateKeyType = {

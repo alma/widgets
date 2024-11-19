@@ -1,16 +1,16 @@
-import { screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { ApiMode } from 'consts'
 import React from 'react'
-import render from 'test'
-import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
+import { ApiMode } from '@/consts'
+import render from '@/test'
+import { mockButtonPlans } from 'test/fixtures'
+import PaymentPlanWidget from 'Widgets/PaymentPlans'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockButtonPlans,
+}))
 
 const animationDuration = 5600 // 5500 + Time for transition
 
@@ -53,7 +53,7 @@ describe('PaymentPlan has credit', () => {
         ]}
       />,
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
   }
 
   it('displays the message corresponding to the payment plan hovered', async () => {
@@ -75,10 +75,10 @@ describe('PaymentPlan has credit', () => {
 
     await user.hover(screen.getByText('3x'))
 
-    await waitFor(() => expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument())
+    await screen.findByText('151,35 € puis 2 x 150,00 €')
 
     jest.advanceTimersByTime(animationDuration)
 
-    await waitFor(() => expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()) // Does not change
+    await screen.findByText('151,35 € puis 2 x 150,00 €') // Does not change
   })
 })

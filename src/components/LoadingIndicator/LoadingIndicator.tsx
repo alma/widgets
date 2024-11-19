@@ -1,8 +1,10 @@
-import cx from 'classnames'
-import React, { VoidFunctionComponent } from 'react'
-import s from './LoadingIndicator.module.css'
+import React, { FunctionComponent } from 'react'
 
-export const LoadingIndicator: VoidFunctionComponent<{ className?: string }> = ({ className }) => (
+import cx from 'classnames'
+
+import s from 'components/LoadingIndicator/LoadingIndicator.module.css'
+
+export const LoadingIndicator: FunctionComponent<{ className?: string }> = ({ className }) => (
   <div className={cx(s.loadingIndicator, className)} data-testid="loader">
     <svg
       width="120"

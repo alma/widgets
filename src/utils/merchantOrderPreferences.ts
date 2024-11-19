@@ -1,4 +1,4 @@
-import { EligibilityPlan } from 'types'
+import { EligibilityPlan } from '@/types'
 
 type Args = {
   suggestedPaymentPlan: number | number[]
@@ -17,24 +17,26 @@ export const getIndexOfActivePlan = ({ suggestedPaymentPlan, eligibilityPlans }:
     ? suggestedPaymentPlan
     : [suggestedPaymentPlan]
 
-  for (const index in suggestedPaymentPlanArray) {
-    const installmentsCount = suggestedPaymentPlanArray[index]
+  let foundIndex = 0
 
-    const planFound = eligibilityPlans.findIndex((plan) => {
-      return (
+  suggestedPaymentPlanArray.some((installmentsCount) => {
+    const planFound = eligibilityPlans.findIndex(
+      (plan) =>
         plan.installments_count === installmentsCount &&
         plan.eligible &&
         // Remove the PayLater plans from the plan to target, we will code a better solution later
         // To differentiate P1X from PayLater while using the `suggestedPaymentPlan` property.
         !plan.deferred_days &&
-        !plan.deferred_months
-      )
-    })
+        !plan.deferred_months,
+    )
 
     if (planFound !== -1) {
-      return planFound
+      foundIndex = planFound
+      return true
     }
-  }
 
-  return 0
+    return false
+  })
+
+  return foundIndex
 }

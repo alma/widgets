@@ -1,29 +1,32 @@
-import { screen, waitFor } from '@testing-library/react'
-import { ApiMode } from 'consts'
 import React from 'react'
-import { act } from 'react-dom/test-utils'
-import render from 'test'
-import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
-jest.useFakeTimers('modern').setSystemTime(new Date('2020-01-01').getTime())
+import { screen } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
+
+import { ApiMode } from '@/consts'
+import render from '@/test'
+import { mockButtonPlans } from 'test/fixtures'
+import PaymentPlanWidget from 'Widgets/PaymentPlans'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockButtonPlans,
+}))
+jest.useFakeTimers().setSystemTime(new Date('2020-01-01').getTime())
 
 const animationDuration = 5600
 
 describe('No plans provided', () => {
-  beforeEach(async () => {
+  const setUp = async () => {
     render(
       <PaymentPlanWidget
         purchaseAmount={mockButtonPlans[0].purchase_amount}
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
+  }
+  beforeEach(async () => {
+    await setUp()
   })
 
   it('displays all available payment plans', () => {

@@ -1,25 +1,27 @@
-import { AlmaLogo } from 'assets/almaLogo'
+import React, { FC, PropsWithChildren } from 'react'
+
 import cx from 'classnames'
-import React, { FC } from 'react'
-import { Card } from 'types'
-import STATIC_CUSTOMISATION_CLASSES from '../classNames.const'
-import Cards from '../components/Cards'
-import Info from '../components/Info'
-import Title from '../components/Title'
-import s from './DesktopModal.module.css'
+
+import { Card } from '@/types'
+import { AlmaLogo } from 'assets/almaLogo'
+import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
+import Cards from 'Widgets/EligibilityModal/components/Cards'
+import Info from 'Widgets/EligibilityModal/components/Info'
+import Title from 'Widgets/EligibilityModal/components/Title'
+import s from 'Widgets/EligibilityModal/DesktopModal/DesktopModal.module.css'
 
 type Props = {
   isCurrentPlanP1X: boolean
   isSomePlanDeferred: boolean
   cards?: Card[]
-}
+} & PropsWithChildren
 const DesktopModal: FC<Props> = ({ children, isSomePlanDeferred, cards, isCurrentPlanP1X }) => (
   <div
     className={cx(s.container, STATIC_CUSTOMISATION_CLASSES.desktopModal)}
     data-testid="modal-container"
   >
     <aside className={cx([s.block, s.left, STATIC_CUSTOMISATION_CLASSES.leftSide])}>
-      <Title isSomePlanDeferred={isSomePlanDeferred} isCurrentPlanP1X={isCurrentPlanP1X}/>
+      <Title isSomePlanDeferred={isSomePlanDeferred} isCurrentPlanP1X={isCurrentPlanP1X} />
       <Info isCurrentPlanP1X={isCurrentPlanP1X} />
       {cards && <Cards cards={cards} />}
       <AlmaLogo className={s.logo} width="75" />

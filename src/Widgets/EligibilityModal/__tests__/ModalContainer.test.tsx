@@ -1,17 +1,20 @@
+import React from 'react'
+
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Widgets } from 'index'
-import { ApiMode } from 'consts'
-import React from 'react'
-import render from 'test'
-import { AddReturnType } from 'widgets_controller'
+
+import { ApiMode } from '@/consts'
+import { Widgets } from '@/index'
+import render from '@/test'
+import { AddReturnType } from '@/widgets_controller'
 
 describe('ModalContainer', () => {
-  let ModalWidget: AddReturnType = undefined
-  beforeEach(() => {
+  let ModalWidget: AddReturnType
+  const setup = () => {
     render(
       <>
-        <div id="alma-widget-modal"></div>
+        <div id="alma-widget-modal" />
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a href="#" id="alma-open-modal-button">
           Open modal with clickableSelector
         </a>
@@ -24,9 +27,13 @@ describe('ModalContainer', () => {
       clickableSelector: '#alma-open-modal-button',
       purchaseAmount: 400,
     })
+  }
+  beforeEach(() => {
+    setup()
   })
 
   it('should open with clickableSelector and open method', async () => {
+    // eslint-disable-next-line no-console
     console.error = jest.fn()
     const openModalButton = screen.getByText('Open modal with clickableSelector')
     await userEvent.click(openModalButton)
@@ -34,7 +41,7 @@ describe('ModalContainer', () => {
     await userEvent.click(screen.getByTestId('modal-close-button'))
 
     ModalWidget?.open()
-    await waitFor(() => expect(screen.queryByTestId('modal-close-button')).toBeInTheDocument())
+    await screen.findByTestId('modal-close-button')
     ModalWidget?.close({} as React.MouseEvent)
     await waitFor(() => expect(screen.queryByTestId('modal-close-button')).not.toBeInTheDocument())
   })

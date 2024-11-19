@@ -1,6 +1,8 @@
-import { renderHook, act } from '@testing-library/react-hooks'
-import { mockButtonPlans } from 'test/fixtures'
+import { act, renderHook } from '@testing-library/react'
+
 import { useSessionStorage } from 'hooks/useSessionStorage'
+import { mockButtonPlans } from 'test/fixtures'
+
 describe('useSessionStorage', () => {
   let mockStorage: Record<string, string> = {}
 
@@ -8,9 +10,7 @@ describe('useSessionStorage', () => {
     global.Storage.prototype.setItem = jest.fn((key: string, value) => {
       mockStorage[key] = value
     })
-    global.Storage.prototype.getItem = jest.fn((key) => {
-      return mockStorage[key]
-    })
+    global.Storage.prototype.getItem = jest.fn((key) => mockStorage[key])
     global.Storage.prototype.removeItem = jest.fn((key) => {
       delete mockStorage[key]
     })
