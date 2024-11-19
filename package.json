@@ -28,7 +28,7 @@
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx ./src/",
     "lint:fix": "npx eslint --fix --ext .js,.jsx,.ts,.tsx ./src/",
     "prebuild": "rm -rf dist",
-    "build": "npx tsc && npx vite build",
+    "build": "npx tsc && npx vite build && npm run create:wc:umd",
     "create:wc:umd": "node scripts/umd-for-woocommerce.js",
     "translations:extract": "formatjs extract 'src/**/*.ts*' --out-file 'src/intl/messages.json' --format simple --ignore 'src/*.d.ts' && prettier ./src/intl --write",
     "translations:upload": "crowdin upload sources",
