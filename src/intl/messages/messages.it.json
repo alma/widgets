@@ -1,6 +1,7 @@
 {
   "credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
-  "credit-features.information": "Un pagamento rateale ti impegna e deve essere ripagato. Verifica la tua disponibilità finanziaria prima di impegnarti.",
+  "credit-features.information": "Verificate la vostra capacità di rimborso prima di prendere un impegno.",
+  "credit-features.information.title": "Un crédit vous engage et doit être remboursé.",
   "credit-features.total-credit-cost": "Di cui commissioni",
   "eligibility-modal.bullet-1": "Seleziona <strong>Alma</strong> come metodo di pagamento.",
   "eligibility-modal.bullet-2": "Segui le istruzioni e completa l'acquisto <strong>in meno di 2 minuti.</strong>",
@@ -15,6 +16,7 @@
   "installments.today": "Oggi",
   "installments.total-amount": "Totale",
   "installments.total-fees": "Di cui commissioni",
+  "payment-plan-strings.credit": "Clicca qui per saperne di più",
   "payment-plan-strings.day-abbreviation": "G{deferredDays}",
   "payment-plan-strings.default-message": "Paga a rate con Alma, senza registrazione.",
   "payment-plan-strings.deferred": "{totalAmount} da pagare il {dueDate}",

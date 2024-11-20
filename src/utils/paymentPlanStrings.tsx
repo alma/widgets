@@ -3,19 +3,19 @@ import React, { ReactNode } from 'react'
 import { FormattedDate, FormattedMessage, FormattedNumber } from 'react-intl'
 import { EligibilityPlan, EligibilityPlanToDisplay } from 'types'
 import { isP1X, priceFromCents } from 'utils'
+import s from './paymentPlanStrings.module.css'
 
 export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
   const { deferred_days, deferred_months, installments_count: installmentsCount } = payment
-  
+
   if (installmentsCount === 1 && !deferred_days && !deferred_months) {
     return (
       <FormattedMessage
         id="payment-plan-strings.pay.now.button"
         defaultMessage="Payer maintenant"
-        
       />
     )
-  } 
+  }
   if (installmentsCount === 1 && deferred_days) {
     return (
       <FormattedMessage
@@ -26,7 +26,7 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
         }}
       />
     )
-  } 
+  }
   if (installmentsCount === 1 && deferred_months) {
     return (
       <FormattedMessage
@@ -129,6 +129,18 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
       (installment, index) =>
         index === 0 || installment.total_amount === payment_plan[0].total_amount,
     )
+
+    if (installmentsCount > 4) {
+      return (
+        <span className={s.openModalInfo}>
+          <FormattedMessage
+            id="payment-plan-strings.credit"
+            defaultMessage="Cliquez pour en savoir plus"
+            description={`Link to credit details`}
+          />
+        </span>
+      )
+    }
 
     if (isP1X(payment)) {
       return (

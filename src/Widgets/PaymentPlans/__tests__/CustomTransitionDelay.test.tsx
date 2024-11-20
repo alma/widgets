@@ -52,7 +52,7 @@ describe('Custom transition delay', () => {
     act(() => {
       jest.advanceTimersByTime(animationDuration)
     })
-    expect(screen.getByText(/47,73 € puis 9 x 47,66 €/)).toBeInTheDocument()
+    expect(screen.getByText(/Cliquez pour en savoir plus/)).toBeInTheDocument()
     act(() => {
       jest.advanceTimersByTime(animationDuration)
     })
