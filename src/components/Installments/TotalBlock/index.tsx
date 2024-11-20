@@ -14,6 +14,7 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
   const customerFees = priceFromCents(currentPlan.customer_total_cost_amount)
   const isCredit = currentPlan.installments_count > 4
   const firstInstallmentAmount = priceFromCents(currentPlan.payment_plan?.[0]?.total_amount ?? 0)
+  // For totalWithoutFirstInstallment, we need to get the total price and add the credit cost, before removing the first installment, to get the rest of the amount to pay.
   const totalWithoutFirstInstallment = priceFromCents(
     currentPlan.purchase_amount +
       currentPlan.customer_total_cost_amount -
