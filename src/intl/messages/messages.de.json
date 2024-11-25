@@ -2,6 +2,7 @@
   "credit-features.credit-cost-display": "{creditCost} (APR {taegPercentage})",
   "credit-features.information": "Überprüfen Sie Ihre Rückzahlungsmöglichkeiten, bevor Sie eine Verpflichtung eingehen.",
   "credit-features.information.title": "Ein Kredit verpflichtet Sie und muss zurückgezahlt werden.",
+  "credit-features.legal-text": "Kredit in Höhe von {totalWithoutFirstInstallment} zu einem festen Sollzinssatz von {taegPercentage} über eine Laufzeit von {installmeentsCountWithoutFirst} Monaten. Ermöglicht, zusätzlich zu einer Anzahlung von {firstInstallmentAmount}, die Finanzierung eines Kaufs in Höhe von {productPriceWithoutCreditCost}. Vorbehaltlich der Prüfung und Annahme durch Alma. Gesetzliche Widerrufsfrist von 14 Tagen. Simulation präsentiert von Alma, eingetragen im RCS Nanterre unter der Nummer 839 100 575, Zahlungsinstitut und Finanzierungsgesellschaft, zugelassen von der ACPR unter der Nummer 17408 (IPC-Nummer / Bankcode).",
   "credit-features.total-credit-cost": "Davon Kreditkosten",
   "eligibility-modal.bullet-1": "Wählen Sie <strong>Alma</strong> beim Check-out. ",
   "eligibility-modal.bullet-2": "Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in <strong>2 Minuten.</strong>",

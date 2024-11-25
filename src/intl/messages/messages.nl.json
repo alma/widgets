@@ -2,6 +2,7 @@
   "credit-features.credit-cost-display": "{creditCost} (gemiddeld rente percentage {taegPercentage})",
   "credit-features.information": "Controleer uw terugbetalingscapaciteit voordat u een toezegging doet.",
   "credit-features.information.title": "Krediet is een verplichting en moet worden terugbetaald.",
+  "credit-features.legal-text": "{totalWithoutFirstInstallment} {taegPercentage} {installmeentsCountWithoutFirst} Lening van tegen een vaste rentevoet van over een periode van maanden. {firstInstallmentAmount} {productPriceWithoutCreditCost}Naast een aanbetaling van , kun je hiermee een aankoop financieren van . Onder voorbehoud van beoordeling en aanvaarding door Alma. Wettelijke herroepingstermijn van 14 dagen. Simulatie aangeboden door Alma, ingeschreven in het handels- en bedrijvenregister van Nanterre onder nummer 839 100 575, betalings- en financieringsmaatschappij erkend door de ACPR onder nummer 17408 (CIB-nummer / bankcode).",
   "credit-features.total-credit-cost": "Waarvan kredietkosten",
   "eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.",
   "eligibility-modal.bullet-2": "Betaal gemakkelijk <strong>binnen 1 minuut </strong>. Je hebt hier geen account voor nodig.",
