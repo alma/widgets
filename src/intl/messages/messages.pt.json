@@ -1,7 +1,7 @@
 {
   "credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
   "credit-features.information": "Verifique a sua capacidade de reembolso antes de assumir um compromisso.",
-  "credit-features.information.title": "Un crédit vous engage et doit être remboursé.",
+  "credit-features.information.title": "O crédito é um compromisso e deve ser reembolsado.",
   "credit-features.total-credit-cost": "Incluindo comissões de crédito",
   "eligibility-modal.bullet-1": "Seleccionar <strong>Alma - Pay Now</strong> no final da compra.",
   "eligibility-modal.bullet-2": "Siga as instruções e valide o seu pagamento em <strong>2 minutos.</strong>",

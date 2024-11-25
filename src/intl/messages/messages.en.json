@@ -1,7 +1,7 @@
 {
   "credit-features.credit-cost-display": "{creditCost} (APR {taegPercentage})",
-  "credit-features.information": "Vérifiez vos capacités de remboursement avant de vous engager.",
-  "credit-features.information.title": "Un crédit vous engage et doit être remboursé.",
+  "credit-features.information": "Check your repayment capacity before committing yourself.",
+  "credit-features.information.title": "Credit is a commitment and must be repaid.",
   "credit-features.total-credit-cost": "Of which cost of credit",
   "eligibility-modal.bullet-1": "Choose <strong>Alma</strong> at checkout.",
   "eligibility-modal.bullet-2": "Let us guide you and validate your payment in <strong>2 minutes.</strong>",
@@ -16,7 +16,7 @@
   "installments.today": "Today",
   "installments.total-amount": "Total",
   "installments.total-fees": "Of which costs (incl. VAT)",
-  "payment-plan-strings.credit": "Cliquez pour en savoir plus",
+  "payment-plan-strings.credit": "Click to find out more",
   "payment-plan-strings.day-abbreviation": "D{deferredDays}",
   "payment-plan-strings.default-message": "Pay in installments with Alma",
   "payment-plan-strings.deferred": "{totalAmount} to pay the {dueDate}",

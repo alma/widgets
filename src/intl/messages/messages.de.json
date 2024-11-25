@@ -1,7 +1,7 @@
 {
   "credit-features.credit-cost-display": "{creditCost} (APR {taegPercentage})",
   "credit-features.information": "Überprüfen Sie Ihre Rückzahlungsmöglichkeiten, bevor Sie eine Verpflichtung eingehen.",
-  "credit-features.information.title": "Un crédit vous engage et doit être remboursé.",
+  "credit-features.information.title": "Ein Kredit verpflichtet Sie und muss zurückgezahlt werden.",
   "credit-features.total-credit-cost": "Davon Kreditkosten",
   "eligibility-modal.bullet-1": "Wählen Sie <strong>Alma</strong> beim Check-out. ",
   "eligibility-modal.bullet-2": "Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in <strong>2 Minuten.</strong>",
