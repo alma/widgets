@@ -95,11 +95,12 @@
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "no-scroll": "^2.1.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "preact": "^10.24.3",
+    "preact-utils": "^1.1.2",
     "react-intl": "^6.8.4",
     "react-modal": "^3.16.1",
-    "react-responsive": "^10.0.0"
+    "react-responsive": "^10.0.0",
+    "test-utils": "^1.1.1"
   },
   "commitlint": {
     "extends": [
