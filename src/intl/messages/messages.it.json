@@ -2,6 +2,7 @@
   "credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
   "credit-features.information": "Verificate la vostra capacità di rimborso prima di prendere un impegno.",
   "credit-features.information.title": "Il credito è un impegno e deve essere ripagato.",
+  "credit-features.legal-text": "{totalWithoutFirstInstallment} {taegPercentage} {installmeentsCountWithoutFirst} Prestito a tasso fisso per un periodo di mesi. {firstInstallmentAmount} {productPriceWithoutCreditCost}Oltre a un deposito di , questo vi permetterà di finanziare un acquisto di . Soggetto a revisione e accettazione da parte di Alma. Periodo di recesso legale di 14 giorni. Simulazione presentata da Alma, iscritta al Registro del Commercio e delle Imprese di Nanterre con il numero 839 100 575, società di pagamento e di finanziamento approvata dall'ACPR con il numero 17408 (numero CIB / codice bancario).",
   "credit-features.total-credit-cost": "Di cui commissioni",
   "eligibility-modal.bullet-1": "Seleziona <strong>Alma</strong> come metodo di pagamento.",
   "eligibility-modal.bullet-2": "Segui le istruzioni e completa l'acquisto <strong>in meno di 2 minuti.</strong>",
