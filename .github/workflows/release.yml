@@ -91,7 +91,7 @@ jobs:
           token: ${{ secrets.SLACK_RELEASE_CHANGELOG_BOT_TOKEN }}
           payload: |
             channel: CR9C57YM6 # alma_changelog
-            text: "${{ steps.slack-markdown-release-notes.outputs.text }}"
+            text: ${{ toJson(steps.slack-markdown-release-notes.outputs.text) }}
             username: "${{ github.event.sender.login }}"
             icon_url: "${{ github.event.sender.avatar_url }}"
 
