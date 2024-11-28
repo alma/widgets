@@ -156,7 +156,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
       await setUp()
     })
 
-    it.skip('displays the message corresponding to the payment plan hovered', () => {
+    it('displays the message corresponding to the payment plan hovered', () => {
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
       expect(screen.getByText('2x').className).toContain('active')
       // TODO Fix this test

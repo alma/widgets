@@ -95,7 +95,10 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
       onHover(activePlanIndex) // We select the first active plan possible
       onLeave() // We need to call onLeave to reset the animation
     }
-  }, [activePlanIndex, isSuggestedPaymentPlanSpecified, onHover, onLeave, status])
+    // We intentionally exclude 'activePlanIndex', 'isSuggestedPaymentPlanSpecified', 'onHover', and 'onLeave'
+    // because including them would cause the effect to re-run unnecessarily, leading to unwanted behavior.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status])
 
   /**
    * It takes a plan index and returns the index of that plan within the eligible plans

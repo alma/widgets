@@ -35,6 +35,8 @@ export default defineConfig({
       utils: resolve(__dirname, './src/utils'),
       Widgets: resolve(__dirname, './src/Widgets'),
       intl: resolve(__dirname, './src/intl'),
+      react: 'preact/compat',
+      'react-dom': 'preact/compat',
     },
   },
   define: {

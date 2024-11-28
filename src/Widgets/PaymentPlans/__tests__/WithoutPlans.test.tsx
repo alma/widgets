@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { act } from 'react'
 
 import { screen } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
 
 import { ApiMode } from '@/consts'
 import render from '@/test'

@@ -114,6 +114,7 @@ module.exports = {
           '**/test/**',
           '**/__tests__/**',
           '**/setupTests.ts',
+          "test-utils"
         ],
       },
     ],
