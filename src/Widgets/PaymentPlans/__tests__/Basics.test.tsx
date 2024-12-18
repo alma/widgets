@@ -1,16 +1,16 @@
-import { screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { ApiMode } from 'consts'
 import React from 'react'
-import render from 'test'
-import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
+import { ApiMode } from '@/consts'
+import render from '@/test'
+import { mockButtonPlans } from 'test/fixtures'
+import PaymentPlanWidget from 'Widgets/PaymentPlans'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockButtonPlans,
+}))
 
 const defaultRender = async () => {
   render(
@@ -19,7 +19,7 @@ const defaultRender = async () => {
       apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
     />,
   )
-  await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+  await screen.findByTestId('widget-button')
 }
 
 describe('Basic PaymentPlan test', () => {
@@ -47,7 +47,7 @@ describe('Basic PaymentPlan test', () => {
         />,
       )
 
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+      await screen.findByTestId('widget-button')
       expect(screen.queryByText(/Payer maintenant 450,00 €/)).not.toBeInTheDocument()
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
     })
@@ -67,7 +67,7 @@ describe('Basic PaymentPlan test', () => {
           ]}
         />,
       )
-      await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+      await screen.findByTestId('widget-button')
       expect(screen.queryByText(/2 x 225,00 €/)).not.toBeInTheDocument()
       expect(screen.getByText(/Payer maintenant 450,00 €/)).toBeInTheDocument()
     })

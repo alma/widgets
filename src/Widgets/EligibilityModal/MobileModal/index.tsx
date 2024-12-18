@@ -1,18 +1,20 @@
-import React, { FC } from 'react'
-import { Card } from 'types'
-import STATIC_CUSTOMISATION_CLASSES from '../classNames.const'
-import Cards from '../components/Cards'
-import Info from '../components/Info'
-import Title from '../components/Title'
-import s from './MobileModal.module.css'
+import React, { FC, PropsWithChildren } from 'react'
+
 import cx from 'classnames'
+
+import { Card } from '@/types'
 import { AlmaLogo } from 'assets/almaLogo'
+import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
+import Cards from 'Widgets/EligibilityModal/components/Cards'
+import Info from 'Widgets/EligibilityModal/components/Info'
+import Title from 'Widgets/EligibilityModal/components/Title'
+import s from 'Widgets/EligibilityModal/MobileModal/MobileModal.module.css'
 
 type Props = {
   isCurrentPlanP1X: boolean
   isSomePlanDeferred: boolean
   cards?: Card[]
-}
+} & PropsWithChildren
 const MobileModal: FC<Props> = ({ children, isSomePlanDeferred, cards, isCurrentPlanP1X }) => (
   <div
     className={cx(s.container, STATIC_CUSTOMISATION_CLASSES.mobileModal)}

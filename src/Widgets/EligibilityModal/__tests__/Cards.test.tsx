@@ -1,17 +1,17 @@
-import { screen } from '@testing-library/react'
 import React from 'react'
-import render from 'test'
-import { mockButtonPlans } from 'test/fixtures'
-import { statusResponse } from 'types'
-import EligibilityModal from '..'
-import { Context as ResponsiveContext } from 'react-responsive'
-import { desktopWidth } from 'utils'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
+import { screen } from '@testing-library/react'
+import { Context as ResponsiveContext } from 'react-responsive'
+
+import render from '@/test'
+import { statusResponse } from '@/types'
+import { desktopWidth } from '@/utils'
+import { mockButtonPlans } from 'test/fixtures'
+import EligibilityModal from 'Widgets/EligibilityModal'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockButtonPlans,
+}))
 
 it('should not display card logos if they are not provided', () => {
   render(
@@ -41,7 +41,7 @@ it('should not display card logos if an empty array is provided', () => {
     />,
   )
 
-  expect(screen.queryByTestId('card-logos')).toBeInTheDocument()
+  expect(screen.getByTestId('card-logos')).toBeInTheDocument()
   expect(screen.queryByTestId('card-logo-amex')).not.toBeInTheDocument()
   expect(screen.queryByTestId('card-logo-cb')).not.toBeInTheDocument()
   expect(screen.queryByTestId('card-logo-mastercard')).not.toBeInTheDocument()
@@ -58,7 +58,7 @@ it('should display provided card logos', () => {
       cards={['amex', 'cb']}
     />,
   )
-  expect(screen.queryByTestId('card-logos')).toBeInTheDocument()
+  expect(screen.getByTestId('card-logos')).toBeInTheDocument()
   expect(screen.getByTestId('card-logo-amex')).toBeInTheDocument()
   expect(screen.getByTestId('card-logo-cb')).toBeInTheDocument()
   expect(screen.queryByTestId('card-logo-mastercard')).not.toBeInTheDocument()
@@ -77,7 +77,7 @@ it('should display provided card logos with Desktop Modal', () => {
       />
     </ResponsiveContext.Provider>,
   )
-  expect(screen.queryByTestId('card-logos')).toBeInTheDocument()
+  expect(screen.getByTestId('card-logos')).toBeInTheDocument()
   expect(screen.getByTestId('card-logo-amex')).toBeInTheDocument()
   expect(screen.getByTestId('card-logo-cb')).toBeInTheDocument()
   expect(screen.queryByTestId('card-logo-mastercard')).not.toBeInTheDocument()
@@ -96,6 +96,6 @@ it('should display all cards logos', () => {
   )
   expect(screen.getByTestId('card-logo-amex')).toBeInTheDocument()
   expect(screen.getByTestId('card-logo-cb')).toBeInTheDocument()
-  expect(screen.queryByTestId('card-logo-mastercard')).toBeInTheDocument()
-  expect(screen.queryByTestId('card-logo-visa')).toBeInTheDocument()
+  expect(screen.getByTestId('card-logo-mastercard')).toBeInTheDocument()
+  expect(screen.getByTestId('card-logo-visa')).toBeInTheDocument()
 })

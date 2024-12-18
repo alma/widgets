@@ -1,15 +1,17 @@
-import { AlmaLogo } from 'assets/almaLogo'
+import React, { FunctionComponent, MouseEvent, useEffect, useState } from 'react'
+
 import cx from 'classnames'
+
+import { ApiConfig, Card, ConfigPlan, statusResponse } from '@/types'
+import { AlmaLogo } from 'assets/almaLogo'
 import Loader from 'components/Loader'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
-import React, { MouseEvent, useEffect, useState, VoidFunctionComponent } from 'react'
-import { ApiConfig, statusResponse, Card, ConfigPlan } from 'types'
 import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
 import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
+import STATIC_CUSTOMISATION_CLASSES from 'Widgets//PaymentPlans/classNames.const'
 import EligibilityModal from 'Widgets/EligibilityModal'
-import STATIC_CUSTOMISATION_CLASSES from './classNames.const'
-import s from './PaymentPlans.module.css'
+import s from 'Widgets/PaymentPlans/PaymentPlans.module.css'
 
 type Props = {
   purchaseAmount: number
@@ -29,7 +31,7 @@ type Props = {
 const VERY_LONG_TIME_IN_MS = 1000 * 3600
 const DEFAULT_TRANSITION_TIME = 5500
 
-const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
+const PaymentPlanWidget: FunctionComponent<Props> = ({
   apiData,
   configPlans,
   hideIfNotEligible,
@@ -61,7 +63,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   const openModal = () => setIsOpen(true)
   const closeModal = (event: React.MouseEvent | React.KeyboardEvent) => {
     setIsOpen(false)
-    onModalClose && onModalClose(event)
+    onModalClose?.(event)
   }
 
   const eligiblePlanKeys = eligibilityPlans.reduce<number[]>(
@@ -93,6 +95,9 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
       onHover(activePlanIndex) // We select the first active plan possible
       onLeave() // We need to call onLeave to reset the animation
     }
+    // We intentionally exclude 'activePlanIndex', 'isSuggestedPaymentPlanSpecified', 'onHover', and 'onLeave'
+    // because including them would cause the effect to re-run unnecessarily, leading to unwanted behavior.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status])
 
   /**
@@ -122,7 +127,7 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
     return null
   }
 
-  const handleOpenModal = (e: MouseEvent<HTMLDivElement>) => {
+  const handleOpenModal = (e: MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => {
     e.preventDefault()
     if (eligiblePlans.length > 0) {
       openModal()
@@ -132,7 +137,10 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
   return (
     <>
       <div
+        tabIndex={0}
+        role="button"
         onClick={handleOpenModal}
+        onKeyDown={(e) => e.key === 'Enter' && handleOpenModal(e)}
         className={cx(
           s.widgetButton,
           {
@@ -151,10 +159,11 @@ const PaymentPlanWidget: VoidFunctionComponent<Props> = ({
               const isCurrent = key === current
               return (
                 <div
-                  key={key}
+                  key={`p${eligibilityPlan.installments_count}x-d+${eligibilityPlan.deferred_days}-m+${eligibilityPlan.deferred_months}`}
                   onMouseEnter={() => onHover(key)}
                   onTouchStart={() => onHover(key)}
                   onMouseOut={onLeave}
+                  onBlur={onLeave}
                   onTouchEnd={onLeave}
                   className={cx(s.plan, {
                     [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: isCurrent,

@@ -1,4 +1,4 @@
-import { ConfigPlan, EligibilityPlan, EligibilityPlanToDisplay } from 'types'
+import { ConfigPlan, EligibilityPlan, EligibilityPlanToDisplay } from '@/types'
 
 const isPlanEligible = (plan: EligibilityPlan, configPlan?: ConfigPlan) => {
   if (!plan.eligible) {

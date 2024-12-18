@@ -7,7 +7,7 @@ View all [Changelog](https://github.com/alma/widgets/releases)
 ## Setup
 
 ### Add the widget to your page
-
+TODO: remove => Changes to test precommit
 ##### CSS
 
 ```html
