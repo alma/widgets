@@ -1,6 +1,7 @@
 {
   "credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
-  "credit-features.information": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
+  "credit-features.information": "Vérifiez vos capacités de remboursement avant de vous engager.",
+  "credit-features.information.title": "Un crédit vous engage et doit être remboursé.",
   "credit-features.total-credit-cost": "Dont coût du crédit",
   "eligibility-modal.bullet-1": "Choisissez <strong>Alma</strong> au moment du paiement.",
   "eligibility-modal.bullet-2": "Laissez-vous guider et validez votre paiement en <strong>2 minutes.</strong>",
@@ -15,6 +16,7 @@
   "installments.today": "Aujourd'hui",
   "installments.total-amount": "Total",
   "installments.total-fees": "Dont frais (TTC)",
+  "payment-plan-strings.credit": "Cliquez pour en savoir plus",
   "payment-plan-strings.day-abbreviation": "J{deferredDays}",
   "payment-plan-strings.default-message": "Payez en plusieurs fois avec Alma",
   "payment-plan-strings.deferred": "{totalAmount} à payer le {dueDate}",

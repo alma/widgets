@@ -79,10 +79,9 @@ describe('plans provided', () => {
       const totalElement = screen.getByTestId('modal-summary')
       expect(totalElement).toHaveTextContent('Dont coût du crédit')
       expect(totalElement).toHaveTextContent('26,64 € (TAEG 17,2 %)')
+      expect(screen.getByText('Un crédit vous engage et doit être remboursé.')).toBeInTheDocument()
       expect(
-        screen.getByText(
-          'Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.',
-        ),
+        screen.getByText('Vérifiez vos capacités de remboursement avant de vous engager.'),
       ).toBeInTheDocument()
     })
   })

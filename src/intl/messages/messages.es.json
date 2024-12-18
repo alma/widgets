@@ -1,6 +1,8 @@
 {
   "credit-features.credit-cost-display": "{creditCost} (TAE {taegPercentage})",
-  "credit-features.information": "Un préstamo te compromete y debe ser devuelto. Comprueba tu capacidad financiera antes de comprometerte.",
+  "credit-features.information": "Compruebe tu capacidad de reembolso antes de comprometerte.",
+  "credit-features.information.title": "El crédito y/o pago a plazos es un compromiso y debe devolverse.",
+  "credit-features.legal-text": "{totalWithoutFirstInstallment} {taegPercentage} {installmeentsCountWithoutFirst} Préstamo de a un tipo deudor fijo de a lo largo de un periodo de meses. {firstInstallmentAmount} {productPriceWithoutCreditCost}Además de un depósito de , esto le permitirá financiar una compra de . Sujeto a revisión y aceptación por parte de Alma. Plazo legal de retractación de 14 días. Simulación presentada por Alma, inscrita en el Registro Mercantil de Nanterre con el número 839 100 575, sociedad de pago y financiación autorizada por la ACPR con el número 17408 (número CIB / código bancario).",
   "credit-features.total-credit-cost": "Coste de crédito (incl. en el total)",
   "eligibility-modal.bullet-1": "Elige <strong>Alma</strong> como método de pago.",
   "eligibility-modal.bullet-2": "Déjate guiar y válida tu pago en <strong>2 minutos.</strong>",
@@ -15,6 +17,7 @@
   "installments.today": "Hoy",
   "installments.total-amount": "Total",
   "installments.total-fees": "De los cuales, costes (IVA incluido)",
+  "payment-plan-strings.credit": "Haz click para más información",
   "payment-plan-strings.day-abbreviation": "D{deferredDays}",
   "payment-plan-strings.default-message": "Pagar a plazos con Alma",
   "payment-plan-strings.deferred": "{totalAmount} a pagar el {dueDate}",

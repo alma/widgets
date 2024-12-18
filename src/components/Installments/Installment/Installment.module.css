@@ -38,7 +38,7 @@
 
   .dot::after {
     border-left: 2px solid var(--off-white);
-    height: 85px;
+    height: 18px;
     margin-left: 4px;
     content: " ";
     position: absolute;

@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 
 import { secondsToMilliseconds } from 'date-fns'
 import { FormattedDate, FormattedMessage, FormattedNumber } from 'react-intl'
+import s from './paymentPlanStrings.module.css'
 
 import { EligibilityPlan, EligibilityPlanToDisplay } from '@/types'
 import { isP1X, priceFromCents } from '@/utils'
@@ -135,6 +136,18 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
       (installment, index) =>
         index === 0 || installment.total_amount === paymentPlan[0].total_amount,
     )
+
+    if (installmentsCount > 4) {
+      return (
+        <span className={s.openModalInfo}>
+          <FormattedMessage
+            id="payment-plan-strings.credit"
+            defaultMessage="Cliquez pour en savoir plus"
+            description={`Link to credit details`}
+          />
+        </span>
+      )
+    }
 
     if (isP1X(payment)) {
       return (

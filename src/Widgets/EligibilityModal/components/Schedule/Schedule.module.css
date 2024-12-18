@@ -4,11 +4,6 @@
   font-family: 'Venn', sans-serif;
 }
 
-.creditInfo {
-  font-size: 14px;
-  margin-left: 4px;
-}
-
 @media (min-width: 800px) {
   .schedule {
     overflow-y: auto;
