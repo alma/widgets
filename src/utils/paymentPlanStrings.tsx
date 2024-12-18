@@ -2,10 +2,10 @@ import React, { ReactNode } from 'react'
 
 import { secondsToMilliseconds } from 'date-fns'
 import { FormattedDate, FormattedMessage, FormattedNumber } from 'react-intl'
-import s from './paymentPlanStrings.module.css'
 
 import { EligibilityPlan, EligibilityPlanToDisplay } from '@/types'
 import { isP1X, priceFromCents } from '@/utils'
+import s from '@/utils/paymentPlanStrings.module.css'
 
 export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
   const {
@@ -143,7 +143,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
           <FormattedMessage
             id="payment-plan-strings.credit"
             defaultMessage="Cliquez pour en savoir plus"
-            description={`Link to credit details`}
+            description="Link to credit details"
           />
         </span>
       )
