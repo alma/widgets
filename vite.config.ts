@@ -1,9 +1,11 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 export default defineConfig({
   build: {
+    target: 'es2015',
     outDir: 'dist',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
@@ -42,5 +44,5 @@ export default defineConfig({
   define: {
     'process.env': process.env,
   },
-  plugins: [dts({ outDir: 'dist/types' })],
+  plugins: [dts({ outDir: 'dist/types' }), nodePolyfills()],
 })
