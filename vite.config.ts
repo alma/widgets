@@ -11,12 +11,18 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'Alma',
       formats: ['umd', 'es'],
-      fileName: (format) => `widgets.${format}.js`,
+      fileName: (format) => {
+        if (format === 'es') {
+          return 'widgets.js'
+        } else {
+          return `widgets.${format}.js`
+        }
+      },
     },
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'widgets.umd.css'
+          if (assetInfo.name === 'style.css') return 'widgets.css'
           return assetInfo?.name || '[name].[ext]'
         },
       },
