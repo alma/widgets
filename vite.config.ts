@@ -65,7 +65,6 @@ export default defineConfig({
           const css = fs.readFileSync(cssPath, 'utf8')
           const minified = new CleanCSS().minify(css).styles
           fs.writeFileSync(minCssPath, minified)
-          console.log(`✅ widgets.min.css généré dans ${minCssPath}`)
         }
       },
     },
