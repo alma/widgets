@@ -2,6 +2,8 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import CleanCSS from 'clean-css'
+import fs from 'fs'
 
 export default defineConfig({
   build: {
@@ -50,5 +52,22 @@ export default defineConfig({
   define: {
     'process.env': process.env,
   },
-  plugins: [dts({ outDir: 'dist/types' }), nodePolyfills()],
+  plugins: [
+    dts({ outDir: 'dist/types' }),
+    nodePolyfills(),
+    {
+      name: 'minify-css',
+      closeBundle: () => {
+        const cssPath = 'dist/widgets.css'
+        const minCssPath = 'dist/widgets.min.css'
+
+        if (fs.existsSync(cssPath)) {
+          const css = fs.readFileSync(cssPath, 'utf8')
+          const minified = new CleanCSS().minify(css).styles
+          fs.writeFileSync(minCssPath, minified)
+          console.log(`✅ widgets.min.css généré dans ${minCssPath}`)
+        }
+      },
+    },
+  ],
 })
