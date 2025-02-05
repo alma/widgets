@@ -1,3 +1,4 @@
+import { Locale } from '@/types'
 import messagesDE from 'intl/messages/messages.de.json'
 import messagesEN from 'intl/messages/messages.en.json'
 import messagesES from 'intl/messages/messages.es.json'
@@ -5,7 +6,6 @@ import messagesFR from 'intl/messages/messages.fr.json'
 import messagesIT from 'intl/messages/messages.it.json'
 import messagesNL from 'intl/messages/messages.nl.json'
 import messagesPT from 'intl/messages/messages.pt.json'
-import { Locale } from 'types'
 
 export const getTranslationsByLocale = (locale: Locale): Record<string, string> => {
   // A CMS plugin can add LCID format like : 'fr-FR' instead of 'fr'.

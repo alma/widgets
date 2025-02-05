@@ -1,16 +1,18 @@
+import React, { FunctionComponent, useState } from 'react'
+
+import { FormattedMessage } from 'react-intl'
+import { useMediaQuery } from 'react-responsive'
+
+import { Card, EligibilityPlan, statusResponse } from '@/types'
+import { desktopWidth, isP1X } from '@/utils'
 import TotalBlock from 'components/Installments/TotalBlock'
 import { LoadingIndicator } from 'components/LoadingIndicator/LoadingIndicator'
 import Modal from 'components/Modal'
-import React, { FunctionComponent, useState } from 'react'
-import { FormattedMessage } from 'react-intl'
-import { useMediaQuery } from 'react-responsive'
-import { statusResponse, Card, EligibilityPlan } from 'types'
-import { desktopWidth, isP1X } from 'utils'
-import EligibilityPlansButtons from './components/EligibilityPlansButtons'
-import Schedule from './components/Schedule'
-import DesktopModal from './DesktopModal'
-import s from './EligibilityModal.module.css'
-import MobileModal from './MobileModal'
+import EligibilityPlansButtons from 'Widgets/EligibilityModal/components/EligibilityPlansButtons'
+import Schedule from 'Widgets/EligibilityModal/components/Schedule'
+import DesktopModal from 'Widgets/EligibilityModal/DesktopModal'
+import s from 'Widgets/EligibilityModal/EligibilityModal.module.css'
+import MobileModal from 'Widgets/EligibilityModal/MobileModal'
 
 type Props = {
   initialPlanIndex?: number

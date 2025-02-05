@@ -1,9 +1,9 @@
-import { EligibilityPlan } from 'types'
+import { EligibilityPlan } from '@/types'
 
 export async function fetchFromApi(
-  url = '',
   data: { [key: string]: unknown },
   headers?: { [key: string]: unknown },
+  url = '',
 ): Promise<EligibilityPlan[]> {
   const response = await fetch(url, {
     method: 'POST',

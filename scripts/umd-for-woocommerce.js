@@ -9,14 +9,15 @@
  */
 
 const { writeFile, readFile } = require('fs')
+
 const sourceUmd = 'widgets.umd.js'
 const targetUmd = 'widgets-wc.umd.js'
 const sourceMapUmd = 'widgets.umd.js.map'
 const targetMapUmd = 'widgets-wc.umd.js.map'
 
-const replaceInnerHtmlInFile = (sourceName, targetName, raw = false) => {
-  const fileBase = raw ? './dist/raw/' : './dist/'
-  readFile(`${fileBase}${sourceName}`, { encoding: 'utf8' }, function (err, fileContent) {
+const replaceInnerHtmlInFile = (sourceName, targetName) => {
+  const fileBase = './dist/'
+  readFile(`${fileBase}${sourceName}`, { encoding: 'utf8' }, (err, fileContent) => {
     if (err) {
       // If file does not exist or if there is any issue with the file,
       // process exit 1 and log the error
@@ -26,9 +27,9 @@ const replaceInnerHtmlInFile = (sourceName, targetName, raw = false) => {
       const fileContentForWC = fileContent
         .replace(/innerHTML/g, 'innerText')
         .replace(/sourceMappingURL=widgets.umd.js.map/g, 'sourceMappingURL=widgets-wc.umd.js.map')
-      writeFile(`${fileBase}${targetName}`, fileContentForWC, 'utf8', (err) => {
-        if (err) {
-          console.error(err)
+      writeFile(`${fileBase}${targetName}`, fileContentForWC, 'utf8', (error) => {
+        if (error) {
+          console.error(error)
           process.exit(1)
         } else {
           console.log(`${fileBase}${targetName} has been created successfully.`)
@@ -42,12 +43,8 @@ const replaceInnerHtmlInFile = (sourceName, targetName, raw = false) => {
 const prepareWCFiles = () => {
   // We need to replace innerHTML with innerText in the UMD file
   replaceInnerHtmlInFile(sourceUmd, targetUmd)
-  // Same for raw build
-  replaceInnerHtmlInFile(sourceUmd, targetUmd, true)
   // We also need to replace innerHTML with innerText in the UMD map file
   replaceInnerHtmlInFile(sourceMapUmd, targetMapUmd)
-  // Same for raw build
-  replaceInnerHtmlInFile(sourceMapUmd, targetMapUmd, true)
 }
 
 prepareWCFiles()

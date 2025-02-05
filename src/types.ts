@@ -1,5 +1,6 @@
-import { ApiMode } from 'consts'
 import React from 'react'
+
+import { ApiMode } from '@/consts'
 
 export type ApiConfig = { domain: ApiMode; merchantId: string }
 

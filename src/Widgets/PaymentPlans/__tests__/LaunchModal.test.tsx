@@ -1,16 +1,26 @@
-import { screen, waitFor, within } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { ApiMode } from 'consts'
 import React from 'react'
-import render from 'test'
-import PaymentPlanWidget from '..'
-import { mockButtonPlans } from 'test/fixtures'
 
-jest.mock('utils/fetch', () => {
-  return {
-    fetchFromApi: async () => mockButtonPlans,
-  }
-})
+import { screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
+import { ApiMode } from '@/consts'
+import render from '@/test'
+import { mockButtonPlans } from 'test/fixtures'
+import PaymentPlanWidget from 'Widgets/PaymentPlans'
+
+jest.mock('utils/fetch', () => ({
+  fetchFromApi: async () => mockButtonPlans,
+}))
+
+const checkModalElements = async (): Promise<void> => {
+  expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
+  const modalContainer = screen.getByTestId('modal-container')
+  expect(within(modalContainer).getByText('3x')).toBeInTheDocument()
+  expect(within(modalContainer).getByText('21 octobre 2021')).toBeInTheDocument()
+  expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
+  expect(within(modalContainer).getByText('21 décembre 2021')).toBeInTheDocument()
+  expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(2)
+}
 
 describe('Modal initializes with the correct plan', () => {
   it('after hovering a plan', async () => {
@@ -21,7 +31,7 @@ describe('Modal initializes with the correct plan', () => {
       />,
     )
 
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     await userEvent.hover(screen.getByText('3x'))
 
@@ -39,7 +49,7 @@ describe('Modal initializes with the correct plan', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     await userEvent.hover(screen.getByText('3x'))
 
@@ -57,7 +67,7 @@ describe('Modal initializes with the correct plan', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     await userEvent.click(screen.getByTestId('widget-button'))
 
@@ -77,7 +87,7 @@ describe('Modal initializes with the correct plan', () => {
         onModalClose={onModalClose}
       />,
     )
-    await waitFor(() => expect(screen.getByTestId('widget-button')).toBeInTheDocument())
+    await screen.findByTestId('widget-button')
 
     await userEvent.click(screen.getByTestId('widget-button'))
 
@@ -88,13 +98,3 @@ describe('Modal initializes with the correct plan', () => {
     expect(onModalClose).toHaveBeenCalledTimes(1)
   })
 })
-
-async function checkModalElements(): Promise<void> {
-  expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
-  const modalContainer = screen.getByTestId('modal-container')
-  expect(within(modalContainer).getByText('3x')).toBeInTheDocument()
-  expect(within(modalContainer).getByText('21 octobre 2021')).toBeInTheDocument()
-  expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
-  expect(within(modalContainer).getByText('21 décembre 2021')).toBeInTheDocument()
-  expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(2)
-}

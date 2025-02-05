@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { ApiConfig, statusResponse, ConfigPlan, EligibilityPlan } from 'types'
+
+import { ApiConfig, ConfigPlan, EligibilityPlan, statusResponse } from '@/types'
+import { useSessionStorage } from 'hooks/useSessionStorage'
 import { fetchFromApi } from 'utils/fetch'
 import filterEligibility from 'utils/filterEligibility'
-import { useSessionStorage } from 'hooks/useSessionStorage'
-import { isMoreThanOneHourAgo } from '../utils/utilsForStorage'
+import { isMoreThanOneHourAgo } from 'utils/utilsForStorage'
 
 const useFetchEligibility = (
   purchaseAmount: number,
@@ -35,16 +36,16 @@ const useFetchEligibility = (
   }))
   useEffect(() => {
     if (status === statusResponse.PENDING) {
-      let billing_address = null
+      let billingAddress = null
       if (customerBillingCountry) {
-        billing_address = {
+        billingAddress = {
           country: customerBillingCountry,
         }
       }
 
-      let shipping_address = null
+      let shippingAddress = null
       if (customerShippingCountry) {
-        shipping_address = {
+        shippingAddress = {
           country: customerShippingCountry,
         }
       }
@@ -55,17 +56,17 @@ const useFetchEligibility = (
 
       if (!currentCache || shouldInvalidate) {
         fetchFromApi(
-          domain + '/v2/payments/eligibility',
           {
             purchase_amount: purchaseAmount,
             queries: configInstallments,
-            billing_address,
-            shipping_address,
+            billing_address: billingAddress,
+            shipping_address: shippingAddress,
           },
           {
             Authorization: `Alma-Merchant-Auth ${merchantId}`,
             'X-Alma-Agent': `Alma Widget/${process.env.VERSION}`,
           },
+          `${domain}/v2/payments/eligibility`,
         )
           .then((res) => {
             setCache(key, res)
@@ -77,7 +78,19 @@ const useFetchEligibility = (
           })
       }
     }
-  }, [status, purchaseAmount, key])
+  }, [
+    status,
+    purchaseAmount,
+    key,
+    customerBillingCountry,
+    customerShippingCountry,
+    currentCache,
+    shouldInvalidate,
+    configInstallments,
+    merchantId,
+    domain,
+    setCache,
+  ])
 
   return [filterEligibility(eligibility, plans), status]
 }

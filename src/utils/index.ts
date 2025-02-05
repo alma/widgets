@@ -1,4 +1,4 @@
-import { EligibilityPlan } from '../types'
+import { EligibilityPlan } from '@/types'
 
 export function priceToCents(price: number): number {
   return Math.round(price * 100)

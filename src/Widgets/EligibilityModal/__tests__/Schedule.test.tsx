@@ -1,9 +1,11 @@
-import { screen, waitFor } from '@testing-library/react'
 import React from 'react'
-import render from 'test'
-import Schedule from '../components/Schedule'
 
-beforeEach(async () => {
+import { screen } from '@testing-library/react'
+
+import render from '@/test'
+import Schedule from 'Widgets/EligibilityModal/components/Schedule'
+
+it('should be displayed', async () => {
   render(
     <Schedule
       currentPlan={{
@@ -17,8 +19,5 @@ beforeEach(async () => {
       }}
     />,
   )
-})
-
-it('should be displayed', async () => {
-  await waitFor(() => expect(screen.getByTestId('modal-installments-element')).toBeInTheDocument())
+  await screen.findByTestId('modal-installments-element')
 })
