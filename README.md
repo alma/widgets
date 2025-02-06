@@ -7,17 +7,16 @@ View all [Changelog](https://github.com/alma/widgets/releases)
 ## Setup
 
 ### Add the widget to your page
-TODO: remove => Changes to test precommit
 ##### CSS
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alma/widgets@4.x/dist/widgets.min.css" />
 ```
 
 ##### JS
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@alma/widgets@3.x/dist/widgets.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@alma/widgets@4.x/dist/widgets.umd.js"></script>
 ```
 
 ### Create the container
