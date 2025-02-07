@@ -51,6 +51,7 @@ export default defineConfig({
   },
   define: {
     'process.env': process.env,
+    'import.meta.env.VITE_BUILD_VERSION': JSON.stringify(process.env.BUILD_VERSION || 'dev'),
   },
   plugins: [
     dts({ outDir: 'dist/types' }),
