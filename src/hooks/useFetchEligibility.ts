@@ -64,7 +64,7 @@ const useFetchEligibility = (
           },
           {
             Authorization: `Alma-Merchant-Auth ${merchantId}`,
-            'X-Alma-Agent': `Alma Widget/${process.env.VERSION}`,
+            'X-Alma-Agent': `Alma Widget/${process.env.BUILD_VERSION}`,
           },
           `${domain}/v2/payments/eligibility`,
         )
