@@ -13,7 +13,7 @@ jobs:
           method: "POST"
           accept: 200,201,204,202
           headers: '{ "cache-control": "no-cache", "content-type": "application/json" }'
-          body: "{'path': ['/npm/@alma/widgets@4.x/dist/widgets.js’,'/npm/@alma/widgets@4.x.x/dist/widgets.js’,'/npm/@alma/widgets@4.x.x/dist/widgets.umd.js','/npm/@alma/widgets@4.x/dist/widgets.umd.js', '/npm/@alma/widgets@4.x.x/dist/widgets-wc.umd.js','/npm/@alma/widgets@4.x/dist/widgets-wc.umd.js','/npm/@alma/widgets@4.x.x/dist/widgets.css','/npm/@alma/widgets@4.x/dist/widgets.css','/npm/@alma/widgets@4.x.x/dist/widgets.min.css','/npm/@alma/widgets@4.x/dist/widgets.min.css']}"
+          body: "{'path': ['/npm/@alma/widgets@4.x/dist/widgets.js','/npm/@alma/widgets@4.x.x/dist/widgets.js','/npm/@alma/widgets@4.x.x/dist/widgets.umd.js','/npm/@alma/widgets@4.x/dist/widgets.umd.js', '/npm/@alma/widgets@4.x.x/dist/widgets-wc.umd.js','/npm/@alma/widgets@4.x/dist/widgets-wc.umd.js','/npm/@alma/widgets@4.x.x/dist/widgets.css','/npm/@alma/widgets@4.x/dist/widgets.css','/npm/@alma/widgets@4.x.x/dist/widgets.min.css','/npm/@alma/widgets@4.x/dist/widgets.min.css']}"
 
           # If it is set to true, it will show the response log in the GitHub UI
           log-response: true
