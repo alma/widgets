@@ -50,8 +50,10 @@ export const useSessionStorage: () => UseSessionStorageType = () => {
 
     const stringAmount = purchaseAmount.toString()
     const stringPlans = JSON.stringify(plans)
+    // Using build version into the key to invalidate cache when the widget is updated
+    const buildVersion = process.env.BUILD_VERSION ?? 'local-build'
     return hashStringForStorage(
-      `${stringAmount}${stringPlans}${customerBillingCountry}${customerShippingCountry}`,
+      `${stringAmount}${stringPlans}${customerBillingCountry}${customerShippingCountry}${buildVersion}`,
     )
   }
 
