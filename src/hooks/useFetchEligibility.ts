@@ -17,12 +17,14 @@ const useFetchEligibility = (
   const [status, setStatus] = useState(statusResponse.PENDING)
 
   // caching
-  const { getCache, setCache, createKey } = useSessionStorage()
+  const { getCache, setCache, createKey, clearCache } = useSessionStorage()
   const key = createKey({
     purchaseAmount,
     plans,
     customerBillingCountry,
     customerShippingCountry,
+    domain,
+    merchantId,
   })
   const currentCache = getCache(key)?.value
   const lastCacheTimestamp = getCache(key)?.timestamp
@@ -53,8 +55,12 @@ const useFetchEligibility = (
         setEligibility(currentCache)
         setStatus(statusResponse.SUCCESS)
       }
-
-      if (!currentCache || shouldInvalidate) {
+      if (shouldInvalidate) {
+        // If we should invalidate, we clear all cache
+        clearCache()
+      }
+      if (!currentCache) {
+        // Fetch eligibility from API
         fetchFromApi(
           {
             purchase_amount: purchaseAmount,
