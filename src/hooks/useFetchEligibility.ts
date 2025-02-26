@@ -101,6 +101,7 @@ const useFetchEligibility = (
     merchantId,
     domain,
     setCache,
+    clearCache,
   ])
   return [filterEligibility(eligibility, plans), status]
 }
