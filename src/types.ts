@@ -46,6 +46,11 @@ export type EligibilityPlan = {
   }
 }
 
+export type ErrorResponse = {
+  message?: string
+  error_code?: string
+}
+
 export type EligibilityPlanToDisplay = EligibilityPlan & {
   minAmount?: number
   maxAmount?: number

@@ -17,12 +17,14 @@ const useFetchEligibility = (
   const [status, setStatus] = useState(statusResponse.PENDING)
 
   // caching
-  const { getCache, setCache, createKey } = useSessionStorage()
+  const { getCache, setCache, createKey, clearCache } = useSessionStorage()
   const key = createKey({
     purchaseAmount,
     plans,
     customerBillingCountry,
     customerShippingCountry,
+    domain,
+    merchantId,
   })
   const currentCache = getCache(key)?.value
   const lastCacheTimestamp = getCache(key)?.timestamp
@@ -53,8 +55,12 @@ const useFetchEligibility = (
         setEligibility(currentCache)
         setStatus(statusResponse.SUCCESS)
       }
-
-      if (!currentCache || shouldInvalidate) {
+      if (shouldInvalidate) {
+        // If we should invalidate, we clear all cache
+        clearCache()
+      }
+      if (!currentCache) {
+        // Fetch eligibility from API
         fetchFromApi(
           {
             purchase_amount: purchaseAmount,
@@ -69,9 +75,14 @@ const useFetchEligibility = (
           `${domain}/v2/payments/eligibility`,
         )
           .then((res) => {
-            setCache(key, res)
-            setEligibility(res)
-            setStatus(statusResponse.SUCCESS)
+            // If the response contains an error_code, we set the status to failed - for example if code is 403 unauthorized
+            if ('error_code' in res) {
+              setStatus(statusResponse.FAILED)
+            } else {
+              setEligibility(res as EligibilityPlan[])
+              setCache(key, res as EligibilityPlan[])
+              setStatus(statusResponse.SUCCESS)
+            }
           })
           .catch(() => {
             setStatus(statusResponse.FAILED)
@@ -90,8 +101,8 @@ const useFetchEligibility = (
     merchantId,
     domain,
     setCache,
+    clearCache,
   ])
-
   return [filterEligibility(eligibility, plans), status]
 }
 export default useFetchEligibility
