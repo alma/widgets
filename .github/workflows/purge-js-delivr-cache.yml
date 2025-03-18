@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Curl"
-        uses: indiesdev/curl@v1.1
+        uses: indiesdev/curl@5f733a4ab67799ec174b9b9b3f8d78100ae084e8 # v1.1
         with:
           url: https://purge.jsdelivr.net/
           method: "POST"
