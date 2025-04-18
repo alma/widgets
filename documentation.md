@@ -119,3 +119,80 @@ If the specific locale for the country you target is available, we suggest to us
 The locale is used in the Widgets to display all wordings in the correct language but also to format numbers, dates, currencies into the standard format.
 
 For example, for a pricing, the locale `pt` will format as `€ 100,00` while the locale `pt-PT` will format as `100,00 €`.
+
+# To go further
+
+### WidgetsController
+
+The `WidgetsController` function is responsible for managing Alma widgets. It provides a method to dynamically add widgets to the DOM based on the provided configuration.
+
+#### Parameters:  
+
+| Parameter          |               Type               |     Required      | Description                                                                                                                                                                                                 |
+|:-------------------|:--------------------------------:|:-----------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| apiData            |            `ApiData`             |   **required**    | An object containing the following properties : domain,     merchantId                                                                                                                                      |
+| apiData.domain     | `ApiMode.TEST` OR `ApiMode.LIVE` | **required** | The domains LIVE & TEST are preconfigured when using the provided values from "Alma.ApiMode.[TEST or LIVE]. It represents the domain's url to be used for API calls (ex: "https://api.getalma.eu" for LIVE) |
+| apiData.merchantId |           `string`     |   **required**    | The merchant's unique identifier provided by Alma (starting with `merchant_`)                                                                                                                 |
+
+
+#### Returns:
+An object with the following method:
+- `add(widget: WidgetNames, options: WidgetOptions): AddReturnType`
+  - Adds a widget to the DOM based on the specified widget type and options.
+
+The `WidgetsController` is configured when implementing the method `initialize(merchantId: string, domain: Alma.ApiMode.TEST | Alma.ApiMode.LIVE)`
+
+### Known Limitation:
+The current implementation of the `addWidget` function does not automatically update the widget when the `purchaseAmount` changes dynamically. 
+Once a widget is rendered, any subsequent changes to the `purchaseAmount` will not be reflected unless the widget is manually re-rendered.
+This is also the case for any other parameters passed to the widget.
+The following approach can be used to handle other variables changes in the widget.
+
+### How to Implement the Widget for Variable `purchaseAmount`:
+To handle a variable `purchaseAmount`, you can follow these steps:
+
+1. **Track Changes to `purchaseAmount`**
+
+   Use an event listener or a state management solution (e.g., React state or a global variable) to detect changes to the `purchaseAmount`.
+    
+    For example `var purchaseAmount = document.getElementById('quantity').value`
+
+2. **Re-render the Widget**
+
+   Call the `add` method again with the updated `purchaseAmount` to re-render the widget.
+
+  Note that Calling the `add` method multiple times will **unmount the previous widget** before rendering a new one. This behavior is implemented in the `addWidget` function (lines 37–41). Specifically:
+  - It checks if a `Root` instance already exists for the specified container (`rootMap.get(containerDiv)`).
+  - If a `Root` exists, it calls `unmount()` to remove the previous widget and deletes the reference from the `rootMap`.  
+  - A new widget is then rendered in the same container.
+
+  This ensures that only one widget is active in the specified container at any given time
+
+3. **Example Implementation**
+
+   Below is an example of how to implement a widget with a variable `purchaseAmount`:
+
+   ```typescript
+   let currentPurchaseAmount = 450 * 100; // Initial purchase amount in cents
+   // Initialize the Alma widgets Controller
+   const widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
+
+   function updateWidget() {
+     const quantity = parseInt(document.getElementById('quantity')?.value || '1', 10);
+     currentPurchaseAmount = 450 * 100 * quantity;
+
+     widgets.add(Alma.Widgets.PaymentPlans, {
+       container: '#alma-widget-payment-plans',
+       locale: 'fr',
+       purchaseAmount: currentPurchaseAmount,
+     });
+   }
+
+   // Initial render
+   updateWidget();
+
+   // Add event listener to update the widget dynamically
+   document.getElementById('quantity')?.addEventListener('change', updateWidget);
+   ```
+
+By following this approach, you can dynamically update the widget whenever the `purchaseAmount` changes.
