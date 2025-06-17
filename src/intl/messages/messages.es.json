@@ -17,7 +17,7 @@
   "installments.today": "Hoy",
   "installments.total-amount": "Total",
   "installments.total-fees": "De los cuales, costes (IVA incluido)",
-  "payment-plan-strings.credit": "Haz click para más información",
+  "payment-plan-strings.credit": "Pincha aqui para más información",
   "payment-plan-strings.day-abbreviation": "D{deferredDays}",
   "payment-plan-strings.default-message": "Pagar a plazos con Alma",
   "payment-plan-strings.deferred": "{totalAmount} a pagar el {dueDate}",
