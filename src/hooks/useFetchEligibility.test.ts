@@ -81,7 +81,7 @@ describe('useFetchEligibility', () => {
     expect(fetchFromApi).not.toHaveBeenCalled()
   })
 
-  it('should returns a FAILED status if the API response is from ErrorType', async () => {
+  it('should returns a FAILED status if the API response contains `error_code`', async () => {
     const mockedSessionStorage = {
       getCache: jest.fn(),
       setCache: jest.fn(),
@@ -92,6 +92,37 @@ describe('useFetchEligibility', () => {
     ;(fetchFromApi as jest.Mock).mockImplementation(async () => ({
       message: 'some error',
       error_code: '403',
+    }))
+
+    const { result } = renderHook(() =>
+      useFetchEligibility(
+        45000,
+        { domain: ApiMode.TEST, merchantId: 'test_id' },
+        undefined,
+        'FR',
+        'FR',
+      ),
+    )
+
+    // Status should be failed
+    await waitFor(() => {
+      expect(result.current[1]).toBe(statusResponse.FAILED)
+    })
+    // The cache should not be set
+    expect(mockedSessionStorage?.setCache).not.toHaveBeenCalled()
+    // The hook response should be empty
+    expect(result.current[0]).toEqual([])
+  })
+  it('should returns a FAILED status if the API response contains `errors`', async () => {
+    const mockedSessionStorage = {
+      getCache: jest.fn(),
+      setCache: jest.fn(),
+      createKey: jest.fn().mockReturnValue('mocked_key'),
+      clearCache: jest.fn(),
+    }
+    ;(useSessionStorage as jest.Mock).mockReturnValue(mockedSessionStorage)
+    ;(fetchFromApi as jest.Mock).mockImplementation(async () => ({
+      errors: 'some error',
     }))
 
     const { result } = renderHook(() =>
