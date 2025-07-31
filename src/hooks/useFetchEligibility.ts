@@ -76,7 +76,9 @@ const useFetchEligibility = (
         )
           .then((res) => {
             // If the response contains an error_code, we set the status to failed - for example if code is 403 unauthorized
-            if ('error_code' in res) {
+            // When purchase amount & plans are not compatible, the API returns an error {"running": {"message": "'purchase_amount'"}} which does not contain the key `error_code`
+            // And the widget keeps loading if we don't handle it, so we need to cover this case and returns a FAILED status
+            if ('error_code' in res || 'errors' in res) {
               setStatus(statusResponse.FAILED)
             } else {
               setEligibility(res as EligibilityPlan[])
