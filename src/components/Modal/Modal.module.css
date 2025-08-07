@@ -9,7 +9,10 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding-top: 48px;
-  outline: none;
+}
+.modal:focus,
+.modal:focus-visible {
+  outline: 1px solid var(--alma-orange);
 }
 
 .content {
