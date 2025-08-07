@@ -12,7 +12,12 @@
 
 .widgetButton:focus,
 .widgetButton:focus-visible {
-  outline: none;
+  outline: 1px solid var(--alma-orange);
+}
+
+.widgetButton.monochrome:focus,
+.widgetButton.monochrome:focus-visible {
+  outline: 1px solid black;
 }
 
 .logo {
