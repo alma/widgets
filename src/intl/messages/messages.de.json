@@ -36,8 +36,5 @@
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(0% Finanzierung)",
   "payment-plan-strings.pay-now": "Zahlen Sie jetzt {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Jetzt bezahlen",
-  "skip-links.payment-info": "Zu den Zahlungsinformationen gehen",
-  "skip-links.payment-plans": "Zu den Zahlungsoptionen gehen",
-  "skip-links.payment-schedule": "Zum Zahlungsplan gehen"
+  "payment-plan-strings.pay.now.button": "Jetzt bezahlen"
 }

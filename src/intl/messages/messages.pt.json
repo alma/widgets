@@ -36,8 +36,5 @@
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(sem encargos)",
   "payment-plan-strings.pay-now": "Pagar agora {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Pagar agora",
-  "skip-links.payment-info": "Ir para informações de pagamento",
-  "skip-links.payment-plans": "Ir para opções de pagamento",
-  "skip-links.payment-schedule": "Ir para cronograma de pagamento"
+  "payment-plan-strings.pay.now.button": "Pagar agora"
 }

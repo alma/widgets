@@ -36,8 +36,5 @@
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(zonder kosten)",
   "payment-plan-strings.pay-now": "Betaal nu {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Betaal nu",
-  "skip-links.payment-info": "Ga naar betalingsinformatie",
-  "skip-links.payment-plans": "Ga naar betalingsopties",
-  "skip-links.payment-schedule": "Ga naar betalingsschema"
+  "payment-plan-strings.pay.now.button": "Betaal nu"
 }
