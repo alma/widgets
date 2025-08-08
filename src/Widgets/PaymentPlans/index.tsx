@@ -1,6 +1,7 @@
 import React, { FunctionComponent, MouseEvent, useEffect, useState } from 'react'
 
 import cx from 'classnames'
+import { useIntl } from 'react-intl'
 
 import { ApiConfig, Card, ConfigPlan, statusResponse } from '@/types'
 import { AlmaLogo } from 'assets/almaLogo'
@@ -45,6 +46,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   hideBorder = false,
   onModalClose,
 }) => {
+  const intl = useIntl()
   const [eligibilityPlans, status] = useFetchEligibility(
     purchaseAmount,
     apiData,
@@ -128,7 +130,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   }
 
   const handleOpenModal = (
-    e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>,
+    e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
   ) => {
     e.preventDefault()
     if (eligiblePlans.length > 0) {
@@ -138,9 +140,14 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
 
   return (
     <>
-      <button
-        type="button"
+      <div
         onClick={handleOpenModal}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            handleOpenModal(e)
+          }
+        }}
         className={cx(
           s.widgetButton,
           {
@@ -152,29 +159,75 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           STATIC_CUSTOMISATION_CLASSES.container,
         )}
         data-testid="widget-button"
+        role="button"
+        tabIndex={0}
+        aria-label={intl.formatMessage({
+          id: 'accessibility.payment-widget.open-button.aria-label',
+          defaultMessage: 'Ouvrir les options de paiement Alma',
+        })}
       >
         <div className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}>
           <AlmaLogo className={s.logo} color={monochrome ? 'var(--off-black)' : undefined} />
-          <div className={cx(s.paymentPlans, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)}>
+          <div
+            className={cx(s.paymentPlans, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)}
+            role="radiogroup"
+            aria-label={intl.formatMessage({
+              id: 'accessibility.payment-options.radiogroup.aria-label',
+              defaultMessage: 'Options de paiement disponibles',
+            })}
+          >
             {eligibilityPlans.map((eligibilityPlan, key) => {
               const isCurrent = key === current
+              const isEligible = eligibilityPlan.eligible
+
               return (
-                <div
+                <button
+                  type="button"
                   key={`p${eligibilityPlan.installments_count}x-d+${eligibilityPlan.deferred_days}-m+${eligibilityPlan.deferred_months}`}
                   onMouseEnter={() => onHover(key)}
                   onTouchStart={() => onHover(key)}
-                  onMouseOut={onLeave}
+                  onMouseLeave={onLeave}
                   onBlur={onLeave}
                   onTouchEnd={onLeave}
-                  className={cx(s.plan, {
+                  onFocus={isEligible ? () => onHover(key) : undefined}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    if (isEligible) {
+                      onHover(key)
+                      // Open modal if clicking on an eligible plan
+                      if (eligiblePlans.length > 0) {
+                        openModal()
+                      }
+                    }
+                  }}
+                  className={cx(s.plan, s.planButton, {
                     [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: isCurrent,
                     [s.monochrome]: monochrome && isCurrent,
                     [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
-                      !eligibilityPlan.eligible,
+                      !isEligible,
                   })}
+                  role="radio"
+                  aria-checked={isCurrent}
+                  aria-label={intl.formatMessage(
+                    {
+                      id: 'accessibility.payment-plan.option.aria-label',
+                      defaultMessage: 'Option de paiement {planDescription}',
+                    },
+                    {
+                      planDescription:
+                        eligibilityPlan.installments_count === 1
+                          ? intl.formatMessage({
+                              id: 'payment-plan-strings.pay.now.button',
+                              defaultMessage: 'Payer maintenant',
+                            })
+                          : `${eligibilityPlan.installments_count}x`,
+                    },
+                  )}
+                  aria-disabled={!isEligible}
+                  tabIndex={isEligible ? 0 : -1}
                 >
                   {paymentPlanShorthandName(eligibilityPlan)}
-                </div>
+                </button>
               )
             })}
           </div>
@@ -191,7 +244,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
         >
           {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
         </div>
-      </button>
+      </div>
       {isOpen && (
         <EligibilityModal
           initialPlanIndex={getIndexWithinEligiblePlans(current)}

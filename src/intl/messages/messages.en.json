@@ -1,4 +1,11 @@
 {
+  "accessibility.alma-logo.aria-label": "Alma logo - Multi-installment payment solution",
+  "accessibility.close-button.aria-label": "Close window",
+  "accessibility.payment-options.radiogroup.aria-label": "Available payment options",
+  "accessibility.payment-plan.option.aria-label": "Payment option {planDescription}",
+  "accessibility.payment-plans-title": "Available payment options",
+  "accessibility.payment-schedule-title": "Payment schedule",
+  "accessibility.payment-widget.open-button.aria-label": "Open Alma payment options",
   "credit-features.credit-cost-display": "{creditCost} (APR {taegPercentage})",
   "credit-features.information": "Check your repayment capacity before committing yourself.",
   "credit-features.information.title": "Credit is a commitment and must be repaid.",
@@ -7,6 +14,7 @@
   "eligibility-modal.bullet-1": "Choose <strong>Alma</strong> at checkout.",
   "eligibility-modal.bullet-2": "Let us guide you and validate your payment in <strong>2 minutes.</strong>",
   "eligibility-modal.bullet-3": "<strong>Stay in control</strong> by advancing or postponing your deadlines at your own pace.",
+  "eligibility-modal.info-title": "How to pay",
   "eligibility-modal.no-eligibility": "Oops, looks like the simulation didn't work.",
   "eligibility-modal.p1x-bullet-1": "Choose <strong>Alma - Pay now</strong> at checkout.",
   "eligibility-modal.p1x-bullet-2": "Enter your <strong>credit card details.</strong>",
@@ -28,5 +36,8 @@
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(free of charge)",
   "payment-plan-strings.pay-now": "Pay now {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Pay now"
+  "payment-plan-strings.pay.now.button": "Pay now",
+  "skip-links.payment-info": "Go to payment information",
+  "skip-links.payment-plans": "Go to payment options",
+  "skip-links.payment-schedule": "Go to payment schedule"
 }

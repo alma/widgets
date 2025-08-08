@@ -7,6 +7,8 @@ const MasterCard: FC = () => (
     viewBox="0 0 24 16"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
+    aria-label="Carte Mastercard acceptée"
+    role="img"
   >
     <g id="Parcours-1C-B" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="mobile-1C-Paiement-V1" transform="translate(-269.000000, -313.000000)">

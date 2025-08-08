@@ -8,6 +8,7 @@ import { desktopWidth, isP1X } from '@/utils'
 import TotalBlock from 'components/Installments/TotalBlock'
 import { LoadingIndicator } from 'components/LoadingIndicator/LoadingIndicator'
 import Modal from 'components/Modal'
+import SkipLinks from 'components/SkipLinks'
 import EligibilityPlansButtons from 'Widgets/EligibilityModal/components/EligibilityPlansButtons'
 import Schedule from 'Widgets/EligibilityModal/components/Schedule'
 import DesktopModal from 'Widgets/EligibilityModal/DesktopModal'
@@ -39,20 +40,41 @@ const EligibilityModal: FunctionComponent<Props> = ({
     (plan) => plan.deferred_days > 0 || plan.deferred_months > 0,
   )
 
+  // Skip links definition for RGAA accessibility
+  // Towards the 3 main sections that users may want to quickly consult
+  const skipLinks = [
+    {
+      href: '#payment-plans',
+      labelId: 'skip-links.payment-plans',
+      defaultMessage: 'Aller aux options de paiement',
+    },
+    {
+      href: '#payment-info',
+      labelId: 'skip-links.payment-info',
+      defaultMessage: 'Aller aux informations de paiement',
+    },
+    {
+      href: '#payment-schedule',
+      labelId: 'skip-links.payment-schedule',
+      defaultMessage: 'Aller au calendrier de paiement',
+    },
+  ]
+
   return (
     <Modal onClose={onClose} ariaHideApp={false} scrollable isOpen>
+      <SkipLinks skipLinks={skipLinks} />
       <ModalComponent
         isSomePlanDeferred={isSomePlanDeferred}
         cards={cards}
         isCurrentPlanP1X={isP1X(currentPlan)}
       >
         {status === statusResponse.PENDING && (
-          <div className={s.loader}>
+          <div className={s.loader} role="status" aria-live="polite">
             <LoadingIndicator />
           </div>
         )}
         {status === statusResponse.SUCCESS && eligiblePlans.length === 0 && (
-          <div className={s.noEligibility}>
+          <div className={s.noEligibility} role="alert">
             <FormattedMessage
               id="eligibility-modal.no-eligibility"
               defaultMessage="Oups, il semblerait que la simulation n'ait pas fonctionné."
@@ -61,16 +83,19 @@ const EligibilityModal: FunctionComponent<Props> = ({
         )}
         {status === statusResponse.SUCCESS && eligiblePlans.length >= 1 && (
           <>
-            <EligibilityPlansButtons
-              eligibilityPlans={eligiblePlans}
-              currentPlanIndex={currentPlanIndex}
-              setCurrentPlanIndex={setCurrentPlanIndex}
-            />
-            <div className={s.scheduleArea}>
+            <section aria-labelledby="payment-plans-title">
+              <EligibilityPlansButtons
+                id="payment-plans"
+                eligibilityPlans={eligiblePlans}
+                currentPlanIndex={currentPlanIndex}
+                setCurrentPlanIndex={setCurrentPlanIndex}
+              />
+            </section>
+            <section className={s.scheduleArea} aria-labelledby="payment-schedule-title">
               <div className={s.verticalLine} />
-              <Schedule currentPlan={currentPlan} />
+              <Schedule id="payment-schedule" currentPlan={currentPlan} />
               <TotalBlock currentPlan={currentPlan} />
-            </div>
+            </section>
           </>
         )}
       </ModalComponent>

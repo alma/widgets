@@ -1,7 +1,14 @@
 import React, { FC } from 'react'
 
 const AmexCard: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="16"
+    viewBox="0 0 24 16"
+    aria-label="Carte American Express acceptée"
+    role="img"
+  >
     <defs>
       <linearGradient id="cardamex" x1="10.914%" x2="87.432%" y1="86.279%" y2="15.035%">
         <stop offset="0%" stopColor="#3FA9F5" />

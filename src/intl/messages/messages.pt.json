@@ -1,4 +1,11 @@
 {
+  "accessibility.alma-logo.aria-label": "Logótipo Alma - Solução de pagamento multi-instalação",
+  "accessibility.close-button.aria-label": "Fechar a janela",
+  "accessibility.payment-options.radiogroup.aria-label": "Opções de pagamento disponíveis",
+  "accessibility.payment-plan.option.aria-label": "Opção de pagamento {planDescription}",
+  "accessibility.payment-plans-title": "Opções de pagamento disponíveis",
+  "accessibility.payment-schedule-title": "Calendário de pagamento",
+  "accessibility.payment-widget.open-button.aria-label": "Opções de pagamento da Open Alma",
   "credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
   "credit-features.information": "Verifique a sua capacidade de reembolso antes de assumir um compromisso.",
   "credit-features.information.title": "O crédito é um compromisso e deve ser reembolsado.",
@@ -7,6 +14,7 @@
   "eligibility-modal.bullet-1": "Seleccionar <strong>Alma - Pay Now</strong> no final da compra.",
   "eligibility-modal.bullet-2": "Siga as instruções e valide o seu pagamento em <strong>2 minutos.</strong>",
   "eligibility-modal.bullet-3": "<strong>Mantenha o controlo</strong> adiando as datas de pagamento ao seu próprio ritmo.",
+  "eligibility-modal.info-title": "Como pagar",
   "eligibility-modal.no-eligibility": "Ups, parece que a simulação não funcionou.",
   "eligibility-modal.p1x-bullet-1": "Escolha <strong>Alma - Pague agora</strong> no checkout.",
   "eligibility-modal.p1x-bullet-2": "Preencha os dados do seu <strong>cartão de bancário.</strong>",
@@ -28,5 +36,8 @@
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(sem encargos)",
   "payment-plan-strings.pay-now": "Pagar agora {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Pagar agora"
+  "payment-plan-strings.pay.now.button": "Pagar agora",
+  "skip-links.payment-info": "Ir para informações de pagamento",
+  "skip-links.payment-plans": "Ir para opções de pagamento",
+  "skip-links.payment-schedule": "Ir para cronograma de pagamento"
 }

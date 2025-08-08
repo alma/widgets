@@ -1,7 +1,14 @@
 import React, { FC } from 'react'
 
 const CbCard: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="16"
+    viewBox="0 0 24 16"
+    aria-label="Carte Bancaire CB acceptée"
+    role="img"
+  >
     <defs>
       <linearGradient id="cardcb" x1="5.842%" x2="95.393%" y1="81.753%" y2="17.344%">
         <stop offset="0%" stopColor="#39B54A" /> <stop offset="100%" stopColor="#0A5296" />
