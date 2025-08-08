@@ -24,11 +24,11 @@ describe('Installment Accessibility Tests', () => {
   it('should have proper semantic structure', async () => {
     const { container } = render(<Installment installment={mockInstallment} index={0} />)
 
-    // Vérifier la structure sémantique
+    // Check semantic structure
     const installmentElement = container.firstChild
     expect(installmentElement).toBeInTheDocument()
 
-    // Vérifier que le contenu est lisible (format français)
+    // Check that content is readable (French format)
     expect(container).toHaveTextContent('50,00')
     expect(container).toHaveTextContent('1 janvier 2022')
 
@@ -54,7 +54,7 @@ describe('Installment Accessibility Tests', () => {
   it('should be accessible for screen readers', async () => {
     const { container } = render(<Installment installment={mockInstallment} index={0} />)
 
-    // Vérifier qu'il n'y a pas de problèmes de couleur/contraste
+    // Check that there are no color/contrast issues
     const results = await axe(container, {
       rules: {
         'color-contrast': { enabled: true },

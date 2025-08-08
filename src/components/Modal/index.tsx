@@ -28,7 +28,7 @@ const ControlledModal: FunctionComponent<Props> = ({
   ...props
 }) => {
   const intl = useIntl()
-  
+
   /* istanbul ignore next */
   if (process.env.NODE_ENV !== 'test') Modal.setAppElement('body')
 

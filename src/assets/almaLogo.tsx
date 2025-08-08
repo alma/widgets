@@ -8,7 +8,7 @@ type Props = {
 
 export const AlmaLogo = ({ className, color = '#fa5022' }: Props) => {
   const intl = useIntl()
-  
+
   return (
     <svg
       width="42"

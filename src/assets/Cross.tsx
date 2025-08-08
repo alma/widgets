@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useIntl } from 'react-intl'
+
 function CrossIcon({
   color = '#fff',
   className,
@@ -9,6 +11,8 @@ function CrossIcon({
   className?: string
   'aria-label'?: string
 }): JSX.Element {
+  const intl = useIntl()
+
   return (
     <svg
       className={className}
@@ -17,7 +21,13 @@ function CrossIcon({
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      aria-label={ariaLabel || 'Fermer'}
+      aria-label={
+        ariaLabel ||
+        intl.formatMessage({
+          id: 'accessibility.close-icon.aria-label',
+          defaultMessage: 'Fermer',
+        })
+      }
       role="img"
     >
       <path

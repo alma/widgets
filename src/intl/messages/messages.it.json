@@ -1,11 +1,17 @@
 {
   "accessibility.alma-logo.aria-label": "Logo Alma - Soluzione di pagamento multi-pagamento",
+  "accessibility.amex-card.aria-label": "Carta American Express accettata",
+  "accessibility.cb-card.aria-label": "Carta di credito CB accettata",
   "accessibility.close-button.aria-label": "Chiudere la finestra",
+  "accessibility.close-icon.aria-label": "Chiudere",
+  "accessibility.mastercard.aria-label": "Mastercard accettata",
   "accessibility.payment-options.radiogroup.aria-label": "Opzioni di pagamento disponibili",
   "accessibility.payment-plan.option.aria-label": "Opzione di pagamento {planDescription}",
   "accessibility.payment-plans-title": "Opzioni di pagamento disponibili",
   "accessibility.payment-schedule-title": "Piano di pagamento",
   "accessibility.payment-widget.open-button.aria-label": "Opzioni di pagamento Alma aperte",
+  "accessibility.skip-links.navigation.aria-label": "Navigazione rapida",
+  "accessibility.visa-card.aria-label": "Carta Visa accettata",
   "credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
   "credit-features.information": "Verificate la vostra capacità di rimborso prima di prendere un impegno.",
   "credit-features.information.title": "Il credito è un impegno e deve essere ripagato.",
@@ -36,5 +42,8 @@
   "payment-plan-strings.multiple-installments-same-amount": "In {installmentsCount} rate mensili di {totalAmount}",
   "payment-plan-strings.no-fee": "(senza interessi)",
   "payment-plan-strings.pay-now": "Paga ora {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Paga ora"
+  "payment-plan-strings.pay.now.button": "Paga ora",
+  "skip-links.payment-info": "Vai alle informazioni di pagamento",
+  "skip-links.payment-plans": "Vai alle opzioni di pagamento",
+  "skip-links.payment-schedule": "Vai al calendario dei pagamenti"
 }

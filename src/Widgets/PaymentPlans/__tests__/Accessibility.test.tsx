@@ -20,12 +20,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    
-    // Attendre que le composant soit complètement rendu
+
+    // Wait for the component to be fully rendered
     await screen.findByTestId('widget-button')
-    
-    // Vérifier qu'il n'y a aucune violation d'accessibilité,
-    // en excluant temporairement nested-interactive pour évaluation
+
+    // Check that there are no accessibility violations,
+    // temporarily excluding nested-interactive for evaluation
     const results = await axe(container, {
       rules: {
         'nested-interactive': { enabled: false },
@@ -41,17 +41,17 @@ describe('PaymentPlan Accessibility Tests', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    
+
     await screen.findByTestId('widget-button')
-    
-    // Ouvrir la modal
+
+    // Open the modal
     const button = screen.getByTestId('widget-button')
     button.click()
-    
-    // Attendre que la modal soit ouverte
+
+    // Wait for the modal to open
     await screen.findByTestId('modal-close-button')
-    
-    // Vérifier qu'il n'y a aucune violation d'accessibilité avec la modal ouverte
+
+    // Check that there are no accessibility violations with the modal open
     const results = await axe(container, {
       rules: {
         'nested-interactive': { enabled: false },
@@ -60,7 +60,7 @@ describe('PaymentPlan Accessibility Tests', () => {
     expect(results).toHaveNoViolations()
   })
 
-  // Test spécifique pour la violation nested-interactive
+  // Specific test for the nested-interactive violation
   it('should detect the nested-interactive violation as expected', async () => {
     const { container } = render(
       <PaymentPlanWidget
@@ -68,17 +68,17 @@ describe('PaymentPlan Accessibility Tests', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    
+
     await screen.findByTestId('widget-button')
-    
-    // Vérifier que la violation nested-interactive est bien détectée
+
+    // Check that the nested-interactive violation is properly detected
     const results = await axe(container, {
       rules: {
         'nested-interactive': { enabled: true },
       },
     })
-    
-    // Ce test devrait échouer jusqu'à ce qu'on corrige l'architecture
+
+    // This test should fail until we fix the architecture
     const nestedInteractiveViolations = results.violations.filter(
       (violation) => violation.id === 'nested-interactive',
     )
@@ -92,14 +92,14 @@ describe('PaymentPlan Accessibility Tests', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    
+
     await screen.findByTestId('widget-button')
-    
-    // Tester la navigation au clavier
+
+    // Test keyboard navigation
     const button = screen.getByTestId('widget-button')
     expect(button).toHaveAttribute('tabindex', '0')
-    
-    // Vérifier l'accessibilité avec focus (en excluant nested-interactive)
+
+    // Check accessibility with focus (excluding nested-interactive)
     button.focus()
     const results = await axe(container, {
       rules: {

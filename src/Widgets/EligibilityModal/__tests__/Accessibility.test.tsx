@@ -20,7 +20,7 @@ describe('EligibilityModal Accessibility Tests', () => {
       />,
     )
 
-    // Attendre que le contenu se charge
+    // Wait for content to load
     await screen.findByTestId('modal-close-button')
 
     const results = await axe(container)
@@ -38,7 +38,7 @@ describe('EligibilityModal Accessibility Tests', () => {
 
     await screen.findByTestId('modal-close-button')
 
-    // Vérifier le bouton de fermeture (confirme que le modal est ouvert)
+    // Check close button (confirms modal is open)
     const closeButton = screen.getByTestId('modal-close-button')
     expect(closeButton).toBeInTheDocument()
     expect(closeButton).toHaveAttribute('aria-label')
@@ -58,7 +58,7 @@ describe('EligibilityModal Accessibility Tests', () => {
 
     await screen.findByTestId('modal-close-button')
 
-    // Vérifier que les plans sont accessibles
+    // Check that plans are accessible
     const planButtons = container.querySelectorAll('button[data-testid*="plan-button"]')
     planButtons.forEach((button) => {
       expect(button).toHaveAttribute('aria-label')
@@ -79,10 +79,10 @@ describe('EligibilityModal Accessibility Tests', () => {
 
     await screen.findByTestId('modal-close-button')
 
-    // Vérifier que tous les éléments interactifs sont accessibles au clavier
+    // Check that all interactive elements are keyboard accessible
     const interactiveElements = container.querySelectorAll('button, a, [tabindex]')
-    
-    // Éviter les expects conditionnels
+
+    // Avoid conditional expects
     const invalidTabIndexElements = Array.from(interactiveElements).filter((element) => {
       const tabIndex = element.getAttribute('tabindex')
       if (tabIndex !== null) {
@@ -91,7 +91,7 @@ describe('EligibilityModal Accessibility Tests', () => {
       }
       return false
     })
-    
+
     expect(invalidTabIndexElements).toHaveLength(0)
 
     const results = await axe(container)

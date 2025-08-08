@@ -29,7 +29,7 @@ describe('SkipLinks Accessibility Tests', () => {
   it('should have proper semantic structure for screen readers', async () => {
     const { container } = render(<SkipLinks skipLinks={skipLinksData} />)
 
-    // Vérifier la structure sémantique
+    // Check semantic structure
     const navigation = container.querySelector('[role="navigation"]')
     expect(navigation).toBeInTheDocument()
     expect(navigation).toHaveAttribute('aria-label', 'Navigation rapide')
@@ -37,7 +37,7 @@ describe('SkipLinks Accessibility Tests', () => {
     const links = container.querySelectorAll('a')
     expect(links).toHaveLength(2)
 
-    // Chaque lien doit pointer vers un élément valide
+    // Each link should point to a valid element
     links.forEach((link) => {
       expect(link).toHaveAttribute('href')
       expect(link.getAttribute('href')).toMatch(/^#/)

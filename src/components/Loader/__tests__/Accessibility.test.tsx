@@ -17,12 +17,12 @@ describe('Loader Accessibility Tests', () => {
   it('should have proper loading indicator semantics', async () => {
     const { container } = render(<Loader />)
 
-    // Vérifier que le loader est présent
+    // Check that the loader is present
     const loader = screen.getByTestId('loader')
     expect(loader).toBeInTheDocument()
 
-    // Le loader doit avoir un rôle ou attribut aria approprié
-    // Note: Dans un cas réel, il faudrait ajouter aria-label ou role="status"
+    // The loader should have appropriate role or aria attribute
+    // Note: In a real case, we should add aria-label or role="status"
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
@@ -40,7 +40,7 @@ describe('Loader Accessibility Tests', () => {
   it('should not interfere with keyboard navigation', async () => {
     const { container } = render(<Loader />)
 
-    // Le loader ne doit pas être focusable
+    // The loader should not be focusable
     const loader = container.querySelector('[data-testid="loader"]')
     expect(loader).not.toHaveAttribute('tabindex')
 

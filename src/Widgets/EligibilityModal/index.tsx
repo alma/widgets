@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { useMediaQuery } from 'react-responsive'
 
 import { Card, EligibilityPlan, statusResponse } from '@/types'
@@ -35,6 +35,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
   const ModalComponent = isBigScreen ? DesktopModal : MobileModal
   const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
   const currentPlan = eligiblePlans[currentPlanIndex]
+  const intl = useIntl()
 
   const isSomePlanDeferred = eligibilityPlans.some(
     (plan) => plan.deferred_days > 0 || plan.deferred_months > 0,
@@ -46,17 +47,26 @@ const EligibilityModal: FunctionComponent<Props> = ({
     {
       href: '#payment-plans',
       labelId: 'skip-links.payment-plans',
-      defaultMessage: 'Aller aux options de paiement',
+      defaultMessage: intl.formatMessage({
+        id: 'skip-links.payment-plans',
+        defaultMessage: 'Allez aux options de paiements',
+      }),
     },
     {
       href: '#payment-info',
       labelId: 'skip-links.payment-info',
-      defaultMessage: 'Aller aux informations de paiement',
+      defaultMessage: intl.formatMessage({
+        id: 'skip-links.payment-info',
+        defaultMessage: 'Allez aux informations de paiement',
+      }),
     },
     {
       href: '#payment-schedule',
       labelId: 'skip-links.payment-schedule',
-      defaultMessage: 'Aller au calendrier de paiement',
+      defaultMessage: intl.formatMessage({
+        id: 'skip-links.payment-schedule',
+        defaultMessage: 'Allez au calendrier de paiements',
+      }),
     },
   ]
 
