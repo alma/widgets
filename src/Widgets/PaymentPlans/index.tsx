@@ -147,6 +147,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
             [s.clickable]: eligiblePlans.length > 0,
             [s.unClickable]: eligiblePlans.length === 0,
             [s.hideBorder]: hideBorder,
+            [s.monochrome]: monochrome,
           },
           STATIC_CUSTOMISATION_CLASSES.container,
         )}
