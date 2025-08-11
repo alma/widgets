@@ -127,7 +127,9 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     return null
   }
 
-  const handleOpenModal = (e: MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => {
+  const handleOpenModal = (
+    e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>,
+  ) => {
     e.preventDefault()
     if (eligiblePlans.length > 0) {
       openModal()
@@ -136,11 +138,9 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
 
   return (
     <>
-      <div
-        tabIndex={0}
-        role="button"
+      <button
+        type="button"
         onClick={handleOpenModal}
-        onKeyDown={(e) => e.key === 'Enter' && handleOpenModal(e)}
         className={cx(
           s.widgetButton,
           {
@@ -191,7 +191,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
         >
           {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
         </div>
-      </div>
+      </button>
       {isOpen && (
         <EligibilityModal
           initialPlanIndex={getIndexWithinEligiblePlans(current)}
