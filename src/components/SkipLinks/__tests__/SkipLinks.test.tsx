@@ -37,7 +37,7 @@ describe('SkipLinks', () => {
     renderWithIntl(<SkipLinks skipLinks={mockSkipLinks} />)
 
     // Verify that navigation is present
-    expect(screen.getByRole('navigation', { name: 'Quick navigation' })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: 'Navigation rapide' })).toBeInTheDocument()
 
     // Verify that all skip links are present
     expect(screen.getByRole('link', { name: 'Aller aux options de paiement' })).toBeInTheDocument()
