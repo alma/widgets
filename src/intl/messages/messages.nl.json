@@ -1,4 +1,17 @@
 {
+  "accessibility.alma-logo.aria-label": "Alma-logo - Multi-betalingoplossing",
+  "accessibility.amex-card.aria-label": "American Express kaart geaccepteerd",
+  "accessibility.cb-card.aria-label": "CB creditcard geaccepteerd",
+  "accessibility.close-button.aria-label": "Venster sluiten",
+  "accessibility.close-icon.aria-label": "Sluit",
+  "accessibility.mastercard.aria-label": "Mastercard geaccepteerd",
+  "accessibility.payment-options.radiogroup.aria-label": "Betalingsopties beschikbaar",
+  "accessibility.payment-plan.option.aria-label": "Betalingsoptie {planDescription}",
+  "accessibility.payment-plans-title": "Betalingsopties beschikbaar",
+  "accessibility.payment-schedule-title": "Betalingsschema",
+  "accessibility.payment-widget.open-button.aria-label": "Alma betalingsopties openen",
+  "accessibility.skip-links.navigation.aria-label": "Snelle navigatie",
+  "accessibility.visa-card.aria-label": "Visa-kaart geaccepteerd",
   "credit-features.credit-cost-display": "{creditCost} (gemiddeld rente percentage {taegPercentage})",
   "credit-features.information": "Controleer uw terugbetalingscapaciteit voordat u een toezegging doet.",
   "credit-features.information.title": "Krediet is een verplichting en moet worden terugbetaald.",
@@ -7,6 +20,7 @@
   "eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.",
   "eligibility-modal.bullet-2": "Betaal gemakkelijk <strong>binnen 1 minuut </strong>. Je hebt hier geen account voor nodig.",
   "eligibility-modal.bullet-3": "<strong>Behoud de controle </strong> en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.",
+  "eligibility-modal.info-title": "Hoe betalen?",
   "eligibility-modal.no-eligibility": "Oeps, het lijkt erop dat de simulatie niet werkte.",
   "eligibility-modal.p1x-bullet-1": "Kies <strong>Alma - Betaal nu</strong> bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.",
   "eligibility-modal.p1x-bullet-2": "Vul je <strong>gegevens </strong> in",
@@ -28,5 +42,8 @@
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(zonder kosten)",
   "payment-plan-strings.pay-now": "Betaal nu {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Betaal nu"
+  "payment-plan-strings.pay.now.button": "Betaal nu",
+  "skip-links.payment-info": "Ga naar betalingsinformatie",
+  "skip-links.payment-plans": "Ga naar betalingsopties",
+  "skip-links.payment-schedule": "Ga naar de betalingskalender"
 }

@@ -8,9 +8,22 @@ import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.co
 
 const StrongText = (chunks: React.ReactNode) => <strong>{chunks}</strong>
 
-const Info: FC<{ isCurrentPlanP1X: boolean }> = ({ isCurrentPlanP1X }) => (
+const Info: FC<{ isCurrentPlanP1X: boolean; id?: string }> = ({ isCurrentPlanP1X, id }) => (
   // TODO: refactor this component into subcomponent to factorise code and be cleaner
-  <div className={cx(s.list, STATIC_CUSTOMISATION_CLASSES.info)} data-testid="modal-info-element">
+  <div
+    id={id}
+    className={cx(s.list, STATIC_CUSTOMISATION_CLASSES.info)}
+    data-testid="modal-info-element"
+    role="region"
+    aria-labelledby="payment-info-title"
+    tabIndex={-1}
+  >
+    <h2 id="payment-info-title" className="sr-only">
+      <FormattedMessage
+        id="eligibility-modal.info-title"
+        defaultMessage="Comment procéder au paiement"
+      />
+    </h2>
     <div className={s.listItem}>
       <div className={cx(s.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)}>1</div>
       <div className={STATIC_CUSTOMISATION_CLASSES.infoMessage}>
