@@ -1,4 +1,17 @@
 {
+  "accessibility.alma-logo.aria-label": "Alma-Logo - Lösung für Ratenzahlung",
+  "accessibility.amex-card.aria-label": "American Express-Karte akzeptiert",
+  "accessibility.cb-card.aria-label": "Bankkarte CB akzeptiert",
+  "accessibility.close-button.aria-label": "Fenster schließen",
+  "accessibility.close-icon.aria-label": "Schließen",
+  "accessibility.mastercard.aria-label": "Mastercard akzeptiert",
+  "accessibility.payment-options.radiogroup.aria-label": "Verfügbare Zahlungsoptionen",
+  "accessibility.payment-plan.option.aria-label": "Zahlungsoption {planDescription}",
+  "accessibility.payment-plans-title": "Verfügbare Zahlungsoptionen",
+  "accessibility.payment-schedule-title": "Zeitplan für die Zahlung",
+  "accessibility.payment-widget.open-button.aria-label": "Alma Zahlungsoptionen öffnen",
+  "accessibility.skip-links.navigation.aria-label": "Quick navigation",
+  "accessibility.visa-card.aria-label": "Visa-Karte wird akzeptiert",
   "credit-features.credit-cost-display": "{creditCost} (APR {taegPercentage})",
   "credit-features.information": "Überprüfen Sie Ihre Rückzahlungsmöglichkeiten, bevor Sie eine Verpflichtung eingehen.",
   "credit-features.information.title": "Ein Kredit verpflichtet Sie und muss zurückgezahlt werden.",
@@ -7,6 +20,7 @@
   "eligibility-modal.bullet-1": "Wählen Sie <strong>Alma</strong> beim Check-out. ",
   "eligibility-modal.bullet-2": "Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in <strong>2 Minuten.</strong>",
   "eligibility-modal.bullet-3": "<strong>Behalten Sie die Kontrolle</strong> , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.",
+  "eligibility-modal.info-title": "Wie Sie die Zahlung vornehmen",
   "eligibility-modal.no-eligibility": "Ups, die Prüfung hat anscheinend nicht funktioniert.",
   "eligibility-modal.p1x-bullet-1": "Wählen Sie <strong>Alma - Jetzt bezahlen</strong> zum Zeitpunkt der Zahlung.",
   "eligibility-modal.p1x-bullet-2": "Tragen Sie Ihre <strong>Kreditkarteninformationen ein.</strong>",
@@ -28,5 +42,8 @@
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} x {totalAmount}",
   "payment-plan-strings.no-fee": "(0% Finanzierung)",
   "payment-plan-strings.pay-now": "Zahlen Sie jetzt {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Jetzt bezahlen"
+  "payment-plan-strings.pay.now.button": "Jetzt bezahlen",
+  "skip-links.payment-info": "Gehen Sie zu den Zahlungsinformationen",
+  "skip-links.payment-plans": "Gehen Sie zu den Zahlungsoptionen",
+  "skip-links.payment-schedule": "Gehen Sie zum Zahlungskalender"
 }

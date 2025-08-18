@@ -16,7 +16,7 @@
   border: 1px solid var(--dark-gray);
   border-radius: 16px;
   font-family: 'Argent', sans-serif;
-  font-size: 20px;
+  font-size: 1.25rem; /* 20px */
   line-height: 120%;
   font-weight: 600;
   cursor: pointer;
@@ -24,6 +24,12 @@
   transition: all 0.1s ease;
   color: var(--off-black);
   padding: initial; /* To avoid CSS surcharge on this. */
+}
+
+.buttons > button:focus,
+.buttons > button:focus-visible {
+  outline: 1px solid var(--alma-orange);
+  outline-offset: 2px;
 }
 
 .buttons > button.active {

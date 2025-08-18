@@ -22,7 +22,7 @@ const MobileModal: FC<Props> = ({ children, isSomePlanDeferred, cards, isCurrent
   >
     <Title isSomePlanDeferred={isSomePlanDeferred} isCurrentPlanP1X={isCurrentPlanP1X} />
     {children}
-    <Info isCurrentPlanP1X={isCurrentPlanP1X} />
+    <Info id="payment-info" isCurrentPlanP1X={isCurrentPlanP1X} />
     {cards && <Cards cards={cards} />}
     <AlmaLogo className={s.logo} width="75" />
   </div>
