@@ -71,7 +71,14 @@ const EligibilityModal: FunctionComponent<Props> = ({
   ]
 
   return (
-    <Modal onClose={onClose} ariaHideApp={false} scrollable isOpen>
+    <Modal
+      onClose={onClose}
+      ariaHideApp={false}
+      scrollable
+      isOpen
+      aria-labelledby="eligibility-modal"
+      aria-describedby="control the user's eligibility for payment plans"
+    >
       <SkipLinks skipLinks={skipLinks} />
       <ModalComponent
         isSomePlanDeferred={isSomePlanDeferred}

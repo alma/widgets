@@ -29,8 +29,7 @@ const ControlledModal: FunctionComponent<Props> = ({
 }) => {
   const intl = useIntl()
 
-  /* istanbul ignore next */
-  if (process.env.NODE_ENV !== 'test') Modal.setAppElement('body')
+  Modal.setAppElement('body')
 
   return (
     <Modal
@@ -46,6 +45,8 @@ const ControlledModal: FunctionComponent<Props> = ({
       isOpen={isOpen}
       shouldCloseOnOverlayClick
       shouldCloseOnEsc
+      role="dialog"
+      aria-modal="true"
       {...props}
     >
       <div className={s.header}>

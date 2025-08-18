@@ -1,11 +1,11 @@
 import React from 'react'
 
-import renderWithProviders from '../../test/index'
-import AmexCard from '../cards/amex'
-import CbCard from '../cards/cb'
-import MasterCard from '../cards/mastercard'
-import VisaCard from '../cards/visa'
-import CrossIcon from '../Cross'
+import AmexCard from '@/assets/cards/amex'
+import CbCard from '@/assets/cards/cb'
+import MasterCard from '@/assets/cards/mastercard'
+import VisaCard from '@/assets/cards/visa'
+import CrossIcon from '@/assets/Cross'
+import renderWithProviders from '@/test/index'
 
 describe('Assets Internationalization', () => {
   it('should render Cross icon with intl aria-label', () => {

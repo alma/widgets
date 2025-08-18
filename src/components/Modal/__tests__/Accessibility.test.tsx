@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { axe } from 'jest-axe'
+import { screen } from '@testing-library/react'
 
 import render from '@/test'
 import Modal from 'components/Modal'
@@ -40,8 +41,7 @@ describe('Modal Accessibility Tests', () => {
     )
 
     // Check that the modal has proper aria attributes
-    const modal = container.querySelector('[role="dialog"]')
-    expect(modal).toBeInTheDocument()
+    expect(screen.getByRole('dialog', { hidden: true })).toBeInTheDocument()
 
     // Check that no accessibility violations are detected
     const results = await axe(container)
