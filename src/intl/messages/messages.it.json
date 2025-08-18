@@ -1,4 +1,17 @@
 {
+  "accessibility.alma-logo.aria-label": "Logo Alma - Soluzione di pagamento multi-pagamento",
+  "accessibility.amex-card.aria-label": "Carta American Express accettata",
+  "accessibility.cb-card.aria-label": "Carta di credito CB accettata",
+  "accessibility.close-button.aria-label": "Chiudere la finestra",
+  "accessibility.close-icon.aria-label": "Chiudere",
+  "accessibility.mastercard.aria-label": "Mastercard accettata",
+  "accessibility.payment-options.radiogroup.aria-label": "Opzioni di pagamento disponibili",
+  "accessibility.payment-plan.option.aria-label": "Opzione di pagamento {planDescription}",
+  "accessibility.payment-plans-title": "Opzioni di pagamento disponibili",
+  "accessibility.payment-schedule-title": "Piano di pagamento",
+  "accessibility.payment-widget.open-button.aria-label": "Opzioni di pagamento Alma aperte",
+  "accessibility.skip-links.navigation.aria-label": "Navigazione rapida",
+  "accessibility.visa-card.aria-label": "Carta Visa accettata",
   "credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
   "credit-features.information": "Verificate la vostra capacità di rimborso prima di prendere un impegno.",
   "credit-features.information.title": "Il credito è un impegno e deve essere ripagato.",
@@ -7,6 +20,7 @@
   "eligibility-modal.bullet-1": "Seleziona <strong>Alma</strong> come metodo di pagamento.",
   "eligibility-modal.bullet-2": "Segui le istruzioni e completa l'acquisto <strong>in meno di 2 minuti.</strong>",
   "eligibility-modal.bullet-3": "<strong>Gestisci il tuo piano di pagamento</strong> e modifica le scadenze secondo le tue esigenze.",
+  "eligibility-modal.info-title": "Come pagare",
   "eligibility-modal.no-eligibility": "Ops, sembra che qualcosa non abbia funzionato.",
   "eligibility-modal.p1x-bullet-1": "Scegli <strong>Alma - Paga ora</strong> alla cassa.",
   "eligibility-modal.p1x-bullet-2": "Inserisci i dati della tua <strong>carta bancaria.</strong>",
@@ -28,5 +42,8 @@
   "payment-plan-strings.multiple-installments-same-amount": "In {installmentsCount} rate mensili di {totalAmount}",
   "payment-plan-strings.no-fee": "(senza interessi)",
   "payment-plan-strings.pay-now": "Paga ora {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Paga ora"
+  "payment-plan-strings.pay.now.button": "Paga ora",
+  "skip-links.payment-info": "Vai alle informazioni di pagamento",
+  "skip-links.payment-plans": "Vai alle opzioni di pagamento",
+  "skip-links.payment-schedule": "Vai al calendario dei pagamenti"
 }

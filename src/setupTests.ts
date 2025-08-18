@@ -4,6 +4,10 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
 import { secondsToMilliseconds } from 'date-fns/secondsToMilliseconds'
+import { toHaveNoViolations } from 'jest-axe'
+
+// Extend Jest matchers with jest-axe matchers
+expect.extend(toHaveNoViolations)
 
 jest.mock('no-scroll', () => ({ on: jest.fn(), off: jest.fn() }))
 

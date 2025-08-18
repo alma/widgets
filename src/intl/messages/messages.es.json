@@ -1,4 +1,17 @@
 {
+  "accessibility.alma-logo.aria-label": "Logotipo Alma - Solución de pago multipago",
+  "accessibility.amex-card.aria-label": "Se acepta la tarjeta American Express",
+  "accessibility.cb-card.aria-label": "Se acepta tarjeta de crédito CB",
+  "accessibility.close-button.aria-label": "Cerrar ventana",
+  "accessibility.close-icon.aria-label": "Cerrar",
+  "accessibility.mastercard.aria-label": "Se acepta Mastercard",
+  "accessibility.payment-options.radiogroup.aria-label": "Formas de pago disponibles",
+  "accessibility.payment-plan.option.aria-label": "Forma de pago {planDescription}",
+  "accessibility.payment-plans-title": "Formas de pago disponibles",
+  "accessibility.payment-schedule-title": "Calendario de pagos",
+  "accessibility.payment-widget.open-button.aria-label": "Opciones de pago Open Alma",
+  "accessibility.skip-links.navigation.aria-label": "Navegación rápida",
+  "accessibility.visa-card.aria-label": "Se acepta tarjeta Visa",
   "credit-features.credit-cost-display": "{creditCost} (TAE {taegPercentage})",
   "credit-features.information": "Compruebe tu capacidad de reembolso antes de comprometerte.",
   "credit-features.information.title": "El crédito y/o pago a plazos es un compromiso y debe devolverse.",
@@ -7,6 +20,7 @@
   "eligibility-modal.bullet-1": "Elige <strong>Alma</strong> como método de pago.",
   "eligibility-modal.bullet-2": "Déjate guiar y válida tu pago en <strong>2 minutos.</strong>",
   "eligibility-modal.bullet-3": "<strong>Mantén el control</strong> adelantando o aplazando los plazos a su propio ritmo.",
+  "eligibility-modal.info-title": "Cómo pagar",
   "eligibility-modal.no-eligibility": "Uy, parece que la simulación no ha funcionado.",
   "eligibility-modal.p1x-bullet-1": "Elije <strong>Alma - Pagar ahora</strong> al momento de la compra.",
   "eligibility-modal.p1x-bullet-2": "Introduce los datos de tu tarjeta bancaria en <strong>.</strong>",
@@ -28,5 +42,8 @@
   "payment-plan-strings.multiple-installments-same-amount": "{installmentsCount} plazos de {totalAmount}",
   "payment-plan-strings.no-fee": "(sin intereses)",
   "payment-plan-strings.pay-now": "Pague ahora {totalAmount}",
-  "payment-plan-strings.pay.now.button": "Pagar ahora"
+  "payment-plan-strings.pay.now.button": "Pagar ahora",
+  "skip-links.payment-info": "Ir a la información de pago",
+  "skip-links.payment-plans": "Ir a las opciones de pago",
+  "skip-links.payment-schedule": "Ir al calendario de pagos"
 }

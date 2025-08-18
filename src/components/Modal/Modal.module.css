@@ -60,6 +60,12 @@
   padding: 4px;
 }
 
+.closeButton:focus,
+.closeButton:focus-visible {
+  outline: 1px solid var(--alma-orange);
+  outline-offset: 2px;
+}
+
 @media screen and (min-width: 800px) {
   .modal {
     border-radius: 8px;
