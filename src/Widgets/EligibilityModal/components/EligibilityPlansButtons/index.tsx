@@ -37,7 +37,6 @@ const EligibilityPlansButtons: FC<{
           })}
           onClick={() => setCurrentPlanIndex(key)}
           aria-pressed={key === currentPlanIndex}
-          aria-describedby="payment-schedule"
         >
           <span className={s.textButton}>{paymentPlanShorthandName(eligibilityPlan)}</span>
         </button>
