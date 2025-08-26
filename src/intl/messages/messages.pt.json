@@ -10,6 +10,7 @@
   "accessibility.payment-plans-title": "Opções de pagamento disponíveis",
   "accessibility.payment-schedule-title": "Calendário de pagamento",
   "accessibility.payment-widget.open-button.aria-label": "Opções de pagamento da Open Alma",
+  "accessibility.plan-selection-changed": "Plan sélectionné : {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Navegação rápida",
   "accessibility.visa-card.aria-label": "Aceita cartão Visa",
   "credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",

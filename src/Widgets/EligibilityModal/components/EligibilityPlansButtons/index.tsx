@@ -39,6 +39,22 @@ const EligibilityPlansButtons: FC<{
               [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: key === currentPlanIndex,
             })}
             onClick={() => setCurrentPlanIndex(key)}
+            onKeyDown={(e) => {
+              // Navigation par flèches entre les plans
+              if (e.key === 'ArrowLeft' && key > 0) {
+                e.preventDefault()
+                setCurrentPlanIndex(key - 1)
+              } else if (e.key === 'ArrowRight' && key < eligibilityPlans.length - 1) {
+                e.preventDefault()
+                setCurrentPlanIndex(key + 1)
+              } else if (e.key === 'Home') {
+                e.preventDefault()
+                setCurrentPlanIndex(0)
+              } else if (e.key === 'End') {
+                e.preventDefault()
+                setCurrentPlanIndex(eligibilityPlans.length - 1)
+              }
+            }}
             aria-pressed={key === currentPlanIndex}
             aria-describedby="payment-info"
             aria-current={key === currentPlanIndex ? 'true' : undefined}

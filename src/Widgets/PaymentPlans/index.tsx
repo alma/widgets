@@ -62,6 +62,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   const isSuggestedPaymentPlanSpecified = suggestedPaymentPlan !== undefined // 👈  The merchant decided to focus a tab
   const isTransitionSpecified = transitionDelay !== undefined // 👈  The merchant has specified a transition time
   const [isOpen, setIsOpen] = useState(false)
+  const [announceText, setAnnounceText] = useState('')
   const openModal = () => setIsOpen(true)
   const closeModal = (event: React.MouseEvent | React.KeyboardEvent) => {
     setIsOpen(false)
@@ -74,12 +75,12 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   )
 
   /**
-   * If merchand specify a suggestedPaymentPlan and no transition, we set a very long transition delay.
+   * If merchant specify a suggestedPaymentPlan and no transition, we set a very long transition delay.
    * Otherwise, we set the transition delay specified by the merchant.
    * If none of those properties are specified, we set a default transition delay.
-   * @returns
+   * @returns {number} The transition time in milliseconds
    */
-  const realTransitionTime = () => {
+  const realTransitionTime = (): number => {
     if (isTransitionSpecified) {
       return transitionDelay ?? DEFAULT_TRANSITION_TIME
     }
@@ -90,6 +91,34 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   }
 
   const { current, onHover, onLeave } = useButtonAnimation(eligiblePlanKeys, realTransitionTime())
+
+  // Announce plan changes to screen readers
+  useEffect(() => {
+    if (eligibilityPlans[current] && status === statusResponse.SUCCESS) {
+      const currentPlan = eligibilityPlans[current]
+      const planDescription =
+        currentPlan.installments_count === 1
+          ? intl.formatMessage({
+              id: 'payment-plan-strings.pay.now.button',
+              defaultMessage: 'Payer maintenant',
+            })
+          : `${currentPlan.installments_count}x`
+
+      setAnnounceText(
+        intl.formatMessage(
+          {
+            id: 'accessibility.plan-selection-changed',
+            defaultMessage: 'Plan sélectionné : {planDescription}',
+          },
+          { planDescription },
+        ),
+      )
+
+      // Clear announcement after a short delay
+      const timer = setTimeout(() => setAnnounceText(''), 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [current, eligibilityPlans, intl, status])
 
   useEffect(() => {
     // When API has given a response AND the marchand set an active plan by default.
@@ -190,6 +219,32 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                   onBlur={onLeave}
                   onTouchEnd={onLeave}
                   onFocus={isEligible ? () => onHover(key) : undefined}
+                  onKeyDown={(e) => {
+                    // Navigation par flèches entre les plans
+                    if (e.key === 'ArrowLeft' && key > 0) {
+                      e.preventDefault()
+                      const prevEligibleIndex = eligiblePlanKeys.findIndex(
+                        (planKey) => planKey < key,
+                      )
+                      if (prevEligibleIndex !== -1) {
+                        onHover(eligiblePlanKeys[prevEligibleIndex])
+                      }
+                    } else if (e.key === 'ArrowRight' && key < eligibilityPlans.length - 1) {
+                      e.preventDefault()
+                      const nextEligibleIndex = eligiblePlanKeys.findIndex(
+                        (planKey) => planKey > key,
+                      )
+                      if (nextEligibleIndex !== -1) {
+                        onHover(eligiblePlanKeys[nextEligibleIndex])
+                      }
+                    } else if (e.key === 'Home') {
+                      e.preventDefault()
+                      onHover(eligiblePlanKeys[0])
+                    } else if (e.key === 'End') {
+                      e.preventDefault()
+                      onHover(eligiblePlanKeys[eligiblePlanKeys.length - 1])
+                    }
+                  }}
                   onClick={(e) => {
                     e.stopPropagation()
                     if (isEligible) {
@@ -257,6 +312,9 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           cards={cards}
         />
       )}
+      <div role="alert" aria-live="assertive" className={s.announceText}>
+        {announceText}
+      </div>
     </>
   )
 }

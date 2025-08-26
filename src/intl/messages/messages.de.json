@@ -10,6 +10,7 @@
   "accessibility.payment-plans-title": "Verfügbare Zahlungsoptionen",
   "accessibility.payment-schedule-title": "Ratenplan für die Zahlung",
   "accessibility.payment-widget.open-button.aria-label": "Alma Zahlungsoptionen öffnen",
+  "accessibility.plan-selection-changed": "Plan sélectionné : {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Schnelle Navigation",
   "accessibility.visa-card.aria-label": "Visa-Karte wird akzeptiert",
   "credit-features.credit-cost-display": "{creditCost} (APR {taegPercentage})",

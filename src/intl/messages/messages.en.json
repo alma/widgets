@@ -10,6 +10,7 @@
   "accessibility.payment-plans-title": "Available payment options",
   "accessibility.payment-schedule-title": "Payment schedule",
   "accessibility.payment-widget.open-button.aria-label": "Open Alma payment options",
+  "accessibility.plan-selection-changed": "Plan sélectionné : {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Quick navigation",
   "accessibility.visa-card.aria-label": "Visa card accepted",
   "credit-features.credit-cost-display": "{creditCost} (APR {taegPercentage})",
