@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 
 import { secondsToMilliseconds } from 'date-fns'
-import { FormattedDate, FormattedMessage, FormattedNumber } from 'react-intl'
+import { FormattedDate, FormattedMessage, FormattedNumber, IntlShape } from 'react-intl'
 
 import { EligibilityPlan, EligibilityPlanToDisplay } from '@/types'
 import { isP1X, priceFromCents } from '@/utils'
@@ -47,6 +47,48 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
   return `${installmentsCount}x`
 }
 
+/**
+ * String version of paymentPlanShorthandName that returns a translated string
+ * instead of a ReactNode for use in aria-label attributes for example
+ */
+export const paymentPlanShorthandText = (payment: EligibilityPlan, intl: IntlShape): string => {
+  const {
+    deferred_days: deferredDays,
+    deferred_months: deferredMonths,
+    installments_count: installmentsCount,
+  } = payment
+
+  if (installmentsCount === 1 && !deferredDays && !deferredMonths) {
+    return intl.formatMessage({
+      id: 'payment-plan-strings.pay.now.button',
+      defaultMessage: 'Payer maintenant',
+    })
+  }
+  if (installmentsCount === 1 && deferredDays) {
+    return intl.formatMessage(
+      {
+        id: 'payment-plan-strings.day-abbreviation',
+        defaultMessage: 'J{deferredDays}',
+      },
+      {
+        deferredDays: `+${deferredDays}`,
+      },
+    )
+  }
+  if (installmentsCount === 1 && deferredMonths) {
+    return intl.formatMessage(
+      {
+        id: 'payment-plan-strings.month-abbreviation',
+        defaultMessage: 'M{deferredMonths}',
+      },
+      {
+        deferredMonths: `+${deferredMonths}`,
+      },
+    )
+  }
+  return `${installmentsCount}x`
+}
+
 // eslint-disable-next-line consistent-return
 const withNoFee = (payment: EligibilityPlanToDisplay) => {
   if (
@@ -75,26 +117,38 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
   const deferredDaysCount = deferredDays + deferredMonths * 30
 
   if (!eligible) {
-    return purchaseAmount > maxAmount ? (
-      <FormattedMessage
-        id="payment-plan-strings.ineligible-greater-than-max"
-        defaultMessage="Jusqu'à {maxAmount}"
-        values={{
-          maxAmount: (
-            <FormattedNumber value={priceFromCents(maxAmount)} style="currency" currency="EUR" />
-          ),
-        }}
-      />
-    ) : (
-      <FormattedMessage
-        id="payment-plan-strings.ineligible-lower-than-min"
-        defaultMessage="À partir de {minAmount}"
-        values={{
-          minAmount: (
-            <FormattedNumber value={priceFromCents(minAmount)} style="currency" currency="EUR" />
-          ),
-        }}
-      />
+    return (
+      <p>
+        {purchaseAmount > maxAmount ? (
+          <FormattedMessage
+            id="payment-plan-strings.ineligible-greater-than-max"
+            defaultMessage="Jusqu'à {maxAmount}"
+            values={{
+              maxAmount: (
+                <FormattedNumber
+                  value={priceFromCents(maxAmount)}
+                  style="currency"
+                  currency="EUR"
+                />
+              ),
+            }}
+          />
+        ) : (
+          <FormattedMessage
+            id="payment-plan-strings.ineligible-lower-than-min"
+            defaultMessage="À partir de {minAmount}"
+            values={{
+              minAmount: (
+                <FormattedNumber
+                  value={priceFromCents(minAmount)}
+                  style="currency"
+                  currency="EUR"
+                />
+              ),
+            }}
+          />
+        )}
+      </p>
     )
   }
   if (!paymentPlan) {
@@ -106,7 +160,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     )
   } else if (deferredDaysCount !== 0 && installmentsCount === 1) {
     return (
-      <>
+      <p>
         <FormattedMessage
           id="payment-plan-strings.deferred"
           defaultMessage="{totalAmount} à payer le {dueDate}"
@@ -129,7 +183,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
           }}
         />
         {withNoFee(payment)}
-      </>
+      </p>
     )
   } else if (installmentsCount > 0) {
     const areInstallmentsOfSameAmount = paymentPlan?.every(
@@ -139,19 +193,19 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
 
     if (installmentsCount > 4) {
       return (
-        <span className={s.openModalInfo}>
+        <p className={s.openModalInfo}>
           <FormattedMessage
             id="payment-plan-strings.credit"
             defaultMessage="Cliquez pour en savoir plus"
             description="Link to credit details"
           />
-        </span>
+        </p>
       )
     }
 
     if (isP1X(payment)) {
       return (
-        <>
+        <p>
           <FormattedMessage
             id="payment-plan-strings.pay-now"
             defaultMessage="Payer maintenant {totalAmount}"
@@ -167,13 +221,13 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
             }}
           />
           {withNoFee(payment)}
-        </>
+        </p>
       )
     }
 
     if (areInstallmentsOfSameAmount) {
       return (
-        <>
+        <p>
           <FormattedMessage
             id="payment-plan-strings.multiple-installments-same-amount"
             defaultMessage="{installmentsCount} x {totalAmount}"
@@ -189,12 +243,12 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
             }}
           />
           {withNoFee(payment)}
-        </>
+        </p>
       )
     }
 
     return (
-      <>
+      <p>
         <FormattedMessage
           id="payment-plan-strings.multiple-installments"
           defaultMessage="{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}}}"
@@ -217,13 +271,15 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
           }}
         />
         {withNoFee(payment)}
-      </>
+      </p>
     )
   }
   return (
-    <FormattedMessage
-      id="payment-plan-strings.default-message"
-      defaultMessage="Payez en plusieurs fois avec Alma"
-    />
+    <p>
+      <FormattedMessage
+        id="payment-plan-strings.default-message"
+        defaultMessage="Payez en plusieurs fois avec Alma"
+      />
+    </p>
   )
 }

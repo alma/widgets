@@ -19,6 +19,9 @@ const DesktopModal: FC<Props> = ({ children, isSomePlanDeferred, cards, isCurren
   <div
     className={cx(s.container, STATIC_CUSTOMISATION_CLASSES.desktopModal)}
     data-testid="modal-container"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
   >
     <aside className={cx([s.block, s.left, STATIC_CUSTOMISATION_CLASSES.leftSide])}>
       <Title isSomePlanDeferred={isSomePlanDeferred} isCurrentPlanP1X={isCurrentPlanP1X} />

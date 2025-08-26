@@ -44,11 +44,11 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
         className={cx(s.container, STATIC_CUSTOMISATION_CLASSES.summary)}
         data-testid="modal-summary"
       >
-        <div className={cx(s.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)}>
-          <FormattedMessage tagName="div" id="installments.total-amount" defaultMessage="Total" />
+        <p className={cx(s.total, STATIC_CUSTOMISATION_CLASSES.scheduleTotal)}>
+          <FormattedMessage tagName="span" id="installments.total-amount" defaultMessage="Total" />
           <FormattedNumber value={total || 0} style="currency" currency="EUR" />
-        </div>
-        <div className={cx(s.fees, STATIC_CUSTOMISATION_CLASSES.scheduleCredit)}>
+        </p>
+        <p className={cx(s.fees, STATIC_CUSTOMISATION_CLASSES.scheduleCredit)}>
           {isCredit ? (
             <>
               <FormattedMessage
@@ -77,14 +77,14 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
               <FormattedMessage
                 id="installments.total-fees"
                 defaultMessage="Dont frais (TTC)"
-                tagName="div"
+                tagName="span"
               />
-              <div>
+              <span>
                 <FormattedNumber value={customerFees} style="currency" currency="EUR" />
-              </div>
+              </span>
             </>
           )}
-        </div>
+        </p>
         {isCredit && (
           <div className={s.creditInfoLegalText}>
             <FormattedMessage

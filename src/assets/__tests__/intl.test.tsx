@@ -8,10 +8,13 @@ import CrossIcon from '@/assets/Cross'
 import renderWithProviders from '@/test/index'
 
 describe('Assets Internationalization', () => {
-  it('should render Cross icon with intl aria-label', () => {
+  it('should render Cross icon as decorative element', () => {
     const { container } = renderWithProviders(<CrossIcon />)
     const svg = container.querySelector('svg')
-    expect(svg).toHaveAttribute('aria-label', 'Fermer')
+    expect(svg).toHaveAttribute('aria-hidden', 'true')
+    expect(svg).toHaveAttribute('focusable', 'false')
+    expect(svg).not.toHaveAttribute('aria-label')
+    expect(svg).not.toHaveAttribute('role')
   })
 
   it('should render Visa card with intl aria-label', () => {

@@ -19,6 +19,9 @@ const MobileModal: FC<Props> = ({ children, isSomePlanDeferred, cards, isCurrent
   <div
     className={cx(s.container, STATIC_CUSTOMISATION_CLASSES.mobileModal)}
     data-testid="modal-container"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
   >
     <Title isSomePlanDeferred={isSomePlanDeferred} isCurrentPlanP1X={isCurrentPlanP1X} />
     {children}
