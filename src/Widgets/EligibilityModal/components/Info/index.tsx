@@ -23,8 +23,7 @@ const Info: FC<{ isCurrentPlanP1X: boolean; id?: string }> = ({ isCurrentPlanP1X
         id="eligibility-modal.info-title"
         defaultMessage="Comment procéder au paiement"
       />
-    </h2>
-    -){' '}
+    </h2>{' '}
     <ol className={s.listContainer}>
       <li className={s.listItem}>
         <div className={cx(s.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)}>1</div>

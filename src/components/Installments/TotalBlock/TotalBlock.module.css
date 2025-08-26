@@ -1,11 +1,14 @@
 .container {
-  margin: 16px 0;
   font-family: 'Argent', sans-serif;
   background-color: var(--off-white);
   border-radius: 20px;
-  padding: 24px;
+  padding: 16px;
   z-index: 2;
   position: relative;
+}
+
+.container p {
+  margin: 6px 0;
 }
 
 .container h3 {
