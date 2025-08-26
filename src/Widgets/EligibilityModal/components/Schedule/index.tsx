@@ -16,7 +16,7 @@ const Schedule: FC<{ currentPlan: EligibilityPlan; id?: string }> = ({ currentPl
         defaultMessage="Calendrier de paiement"
       />
     </h2>
-    <div
+    <ul
       id={id}
       className={cx(s.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails)}
       data-testid="modal-installments-element"
@@ -25,9 +25,11 @@ const Schedule: FC<{ currentPlan: EligibilityPlan; id?: string }> = ({ currentPl
       tabIndex={-1}
     >
       {(currentPlan?.payment_plan || []).map((installment, index) => (
-        <Installment key={installment.due_date * 1000} installment={installment} index={index} />
+        <li key={installment.due_date * 1000}>
+          <Installment installment={installment} index={index} />
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 )
 

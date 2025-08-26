@@ -10,7 +10,8 @@ const Title: FC<{ isSomePlanDeferred: boolean; isCurrentPlanP1X: boolean }> = ({
   isSomePlanDeferred,
   isCurrentPlanP1X,
 }) => (
-  <div
+  <h2
+    id="modal-title"
     className={cx(s.title, STATIC_CUSTOMISATION_CLASSES.title)}
     data-testid="modal-title-element"
   >
@@ -32,7 +33,7 @@ const Title: FC<{ isSomePlanDeferred: boolean; isCurrentPlanP1X: boolean }> = ({
         defaultMessage="Payez en plusieurs fois par carte bancaire avec Alma."
       />
     )}
-  </div>
+  </h2>
 )
 
 export default Title

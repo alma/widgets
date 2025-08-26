@@ -5,15 +5,26 @@ type Props = {
   onHover: (current: number) => void
   onLeave: () => void
 }
+
 const useButtonAnimation = (iterateValues: number[], transitionDelay: number): Props => {
   const [current, setCurrent] = useState(0)
   const [update, setUpdate] = useState(true)
+
+  // Respect user's motion preferences with fallback for tests
+  const prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // Cap transition delay to 5 seconds max for WCAG compliance
+  const cappedTransitionDelay = Math.min(transitionDelay, 5000)
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>
     let isMounted = true
 
-    if (transitionDelay === -1) {
+    // Disable animation if user prefers reduced motion or delay is -1
+    if (cappedTransitionDelay === -1 || prefersReducedMotion) {
       return
     }
 
@@ -29,14 +40,14 @@ const useButtonAnimation = (iterateValues: number[], transitionDelay: number): P
             ],
           )
         }
-      }, transitionDelay)
+      }, cappedTransitionDelay)
     }
     // eslint-disable-next-line consistent-return
     return () => {
       isMounted = false
       clearTimeout(timeout)
     }
-  }, [iterateValues, current, transitionDelay, update])
+  }, [iterateValues, current, cappedTransitionDelay, update, prefersReducedMotion])
 
   return {
     current,

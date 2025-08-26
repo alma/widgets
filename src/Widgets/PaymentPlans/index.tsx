@@ -1,4 +1,4 @@
-import React, { FunctionComponent, MouseEvent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import cx from 'classnames'
 import { useIntl } from 'react-intl'
@@ -208,6 +208,8 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                   })}
                   role="radio"
                   aria-checked={isCurrent}
+                  aria-describedby="payment-info-text"
+                  aria-current={isCurrent ? 'true' : undefined}
                   aria-label={intl.formatMessage(
                     {
                       id: 'accessibility.payment-plan.option.aria-label',
@@ -241,6 +243,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
             },
             STATIC_CUSTOMISATION_CLASSES.paymentInfo,
           )}
+          id="payment-info-text"
         >
           {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
         </div>

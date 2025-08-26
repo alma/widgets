@@ -3,7 +3,6 @@
   "accessibility.amex-card.aria-label": "Carte American Express acceptée",
   "accessibility.cb-card.aria-label": "Carte Bancaire CB acceptée",
   "accessibility.close-button.aria-label": "Fermer la fenêtre",
-  "accessibility.close-icon.aria-label": "Fermer",
   "accessibility.mastercard.aria-label": "Carte Mastercard acceptée",
   "accessibility.payment-options.radiogroup.aria-label": "Options de paiement disponibles",
   "accessibility.payment-plan.option.aria-label": "Option de paiement {planDescription}",

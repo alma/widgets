@@ -3,7 +3,6 @@
   "accessibility.amex-card.aria-label": "American Express kaart geaccepteerd",
   "accessibility.cb-card.aria-label": "CB creditcard geaccepteerd",
   "accessibility.close-button.aria-label": "Venster sluiten",
-  "accessibility.close-icon.aria-label": "Sluit",
   "accessibility.mastercard.aria-label": "Mastercard geaccepteerd",
   "accessibility.payment-options.radiogroup.aria-label": "Betalingsopties beschikbaar",
   "accessibility.payment-plan.option.aria-label": "Betalingsoptie {planDescription}",

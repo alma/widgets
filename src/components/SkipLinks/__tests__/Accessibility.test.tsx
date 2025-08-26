@@ -9,12 +9,12 @@ describe('SkipLinks Accessibility Tests', () => {
   const skipLinksData = [
     {
       href: '#main-content',
-      labelId: 'skiplinks.main-content',
+      labelId: 'skip-links.main-content',
       defaultMessage: 'Aller au contenu principal',
     },
     {
       href: '#navigation',
-      labelId: 'skiplinks.navigation',
+      labelId: 'skip-links.navigation',
       defaultMessage: 'Aller à la navigation',
     },
   ]
