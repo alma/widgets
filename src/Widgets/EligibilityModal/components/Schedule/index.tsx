@@ -25,7 +25,7 @@ const Schedule: FC<{ currentPlan: EligibilityPlan; id?: string }> = ({ currentPl
       tabIndex={-1}
     >
       {(currentPlan?.payment_plan || []).map((installment, index) => (
-        <li key={installment.due_date * 1000}>
+        <li key={installment.due_date * 1000} className={s.scheduleItem}>
           <Installment installment={installment} index={index} />
         </li>
       ))}

@@ -4,6 +4,10 @@
   font-family: 'Venn', sans-serif;
 }
 
+.scheduleItem {
+  list-style-type: none;
+}
+
 @media (min-width: 800px) {
   .schedule {
     overflow-y: auto;
