@@ -9,13 +9,13 @@ describe('SkipLinks Accessibility Tests', () => {
   const skipLinksData = [
     {
       href: '#main-content',
-      labelId: 'skip-links.main-content',
-      defaultMessage: 'Aller au contenu principal',
+      labelId: 'skip-links.payment-info',
+      defaultMessage: 'Allez aux informations de paiement',
     },
     {
       href: '#navigation',
-      labelId: 'skip-links.navigation',
-      defaultMessage: 'Aller à la navigation',
+      labelId: 'accessibility.skip-links.navigation.aria-label',
+      defaultMessage: 'Navigation rapide',
     },
   ]
 
