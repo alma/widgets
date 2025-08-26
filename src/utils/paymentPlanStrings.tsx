@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 
 import { secondsToMilliseconds } from 'date-fns'
-import { FormattedDate, FormattedMessage, FormattedNumber } from 'react-intl'
+import { FormattedDate, FormattedMessage, FormattedNumber, IntlShape } from 'react-intl'
 
 import { EligibilityPlan, EligibilityPlanToDisplay } from '@/types'
 import { isP1X, priceFromCents } from '@/utils'
@@ -42,6 +42,48 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
           deferredMonths: `+${deferredMonths}`,
         }}
       />
+    )
+  }
+  return `${installmentsCount}x`
+}
+
+/**
+ * String version of paymentPlanShorthandName that returns a translated string
+ * instead of a ReactNode for use in aria-label attributes for example
+ */
+export const paymentPlanShorthandText = (payment: EligibilityPlan, intl: IntlShape): string => {
+  const {
+    deferred_days: deferredDays,
+    deferred_months: deferredMonths,
+    installments_count: installmentsCount,
+  } = payment
+
+  if (installmentsCount === 1 && !deferredDays && !deferredMonths) {
+    return intl.formatMessage({
+      id: 'payment-plan-strings.pay.now.button',
+      defaultMessage: 'Payer maintenant',
+    })
+  }
+  if (installmentsCount === 1 && deferredDays) {
+    return intl.formatMessage(
+      {
+        id: 'payment-plan-strings.day-abbreviation',
+        defaultMessage: 'J{deferredDays}',
+      },
+      {
+        deferredDays: `+${deferredDays}`,
+      },
+    )
+  }
+  if (installmentsCount === 1 && deferredMonths) {
+    return intl.formatMessage(
+      {
+        id: 'payment-plan-strings.month-abbreviation',
+        defaultMessage: 'M{deferredMonths}',
+      },
+      {
+        deferredMonths: `+${deferredMonths}`,
+      },
     )
   }
   return `${installmentsCount}x`

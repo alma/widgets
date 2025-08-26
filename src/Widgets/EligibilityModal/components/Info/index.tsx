@@ -9,7 +9,7 @@ import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.co
 const StrongText = (chunks: React.ReactNode) => <strong>{chunks}</strong>
 
 const Info: FC<{ isCurrentPlanP1X: boolean; id?: string }> = ({ isCurrentPlanP1X, id }) => (
-  // TODO: refactor this component into subcomponent to factorise code and be cleaner
+  // TODO: refactor this component into subcomponents to factorize code and make it cleaner
   <div
     id={id}
     className={cx(s.list, STATIC_CUSTOMISATION_CLASSES.info)}
