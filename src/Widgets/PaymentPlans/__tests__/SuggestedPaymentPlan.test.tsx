@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { act, screen, waitFor } from '@testing-library/react'
+import { act, screen } from '@testing-library/react'
 
 import { ApiMode } from '@/consts'
 import render from '@/test'
@@ -42,7 +42,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   })
 
   describe('as an array', () => {
-    beforeEach(async () => {
+    it('displays the third item as selected', async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
@@ -51,14 +51,21 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
         />,
       )
       await screen.findByTestId('widget-button', {}, { timeout: 10000 })
-    })
 
-    it('displays the third item as selected', () => {
       expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
       expect(screen.getByText('3x').className).toContain('active')
     })
 
-    it('should not rotate the active installment', () => {
+    it('should not rotate the active installment', async () => {
+      render(
+        <PaymentPlanWidget
+          purchaseAmount={40000}
+          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          suggestedPaymentPlan={[3, 2]}
+        />,
+      )
+      await screen.findByTestId('widget-button', {}, { timeout: 10000 })
+
       // Vérifier que 3x est actif initialement
       expect(screen.getByText('3x').className).toContain('active')
 
@@ -77,7 +84,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   })
 
   describe('as an array with first item being illegible', () => {
-    beforeEach(async () => {
+    it('displays the 3x as active (2 is illegible)', async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
@@ -114,16 +121,14 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
         />,
       )
       await screen.findByTestId('widget-button', {}, { timeout: 10000 })
-    })
 
-    it('displays the 3x as active (2 is illegible)', () => {
       expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
       expect(screen.getByText('3x').className).toContain('active')
     })
   })
 
   describe('with a wrong value', () => {
-    beforeEach(async () => {
+    it('should select the first installment', async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
@@ -132,9 +137,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
         />,
       )
       await screen.findByTestId('widget-button', {}, { timeout: 10000 })
-    })
 
-    it('should select the first installment', () => {
       expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
       expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
       expect(screen.getByText('M+1').className).toContain('active')
@@ -142,7 +145,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
   })
 
   describe('with a different transitionDelay', () => {
-    beforeEach(async () => {
+    it('displays the message corresponding to the payment plan hovered', async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
@@ -152,9 +155,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
         />,
       )
       await screen.findByTestId('widget-button', {}, { timeout: 10000 })
-    })
 
-    it('displays the message corresponding to the payment plan hovered', () => {
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
       expect(screen.getByText('2x').className).toContain('active')
       // TODO Fix this test

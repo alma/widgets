@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { axe } from 'jest-axe'
 import { screen } from '@testing-library/react'
+import { axe } from 'jest-axe'
 
 import render from '@/test'
 import Modal from 'components/Modal'
