@@ -5,6 +5,7 @@
   "accessibility.close-button.aria-label": "Fermer la fenêtre",
   "accessibility.mastercard.aria-label": "Carte Mastercard acceptée",
   "accessibility.payment-options.radiogroup.aria-label": "Options de paiement disponibles",
+  "accessibility.payment-plan-button.aria-label": "Sélectionner le plan de paiement {planName}",
   "accessibility.payment-plan.option.aria-label": "Option de paiement {planDescription}",
   "accessibility.payment-plans-title": "Options de paiement disponibles",
   "accessibility.payment-schedule-title": "Calendrier de paiement",
