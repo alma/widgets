@@ -66,16 +66,16 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
       )
       await screen.findByTestId('widget-button', {}, { timeout: 10000 })
 
-      // Vérifier que 3x est actif initialement
+      // Check that 3x is initially active
       expect(screen.getByText('3x').className).toContain('active')
 
       act(() => {
         jest.advanceTimersByTime(animationDuration)
       })
 
-      // Avec suggestedPaymentPlan, l'animation ne devrait pas faire tourner
-      // mais le comportement peut dépendre de l'implémentation
-      // Vérifions que l'état reste cohérent
+      // With suggestedPaymentPlan, the animation should not rotate
+      // but the behavior may depend on the implementation
+      // Let's verify that the state remains consistent
       const activeElements = screen
         .getAllByRole('radio')
         .filter((el) => el.className.includes('active'))
