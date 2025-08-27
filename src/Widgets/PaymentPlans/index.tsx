@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import cx from 'classnames'
 import { useIntl } from 'react-intl'
@@ -92,6 +92,51 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   }
 
   const { current, onHover, onLeave } = useButtonAnimation(eligiblePlanKeys, realTransitionTime())
+
+  // Refs for managing focus on plan buttons
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
+
+  // Initialize button refs array
+  useEffect(() => {
+    buttonRefs.current = buttonRefs.current.slice(0, eligibilityPlans.length)
+  }, [eligibilityPlans.length])
+
+  /**
+   * Navigate to the next or previous eligible plan and focus the corresponding button
+   * @param direction - 'next' or 'prev' for navigation direction
+   * @param currentIndex - Current plan index
+   */
+  const navigateToEligiblePlan = (direction: 'next' | 'prev', currentIndex: number) => {
+    const currentEligibleIndex = eligiblePlanKeys.indexOf(currentIndex)
+
+    if (currentEligibleIndex === -1) return
+
+    let newEligibleIndex
+    if (direction === 'next') {
+      newEligibleIndex = currentEligibleIndex + 1
+      if (newEligibleIndex >= eligiblePlanKeys.length) return
+    } else {
+      newEligibleIndex = currentEligibleIndex - 1
+      if (newEligibleIndex < 0) return
+    }
+
+    const newPlanIndex = eligiblePlanKeys[newEligibleIndex]
+    onHover(newPlanIndex)
+
+    // Focus the new button
+    buttonRefs.current[newPlanIndex]?.focus()
+  }
+
+  /**
+   * Navigate to first or last eligible plan
+   * @param position - 'first' or 'last'
+   */
+  const navigateToEdgePlan = (position: 'first' | 'last') => {
+    const planIndex =
+      position === 'first' ? eligiblePlanKeys[0] : eligiblePlanKeys[eligiblePlanKeys.length - 1]
+    onHover(planIndex)
+    buttonRefs.current[planIndex]?.focus()
+  }
 
   // Announce plan changes to screen readers
   useEffect(() => {
@@ -217,29 +262,21 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                   onTouchEnd={onLeave}
                   onFocus={isEligible ? () => onHover(key) : undefined}
                   onKeyDown={(e) => {
-                    // Arrow navigation between plans
-                    if (e.key === 'ArrowLeft' && key > 0) {
+                    if (!isEligible) return
+
+                    // Arrow navigation between eligible plans only
+                    if (e.key === 'ArrowLeft') {
                       e.preventDefault()
-                      const prevEligibleIndex = eligiblePlanKeys.findIndex(
-                        (planKey) => planKey < key,
-                      )
-                      if (prevEligibleIndex !== -1) {
-                        onHover(eligiblePlanKeys[prevEligibleIndex])
-                      }
-                    } else if (e.key === 'ArrowRight' && key < eligibilityPlans.length - 1) {
+                      navigateToEligiblePlan('prev', key)
+                    } else if (e.key === 'ArrowRight') {
                       e.preventDefault()
-                      const nextEligibleIndex = eligiblePlanKeys.findIndex(
-                        (planKey) => planKey > key,
-                      )
-                      if (nextEligibleIndex !== -1) {
-                        onHover(eligiblePlanKeys[nextEligibleIndex])
-                      }
+                      navigateToEligiblePlan('next', key)
                     } else if (e.key === 'Home') {
                       e.preventDefault()
-                      onHover(eligiblePlanKeys[0])
+                      navigateToEdgePlan('first')
                     } else if (e.key === 'End') {
                       e.preventDefault()
-                      onHover(eligiblePlanKeys[eligiblePlanKeys.length - 1])
+                      navigateToEdgePlan('last')
                     }
                   }}
                   onClick={(e) => {
@@ -279,6 +316,9 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                   )}
                   aria-disabled={!isEligible}
                   tabIndex={isEligible ? 0 : -1}
+                  ref={(el) => {
+                    buttonRefs.current[key] = el
+                  }} // Assign ref to button
                 >
                   {paymentPlanShorthandName(eligibilityPlan)}
                 </button>

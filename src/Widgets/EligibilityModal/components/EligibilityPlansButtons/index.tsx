@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useRef } from 'react'
 
 import cx from 'classnames'
 import { FormattedMessage, useIntl } from 'react-intl'
@@ -16,6 +16,24 @@ const EligibilityPlansButtons: FC<{
   id?: string
 }> = ({ eligibilityPlans, currentPlanIndex, setCurrentPlanIndex, id }) => {
   const intl = useIntl()
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
+
+  // Initialize button refs array
+  useEffect(() => {
+    buttonRefs.current = buttonRefs.current.slice(0, eligibilityPlans.length)
+  }, [eligibilityPlans.length])
+
+  /**
+   * Navigate to plan and focus the corresponding button
+   * @param newIndex - Target plan index
+   */
+  const navigateToPlan = (newIndex: number) => {
+    if (newIndex >= 0 && newIndex < eligibilityPlans.length) {
+      setCurrentPlanIndex(newIndex)
+      // Focus the new button
+      setTimeout(() => buttonRefs.current[newIndex]?.focus(), 0)
+    }
+  }
 
   return (
     <div>
@@ -40,19 +58,19 @@ const EligibilityPlansButtons: FC<{
             })}
             onClick={() => setCurrentPlanIndex(key)}
             onKeyDown={(e) => {
-              // Navigation par flèches entre les plans
-              if (e.key === 'ArrowLeft' && key > 0) {
+              // Arrow navigation between plans
+              if (e.key === 'ArrowLeft') {
                 e.preventDefault()
-                setCurrentPlanIndex(key - 1)
-              } else if (e.key === 'ArrowRight' && key < eligibilityPlans.length - 1) {
+                navigateToPlan(key - 1)
+              } else if (e.key === 'ArrowRight') {
                 e.preventDefault()
-                setCurrentPlanIndex(key + 1)
+                navigateToPlan(key + 1)
               } else if (e.key === 'Home') {
                 e.preventDefault()
-                setCurrentPlanIndex(0)
+                navigateToPlan(0)
               } else if (e.key === 'End') {
                 e.preventDefault()
-                setCurrentPlanIndex(eligibilityPlans.length - 1)
+                navigateToPlan(eligibilityPlans.length - 1)
               }
             }}
             aria-pressed={key === currentPlanIndex}
@@ -65,6 +83,9 @@ const EligibilityPlansButtons: FC<{
               },
               { planName: paymentPlanShorthandText(eligibilityPlan, intl) },
             )}
+            ref={(el) => {
+              buttonRefs.current[key] = el
+            }}
           >
             <span className={s.textButton}>{paymentPlanShorthandName(eligibilityPlan)}</span>
           </button>
