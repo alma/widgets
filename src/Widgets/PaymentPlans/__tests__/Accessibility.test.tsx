@@ -223,14 +223,16 @@ describe('PaymentPlan Accessibility Tests', () => {
       const alertRegion = screen.getByRole('alert')
 
       // Hover over the single payment plan
-      const payNowButton = screen.getByRole('radio', { name: /Payer maintenant/i })
+      const payNowButton = screen.getByRole('radio', {
+        name: /Option de paiement Payer en différé : 1 mois/i,
+      })
       await act(async () => {
         await userEvent.hover(payNowButton)
       })
 
       // Should announce with "Payer maintenant" text
       await waitFor(() => {
-        expect(alertRegion).toHaveTextContent('Plan sélectionné : Payer maintenant')
+        expect(alertRegion).toHaveTextContent('Plan sélectionné : Payer en différé : 1 mois')
       })
     })
 
@@ -254,12 +256,14 @@ describe('PaymentPlan Accessibility Tests', () => {
       const alertRegion = screen.getByRole('alert')
 
       // Focus on the first plan and use keyboard to navigate
-      const firstPlan = screen.getByRole('radio', { name: /Payer maintenant/i })
+      const firstPlan = screen.getByRole('radio', {
+        name: /Option de paiement Payer en différé : 1 mois/i,
+      })
       firstPlan.focus()
 
       // Should announce the focused plan
       await waitFor(() => {
-        expect(alertRegion).toHaveTextContent('Plan sélectionné : Payer maintenant')
+        expect(alertRegion).toHaveTextContent('Plan sélectionné : Payer en différé : 1 mois')
       })
 
       // Navigate to next plan using keyboard

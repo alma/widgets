@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 /**
  * Custom hook for managing announcement text for screen readers
@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react'
  */
 export const useAnnounceText = () => {
   const [announceText, setAnnounceText] = useState('')
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   /**
    * Announces text to screen readers and clears it after a specified delay
@@ -13,19 +14,40 @@ export const useAnnounceText = () => {
    * @param clearDelay - Time in milliseconds before clearing the text (default: 1000ms)
    */
   const announce = useCallback((text: string, clearDelay: number = 1000) => {
+    // Clear any existing timeout to prevent overlapping announcements
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+
     setAnnounceText(text)
 
-    // Clear announcement after the specified delay
-    const timer = setTimeout(() => setAnnounceText(''), clearDelay)
-    return () => clearTimeout(timer)
+    // Set new timeout and store reference for cleanup
+    timeoutRef.current = setTimeout(() => {
+      setAnnounceText('')
+      timeoutRef.current = null
+    }, clearDelay)
   }, [])
 
   /**
-   * Clears the current announcement text immediately
+   * Clears the current announcement text immediately and cancels any pending timeout
    */
   const clearAnnouncement = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
     setAnnounceText('')
   }, [])
+
+  // Cleanup timeout on unmount
+  useEffect(
+    () => () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    },
+    [],
+  )
 
   return {
     announceText,

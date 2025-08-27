@@ -108,13 +108,13 @@
 }
 
 .info {
-  font-size: 12px;
+  font-size: 0.75rem; /* 12px */
   line-height: 16px;
   color: var(--dark-gray);
   text-align: center;
 }
 
-/* Live region for screen readers announces */
+/* Live region for screen reader announcements */
 .announceText {
   position: absolute;
   width: 1px;

@@ -10,7 +10,11 @@ import { useAnnounceText } from 'hooks/useAnnounceText'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
-import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
+import {
+  getPlanDescription,
+  paymentPlanInfoText,
+  paymentPlanShorthandName,
+} from 'utils/paymentPlanStrings'
 import STATIC_CUSTOMISATION_CLASSES from 'Widgets//PaymentPlans/classNames.const'
 import EligibilityModal from 'Widgets/EligibilityModal'
 import s from 'Widgets/PaymentPlans/PaymentPlans.module.css'
@@ -142,14 +146,8 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   useEffect(() => {
     if (eligibilityPlans[current] && status === statusResponse.SUCCESS) {
       const currentPlan = eligibilityPlans[current]
-      const planDescription =
-        currentPlan.installments_count === 1
-          ? intl.formatMessage({
-              id: 'payment-plan-strings.pay.now.button',
-              defaultMessage: 'Payer maintenant',
-            })
-          : `${currentPlan.installments_count}x`
 
+      const planDescription = getPlanDescription(currentPlan, intl)
       const announcementText = intl.formatMessage(
         {
           id: 'accessibility.plan-selection-changed',
@@ -305,13 +303,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                       defaultMessage: 'Option de paiement {planDescription}',
                     },
                     {
-                      planDescription:
-                        eligibilityPlan.installments_count === 1
-                          ? intl.formatMessage({
-                              id: 'payment-plan-strings.pay.now.button',
-                              defaultMessage: 'Payer maintenant',
-                            })
-                          : `${eligibilityPlan.installments_count}x`,
+                      planDescription: getPlanDescription(eligibilityPlan, intl),
                     },
                   )}
                   aria-disabled={!isEligible}

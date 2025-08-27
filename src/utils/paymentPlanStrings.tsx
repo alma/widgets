@@ -283,3 +283,40 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     </p>
   )
 }
+
+export const getPlanDescription = (plan: EligibilityPlan, intl: IntlShape) => {
+  if (plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0) {
+    return intl.formatMessage({
+      id: 'payment-plan-strings.pay.now.button',
+      defaultMessage: 'Payer maintenant',
+    })
+  }
+  if (plan.installments_count === 1 && (plan.deferred_days > 0 || plan.deferred_months > 0)) {
+    return intl.formatMessage(
+      {
+        id: 'payment-plan-strings.pay.deferred.button',
+        defaultMessage: 'Payer en différé : {deferredTime}',
+      },
+      {
+        deferredTime:
+          plan.deferred_months > 0
+            ? intl.formatMessage(
+                {
+                  id: 'payment-plan-strings.deferred.months',
+                  defaultMessage: '{months, number} {months, plural, one {mois} other {mois}}',
+                },
+                { months: plan.deferred_months },
+              )
+            : intl.formatMessage(
+                {
+                  id: 'payment-plan-strings.deferred.days',
+                  defaultMessage: '{days, number} {days, plural, one {jour} other {jours}}',
+                },
+                { days: plan.deferred_days },
+              ),
+      },
+    )
+  }
+
+  return `${plan.installments_count}x`
+}

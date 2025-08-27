@@ -17,11 +17,20 @@ const EligibilityPlansButtons: FC<{
 }> = ({ eligibilityPlans, currentPlanIndex, setCurrentPlanIndex, id }) => {
   const intl = useIntl()
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const shouldFocusRef = useRef(false)
 
   // Initialize button refs array
   useEffect(() => {
     buttonRefs.current = buttonRefs.current.slice(0, eligibilityPlans.length)
   }, [eligibilityPlans.length])
+
+  // Handle focus when currentPlanIndex changes via keyboard navigation
+  useEffect(() => {
+    if (shouldFocusRef.current && buttonRefs.current[currentPlanIndex]) {
+      buttonRefs.current[currentPlanIndex]?.focus()
+      shouldFocusRef.current = false
+    }
+  }, [currentPlanIndex])
 
   /**
    * Navigate to plan and focus the corresponding button
@@ -29,9 +38,8 @@ const EligibilityPlansButtons: FC<{
    */
   const navigateToPlan = (newIndex: number) => {
     if (newIndex >= 0 && newIndex < eligibilityPlans.length) {
+      shouldFocusRef.current = true
       setCurrentPlanIndex(newIndex)
-      // Focus the new button
-      setTimeout(() => buttonRefs.current[newIndex]?.focus(), 0)
     }
   }
 
