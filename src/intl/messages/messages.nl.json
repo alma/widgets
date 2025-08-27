@@ -10,7 +10,7 @@
   "accessibility.payment-plans-title": "Betalingsopties beschikbaar",
   "accessibility.payment-schedule-title": "Betalingsschema",
   "accessibility.payment-widget.open-button.aria-label": "Alma betalingsopties openen",
-  "accessibility.plan-selection-changed": "Plan sélectionné : {planDescription}",
+  "accessibility.plan-selection-changed": "Gekozen plan: {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Snelle navigatie",
   "accessibility.visa-card.aria-label": "Visa-kaart geaccepteerd",
   "credit-features.credit-cost-display": "{creditCost} (gemiddeld rente percentage {taegPercentage})",

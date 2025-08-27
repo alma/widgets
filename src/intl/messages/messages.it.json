@@ -10,7 +10,7 @@
   "accessibility.payment-plans-title": "Opzioni di pagamento disponibili",
   "accessibility.payment-schedule-title": "Piano di pagamento",
   "accessibility.payment-widget.open-button.aria-label": "Opzioni di pagamento Alma aperte",
-  "accessibility.plan-selection-changed": "Plan sélectionné : {planDescription}",
+  "accessibility.plan-selection-changed": "Piano selezionato: {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Navigazione rapida",
   "accessibility.visa-card.aria-label": "Carta Visa accettata",
   "credit-features.credit-cost-display": "{creditCost} (TAEG {taegPercentage})",
