@@ -108,10 +108,23 @@
 }
 
 .info {
-  font-family: 'Venn', sans-serif;
-  font-size: 0.75rem; /* Equivalent to 12px but adapts to zoom */
-  line-height: 180%;
-  color: var(--off-black);
+  font-size: 0.75rem; /* 12px */
+  line-height: 16px;
+  color: var(--dark-gray);
+  text-align: center;
+}
+
+/* Live region for screen reader announcements */
+.announceText {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .notEligible {

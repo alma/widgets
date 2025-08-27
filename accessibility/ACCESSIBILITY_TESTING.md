@@ -2,32 +2,38 @@
 
 ## Overview
 
-This document provides comprehensive guidance for testing accessibility in the Alma Widgets project. It covers automated testing strategies, manual testing procedures, and compliance verification methods.
+This document provides comprehensive guidance for testing accessibility in the Alma Widgets project. It covers automated testing strategies, manual testing procedures, and compliance verification methods for the enhanced implementation with improved keyboard navigation and announcement systems.
 
 ## Table of Contents
 
 1. [Testing Strategy](#testing-strategy)
 2. [Automated Testing](#automated-testing)
 3. [Manual Testing](#manual-testing)
-4. [RGAA Compliance Testing](#rgaa-compliance-testing)
-5. [Testing Tools](#testing-tools)
-6. [Continuous Integration](#continuous-integration)
+4. [Custom Hook Testing](#custom-hook-testing)
+5. [Keyboard Navigation Testing](#keyboard-navigation-testing)
+6. [Screen Reader Testing](#screen-reader-testing)
+7. [RGAA Compliance Testing](#rgaa-compliance-testing)
+8. [Testing Tools](#testing-tools)
+9. [Continuous Integration](#continuous-integration)
 
 ## Testing Strategy
 
 ### Multi-layered Approach
-- **Automated testing**: jest-axe integration for WCAG compliance
-- **Manual testing**: Keyboard navigation, screen reader testing
+- **Automated testing**: jest-axe integration for WCAG compliance + custom hook testing
+- **Manual testing**: Enhanced keyboard navigation, screen reader testing
 - **User testing**: Real users with disabilities
 - **Compliance auditing**: RGAA 4.1 standards verification
+- **Focus management testing**: Programmatic focus behavior verification
 
 ### Testing Pyramid
 ```
         Manual User Testing
        /                   \
     Manual Testing      Compliance Audits
-   /                                      \
-Automated Testing (jest-axe, axe-core)
+   /                 |                    \
+Custom Hook Tests | Enhanced Navigation Testing
+   \               |                    /
+    Automated Testing (jest-axe, axe-core)
 ```
 
 ## Automated Testing
@@ -41,426 +47,536 @@ import { toHaveNoViolations } from 'jest-axe'
 expect.extend(toHaveNoViolations)
 ```
 
-#### Basic Accessibility Test
+#### PaymentPlans Widget Tests
 ```typescript
 import { axe } from 'jest-axe'
-import { render } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import PaymentPlansWidget from 'Widgets/PaymentPlans'
 
-test('should not have accessibility violations', async () => {
-  const { container } = render(<Component />)
-  const results = await axe(container)
-  expect(results).toHaveNoViolations()
-})
-```
+describe('PaymentPlans Accessibility Tests', () => {
+  const defaultProps = {
+    purchaseAmount: 100,
+    apiData: { /* mock api config */ },
+    eligibilityPlans: [
+      { installments_count: 1, eligible: true },
+      { installments_count: 3, eligible: true },
+      { installments_count: 4, eligible: false }
+    ]
+  }
 
-#### Component-Specific Tests
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
 
-##### Modal Accessibility Tests
-```typescript
-// src/components/Modal/__tests__/Accessibility.test.tsx
-describe('Modal Accessibility Tests', () => {
-  it('should not have accessibility violations when closed', async () => {
-    const { container } = render(
-      <Modal isOpen={false} onClose={() => {}}>
-        <div>Modal content</div>
-      </Modal>
-    )
+  afterEach(() => {
+    jest.runOnlyPendingTimers()
+    jest.useRealTimers()
+  })
+
+  it('should not have accessibility violations', async () => {
+    const { container } = render(<PaymentPlansWidget {...defaultProps} />)
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
 
-  it('should have proper aria attributes when open', async () => {
-    render(
-      <Modal isOpen onClose={() => {}}>
-        <div>
-          <h2>Modal Title</h2>
-          <p>Some modal content</p>
-        </div>
-      </Modal>
-    )
-    
-    expect(screen.getByRole('dialog')).toBeInTheDocument()
-    expect(screen.getByRole('dialog')).toHaveAttribute('aria-modal', 'true')
-  })
-})
-```
-
-##### Payment Plans Accessibility Tests
-```typescript
-// src/Widgets/PaymentPlans/__tests__/Accessibility.test.tsx
-describe('PaymentPlan Accessibility Tests', () => {
-  it('should have proper keyboard navigation', async () => {
-    render(<PaymentPlanWidget {...defaultProps} />)
-    
-    const widget = await screen.findByTestId('widget-button')
-    expect(widget).toHaveAttribute('tabindex', '0')
-    expect(widget).toHaveAttribute('role', 'button')
-    
-    // Test keyboard interaction
-    fireEvent.keyDown(widget, { key: 'Enter' })
-    await waitFor(() => {
-      expect(screen.getByRole('dialog')).toBeInTheDocument()
-    })
-  })
-
-  it('should have proper radiogroup implementation', async () => {
-    render(<PaymentPlanWidget {...defaultProps} />)
+  it('should implement proper radiogroup pattern', async () => {
+    render(<PaymentPlansWidget {...defaultProps} />)
     
     const radiogroup = screen.getByRole('radiogroup')
-    expect(radiogroup).toHaveAttribute('aria-label')
+    expect(radiogroup).toHaveAttribute('aria-label', 'Available payment options')
     
     const radioButtons = screen.getAllByRole('radio')
     expect(radioButtons).toHaveLength(3)
     
-    radioButtons.forEach((button) => {
+    radioButtons.forEach((button, index) => {
       expect(button).toHaveAttribute('aria-checked')
-      expect(button).toHaveAttribute('aria-describedby')
+      expect(button).toHaveAttribute('aria-describedby', 'payment-info-text')
+      expect(button).toHaveAttribute('aria-label')
+      
+      // Check disabled state handling
+      if (!defaultProps.eligibilityPlans[index].eligible) {
+        expect(button).toHaveAttribute('aria-disabled', 'true')
+        expect(button).toHaveAttribute('tabindex', '-1')
+      } else {
+        expect(button).toHaveAttribute('tabindex', '0')
+      }
+    })
+  })
+
+  it('should announce plan changes using useAnnounceText hook', async () => {
+    render(<PaymentPlansWidget {...defaultProps} />)
+    
+    const liveRegion = screen.getByRole('alert')
+    expect(liveRegion).toHaveAttribute('aria-live', 'assertive')
+    
+    // Simulate plan change and verify announcement
+    const firstPlan = screen.getAllByRole('radio')[0]
+    fireEvent.mouseEnter(firstPlan)
+    
+    await waitFor(() => {
+      expect(liveRegion).toHaveTextContent('Selected plan: 1x')
+    })
+    
+    // Verify announcement clears after delay
+    jest.advanceTimersByTime(1000)
+    
+    await waitFor(() => {
+      expect(liveRegion).toHaveTextContent('')
+    })
+  })
+
+  it('should handle keyboard navigation with focus management', async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime })
+    render(<PaymentPlansWidget {...defaultProps} />)
+    
+    const radioButtons = screen.getAllByRole('radio')
+    const eligibleButtons = radioButtons.filter(button => 
+      button.getAttribute('aria-disabled') !== 'true'
+    )
+    
+    // Focus first eligible button
+    eligibleButtons[0].focus()
+    expect(document.activeElement).toBe(eligibleButtons[0])
+    
+    // Test arrow key navigation
+    await user.keyboard('{ArrowRight}')
+    expect(document.activeElement).toBe(eligibleButtons[1])
+    
+    await user.keyboard('{ArrowLeft}')
+    expect(document.activeElement).toBe(eligibleButtons[0])
+    
+    // Test Home/End navigation
+    await user.keyboard('{End}')
+    expect(document.activeElement).toBe(eligibleButtons[eligibleButtons.length - 1])
+    
+    await user.keyboard('{Home}')
+    expect(document.activeElement).toBe(eligibleButtons[0])
+  })
+
+  it('should skip non-eligible plans during keyboard navigation', async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime })
+    render(<PaymentPlansWidget {...defaultProps} />)
+    
+    const radioButtons = screen.getAllByRole('radio')
+    const eligibleButtons = radioButtons.filter(button => 
+      button.getAttribute('aria-disabled') !== 'true'
+    )
+    
+    // Navigate through only eligible plans
+    eligibleButtons[0].focus()
+    await user.keyboard('{ArrowRight}')
+    
+    // Should skip disabled plan and go to next eligible
+    expect(document.activeElement).toBe(eligibleButtons[1])
+    expect(document.activeElement).not.toBe(radioButtons[2]) // Disabled plan
+  })
+})
+```
+
+#### EligibilityModal Tests
+```typescript
+import { render, screen, fireEvent } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import EligibilityPlansButtons from 'Widgets/EligibilityModal/components/EligibilityPlansButtons'
+
+describe('EligibilityModal Accessibility Tests', () => {
+  const defaultProps = {
+    eligibilityPlans: [
+      { installments_count: 1, eligible: true },
+      { installments_count: 3, eligible: true },
+      { installments_count: 4, eligible: true }
+    ],
+    currentPlanIndex: 0,
+    setCurrentPlanIndex: jest.fn()
+  }
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('should handle keyboard navigation with automatic focus', async () => {
+    const user = userEvent.setup()
+    render(<EligibilityPlansButtons {...defaultProps} />)
+    
+    const buttons = screen.getAllByRole('button')
+    
+    // Focus first button
+    buttons[0].focus()
+    expect(document.activeElement).toBe(buttons[0])
+    
+    // Test navigation
+    await user.keyboard('{ArrowRight}')
+    expect(defaultProps.setCurrentPlanIndex).toHaveBeenCalledWith(1)
+    
+    await user.keyboard('{Home}')
+    expect(defaultProps.setCurrentPlanIndex).toHaveBeenCalledWith(0)
+    
+    await user.keyboard('{End}')
+    expect(defaultProps.setCurrentPlanIndex).toHaveBeenCalledWith(2)
+  })
+
+  it('should have proper ARIA attributes', () => {
+    render(<EligibilityPlansButtons {...defaultProps} />)
+    
+    const group = screen.getByRole('group')
+    expect(group).toHaveAttribute('aria-labelledby', 'payment-plans-title')
+    
+    const buttons = screen.getAllByRole('button')
+    buttons.forEach((button, index) => {
+      expect(button).toHaveAttribute('aria-pressed')
+      expect(button).toHaveAttribute('aria-describedby', 'payment-info')
+      expect(button).toHaveAttribute('aria-label')
+      
+      if (index === defaultProps.currentPlanIndex) {
+        expect(button).toHaveAttribute('aria-current', 'true')
+      }
     })
   })
 })
 ```
 
-### Custom Accessibility Matchers
+## Custom Hook Testing
 
-#### Screen Reader Compatibility
+### useAnnounceText Hook Tests
 ```typescript
-// Custom matcher for screen reader content
-expect.extend({
-  toBeAccessibleToScreenReaders(received) {
-    const hasAriaLabel = received.hasAttribute('aria-label')
-    const hasAriaLabelledBy = received.hasAttribute('aria-labelledby')
-    const hasTextContent = received.textContent.trim().length > 0
+import { renderHook, act } from '@testing-library/react'
+import { useAnnounceText } from 'hooks/useAnnounceText'
+
+describe('useAnnounceText Hook Tests', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
+
+  afterEach(() => {
+    jest.runOnlyPendingTimers()
+    jest.useRealTimers()
+  })
+
+  it('should initialize with empty announcement text', () => {
+    const { result } = renderHook(() => useAnnounceText())
+    expect(result.current.announceText).toBe('')
+  })
+
+  it('should announce text and clear after default delay', () => {
+    const { result } = renderHook(() => useAnnounceText())
     
-    const pass = hasAriaLabel || hasAriaLabelledBy || hasTextContent
+    act(() => {
+      result.current.announce('Test announcement')
+    })
     
-    return {
-      message: () => `Expected element to be accessible to screen readers`,
-      pass,
-    }
-  },
+    expect(result.current.announceText).toBe('Test announcement')
+    
+    act(() => {
+      jest.advanceTimersByTime(1000)
+    })
+    
+    expect(result.current.announceText).toBe('')
+  })
+
+  it('should support custom delay timing', () => {
+    const { result } = renderHook(() => useAnnounceText())
+    
+    act(() => {
+      result.current.announce('Custom delay test', 2500)
+    })
+    
+    expect(result.current.announceText).toBe('Custom delay test')
+    
+    // Should still be present before custom delay
+    act(() => {
+      jest.advanceTimersByTime(2000)
+    })
+    expect(result.current.announceText).toBe('Custom delay test')
+    
+    // Should be cleared after custom delay
+    act(() => {
+      jest.advanceTimersByTime(500)
+    })
+    expect(result.current.announceText).toBe('')
+  })
+
+  it('should handle multiple consecutive announcements', () => {
+    const { result } = renderHook(() => useAnnounceText())
+    
+    act(() => {
+      result.current.announce('First announcement')
+    })
+    expect(result.current.announceText).toBe('First announcement')
+    
+    act(() => {
+      result.current.announce('Second announcement')
+    })
+    expect(result.current.announceText).toBe('Second announcement')
+  })
+
+  it('should clear announcement immediately when requested', () => {
+    const { result } = renderHook(() => useAnnounceText())
+    
+    act(() => {
+      result.current.announce('Test announcement')
+    })
+    expect(result.current.announceText).toBe('Test announcement')
+    
+    act(() => {
+      result.current.clearAnnouncement()
+    })
+    expect(result.current.announceText).toBe('')
+  })
+
+  it('should maintain stable function references', () => {
+    const { result, rerender } = renderHook(() => useAnnounceText())
+    
+    const firstAnnounce = result.current.announce
+    const firstClear = result.current.clearAnnouncement
+    
+    rerender()
+    
+    expect(result.current.announce).toBe(firstAnnounce)
+    expect(result.current.clearAnnouncement).toBe(firstClear)
+  })
 })
-```
-
-#### Keyboard Navigation Testing
-```typescript
-// Helper function for keyboard navigation testing
-const testKeyboardNavigation = async (container: HTMLElement) => {
-  const focusableElements = container.querySelectorAll(
-    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-  )
-  
-  for (let i = 0; i < focusableElements.length; i++) {
-    const element = focusableElements[i] as HTMLElement
-    element.focus()
-    expect(document.activeElement).toBe(element)
-  }
-}
 ```
 
 ## Manual Testing
 
-### Keyboard Navigation Checklist
+### Keyboard Navigation Testing
 
-#### Basic Navigation
-- [ ] **Tab key**: Moves focus forward through interactive elements
-- [ ] **Shift+Tab**: Moves focus backward through interactive elements
-- [ ] **Enter/Space**: Activates buttons and links
-- [ ] **Escape**: Closes modals and overlays
-- [ ] **Arrow keys**: Navigate within grouped elements (radio buttons)
+#### PaymentPlans Widget Navigation
+**Test Steps:**
+1. **Tab Navigation**
+   - [ ] Tab to widget button
+   - [ ] Focus is clearly visible
+   - [ ] Tab moves to next eligible plan button
+   - [ ] Tab skips disabled/ineligible plans
+
+2. **Arrow Key Navigation**
+   - [ ] Arrow Left: Navigate to previous eligible plan
+   - [ ] Arrow Right: Navigate to next eligible plan
+   - [ ] Navigation stops at boundaries (no wrapping)
+   - [ ] Focus follows selection visually
+   - [ ] Only eligible plans receive focus
+
+3. **Home/End Navigation**
+   - [ ] Home: Jump to first eligible plan
+   - [ ] End: Jump to last eligible plan
+   - [ ] Focus moves correctly
+
+4. **Enter/Space Activation**
+   - [ ] Enter opens modal from main widget
+   - [ ] Space opens modal from main widget
+   - [ ] Modal focus is properly trapped
+
+#### EligibilityModal Navigation
+**Test Steps:**
+1. **Plan Selection Navigation**
+   - [ ] Arrow keys navigate between all plans
+   - [ ] Home/End jump to first/last plan
+   - [ ] Focus follows navigation automatically
+   - [ ] Visual selection updates with keyboard
+
+2. **Modal Controls**
+   - [ ] ESC key closes modal
+   - [ ] Focus returns to trigger element
+   - [ ] Background scrolling is prevented
+
+### Screen Reader Compatibility
+
+#### NVDA Testing (Windows)
+**Test Steps:**
+1. **Plan Navigation**
+   - [ ] Plans announced as "radio button"
+   - [ ] Current selection state announced
+   - [ ] Plan descriptions read correctly
+   - [ ] Group role announced as "radiogroup"
+
+2. **Live Announcements**
+   - [ ] Plan changes announced automatically
+   - [ ] Announcements don't overlap
+   - [ ] Clear, contextual messaging
+
+#### VoiceOver Testing (macOS)
+**Test Steps:**
+1. **Rotor Navigation**
+   - [ ] Plans appear in Form Controls rotor
+   - [ ] Landmarks properly identified
+   - [ ] Headings navigate correctly
+
+2. **Interaction**
+   - [ ] VO + Space activates buttons
+   - [ ] Arrow keys work with VO navigation
+   - [ ] Status changes announced
+
+#### JAWS Testing (Windows)
+**Test Steps:**
+1. **Virtual Cursor**
+   - [ ] All content accessible with virtual cursor
+   - [ ] Interactive elements properly identified
+   - [ ] ARIA attributes read correctly
+
+2. **Forms Mode**
+   - [ ] Automatic forms mode activation
+   - [ ] Proper navigation within radiogroup
+   - [ ] Modal dialog announced correctly
+
+## Keyboard Navigation Testing
+
+### Enhanced Testing Checklist
 
 #### Focus Management
-- [ ] **Visible focus indicators**: All focused elements have clear visual indication
-- [ ] **Logical tab order**: Focus moves in a predictable sequence
-- [ ] **No focus traps**: Users can always navigate away (except in modals)
-- [ ] **Focus restoration**: Focus returns to trigger element when closing modals
+- [ ] **Visible Focus**: All focusable elements have clear focus indicators
+- [ ] **Focus Order**: Logical tab sequence through all interactive elements
+- [ ] **Focus Trapping**: Modal properly traps focus within dialog
+- [ ] **Focus Restoration**: Focus returns to trigger after modal closes
+- [ ] **Programmatic Focus**: Arrow navigation moves both selection and focus
 
-#### Modal Behavior
-- [ ] **Focus trapping**: Focus stays within modal when open
-- [ ] **Initial focus**: First interactive element receives focus on open
-- [ ] **Close mechanisms**: Can be closed via Escape key or close button
-- [ ] **Background interaction**: Background content is inert when modal is open
+#### Navigation Patterns
+- [ ] **Radiogroup Pattern**: Proper ARIA radiogroup implementation
+- [ ] **Arrow Navigation**: Left/Right arrows navigate between options
+- [ ] **Boundary Handling**: Navigation stops at first/last items
+- [ ] **Disabled Items**: Keyboard navigation skips disabled options
+- [ ] **Home/End Keys**: Quick navigation to first/last items
 
-### Screen Reader Testing
+#### Advanced Interactions
+- [ ] **Multiple Modalities**: Mouse, touch, and keyboard all work
+- [ ] **State Synchronization**: Visual state matches programmatic state
+- [ ] **Error Handling**: Graceful handling of edge cases
+- [ ] **Performance**: Smooth navigation without delays
 
-#### NVDA (Windows)
-```
-1. Open NVDA screen reader
-2. Navigate to the widget
-3. Verify announcements:
-   - Component purpose is clear
-   - Current state is announced
-   - Instructions are provided
-   - Changes are announced
-```
+## Screen Reader Testing
 
-#### VoiceOver (macOS)
-```
-1. Enable VoiceOver (Cmd+F5)
-2. Use VO+Arrow keys to navigate
-3. Verify:
-   - Landmark navigation works
-   - Headings are properly announced
-   - Form controls have labels
-   - Lists are properly structured
-```
+### Comprehensive Screen Reader Testing
 
-#### JAWS (Windows)
-```
-1. Start JAWS screen reader
-2. Use virtual cursor mode
-3. Test:
-   - Page structure navigation
-   - Form mode functionality
-   - Quick navigation keys
-   - Application mode for widgets
-```
+#### Content Structure
+- [ ] **Headings**: Proper heading hierarchy and navigation
+- [ ] **Landmarks**: Main, navigation, and dialog landmarks
+- [ ] **Lists**: Payment options properly structured
+- [ ] **Tables**: Any tabular data properly marked up
 
-### Browser Testing
+#### Interactive Elements
+- [ ] **Buttons**: Purpose and state clearly communicated
+- [ ] **Form Controls**: Labels, instructions, and validation
+- [ ] **Links**: Descriptive link text and context
+- [ ] **Custom Controls**: ARIA implementation working correctly
 
-#### Chrome DevTools Accessibility
-```
-1. Open DevTools (F12)
-2. Go to Lighthouse tab
-3. Run Accessibility audit
-4. Check Accessibility tree in Elements panel
-5. Verify color contrast in Styles panel
-```
-
-#### Firefox Accessibility Inspector
-```
-1. Open Developer Tools (F12)
-2. Enable Accessibility tab
-3. Check accessibility tree
-4. Verify keyboard navigation
-5. Test with screen reader simulation
-```
+#### Dynamic Content
+- [ ] **Live Regions**: Plan changes announced appropriately
+- [ ] **State Changes**: Selection changes communicated
+- [ ] **Error Messages**: Errors announced when they occur
+- [ ] **Loading States**: Loading/busy states communicated
 
 ## RGAA Compliance Testing
 
-### Criteria Verification
+### Critical RGAA Criteria
 
-#### 1.1 - Images (Alternative Text)
-```typescript
-test('images have proper alternative text', () => {
-  render(<Component />)
-  
-  // Informative images should have alt text
-  const informativeImages = screen.getAllByRole('img')
-  informativeImages.forEach(img => {
-    expect(img).toHaveAttribute('alt')
-    expect(img.getAttribute('alt')).not.toBe('')
-  })
-  
-  // Decorative images should be hidden from screen readers
-  const decorativeImages = container.querySelectorAll('[aria-hidden="true"]')
-  decorativeImages.forEach(img => {
-    expect(img).toHaveAttribute('aria-hidden', 'true')
-  })
-})
+#### Criterion 7.3 - Focus Management
+- [ ] **7.3.1**: Focus visible for all interactive elements
+- [ ] **7.3.2**: Focus doesn't disappear during interactions
+- [ ] **7.3.3**: Focus order is logical and predictable
+
+#### Criterion 7.4 - Status Messages
+- [ ] **7.4.1**: Status messages announced to assistive technologies
+- [ ] **7.4.2**: Status changes communicated appropriately
+- [ ] **7.4.3**: Live regions properly implemented
+
+#### Criterion 12.8 - Tab Order
+- [ ] **12.8.1**: Tab order follows visual order
+- [ ] **12.8.2**: Tab order is logical within components
+- [ ] **12.8.3**: Tab order handles dynamic content correctly
+
+### RGAA Testing Tools
+
+#### Automated Validation
+```bash
+# Install RGAA testing tools
+npm install --save-dev @axe-core/react axe-core
+
+# Run RGAA-specific tests
+npm run test:a11y:rgaa
 ```
 
-#### 1.3 - Information and Relationships
-```typescript
-test('semantic structure is maintained', () => {
-  render(<Component />)
-  
-  // Lists should use proper markup
-  const lists = screen.getAllByRole('list')
-  lists.forEach(list => {
-    const listItems = within(list).getAllByRole('listitem')
-    expect(listItems.length).toBeGreaterThan(0)
-  })
-  
-  // Form controls should be properly labeled
-  const formControls = screen.getAllByRole('button')
-  formControls.forEach(control => {
-    expect(control).toBeAccessibleToScreenReaders()
-  })
-})
-```
-
-#### 2.1 - Keyboard Accessible
-```typescript
-test('all functionality is keyboard accessible', async () => {
-  render(<Component />)
-  
-  const interactiveElements = screen.getAllByRole('button')
-  
-  for (const element of interactiveElements) {
-    // Should be focusable
-    element.focus()
-    expect(document.activeElement).toBe(element)
-    
-    // Should respond to keyboard activation
-    fireEvent.keyDown(element, { key: 'Enter' })
-    // Verify expected behavior occurs
-  }
-})
-```
-
-#### 4.1 - Compatible (Robust)
-```typescript
-test('markup is valid and accessible', async () => {
-  const { container } = render(<Component />)
-  
-  // No duplicate IDs
-  const elementsWithIds = container.querySelectorAll('[id]')
-  const ids = Array.from(elementsWithIds).map(el => el.id)
-  const uniqueIds = [...new Set(ids)]
-  expect(ids).toEqual(uniqueIds)
-  
-  // ARIA attributes are valid
-  const results = await axe(container, {
-    rules: {
-      'aria-valid-attr': { enabled: true },
-      'aria-valid-attr-value': { enabled: true },
-    },
-  })
-  expect(results).toHaveNoViolations()
-})
-```
+#### Manual Validation Checklist
+- [ ] **Navigation**: All content accessible via keyboard
+- [ ] **Information**: No information conveyed by color alone
+- [ ] **Structure**: Proper heading and landmark structure
+- [ ] **Forms**: All form elements properly labeled
+- [ ] **Scripts**: All script functionality accessible
 
 ## Testing Tools
 
-### Development Tools
+### Automated Testing Tools
+- **jest-axe**: WCAG compliance testing in Jest
+- **@testing-library/react**: Component testing with accessibility in mind
+- **@testing-library/user-event**: Realistic user interaction simulation
+- **axe-core**: Core accessibility testing engine
 
-#### Browser Extensions
-- **axe DevTools**: Real-time accessibility scanning
-- **WAVE**: Web accessibility evaluation
-- **Lighthouse**: Automated accessibility auditing
-- **Color Contrast Analyzer**: Contrast ratio verification
-
-#### Desktop Applications
+### Manual Testing Tools
 - **NVDA**: Free Windows screen reader
-- **JAWS**: Commercial Windows screen reader
 - **VoiceOver**: Built-in macOS screen reader
-- **Colour Contrast Analyser**: Standalone contrast checking
+- **JAWS**: Professional Windows screen reader
+- **Dragon**: Voice recognition software testing
+- **Keyboard only**: No mouse testing
+- **High contrast mode**: Windows high contrast testing
+- **Zoom testing**: 200% zoom level verification
 
-### CI/CD Integration
+### Browser Extensions
+- **axe DevTools**: Browser extension for quick accessibility checks
+- **Lighthouse**: Built-in Chrome accessibility auditing
+- **WAVE**: Web accessibility evaluation tool
+- **Color Contrast Analyser**: Color contrast verification
 
-#### GitHub Actions Workflow
+## Continuous Integration
+
+### Automated Testing Pipeline
 ```yaml
 # .github/workflows/accessibility.yml
-name: Accessibility Tests
-
+name: Accessibility Testing
 on: [push, pull_request]
 
 jobs:
   accessibility:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: npm ci
-      - run: npm run test:accessibility
-      - run: npm run lint:accessibility
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run accessibility tests
+        run: npm run test:a11y
+      
+      - name: Run custom hook tests
+        run: npm test -- --testPathPattern=useAnnounceText
+      
+      - name: Build and test
+        run: npm run build
 ```
 
-#### Custom npm Scripts
+### Testing Scripts
 ```json
 {
   "scripts": {
-    "test:accessibility": "jest --testPathPattern=Accessibility",
-    "test:a11y": "npm run test:accessibility",
-    "lint:accessibility": "eslint --ext .tsx,.ts src/ --rule 'jsx-a11y/*: error'"
+    "test:a11y": "jest --testNamePattern='Accessibility'",
+    "test:hooks": "jest --testPathPattern='hooks/'",
+    "test:keyboard": "jest --testNamePattern='keyboard'",
+    "test:screen-reader": "jest --testNamePattern='screen reader'"
   }
 }
 ```
 
-### Automated Reporting
+### Quality Gates
+- [ ] **Zero accessibility violations**: All axe-core tests pass
+- [ ] **Keyboard navigation**: Manual keyboard testing completed
+- [ ] **Screen reader testing**: At least one screen reader tested
+- [ ] **RGAA compliance**: Critical criteria verified
+- [ ] **Custom hook testing**: All accessibility hooks tested
 
-#### Accessibility Dashboard
-```typescript
-// Generate accessibility report
-const generateA11yReport = async () => {
-  const components = ['Modal', 'PaymentPlans', 'SkipLinks']
-  const results = {}
-  
-  for (const component of components) {
-    const { container } = render(createElement(component))
-    const axeResults = await axe(container)
-    results[component] = {
-      violations: axeResults.violations,
-      passes: axeResults.passes.length,
-      timestamp: new Date().toISOString(),
-    }
-  }
-  
-  return results
-}
-```
+---
 
-## Continuous Integration
-
-### Pre-commit Hooks
-```javascript
-// .husky/pre-commit
-#!/bin/sh
-npx lint-staged
-
-# Run accessibility tests
-npm run test:accessibility
-```
-
-### Pull Request Checks
-```yaml
-# Required status checks
-- Accessibility Tests (jest-axe)
-- ESLint A11y Rules
-- Manual Testing Checklist
-```
-
-### Performance Monitoring
-```typescript
-// Monitor accessibility performance
-const a11yMetrics = {
-  axeRuntime: measureTime(() => axe(container)),
-  violationCount: results.violations.length,
-  passCount: results.passes.length,
-}
-```
-
-## Best Practices
-
-### Test Organization
-```
-__tests__/
-├── Accessibility.test.tsx    # Automated a11y tests
-├── Keyboard.test.tsx        # Keyboard navigation tests
-├── ScreenReader.test.tsx    # Screen reader compatibility
-└── RGAA.test.tsx           # RGAA compliance tests
-```
-
-### Test Documentation
-```typescript
-/**
- * Tests keyboard navigation for payment plan selection
- * RGAA Criteria: 2.1.1 - Keyboard accessible
- * WCAG Criteria: 2.1.1 - Keyboard (Level A)
- */
-test('payment plans are keyboard navigable', () => {
-  // Test implementation
-})
-```
-
-### Regression Prevention
-```typescript
-// Accessibility regression tests
-describe('Accessibility Regression Tests', () => {
-  test('no new violations introduced', async () => {
-    const { container } = render(<Component />)
-    const results = await axe(container)
-    
-    // Compare against baseline
-    expect(results.violations).toHaveLength(0)
-  })
-})
-```
-
-## Conclusion
-
-This comprehensive testing strategy ensures that accessibility is maintained throughout the development lifecycle. Regular automated testing catches issues early, while manual testing provides real-world validation of the user experience for people with disabilities.
-
-The combination of automated tools, manual procedures, and compliance verification creates a robust foundation for delivering accessible web experiences that meet international standards and French RGAA requirements.
+**Last Updated**: August 2025  
+**Version**: 3.1.1  
+**Testing Framework**: Jest + React Testing Library  
+**Accessibility Engine**: axe-core 4.x

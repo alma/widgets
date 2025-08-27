@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import cx from 'classnames'
 import { useIntl } from 'react-intl'
@@ -6,10 +6,15 @@ import { useIntl } from 'react-intl'
 import { ApiConfig, Card, ConfigPlan, statusResponse } from '@/types'
 import { AlmaLogo } from 'assets/almaLogo'
 import Loader from 'components/Loader'
+import { useAnnounceText } from 'hooks/useAnnounceText'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
-import { paymentPlanInfoText, paymentPlanShorthandName } from 'utils/paymentPlanStrings'
+import {
+  getPlanDescription,
+  paymentPlanInfoText,
+  paymentPlanShorthandName,
+} from 'utils/paymentPlanStrings'
 import STATIC_CUSTOMISATION_CLASSES from 'Widgets//PaymentPlans/classNames.const'
 import EligibilityModal from 'Widgets/EligibilityModal'
 import s from 'Widgets/PaymentPlans/PaymentPlans.module.css'
@@ -62,6 +67,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   const isSuggestedPaymentPlanSpecified = suggestedPaymentPlan !== undefined // 👈  The merchant decided to focus a tab
   const isTransitionSpecified = transitionDelay !== undefined // 👈  The merchant has specified a transition time
   const [isOpen, setIsOpen] = useState(false)
+  const { announceText, announce } = useAnnounceText()
   const openModal = () => setIsOpen(true)
   const closeModal = (event: React.MouseEvent | React.KeyboardEvent) => {
     setIsOpen(false)
@@ -74,12 +80,12 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   )
 
   /**
-   * If merchand specify a suggestedPaymentPlan and no transition, we set a very long transition delay.
+   * If merchant specify a suggestedPaymentPlan and no transition, we set a very long transition delay.
    * Otherwise, we set the transition delay specified by the merchant.
    * If none of those properties are specified, we set a default transition delay.
-   * @returns
+   * @returns {number} The transition time in milliseconds
    */
-  const realTransitionTime = () => {
+  const realTransitionTime = (): number => {
     if (isTransitionSpecified) {
       return transitionDelay ?? DEFAULT_TRANSITION_TIME
     }
@@ -90,6 +96,69 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   }
 
   const { current, onHover, onLeave } = useButtonAnimation(eligiblePlanKeys, realTransitionTime())
+
+  // Refs for managing focus on plan buttons
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
+
+  // Initialize button refs array
+  useEffect(() => {
+    buttonRefs.current = buttonRefs.current.slice(0, eligibilityPlans.length)
+  }, [eligibilityPlans.length])
+
+  /**
+   * Navigate to the next or previous eligible plan and focus the corresponding button
+   * @param direction - 'next' or 'prev' for navigation direction
+   * @param currentIndex - Current plan index
+   */
+  const navigateToEligiblePlan = (direction: 'next' | 'prev', currentIndex: number) => {
+    const currentEligibleIndex = eligiblePlanKeys.indexOf(currentIndex)
+
+    if (currentEligibleIndex === -1) return
+
+    let newEligibleIndex
+    if (direction === 'next') {
+      newEligibleIndex = currentEligibleIndex + 1
+      if (newEligibleIndex >= eligiblePlanKeys.length) return
+    } else {
+      newEligibleIndex = currentEligibleIndex - 1
+      if (newEligibleIndex < 0) return
+    }
+
+    const newPlanIndex = eligiblePlanKeys[newEligibleIndex]
+    onHover(newPlanIndex)
+
+    // Focus the new button
+    buttonRefs.current[newPlanIndex]?.focus()
+  }
+
+  /**
+   * Navigate to first or last eligible plan
+   * @param position - 'first' or 'last'
+   */
+  const navigateToEdgePlan = (position: 'first' | 'last') => {
+    const planIndex =
+      position === 'first' ? eligiblePlanKeys[0] : eligiblePlanKeys[eligiblePlanKeys.length - 1]
+    onHover(planIndex)
+    buttonRefs.current[planIndex]?.focus()
+  }
+
+  // Announce plan changes to screen readers
+  useEffect(() => {
+    if (eligibilityPlans[current] && status === statusResponse.SUCCESS) {
+      const currentPlan = eligibilityPlans[current]
+
+      const planDescription = getPlanDescription(currentPlan, intl)
+      const announcementText = intl.formatMessage(
+        {
+          id: 'accessibility.plan-selection-changed',
+          defaultMessage: 'Plan sélectionné : {planDescription}',
+        },
+        { planDescription },
+      )
+
+      announce(announcementText, 1000)
+    }
+  }, [current, eligibilityPlans, intl, status, announce])
 
   useEffect(() => {
     // When API has given a response AND the marchand set an active plan by default.
@@ -190,6 +259,24 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                   onBlur={onLeave}
                   onTouchEnd={onLeave}
                   onFocus={isEligible ? () => onHover(key) : undefined}
+                  onKeyDown={(e) => {
+                    if (!isEligible) return
+
+                    // Arrow navigation between eligible plans only
+                    if (e.key === 'ArrowLeft') {
+                      e.preventDefault()
+                      navigateToEligiblePlan('prev', key)
+                    } else if (e.key === 'ArrowRight') {
+                      e.preventDefault()
+                      navigateToEligiblePlan('next', key)
+                    } else if (e.key === 'Home') {
+                      e.preventDefault()
+                      navigateToEdgePlan('first')
+                    } else if (e.key === 'End') {
+                      e.preventDefault()
+                      navigateToEdgePlan('last')
+                    }
+                  }}
                   onClick={(e) => {
                     e.stopPropagation()
                     if (isEligible) {
@@ -216,17 +303,14 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                       defaultMessage: 'Option de paiement {planDescription}',
                     },
                     {
-                      planDescription:
-                        eligibilityPlan.installments_count === 1
-                          ? intl.formatMessage({
-                              id: 'payment-plan-strings.pay.now.button',
-                              defaultMessage: 'Payer maintenant',
-                            })
-                          : `${eligibilityPlan.installments_count}x`,
+                      planDescription: getPlanDescription(eligibilityPlan, intl),
                     },
                   )}
                   aria-disabled={!isEligible}
                   tabIndex={isEligible ? 0 : -1}
+                  ref={(el) => {
+                    buttonRefs.current[key] = el
+                  }} // Assign ref to button
                 >
                   {paymentPlanShorthandName(eligibilityPlan)}
                 </button>
@@ -257,6 +341,9 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           cards={cards}
         />
       )}
+      <div role="alert" aria-live="assertive" className={s.announceText}>
+        {announceText}
+      </div>
     </>
   )
 }
