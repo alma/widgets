@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl'
 import { ApiConfig, Card, ConfigPlan, statusResponse } from '@/types'
 import { AlmaLogo } from 'assets/almaLogo'
 import Loader from 'components/Loader'
+import useAnnounceText from 'hooks/useAnnounceText'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import { getIndexOfActivePlan } from 'utils/merchantOrderPreferences'
@@ -62,7 +63,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   const isSuggestedPaymentPlanSpecified = suggestedPaymentPlan !== undefined // 👈  The merchant decided to focus a tab
   const isTransitionSpecified = transitionDelay !== undefined // 👈  The merchant has specified a transition time
   const [isOpen, setIsOpen] = useState(false)
-  const [announceText, setAnnounceText] = useState('')
+  const { announceText, announce } = useAnnounceText()
   const openModal = () => setIsOpen(true)
   const closeModal = (event: React.MouseEvent | React.KeyboardEvent) => {
     setIsOpen(false)
@@ -104,21 +105,17 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
             })
           : `${currentPlan.installments_count}x`
 
-      setAnnounceText(
-        intl.formatMessage(
-          {
-            id: 'accessibility.plan-selection-changed',
-            defaultMessage: 'Plan sélectionné : {planDescription}',
-          },
-          { planDescription },
-        ),
+      const announcementText = intl.formatMessage(
+        {
+          id: 'accessibility.plan-selection-changed',
+          defaultMessage: 'Plan sélectionné : {planDescription}',
+        },
+        { planDescription },
       )
 
-      // Clear announcement after a short delay
-      const timer = setTimeout(() => setAnnounceText(''), 1000)
-      return () => clearTimeout(timer)
+      announce(announcementText, 1000)
     }
-  }, [current, eligibilityPlans, intl, status])
+  }, [current, eligibilityPlans, intl, status, announce])
 
   useEffect(() => {
     // When API has given a response AND the marchand set an active plan by default.
@@ -220,7 +217,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                   onTouchEnd={onLeave}
                   onFocus={isEligible ? () => onHover(key) : undefined}
                   onKeyDown={(e) => {
-                    // Navigation par flèches entre les plans
+                    // Arrow navigation between plans
                     if (e.key === 'ArrowLeft' && key > 0) {
                       e.preventDefault()
                       const prevEligibleIndex = eligiblePlanKeys.findIndex(
