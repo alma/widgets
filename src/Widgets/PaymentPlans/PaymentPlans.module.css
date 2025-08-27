@@ -114,7 +114,7 @@
   text-align: center;
 }
 
-/* Live region pour les annonces aux lecteurs d'écran */
+/* Live region for screen readers announces */
 .announceText {
   position: absolute;
   width: 1px;

@@ -33,5 +33,3 @@ export const useAnnounceText = () => {
     clearAnnouncement,
   }
 }
-
-export default useAnnounceText
