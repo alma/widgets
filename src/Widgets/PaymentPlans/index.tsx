@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
+import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react'
 
 import cx from 'classnames'
 import { useIntl } from 'react-intl'
@@ -37,6 +37,15 @@ type Props = {
 const VERY_LONG_TIME_IN_MS = 1000 * 3600
 const DEFAULT_TRANSITION_TIME = 5500
 
+/**
+ * PaymentPlanWidget - Main widget component that displays Alma payment plan options
+ *
+ * This component shows eligible payment plans in a compact widget format with:
+ * - Automatic plan cycling animation
+ * - Keyboard navigation between plans
+ * - Screen reader announcements for accessibility
+ * - Modal opening for detailed plan information
+ */
 const PaymentPlanWidget: FunctionComponent<Props> = ({
   apiData,
   configPlans,
@@ -52,6 +61,8 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   onModalClose,
 }) => {
   const intl = useIntl()
+
+  // Fetch eligibility data for all payment plans
   const [eligibilityPlans, status] = useFetchEligibility(
     purchaseAmount,
     apiData,
@@ -59,13 +70,25 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     customerBillingCountry,
     customerShippingCountry,
   )
-  const eligiblePlans = eligibilityPlans.filter((plan) => plan.eligible)
+
+  // Memoized array of only eligible plans to avoid unnecessary re-renders
+  const eligiblePlans = useMemo(
+    () => eligibilityPlans.filter((plan) => plan.eligible),
+    [eligibilityPlans],
+  )
+
+  // Determine which plan should be active initially based on merchant preferences
   const activePlanIndex = getIndexOfActivePlan({
     eligibilityPlans,
     suggestedPaymentPlan: suggestedPaymentPlan ?? 0,
   })
+
+  // Check if merchant has specified a suggested payment plan
   const isSuggestedPaymentPlanSpecified = suggestedPaymentPlan !== undefined // 👈  The merchant decided to focus a tab
+  // Check if merchant has specified a custom transition delay
   const isTransitionSpecified = transitionDelay !== undefined // 👈  The merchant has specified a transition time
+
+  // Modal state management
   const [isOpen, setIsOpen] = useState(false)
   const { announceText, announce } = useAnnounceText()
   const openModal = () => setIsOpen(true)
@@ -74,18 +97,24 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     onModalClose?.(event)
   }
 
-  const eligiblePlanKeys = eligibilityPlans.reduce<number[]>(
-    (acc, plan, index) => (plan.eligible ? [...acc, index] : acc),
-    [],
+  // Memoized array of eligible plan indices for keyboard navigation
+  const eligiblePlanKeys = useMemo(
+    () =>
+      eligibilityPlans.reduce<number[]>(
+        (acc, plan, index) => (plan.eligible ? [...acc, index] : acc),
+        [],
+      ),
+    [eligibilityPlans],
   )
 
   /**
+   * Calculate the appropriate transition time based on merchant configuration
    * If merchant specify a suggestedPaymentPlan and no transition, we set a very long transition delay.
    * Otherwise, we set the transition delay specified by the merchant.
    * If none of those properties are specified, we set a default transition delay.
    * @returns {number} The transition time in milliseconds
    */
-  const realTransitionTime = (): number => {
+  const realTransitionTime = useMemo((): number => {
     if (isTransitionSpecified) {
       return transitionDelay ?? DEFAULT_TRANSITION_TIME
     }
@@ -93,20 +122,55 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
       return VERY_LONG_TIME_IN_MS
     }
     return DEFAULT_TRANSITION_TIME
-  }
+  }, [isTransitionSpecified, transitionDelay, isSuggestedPaymentPlanSpecified])
 
-  const { current, onHover, onLeave } = useButtonAnimation(eligiblePlanKeys, realTransitionTime())
+  // Hook for managing plan cycling animation and user interactions
+  const { current, onHover, onLeave } = useButtonAnimation(eligiblePlanKeys, realTransitionTime)
 
-  // Refs for managing focus on plan buttons
+  // Refs for managing focus on plan buttons during keyboard navigation
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
 
-  // Initialize button refs array
+  // Initialize button refs array when eligibility plans change
   useEffect(() => {
     buttonRefs.current = buttonRefs.current.slice(0, eligibilityPlans.length)
   }, [eligibilityPlans.length])
 
+  // Announce plan changes to screen readers for accessibility
+  useEffect(() => {
+    if (eligibilityPlans[current] && status === statusResponse.SUCCESS) {
+      const currentPlan = eligibilityPlans[current]
+
+      const planDescription = getPlanDescription(currentPlan, intl)
+      const announcementText = intl.formatMessage(
+        {
+          id: 'accessibility.plan-selection-changed',
+          defaultMessage: 'Plan sélectionné : {planDescription}',
+        },
+        { planDescription },
+      )
+
+      announce(announcementText, 1000)
+    }
+    // Note: eligibilityPlans is intentionally excluded from dependencies to prevent render loops
+    // since it's recreated on every render by useFetchEligibility
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [current, intl, status, announce])
+
+  // Set initial active plan when API response is received and merchant has specified a suggestion
+  useEffect(() => {
+    // When API has given a response AND the merchant set an active plan by default.
+    if (status === statusResponse.SUCCESS && isSuggestedPaymentPlanSpecified) {
+      onHover(activePlanIndex) // We select the first active plan possible
+      onLeave() // We need to call onLeave to reset the animation
+    }
+    // We intentionally exclude 'activePlanIndex', 'isSuggestedPaymentPlanSpecified', 'onHover', and 'onLeave'
+    // because including them would cause the effect to re-run unnecessarily, leading to unwanted behavior.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status])
+
   /**
    * Navigate to the next or previous eligible plan and focus the corresponding button
+   * Used for arrow key navigation between payment plans
    * @param direction - 'next' or 'prev' for navigation direction
    * @param currentIndex - Current plan index
    */
@@ -127,12 +191,13 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     const newPlanIndex = eligiblePlanKeys[newEligibleIndex]
     onHover(newPlanIndex)
 
-    // Focus the new button
+    // Focus the new button for keyboard users
     buttonRefs.current[newPlanIndex]?.focus()
   }
 
   /**
    * Navigate to first or last eligible plan
+   * Used for Home/End key navigation
    * @param position - 'first' or 'last'
    */
   const navigateToEdgePlan = (position: 'first' | 'last') => {
@@ -142,37 +207,9 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     buttonRefs.current[planIndex]?.focus()
   }
 
-  // Announce plan changes to screen readers
-  useEffect(() => {
-    if (eligibilityPlans[current] && status === statusResponse.SUCCESS) {
-      const currentPlan = eligibilityPlans[current]
-
-      const planDescription = getPlanDescription(currentPlan, intl)
-      const announcementText = intl.formatMessage(
-        {
-          id: 'accessibility.plan-selection-changed',
-          defaultMessage: 'Plan sélectionné : {planDescription}',
-        },
-        { planDescription },
-      )
-
-      announce(announcementText, 1000)
-    }
-  }, [current, eligibilityPlans, intl, status, announce])
-
-  useEffect(() => {
-    // When API has given a response AND the marchand set an active plan by default.
-    if (status === statusResponse.SUCCESS && isSuggestedPaymentPlanSpecified) {
-      onHover(activePlanIndex) // We select the first active plan possible
-      onLeave() // We need to call onLeave to reset the animation
-    }
-    // We intentionally exclude 'activePlanIndex', 'isSuggestedPaymentPlanSpecified', 'onHover', and 'onLeave'
-    // because including them would cause the effect to re-run unnecessarily, leading to unwanted behavior.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status])
-
   /**
-   * It takes a plan index and returns the index of that plan within the eligible plans
+   * Convert a plan index to its position within the eligible plans array
+   * Used for modal initialization to show the correct plan
    *
    * @param {number} planIndex - The index of the plan that the user has selected.
    * @returns The index of the planKey in the eligiblePlanKeys array.
@@ -182,6 +219,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     return index === -1 ? 0 : index
   }
 
+  // Show loading state while fetching eligibility data
   if (status === statusResponse.PENDING) {
     return (
       <div className={cx(s.widgetButton, s.pending)}>
@@ -190,6 +228,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     )
   }
 
+  // Hide widget if no eligible plans and merchant wants to hide it, or if API failed
   if (
     (hideIfNotEligible && eligiblePlans.length === 0) ||
     eligibilityPlans.length === 0 ||
@@ -198,6 +237,10 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     return null
   }
 
+  /**
+   * Handle opening the eligibility modal
+   * Prevents default behavior and only opens if there are eligible plans
+   */
   const handleOpenModal = (
     e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
   ) => {
@@ -209,6 +252,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
 
   return (
     <>
+      {/* Main widget container - clickable to open modal */}
       <div
         onClick={handleOpenModal}
         onKeyDown={(e) => {
@@ -235,8 +279,11 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           defaultMessage: 'Ouvrir les options de paiement Alma',
         })}
       >
+        {/* Primary content container with logo and payment plans */}
         <div className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}>
           <AlmaLogo className={s.logo} color={monochrome ? 'var(--off-black)' : undefined} />
+
+          {/* Payment plans radio group for keyboard navigation */}
           <div
             className={cx(s.paymentPlans, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)}
             role="radiogroup"
@@ -253,12 +300,15 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                 <button
                   type="button"
                   key={`p${eligibilityPlan.installments_count}x-d+${eligibilityPlan.deferred_days}-m+${eligibilityPlan.deferred_months}`}
+                  // Mouse/touch interactions for plan selection
                   onMouseEnter={() => onHover(key)}
                   onTouchStart={() => onHover(key)}
                   onMouseLeave={onLeave}
                   onBlur={onLeave}
                   onTouchEnd={onLeave}
+                  // Focus handling for keyboard users
                   onFocus={isEligible ? () => onHover(key) : undefined}
+                  // Keyboard navigation between eligible plans
                   onKeyDown={(e) => {
                     if (!isEligible) return
 
@@ -277,6 +327,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                       navigateToEdgePlan('last')
                     }
                   }}
+                  // Click to select plan and open modal
                   onClick={(e) => {
                     e.stopPropagation()
                     if (isEligible) {
@@ -293,6 +344,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                     [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
                       !isEligible,
                   })}
+                  // Accessibility attributes for screen readers
                   role="radio"
                   aria-checked={isCurrent}
                   aria-describedby="payment-info-text"
@@ -310,7 +362,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                   tabIndex={isEligible ? 0 : -1}
                   ref={(el) => {
                     buttonRefs.current[key] = el
-                  }} // Assign ref to button
+                  }} // Assign ref for keyboard navigation focus management
                 >
                   {paymentPlanShorthandName(eligibilityPlan)}
                 </button>
@@ -318,6 +370,8 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
             })}
           </div>
         </div>
+
+        {/* Payment plan information text */}
         <div
           className={cx(
             s.info,
@@ -332,6 +386,8 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
         </div>
       </div>
+
+      {/* Eligibility modal for detailed plan information */}
       {isOpen && (
         <EligibilityModal
           initialPlanIndex={getIndexWithinEligiblePlans(current)}
@@ -341,6 +397,8 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           cards={cards}
         />
       )}
+
+      {/* Screen reader announcement area for accessibility */}
       <div role="alert" aria-live="assertive" className={s.announceText}>
         {announceText}
       </div>
