@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl'
 import { ApiConfig, Card, ConfigPlan, statusResponse } from '@/types'
 import { AlmaLogo } from 'assets/almaLogo'
 import Loader from 'components/Loader'
+import { useAnimationInstructions } from 'hooks/useAnimationInstructions'
 import { useAnnounceText } from 'hooks/useAnnounceText'
 import useButtonAnimation from 'hooks/useButtonAnimation'
 import useFetchEligibility from 'hooks/useFetchEligibility'
@@ -166,31 +167,12 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   }, [status])
 
   // Announce animation control instructions to screen readers on initial load
-  useEffect(() => {
-    if (
-      status === statusResponse.SUCCESS &&
-      !hasUserInteracted &&
-      eligiblePlans.length > 1 &&
-      // If transitionDelay is -1, animation is disabled, so no need to announce instructions
-      transitionDelay !== -1
-    ) {
-      const instructionText = intl.formatMessage({
-        id: 'accessibility.animation-control-instructions',
-        defaultMessage:
-          "Animation automatique des plans de paiement active. Survolez ou naviguez avec les flèches pour arrêter l'animation.",
-      })
-
-      // Delay the announcement to avoid conflict with initial plan announcements
-      const timer = setTimeout(() => {
-        announce(instructionText, 2000)
-      }, 1500)
-
-      return () => clearTimeout(timer)
-    }
-
-    // Return undefined if condition is not met (no cleanup needed)
-    return undefined
-  }, [status, hasUserInteracted, eligiblePlans.length, intl, announce, transitionDelay])
+  useAnimationInstructions({
+    status,
+    hasUserInteracted,
+    eligiblePlansCount: eligiblePlans.length,
+    transitionDelay,
+  })
 
   /**
    * Handle user hover interaction - stops animation permanently
