@@ -24,7 +24,23 @@ const mockUseFetchEligibility = require('hooks/useFetchEligibility').default as 
   typeof import('hooks/useFetchEligibility').default
 >
 
+// Mock useAnnounceText hook globally - but we'll override it for specific tests
+jest.mock('hooks/useAnnounceText', () => {
+  const actual = jest.requireActual('hooks/useAnnounceText')
+  return {
+    ...actual,
+    useAnnounceText: jest.fn(),
+  }
+})
+// eslint-disable-next-line global-require
+const mockUseAnnounceText = require('hooks/useAnnounceText').useAnnounceText as jest.MockedFunction<
+  typeof import('hooks/useAnnounceText').useAnnounceText
+>
+
 describe('PaymentPlan Accessibility Tests', () => {
+  // Mock useAnnounceText hook to test announcements
+  const mockAnnounce = jest.fn()
+  const mockClearAnnouncement = jest.fn()
   beforeEach(() => {
     jest.clearAllMocks()
     // Reset to default mock behavior
@@ -33,6 +49,13 @@ describe('PaymentPlan Accessibility Tests', () => {
     // Mock requestAnimationFrame to avoid timing issues in tests
     global.requestAnimationFrame = jest.fn((cb) => setTimeout(cb, 0))
     global.cancelAnimationFrame = jest.fn()
+
+    // Configure the global mock for this test suite
+    mockUseAnnounceText.mockReturnValue({
+      announceText: '',
+      announce: mockAnnounce,
+      clearAnnouncement: mockClearAnnouncement,
+    })
   })
 
   afterEach(() => {
@@ -142,6 +165,21 @@ describe('PaymentPlan Accessibility Tests', () => {
   // ========================
 
   describe('AnnounceText functionality', () => {
+    beforeEach(() => {
+      // For these tests, restore the real implementation
+      const realHook = jest.requireActual('hooks/useAnnounceText')
+      mockUseAnnounceText.mockImplementation(realHook.useAnnounceText)
+    })
+
+    afterEach(() => {
+      // Restore the mock for other test suites
+      mockUseAnnounceText.mockReturnValue({
+        announceText: '',
+        announce: mockAnnounce,
+        clearAnnouncement: mockClearAnnouncement,
+      })
+    })
+
     it('should have an alert region for screen reader announcements', async () => {
       mockUseFetchEligibility.mockReturnValue([
         [{ ...mockButtonPlans[0], eligible: true, installments_count: 3 }],
@@ -468,7 +506,9 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       if (paymentButtons.length > 0) {
         // Focus on an eligible plan button should trigger onHover
-        paymentButtons[0].focus()
+        await act(async () => {
+          paymentButtons[0].focus()
+        })
 
         // The onHover functionality should work without errors
         // We can verify this by checking the button is still accessible and focusable
@@ -527,8 +567,10 @@ describe('PaymentPlan Accessibility Tests', () => {
           writable: false,
         })
 
-        secondButton.focus()
-        secondButton.dispatchEvent(arrowLeftEvent)
+        await act(async () => {
+          secondButton.focus()
+          secondButton.dispatchEvent(arrowLeftEvent)
+        })
 
         expect(preventDefaultSpy).toHaveBeenCalled()
       }
@@ -560,8 +602,10 @@ describe('PaymentPlan Accessibility Tests', () => {
           writable: false,
         })
 
-        firstButton.focus()
-        firstButton.dispatchEvent(arrowRightEvent)
+        await act(async () => {
+          firstButton.focus()
+          firstButton.dispatchEvent(arrowRightEvent)
+        })
 
         expect(preventDefaultSpy).toHaveBeenCalled()
       }
@@ -593,8 +637,10 @@ describe('PaymentPlan Accessibility Tests', () => {
           writable: false,
         })
 
-        button.focus()
-        button.dispatchEvent(homeEvent)
+        await act(async () => {
+          button.focus()
+          button.dispatchEvent(homeEvent)
+        })
 
         expect(preventDefaultSpy).toHaveBeenCalled()
       }
@@ -626,8 +672,10 @@ describe('PaymentPlan Accessibility Tests', () => {
           writable: false,
         })
 
-        button.focus()
-        button.dispatchEvent(endEvent)
+        await act(async () => {
+          button.focus()
+          button.dispatchEvent(endEvent)
+        })
 
         expect(preventDefaultSpy).toHaveBeenCalled()
       }
@@ -652,7 +700,9 @@ describe('PaymentPlan Accessibility Tests', () => {
       if (paymentButtons.length > 1) {
         // Focus on second button and press ArrowLeft
         const secondButton = paymentButtons[1]
-        secondButton.focus()
+        await act(async () => {
+          secondButton.focus()
+        })
 
         // Simulate ArrowLeft - should navigate to previous eligible plan
         await act(async () => {
@@ -694,7 +744,9 @@ describe('PaymentPlan Accessibility Tests', () => {
       if (paymentButtons.length > 1) {
         // Focus on first button (1x) and press ArrowRight
         const firstButton = paymentButtons[0]
-        firstButton.focus()
+        await act(async () => {
+          firstButton.focus()
+        })
 
         // Simulate ArrowRight - should navigate to next eligible plan (3x, skipping 2x)
         await act(async () => {
@@ -724,7 +776,9 @@ describe('PaymentPlan Accessibility Tests', () => {
       if (paymentButtons.length > 1) {
         // Focus on last button and press Home
         const lastButton = paymentButtons[paymentButtons.length - 1]
-        lastButton.focus()
+        await act(async () => {
+          lastButton.focus()
+        })
 
         // Simulate Home key - should navigate to first eligible plan
         await act(async () => {
@@ -754,7 +808,9 @@ describe('PaymentPlan Accessibility Tests', () => {
       if (paymentButtons.length > 1) {
         // Focus on first button and press End
         const firstButton = paymentButtons[0]
-        firstButton.focus()
+        await act(async () => {
+          firstButton.focus()
+        })
 
         // Simulate End key - should navigate to last eligible plan
         await act(async () => {
@@ -765,6 +821,217 @@ describe('PaymentPlan Accessibility Tests', () => {
         const lastButton = paymentButtons[paymentButtons.length - 1]
         expect(lastButton).toBeInTheDocument()
       }
+    })
+  })
+
+  // ========================
+  // Animation Control Tests
+  // ========================
+
+  describe('Animation Control Tests', () => {
+    beforeEach(() => {
+      jest.clearAllMocks()
+      jest.useFakeTimers()
+    })
+
+    afterEach(() => {
+      jest.useRealTimers()
+    })
+
+    describe('Animation Stop on User Interaction', () => {
+      it('should announce animation control instructions when animation is active', async () => {
+        render(
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            transitionDelay={5000}
+          />,
+        )
+
+        await screen.findByTestId('widget-button')
+
+        // Fast-forward past the announcement delay (1500ms)
+        act(() => {
+          jest.advanceTimersByTime(2000)
+        })
+
+        // Check that animation control instructions were announced
+        expect(mockAnnounce).toHaveBeenCalledWith(
+          expect.stringContaining('Animation automatique'),
+          2000,
+        )
+      })
+
+      it('should not announce animation control instructions when animation is disabled', async () => {
+        render(
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            transitionDelay={-1}
+          />,
+        )
+
+        await screen.findByTestId('widget-button')
+
+        // Fast-forward past the announcement delay
+        act(() => {
+          jest.advanceTimersByTime(2000)
+        })
+
+        // Check that animation control instructions were NOT announced
+        expect(mockAnnounce).not.toHaveBeenCalledWith(
+          expect.stringContaining('Animation automatique'),
+          expect.any(Number),
+        )
+      })
+
+      it('should include animation control description in aria-description when animation is active', async () => {
+        render(
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            transitionDelay={5000}
+          />,
+        )
+
+        const widget = await screen.findByTestId('widget-button')
+
+        expect(widget).toHaveAttribute(
+          'aria-description',
+          expect.stringContaining('Animation automatique active'),
+        )
+      })
+
+      it('should not include animation control description when animation is disabled', async () => {
+        render(
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            transitionDelay={-1}
+          />,
+        )
+
+        const widget = await screen.findByTestId('widget-button')
+
+        expect(widget).not.toHaveAttribute('aria-description')
+      })
+
+      it('should stop animation and remove aria-description after hover interaction', async () => {
+        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime })
+
+        render(
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            transitionDelay={5000}
+          />,
+        )
+
+        const widget = await screen.findByTestId('widget-button')
+        const firstPlan = screen.getAllByRole('radio')[0]
+
+        // Initially should have aria-description
+        expect(widget).toHaveAttribute('aria-description')
+
+        // Hover over a plan (user interaction)
+        await act(async () => {
+          await user.hover(firstPlan)
+        })
+
+        // Should no longer have aria-description after interaction
+        expect(widget).not.toHaveAttribute('aria-description')
+      })
+
+      it('should stop animation after keyboard navigation', async () => {
+        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime })
+
+        render(
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+            transitionDelay={5000}
+          />,
+        )
+
+        const widget = await screen.findByTestId('widget-button')
+        const plans = screen.getAllByRole('radio')
+        const eligiblePlans = plans.filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
+
+        // Initially should have aria-description (animation active)
+        expect(widget).toHaveAttribute('aria-description')
+
+        // Focus first plan and navigate with arrow key
+        act(() => {
+          eligiblePlans[0].focus()
+        })
+        await act(async () => {
+          await user.keyboard('{ArrowRight}')
+        })
+
+        // Should remove aria-description after keyboard interaction
+        expect(widget).not.toHaveAttribute('aria-description')
+      })
+
+      it('should support arrow key navigation between eligible plans', async () => {
+        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime })
+
+        render(
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          />,
+        )
+
+        const plans = screen.getAllByRole('radio')
+        const eligiblePlans = plans.filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
+
+        // Focus first eligible plan
+        act(() => {
+          eligiblePlans[0].focus()
+        })
+
+        // Navigate to next plan with arrow key
+        await act(async () => {
+          await user.keyboard('{ArrowRight}')
+        })
+
+        // Should focus the next eligible plan
+        expect(eligiblePlans[1]).toHaveFocus()
+      })
+
+      it('should support Home/End key navigation', async () => {
+        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime })
+
+        render(
+          <PaymentPlanWidget
+            purchaseAmount={40000}
+            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+          />,
+        )
+
+        const plans = screen.getAllByRole('radio')
+        const eligiblePlans = plans.filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
+
+        // Focus middle plan
+        if (eligiblePlans.length > 1) {
+          act(() => {
+            eligiblePlans[1].focus()
+          })
+
+          // Navigate to first plan with Home key
+          await act(async () => {
+            await user.keyboard('{Home}')
+          })
+
+          expect(eligiblePlans[0]).toHaveFocus()
+
+          // Navigate to last plan with End key
+          await act(async () => {
+            await user.keyboard('{End}')
+          })
+          expect(eligiblePlans[eligiblePlans.length - 1]).toHaveFocus()
+        }
+      })
     })
   })
 })

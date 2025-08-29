@@ -97,6 +97,9 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     onModalClose?.(event)
   }
 
+  // Track if user has manually interacted with plans to stop automatic animation
+  const [hasUserInteracted, setHasUserInteracted] = useState(false)
+
   // Memoized array of eligible plan indices for keyboard navigation
   const eligiblePlanKeys = useMemo(
     () =>
@@ -168,6 +171,51 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status])
 
+  // Announce animation control instructions to screen readers on initial load
+  useEffect(() => {
+    if (
+      status === statusResponse.SUCCESS &&
+      !hasUserInteracted &&
+      eligiblePlans.length > 1 &&
+      // If transitionDelay is -1, animation is disabled, so no need to announce instructions
+      transitionDelay !== -1
+    ) {
+      const instructionText = intl.formatMessage({
+        id: 'accessibility.animation-control-instructions',
+        defaultMessage:
+          "Animation automatique des plans de paiement active. Survolez ou naviguez avec les flèches pour arrêter l'animation.",
+      })
+
+      // Delay the announcement to avoid conflict with initial plan announcements
+      const timer = setTimeout(() => {
+        announce(instructionText, 2000)
+      }, 1500)
+
+      return () => clearTimeout(timer)
+    }
+
+    // Return undefined if condition is not met (no cleanup needed)
+    return undefined
+  }, [status, hasUserInteracted, eligiblePlans.length, intl, announce, transitionDelay])
+
+  /**
+   * Handle user hover interaction - stops animation permanently
+   * @param index - Plan index to hover
+   */
+  const handleUserHover = (index: number) => {
+    setHasUserInteracted(true)
+    onHover(index)
+  }
+
+  /**
+   * Handle user leave interaction - only restart animation if user hasn't interacted manually
+   */
+  const handleUserLeave = () => {
+    if (!hasUserInteracted) {
+      onLeave()
+    }
+  }
+
   /**
    * Navigate to the next or previous eligible plan and focus the corresponding button
    * Used for arrow key navigation between payment plans
@@ -189,6 +237,8 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     }
 
     const newPlanIndex = eligiblePlanKeys[newEligibleIndex]
+    // Mark as user interaction to stop animation permanently
+    setHasUserInteracted(true)
     onHover(newPlanIndex)
 
     // Focus the new button for keyboard users
@@ -203,6 +253,8 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   const navigateToEdgePlan = (position: 'first' | 'last') => {
     const planIndex =
       position === 'first' ? eligiblePlanKeys[0] : eligiblePlanKeys[eligiblePlanKeys.length - 1]
+    // Mark as user interaction to stop animation permanently
+    setHasUserInteracted(true)
     onHover(planIndex)
     buttonRefs.current[planIndex]?.focus()
   }
@@ -278,6 +330,15 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           id: 'accessibility.payment-widget.open-button.aria-label',
           defaultMessage: 'Ouvrir les options de paiement Alma',
         })}
+        aria-description={
+          eligiblePlans.length > 1 && !hasUserInteracted && transitionDelay !== -1
+            ? intl.formatMessage({
+                id: 'accessibility.payment-widget.animation-control-description',
+                defaultMessage:
+                  "Animation automatique active. Survolez ou utilisez les flèches pour arrêter l'animation.",
+              })
+            : undefined
+        }
       >
         {/* Primary content container with logo and payment plans */}
         <div className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}>
@@ -301,13 +362,13 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                   type="button"
                   key={`p${eligibilityPlan.installments_count}x-d+${eligibilityPlan.deferred_days}-m+${eligibilityPlan.deferred_months}`}
                   // Mouse/touch interactions for plan selection
-                  onMouseEnter={() => onHover(key)}
-                  onTouchStart={() => onHover(key)}
-                  onMouseLeave={onLeave}
-                  onBlur={onLeave}
-                  onTouchEnd={onLeave}
+                  onMouseEnter={() => handleUserHover(key)}
+                  onTouchStart={() => handleUserHover(key)}
+                  onMouseLeave={handleUserLeave}
+                  onBlur={handleUserLeave}
+                  onTouchEnd={handleUserLeave}
                   // Focus handling for keyboard users
-                  onFocus={isEligible ? () => onHover(key) : undefined}
+                  onFocus={isEligible ? () => handleUserHover(key) : undefined}
                   // Keyboard navigation between eligible plans
                   onKeyDown={(e) => {
                     if (!isEligible) return

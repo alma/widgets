@@ -1,6 +1,7 @@
 {
   "accessibility.alma-logo.aria-label": "Logotipo Alma - Solución de pago multipago",
   "accessibility.amex-card.aria-label": "Se acepta la tarjeta American Express",
+  "accessibility.animation-control-instructions": "La animación automática de los planes de pago está activa. Pase el ratón por encima o desplácese con las flechas para detener la animación.",
   "accessibility.cb-card.aria-label": "Se acepta tarjeta de crédito CB",
   "accessibility.close-button.aria-label": "Cerrar ventana",
   "accessibility.mastercard.aria-label": "Se acepta Mastercard",
@@ -9,6 +10,7 @@
   "accessibility.payment-plan.option.aria-label": "Forma de pago {planDescription}",
   "accessibility.payment-plans-title": "Formas de pago disponibles",
   "accessibility.payment-schedule-title": "Calendario de pagos",
+  "accessibility.payment-widget.animation-control-description": "Animación automática activa. Pase el ratón por encima o utilice las flechas para detener la animación.",
   "accessibility.payment-widget.open-button.aria-label": "Opciones de pago Open Alma",
   "accessibility.plan-selection-changed": "Plan seleccionado: {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Navegación rápida",
