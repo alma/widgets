@@ -16,8 +16,8 @@ const useButtonAnimation = (iterateValues: number[], transitionDelay: number): P
     window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-  // Cap transition delay to 5 seconds max for WCAG compliance
-  const cappedTransitionDelay = Math.min(transitionDelay, 5000)
+  // Set minimum transition delay to 1 second, or -1 to disable animation
+  const cappedTransitionDelay = transitionDelay < 0 ? -1 : Math.max(transitionDelay, 1000)
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>
