@@ -21,6 +21,8 @@ export const AlmaLogo = ({ className, color = '#fa5022' }: Props) => {
         id: 'accessibility.alma-logo.aria-label',
         defaultMessage: 'Logo Alma - Solution de paiement en plusieurs fois',
       })}
+      focusable={false}
+      aria-hidden
       role="img"
     >
       <path

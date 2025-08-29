@@ -76,8 +76,10 @@ const EligibilityModal: FunctionComponent<Props> = ({
       ariaHideApp={false}
       scrollable
       isOpen
-      aria-labelledby="modal-title"
-      aria-describedby="modal-info-element"
+      aria={{
+        labelledby: 'modal-title',
+        describedby: 'modal-info-element',
+      }}
     >
       <SkipLinks skipLinks={skipLinks} />
       <ModalComponent
