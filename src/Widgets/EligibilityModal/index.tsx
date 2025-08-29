@@ -113,7 +113,6 @@ const EligibilityModal: FunctionComponent<Props> = ({
             <section className={s.scheduleArea} aria-labelledby="payment-schedule-title">
               <div className={s.verticalLine} />
               <Schedule id="payment-schedule" currentPlan={currentPlan} />
-              <TotalBlock currentPlan={currentPlan} />
             </section>
           </>
         )}
