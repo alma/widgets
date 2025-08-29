@@ -5,7 +5,6 @@ import { useMediaQuery } from 'react-responsive'
 
 import { Card, EligibilityPlan, statusResponse } from '@/types'
 import { desktopWidth, isP1X } from '@/utils'
-import TotalBlock from 'components/Installments/TotalBlock'
 import { LoadingIndicator } from 'components/LoadingIndicator/LoadingIndicator'
 import Modal from 'components/Modal'
 import SkipLinks from 'components/SkipLinks'
