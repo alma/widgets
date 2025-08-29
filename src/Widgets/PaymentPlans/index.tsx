@@ -34,7 +34,6 @@ type Props = {
   onModalClose?: (event: React.MouseEvent | React.KeyboardEvent) => void
 }
 
-const VERY_LONG_TIME_IN_MS = 1000 * 3600
 const DEFAULT_TRANSITION_TIME = 5500
 
 /**
@@ -85,8 +84,6 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
 
   // Check if merchant has specified a suggested payment plan
   const isSuggestedPaymentPlanSpecified = suggestedPaymentPlan !== undefined // 👈  The merchant decided to focus a tab
-  // Check if merchant has specified a custom transition delay
-  const isTransitionSpecified = transitionDelay !== undefined // 👈  The merchant has specified a transition time
 
   // Modal state management
   const [isOpen, setIsOpen] = useState(false)
@@ -112,20 +109,17 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
 
   /**
    * Calculate the appropriate transition time based on merchant configuration
-   * If merchant specify a suggestedPaymentPlan and no transition, we set a very long transition delay.
+   * If merchant specify a suggestedPaymentPlan and no transition, we disable animation.
    * Otherwise, we set the transition delay specified by the merchant.
    * If none of those properties are specified, we set a default transition delay.
    * @returns {number} The transition time in milliseconds
    */
   const realTransitionTime = useMemo((): number => {
-    if (isTransitionSpecified) {
-      return transitionDelay ?? DEFAULT_TRANSITION_TIME
+    if (isSuggestedPaymentPlanSpecified && !transitionDelay) {
+      return -1 // Disable animation
     }
-    if (isSuggestedPaymentPlanSpecified) {
-      return VERY_LONG_TIME_IN_MS
-    }
-    return DEFAULT_TRANSITION_TIME
-  }, [isTransitionSpecified, transitionDelay, isSuggestedPaymentPlanSpecified])
+    return transitionDelay ?? DEFAULT_TRANSITION_TIME
+  }, [transitionDelay, isSuggestedPaymentPlanSpecified])
 
   // Hook for managing plan cycling animation and user interactions
   const { current, onHover, onLeave } = useButtonAnimation(eligiblePlanKeys, realTransitionTime)
