@@ -7,6 +7,12 @@
   font-family: 'Venn', sans-serif;
 }
 
+.list:focus,
+.list:focus-visible {
+  outline: 1px solid var(--alma-orange);
+  outline-offset: 2px;
+}
+
 .listItem {
   display: flex;
   align-items: center;

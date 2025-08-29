@@ -1,6 +1,7 @@
 {
   "accessibility.alma-logo.aria-label": "Alma-logo - Multi-betalingoplossing",
   "accessibility.amex-card.aria-label": "American Express kaart geaccepteerd",
+  "accessibility.animation-control-instructions": "Automatische animatie van betalingsplannen is actief. Beweeg erover of navigeer met de pijltjes om de animatie te stoppen.",
   "accessibility.cb-card.aria-label": "CB creditcard geaccepteerd",
   "accessibility.close-button.aria-label": "Venster sluiten",
   "accessibility.mastercard.aria-label": "Mastercard geaccepteerd",
@@ -9,6 +10,7 @@
   "accessibility.payment-plan.option.aria-label": "Betalingsoptie {planDescription}",
   "accessibility.payment-plans-title": "Betalingsopties beschikbaar",
   "accessibility.payment-schedule-title": "Betalingsschema",
+  "accessibility.payment-widget.animation-control-description": "Automatische animatie actief. Beweeg erover of gebruik de pijltjes om de animatie te stoppen.",
   "accessibility.payment-widget.open-button.aria-label": "Alma betalingsopties openen",
   "accessibility.plan-selection-changed": "Gekozen plan: {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Snelle navigatie",

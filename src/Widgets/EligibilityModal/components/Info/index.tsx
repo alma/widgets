@@ -16,6 +16,7 @@ const Info: FC<{ isCurrentPlanP1X: boolean; id?: string }> = ({ isCurrentPlanP1X
     data-testid="modal-info-element"
     role="region"
     aria-labelledby="payment-info-title"
+    aria-describedby="payment-info-description"
     tabIndex={-1}
   >
     <h2 id="payment-info-title" className="sr-only">
@@ -24,7 +25,7 @@ const Info: FC<{ isCurrentPlanP1X: boolean; id?: string }> = ({ isCurrentPlanP1X
         defaultMessage="Comment procéder au paiement"
       />
     </h2>{' '}
-    <ol className={s.listContainer}>
+    <ol className={s.listContainer} id="payment-info-description">
       <li className={s.listItem}>
         <div className={cx(s.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)}>1</div>
         <div className={STATIC_CUSTOMISATION_CLASSES.infoMessage}>

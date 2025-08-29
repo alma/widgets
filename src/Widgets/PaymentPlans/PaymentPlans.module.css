@@ -65,8 +65,15 @@
   transform: scale(1.05);
 }
 
-.planButton:focus {
+.planButton:focus,
+.planButton:focus-visible {
   outline: 1px solid var(--alma-orange);
+  outline-offset: 2px;
+}
+
+.planButton.monochrome:focus,
+.planButton.monochrome:focus-visible {
+  outline: 1px solid var(--black);
   outline-offset: 2px;
 }
 

@@ -5,7 +5,6 @@ import { useMediaQuery } from 'react-responsive'
 
 import { Card, EligibilityPlan, statusResponse } from '@/types'
 import { desktopWidth, isP1X } from '@/utils'
-import TotalBlock from 'components/Installments/TotalBlock'
 import { LoadingIndicator } from 'components/LoadingIndicator/LoadingIndicator'
 import Modal from 'components/Modal'
 import SkipLinks from 'components/SkipLinks'
@@ -76,8 +75,10 @@ const EligibilityModal: FunctionComponent<Props> = ({
       ariaHideApp={false}
       scrollable
       isOpen
-      aria-labelledby="modal-title"
-      aria-describedby="modal-info-element"
+      aria={{
+        labelledby: 'modal-title',
+        describedby: 'modal-info-element',
+      }}
     >
       <SkipLinks skipLinks={skipLinks} />
       <ModalComponent
@@ -111,7 +112,6 @@ const EligibilityModal: FunctionComponent<Props> = ({
             <section className={s.scheduleArea} aria-labelledby="payment-schedule-title">
               <div className={s.verticalLine} />
               <Schedule id="payment-schedule" currentPlan={currentPlan} />
-              <TotalBlock currentPlan={currentPlan} />
             </section>
           </>
         )}

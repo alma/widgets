@@ -12,7 +12,9 @@ jest.mock('utils/fetch', () => ({
 }))
 jest.useFakeTimers().setSystemTime(new Date('2020-01-01').getTime())
 
-const animationDuration = 500
+// Set a custom animation duration > 1000ms to test the transition delay prop
+// The minimum transition delay in useButtonAnimation is 1000ms
+const animationDuration = 1200
 
 describe('Custom transition delay', () => {
   const setup = async () => {

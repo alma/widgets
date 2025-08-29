@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { IntlProvider } from 'react-intl'
 
 import '@testing-library/jest-dom'
@@ -67,5 +68,48 @@ describe('SkipLinks', () => {
       <SkipLinks skipLinks={mockSkipLinks} className="custom-class" />,
     )
     expect(container.firstChild).toHaveClass('custom-class')
+  })
+
+  it('should focus target element when skip link is clicked', async () => {
+    const user = userEvent.setup()
+
+    // Create a target element in the DOM
+    const targetElement = document.createElement('div')
+    targetElement.id = 'payment-schedule'
+    targetElement.tabIndex = -1
+    document.body.appendChild(targetElement)
+
+    // Mock focus method
+    const focusSpy = jest.spyOn(targetElement, 'focus')
+
+    renderWithIntl(<SkipLinks skipLinks={mockSkipLinks} />)
+
+    // Click on the payment schedule skip link
+    const skipLink = screen.getByRole('link', { name: 'Aller au calendrier de paiement' })
+    await user.click(skipLink)
+
+    // Wait for the setTimeout to execute
+    await new Promise((resolve) => {
+      setTimeout(resolve, 10)
+    })
+
+    // Verify that focus was called on the target element
+    expect(focusSpy).toHaveBeenCalled()
+
+    // Clean up
+    document.body.removeChild(targetElement)
+    focusSpy.mockRestore()
+  })
+
+  it('should handle click on skip link when target element does not exist', async () => {
+    const user = userEvent.setup()
+
+    renderWithIntl(<SkipLinks skipLinks={mockSkipLinks} />)
+
+    // Click on a skip link for a non-existent element
+    const skipLink = screen.getByRole('link', { name: 'Aller aux options de paiement' })
+
+    // This should not throw an error
+    await expect(user.click(skipLink)).resolves.not.toThrow()
   })
 })

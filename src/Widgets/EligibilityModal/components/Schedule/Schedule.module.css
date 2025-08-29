@@ -1,6 +1,15 @@
+.scheduleContainer {
+  padding: 6px;
+}
+
+.scheduleContainer:focus,
+.scheduleContainer:focus-visible {
+  outline: 1px auto var(--alma-orange);
+}
+
 .schedule {
   padding: 0 24px;
-  margin-bottom: 16px;
+  margin: 6px 0;
   font-family: 'Venn', sans-serif;
 }
 
