@@ -272,7 +272,7 @@ describe('useButtonAnimation', () => {
 
     it('should handle component unmounting during animation', () => {
       const iterateValues = [100, 200, 300]
-      const { result, unmount } = renderHook(() => useButtonAnimation(iterateValues, 1000))
+      const { unmount } = renderHook(() => useButtonAnimation(iterateValues, 1000))
 
       // Unmount component
       unmount()
