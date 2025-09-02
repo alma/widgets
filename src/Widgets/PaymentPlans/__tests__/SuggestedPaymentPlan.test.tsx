@@ -77,7 +77,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
       // but the behavior may depend on the implementation
       // Let's verify that the state remains consistent
       const activeElements = screen
-        .getAllByRole('radio')
+        .getAllByRole('option')
         .filter((el) => el.className.includes('active'))
       expect(activeElements).toHaveLength(1)
     })

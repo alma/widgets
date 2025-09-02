@@ -191,7 +191,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       const alertRegion = screen.getByRole('alert')
 
       // Hover over the 3x plan
-      const planButton3x = screen.getByRole('radio', { name: /3x/i })
+      const planButton3x = screen.getByRole('option', { name: /3x/i })
       await act(async () => {
         await userEvent.hover(planButton3x)
       })
@@ -202,7 +202,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       })
 
       // Hover over the 4x plan
-      const planButton4x = screen.getByRole('radio', { name: /4x/i })
+      const planButton4x = screen.getByRole('option', { name: /4x/i })
       await act(async () => {
         await userEvent.hover(planButton4x)
       })
@@ -232,7 +232,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       const alertRegion = screen.getByRole('alert')
 
       // Hover over the single payment plan
-      const payNowButton = screen.getByRole('radio', {
+      const payNowButton = screen.getByRole('option', {
         name: /Option de paiement Payer en différé : 1 mois/i,
       })
       await act(async () => {
@@ -265,7 +265,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       const alertRegion = screen.getByRole('alert')
 
       // Focus on the first plan and use keyboard to navigate
-      const firstPlan = screen.getByRole('radio', {
+      const firstPlan = screen.getByRole('option', {
         name: /Option de paiement Payer en différé : 1 mois/i,
       })
       act(() => {
@@ -341,7 +341,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       const alertRegion = screen.getByRole('alert')
 
       // Click on a plan
-      const planButton = screen.getByRole('radio', { name: /3x/i })
+      const planButton = screen.getByRole('option', { name: /3x/i })
       await act(async () => {
         await userEvent.click(planButton)
       })
@@ -387,7 +387,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       )
 
       const alertRegion = screen.getByRole('alert')
-      const planButton = screen.getByRole('radio', { name: /3x/i })
+      const planButton = screen.getByRole('option', { name: /3x/i })
 
       // Initially should be empty (or may contain initial announcement)
       // We'll focus on testing that announcements are triggered properly
@@ -476,10 +476,10 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 1) {
         const secondButton = paymentButtons[1]
@@ -511,10 +511,10 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 1) {
         const firstButton = paymentButtons[0]
@@ -546,10 +546,10 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 0) {
         const button = paymentButtons[0]
@@ -581,10 +581,10 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 0) {
         const button = paymentButtons[0]
@@ -616,10 +616,10 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       // Use default mock plans - should show multiple eligible plans
       if (paymentButtons.length > 1) {
@@ -661,10 +661,10 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 1) {
         // Focus on first button (1x) and press ArrowRight
@@ -693,10 +693,10 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 1) {
         // Focus on last button and press Home
@@ -725,10 +725,10 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 1) {
         // Focus on first button and press End
@@ -820,7 +820,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        const plans = screen.getAllByRole('radio')
+        const plans = screen.getAllByRole('option')
         const eligiblePlans = plans.filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
 
         // Focus first eligible plan
@@ -847,7 +847,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        const plans = screen.getAllByRole('radio')
+        const plans = screen.getAllByRole('option')
         const eligiblePlans = plans.filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
 
         // Focus middle plan

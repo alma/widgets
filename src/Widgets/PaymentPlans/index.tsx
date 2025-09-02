@@ -313,12 +313,12 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
 
           <AlmaLogo className={s.logo} color={monochrome ? 'var(--off-black)' : undefined} />
 
-          {/* Payment plans radio group for keyboard navigation */}
+          {/* Payment plans selection buttons */}
           <div
             className={cx(s.paymentPlans, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)}
-            role="radiogroup"
+            role="listbox"
             aria-label={intl.formatMessage({
-              id: 'accessibility.payment-options.radiogroup.aria-label',
+              id: 'accessibility.payment-options.listbox.aria-label',
               defaultMessage: 'Options de paiement disponibles',
             })}
           >
@@ -375,10 +375,9 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                       !isEligible,
                   })}
                   // Accessibility attributes for screen readers
-                  role="radio"
-                  aria-checked={isCurrent}
+                  role="option"
+                  aria-selected={isCurrent}
                   aria-describedby="payment-info-text"
-                  aria-current={isCurrent ? 'true' : undefined}
                   aria-label={intl.formatMessage(
                     {
                       id: 'accessibility.payment-plan.option.aria-label',

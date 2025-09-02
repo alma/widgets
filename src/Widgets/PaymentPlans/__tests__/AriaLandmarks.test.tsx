@@ -102,7 +102,7 @@ describe('PaymentPlans ARIA Landmarks (RGAA 12.6)', () => {
     expect(h3Heading).toHaveTextContent('Informations sur le plan de paiement sélectionné')
   })
 
-  it('should maintain existing radiogroup functionality with new structure', async () => {
+  it('should maintain existing listbox functionality with new structure', async () => {
     render(
       <PaymentPlanWidget
         purchaseAmount={40000}
@@ -112,13 +112,13 @@ describe('PaymentPlans ARIA Landmarks (RGAA 12.6)', () => {
 
     await screen.findByTestId('widget-container')
 
-    // Check radiogroup still exists and functions within the section
-    const radiogroup = screen.getByRole('radiogroup')
-    expect(radiogroup).toBeInTheDocument()
-    expect(radiogroup).toHaveAttribute('aria-label', 'Options de paiement disponibles')
+    // Check listBox still exists and functions within the section
+    const listBox = screen.getByRole('listbox')
+    expect(listBox).toBeInTheDocument()
+    expect(listBox).toHaveAttribute('aria-label', 'Options de paiement disponibles')
 
-    // Check radio buttons still exist within the structure
-    const radioButtons = screen.getAllByRole('radio')
-    expect(radioButtons.length).toBeGreaterThan(0)
+    // Check option buttons still exist within the structure
+    const optionButtons = screen.getAllByRole('option')
+    expect(optionButtons.length).toBeGreaterThan(0)
   })
 })
