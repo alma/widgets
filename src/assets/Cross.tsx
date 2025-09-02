@@ -1,12 +1,26 @@
 import React from 'react'
 
-function CrossIcon({
-  color = '#fff',
-  className,
-}: {
+/**
+ * Cross/Close Icon Component
+ *
+ * ACCESSIBILITY NOTE (RGAA):
+ * This icon is marked as decorative (aria-hidden="true") because it should NOT provide
+ * semantic meaning on its own. When used in close buttons, the parent button element
+ * MUST provide proper accessible text via aria-label or visible text content.
+ *
+ * Example of correct usage:
+ * <button aria-label="Close modal"><CrossIcon /></button>
+ *
+ * This differs from informational icons (like payment cards) which need their own
+ * accessible labels since they convey meaningful information to users.
+ */
+
+type Props = {
   color?: string
   className?: string
-}): JSX.Element {
+}
+
+function CrossIcon({ color = '#fff', className }: Props): React.JSX.Element {
   return (
     <svg
       className={className}

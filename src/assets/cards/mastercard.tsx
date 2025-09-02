@@ -7,8 +7,8 @@ const MasterCard: FC = () => {
 
   return (
     <svg
-      width="24px"
-      height="16px"
+      width="24"
+      height="16"
       viewBox="0 0 24 16"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
