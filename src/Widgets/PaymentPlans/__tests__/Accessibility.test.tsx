@@ -1,9 +1,9 @@
 /* eslint-disable jest/no-conditional-expect */
 /* eslint-disable testing-library/no-unnecessary-act */
 
-import React from 'react'
+import React, { act } from 'react'
 
-import { act, screen, waitFor } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { axe } from 'jest-axe'
 
@@ -71,7 +71,7 @@ describe('PaymentPlan Accessibility Tests', () => {
     )
 
     // Wait for the component to be fully rendered
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
     // Check that there are no accessibility violations,
     // temporarily excluding nested-interactive for evaluation
@@ -90,11 +90,11 @@ describe('PaymentPlan Accessibility Tests', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-
-    await screen.findByTestId('widget-button')
+    // Find the "Know more" button and click it to open the modal
+    await screen.findByTestId('widget-container')
 
     // Open the modal
-    const button = screen.getByTestId('widget-button')
+    const button = screen.getByText('En savoir plus...')
     await act(async () => {
       button.click()
     })
@@ -112,7 +112,7 @@ describe('PaymentPlan Accessibility Tests', () => {
   })
 
   // Specific test for the nested-interactive violation
-  it('should detect the nested-interactive violation as expected', async () => {
+  it('should not have nested-interactive violation', async () => {
     const { container } = render(
       <PaymentPlanWidget
         purchaseAmount={40000}
@@ -120,44 +120,20 @@ describe('PaymentPlan Accessibility Tests', () => {
       />,
     )
 
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
-    // Check that the nested-interactive violation is properly detected
+    // Check that the nested-interactive violation is properly handled
     const results = await axe(container, {
       rules: {
         'nested-interactive': { enabled: true },
       },
     })
 
-    // This test should fail until we fix the architecture
     const nestedInteractiveViolations = results.violations.filter(
       (violation) => violation.id === 'nested-interactive',
     )
-    expect(nestedInteractiveViolations).toHaveLength(1)
-  })
-
-  it('should have proper keyboard navigation', async () => {
-    const { container } = render(
-      <PaymentPlanWidget
-        purchaseAmount={40000}
-        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-      />,
-    )
-
-    await screen.findByTestId('widget-button')
-
-    // Test keyboard navigation
-    const button = screen.getByTestId('widget-button')
-    expect(button).toHaveAttribute('tabindex', '0')
-
-    // Check accessibility with focus (excluding nested-interactive)
-    button.focus()
-    const results = await axe(container, {
-      rules: {
-        'nested-interactive': { enabled: false },
-      },
-    })
-    expect(results).toHaveNoViolations()
+    // There should be no nested-interactive violations
+    expect(nestedInteractiveViolations).toHaveLength(0)
   })
 
   // ========================
@@ -437,7 +413,7 @@ describe('PaymentPlan Accessibility Tests', () => {
   })
 
   describe('keyboard navigation', () => {
-    it('should call preventDefault when Enter key is pressed on widget button', async () => {
+    it('should call preventDefault when Enter key is pressed on know more button', async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
@@ -445,9 +421,9 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const widgetButton = screen.getByTestId('widget-button')
+      const button = screen.getByText('En savoir plus...')
       const preventDefaultSpy = jest.fn()
 
       // Create a custom event with spy
@@ -457,8 +433,8 @@ describe('PaymentPlan Accessibility Tests', () => {
         writable: false,
       })
 
-      widgetButton.focus()
-      widgetButton.dispatchEvent(enterEvent)
+      button.focus()
+      button.dispatchEvent(enterEvent)
 
       expect(preventDefaultSpy).toHaveBeenCalled()
     })
@@ -471,9 +447,9 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const widgetButton = screen.getByTestId('widget-button')
+      const button = screen.getByText('En savoir plus...')
       const preventDefaultSpy = jest.fn()
 
       // Create a custom event with spy
@@ -483,8 +459,8 @@ describe('PaymentPlan Accessibility Tests', () => {
         writable: false,
       })
 
-      widgetButton.focus()
-      widgetButton.dispatchEvent(spaceEvent)
+      button.focus()
+      button.dispatchEvent(spaceEvent)
 
       expect(preventDefaultSpy).toHaveBeenCalled()
     })
@@ -497,7 +473,7 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
       const radioGroup = screen.getByRole('radiogroup')
       const paymentButtons = screen
@@ -532,7 +508,7 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
       // For ineligible plans, onFocus should be undefined
       // This is tested by ensuring the component renders without errors
@@ -549,7 +525,7 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
       const radioGroup = screen.getByRole('radiogroup')
       const paymentButtons = screen
@@ -584,7 +560,7 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
       const radioGroup = screen.getByRole('radiogroup')
       const paymentButtons = screen
@@ -619,7 +595,7 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
       const radioGroup = screen.getByRole('radiogroup')
       const paymentButtons = screen
@@ -654,7 +630,7 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
       const radioGroup = screen.getByRole('radiogroup')
       const paymentButtons = screen
@@ -689,7 +665,7 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
       const radioGroup = screen.getByRole('radiogroup')
       const paymentButtons = screen
@@ -734,7 +710,7 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
       const radioGroup = screen.getByRole('radiogroup')
       const paymentButtons = screen
@@ -766,7 +742,7 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
       const radioGroup = screen.getByRole('radiogroup')
       const paymentButtons = screen
@@ -798,7 +774,7 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
       const radioGroup = screen.getByRole('radiogroup')
       const paymentButtons = screen
@@ -848,7 +824,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        await screen.findByTestId('widget-button')
+        await screen.findByTestId('widget-container')
 
         // Fast-forward past the announcement delay (1500ms)
         act(() => {
@@ -871,7 +847,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        await screen.findByTestId('widget-button')
+        await screen.findByTestId('widget-container')
 
         // Fast-forward past the announcement delay
         act(() => {
@@ -894,7 +870,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        const widget = await screen.findByTestId('widget-button')
+        const widget = await screen.findByTestId('widget-container')
 
         expect(widget).toHaveAttribute(
           'aria-description',
@@ -911,7 +887,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        const widget = await screen.findByTestId('widget-button')
+        const widget = await screen.findByTestId('widget-container')
 
         expect(widget).not.toHaveAttribute('aria-description')
       })
@@ -927,7 +903,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        const widget = await screen.findByTestId('widget-button')
+        const widget = await screen.findByTestId('widget-container')
         const firstPlan = screen.getAllByRole('radio')[0]
 
         // Initially should have aria-description
@@ -953,7 +929,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        const widget = await screen.findByTestId('widget-button')
+        const widget = await screen.findByTestId('widget-container')
         const plans = screen.getAllByRole('radio')
         const eligiblePlans = plans.filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
 

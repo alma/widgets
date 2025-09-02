@@ -1,4 +1,4 @@
-.widgetButton {
+.widgetContainer {
   width: 368px;
   max-width: 100%;
   background-color: var(--white);
@@ -8,16 +8,6 @@
   align-items: flex-start;
   padding: 12px;
   gap: 8px;
-}
-
-.widgetButton:focus,
-.widgetButton:focus-visible {
-  outline: 1px solid var(--alma-orange);
-}
-
-.widgetButton.monochrome:focus,
-.widgetButton.monochrome:focus-visible {
-  outline: 1px solid black;
 }
 
 .logo {
@@ -114,6 +104,13 @@
   border: none;
 }
 
+.infoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .info {
   font-size: 0.75rem; /* 12px */
   line-height: 16px;
@@ -153,4 +150,29 @@
 
 .unClickable {
   cursor: not-allowed;
+}
+
+.infoIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.knowMore {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+}
+
+.knowMore:focus,
+.knowMore:focus-visible {
+  border-radius: 4px;
+  outline: 1px solid var(--alma-orange);
+}
+
+.knowMore.monochrome:focus,
+.knowMore.monochrome:focus-visible {
+  outline: 1px solid black;
 }

@@ -48,6 +48,7 @@
   "payment-plan-strings.pay-now": "Payer maintenant {totalAmount}",
   "payment-plan-strings.pay.deferred.button": "Payer en différé : {deferredTime}",
   "payment-plan-strings.pay.now.button": "Payer maintenant",
+  "payment-plans.know-more.button": "En savoir plus...",
   "skip-links.payment-info": "Allez aux informations de paiement",
   "skip-links.payment-plans": "Allez aux options de paiements",
   "skip-links.payment-schedule": "Allez au calendrier de paiements"

@@ -53,7 +53,7 @@ describe('PaymentPlan has credit', () => {
         ]}
       />,
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
   }
 
   it('displays the message corresponding to the payment plan hovered', async () => {

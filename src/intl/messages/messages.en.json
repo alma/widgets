@@ -1,5 +1,4 @@
 {
-  "accessibility.alma-logo.aria-label": "Alma logo - Multi-installment payment solution",
   "accessibility.amex-card.aria-label": "American Express card accepted",
   "accessibility.animation-control-instructions": "Automatic animation of payment plans active. Hover or navigate with the arrows to stop animation.",
   "accessibility.cb-card.aria-label": "CB credit card accepted",
@@ -10,7 +9,7 @@
   "accessibility.payment-plan.option.aria-label": "Payment option {planDescription}",
   "accessibility.payment-plans-title": "Available payment options",
   "accessibility.payment-schedule-title": "Payment schedule",
-  "accessibility.payment-widget.animation-control-description": "Animation automatique active. Survolez ou utilisez les flèches pour arrêter l'animation.",
+  "accessibility.payment-widget.animation-control-description": "Automatic animation active. Hover over or use arrows to stop animation.",
   "accessibility.payment-widget.open-button.aria-label": "Open Alma payment options",
   "accessibility.plan-selection-changed": "Selected plan: {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Quick navigation",
@@ -49,6 +48,7 @@
   "payment-plan-strings.pay-now": "Pay now {totalAmount}",
   "payment-plan-strings.pay.deferred.button": "Deferred payment: {deferredTime}",
   "payment-plan-strings.pay.now.button": "Pay now",
+  "payment-plans.know-more.button": "Find out more...",
   "skip-links.payment-info": "Go to payment information",
   "skip-links.payment-plans": "Go to payment options",
   "skip-links.payment-schedule": "Go to payment calendar"

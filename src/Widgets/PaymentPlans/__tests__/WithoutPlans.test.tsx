@@ -22,7 +22,7 @@ describe('No plans provided', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
   }
   beforeEach(async () => {
     await setUp()

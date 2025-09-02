@@ -21,8 +21,8 @@ it.each([true, false])(
         monochrome={monochrome}
       />,
     )
-    await screen.findByTestId('widget-button')
-    expect(screen.getByTestId('widget-button')).toBeInTheDocument()
+    await screen.findByTestId('widget-container')
+    expect(screen.getByTestId('widget-container')).toBeInTheDocument()
     expect(screen.getByText('M+1').className).toContain('active')
     if (monochrome) {
       // eslint-disable-next-line jest/no-conditional-expect

@@ -1,5 +1,4 @@
 {
-  "accessibility.alma-logo.aria-label": "Alma-logo - Multi-betalingoplossing",
   "accessibility.amex-card.aria-label": "American Express kaart geaccepteerd",
   "accessibility.animation-control-instructions": "Automatische animatie van betalingsplannen is actief. Beweeg erover of navigeer met de pijltjes om de animatie te stoppen.",
   "accessibility.cb-card.aria-label": "CB creditcard geaccepteerd",
@@ -49,6 +48,7 @@
   "payment-plan-strings.pay-now": "Betaal nu {totalAmount}",
   "payment-plan-strings.pay.deferred.button": "Betalen met uitgestelde betaling: {deferredTime}",
   "payment-plan-strings.pay.now.button": "Betaal nu",
+  "payment-plans.know-more.button": "Lees meer...",
   "skip-links.payment-info": "Ga naar betalingsinformatie",
   "skip-links.payment-plans": "Ga naar betalingsopties",
   "skip-links.payment-schedule": "Ga naar de betalingskalender"

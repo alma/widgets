@@ -22,14 +22,14 @@ it.each([true, false])(
         monochrome
       />,
     )
-    await screen.findByTestId('widget-button')
-    expect(screen.getByTestId('widget-button')).toBeInTheDocument()
+    await screen.findByTestId('widget-container')
+    expect(screen.getByTestId('widget-container')).toBeInTheDocument()
     if (hideBorder) {
       // eslint-disable-next-line jest/no-conditional-expect
-      expect(screen.getByTestId('widget-button').className).toContain('hideBorder')
+      expect(screen.getByTestId('widget-container').className).toContain('hideBorder')
     } else {
       // eslint-disable-next-line jest/no-conditional-expect
-      expect(screen.getByTestId('widget-button').className).not.toContain('hideBorder')
+      expect(screen.getByTestId('widget-container').className).not.toContain('hideBorder')
     }
   },
 )

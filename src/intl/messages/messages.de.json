@@ -1,5 +1,4 @@
 {
-  "accessibility.alma-logo.aria-label": "Alma-Logo - Lösung für Ratenzahlung",
   "accessibility.amex-card.aria-label": "American Express-Karte akzeptiert",
   "accessibility.animation-control-instructions": "Automatische Animation der Zahlungspläne aktiv. Bewegen Sie den Mauszeiger über oder navigieren Sie mit den Pfeiltasten, um die Animation zu stoppen.",
   "accessibility.cb-card.aria-label": "Kreditkarte CB akzeptiert",
@@ -49,6 +48,7 @@
   "payment-plan-strings.pay-now": "Zahlen Sie jetzt {totalAmount}",
   "payment-plan-strings.pay.deferred.button": "Aufgeschobenes Bezahlen: {deferredTime}",
   "payment-plan-strings.pay.now.button": "Jetzt bezahlen",
+  "payment-plans.know-more.button": "Mehr erfahren...",
   "skip-links.payment-info": "Gehen Sie zu den Zahlungsinformationen",
   "skip-links.payment-plans": "Gehen Sie zu den Zahlungsoptionen",
   "skip-links.payment-schedule": "Gehen Sie zum Zahlungskalender"

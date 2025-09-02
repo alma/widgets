@@ -1,5 +1,4 @@
 {
-  "accessibility.alma-logo.aria-label": "Logótipo Alma - Solução de pagamento multi-instalação",
   "accessibility.amex-card.aria-label": "Aceita cartão American Express",
   "accessibility.animation-control-instructions": "A animação automática dos planos de pagamento está ativa. Passe o rato por cima ou navegue com as setas para parar a animação.",
   "accessibility.cb-card.aria-label": "Aceita-se cartão de crédito CB",
@@ -49,6 +48,7 @@
   "payment-plan-strings.pay-now": "Pagar agora {totalAmount}",
   "payment-plan-strings.pay.deferred.button": "Pagamento diferido: {deferredTime}",
   "payment-plan-strings.pay.now.button": "Pagar agora",
+  "payment-plans.know-more.button": "Para saber mais...",
   "skip-links.payment-info": "Ir para as informações de pagamento",
   "skip-links.payment-plans": "Ir para as opções de pagamento",
   "skip-links.payment-schedule": "Ir para o calendário de pagamentos"

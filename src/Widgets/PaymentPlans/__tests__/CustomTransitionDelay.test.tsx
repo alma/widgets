@@ -26,7 +26,7 @@ describe('Custom transition delay', () => {
         configPlans={configPlans} // specify all plans explicitly to display P1X. P1X is only displayed if provided in configPlans.
       />,
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
   }
   beforeEach(async () => {
     await setup()

@@ -1,10 +1,11 @@
 import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react'
 
 import cx from 'classnames'
-import { useIntl } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 import { ApiConfig, Card, ConfigPlan, statusResponse } from '@/types'
 import { AlmaLogo } from 'assets/almaLogo'
+import InfoIcon from 'assets/Info'
 import Loader from 'components/Loader'
 import { useAnimationInstructions } from 'hooks/useAnimationInstructions'
 import { useAnnounceText } from 'hooks/useAnnounceText'
@@ -250,7 +251,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   // Show loading state while fetching eligibility data
   if (status === statusResponse.PENDING) {
     return (
-      <div className={cx(s.widgetButton, s.pending)}>
+      <div className={cx(s.widgetContainer, s.pending)}>
         <Loader />
       </div>
     )
@@ -270,7 +271,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
    * Prevents default behavior and only opens if there are eligible plans
    */
   const handleOpenModal = (
-    e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
+    e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>,
   ) => {
     e.preventDefault()
     if (eligiblePlans.length > 0) {
@@ -280,32 +281,17 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
 
   return (
     <>
-      {/* Main widget container - clickable to open modal */}
+      {/* Main widget container */}
       <div
-        onClick={handleOpenModal}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault()
-            handleOpenModal(e)
-          }
-        }}
         className={cx(
-          s.widgetButton,
+          s.widgetContainer,
           {
-            [s.clickable]: eligiblePlans.length > 0,
-            [s.unClickable]: eligiblePlans.length === 0,
             [s.hideBorder]: hideBorder,
             [s.monochrome]: monochrome,
           },
           STATIC_CUSTOMISATION_CLASSES.container,
         )}
-        data-testid="widget-button"
-        role="button"
-        tabIndex={0}
-        aria-label={intl.formatMessage({
-          id: 'accessibility.payment-widget.open-button.aria-label',
-          defaultMessage: 'Ouvrir les options de paiement Alma',
-        })}
+        data-testid="widget-container"
         aria-description={
           eligiblePlans.length > 1 && !hasUserInteracted && transitionDelay !== -1
             ? intl.formatMessage({
@@ -407,20 +393,54 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
             })}
           </div>
         </div>
-
-        {/* Payment plan information text */}
-        <div
-          className={cx(
-            s.info,
-            {
-              [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
-                eligibilityPlans[current] && !eligibilityPlans[current].eligible,
-            },
-            STATIC_CUSTOMISATION_CLASSES.paymentInfo,
-          )}
-          id="payment-info-text"
-        >
-          {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
+        {/* Information area */}
+        <div className={s.infoContainer}>
+          {/* Payment plan information text */}
+          <div
+            className={cx(
+              s.info,
+              {
+                [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
+                  eligibilityPlans[current] && !eligibilityPlans[current].eligible,
+              },
+              STATIC_CUSTOMISATION_CLASSES.paymentInfo,
+            )}
+            id="payment-info-text"
+          >
+            {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
+          </div>
+          {/* Know More Button */}
+          <button
+            type="button"
+            onClick={handleOpenModal}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                handleOpenModal(e)
+              }
+            }}
+            className={cx(
+              s.knowMore,
+              s.info,
+              s.clickable,
+              { [s.monochrome]: monochrome },
+              STATIC_CUSTOMISATION_CLASSES.knowMoreAction,
+            )}
+            aria-label={intl.formatMessage({
+              id: 'accessibility.payment-widget.open-button.aria-label',
+              defaultMessage: 'Ouvrir les options de paiement Alma',
+            })}
+            aria-haspopup="dialog"
+            aria-describedby="payment-info-text"
+          >
+            <InfoIcon color="#00425d" className={s.infoIcon} />
+            <span>
+              <FormattedMessage
+                id="payment-plans.know-more.button"
+                defaultMessage="En savoir plus..."
+              />
+            </span>
+          </button>
         </div>
       </div>
 
