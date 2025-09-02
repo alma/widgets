@@ -281,8 +281,13 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
 
   return (
     <>
-      {/* Main widget container */}
-      <div
+      {/* Main widget container with proper landmark structure for RGAA 12.6 */}
+      <main
+        role="main"
+        aria-label={intl.formatMessage({
+          id: 'accessibility.payment-widget.main.aria-label',
+          defaultMessage: 'Sélection des options de paiement Alma',
+        })}
         className={cx(
           s.widgetContainer,
           {
@@ -292,18 +297,20 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           STATIC_CUSTOMISATION_CLASSES.container,
         )}
         data-testid="widget-container"
-        aria-description={
-          eligiblePlans.length > 1 && !hasUserInteracted && transitionDelay !== -1
-            ? intl.formatMessage({
-                id: 'accessibility.payment-widget.animation-control-description',
-                defaultMessage:
-                  "Animation automatique active. Survolez ou utilisez les flèches pour arrêter l'animation.",
-              })
-            : undefined
-        }
       >
-        {/* Primary content container with logo and payment plans */}
-        <div className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}>
+        {/* Primary payment plan selection section */}
+        <section
+          aria-labelledby="payment-plans-title"
+          className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}
+        >
+          {/* Screen reader only title for the payment plans section */}
+          <h2 id="payment-plans-title" className="sr-only">
+            {intl.formatMessage({
+              id: 'accessibility.payment-plans.section-title',
+              defaultMessage: 'Options de paiement disponibles',
+            })}
+          </h2>
+
           <AlmaLogo className={s.logo} color={monochrome ? 'var(--off-black)' : undefined} />
 
           {/* Payment plans radio group for keyboard navigation */}
@@ -392,9 +399,18 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
               )
             })}
           </div>
-        </div>
-        {/* Information area */}
-        <div className={s.infoContainer}>
+        </section>
+
+        {/* Complementary information section */}
+        <aside aria-labelledby="payment-info-title" className={s.infoContainer}>
+          {/* Screen reader only title for the information section */}
+          <h3 id="payment-info-title" className="sr-only">
+            {intl.formatMessage({
+              id: 'accessibility.payment-info.section-title',
+              defaultMessage: 'Informations sur le plan de paiement sélectionné',
+            })}
+          </h3>
+
           {/* Payment plan information text */}
           <div
             className={cx(
@@ -409,6 +425,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           >
             {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
           </div>
+
           {/* Know More Button */}
           <button
             type="button"
@@ -441,8 +458,8 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
               />
             </span>
           </button>
-        </div>
-      </div>
+        </aside>
+      </main>
 
       {/* Eligibility modal for detailed plan information */}
       {isOpen && (
