@@ -74,12 +74,7 @@ describe('PaymentPlan Accessibility Tests', () => {
     await screen.findByTestId('widget-container')
 
     // Check that there are no accessibility violations,
-    // temporarily excluding nested-interactive for evaluation
-    const results = await axe(container, {
-      rules: {
-        'nested-interactive': { enabled: false },
-      },
-    })
+    const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
 
