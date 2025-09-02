@@ -450,7 +450,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
             aria-haspopup="dialog"
             aria-describedby="payment-info-text"
           >
-            <InfoIcon color="#00425d" className={s.infoIcon} />
+            <InfoIcon color="var(--dark-gray)" className={s.infoIcon} />
             <span>
               <FormattedMessage
                 id="payment-plans.know-more.button"
