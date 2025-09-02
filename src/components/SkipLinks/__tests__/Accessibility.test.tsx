@@ -10,7 +10,7 @@ describe('SkipLinks Accessibility Tests', () => {
     {
       href: '#main-content',
       labelId: 'skip-links.payment-info',
-      defaultMessage: 'Allez aux informations de paiement',
+      defaultMessage: 'Aller aux informations de paiement',
     },
     {
       href: '#navigation',

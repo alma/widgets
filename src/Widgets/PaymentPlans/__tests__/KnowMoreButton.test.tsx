@@ -1,8 +1,7 @@
 /* eslint-disable testing-library/no-unnecessary-act */
+import React from 'react'
 
-import React, { act } from 'react'
-
-import { screen, waitFor } from '@testing-library/react'
+import { act, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { axe } from 'jest-axe'
 
@@ -17,6 +16,19 @@ jest.mock('utils/fetch', () => ({
 }))
 
 describe('Know More Button Tests', () => {
+  beforeEach(() => {
+    // Mock requestAnimationFrame to avoid timing issues with react-modal
+    global.requestAnimationFrame = jest.fn((cb) => {
+      setTimeout(cb, 0)
+      return 0
+    })
+    global.cancelAnimationFrame = jest.fn()
+  })
+
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
   const defaultRender = async () => {
     await act(async () => {
       render(

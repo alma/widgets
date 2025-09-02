@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { screen } from '@testing-library/react'
+import { act, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import { ApiMode } from '@/consts'
@@ -77,7 +77,9 @@ describe('PaymentPlan has credit', () => {
 
     await screen.findByText('151,35 € puis 2 x 150,00 €')
 
-    jest.advanceTimersByTime(animationDuration)
+    act(() => {
+      jest.advanceTimersByTime(animationDuration)
+    })
 
     await screen.findByText('151,35 € puis 2 x 150,00 €') // Does not change
   })

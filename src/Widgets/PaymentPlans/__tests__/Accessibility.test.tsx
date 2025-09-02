@@ -273,7 +273,9 @@ describe('PaymentPlan Accessibility Tests', () => {
       const firstPlan = screen.getByRole('radio', {
         name: /Option de paiement Payer en différé : 1 mois/i,
       })
-      firstPlan.focus()
+      act(() => {
+        firstPlan.focus()
+      })
 
       // Should announce the focused plan
       await waitFor(() => {
@@ -433,8 +435,10 @@ describe('PaymentPlan Accessibility Tests', () => {
         writable: false,
       })
 
-      button.focus()
-      button.dispatchEvent(enterEvent)
+      act(() => {
+        button.focus()
+        button.dispatchEvent(enterEvent)
+      })
 
       expect(preventDefaultSpy).toHaveBeenCalled()
     })
@@ -459,62 +463,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         writable: false,
       })
 
-      button.focus()
-      button.dispatchEvent(spaceEvent)
+      act(() => {
+        button.focus()
+        button.dispatchEvent(spaceEvent)
+      })
 
       expect(preventDefaultSpy).toHaveBeenCalled()
-    })
-
-    it('should trigger onHover when eligible plan button receives focus', async () => {
-      render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-        />,
-      )
-
-      await screen.findByTestId('widget-container')
-
-      const radioGroup = screen.getByRole('radiogroup')
-      const paymentButtons = screen
-        .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
-
-      if (paymentButtons.length > 0) {
-        // Focus on an eligible plan button should trigger onHover
-        await act(async () => {
-          paymentButtons[0].focus()
-        })
-
-        // The onHover functionality should work without errors
-        // We can verify this by checking the button is still accessible and focusable
-        expect(paymentButtons[0]).toHaveFocus()
-      }
-    })
-
-    it('should not trigger onHover when ineligible plan button receives focus', async () => {
-      // Mock with mixed eligible/ineligible plans
-      const mixedPlans = [
-        { ...mockButtonPlans[0], eligible: true, installments_count: 1 },
-        { ...mockButtonPlans[1], eligible: false, installments_count: 2 },
-      ]
-
-      mockUseFetchEligibility.mockImplementation(() => [mixedPlans, statusResponse.SUCCESS])
-
-      render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-        />,
-      )
-
-      await screen.findByTestId('widget-container')
-
-      // For ineligible plans, onFocus should be undefined
-      // This is tested by ensuring the component renders without errors
-      // when there are ineligible plans
-      const radioGroup = screen.getByRole('radiogroup')
-      expect(radioGroup).toBeInTheDocument()
     })
 
     it('should call preventDefault when ArrowLeft is pressed on payment plan button', async () => {

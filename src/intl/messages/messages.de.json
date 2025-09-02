@@ -49,7 +49,7 @@
   "payment-plan-strings.pay.deferred.button": "Aufgeschobenes Bezahlen: {deferredTime}",
   "payment-plan-strings.pay.now.button": "Jetzt bezahlen",
   "payment-plans.know-more.button": "Mehr erfahren...",
-  "skip-links.payment-info": "Gehen Sie zu den Zahlungsinformationen",
-  "skip-links.payment-plans": "Gehen Sie zu den Zahlungsoptionen",
-  "skip-links.payment-schedule": "Gehen Sie zum Zahlungskalender"
+  "skip-links.payment-info": "Zu den Zahlungsinformationen gehen",
+  "skip-links.payment-plans": "Zu den Zahlungsoptionen gehen",
+  "skip-links.payment-schedule": "Zum Zahlungskalender gehen"
 }

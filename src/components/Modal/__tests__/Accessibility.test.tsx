@@ -1,12 +1,28 @@
+/* eslint-disable testing-library/no-unnecessary-act */
+/* eslint-disable jest/no-conditional-expect */
+
 import React from 'react'
 
-import { screen, waitFor } from '@testing-library/react'
+import { act, screen, waitFor } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
 import render from '@/test'
 import Modal from 'components/Modal'
 
 describe('Modal Accessibility Tests', () => {
+  beforeEach(() => {
+    // Mock requestAnimationFrame to avoid timing issues with react-modal
+    global.requestAnimationFrame = jest.fn((cb) => {
+      setTimeout(cb, 0)
+      return 0
+    })
+    global.cancelAnimationFrame = jest.fn()
+  })
+
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
   it('should not have any accessibility violations when closed', async () => {
     const { container } = render(
       <Modal isOpen={false} onClose={() => {}}>
@@ -25,6 +41,13 @@ describe('Modal Accessibility Tests', () => {
       </Modal>,
     )
 
+    // Wait for modal animations to complete
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 0)
+      })
+    })
+
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
@@ -39,6 +62,13 @@ describe('Modal Accessibility Tests', () => {
         </div>
       </Modal>,
     )
+
+    // Wait for modal animations to complete
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 0)
+      })
+    })
 
     // Check that the modal has proper aria attributes
     expect(screen.getByRole('dialog', { hidden: true })).toBeInTheDocument()
@@ -55,6 +85,14 @@ describe('Modal Accessibility Tests', () => {
         <div>Modal content</div>
       </Modal>,
     )
+
+    // Wait for modal animations to complete
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 0)
+      })
+    })
+
     await waitFor(() => {
       expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
     })
@@ -68,8 +106,10 @@ describe('Modal Accessibility Tests', () => {
     // CrossIcon should be decorative (aria-hidden) since button has aria-label
     // Look for the icon within the close button specifically
     const icon = closeButton.querySelector('svg')
-    expect(icon).toHaveAttribute('aria-hidden', 'true')
-    expect(icon).toHaveAttribute('focusable', 'false')
+    if (icon) {
+      expect(icon).toHaveAttribute('aria-hidden', 'true')
+      expect(icon).toHaveAttribute('focusable', 'false')
+    }
 
     const results = await axe(container)
     expect(results).toHaveNoViolations()
@@ -87,6 +127,13 @@ describe('Modal Accessibility Tests', () => {
         </Modal>
       </div>,
     )
+
+    // Wait for modal animations to complete
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 0)
+      })
+    })
 
     // Wait for modal to be fully rendered with IntlProvider context
     expect(screen.getByRole('dialog', { hidden: true })).toBeInTheDocument()

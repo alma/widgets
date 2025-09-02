@@ -1,41 +1,39 @@
 import React from 'react'
 
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { IntlProvider } from 'react-intl'
 
 import '@testing-library/jest-dom'
+import render from '@/test'
 import SkipLinks from 'components/SkipLinks'
 
 const mockSkipLinks = [
   {
     href: '#payment-plans',
     labelId: 'skip-links.payment-plans',
+    // As it is linked to a real existing message id, we need to provide the real default message
+    // That can be found in src/locales/fr.json
     defaultMessage: 'Aller aux options de paiement',
   },
   {
     href: '#payment-info',
     labelId: 'skip-links.payment-info',
+    // As it is linked to a real existing message id, we need to provide the real default message
+    // That can be found in src/locales/fr.json
     defaultMessage: 'Aller aux informations de paiement',
   },
   {
     href: '#payment-schedule',
     labelId: 'skip-links.payment-schedule',
+    // As it is linked to a real existing message id, we need to provide the real default message
+    // That can be found in src/locales/fr.json
     defaultMessage: 'Aller au calendrier de paiement',
   },
 ]
 
-// Wrapper to provide IntlProvider context
-const renderWithIntl = (component: React.ReactElement) =>
-  render(
-    <IntlProvider locale="fr" messages={{}}>
-      {component}
-    </IntlProvider>,
-  )
-
 describe('SkipLinks', () => {
   it('should render skip links for accessibility', () => {
-    renderWithIntl(<SkipLinks skipLinks={mockSkipLinks} />)
+    render(<SkipLinks skipLinks={mockSkipLinks} />)
 
     // Verify that navigation is present
     expect(screen.getByRole('navigation', { name: 'Navigation rapide' })).toBeInTheDocument()
@@ -64,9 +62,7 @@ describe('SkipLinks', () => {
   })
 
   it('should render with custom className', () => {
-    const { container } = renderWithIntl(
-      <SkipLinks skipLinks={mockSkipLinks} className="custom-class" />,
-    )
+    const { container } = render(<SkipLinks skipLinks={mockSkipLinks} className="custom-class" />)
     expect(container.firstChild).toHaveClass('custom-class')
   })
 
@@ -82,7 +78,7 @@ describe('SkipLinks', () => {
     // Mock focus method
     const focusSpy = jest.spyOn(targetElement, 'focus')
 
-    renderWithIntl(<SkipLinks skipLinks={mockSkipLinks} />)
+    render(<SkipLinks skipLinks={mockSkipLinks} />)
 
     // Click on the payment schedule skip link
     const skipLink = screen.getByRole('link', { name: 'Aller au calendrier de paiement' })
@@ -104,7 +100,7 @@ describe('SkipLinks', () => {
   it('should handle click on skip link when target element does not exist', async () => {
     const user = userEvent.setup()
 
-    renderWithIntl(<SkipLinks skipLinks={mockSkipLinks} />)
+    render(<SkipLinks skipLinks={mockSkipLinks} />)
 
     // Click on a skip link for a non-existent element
     const skipLink = screen.getByRole('link', { name: 'Aller aux options de paiement' })
