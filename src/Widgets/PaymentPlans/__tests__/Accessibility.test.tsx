@@ -1,9 +1,9 @@
 /* eslint-disable jest/no-conditional-expect */
 /* eslint-disable testing-library/no-unnecessary-act */
 
-import React, { act } from 'react'
+import React from 'react'
 
-import { screen, waitFor } from '@testing-library/react'
+import { act, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { axe } from 'jest-axe'
 
