@@ -180,7 +180,7 @@ module.exports = {
     'jsx-a11y/aria-role': ['error', { ignoreNonDOM: false }],
     'jsx-a11y/aria-unsupported-elements': 'error',
     'jsx-a11y/autocomplete-valid': ['error', { inputComponents: ['Input'] }],
-    'jsx-a11y/click-events-have-key-events': 'error', // Changé de 'warn' à 'error'
+    'jsx-a11y/click-events-have-key-events': 'error',
     'jsx-a11y/control-has-associated-label': [
       'error',
       {

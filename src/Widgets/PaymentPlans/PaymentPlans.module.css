@@ -40,6 +40,15 @@
   padding: 2px 10px; /* The 4px is made for Deferred plans */
 }
 
+@media screen and (prefers-reduced-motion: reduce) {
+  .planButton {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: none;
+  }
+}
+
 .planButton {
   border: none;
   background: transparent;
@@ -68,17 +77,13 @@
   opacity: 0.6;
 }
 
-.planButton:disabled {
+/* stylelint-disable-next-line a11y/no-outline-none */
+.planButton.notEligible:hover,
+.planButton.notEligible:focus {
+  transform: scale(1); /* Allow hover animation on disabled buttons for UX */
+  outline: none;  /* Remove focus outline on disabled buttons */
   cursor: not-allowed;
   opacity: 0.6;
-}
-
-.planButton:disabled:hover {
-  transform: scale(1.05); /* Allow hover animation on disabled buttons for UX */
-}
-
-.planButton:disabled:focus {
-  outline: none; /* Remove focus outline on disabled buttons */
 }
 
 .plan.active {

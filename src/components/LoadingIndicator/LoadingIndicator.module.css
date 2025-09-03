@@ -4,23 +4,34 @@
   align-items: center;
 }
 
+@media screen and (prefers-reduced-motion: reduce) {
+  .loadingIndicator > svg {
+    animation: none;
+  }
+}
+
 .loadingIndicator > svg {
   animation: bounce 1.7s ease infinite;
 }
 
 @keyframes bounce {
   60% {
- transform: scale(1); }
+    transform: scale(1);
+  }
 
   70% {
- transform: scale(0.7); }
+    transform: scale(0.7);
+  }
 
   80% {
- transform: scale(1); }
+    transform: scale(1);
+  }
 
   85% {
- transform: scale(0.95); }
+    transform: scale(0.95);
+  }
 
   100% {
- transform: scale(1); }
+    transform: scale(1);
+  }
 }

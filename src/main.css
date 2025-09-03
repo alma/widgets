@@ -1,5 +1,4 @@
 :root {
-  --white: #fff;
   --weight-normal: 400;
   --weight-medium: 500;
   --weight-semi-bold: 600;
@@ -14,31 +13,37 @@
   --soft-yellow: #fff5cc;
   --alma-green: #4bb543;
   --soft-green: #e2f3e1;
-  --alma-red: #CF2020;
+  --alma-red: #cf2020;
   --soft-red: #ffecec;
   --off-white: #f9f9f9;
-  --light-gray: #DCDCDC; /* Color recommended for better contrast based on accessibility requirements */
-  --dark-gray: #4A4A4A; /* Color recommended for better contrast based on accessibility requirements */
+  --light-gray: #dcdcdc; /* Color recommended for better contrast based on accessibility requirements */
+  --dark-gray: #4a4a4a; /* Color recommended for better contrast based on accessibility requirements */
   --off-black: #1a1a1a;
   --white: #fff;
   --black: #000;
+
+  /** Font **/
+  --font-base: 1rem; /* 16px */
 }
 
 /** Venn **/
 @font-face {
   font-family: Venn;
-  src: url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.eot') format('embedded-opentype'),
-  url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.woff') format('woff'),
-  url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.ttf') format('truetype');
+  src:
+    url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.eot') format('embedded-opentype'),
+    url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.woff') format('woff'),
+    url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: Venn;
-  src: url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.eot?#iefix') format('embedded-opentype'),
-  url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.woff') format('woff'),
-  url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.ttf') format('truetype');
+  src:
+    url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.eot?#iefix') format('embedded-opentype'),
+    url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.woff') format('woff'),
+    url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -47,9 +52,10 @@
 /** Argent **/
 @font-face {
   font-family: Argent;
-  src: url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.eot') format('embedded-opentype'),
-  url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.woff') format('woff'),
-  url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.ttf') format('truetype');
+  src:
+    url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.eot') format('embedded-opentype'),
+    url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.woff') format('woff'),
+    url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -83,7 +89,7 @@
   margin: inherit;
   overflow: visible;
   clip: auto;
-  white-space: inherit!important;
+  white-space: inherit;
 }
 
 /* Support for reduced motion preferences */

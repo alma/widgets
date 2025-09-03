@@ -10,6 +10,7 @@
   border-top-right-radius: 20px;
   padding-top: 48px;
 }
+
 .modal:focus,
 .modal:focus-visible {
   outline: 1px solid var(--alma-orange);
@@ -29,7 +30,7 @@
 
 .overlay {
   position: fixed;
-  top: 0!important; /* hack to avoid the rules replaced by broken rule inset in chrome < 69  */
+  top: 0 !important; /* hack to avoid the rules replaced by broken rule inset in chrome < 69  */
   left: 0;
   right: 0;
   bottom: 0;
