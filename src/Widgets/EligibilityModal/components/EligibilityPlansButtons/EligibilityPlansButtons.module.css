@@ -9,6 +9,25 @@
   border-bottom: 1px solid var(--light-gray);
 }
 
+@media screen and (prefers-reduced-motion: reduce) {
+  .buttons > button {
+    display: initial;
+    height: 50px;
+    min-width: 50px;
+    border: 1px solid var(--dark-gray);
+    border-radius: 16px;
+    font-family: 'Argent', sans-serif;
+    font-size: 1.25rem; /* 20px */
+    line-height: 120%;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--white);
+    transition: none;
+    color: var(--off-black);
+    padding: initial; /* To avoid CSS surcharge on this. */
+  }
+}
+
 .buttons > button {
   display: initial;
   height: 50px;

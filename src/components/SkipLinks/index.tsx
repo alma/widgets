@@ -33,7 +33,7 @@ const SkipLinks: FC<Props> = ({ skipLinks, className }) => {
   }
 
   return (
-    <div
+    <nav
       className={cx(s.skipLinks, className)}
       role="navigation"
       aria-label={intl.formatMessage({
@@ -50,7 +50,7 @@ const SkipLinks: FC<Props> = ({ skipLinks, className }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   )
 }
 

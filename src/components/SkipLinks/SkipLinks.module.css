@@ -25,7 +25,7 @@
   width: 1px;
   height: 1px;
   overflow: hidden;
-  
+
   /* Visible styles when the link receives focus */
   &:focus {
     position: static;

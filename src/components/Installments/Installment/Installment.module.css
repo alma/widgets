@@ -36,7 +36,7 @@
     font-size: var(--font-base);
   }
 
-  .dot::after {
+  .dot::after {/* stylelint-disable-line a11y/content-property-no-static-value */
     border-left: 2px solid var(--off-white);
     height: 18px;
     margin-left: 4px;
