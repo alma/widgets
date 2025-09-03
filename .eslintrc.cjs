@@ -12,7 +12,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'plugin:prettier/recommended',
-    'plugin:jsx-a11y/recommended',
+    'plugin:jsx-a11y/strict', // use strict mode for jsx-a11y to enforce better accessibility
     'plugin:import/recommended',
     'react-app',
     'react-app/jest',
@@ -114,7 +114,7 @@ module.exports = {
           '**/test/**',
           '**/__tests__/**',
           '**/setupTests.ts',
-          "test-utils"
+          'test-utils',
         ],
       },
     ],
@@ -154,24 +154,131 @@ module.exports = {
         pathGroupsExcludedImportTypes: ['builtin'],
       },
     ],
-    'jsx-a11y/label-has-for': 'off',
-    'jsx-a11y/label-has-associated-control': [
-      'warn',
-      {
-        required: {
-          some: ['nesting', 'id'],
-        },
-      },
-    ],
-    'jsx-a11y/no-static-element-interactions': 'warn',
-    'jsx-a11y/click-events-have-key-events': 'warn',
-    'sort-imports': [
+    /* Accessibility rules */
+    'jsx-a11y/alt-text': [
       'error',
       {
-        ignoreCase: true,
-        ignoreDeclarationSort: true,
+        elements: ['img', 'object', 'area', 'input[type="image"]'],
+        img: ['Image'],
+        object: ['Object'],
+        area: ['Area'],
+        'input[type="image"]': ['InputImage'],
       },
     ],
+    'jsx-a11y/anchor-has-content': ['error', { components: ['Link'] }],
+    'jsx-a11y/anchor-is-valid': [
+      'error',
+      {
+        components: ['Link'],
+        specialLink: ['hrefLeft', 'hrefRight'],
+        aspects: ['noHref', 'invalidHref', 'preferButton'],
+      },
+    ],
+    'jsx-a11y/aria-activedescendant-has-tabindex': 'error',
+    'jsx-a11y/aria-props': 'error',
+    'jsx-a11y/aria-proptypes': 'error',
+    'jsx-a11y/aria-role': ['error', { ignoreNonDOM: false }],
+    'jsx-a11y/aria-unsupported-elements': 'error',
+    'jsx-a11y/autocomplete-valid': ['error', { inputComponents: ['Input'] }],
+    'jsx-a11y/click-events-have-key-events': 'error', // Changé de 'warn' à 'error'
+    'jsx-a11y/control-has-associated-label': [
+      'error',
+      {
+        labelAttributes: ['label'],
+        controlComponents: ['CustomComponent'],
+        ignoreElements: ['audio', 'canvas', 'embed', 'input', 'textarea', 'tr', 'video'],
+        ignoreRoles: [
+          'grid',
+          'listbox',
+          'menu',
+          'menubar',
+          'radiogroup',
+          'row',
+          'tablist',
+          'toolbar',
+          'tree',
+          'treegrid',
+        ],
+        depth: 5,
+      },
+    ],
+    'jsx-a11y/heading-has-content': ['error', { components: ['MyHeading'] }],
+    'jsx-a11y/html-has-lang': 'error',
+    'jsx-a11y/iframe-has-title': 'error',
+    'jsx-a11y/img-redundant-alt': 'error',
+    'jsx-a11y/interactive-supports-focus': 'error',
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        labelComponents: ['CustomInputLabel'],
+        labelAttributes: ['label'],
+        controlComponents: ['CustomInput'],
+        assert: 'both',
+        depth: 25,
+      },
+    ],
+    'jsx-a11y/lang': 'error',
+    'jsx-a11y/media-has-caption': [
+      'error',
+      {
+        audio: ['Audio'],
+        video: ['Video'],
+        track: ['Track'],
+      },
+    ],
+    'jsx-a11y/mouse-events-have-key-events': 'error',
+    'jsx-a11y/no-access-key': 'error',
+    'jsx-a11y/no-autofocus': ['error', { ignoreNonDOM: true }],
+    'jsx-a11y/no-distracting-elements': [
+      'error',
+      {
+        elements: ['marquee', 'blink'],
+      },
+    ],
+    'jsx-a11y/no-interactive-element-to-noninteractive-role': [
+      'error',
+      {
+        tr: ['none', 'presentation'],
+      },
+    ],
+    'jsx-a11y/no-noninteractive-element-interactions': [
+      'error',
+      {
+        handlers: ['onClick', 'onMouseDown', 'onMouseUp', 'onKeyPress', 'onKeyDown', 'onKeyUp'],
+      },
+    ],
+    'jsx-a11y/no-noninteractive-element-to-interactive-role': [
+      'error',
+      {
+        ul: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
+        ol: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
+        li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
+        table: ['grid'],
+        td: ['gridcell'],
+      },
+    ],
+    'jsx-a11y/no-noninteractive-tabindex': [
+      'error',
+      {
+        tags: [],
+        roles: ['tabpanel'],
+      },
+    ],
+    'jsx-a11y/no-redundant-roles': 'error',
+    'jsx-a11y/no-static-element-interactions': [
+      'error',
+      {
+        handlers: ['onClick', 'onMouseDown', 'onMouseUp', 'onKeyPress', 'onKeyDown', 'onKeyUp'],
+      },
+    ],
+    'jsx-a11y/role-has-required-aria-props': 'error',
+    'jsx-a11y/role-supports-aria-props': 'error',
+    'jsx-a11y/scope': 'error',
+    'jsx-a11y/tabindex-no-positive': 'error',
+    /* Disabling jsx-a11y/prefer-tag-over-role as using role in the context of the widget is required */
+    'jsx-a11y/prefer-tag-over-role': 'off',
+    'react/button-has-type': 'error',
+    'react/no-invalid-html-attribute': 'error',
   },
   settings: {
     'import/parsers': {
