@@ -1,11 +1,10 @@
 import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react'
 
 import cx from 'classnames'
-import { FormattedMessage, useIntl } from 'react-intl'
+import { useIntl } from 'react-intl'
 
 import { ApiConfig, Card, ConfigPlan, statusResponse } from '@/types'
 import { AlmaLogo } from 'assets/almaLogo'
-import InfoIcon from 'assets/Info'
 import Loader from 'components/Loader'
 import { useAnimationInstructions } from 'hooks/useAnimationInstructions'
 import { useAnnounceText } from 'hooks/useAnnounceText'
@@ -311,7 +310,34 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
             })}
           </h2>
 
-          <AlmaLogo className={s.logo} color={monochrome ? 'var(--off-black)' : undefined} />
+          <button
+            type="button"
+            onClick={handleOpenModal}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                handleOpenModal(e)
+              }
+            }}
+            className={cx(
+              s.knowMore,
+              s.clickable,
+              { [s.monochrome]: monochrome },
+              STATIC_CUSTOMISATION_CLASSES.knowMoreAction,
+            )}
+            aria-label={intl.formatMessage({
+              id: 'accessibility.payment-widget.open-button.aria-label',
+              defaultMessage: 'Ouvrir les options de paiement Alma pour en savoir plus',
+            })}
+            aria-haspopup="dialog"
+            aria-describedby="payment-info-text"
+          >
+            <AlmaLogo
+              data-testid="Alma-Logo"
+              className={s.logo}
+              color={monochrome ? 'var(--off-black)' : undefined}
+            />
+          </button>
 
           {/* Payment plans selection buttons */}
           <div
@@ -424,39 +450,6 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           >
             {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
           </div>
-
-          {/* Know More Button */}
-          <button
-            type="button"
-            onClick={handleOpenModal}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault()
-                handleOpenModal(e)
-              }
-            }}
-            className={cx(
-              s.knowMore,
-              s.info,
-              s.clickable,
-              { [s.monochrome]: monochrome },
-              STATIC_CUSTOMISATION_CLASSES.knowMoreAction,
-            )}
-            aria-label={intl.formatMessage({
-              id: 'accessibility.payment-widget.open-button.aria-label',
-              defaultMessage: 'Ouvrir les options de paiement Alma',
-            })}
-            aria-haspopup="dialog"
-            aria-describedby="payment-info-text"
-          >
-            <InfoIcon color="var(--dark-gray)" className={s.infoIcon} />
-            <span>
-              <FormattedMessage
-                id="payment-plans.know-more.button"
-                defaultMessage="En savoir plus..."
-              />
-            </span>
-          </button>
         </aside>
       </main>
 

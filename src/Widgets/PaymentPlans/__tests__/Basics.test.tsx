@@ -32,7 +32,11 @@ describe('Basic PaymentPlan test', () => {
   it('opens the modal on click and close it', async () => {
     await defaultRender()
 
-    await userEvent.click(screen.getByText('En savoir plus...'))
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      }),
+    )
     expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
     await userEvent.click(screen.getByTestId('modal-close-button'))
     expect(screen.queryByTestId('modal-close-button')).not.toBeInTheDocument()

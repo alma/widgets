@@ -1,7 +1,13 @@
+/* In the widget, le Logo Alma is included into a button that is used as a "Know More" button.
+ * By clicking it, the modal will be opened with more information.
+ * It has been designed like this because the widget itself is not clickable anymore to meet the RGAA criteria
+ * So, in order to keep it instinctive for the user to interact with the widget, it has been decided to make the Logo
+ * Clickable instead. */
+
 /* eslint-disable testing-library/no-unnecessary-act */
 import React from 'react'
 
-import { act, screen, waitFor } from '@testing-library/react'
+import { act, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { axe } from 'jest-axe'
 
@@ -50,7 +56,7 @@ describe('Know More Button Tests', () => {
       await defaultRender()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       expect(knowMoreButton).toBeInTheDocument()
@@ -79,7 +85,7 @@ describe('Know More Button Tests', () => {
       await defaultRender()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       // The Info icon should be marked as decorative
@@ -96,7 +102,7 @@ describe('Know More Button Tests', () => {
       await defaultRender()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       // Focus directly on the know more button instead of using tab navigation
@@ -119,7 +125,7 @@ describe('Know More Button Tests', () => {
       await defaultRender()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       // Focus directly on the know more button
@@ -141,7 +147,7 @@ describe('Know More Button Tests', () => {
       await defaultRender()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       // Verify that the button is focusable (has tabIndex 0 or no negative tabIndex)
@@ -164,7 +170,7 @@ describe('Know More Button Tests', () => {
       expect(screen.queryByTestId('modal-container')).not.toBeInTheDocument()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       await act(async () => {
@@ -197,7 +203,7 @@ describe('Know More Button Tests', () => {
 
       // Open the modal
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       await act(async () => {
@@ -219,14 +225,14 @@ describe('Know More Button Tests', () => {
   })
 
   describe('Visual and Content', () => {
-    it('should display correct text content', async () => {
+    it('should display correct Logo content', async () => {
       await defaultRender()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
-      expect(knowMoreButton).toHaveTextContent('En savoir plus...')
+      expect(within(knowMoreButton).getByTestId('Alma-Logo')).toBeInTheDocument()
     })
 
     it('should apply monochrome styling when prop is passed', async () => {
@@ -245,7 +251,7 @@ describe('Know More Button Tests', () => {
       })
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       expect(knowMoreButton).toHaveClass('monochrome')
@@ -255,7 +261,7 @@ describe('Know More Button Tests', () => {
       await defaultRender()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       // The button should be described by the payment plan information text
@@ -270,7 +276,7 @@ describe('Know More Button Tests', () => {
       await defaultRender()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       // Simulate multiple click events with userEvent
@@ -288,7 +294,7 @@ describe('Know More Button Tests', () => {
       await defaultRender()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
 
       // Focus the button first
@@ -333,7 +339,7 @@ describe('Know More Button Tests', () => {
       await defaultRender()
 
       const knowMoreButton = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma',
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
       })
       const describedElement = document.getElementById('payment-info-text')
 

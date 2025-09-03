@@ -10,10 +10,6 @@
   gap: 8px;
 }
 
-.logo {
-  margin-right: 12px;
-}
-
 .primaryContainer {
   display: flex;
   flex-direction: row;
@@ -152,11 +148,6 @@
   cursor: not-allowed;
 }
 
-.infoIcon {
-  width: 14px;
-  height: 14px;
-}
-
 .knowMore {
   display: flex;
   gap: 6px;
@@ -164,6 +155,7 @@
   background-color: transparent;
   border: none;
   text-decoration: underline;
+  margin-right: 12px;
 }
 
 .knowMore:focus,

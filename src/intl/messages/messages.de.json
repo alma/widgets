@@ -12,7 +12,7 @@
   "accessibility.payment-plans.section-title": "Verfügbare Zahlungsoptionen",
   "accessibility.payment-schedule-title": "Ratenplan für die Zahlung",
   "accessibility.payment-widget.main.aria-label": "Auswahl der Zahlungsoptionen Alma",
-  "accessibility.payment-widget.open-button.aria-label": "Alma Zahlungsoptionen öffnen",
+  "accessibility.payment-widget.open-button.aria-label": "Ouvrir les options de paiement Alma pour en savoir plus",
   "accessibility.plan-selection-changed": "Ausgewählter Plan: {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Schnelle Navigation",
   "accessibility.visa-card.aria-label": "Visa-Karte wird akzeptiert",
@@ -50,7 +50,6 @@
   "payment-plan-strings.pay-now": "Zahlen Sie jetzt {totalAmount}",
   "payment-plan-strings.pay.deferred.button": "Aufgeschobenes Bezahlen: {deferredTime}",
   "payment-plan-strings.pay.now.button": "Jetzt bezahlen",
-  "payment-plans.know-more.button": "Mehr erfahren...",
   "skip-links.payment-info": "Zu den Zahlungsinformationen gehen",
   "skip-links.payment-plans": "Zu den Zahlungsoptionen gehen",
   "skip-links.payment-schedule": "Zum Zahlungskalender gehen"

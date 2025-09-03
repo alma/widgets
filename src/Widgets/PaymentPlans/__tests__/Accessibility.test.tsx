@@ -89,7 +89,9 @@ describe('PaymentPlan Accessibility Tests', () => {
     await screen.findByTestId('widget-container')
 
     // Open the modal
-    const button = screen.getByText('En savoir plus...')
+    const button = screen.getByRole('button', {
+      name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+    })
     await act(async () => {
       button.click()
     })
@@ -420,7 +422,9 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await screen.findByTestId('widget-container')
 
-      const button = screen.getByText('En savoir plus...')
+      const button = screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      })
       const preventDefaultSpy = jest.fn()
 
       // Create a custom event with spy
@@ -448,7 +452,9 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await screen.findByTestId('widget-container')
 
-      const button = screen.getByText('En savoir plus...')
+      const button = screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      })
       const preventDefaultSpy = jest.fn()
 
       // Create a custom event with spy

@@ -38,7 +38,11 @@ describe('Modal initializes with the correct plan', () => {
     expect(screen.getByText('151,35 € puis 2 x 150,00 €')).toBeInTheDocument()
 
     // Open Modal with Know More button
-    await userEvent.click(screen.getByText('En savoir plus...'))
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      }),
+    )
 
     await checkModalElements()
   })
@@ -71,7 +75,11 @@ describe('Modal initializes with the correct plan', () => {
     await screen.findByTestId('widget-container')
 
     // Open Modal with Know More button
-    await userEvent.click(screen.getByText('En savoir plus...'))
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      }),
+    )
 
     expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
     expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
@@ -92,7 +100,11 @@ describe('Modal initializes with the correct plan', () => {
     await screen.findByTestId('widget-container')
 
     // Open Modal with Know More button
-    await userEvent.click(screen.getByText('En savoir plus...'))
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      }),
+    )
 
     expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
 
