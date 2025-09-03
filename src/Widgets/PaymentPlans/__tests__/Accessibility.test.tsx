@@ -71,15 +71,10 @@ describe('PaymentPlan Accessibility Tests', () => {
     )
 
     // Wait for the component to be fully rendered
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
     // Check that there are no accessibility violations,
-    // temporarily excluding nested-interactive for evaluation
-    const results = await axe(container, {
-      rules: {
-        'nested-interactive': { enabled: false },
-      },
-    })
+    const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
 
@@ -90,11 +85,13 @@ describe('PaymentPlan Accessibility Tests', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-
-    await screen.findByTestId('widget-button')
+    // Find the "Know more" button and click it to open the modal
+    await screen.findByTestId('widget-container')
 
     // Open the modal
-    const button = screen.getByTestId('widget-button')
+    const button = screen.getByRole('button', {
+      name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+    })
     await act(async () => {
       button.click()
     })
@@ -112,7 +109,7 @@ describe('PaymentPlan Accessibility Tests', () => {
   })
 
   // Specific test for the nested-interactive violation
-  it('should detect the nested-interactive violation as expected', async () => {
+  it('should not have nested-interactive violation', async () => {
     const { container } = render(
       <PaymentPlanWidget
         purchaseAmount={40000}
@@ -120,44 +117,20 @@ describe('PaymentPlan Accessibility Tests', () => {
       />,
     )
 
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
-    // Check that the nested-interactive violation is properly detected
+    // Check that the nested-interactive violation is properly handled
     const results = await axe(container, {
       rules: {
         'nested-interactive': { enabled: true },
       },
     })
 
-    // This test should fail until we fix the architecture
     const nestedInteractiveViolations = results.violations.filter(
       (violation) => violation.id === 'nested-interactive',
     )
-    expect(nestedInteractiveViolations).toHaveLength(1)
-  })
-
-  it('should have proper keyboard navigation', async () => {
-    const { container } = render(
-      <PaymentPlanWidget
-        purchaseAmount={40000}
-        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-      />,
-    )
-
-    await screen.findByTestId('widget-button')
-
-    // Test keyboard navigation
-    const button = screen.getByTestId('widget-button')
-    expect(button).toHaveAttribute('tabindex', '0')
-
-    // Check accessibility with focus (excluding nested-interactive)
-    button.focus()
-    const results = await axe(container, {
-      rules: {
-        'nested-interactive': { enabled: false },
-      },
-    })
-    expect(results).toHaveNoViolations()
+    // There should be no nested-interactive violations
+    expect(nestedInteractiveViolations).toHaveLength(0)
   })
 
   // ========================
@@ -220,7 +193,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       const alertRegion = screen.getByRole('alert')
 
       // Hover over the 3x plan
-      const planButton3x = screen.getByRole('radio', { name: /3x/i })
+      const planButton3x = screen.getByRole('option', { name: /3x/i })
       await act(async () => {
         await userEvent.hover(planButton3x)
       })
@@ -231,7 +204,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       })
 
       // Hover over the 4x plan
-      const planButton4x = screen.getByRole('radio', { name: /4x/i })
+      const planButton4x = screen.getByRole('option', { name: /4x/i })
       await act(async () => {
         await userEvent.hover(planButton4x)
       })
@@ -261,7 +234,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       const alertRegion = screen.getByRole('alert')
 
       // Hover over the single payment plan
-      const payNowButton = screen.getByRole('radio', {
+      const payNowButton = screen.getByRole('option', {
         name: /Option de paiement Payer en différé : 1 mois/i,
       })
       await act(async () => {
@@ -294,10 +267,12 @@ describe('PaymentPlan Accessibility Tests', () => {
       const alertRegion = screen.getByRole('alert')
 
       // Focus on the first plan and use keyboard to navigate
-      const firstPlan = screen.getByRole('radio', {
+      const firstPlan = screen.getByRole('option', {
         name: /Option de paiement Payer en différé : 1 mois/i,
       })
-      firstPlan.focus()
+      act(() => {
+        firstPlan.focus()
+      })
 
       // Should announce the focused plan
       await waitFor(() => {
@@ -368,7 +343,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       const alertRegion = screen.getByRole('alert')
 
       // Click on a plan
-      const planButton = screen.getByRole('radio', { name: /3x/i })
+      const planButton = screen.getByRole('option', { name: /3x/i })
       await act(async () => {
         await userEvent.click(planButton)
       })
@@ -414,7 +389,7 @@ describe('PaymentPlan Accessibility Tests', () => {
       )
 
       const alertRegion = screen.getByRole('alert')
-      const planButton = screen.getByRole('radio', { name: /3x/i })
+      const planButton = screen.getByRole('option', { name: /3x/i })
 
       // Initially should be empty (or may contain initial announcement)
       // We'll focus on testing that announcements are triggered properly
@@ -437,7 +412,7 @@ describe('PaymentPlan Accessibility Tests', () => {
   })
 
   describe('keyboard navigation', () => {
-    it('should call preventDefault when Enter key is pressed on widget button', async () => {
+    it('should call preventDefault when Enter key is pressed on know more button', async () => {
       render(
         <PaymentPlanWidget
           purchaseAmount={40000}
@@ -445,9 +420,11 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const widgetButton = screen.getByTestId('widget-button')
+      const button = screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      })
       const preventDefaultSpy = jest.fn()
 
       // Create a custom event with spy
@@ -457,8 +434,10 @@ describe('PaymentPlan Accessibility Tests', () => {
         writable: false,
       })
 
-      widgetButton.focus()
-      widgetButton.dispatchEvent(enterEvent)
+      act(() => {
+        button.focus()
+        button.dispatchEvent(enterEvent)
+      })
 
       expect(preventDefaultSpy).toHaveBeenCalled()
     })
@@ -471,9 +450,11 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const widgetButton = screen.getByTestId('widget-button')
+      const button = screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      })
       const preventDefaultSpy = jest.fn()
 
       // Create a custom event with spy
@@ -483,62 +464,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         writable: false,
       })
 
-      widgetButton.focus()
-      widgetButton.dispatchEvent(spaceEvent)
+      act(() => {
+        button.focus()
+        button.dispatchEvent(spaceEvent)
+      })
 
       expect(preventDefaultSpy).toHaveBeenCalled()
-    })
-
-    it('should trigger onHover when eligible plan button receives focus', async () => {
-      render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-        />,
-      )
-
-      await screen.findByTestId('widget-button')
-
-      const radioGroup = screen.getByRole('radiogroup')
-      const paymentButtons = screen
-        .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
-
-      if (paymentButtons.length > 0) {
-        // Focus on an eligible plan button should trigger onHover
-        await act(async () => {
-          paymentButtons[0].focus()
-        })
-
-        // The onHover functionality should work without errors
-        // We can verify this by checking the button is still accessible and focusable
-        expect(paymentButtons[0]).toHaveFocus()
-      }
-    })
-
-    it('should not trigger onHover when ineligible plan button receives focus', async () => {
-      // Mock with mixed eligible/ineligible plans
-      const mixedPlans = [
-        { ...mockButtonPlans[0], eligible: true, installments_count: 1 },
-        { ...mockButtonPlans[1], eligible: false, installments_count: 2 },
-      ]
-
-      mockUseFetchEligibility.mockImplementation(() => [mixedPlans, statusResponse.SUCCESS])
-
-      render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-        />,
-      )
-
-      await screen.findByTestId('widget-button')
-
-      // For ineligible plans, onFocus should be undefined
-      // This is tested by ensuring the component renders without errors
-      // when there are ineligible plans
-      const radioGroup = screen.getByRole('radiogroup')
-      expect(radioGroup).toBeInTheDocument()
     })
 
     it('should call preventDefault when ArrowLeft is pressed on payment plan button', async () => {
@@ -549,12 +480,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 1) {
         const secondButton = paymentButtons[1]
@@ -584,12 +515,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 1) {
         const firstButton = paymentButtons[0]
@@ -619,12 +550,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 0) {
         const button = paymentButtons[0]
@@ -654,12 +585,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 0) {
         const button = paymentButtons[0]
@@ -689,12 +620,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       // Use default mock plans - should show multiple eligible plans
       if (paymentButtons.length > 1) {
@@ -734,12 +665,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 1) {
         // Focus on first button (1x) and press ArrowRight
@@ -766,12 +697,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 1) {
         // Focus on last button and press Home
@@ -798,12 +729,12 @@ describe('PaymentPlan Accessibility Tests', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
 
-      const radioGroup = screen.getByRole('radiogroup')
+      const listBox = screen.getByRole('listbox')
       const paymentButtons = screen
         .getAllByRole('button')
-        .filter((button) => radioGroup.contains(button))
+        .filter((button) => listBox.contains(button))
 
       if (paymentButtons.length > 1) {
         // Focus on first button and press End
@@ -848,7 +779,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        await screen.findByTestId('widget-button')
+        await screen.findByTestId('widget-container')
 
         // Fast-forward past the announcement delay (1500ms)
         act(() => {
@@ -871,7 +802,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        await screen.findByTestId('widget-button')
+        await screen.findByTestId('widget-container')
 
         // Fast-forward past the announcement delay
         act(() => {
@@ -885,93 +816,6 @@ describe('PaymentPlan Accessibility Tests', () => {
         )
       })
 
-      it('should include animation control description in aria-description when animation is active', async () => {
-        render(
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-            transitionDelay={5000}
-          />,
-        )
-
-        const widget = await screen.findByTestId('widget-button')
-
-        expect(widget).toHaveAttribute(
-          'aria-description',
-          expect.stringContaining('Animation automatique active'),
-        )
-      })
-
-      it('should not include animation control description when animation is disabled', async () => {
-        render(
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-            transitionDelay={-1}
-          />,
-        )
-
-        const widget = await screen.findByTestId('widget-button')
-
-        expect(widget).not.toHaveAttribute('aria-description')
-      })
-
-      it('should stop animation and remove aria-description after hover interaction', async () => {
-        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime })
-
-        render(
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-            transitionDelay={5000}
-          />,
-        )
-
-        const widget = await screen.findByTestId('widget-button')
-        const firstPlan = screen.getAllByRole('radio')[0]
-
-        // Initially should have aria-description
-        expect(widget).toHaveAttribute('aria-description')
-
-        // Hover over a plan (user interaction)
-        await act(async () => {
-          await user.hover(firstPlan)
-        })
-
-        // Should no longer have aria-description after interaction
-        expect(widget).not.toHaveAttribute('aria-description')
-      })
-
-      it('should stop animation after keyboard navigation', async () => {
-        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime })
-
-        render(
-          <PaymentPlanWidget
-            purchaseAmount={40000}
-            apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-            transitionDelay={5000}
-          />,
-        )
-
-        const widget = await screen.findByTestId('widget-button')
-        const plans = screen.getAllByRole('radio')
-        const eligiblePlans = plans.filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
-
-        // Initially should have aria-description (animation active)
-        expect(widget).toHaveAttribute('aria-description')
-
-        // Focus first plan and navigate with arrow key
-        act(() => {
-          eligiblePlans[0].focus()
-        })
-        await act(async () => {
-          await user.keyboard('{ArrowRight}')
-        })
-
-        // Should remove aria-description after keyboard interaction
-        expect(widget).not.toHaveAttribute('aria-description')
-      })
-
       it('should support arrow key navigation between eligible plans', async () => {
         const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime })
 
@@ -982,7 +826,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        const plans = screen.getAllByRole('radio')
+        const plans = screen.getAllByRole('option')
         const eligiblePlans = plans.filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
 
         // Focus first eligible plan
@@ -1009,7 +853,7 @@ describe('PaymentPlan Accessibility Tests', () => {
           />,
         )
 
-        const plans = screen.getAllByRole('radio')
+        const plans = screen.getAllByRole('option')
         const eligiblePlans = plans.filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
 
         // Focus middle plan

@@ -19,20 +19,24 @@ const defaultRender = async () => {
       apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
     />,
   )
-  await screen.findByTestId('widget-button')
+  await screen.findByTestId('widget-container')
 }
 
 describe('Basic PaymentPlan test', () => {
   it('displays the button', async () => {
     await defaultRender()
 
-    expect(screen.getByTestId('widget-button')).toBeInTheDocument()
+    expect(screen.getByTestId('widget-container')).toBeInTheDocument()
   })
 
   it('opens the modal on click and close it', async () => {
     await defaultRender()
 
-    await userEvent.click(screen.getByTestId('widget-button'))
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      }),
+    )
     expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
     await userEvent.click(screen.getByTestId('modal-close-button'))
     expect(screen.queryByTestId('modal-close-button')).not.toBeInTheDocument()
@@ -47,7 +51,7 @@ describe('Basic PaymentPlan test', () => {
         />,
       )
 
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
       expect(screen.queryByText(/Payer maintenant 450,00 €/)).not.toBeInTheDocument()
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
     })
@@ -67,7 +71,7 @@ describe('Basic PaymentPlan test', () => {
           ]}
         />,
       )
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
       expect(screen.queryByText(/2 x 225,00 €/)).not.toBeInTheDocument()
       expect(screen.getByText(/Payer maintenant 450,00 €/)).toBeInTheDocument()
     })

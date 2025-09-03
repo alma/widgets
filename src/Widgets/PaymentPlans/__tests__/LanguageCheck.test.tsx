@@ -24,7 +24,7 @@ describe('Change language', () => {
         locale: Locale.en,
       },
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/to pay the/)).toBeInTheDocument()
@@ -42,7 +42,7 @@ describe('Change language', () => {
         locale: Locale.de,
       },
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/zu zahlen am/)).toBeInTheDocument()
@@ -60,7 +60,7 @@ describe('Change language', () => {
         locale: Locale.es,
       },
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/a pagar el/)).toBeInTheDocument()
@@ -78,7 +78,7 @@ describe('Change language', () => {
         locale: Locale.it,
       },
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/da pagare il/)).toBeInTheDocument()
@@ -96,7 +96,7 @@ describe('Change language', () => {
         locale: Locale['it-IT'],
       },
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/da pagare il/)).toBeInTheDocument()
@@ -114,7 +114,7 @@ describe('Change language', () => {
         locale: Locale.nl,
       },
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/te betalen op/)).toBeInTheDocument()
@@ -132,7 +132,7 @@ describe('Change language', () => {
         locale: Locale.pt,
       },
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/a pagar em/)).toBeInTheDocument()

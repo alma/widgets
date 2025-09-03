@@ -1,6 +1,6 @@
-import React, { act } from 'react'
+import React from 'react'
 
-import { screen } from '@testing-library/react'
+import { act, screen } from '@testing-library/react'
 
 import { ApiMode } from '@/consts'
 import render from '@/test'
@@ -22,7 +22,7 @@ describe('No plans provided', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
   }
   beforeEach(async () => {
     await setUp()

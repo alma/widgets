@@ -1,4 +1,4 @@
-.widgetButton {
+.widgetContainer {
   width: 368px;
   max-width: 100%;
   background-color: var(--white);
@@ -8,20 +8,6 @@
   align-items: flex-start;
   padding: 12px;
   gap: 8px;
-}
-
-.widgetButton:focus,
-.widgetButton:focus-visible {
-  outline: 1px solid var(--alma-orange);
-}
-
-.widgetButton.monochrome:focus,
-.widgetButton.monochrome:focus-visible {
-  outline: 1px solid black;
-}
-
-.logo {
-  margin-right: 12px;
 }
 
 .primaryContainer {
@@ -114,6 +100,13 @@
   border: none;
 }
 
+.infoContainer {
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  align-items: start;
+}
+
 .info {
   font-size: 0.75rem; /* 12px */
   line-height: 16px;
@@ -153,4 +146,25 @@
 
 .unClickable {
   cursor: not-allowed;
+}
+
+.knowMore {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  margin-right: 12px;
+}
+
+.knowMore:focus,
+.knowMore:focus-visible {
+  border-radius: 4px;
+  outline: 1px solid var(--alma-orange);
+}
+
+.knowMore.monochrome:focus,
+.knowMore.monochrome:focus-visible {
+  outline: 1px solid black;
 }

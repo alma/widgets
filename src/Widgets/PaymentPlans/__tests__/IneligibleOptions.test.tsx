@@ -45,7 +45,7 @@ describe('PaymentPlan has ineligible options from configPlans', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
   }
   beforeAll(() => {
     jest.useFakeTimers().setSystemTime(new Date('2020-01-01').getTime())
@@ -105,7 +105,7 @@ describe('PaymentPlan has ineligible options from merchant config', () => {
         apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
       />,
     )
-    await screen.findByTestId('widget-button')
+    await screen.findByTestId('widget-container')
   }
   beforeEach(async () => {
     await setup()

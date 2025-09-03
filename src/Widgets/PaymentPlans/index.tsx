@@ -250,7 +250,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   // Show loading state while fetching eligibility data
   if (status === statusResponse.PENDING) {
     return (
-      <div className={cx(s.widgetButton, s.pending)}>
+      <div className={cx(s.widgetContainer, s.pending)}>
         <Loader />
       </div>
     )
@@ -270,7 +270,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
    * Prevents default behavior and only opens if there are eligible plans
    */
   const handleOpenModal = (
-    e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
+    e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>,
   ) => {
     e.preventDefault()
     if (eligiblePlans.length > 0) {
@@ -280,52 +280,71 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
 
   return (
     <>
-      {/* Main widget container - clickable to open modal */}
-      <div
-        onClick={handleOpenModal}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault()
-            handleOpenModal(e)
-          }
-        }}
+      {/* Main widget container with proper landmark structure for RGAA 12.6 */}
+      <main
+        role="main"
+        aria-label={intl.formatMessage({
+          id: 'accessibility.payment-widget.main.aria-label',
+          defaultMessage: 'Sélection des options de paiement Alma',
+        })}
         className={cx(
-          s.widgetButton,
+          s.widgetContainer,
           {
-            [s.clickable]: eligiblePlans.length > 0,
-            [s.unClickable]: eligiblePlans.length === 0,
             [s.hideBorder]: hideBorder,
             [s.monochrome]: monochrome,
           },
           STATIC_CUSTOMISATION_CLASSES.container,
         )}
-        data-testid="widget-button"
-        role="button"
-        tabIndex={0}
-        aria-label={intl.formatMessage({
-          id: 'accessibility.payment-widget.open-button.aria-label',
-          defaultMessage: 'Ouvrir les options de paiement Alma',
-        })}
-        aria-description={
-          eligiblePlans.length > 1 && !hasUserInteracted && transitionDelay !== -1
-            ? intl.formatMessage({
-                id: 'accessibility.payment-widget.animation-control-description',
-                defaultMessage:
-                  "Animation automatique active. Survolez ou utilisez les flèches pour arrêter l'animation.",
-              })
-            : undefined
-        }
+        data-testid="widget-container"
       >
-        {/* Primary content container with logo and payment plans */}
-        <div className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}>
-          <AlmaLogo className={s.logo} color={monochrome ? 'var(--off-black)' : undefined} />
+        {/* Primary payment plan selection section */}
+        <section
+          aria-labelledby="payment-plans-title"
+          className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}
+        >
+          {/* Screen reader only title for the payment plans section */}
+          <h2 id="payment-plans-title" className="sr-only">
+            {intl.formatMessage({
+              id: 'accessibility.payment-plans.section-title',
+              defaultMessage: 'Options de paiement disponibles',
+            })}
+          </h2>
 
-          {/* Payment plans radio group for keyboard navigation */}
+          <button
+            type="button"
+            onClick={handleOpenModal}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                handleOpenModal(e)
+              }
+            }}
+            className={cx(
+              s.knowMore,
+              s.clickable,
+              { [s.monochrome]: monochrome },
+              STATIC_CUSTOMISATION_CLASSES.knowMoreAction,
+            )}
+            aria-label={intl.formatMessage({
+              id: 'accessibility.payment-widget.open-button.aria-label',
+              defaultMessage: 'Ouvrir les options de paiement Alma pour en savoir plus',
+            })}
+            aria-haspopup="dialog"
+            aria-describedby="payment-info-text"
+          >
+            <AlmaLogo
+              data-testid="Alma-Logo"
+              className={s.logo}
+              color={monochrome ? 'var(--off-black)' : undefined}
+            />
+          </button>
+
+          {/* Payment plans selection buttons */}
           <div
             className={cx(s.paymentPlans, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)}
-            role="radiogroup"
+            role="listbox"
             aria-label={intl.formatMessage({
-              id: 'accessibility.payment-options.radiogroup.aria-label',
+              id: 'accessibility.payment-options.listbox.aria-label',
               defaultMessage: 'Options de paiement disponibles',
             })}
           >
@@ -382,10 +401,9 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                       !isEligible,
                   })}
                   // Accessibility attributes for screen readers
-                  role="radio"
-                  aria-checked={isCurrent}
+                  role="option"
+                  aria-selected={isCurrent}
                   aria-describedby="payment-info-text"
-                  aria-current={isCurrent ? 'true' : undefined}
                   aria-label={intl.formatMessage(
                     {
                       id: 'accessibility.payment-plan.option.aria-label',
@@ -406,23 +424,34 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
               )
             })}
           </div>
-        </div>
+        </section>
 
-        {/* Payment plan information text */}
-        <div
-          className={cx(
-            s.info,
-            {
-              [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
-                eligibilityPlans[current] && !eligibilityPlans[current].eligible,
-            },
-            STATIC_CUSTOMISATION_CLASSES.paymentInfo,
-          )}
-          id="payment-info-text"
-        >
-          {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
-        </div>
-      </div>
+        {/* Complementary information section */}
+        <aside aria-labelledby="payment-info-title" className={s.infoContainer}>
+          {/* Screen reader only title for the information section */}
+          <h3 id="payment-info-title" className="sr-only">
+            {intl.formatMessage({
+              id: 'accessibility.payment-info.section-title',
+              defaultMessage: 'Informations sur le plan de paiement sélectionné',
+            })}
+          </h3>
+
+          {/* Payment plan information text */}
+          <div
+            className={cx(
+              s.info,
+              {
+                [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
+                  eligibilityPlans[current] && !eligibilityPlans[current].eligible,
+              },
+              STATIC_CUSTOMISATION_CLASSES.paymentInfo,
+            )}
+            id="payment-info-text"
+          >
+            {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
+          </div>
+        </aside>
+      </main>
 
       {/* Eligibility modal for detailed plan information */}
       {isOpen && (

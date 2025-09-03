@@ -1,17 +1,18 @@
 {
-  "accessibility.alma-logo.aria-label": "Logo Alma - Solution de paiement en plusieurs fois",
   "accessibility.amex-card.aria-label": "Carte American Express acceptée",
   "accessibility.animation-control-instructions": "Animation automatique des plans de paiement active. Survolez ou naviguez avec les flèches pour arrêter l'animation.",
   "accessibility.cb-card.aria-label": "Carte Bancaire CB acceptée",
   "accessibility.close-button.aria-label": "Fermer la fenêtre",
   "accessibility.mastercard.aria-label": "Carte Mastercard acceptée",
-  "accessibility.payment-options.radiogroup.aria-label": "Options de paiement disponibles",
+  "accessibility.payment-info.section-title": "Informations sur le plan de paiement sélectionné",
+  "accessibility.payment-options.listbox.aria-label": "Options de paiement disponibles",
   "accessibility.payment-plan-button.aria-label": "Sélectionner le plan de paiement {planName}",
   "accessibility.payment-plan.option.aria-label": "Option de paiement {planDescription}",
   "accessibility.payment-plans-title": "Options de paiement disponibles",
+  "accessibility.payment-plans.section-title": "Options de paiement disponibles",
   "accessibility.payment-schedule-title": "Calendrier de paiement",
-  "accessibility.payment-widget.animation-control-description": "Animation automatique active. Survolez ou utilisez les flèches pour arrêter l'animation.",
-  "accessibility.payment-widget.open-button.aria-label": "Ouvrir les options de paiement Alma",
+  "accessibility.payment-widget.main.aria-label": "Sélection des options de paiement Alma",
+  "accessibility.payment-widget.open-button.aria-label": "Ouvrir les options de paiement Alma pour en savoir plus",
   "accessibility.plan-selection-changed": "Plan sélectionné : {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Navigation rapide",
   "accessibility.visa-card.aria-label": "Carte Visa acceptée",
@@ -49,7 +50,7 @@
   "payment-plan-strings.pay-now": "Payer maintenant {totalAmount}",
   "payment-plan-strings.pay.deferred.button": "Payer en différé : {deferredTime}",
   "payment-plan-strings.pay.now.button": "Payer maintenant",
-  "skip-links.payment-info": "Allez aux informations de paiement",
-  "skip-links.payment-plans": "Allez aux options de paiements",
-  "skip-links.payment-schedule": "Allez au calendrier de paiements"
+  "skip-links.payment-info": "Aller aux informations de paiement",
+  "skip-links.payment-plans": "Aller aux options de paiement",
+  "skip-links.payment-schedule": "Aller au calendrier de paiement"
 }

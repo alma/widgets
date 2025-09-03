@@ -14,6 +14,7 @@ const STATIC_CUSTOMISATION_CLASSES = {
   notEligibleOption: `${prefix}-not-eligible-option`,
   paymentInfo: `${prefix}-payment-info`,
   activeOption: `${prefix}-active-option`,
+  knowMoreAction: `${prefix}-know-more-action`,
 }
 
 export default STATIC_CUSTOMISATION_CLASSES

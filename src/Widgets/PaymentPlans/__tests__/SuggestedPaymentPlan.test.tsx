@@ -29,13 +29,13 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
 
     it('displays the message corresponding to the payment plan hovered', async () => {
       renderPlans(2)
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
       expect(screen.getByText('2x').className).toContain('active')
     })
     it('should target the P1X and not a PayLater plan when suggested plan is 1', async () => {
       renderPlans(1, configPlans) // specify all plans explicitly to display P1X. P1X is only displayed if provided in configPlans.
-      await screen.findByTestId('widget-button')
+      await screen.findByTestId('widget-container')
       expect(screen.getByText(/Payer maintenant 450,00 €/)).toBeInTheDocument()
       expect(screen.getByText('Payer maintenant').className).toContain('active')
     })
@@ -50,7 +50,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
           suggestedPaymentPlan={[3, 2]}
         />,
       )
-      await screen.findByTestId('widget-button', {}, { timeout: 10000 })
+      await screen.findByTestId('widget-container', {}, { timeout: 10000 })
 
       expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
       expect(screen.getByText('3x').className).toContain('active')
@@ -64,7 +64,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
           suggestedPaymentPlan={[3, 2]}
         />,
       )
-      await screen.findByTestId('widget-button', {}, { timeout: 10000 })
+      await screen.findByTestId('widget-container', {}, { timeout: 10000 })
 
       // Check that 3x is initially active
       expect(screen.getByText('3x').className).toContain('active')
@@ -77,7 +77,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
       // but the behavior may depend on the implementation
       // Let's verify that the state remains consistent
       const activeElements = screen
-        .getAllByRole('radio')
+        .getAllByRole('option')
         .filter((el) => el.className.includes('active'))
       expect(activeElements).toHaveLength(1)
     })
@@ -120,7 +120,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
           suggestedPaymentPlan={[2, 3]}
         />,
       )
-      await screen.findByTestId('widget-button', {}, { timeout: 10000 })
+      await screen.findByTestId('widget-container', {}, { timeout: 10000 })
 
       expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
       expect(screen.getByText('3x').className).toContain('active')
@@ -136,7 +136,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
           suggestedPaymentPlan={[20]}
         />,
       )
-      await screen.findByTestId('widget-button', {}, { timeout: 10000 })
+      await screen.findByTestId('widget-container', {}, { timeout: 10000 })
 
       expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
       expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
@@ -154,7 +154,7 @@ describe('PaymentPlan has suggestedPaymentPlan', () => {
           suggestedPaymentPlan={[2]}
         />,
       )
-      await screen.findByTestId('widget-button', {}, { timeout: 10000 })
+      await screen.findByTestId('widget-container', {}, { timeout: 10000 })
 
       expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
       expect(screen.getByText('2x').className).toContain('active')

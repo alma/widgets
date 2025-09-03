@@ -48,7 +48,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
       labelId: 'skip-links.payment-plans',
       defaultMessage: intl.formatMessage({
         id: 'skip-links.payment-plans',
-        defaultMessage: 'Allez aux options de paiements',
+        defaultMessage: 'Aller aux options de paiement',
       }),
     },
     {
@@ -56,7 +56,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
       labelId: 'skip-links.payment-info',
       defaultMessage: intl.formatMessage({
         id: 'skip-links.payment-info',
-        defaultMessage: 'Allez aux informations de paiement',
+        defaultMessage: 'Aller aux informations de paiement',
       }),
     },
     {
@@ -64,7 +64,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
       labelId: 'skip-links.payment-schedule',
       defaultMessage: intl.formatMessage({
         id: 'skip-links.payment-schedule',
-        defaultMessage: 'Allez au calendrier de paiements',
+        defaultMessage: 'Aller au calendrier de paiement',
       }),
     },
   ]
