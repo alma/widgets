@@ -1,75 +1,98 @@
 body {
-    font-family: Helvetica, Arial, 'Segoe UI', sans-serif;
-    background-color: #edf6fd;
-    margin: 0;
-  }
-  .alma-logo {
-    height: 20px;
-    margin: 10px;
-  }
-  .body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 90vh;
-  }
-  .main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .menu {
-    text-align: center;
-  }
-  .menu a {
-    margin-right: 15px;
-  }
-  .image {
-    width: 50vw;
-  }
-  .image img {
-    width: 100%;
-  }
-  .product {
-    width: 400px;
-    max-width: 90vw;
-    padding: 16px;
-    background-color: white;
-    box-shadow: 7px 8px 12px 3px #cccccc;
-    color: #00425d;
-  }
-  .product h1 {
-    font-family: 'Work Sans', Helvetica, Arial, 'Segoe UI', sans-serif;
-  }
-  .add-to-cart {
-    text-align: center;
-    margin-top: 20px;
-  }
-  .add-to-cart button {
-    border: none;
-    background-color: #6e6e6e;
-    color: white;
-    text-transform: uppercase;
-    font-weight: normal;
-    padding: 10px 20px;
-  }
-  .product p {
-    font-size: smaller;
-  }
-  .open-modal-ctas {
-    padding-top: 24px;
-    text-align: center;
-  }
-  .open-modal-ctas a,
-  .open-modal-ctas a:visited {
-    display: block;
-    margin: 8px 0;
-    font-size: 14px;
-    color: #00425d;
-  }
-  h1,
-  h3 {
-    margin: 16px 0;
-  }
+  font-family: Helvetica, Arial, 'Segoe UI', sans-serif;
+  background-color: #edf6fd;
+  margin: 0;
+}
+
+.alma-logo {
+  height: 20px;
+  margin: 10px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 90vh;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu {
+  text-align: center;
+}
+
+.menu a {
+  margin-right: 15px;
+}
+
+.image {
+  width: 50vw;
+}
+
+.image img {
+  width: 100%;
+}
+
+.product {
+  width: 400px;
+  max-width: 90vw;
+  padding: 16px;
+  background-color: white;
+  box-shadow: 7px 8px 12px 3px #ccc;
+  color: #00425d;
+}
+
+.product h1 {
+  font-family: 'Work Sans', Helvetica, Arial, 'Segoe UI', sans-serif;
+}
+
+.add-to-cart {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.add-to-cart button {
+  border: none;
+  background-color: #6e6e6e;
+  color: white;
+  text-transform: uppercase;
+  font-weight: normal;
+  padding: 10px 20px;
+}
+
+.product p {
+  font-size: smaller;
+}
+
+.open-modal-ctas {
+  padding-top: 24px;
+  text-align: center;
+}
+
+.open-modal-ctas a,
+.open-modal-ctas a:visited {
+  display: block;
+  margin: 8px 0;
+  font-size: 14px;
+  color: #00425d;
+}
+
+h1,
+h3 {
+  margin: 16px 0;
+}
+
+/* Simulate fake button style to ensure it does not impact the widget's button */
+button {
+  background-color: red;
+  padding: 25px;
+  border: 3px solid blue;
+  margin: 16px;
+}
