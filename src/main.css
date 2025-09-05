@@ -23,7 +23,15 @@
   --black: #000;
 
   /** Font **/
-  --font-base: 1rem; /* 16px */
+
+  /* Some merchants override font size which impacts rem - using px instead even if not recommended for accessibility */
+  --font-tiny: 10px;
+  --font-x-small: 12px;
+  --font-small: 14px;
+  --font-base: 16px;
+  --font-medium: 20px;
+  --font-large: 24px;
+  --font-x-large: 32px;
 }
 
 /** Venn **/

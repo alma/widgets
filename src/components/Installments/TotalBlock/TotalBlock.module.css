@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-size: 1.25rem; /* 20px */
+  font-size: var(--font-medium);
 }
 
 .creditInfo {
@@ -30,7 +30,7 @@
   padding: 16px;
   z-index: 2;
   position: relative;
-  font-size: 1rem; /* 16px */
+  font-size: var(--font-base);
 }
 
 .creditInfoTitle {
@@ -43,7 +43,7 @@
   flex-direction: row;
   justify-content: space-between;
   font-weight: var(--weight-bold);
-  font-size: 0.875rem; /* 14px */
+  font-size: var(--font-small);
   line-height: 135%;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .creditInfoLegalText {
-  font-size: 0.625rem; /* 10px */
+  font-size: var(--font-tiny);
   font-family: 'Venn', sans-serif;
   margin-top: 8px;
   font-weight: var(--weight-normal);

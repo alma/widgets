@@ -30,7 +30,7 @@
   color: var(--off-black);
   border-radius: 4px;
   font-weight: 700;
-  font-size: 0.75rem; /* Equivalent to 12px but adapts to zoom */
+  font-size: var(--font-x-small);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -113,7 +113,7 @@
 }
 
 .info {
-  font-size: 0.75rem; /* 12px */
+  font-size: var(--font-x-small);
   line-height: 16px;
   color: var(--dark-gray);
   text-align: center;
