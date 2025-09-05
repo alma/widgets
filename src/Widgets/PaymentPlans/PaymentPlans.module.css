@@ -153,23 +153,35 @@
   cursor: not-allowed;
 }
 
+/*
+ * Reset button styles to prevent merchant site CSS overrides.
+ * Uses !important to ensure widget display integrity when merchants
+ * have global button styles that could interfere.
+ */
 .knowMore {
-  display: flex;
+  all: unset;
+  display: flex !important;
   gap: 6px;
   align-items: center;
-  background-color: transparent;
-  border: none;
+  background-color: transparent !important;
+  border: none !important;
   text-decoration: underline;
-  margin-right: 12px;
+  margin: 0 12px 0 0 !important;
+  padding: 3px !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
 }
 
 .knowMore:focus,
 .knowMore:focus-visible {
-  border-radius: 4px;
-  outline: 1px solid var(--alma-orange);
+  border-radius: 4px !important;
+  outline: 1px solid var(--alma-orange) !important;
 }
 
 .knowMore.monochrome:focus,
 .knowMore.monochrome:focus-visible {
-  outline: 1px solid black;
+  outline: 1px solid black !important;
 }
