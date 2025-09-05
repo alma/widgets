@@ -17,7 +17,7 @@
     border: 1px solid var(--dark-gray);
     border-radius: 16px;
     font-family: 'Argent', sans-serif;
-    font-size: 1.25rem; /* 20px */
+    font-size: var(--font-medium);
     line-height: 120%;
     font-weight: 600;
     cursor: pointer;
@@ -35,7 +35,7 @@
   border: 1px solid var(--dark-gray);
   border-radius: 16px;
   font-family: 'Argent', sans-serif;
-  font-size: 1.25rem; /* 20px */
+  font-size: var(--font-medium);
   line-height: 120%;
   font-weight: 600;
   cursor: pointer;

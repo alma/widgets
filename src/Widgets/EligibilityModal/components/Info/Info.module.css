@@ -18,12 +18,13 @@
   align-items: center;
   line-height: 135%;
   gap: 16px;
+  font-size: var(--font-small);
 }
 
 .bullet {
   font-family: 'Argent', sans-serif;
   font-weight: 600;
-  font-size: 2rem; /* 32px */
+  font-size: var(--font-x-large);
   min-width: 20px;
   line-height: 110%;
   color: var(--alma-blue);

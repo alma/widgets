@@ -1,3 +1,8 @@
+html {
+  /* Simulating impact on font size ... */
+  font-size: 62.5%;
+}
+
 body {
   font-family: Helvetica, Arial, 'Segoe UI', sans-serif;
   background-color: #edf6fd;
@@ -80,7 +85,7 @@ body {
 .open-modal-ctas a:visited {
   display: block;
   margin: 8px 0;
-  font-size: 14px;
+  font-size: var(--font-small);
   color: #00425d;
 }
 
