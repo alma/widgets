@@ -160,19 +160,19 @@
  */
 .knowMore {
   all: unset;
-  display: flex !important;
+  display: flex;
   gap: 6px;
   align-items: center;
-  background-color: transparent !important;
-  border: none !important;
+  background-color: transparent;
+  border: none;
   text-decoration: underline;
-  margin: 0 12px 0 0 !important;
-  padding: 3px !important;
-  font-family: inherit !important;
-  font-size: inherit !important;
-  color: inherit !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
+  margin: 0 12px 0 0;
+  padding: 3px;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .knowMore:focus,
