@@ -24,6 +24,11 @@ button {
   margin: 6px;
 }
 
+button:hover,
+button:focus {
+  background-color: #60d2df;
+}
+
 p {
   margin-bottom: 16px;
   border: 1px solid red;

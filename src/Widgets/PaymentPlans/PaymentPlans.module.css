@@ -192,6 +192,15 @@
   color: inherit;
   box-shadow: none;
   border-radius: 0;
+  cursor: pointer;
+}
+
+.knowMore:hover {
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  transform: scale(1.05);
+  box-shadow: none;
 }
 
 .knowMore:focus,
