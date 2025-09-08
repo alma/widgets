@@ -111,8 +111,3 @@
     scroll-behavior: auto;
   }
 }
-
-button,
-nav {
-  all: unset;
-}

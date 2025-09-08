@@ -11,6 +11,7 @@
 
 @media screen and (prefers-reduced-motion: reduce) {
   .buttons > button {
+    all: unset;
     display: initial;
     height: 50px;
     min-width: 50px;
@@ -29,6 +30,7 @@
 }
 
 .buttons > button {
+  all: unset;
   display: initial;
   height: 50px;
   min-width: 50px;

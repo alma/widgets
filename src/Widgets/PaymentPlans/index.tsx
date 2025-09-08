@@ -394,7 +394,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
                       }
                     }
                   }}
-                  className={cx(s.plan, s.planButton, {
+                  className={cx(s.planButton, {
                     [cx(s.active, STATIC_CUSTOMISATION_CLASSES.activeOption)]: isCurrent,
                     [s.monochrome]: monochrome && isCurrent,
                     [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:

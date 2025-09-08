@@ -51,6 +51,7 @@
 }
 
 .closeButton {
+  all: unset;
   border: 0;
   display: flex;
   justify-content: center;
