@@ -11,6 +11,7 @@
 
 @media screen and (prefers-reduced-motion: reduce) {
   .buttons > button {
+    /* Limit impact on button custom css from external css file */
     all: unset;
     display: initial;
     height: 50px;
@@ -30,6 +31,7 @@
 }
 
 .buttons > button {
+  /* Limit impact on button custom css from external css file */
   all: unset;
   display: initial;
   height: 50px;
@@ -57,6 +59,12 @@
   background-color: var(--alma-orange);
   color: var(--white);
   border: 0;
+}
+
+/* Limit impact on span custom css from external css file */
+.buttons span {
+  border: none;
+  display: unset;
 }
 
 .textButton {

@@ -7,6 +7,31 @@ body {
   font-family: Helvetica, Arial, 'Segoe UI', sans-serif;
   background-color: #edf6fd;
   margin: 0;
+  padding-bottom: 50px;
+  font-size: 16px;
+}
+
+h1,
+h3 {
+  margin: 16px 0;
+}
+
+/* Simulate fake button style to ensure it does not impact the widget's button */
+button {
+  background-color: red;
+  padding: 10px;
+  border: 3px solid blue;
+  margin: 6px;
+}
+
+p {
+  margin-bottom: 16px;
+  border: 1px solid red;
+}
+
+span {
+  margin-bottom: 10px;
+  display: block;
 }
 
 .alma-logo {
@@ -89,15 +114,29 @@ body {
   color: #00425d;
 }
 
-h1,
-h3 {
-  margin: 16px 0;
+/* Customize widget as a merchant would do */
+@media screen and (prefers-reduced-motion: reduce) {
+  #alma-widget-payment-plans-custom .alma-payment-plans-eligibility-options button {
+    cursor: pointer;
+    background: white;
+    color: deeppink;
+    transition: none;
+  }
 }
 
-/* Simulate fake button style to ensure it does not impact the widget's button */
-button {
-  background-color: red;
-  padding: 25px;
-  border: 3px solid blue;
-  margin: 16px;
+#alma-widget-payment-plans-custom .alma-payment-plans-eligibility-options button {
+  cursor: pointer;
+  background: white;
+  color: deeppink;
+  transition: transform;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
+
+#alma-widget-payment-plans-custom .alma-payment-plans-eligibility-options button.alma-payment-plans-active-option {
+  background: deeppink;
+  color: white;
+  border: 1px solid deeppink;
 }

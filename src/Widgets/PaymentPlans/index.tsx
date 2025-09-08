@@ -283,6 +283,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
       {/* Main widget container with proper landmark structure for RGAA 12.6 */}
       <main
         role="main"
+        id="alma-widget-payment-plans-main-container"
         aria-label={intl.formatMessage({
           id: 'accessibility.payment-widget.main.aria-label',
           defaultMessage: 'Sélection des options de paiement Alma',

@@ -1,13 +1,18 @@
+h2.title,
 .title {
+  all: unset;
   font-family: 'Argent', sans-serif;
   font-weight: 600;
   font-size: var(--font-medium);
   line-height: 130%;
   text-align: center;
   margin: 0 0 24px 0;
+  text-decoration: none;
+  color: var(--off-black);
 }
 
 @media (min-width: 800px) {
+  h2.title,
   .title {
     font-size: var(--font-large);
   }
