@@ -34,7 +34,7 @@
         <button>Fake button</button>
         <p> The button above should be red with border blue, and the paragraph has a red border and a margin bottom set to 16px. </p>
         <p> Those are style from style.css which is the main style of the page (like the merchant website style) and should not be impacted by the widget style. </p>
-        <select onchange="renderPaymentPlans()" id="quantity">
+        <select onchange="renderPaymentPlans(); renderPaymentPlansCustom();" id="quantity">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
