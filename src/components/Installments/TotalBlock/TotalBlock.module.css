@@ -8,6 +8,9 @@
 }
 
 .container p {
+  /* Limit impact on p custom css from external css file */
+  border: none;
+  padding: 0;
   margin: 6px 0;
 }
 

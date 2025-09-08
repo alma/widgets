@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alma Widgets basic example</title>
+
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="../dist/widgets.css" />
+  <!-- <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@alma/widgets@4.x/dist/widgets.min.css"
+  /> -->
+</head>
+<body>
+<div class="body">
+  <div>
+    <img src="../src/assets/alma.svg" class="alma-logo" alt="alma" />
+  </div>
+  <div class="menu">
+    <a href="./multiple.html">Multiple widgets</a>
+    <a href="./basic.html">Basic page</a>
+  </div>
+  <div class="main">
+    <div class="image">
+      <img src="./sac-a-main.jpeg" alt="product" />
+    </div>
+
+    <div>
+      <div class="product">
+        <h1>Sac à main</h1>
+        <!-- Generating html tags that matches style from style.css to ensure the widget's css does not impact the site's style.
+        In this example file, it is made to be obvious and not pretty see style sheet-->
+        <button>Fake button</button>
+        <p> The button above should be red with border blue, and the paragraph has a red border and a margin bottom set to 16px. </p>
+        <p> Those are style from style.css which is the main style of the page (like the merchant website style) and should not be impacted by the widget style. </p>
+        <select onchange="renderPaymentPlans()" id="quantity">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="10">10</option>
+        </select>
+        <h3>450 €</h3>
+        <span>This widget should be displayed to respect our design without being impacted by merchant style :</span>
+        <div id="alma-widget-payment-plans"></div>
+        <br />
+        <span>This widget should be displayed to respect the override made in the style.css file, as a merchant would do to customize our widget :</span>
+        <div id="alma-widget-payment-plans-custom"></div>
+        <div class="add-to-cart">
+          <button>Ajouter au panier</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../dist/widgets.umd.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@alma/widgets@4.x/dist/widgets.umd.js"></script> -->
+
+<script>
+  var widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
+  function renderPaymentPlans() {
+    var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
+    widgets.add(Alma.Widgets.PaymentPlans, {
+      container: '#alma-widget-payment-plans',
+      locale: 'fr',
+      purchaseAmount,
+      transitionDelay: 1500,
+    })
+  }
+  function renderPaymentPlansCustom() {
+    var purchaseAmount = 450 * 100 * document.getElementById('quantity').value
+    widgets.add(Alma.Widgets.PaymentPlans, {
+      container: '#alma-widget-payment-plans-custom',
+      locale: 'fr',
+      purchaseAmount,
+      monochrome: false,
+      transitionDelay: 1500,
+    })
+  }
+  renderPaymentPlans()
+  renderPaymentPlansCustom()
+
+
+</script>
+</body>
+</html>
