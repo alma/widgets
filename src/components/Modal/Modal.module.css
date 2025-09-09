@@ -51,8 +51,7 @@
 }
 
 .closeButton {
-  all: unset;
-  border: 0;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,10 +59,13 @@
   border-radius: 50%;
   cursor: pointer;
   padding: 4px;
+  margin: 0;
 }
 
+.closeButton:hover,
 .closeButton:focus,
 .closeButton:focus-visible {
+  background-color: var(--off-black);
   outline: 1px solid var(--alma-orange);
   outline-offset: 2px;
 }

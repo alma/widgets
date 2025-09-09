@@ -11,8 +11,6 @@
 
 @media screen and (prefers-reduced-motion: reduce) {
   .buttons > button {
-    /* Limit impact on button custom css from external css file */
-    all: unset;
     display: initial;
     height: 50px;
     min-width: 50px;
@@ -27,12 +25,11 @@
     transition: none;
     color: var(--off-black);
     padding: initial; /* To avoid CSS surcharge on this. */
+    margin: 0;
   }
 }
 
 .buttons > button {
-  /* Limit impact on button custom css from external css file */
-  all: unset;
   display: initial;
   height: 50px;
   min-width: 50px;
@@ -47,8 +44,10 @@
   transition: all 0.1s ease;
   color: var(--off-black);
   padding: initial; /* To avoid CSS surcharge on this. */
+  margin: 0;
 }
 
+.buttons > button:hover,
 .buttons > button:focus,
 .buttons > button:focus-visible {
   outline: 1px solid var(--alma-orange);
@@ -62,11 +61,20 @@
 }
 
 /* Limit impact on span custom css from external css file */
-.buttons span {
+.buttons > button span,
+.textButton {
+  display: inline;
   border: none;
-  display: unset;
+  text-decoration: none;
+  margin: 32px;
+  color: var(--off-black);
 }
 
+.buttons > button.active span,
 .textButton {
+  display: inline;
+  border: none;
+  text-decoration: none;
   margin: 32px;
+  color: var(--white);
 }

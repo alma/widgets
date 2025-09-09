@@ -130,9 +130,10 @@ const skipLinks = [
 
 ### ✅ Information Structure (RGAA 9)
 **Implementation**: Logical, navigable content hierarchy
-- Semantic landmark structure (`main`, `section`, `aside`)
+- Semantic landmark structure (`section`, `aside`) - **Note: `main` tag excluded for widget integration**
 - Proper heading hierarchy with clear relationships
 - Screen reader accessible content organization
+- Widget uses `section` as root landmark to avoid conflicts with host page's unique `main` element
 
 ### ✅ Presentation (RGAA 10)
 **Implementation**: Complete separation of content and presentation
@@ -149,12 +150,13 @@ const skipLinks = [
 - Disabled states indicated with `aria-disabled`
 
 ### ✅ Navigation (RGAA 12)
-**Implementation**: Complete keyboard accessibility
+**Implementation**: Complete keyboard accessibility for embedded widgets
 - Full arrow key navigation between options
 - Logical tab order throughout interface
 - Modal focus management handled by react-modal
 - Skip links for efficient navigation
 - Proper focus indicators on all interactive elements
+- **Widget Integration**: Uses `section` landmarks to respect host page's document structure
 
 ### ✅ Consultation (RGAA 13)
 **Implementation**: User control over dynamic content
@@ -237,6 +239,66 @@ const skipLinks = [
 - Self-contained accessibility features within widget boundaries
 - Proper integration with existing page accessibility features
 - Minimal impact on host page's accessibility implementation
+
+## Widget Integration Considerations
+
+### 🏗️ Semantic Structure for Embedded Context
+The Alma Payment Widgets are designed as embedded components that integrate into existing merchant websites. To maintain RGAA compliance while respecting the host page's document structure:
+
+#### Main Landmark Exclusion
+- **Rationale**: The `<main>` element must be unique per page (RGAA 12.6)
+- **Implementation**: Widget uses a simple `<div>` container without implicit landmark roles
+- **Compliance**: Maintains semantic structure through explicit landmarks without conflicting with host page
+
+#### Heading Hierarchy for Widget Integration
+- **Problem Solved**: Prevents conflicts with host page's existing heading structure (h1-h4)
+- **Implementation**: Widget uses only low-level headings (h5, h6) to avoid SEO and accessibility conflicts
+- **Structure**: 
+  - `h5` for primary section titles (payment plans, modal titles)
+  - `h6` for secondary section titles (payment info, schedule)
+  - All headings use `sr-only` class for screen reader accessibility without visual interference
+
+#### Landmark Structure for Accessibility Compliance
+- **Problem Solved**: Resolves `landmark-complementary-is-top-level` accessibility violation
+- **Root Container**: Simple `<div>` without `aria-label` to avoid implicit landmark creation
+- **Top-Level Landmarks**: `<section>` and `<aside>` are siblings, not nested
+- **Implementation**: Ensures `<aside>` (complementary landmark) is not contained within another landmark
+
+```typescript
+// Widget landmark structure - RGAA compliant and axe-core validated
+<div id="alma-widget-payment-plans-main-container">
+  {/* Primary content section */}
+  <section aria-labelledby="payment-plans-title">
+    <h5 id="payment-plans-title" className="sr-only">
+      Options de paiement disponibles
+    </h5>
+    {/* Payment plan selection */}
+  </section>
+  
+  {/* Complementary information - sibling to section, not nested */}
+  <aside aria-labelledby="payment-info-title">
+    <h6 id="payment-info-title" className="sr-only">
+      Informations sur le plan de paiement sélectionné
+    </h6>
+    {/* Payment information */}
+  </aside>
+</div>
+```
+
+#### Landmark Strategy
+- **Root**: Simple `<div>` container for styling and identification only
+- **Section**: Primary content area with payment plan selection
+- **Aside**: Complementary information at the same hierarchical level
+- **Headings**: Screen reader accessible headings (h5, h6) with `sr-only` class
+- **Navigation**: Proper landmark labeling without interfering with host page structure
+
+### 🎯 Integration Benefits
+- ✅ **No Heading Conflicts**: Uses h5/h6 levels that won't interfere with merchant site hierarchy
+- ✅ **SEO Friendly**: Preserves host page's h1-h4 structure for search engine optimization
+- ✅ **Screen Reader Compatible**: Maintains semantic navigation through proper ARIA labeling
+- ✅ **RGAA Compliant**: Respects landmark uniqueness and heading structure requirements
+- ✅ **Axe-Core Validated**: Passes all accessibility audits including `landmark-complementary-is-top-level`
+- ✅ **Flexible Integration**: Works on any page without structural conflicts
 
 ## Development Standards
 

@@ -35,20 +35,22 @@ describe('PaymentPlans ARIA Landmarks (RGAA 12.6)', () => {
 
     await screen.findByTestId('widget-container')
 
-    // Check main landmark exists
-    const mainLandmark = screen.getByRole('main')
-    expect(mainLandmark).toBeInTheDocument()
-    expect(mainLandmark).toHaveAttribute('aria-label', 'Sélection des options de paiement Alma')
+    // Check widget container exists (now a simple div without aria-label)
+    const widgetContainer = screen.getByTestId('widget-container')
+    expect(widgetContainer).toBeInTheDocument()
 
-    // Check section landmark exists
-    const sectionLandmark = screen.getByRole('main').querySelector('section')
+    // Check section landmark exists at top level
+    const sectionLandmark = screen.getByRole('region')
     expect(sectionLandmark).toBeInTheDocument()
     expect(sectionLandmark).toHaveAttribute('aria-labelledby', 'payment-plans-title')
 
-    // Check aside landmark exists
+    // Check aside landmark exists at top level (not nested)
     const asideLandmark = screen.getByRole('complementary')
     expect(asideLandmark).toBeInTheDocument()
     expect(asideLandmark).toHaveAttribute('aria-labelledby', 'payment-info-title')
+
+    // Verify aside is not nested inside section (fixes landmark-complementary-is-top-level)
+    expect(sectionLandmark.contains(asideLandmark)).toBe(false)
 
     // Check screen reader only titles exist
     const paymentPlansTitle = document.getElementById('payment-plans-title')
@@ -92,14 +94,14 @@ describe('PaymentPlans ARIA Landmarks (RGAA 12.6)', () => {
 
     await screen.findByTestId('widget-container')
 
-    // Check heading hierarchy exists (h2 for main section, h3 for aside)
-    const h2Heading = screen.getByRole('heading', { level: 2 })
-    expect(h2Heading).toBeInTheDocument()
-    expect(h2Heading).toHaveTextContent('Options de paiement disponibles')
+    // Check heading hierarchy exists (h5 for main section, h6 for aside)
+    const h5Heading = screen.getByRole('heading', { level: 5 })
+    expect(h5Heading).toBeInTheDocument()
+    expect(h5Heading).toHaveTextContent('Options de paiement disponibles')
 
-    const h3Heading = screen.getByRole('heading', { level: 3 })
-    expect(h3Heading).toBeInTheDocument()
-    expect(h3Heading).toHaveTextContent('Informations sur le plan de paiement sélectionné')
+    const h6Heading = screen.getByRole('heading', { level: 6 })
+    expect(h6Heading).toBeInTheDocument()
+    expect(h6Heading).toHaveTextContent('Informations sur le plan de paiement sélectionné')
   })
 
   it('should maintain existing listbox functionality with new structure', async () => {

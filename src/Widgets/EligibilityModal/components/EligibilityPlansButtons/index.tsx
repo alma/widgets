@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef } from 'react'
 
 import cx from 'classnames'
-import { FormattedMessage, useIntl } from 'react-intl'
+import { useIntl } from 'react-intl'
 
 import { EligibilityPlan } from '@/types'
 import { paymentPlanShorthandName, paymentPlanShorthandText } from 'utils/paymentPlanStrings'
@@ -45,12 +45,12 @@ const EligibilityPlansButtons: FC<{
 
   return (
     <div>
-      <h2 id="payment-plans-title" className="sr-only">
-        <FormattedMessage
-          id="accessibility.payment-plans-title"
-          defaultMessage="Options de paiement disponibles"
-        />
-      </h2>
+      <h5 id="payment-plans-title" className="sr-only">
+        {intl.formatMessage({
+          id: 'accessibility.payment-plans.section-title',
+          defaultMessage: 'Options de paiement disponibles',
+        })}
+      </h5>
       <div
         id={id}
         className={cx(s.buttons, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)}
