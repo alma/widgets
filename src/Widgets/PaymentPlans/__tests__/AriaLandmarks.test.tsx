@@ -95,13 +95,13 @@ describe('PaymentPlans ARIA Landmarks (RGAA 12.6)', () => {
     await screen.findByTestId('widget-container')
 
     // Check heading hierarchy exists (h5 for main section, h6 for aside)
-    const h2Heading = screen.getByRole('heading', { level: 5 })
-    expect(h2Heading).toBeInTheDocument()
-    expect(h2Heading).toHaveTextContent('Options de paiement disponibles')
+    const h5Heading = screen.getByRole('heading', { level: 5 })
+    expect(h5Heading).toBeInTheDocument()
+    expect(h5Heading).toHaveTextContent('Options de paiement disponibles')
 
-    const h3Heading = screen.getByRole('heading', { level: 6 })
-    expect(h3Heading).toBeInTheDocument()
-    expect(h3Heading).toHaveTextContent('Informations sur le plan de paiement sélectionné')
+    const h6Heading = screen.getByRole('heading', { level: 6 })
+    expect(h6Heading).toBeInTheDocument()
+    expect(h6Heading).toHaveTextContent('Informations sur le plan de paiement sélectionné')
   })
 
   it('should maintain existing listbox functionality with new structure', async () => {
