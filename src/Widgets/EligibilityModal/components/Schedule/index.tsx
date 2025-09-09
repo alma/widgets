@@ -18,12 +18,12 @@ const Schedule: FC<{ currentPlan: EligibilityPlan; id?: string }> = ({ currentPl
     aria-describedby="payment-schedule-description"
     tabIndex={-1}
   >
-    <h2 id="payment-schedule-title" className="sr-only">
+    <h6 id="payment-schedule-title" className="sr-only">
       <FormattedMessage
         id="accessibility.payment-schedule-title"
         defaultMessage="Calendrier de paiement"
       />
-    </h2>
+    </h6>
     <div id="payment-schedule-description">
       <ul
         className={cx(s.schedule, STATIC_CUSTOMISATION_CLASSES.scheduleDetails)}
