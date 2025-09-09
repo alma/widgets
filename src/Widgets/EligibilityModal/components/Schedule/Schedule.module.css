@@ -1,5 +1,6 @@
 .scheduleContainer {
   padding: 6px;
+  color: var(--off-black);
 }
 
 .scheduleContainer:focus,
@@ -11,10 +12,12 @@
   padding: 0 24px;
   margin: 6px 0;
   font-family: 'Venn', sans-serif;
+  color: var(--off-black);
 }
 
 .scheduleItem {
   list-style-type: none;
+  color: var(--off-black);
 }
 
 @media (min-width: 800px) {

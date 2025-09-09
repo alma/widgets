@@ -19,6 +19,7 @@
   line-height: 135%;
   gap: 16px;
   font-size: var(--font-small);
+  color: var(--off-black);
 }
 
 .bullet {

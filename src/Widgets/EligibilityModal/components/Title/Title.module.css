@@ -1,6 +1,5 @@
 h2.title,
 .title {
-  all: unset;
   font-family: 'Argent', sans-serif;
   font-weight: 600;
   font-size: var(--font-medium);
@@ -9,6 +8,7 @@ h2.title,
   margin: 0 0 24px 0;
   text-decoration: none;
   color: var(--off-black);
+  padding: 0;
 }
 
 @media (min-width: 800px) {
