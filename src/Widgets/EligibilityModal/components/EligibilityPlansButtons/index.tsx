@@ -45,12 +45,12 @@ const EligibilityPlansButtons: FC<{
 
   return (
     <div>
-      <h5 id="payment-plans-title" className="sr-only">
+      <div id="payment-plans-title" className="sr-only" role="heading" aria-level={2}>
         {intl.formatMessage({
           id: 'accessibility.payment-plans.section-title',
           defaultMessage: 'Options de paiement disponibles',
         })}
-      </h5>
+      </div>
       <div
         id={id}
         className={cx(s.buttons, STATIC_CUSTOMISATION_CLASSES.eligibilityOptions)}

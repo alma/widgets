@@ -101,18 +101,18 @@ const EligibilityModal: FunctionComponent<Props> = ({
         )}
         {status === statusResponse.SUCCESS && eligiblePlans.length >= 1 && (
           <>
-            <section aria-labelledby="payment-plans-title">
+            <div role="region" aria-labelledby="payment-plans-title">
               <EligibilityPlansButtons
                 id="payment-plans"
                 eligibilityPlans={eligiblePlans}
                 currentPlanIndex={currentPlanIndex}
                 setCurrentPlanIndex={setCurrentPlanIndex}
               />
-            </section>
-            <section className={s.scheduleArea} aria-labelledby="payment-schedule-title">
+            </div>
+            <div className={s.scheduleArea} role="region" aria-labelledby="payment-schedule-title">
               <div className={s.verticalLine} />
               <Schedule id="payment-schedule" currentPlan={currentPlan} />
-            </section>
+            </div>
           </>
         )}
       </ModalComponent>
