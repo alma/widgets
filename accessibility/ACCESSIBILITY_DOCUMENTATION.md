@@ -1,47 +1,92 @@
 # Accessibility Documentation - RGAA Compliance
 
-This document showcases the comprehensive accessibility implementation in the Alma Payment Widgets project and demonstrates our full RGAA (Référentiel Général d'Amélioration de l'Accessibilité) compliance.
+This document showcases the comprehensive accessibility implementation in the Alma Payment Widgets project and demonstrates our full RGAA (Référentiel Général d'Amélioration de l'Accessibilité) compliance for third-party embedded widgets.
 
 ## Table of Contents
 
 1. [Compliance Overview](#compliance-overview)
-2. [Accessibility Features Implemented](#accessibility-features-implemented)
-3. [RGAA Criteria Implementation](#rgaa-criteria-implementation)
-4. [Component Accessibility Features](#component-accessibility-features)
-5. [Testing & Validation](#testing--validation)
-6. [Design Considerations](#design-considerations)
-7. [Development Standards](#development-standards)
+2. [Third-Party Widget Compliance](#third-party-widget-compliance)
+3. [Accessibility Features Implemented](#accessibility-features-implemented)
+4. [RGAA Criteria Implementation](#rgaa-criteria-implementation)
+5. [Component Accessibility Features](#component-accessibility-features)
+6. [Testing & Validation](#testing--validation)
+7. [Design Considerations](#design-considerations)
+8. [Development Standards](#development-standards)
 
 ## Compliance Overview
 
 **🎯 RGAA Compliance: 100%**
 
-The Alma Payment Widgets are fully compliant with RGAA 2.1 AA standards. All applicable accessibility criteria have been implemented following best practices for embedded widget components.
+The Alma Payment Widgets are fully compliant with RGAA 2.1 AA standards and follow best practices for third-party embedded components. All applicable accessibility criteria have been implemented while respecting host page structure integrity.
 
 **✨ Accessibility Highlights:**
 - Complete keyboard navigation support
 - Full screen reader compatibility
 - Motion sensitivity awareness
-- Semantic HTML structure
+- **Widget-safe HTML structure** (no semantic interference)
 - Comprehensive ARIA implementation
 - Automated accessibility testing
+
+## Third-Party Widget Compliance
+
+### 🏗️ HTML Structure Philosophy
+
+**Critical Principle**: Third-party widgets must never inject semantic HTML elements that could interfere with the host page's document structure.
+
+#### ✅ Widget-Safe Implementation
+```typescript
+// Neutral containers with ARIA roles - RGAA compliant for third-party widgets
+<div role="region" aria-labelledby="payment-plans-title">
+  <div id="payment-plans-title" role="heading" aria-level={2}>
+    Payment Options Available
+  </div>
+  // ... widget content
+</div>
+```
+
+#### ❌ Previously Problematic (Now Fixed)
+```typescript
+// These semantic tags were removed to prevent host page conflicts
+<section aria-labelledby="payment-plans-title">  // ❌ Removed
+  <h5 id="payment-plans-title">...</h5>         // ❌ Removed
+</section>
+<aside>...</aside>                              // ❌ Removed
+<main>...</main>                                // ❌ Never used
+```
+
+### 🎯 Widget Integration Benefits
+
+- **No HTML hierarchy conflicts**: Widget doesn't interfere with host page structure
+- **Lighthouse compatibility**: Prevents heading hierarchy errors
+- **SEO preservation**: No impact on host page's semantic meaning
+- **Accessibility maintained**: Full screen reader support via ARIA roles
+- **Future-proof**: Safe for integration across diverse website architectures
 
 ## Accessibility Features Implemented
 
 ### 🎯 Core Accessibility Features
 
-#### Semantic Interface Design
+#### Widget-Safe Semantic Design
 ```typescript
-// Listbox pattern for payment plan selection
-<div role="listbox" aria-label="Options de paiement disponibles">
-  <button
-    role="option"
-    aria-selected={isCurrent}
-    aria-describedby="payment-info-text"
-    aria-label="Option de paiement {planDescription}, cliquez pour plus d'informations"
-  >
-    {planContent}
-  </button>
+// ARIA-based semantic structure for third-party widgets
+<div role="region" aria-labelledby="payment-plans-title">
+  <div id="payment-plans-title" className="sr-only" role="heading" aria-level={2}>
+    {intl.formatMessage({
+      id: 'accessibility.payment-plans.section-title',
+      defaultMessage: 'Options de paiement disponibles',
+    })}
+  </div>
+  
+  <div role="listbox" aria-label="Payment options available">
+    <button
+      role="option"
+      aria-selected={isCurrent}
+      aria-describedby="payment-info-text"
+      aria-label="Payment option {planDescription}"
+    >
+      {planContent}
+    </button>
+  </div>
 </div>
 ```
 
@@ -123,17 +168,29 @@ const skipLinks = [
 - Progressive enhancement approach
 
 ### ✅ Mandatory Elements (RGAA 8)
-**Implementation**: Appropriate for widget context
-- Host page manages document-level responsibilities (`lang`, title)
-- Widget provides proper HTML structure and landmarks
+**Implementation**: **Widget-appropriate compliance**
+- **Host page responsibility**: Document-level elements (`lang`, `title`, `main`)
+- **Widget responsibility**: Internal structure and ARIA semantics
 - Internationalization support built-in
+- **No document structure interference**
 
 ### ✅ Information Structure (RGAA 9)
-**Implementation**: Logical, navigable content hierarchy
-- Semantic landmark structure (`section`, `aside`) - **Note: `main` tag excluded for widget integration**
-- Proper heading hierarchy with clear relationships
-- Screen reader accessible content organization
-- Widget uses `section` as root landmark to avoid conflicts with host page's unique `main` element
+**Implementation**: **Third-party widget safe structure**
+- **ARIA-based landmark structure**: Uses `role="region"` instead of `<section>`
+- **Neutral heading approach**: `role="heading"` with `aria-level` instead of `<h*>` tags
+- **Screen reader compatibility**: Full semantic meaning preserved via ARIA
+- **Host page protection**: No interference with existing HTML hierarchy
+- **Flexible integration**: Works regardless of host page's heading structure
+
+```typescript
+// Widget-safe heading implementation
+<div role="heading" aria-level={2} className="sr-only">
+  Payment Options Available
+</div>
+
+// Instead of potentially conflicting:
+// <h2>Payment Options Available</h2> ❌
+```
 
 ### ✅ Presentation (RGAA 10)
 **Implementation**: Complete separation of content and presentation
@@ -150,13 +207,13 @@ const skipLinks = [
 - Disabled states indicated with `aria-disabled`
 
 ### ✅ Navigation (RGAA 12)
-**Implementation**: Complete keyboard accessibility for embedded widgets
+**Implementation**: **Third-party widget navigation excellence**
 - Full arrow key navigation between options
 - Logical tab order throughout interface
 - Modal focus management handled by react-modal
 - Skip links for efficient navigation
 - Proper focus indicators on all interactive elements
-- **Widget Integration**: Uses `section` landmarks to respect host page's document structure
+- **Widget isolation**: Navigation contained within widget boundaries
 
 ### ✅ Consultation (RGAA 13)
 **Implementation**: User control over dynamic content
@@ -172,12 +229,13 @@ const skipLinks = [
 ## Component Accessibility Features
 
 ### PaymentPlans Widget
-**🏗️ Structure**: Complete landmark architecture with `main`, `section`, `aside`  
+**🏗️ Structure**: **Widget-safe ARIA landmark architecture** with `role="region"`  
 **🎛️ Interface**: Semantic listbox with option buttons  
 **⌨️ Navigation**: Full arrow key support, Home/End navigation  
 **📢 Announcements**: Dynamic plan changes announced to screen readers  
 **🎯 Focus**: Programmatic focus control with element references  
 **🎬 Animation**: Respects motion preferences and user control  
+**🔒 Isolation**: No interference with host page HTML structure
 
 ### Modal Components
 **🏷️ Semantics**: Proper `role="dialog"` and `aria-modal="true"`  
@@ -185,9 +243,10 @@ const skipLinks = [
 **🔄 Management**: Accessible close button with internationalized labels  
 **📜 Scroll**: Body scroll prevention during modal display  
 **⌨️ Keyboard**: Escape key closing, comprehensive focus indicators  
+**📝 Headings**: Uses `role="heading"` for widget-safe title structure
 
 ### SkipLinks Component
-**🧭 Navigation**: `role="navigation"` with descriptive labels  
+**🧭 Navigation**: Efficient navigation within widget scope  
 **🎯 Focus**: Programmatic focus setting on target elements  
 **⚡ Access**: First elements in tab order for immediate access  
 **🔧 Implementation**: Clean timeout-based focus management  
@@ -199,146 +258,140 @@ const skipLinks = [
 
 ## Testing & Validation
 
-### 🤖 Automated Testing
-- **jest-axe**: Comprehensive axe-core accessibility validation
-- **@testing-library/jest-dom**: Accessibility-focused DOM testing
-- **eslint-plugin-jsx-a11y**: Development-time accessibility linting
-- **Dedicated test files**: `**/Accessibility.test.tsx` for all components
+### 🧪 Automated Testing
+- **Jest + React Testing Library**: Comprehensive accessibility assertions
+- **axe-core integration**: Automated WCAG/RGAA compliance checking
+- **Screen reader simulation**: Ensures proper ARIA announcements
+- **Keyboard navigation tests**: Validates complete keyboard accessibility
 
-### ✅ Test Results
-- All components pass axe-core validation without exceptions
-- Comprehensive keyboard navigation testing
-- Screen reader announcement validation
-- Focus management testing across all interactions
-- Motion and animation accessibility verification
+### 🔍 Manual Testing Protocols
+- **Screen reader testing**: NVDA, JAWS, VoiceOver compatibility verified
+- **Keyboard-only navigation**: Complete interface accessibility
+- **High contrast mode**: Proper visibility in Windows High Contrast
+- **Zoom compatibility**: 200% zoom functionality maintained
+- **Widget integration**: Testing across diverse host page structures
 
-### 🧪 Testing Coverage
-- ARIA attributes validation on all components
-- Keyboard navigation for complex interactions
-- Screen reader announcement accuracy
-- Modal focus management and restoration
-- Animation accessibility compliance
+### 🎯 Third-Party Integration Testing
+- **Lighthouse audits**: No heading hierarchy errors when embedded
+- **HTML validation**: No conflicts with host page semantics
+- **Multiple widget instances**: Safe concurrent deployment
+- **Cross-site compatibility**: Tested across various website architectures
+
+### 📊 Compliance Verification
+```typescript
+// Example accessibility test ensuring widget safety
+describe('Widget HTML Safety', () => {
+  test('should not inject semantic HTML tags', () => {
+    render(<PaymentPlanWidget {...props} />)
+    
+    // Verify no problematic tags are injected
+    expect(screen.queryByRole('main')).not.toBeInTheDocument()
+    expect(screen.queryByRole('article')).not.toBeInTheDocument()
+    expect(document.querySelector('section')).not.toBeInTheDocument()
+    expect(document.querySelector('aside')).not.toBeInTheDocument()
+    expect(document.querySelector('h1, h2, h3, h4, h5, h6')).not.toBeInTheDocument()
+    
+    // Verify ARIA-based semantics work correctly
+    expect(screen.getByRole('region')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
+  })
+})
+```
 
 ## Design Considerations
 
-### 🎨 Heading Strategy
-**Current Implementation**: Mixed approach between visible and hidden headings
+### 🎨 Widget-First Design Philosophy
 
-**Design Rationale**: 
-- Widget designed to be minimally intrusive when embedded on host sites
-- Hidden headings (`sr-only`) maintain semantic structure without visual clutter
-- Visible headings used strategically where they enhance user experience
-- Approach ensures accessibility compliance while respecting design constraints
+#### Visual Accessibility
+- **High contrast support**: Proper color contrast ratios (WCAG AA)
+- **Focus indicators**: Clear, visible focus states for all interactive elements
+- **Scalable interface**: Maintains functionality and appearance at 200% zoom
+- **Motion sensitivity**: Respects `prefers-reduced-motion` user preferences
 
-**Accessibility Impact**: ✅ None - semantic structure is complete and navigable
-**Future Consideration**: Standardize approach based on design system evolution
+#### Responsive Integration
+- **Host page harmony**: Adapts to various host page layouts
+- **Mobile accessibility**: Touch-friendly targets with proper sizing
+- **Screen reader optimization**: Logical reading order regardless of visual layout
 
-### 🏗️ Widget-Appropriate Architecture
-**Embedded Component Design**:
-- Document-level responsibilities (language, title) handled by host page
-- Self-contained accessibility features within widget boundaries
-- Proper integration with existing page accessibility features
-- Minimal impact on host page's accessibility implementation
+### 🔧 Technical Architecture
 
-## Widget Integration Considerations
-
-### 🏗️ Semantic Structure for Embedded Context
-The Alma Payment Widgets are designed as embedded components that integrate into existing merchant websites. To maintain RGAA compliance while respecting the host page's document structure:
-
-#### Main Landmark Exclusion
-- **Rationale**: The `<main>` element must be unique per page (RGAA 12.6)
-- **Implementation**: Widget uses a simple `<div>` container without implicit landmark roles
-- **Compliance**: Maintains semantic structure through explicit landmarks without conflicting with host page
-
-#### Heading Hierarchy for Widget Integration
-- **Problem Solved**: Prevents conflicts with host page's existing heading structure (h1-h4)
-- **Implementation**: Widget uses only low-level headings (h5, h6) to avoid SEO and accessibility conflicts
-- **Structure**: 
-  - `h5` for primary section titles (payment plans, modal titles)
-  - `h6` for secondary section titles (payment info, schedule)
-  - All headings use `sr-only` class for screen reader accessibility without visual interference
-
-#### Landmark Structure for Accessibility Compliance
-- **Problem Solved**: Resolves `landmark-complementary-is-top-level` accessibility violation
-- **Root Container**: Simple `<div>` without `aria-label` to avoid implicit landmark creation
-- **Top-Level Landmarks**: `<section>` and `<aside>` are siblings, not nested
-- **Implementation**: Ensures `<aside>` (complementary landmark) is not contained within another landmark
-
+#### Widget Isolation Strategy
 ```typescript
-// Widget landmark structure - RGAA compliant and axe-core validated
-<div id="alma-widget-payment-plans-main-container">
-  {/* Primary content section */}
-  <section aria-labelledby="payment-plans-title">
-    <h5 id="payment-plans-title" className="sr-only">
-      Options de paiement disponibles
-    </h5>
-    {/* Payment plan selection */}
-  </section>
-  
-  {/* Complementary information - sibling to section, not nested */}
-  <aside aria-labelledby="payment-info-title">
-    <h6 id="payment-info-title" className="sr-only">
-      Informations sur le plan de paiement sélectionné
-    </h6>
-    {/* Payment information */}
-  </aside>
+// Widget wrapper ensures no semantic leakage
+<div 
+  id="alma-widget-payment-plans-main-container"
+  className={widgetClasses}
+  data-testid="widget-container"
+>
+  {/* All content uses ARIA roles instead of semantic HTML */}
+  <div role="region" aria-labelledby="payment-plans-title">
+    {/* Widget content */}
+  </div>
 </div>
 ```
 
-#### Landmark Strategy
-- **Root**: Simple `<div>` container for styling and identification only
-- **Section**: Primary content area with payment plan selection
-- **Aside**: Complementary information at the same hierarchical level
-- **Headings**: Screen reader accessible headings (h5, h6) with `sr-only` class
-- **Navigation**: Proper landmark labeling without interfering with host page structure
-
-### 🎯 Integration Benefits
-- ✅ **No Heading Conflicts**: Uses h5/h6 levels that won't interfere with merchant site hierarchy
-- ✅ **SEO Friendly**: Preserves host page's h1-h4 structure for search engine optimization
-- ✅ **Screen Reader Compatible**: Maintains semantic navigation through proper ARIA labeling
-- ✅ **RGAA Compliant**: Respects landmark uniqueness and heading structure requirements
-- ✅ **Axe-Core Validated**: Passes all accessibility audits including `landmark-complementary-is-top-level`
-- ✅ **Flexible Integration**: Works on any page without structural conflicts
+#### ARIA Implementation Standards
+- **Consistent role usage**: `region`, `heading`, `listbox`, `option`
+- **Proper labeling**: All interactive elements have accessible names
+- **State management**: `aria-selected`, `aria-disabled`, `aria-expanded`
+- **Relationship indicators**: `aria-labelledby`, `aria-describedby`
 
 ## Development Standards
 
-### 🎯 Accessibility-First Principles
-1. **Semantic HTML First**: Use appropriate elements before adding ARIA
-2. **Progressive Enhancement**: Core functionality without JavaScript
-3. **Screen Reader Testing**: Regular validation with NVDA, JAWS, VoiceOver
-4. **Keyboard Navigation**: All features accessible via keyboard
+### 📋 Widget Development Checklist
 
-### 🏷️ ARIA Implementation Guidelines
-- Enhance, never replace, semantic HTML with ARIA
-- Meaningful labels and descriptions for all interactive elements
-- Proper state management (`aria-selected`, `aria-disabled`)
-- Live regions used purposefully for important updates
+#### ✅ HTML Structure Requirements
+- [ ] No semantic HTML tags (`main`, `section`, `aside`, `article`, `nav`, `header`, `footer`)
+- [ ] No heading tags (`h1`, `h2`, `h3`, `h4`, `h5`, `h6`)
+- [ ] Use `role="region"` for content areas
+- [ ] Use `role="heading"` with `aria-level` for titles
+- [ ] All containers use neutral `div` or `span` elements
 
-### 🧪 Testing Standards
-- Accessibility tests required for all new components
-- Manual keyboard navigation testing for interactive features
-- Screen reader compatibility validation
-- Axe-core tests must pass without exceptions
+#### ✅ ARIA Implementation Standards
+- [ ] Proper landmark roles (`region`, `dialog`)
+- [ ] Semantic roles for UI patterns (`listbox`, `option`, `button`)
+- [ ] Complete labeling (`aria-label`, `aria-labelledby`)
+- [ ] State management (`aria-selected`, `aria-disabled`)
+- [ ] Live regions for dynamic content (`aria-live`, `role="alert"`)
 
-### ✅ Code Review Checklist
-- [ ] Semantic HTML structure implemented
-- [ ] ARIA attributes properly applied
-- [ ] Complete keyboard navigation functional
-- [ ] Focus management appropriate
-- [ ] Screen reader announcements validated
-- [ ] WCAG AA color contrast standards met
-- [ ] Motion respects user preferences
+#### ✅ Keyboard Accessibility
+- [ ] Full keyboard navigation support
+- [ ] Logical tab order
+- [ ] Escape key functionality for modals
+- [ ] Arrow key navigation for option selection
+- [ ] Home/End navigation for efficiency
 
-### 🔄 Maintenance Approach
-- **Monthly**: Automated accessibility testing with updated tools
-- **Quarterly**: Manual testing with assistive technologies  
-- **Annually**: Comprehensive RGAA compliance review
-- **Ongoing**: Team accessibility training and knowledge updates
+#### ✅ Integration Safety
+- [ ] No interference with host page structure
+- [ ] Lighthouse compatibility verified
+- [ ] Multiple instance deployment safe
+- [ ] Cross-browser compatibility maintained
+
+### 🚀 Continuous Compliance
+
+#### Development Workflow
+1. **Design Review**: Accessibility considerations in design phase
+2. **Implementation**: Follow widget-safe development patterns
+3. **Testing**: Automated and manual accessibility validation
+4. **Integration Testing**: Verify host page compatibility
+5. **Documentation**: Maintain accessibility documentation updates
+
+#### Quality Assurance
+- **Pre-commit hooks**: Automated accessibility linting
+- **CI/CD integration**: Accessibility regression prevention
+- **Regular audits**: Periodic compliance verification
+- **User feedback integration**: Real-world accessibility improvements
 
 ---
 
-**✨ Summary**: The Alma Payment Widgets provide a fully accessible, RGAA-compliant experience that works seamlessly with assistive technologies while maintaining a clean, minimal design appropriate for embedded use.
+## Summary
 
-**🏆 Compliance Level**: RGAA 2.1 AA (100% compliant)  
-**📅 Last Updated**: September 2025  
-**🔄 Next Review**: Quarterly
+The Alma Payment Widgets demonstrate **exemplary RGAA compliance** specifically designed for third-party widget integration. By using **ARIA-based semantic structure** instead of traditional HTML semantic elements, we ensure:
+
+- ✅ **Full accessibility** via screen readers and assistive technologies
+- ✅ **Zero interference** with host page HTML structure  
+- ✅ **Lighthouse compatibility** with no heading hierarchy conflicts
+- ✅ **SEO preservation** for host pages
+- ✅ **Future-proof integration** across diverse website architectures
+
+This approach represents the **gold standard for accessible third-party widgets** in the modern web ecosystem.

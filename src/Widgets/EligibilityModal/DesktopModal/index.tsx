@@ -23,12 +23,12 @@ const DesktopModal: FC<Props> = ({ children, isSomePlanDeferred, cards, isCurren
     aria-modal="true"
     aria-labelledby="modal-title"
   >
-    <aside className={cx([s.block, s.left, STATIC_CUSTOMISATION_CLASSES.leftSide])}>
+    <div className={cx([s.block, s.left, STATIC_CUSTOMISATION_CLASSES.leftSide])}>
       <Title isSomePlanDeferred={isSomePlanDeferred} isCurrentPlanP1X={isCurrentPlanP1X} />
       <Info id="payment-info" isCurrentPlanP1X={isCurrentPlanP1X} />
       {cards && <Cards cards={cards} />}
       <AlmaLogo className={s.logo} width="75" />
-    </aside>
+    </div>
     <div className={cx(s.block, STATIC_CUSTOMISATION_CLASSES.rightSide)}>{children}</div>
   </div>
 )

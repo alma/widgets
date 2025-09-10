@@ -293,18 +293,19 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
         )}
         data-testid="widget-container"
       >
-        {/* Primary payment plan selection section */}
-        <section
+        {/* Primary payment plan selection region */}
+        <div
+          role="region"
           aria-labelledby="payment-plans-title"
           className={cx(s.primaryContainer, STATIC_CUSTOMISATION_CLASSES.eligibilityLine)}
         >
-          {/* Screen reader only title for the payment plans section */}
-          <h5 id="payment-plans-title" className="sr-only">
+          {/* Screen reader only title for the payment plans region */}
+          <div id="payment-plans-title" className="sr-only" role="heading" aria-level={2}>
             {intl.formatMessage({
               id: 'accessibility.payment-plans.section-title',
               defaultMessage: 'Options de paiement disponibles',
             })}
-          </h5>
+          </div>
 
           <button
             type="button"
@@ -420,17 +421,17 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
               )
             })}
           </div>
-        </section>
+        </div>
 
-        {/* Complementary information section - now at same level as main section */}
-        <aside aria-labelledby="payment-info-title" className={s.infoContainer}>
-          {/* Screen reader only title for the information section */}
-          <h6 id="payment-info-title" className="sr-only">
+        {/* Complementary information region - now at same level as main region */}
+        <div role="region" aria-labelledby="payment-info-title" className={s.infoContainer}>
+          {/* Screen reader only title for the information region */}
+          <div id="payment-info-title" className="sr-only" role="heading" aria-level={2}>
             {intl.formatMessage({
               id: 'accessibility.payment-info.section-title',
               defaultMessage: 'Informations sur le plan de paiement sélectionné',
             })}
-          </h6>
+          </div>
 
           {/* Payment plan information text */}
           <div
@@ -446,7 +447,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
           >
             {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
           </div>
-        </aside>
+        </div>
       </div>
 
       {/* Eligibility modal for detailed plan information */}

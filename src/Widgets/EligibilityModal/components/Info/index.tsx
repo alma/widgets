@@ -19,12 +19,12 @@ const Info: FC<{ isCurrentPlanP1X: boolean; id?: string }> = ({ isCurrentPlanP1X
     aria-describedby="payment-info-description"
     tabIndex={-1}
   >
-    <h5 id="payment-info-title" className="sr-only">
+    <div id="payment-info-title" className="sr-only" role="heading" aria-level={2}>
       <FormattedMessage
         id="eligibility-modal.info-title"
         defaultMessage="Comment procéder au paiement"
       />
-    </h5>{' '}
+    </div>{' '}
     <ol className={s.listContainer} id="payment-info-description">
       <li className={s.listItem}>
         <div className={cx(s.bullet, STATIC_CUSTOMISATION_CLASSES.bullet)}>1</div>
