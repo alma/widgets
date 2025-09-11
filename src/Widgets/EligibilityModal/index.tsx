@@ -74,6 +74,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
       onClose={onClose}
       ariaHideApp={false}
       scrollable
+      id="alma-widget-modal-main-container"
       isOpen
       aria={{
         labelledby: 'modal-title',

@@ -73,7 +73,8 @@
  * Screen reader only utility class
  * Visually hides content while keeping it accessible to screen readers
  */
-.sr-only {
+#alma-widget-payment-plans-main-container .sr-only,
+#alma-widget-modal-main-container .sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -89,7 +90,8 @@
  * Focusable screen reader only content
  * Makes sr-only content visible when focused (useful for skip links)
  */
-.sr-only:focus {
+#alma-widget-payment-plans-main-container .sr-only:focus,
+#alma-widget-modal-main-container .sr-only:focus {
   position: static;
   width: auto;
   height: auto;
