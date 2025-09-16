@@ -145,3 +145,12 @@ span {
   color: white;
   border: 1px solid deeppink;
 }
+
+#alma-widget-payment-plans-custom > div {
+  background: #f9fafb;
+  border: 0;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 5px 12px;
+  width: 100%;
+}
