@@ -12,7 +12,7 @@
   "accessibility.payment-plans.section-title": "Available payment options",
   "accessibility.payment-schedule-title": "Payment schedule",
   "accessibility.payment-widget.main.aria-label": "Selecting Alma payment options",
-  "accessibility.payment-widget.open-button.aria-label": "Ouvrir les options de paiement Alma pour en savoir plus",
+  "accessibility.payment-widget.open-button.aria-label": "Open Alma payment options to find out more",
   "accessibility.plan-selection-changed": "Selected plan: {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Quick navigation",
   "accessibility.visa-card.aria-label": "Visa card accepted",

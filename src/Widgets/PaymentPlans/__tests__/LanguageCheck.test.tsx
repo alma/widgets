@@ -118,7 +118,7 @@ describe('Change language', () => {
 
     expect(screen.getByText('M+1')).toBeInTheDocument()
     expect(screen.getByText(/te betalen op/)).toBeInTheDocument()
-    expect(screen.getByText(/\(zonder kosten\)/)).toBeInTheDocument()
+    expect(screen.getByText(/\(zonder extra kosten\)/)).toBeInTheDocument()
   })
 
   it(`into ${Locale.pt}`, async () => {
