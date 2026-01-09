@@ -33,6 +33,7 @@ describe('useFetchEligibility', () => {
         undefined,
         'FR',
         'FR',
+        true,
       ),
     )
     // First the API response is pending
@@ -40,6 +41,20 @@ describe('useFetchEligibility', () => {
 
     // The API is called
     expect(fetchFromApi).toHaveBeenCalledTimes(1)
+    expect(fetchFromApi).toHaveBeenCalledWith(
+      {
+        purchase_amount: 45000,
+        queries: undefined,
+        billing_address: { country: 'FR' },
+        shipping_address: { country: 'FR' },
+        merchant_covers_all_fees: true,
+      },
+      {
+        Authorization: 'Alma-Merchant-Auth test_id',
+        'X-Alma-Agent': 'Alma Widget/undefined',
+      },
+      `${ApiMode.TEST}/v2/payments/eligibility`,
+    )
     // The hooks returns the filtered result of the API response
     await waitFor(() => {
       expect(result.current[0]).toEqual(filterEligibility(mockPlansAllEligible))
