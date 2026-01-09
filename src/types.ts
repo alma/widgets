@@ -88,6 +88,7 @@ export type PaymentPlanWidgetOptions = {
   hideBorder?: boolean
   customerBillingCountry?: string
   customerShippingCountry?: string
+  merchantCoversAllFees?: boolean
   onModalClose?: (event: React.MouseEvent | React.KeyboardEvent) => void
 }
 
@@ -97,6 +98,7 @@ export type ModalOptions = {
   purchaseAmount: number
   customerBillingCountry?: string
   customerShippingCountry?: string
+  merchantCoversAllFees?: boolean
   plans?: ConfigPlan[]
   locale?: Locale
   cards?: Card[]

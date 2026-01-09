@@ -12,6 +12,7 @@ const useFetchEligibility = (
   plans?: ConfigPlan[],
   customerBillingCountry?: string,
   customerShippingCountry?: string,
+  merchantCoversAllFees?: boolean,
 ): [EligibilityPlan[], statusResponse] => {
   const [eligibility, setEligibility] = useState([] as EligibilityPlan[])
   const [status, setStatus] = useState(statusResponse.PENDING)
@@ -23,6 +24,7 @@ const useFetchEligibility = (
     plans,
     customerBillingCountry,
     customerShippingCountry,
+    merchantCoversAllFees,
     domain,
     merchantId,
   })
@@ -67,6 +69,7 @@ const useFetchEligibility = (
             queries: configInstallments,
             billing_address: billingAddress,
             shipping_address: shippingAddress,
+            merchant_covers_all_fees: merchantCoversAllFees,
           },
           {
             Authorization: `Alma-Merchant-Auth ${merchantId}`,

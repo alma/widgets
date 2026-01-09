@@ -27,6 +27,7 @@ type Props = {
   transitionDelay?: number
   customerBillingCountry?: string
   customerShippingCountry?: string
+  merchantCoversAllFees?: boolean
   hideIfNotEligible?: boolean
   monochrome?: boolean
   suggestedPaymentPlan?: number | number[]
@@ -56,6 +57,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   cards,
   customerBillingCountry,
   customerShippingCountry,
+  merchantCoversAllFees,
   transitionDelay,
   hideBorder = false,
   onModalClose,
@@ -69,6 +71,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     configPlans,
     customerBillingCountry,
     customerShippingCountry,
+    merchantCoversAllFees,
   )
 
   // Memoized array of only eligible plans to avoid unnecessary re-renders
