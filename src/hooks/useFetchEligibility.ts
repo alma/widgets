@@ -105,6 +105,7 @@ const useFetchEligibility = (
     configInstallments,
     merchantId,
     domain,
+    merchantCoversAllFees,
     setCache,
     clearCache,
   ])
