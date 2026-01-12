@@ -10,6 +10,7 @@ type Props = {
   configPlans?: ConfigPlan[]
   customerBillingCountry?: string
   customerShippingCountry?: string
+  merchantCoversAllFees?: boolean
   onClose: (event: React.MouseEvent | React.KeyboardEvent) => void
   cards?: Card[]
 }
@@ -23,6 +24,7 @@ const ModalContainer: React.FC<Props> = ({
   configPlans,
   customerBillingCountry,
   customerShippingCountry,
+  merchantCoversAllFees,
   onClose,
   cards,
 }) => {
@@ -32,6 +34,7 @@ const ModalContainer: React.FC<Props> = ({
     configPlans,
     customerBillingCountry,
     customerShippingCountry,
+    merchantCoversAllFees,
   )
 
   return (

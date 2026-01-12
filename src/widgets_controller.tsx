@@ -52,6 +52,7 @@ const addWidget = (
       suggestedPaymentPlan,
       customerBillingCountry,
       customerShippingCountry,
+      merchantCoversAllFees,
       locale = Locale.en,
       cards,
       onModalClose,
@@ -71,6 +72,7 @@ const addWidget = (
             cards={cards}
             customerBillingCountry={customerBillingCountry}
             customerShippingCountry={customerShippingCountry}
+            merchantCoversAllFees={merchantCoversAllFees}
             transitionDelay={transitionDelay}
             hideBorder={hideBorder}
             onModalClose={onModalClose}
@@ -89,6 +91,7 @@ const addWidget = (
       locale = Locale.en,
       customerBillingCountry,
       customerShippingCountry,
+      merchantCoversAllFees,
       cards,
       onClose,
     } = options as ModalOptions
@@ -114,6 +117,7 @@ const addWidget = (
               configPlans={plans}
               customerBillingCountry={customerBillingCountry}
               customerShippingCountry={customerShippingCountry}
+              merchantCoversAllFees={merchantCoversAllFees}
               onClose={close}
               cards={cards}
             />

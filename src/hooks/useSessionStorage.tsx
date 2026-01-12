@@ -6,6 +6,7 @@ type CreateKeyType = {
   plans?: ConfigPlan[]
   customerBillingCountry?: string
   customerShippingCountry?: string
+  merchantCoversAllFees?: boolean
   domain?: string
   merchantId?: string
 }
@@ -53,6 +54,7 @@ export const useSessionStorage: () => UseSessionStorageType = () => {
       plans,
       customerBillingCountry,
       customerShippingCountry,
+      merchantCoversAllFees,
       domain,
       merchantId,
     } = params
@@ -62,7 +64,7 @@ export const useSessionStorage: () => UseSessionStorageType = () => {
     // Using build version into the key to invalidate cache when the widget is updated
     const buildVersion = process.env.BUILD_VERSION ?? 'local-build'
     return hashStringForStorage(
-      `${domain}${merchantId}${stringAmount}${stringPlans}${customerBillingCountry}${customerShippingCountry}${buildVersion}`,
+      `${domain}${merchantId}${stringAmount}${stringPlans}${customerBillingCountry}${customerShippingCountry}${merchantCoversAllFees}${buildVersion}`,
     )
   }
 
