@@ -4,6 +4,7 @@
   "enabledManagers": [ "github-actions", "nvm", "npm" ],
   "reviewers": [ "team:squad-e-commerce-integrations" ],
   "separateMinorPatch": true,
+  "separateMultipleMajor": true,
   "packageRules": [
     {
       "matchManagers": [ "npm" ],
@@ -15,7 +16,6 @@
       "matchManagers": [ "npm" ],
       "matchUpdateTypes": [ "major" ],
       "dependencyDashboardApproval": true,
-      "separateMultipleMajor": true,
     }
   ]
 }
