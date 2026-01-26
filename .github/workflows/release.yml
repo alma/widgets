@@ -38,8 +38,7 @@ jobs:
 
       - name: Publish library
         run: |
-          npx clean-publish
-          cd clean-package/
+          npm pkg delete scripts devDependencies eslintConfig lint-staged commitlint config prettier
           npm publish --provenance
 
       - name: Publish build assets to release
