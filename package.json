@@ -33,7 +33,6 @@
     "translations:extract": "formatjs extract 'src/**/*.ts*' --out-file 'src/intl/messages.json' --format simple --ignore 'src/*.d.ts' && prettier ./src/intl --write",
     "translations:upload": "crowdin upload sources",
     "translations:download": "crowdin download && prettier ./src/intl --write",
-    "publish": "clean-publish",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -123,5 +122,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "clean-publish": {
+    "withoutPublish": true,
+    "tempDir": "clean-package"
   }
 }
