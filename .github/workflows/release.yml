@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     permissions:
-      contents: read  # checkout repository
+      contents: write  # checkout repository, write release assets
       id-token: write  # npm authentication
 
     steps:
