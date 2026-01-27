@@ -13,7 +13,7 @@
   "author": "Olivier Lance <olivier.lance@getalma.eu>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alma/widgets"
+    "url": "git+https://github.com/alma/widgets.git"
   },
   "license": "MIT",
   "engines": {
