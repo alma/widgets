@@ -10,7 +10,7 @@ function CrossIcon({
   color?: string
   className?: string
   'aria-label'?: string
-}): JSX.Element {
+}) {
   const intl = useIntl()
 
   return (
