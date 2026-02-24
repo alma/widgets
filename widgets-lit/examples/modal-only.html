@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Modal Only - Alma Widgets</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #f8f9fa;
+        min-height: 100vh;
+      }
+
+      /* Navigation */
+      .nav {
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 16px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .nav-logo {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fa5022;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        flex: 1;
+      }
+
+      .nav-links a {
+        color: #666;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 13px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+
+      .nav-links a:hover {
+        background: #fff0ec;
+        color: #fa5022;
+      }
+
+      .nav-links a.active {
+        background: #fa5022;
+        color: white;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .page-header h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+      }
+
+      .page-header p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      /* Product Card */
+      .product-card {
+        background: white;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .product-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        background: #e5e7eb;
+      }
+
+      .product-name {
+        font-size: 28px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 15px;
+      }
+
+      .product-img-and-desc {
+        display: flex;
+        gap: 24px;
+      }
+
+      .product-description {
+        font-size: 16px;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .product-price-section {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .product-price-label {
+        font-size: 12px;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .product-price {
+        font-size: 32px;
+        font-weight: 700;
+        color: #fa5022;
+      }
+
+      /* Button Section */
+      .button-section {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .button-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .open-modal-btn {
+        padding: 16px 24px;
+        background: #fa5022;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .open-modal-btn:hover {
+        background: #e64818;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(250, 80, 34, 0.3);
+      }
+
+      .open-modal-btn:active {
+        transform: translateY(0);
+      }
+
+      .info-box {
+        background: #e0f2fe;
+        border-left: 4px solid #0ea5e9;
+        padding: 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #0c4a6e;
+        line-height: 1.5;
+        margin-top: 30px;
+      }
+
+      @media (max-width: 768px) {
+        .page-header h1 {
+          font-size: 28px;
+        }
+
+        .product-card {
+          padding: 20px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="basic.html" class="nav-logo">Alma Widgets</a>
+        <div class="nav-links">
+          <a href="basic.html">Basic</a>
+          <a href="modal-only.html" class="active">Modal Only</a>
+          <a href="customized.html">Customized</a>
+          <a href="multiple.html">Multiple</a>
+          <a href="playground.html">Playground</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+      <div class="page-header">
+        <h1>Modal Standalone</h1>
+        <p>Intégrez uniquement la modale Alma avec un bouton de déclenchement personnalisé</p>
+      </div>
+
+      <!-- Product Card -->
+      <div class="product-card">
+          <h2 class="product-name">Sac à Main en Cuir Premium</h2>
+        <div class="product-img-and-desc"><img
+          src="sac-a-main.jpeg"
+          alt="Sac à Main en Cuir Premium"
+          class="product-image"
+          onerror="this.style.display='none'"
+        />
+
+          <p class="product-description">
+            Un magnifique sac à main en cuir véritable, fait à la main par des artisans qualifiés.
+            Design intemporel et élégant, parfait pour toutes les occasions.
+          </p></div>
+
+
+        <div class="product-price-section">
+          <div>
+            <div class="product-price-label">Prix Total</div>
+            <div class="product-price" id="price-display">450,00 €</div>
+          </div>
+        </div>
+
+        <!-- Trigger Button Section -->
+        <div class="button-section">
+          <div class="button-label">💳 Options de Paiement</div>
+          <button class="open-modal-btn" onclick="openPaymentModal()">Voir les détails du paiement</button>
+        </div>
+
+        <div class="info-box">
+          <strong>📝 Note:</strong> Cet exemple montre comment intégrer uniquement la modale Alma
+          en dehors du widget principal. Parfait pour les sites qui veulent contrôler où et quand
+          afficher les options de paiement.
+        </div>
+      </div>
+    </div>
+
+    <!-- Alma Modal Container (hidden by default) -->
+    <div id="alma-modal-container"></div>
+
+    <!-- Load Alma Widgets -->
+    <script src="/dist/alma-widgets.umd.js"></script>
+
+    <script>
+      const PRICE = 450 // euros
+
+      // Initialize widgets
+      const widgets = Alma.Widgets.initialize(
+        'merchant_11gKoO333vEXacMNMUMUSc4c4g68g2Les4',
+        Alma.ApiMode.TEST,
+      )
+
+      // Add modal with external trigger capability
+      widgets.add(Alma.Widgets.Modal, {
+        container: '#alma-modal-container',
+        purchaseAmount: PRICE * 100,
+        locale: 'fr',
+        clickableSelector: '.open-modal-btn',
+      })
+
+      // Function to open modal programmatically
+      function openPaymentModal() {
+        const modal = document.querySelector('alma-modal')
+        if (modal && modal.open) {
+          modal.open()
+        }
+      }
+
+      console.log('✅ Modal-only example initialized')
+    </script>
+  </body>
+</html>
+

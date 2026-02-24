@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Multiple Products - Alma Widgets</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #f8f9fa;
+        min-height: 100vh;
+      }
+
+      /* Navigation */
+      .nav {
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 16px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .nav-logo {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fa5022;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        flex: 1;
+      }
+
+      .nav-links a {
+        color: #666;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 13px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+
+      .nav-links a:hover {
+        background: #fff0ec;
+        color: #fa5022;
+      }
+
+      .nav-links a.active {
+        background: #fa5022;
+        color: white;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .page-header h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+      }
+
+      .page-header p {
+        font-size: 16px;
+        color: #666;
+      }
+
+      /* Products Grid */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      /* Product Card */
+      .product-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+      }
+
+      .product-card:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+      }
+
+      .product-card-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        background: #e5e7eb;
+      }
+
+      .product-card-content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .product-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      .product-description {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      .product-price-box {
+        background: #f8f9fa;
+        padding: 12px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .product-price {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fa5022;
+      }
+
+      .product-price-label {
+        font-size: 12px;
+        color: #999;
+        text-transform: uppercase;
+      }
+
+      /* Widget section */
+      .widget-container {
+        min-height: 100px;
+      }
+
+      .widget-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      @media (max-width: 768px) {
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .page-header h1 {
+          font-size: 28px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="basic.html" class="nav-logo">Alma Widgets</a>
+        <div class="nav-links">
+          <a href="basic.html">Basic</a>
+          <a href="modal-only.html">Modal Only</a>
+          <a href="customized.html">Customized</a>
+          <a href="multiple.html" class="active">Multiple</a>
+          <a href="playground.html">Playground</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+      <div class="page-header">
+        <h1>Collection de Produits</h1>
+        <p>Explorez nos produits avec les options de paiement Alma</p>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="products-container"></div>
+    </div>
+
+    <!-- Alma Modals Container -->
+    <div id="alma-modals-container"></div>
+
+    <!-- Load Alma Widgets -->
+    <script src="/dist/alma-widgets.umd.js"></script>
+
+    <script>
+      // Product data
+      const PRODUCTS = [
+        {
+          id: 'prod1',
+          name: 'Sac à Main en Cuir',
+          description: 'Sac à main premium en cuir véritable',
+          price: 450,
+          image: 'sac-a-main.jpeg',
+        },
+        {
+          id: 'prod2',
+          name: 'Montre Élégante',
+          description: 'Montre suisse de luxe avec bracelet cuir',
+          price: 1200,
+          image: 'sac-a-main.jpeg',
+        },
+        {
+          id: 'prod3',
+          name: 'Portefeuille en Cuir',
+          description: 'Portefeuille RFID haute qualité',
+          price: 180,
+          image: 'sac-a-main.jpeg',
+        },
+        {
+          id: 'prod4',
+          name: 'Ceinture en Cuir',
+          description: 'Ceinture cuir premium avec boucle design',
+          price: 120,
+          image: 'sac-a-main.jpeg',
+        },
+      ]
+
+      // Initialize widgets once
+      const widgets = Alma.Widgets.initialize(
+        'merchant_11gKoO333vEXacMNMUMUSc4c4g68g2Les4',
+        Alma.ApiMode.TEST,
+      )
+
+      // A single shared modal for the whole page (more realistic merchant integration).
+      // PaymentPlans widgets will point to it with `modalSelector`.
+      widgets.add(Alma.Widgets.Modal, {
+        container: '#alma-modals-container',
+        purchaseAmount: PRODUCTS[0].price * 100,
+        locale: 'fr',
+      })
+
+      // Render products
+      function renderProducts() {
+        const container = document.getElementById('products-container')
+
+        PRODUCTS.forEach((product) => {
+          const card = document.createElement('div')
+          card.className = 'product-card'
+          card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="product-card-image" onerror="this.style.display='none'">
+            <div class="product-card-content">
+              <div class="product-name">${product.name}</div>
+              <div class="product-description">${product.description}</div>
+
+              <div class="product-price-box">
+                <div>
+                  <div class="product-price-label">Prix</div>
+                  <div class="product-price">${product.price.toFixed(2).replace('.', ',')} €</div>
+                </div>
+              </div>
+
+              <div>
+                <div class="widget-label">💳 Paiement Alma</div>
+                <div class="widget-container" id="widget-${product.id}"></div>
+              </div>
+            </div>
+          `
+          container.appendChild(card)
+
+          // Attach PaymentPlans for each product.
+          // All instances open the single shared modal.
+          widgets.add(Alma.Widgets.PaymentPlans, {
+            container: `#widget-${product.id}`,
+            purchaseAmount: product.price * 100,
+            locale: 'fr',
+            modalSelector: '#alma-modals-container alma-modal',
+          })
+        })
+      }
+
+      renderProducts()
+      console.log('✅ Multiple products example initialized')
+    </script>
+  </body>
+</html>
+

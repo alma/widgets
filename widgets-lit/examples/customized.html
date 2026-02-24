@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Customized Options - Alma Widgets</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #f8f9fa;
+        min-height: 100vh;
+      }
+
+      /* Navigation */
+      .nav {
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 16px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .nav-logo {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fa5022;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        flex: 1;
+      }
+
+      .nav-links a {
+        color: #666;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 13px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+
+      .nav-links a:hover {
+        background: #fff0ec;
+        color: #fa5022;
+      }
+
+      .nav-links a.active {
+        background: #fa5022;
+        color: white;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .page-header h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+      }
+
+      .page-header p {
+        font-size: 16px;
+        color: #666;
+      }
+
+      /* Examples Grid */
+      .examples-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+      }
+
+      /* Example Card */
+      .example-card {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .example-card h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+      }
+
+      .example-card p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+
+      .example-badge {
+        display: inline-block;
+        font-size: 12px;
+        padding: 4px 12px;
+        background: #fff0ec;
+        color: #fa5022;
+        border-radius: 20px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      /* Widget Container */
+      .widget-container {
+        min-height: 100px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .widget-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 15px;
+      }
+
+      @media (max-width: 768px) {
+        .page-header h1 {
+          font-size: 28px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .examples-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="basic.html" class="nav-logo">Alma Widgets</a>
+        <div class="nav-links">
+          <a href="basic.html">Basic</a>
+          <a href="modal-only.html">Modal Only</a>
+          <a href="customized.html" class="active">Customized</a>
+          <a href="multiple.html">Multiple</a>
+          <a href="playground.html">Playground</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+      <div class="page-header">
+        <h1>Variations de Style</h1>
+        <p>Explorez différentes configurations du widget Alma</p>
+      </div>
+
+      <!-- Examples Grid -->
+      <div class="examples-grid">
+        <!-- Monochrome Version -->
+        <div class="example-card">
+          <span class="example-badge">Mode Mono</span>
+          <h3>Version Monochrome</h3>
+          <p>Widget en noir et blanc pour les designs minimalistes et épurés.</p>
+          <div class="widget-label">💳 Widget</div>
+          <div class="widget-container" id="widget-monochrome"></div>
+        </div>
+
+        <!-- Standard Version -->
+        <div class="example-card">
+          <span class="example-badge">Standard</span>
+          <h3>Version Colorée</h3>
+          <p>Widget coloré avec les couleurs Alma pour une meilleure visibilité.</p>
+          <div class="widget-label">💳 Widget</div>
+          <div class="widget-container" id="widget-standard"></div>
+        </div>
+
+        <!-- Without Border -->
+        <div class="example-card">
+          <span class="example-badge">Sans Bordure</span>
+          <h3>Version Épurée</h3>
+          <p>Widget sans bordure pour une intégration plus discrète.</p>
+          <div class="widget-label">💳 Widget</div>
+          <div class="widget-container" id="widget-no-border"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alma Modals Container -->
+    <div id="alma-modals-container"></div>
+
+    <!-- Load Alma Widgets -->
+    <script src="/dist/alma-widgets.umd.js"></script>
+
+    <script>
+      const PRICE = 450 // euros
+
+      // Initialize widgets once
+      const widgets = Alma.Widgets.initialize(
+        'merchant_11gKoO333vEXacMNMUMUSc4c4g68g2Les4',
+        Alma.ApiMode.TEST,
+      )
+
+      // Add modals
+      const examples = ['monochrome', 'standard', 'no-border']
+
+      examples.forEach((example) => {
+        const modalContainer = document.createElement('div')
+        modalContainer.id = `modal-${example}`
+        document.getElementById('alma-modals-container').appendChild(modalContainer)
+
+        widgets.add(Alma.Widgets.Modal, {
+          container: `#modal-${example}`,
+          purchaseAmount: PRICE * 100,
+          locale: 'fr',
+        })
+      })
+
+      // Add payment plans widgets with different configurations
+      widgets.add(Alma.Widgets.PaymentPlans, {
+        container: '#widget-monochrome',
+        purchaseAmount: PRICE * 100,
+        locale: 'fr',
+        monochrome: true,
+      })
+
+      widgets.add(Alma.Widgets.PaymentPlans, {
+        container: '#widget-standard',
+        purchaseAmount: PRICE * 100,
+        locale: 'fr',
+        monochrome: false,
+      })
+
+      widgets.add(Alma.Widgets.PaymentPlans, {
+        container: '#widget-no-border',
+        purchaseAmount: PRICE * 100,
+        locale: 'fr',
+        hideBorder: true,
+      })
+
+      console.log('✅ Customized example initialized')
+    </script>
+  </body>
+</html>
+

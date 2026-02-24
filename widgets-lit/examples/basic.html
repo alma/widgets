@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Basic Example - Alma Widgets Lit</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #f8f9fa;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Navigation */
+      .nav {
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 12px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+      }
+
+      .nav-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fa5022;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-links a {
+        color: #666;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .nav-links a:hover {
+        color: #fa5022;
+      }
+
+      /* Main Container - Split Layout */
+      .main-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 100vh;
+        padding-top: 60px;
+      }
+
+      /* Left Side - Image */
+      .left-panel {
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Right Side - Content */
+      .right-panel {
+        background: white;
+        padding: 40px 60px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .product-header {
+        margin-bottom: 30px;
+      }
+
+      .product-title {
+        font-size: 32px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 15px;
+      }
+
+      .product-description {
+        font-size: 16px;
+        color: #666;
+        line-height: 1.6;
+      }
+
+      /* Price & Quantity */
+      .product-controls {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 2px solid #f0f0f0;
+      }
+
+      .price-section {
+        flex: 1;
+      }
+
+      .price-label {
+        font-size: 12px;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+      }
+
+      .product-price {
+        font-size: 42px;
+        font-weight: 700;
+        color: #fa5022;
+      }
+
+      .quantity-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .quantity-section label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+      }
+
+      .quantity-section select {
+        padding: 10px 16px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        background: white;
+      }
+
+      /* Alma Widget Section */
+      .widget-section {
+        margin-bottom: 30px;
+      }
+
+      .widget-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      #alma-widget-container {
+        min-height: 80px;
+      }
+
+      /* Info Badge */
+      .info-badge {
+        background: #e0f2fe;
+        border-left: 4px solid #0ea5e9;
+        padding: 15px 20px;
+        border-radius: 4px;
+        font-size: 13px;
+        color: #0c4a6e;
+        line-height: 1.5;
+      }
+
+      .info-badge strong {
+        color: #0369a1;
+      }
+
+      /* Responsive */
+      @media (max-width: 800px) {
+        .main-container {
+          grid-template-columns: 1fr;
+          grid-template-rows: 40vh 1fr;
+        }
+
+        .right-panel {
+          padding: 30px 30px 60px;
+          justify-content: flex-start;
+        }
+
+        .product-title {
+          font-size: 28px;
+        }
+
+        .product-price {
+          font-size: 36px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .right-panel {
+          padding: 20px;
+        }
+
+        .product-controls {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="basic.html" class="nav-logo">Alma Widgets</a>
+        <div class="nav-links">
+          <a href="basic.html">Basic</a>
+          <a href="modal-only.html">Modal Only</a>
+          <a href="customized.html">Customized</a>
+          <a href="multiple.html">Multiple</a>
+          <a href="playground.html">Playground</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Split Layout -->
+    <div class="main-container">
+      <!-- Left Panel: Image -->
+      <div class="left-panel">
+        <img
+          src="sac-a-main.jpeg"
+          alt="Sac à Main en Cuir Premium"
+          class="product-image"
+          onerror="this.style.display='none'"
+        />
+      </div>
+
+      <!-- Right Panel: Content -->
+      <div class="right-panel">
+        <div class="product-header">
+          <h1 class="product-title">Sac à Main en Cuir Premium</h1>
+          <p class="product-description">
+            Un magnifique sac à main en cuir véritable, fait à la main par des artisans
+            qualifiés. Design intemporel et élégant, parfait pour toutes les occasions.
+          </p>
+        </div>
+
+        <div class="product-controls">
+          <div class="price-section">
+            <div class="price-label">Prix</div>
+            <div class="product-price" id="price-display">450,00 €</div>
+          </div>
+
+          <div class="quantity-section">
+            <label for="quantity">Quantité</label>
+            <select id="quantity" onchange="updatePrice()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="widget-section">
+          <div class="widget-label">
+            <span>💳</span>
+            <span>Options de paiement Alma</span>
+          </div>
+          <div id="alma-widget-container"></div>
+        </div>
+
+        <div class="info-badge">
+          <strong>✨ Reactive Updates:</strong> Changez la quantité pour voir le widget se
+          mettre à jour automatiquement sans rechargement.
+        </div>
+      </div>
+    </div>
+
+    <!-- Alma Modal Container -->
+    <div id="alma-modal-container"></div>
+
+    <!-- Load Alma Widgets from dist -->
+    <script src="/dist/alma-widgets.umd.js"></script>
+
+    <script>
+      const UNIT_PRICE = 450 // Unit price in euros
+
+      // Initialize widgets
+      const widgets = Alma.Widgets.initialize(
+        'merchant_11gKoO333vEXacMNMUMUSc4c4g68g2Les4',
+        Alma.ApiMode.TEST,
+      )
+
+      // Add Modal (will be opened by PaymentPlans automatically)
+      widgets.add(Alma.Widgets.Modal, {
+        container: '#alma-modal-container',
+        purchaseAmount: UNIT_PRICE * 100, // Convert to cents
+        locale: 'fr',
+      })
+
+      // Add PaymentPlans widget
+      widgets.add(Alma.Widgets.PaymentPlans, {
+        container: '#alma-widget-container',
+        purchaseAmount: UNIT_PRICE * 100,
+        locale: 'fr',
+        // The modal will open automatically when clicking a plan button
+      })
+
+      // Update price when quantity changes
+      function updatePrice() {
+        const quantity = parseInt(document.getElementById('quantity').value)
+        const totalPrice = UNIT_PRICE * quantity
+        const totalCents = totalPrice * 100
+
+        // Update display
+        document.getElementById('price-display').textContent =
+          totalPrice.toFixed(2).replace('.', ',') + ' €'
+
+        // Update widgets reactively (no re-mount needed!)
+        document.querySelector('alma-payment-plans').purchaseAmount = totalCents
+        document.querySelector('alma-modal').purchaseAmount = totalCents
+
+        console.log(`✅ Updated to ${quantity} x ${UNIT_PRICE}€ = ${totalPrice}€`)
+      }
+
+      console.log('✅ Basic example initialized')
+    </script>
+  </body>
+</html>
+

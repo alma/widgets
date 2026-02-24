@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alma Widgets - Interactive Playground</title>
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f0f2f5;
+        min-height: 100vh;
+      }
+
+      /* ── Header ── */
+      .header {
+        background: white;
+        padding: 14px 24px;
+        box-shadow: 0 1px 4px rgba(0,0,0,.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header-content {
+        max-width: 1800px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .logo { font-size: 22px; font-weight: 700; color: #fa5022; }
+      .header h1 { margin: 0; font-size: 16px; color: #1a1a1a; font-weight: 600; }
+      .header p  { margin: 2px 0 0; font-size: 11px; color: #888; }
+      nav { display: flex; gap: 4px; margin-left: auto; }
+      nav a {
+        color: #666; text-decoration: none; font-size: 13px; font-weight: 500;
+        padding: 7px 12px; border-radius: 6px; transition: all .15s;
+      }
+      nav a:hover { background: #fff0ec; color: #fa5022; }
+      nav a.active { background: #fa5022; color: white; }
+
+      /* ── Layout ── */
+      .container { max-width: 1800px; margin: 0 auto; padding: 24px 20px; }
+      .playground {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 20px;
+        align-items: start;
+      }
+      .right-column { display: flex; flex-direction: column; gap: 20px; }
+
+      @media (max-width: 960px) {
+        .playground { grid-template-columns: 1fr; }
+        .controls-panel { position: relative !important; top: 0 !important; max-height: none !important; }
+      }
+
+      /* ── Panels ── */
+      .panel {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,.07);
+        overflow: hidden;
+      }
+      .panel-header {
+        padding: 16px 20px;
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: white;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .panel-header.preview { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+      .panel-header.code    { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+      .panel-body { padding: 18px; }
+
+      /* ── Controls panel ── */
+      .controls-panel {
+        position: sticky;
+        top: 78px;
+        max-height: calc(100vh - 96px);
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc #f5f5f5;
+      }
+      .controls-panel::-webkit-scrollbar { width: 6px; }
+      .controls-panel::-webkit-scrollbar-track { background: #f5f5f5; }
+      .controls-panel::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
+      /* ── Sections ── */
+      .section {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .section:last-child { border-bottom: none; margin-bottom: 0; }
+      .section-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: #333;
+        text-transform: uppercase;
+        letter-spacing: .6px;
+        margin: 0 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* ── Form fields ── */
+      .field { margin-bottom: 12px; }
+      .field:last-child { margin-bottom: 0; }
+      .field label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 5px;
+      }
+      .field input[type="text"],
+      .field input[type="number"],
+      .field select {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 7px;
+        font-size: 13px;
+        font-family: inherit;
+        transition: border-color .15s, box-shadow .15s;
+        background: white;
+      }
+      .field input:focus,
+      .field select:focus {
+        outline: none;
+        border-color: #fa5022;
+        box-shadow: 0 0 0 3px rgba(250,80,34,.1);
+      }
+
+      /* Range slider */
+      .amount-row { display: flex; align-items: center; gap: 10px; }
+      .amount-row input[type="number"] { width: 90px; flex-shrink: 0; }
+      .amount-row input[type="range"] {
+        flex: 1;
+        accent-color: #fa5022;
+        cursor: pointer;
+      }
+      .quick-amounts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+      .quick-amount-btn {
+        padding: 4px 10px;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        background: white;
+        color: #555;
+        transition: all .15s;
+      }
+      .quick-amount-btn:hover { border-color: #fa5022; color: #fa5022; background: #fff0ec; }
+
+      /* Checkbox */
+      .checkbox-field {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 8px;
+        border-radius: 6px;
+        transition: background .15s;
+        cursor: pointer;
+      }
+      .checkbox-field:hover { background: #f8f8f8; }
+      .checkbox-field input[type="checkbox"] {
+        width: 16px; height: 16px;
+        cursor: pointer;
+        accent-color: #fa5022;
+        flex-shrink: 0;
+      }
+      .checkbox-field label {
+        margin: 0;
+        font-size: 13px;
+        color: #444;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      /* Help text */
+      .help { font-size: 11px; color: #999; margin-top: 4px; line-height: 1.4; }
+
+      /* Info / warning boxes */
+      .info-box {
+        padding: 10px 12px;
+        background: #e8f4fd;
+        border-left: 3px solid #2196f3;
+        border-radius: 4px;
+        margin-bottom: 12px;
+        font-size: 11px;
+        line-height: 1.5;
+        color: #0c5460;
+      }
+      .info-box.orange {
+        background: #fff4ee;
+        border-left-color: #fa5022;
+        color: #7d2600;
+      }
+
+      /* Quick presets */
+      .quick-presets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .preset-btn {
+        padding: 10px;
+        background: white;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .15s;
+        text-align: left;
+      }
+      .preset-btn:hover { border-color: #fa5022; background: #fff0ec; transform: translateY(-1px); }
+      .preset-btn.active { border-color: #fa5022; background: #fa5022; color: white; }
+      .preset-name { display: block; margin-bottom: 2px; font-size: 12px; }
+      .preset-desc { display: block; font-size: 10px; font-weight: 400; opacity: .75; }
+
+      /* Sub-group inside a section */
+      .sub-section { margin-top: 10px; }
+      .sub-section-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: .4px;
+        margin: 0 0 6px;
+      }
+
+      /* Modal mode badge */
+      .mode-badge {
+        display: inline-block;
+        padding: 2px 7px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: 700;
+        margin-left: 6px;
+        vertical-align: middle;
+      }
+      .mode-badge.auto   { background: #d4edda; color: #155724; }
+      .mode-badge.manual { background: #fff3cd; color: #856404; }
+
+      /* Preview area */
+      .widget-preview {
+        min-height: 380px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .preview-section {
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border: 2px dashed #ddd;
+      }
+      .preview-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        margin-bottom: 14px;
+      }
+      #widget-container { min-height: 60px; }
+      #external-trigger-container { margin-top: 4px; }
+
+      /* Code panel */
+      .code-panel { display: flex; flex-direction: column; overflow: hidden; }
+      .tabs {
+        display: flex;
+        gap: 4px;
+        padding: 0 16px;
+        background: #f8f9fa;
+        border-bottom: 2px solid #e9ecef;
+      }
+      .tab {
+        padding: 10px 16px;
+        background: transparent;
+        border: none;
+        border-bottom: 3px solid transparent;
+        font-size: 12px;
+        font-weight: 600;
+        color: #888;
+        cursor: pointer;
+        transition: color .15s;
+      }
+      .tab:hover { color: #fa5022; }
+      .tab.active { color: #fa5022; border-bottom-color: #fa5022; }
+      .tab-content { display: none; flex-direction: column; min-height: 0; overflow: hidden; }
+      .tab-content.active { display: flex; }
+      .code-display {
+        background: #1e1e1e;
+        padding: 18px 20px;
+        overflow: auto;
+        min-height: 260px;
+        max-height: 440px;
+      }
+      .code-display pre {
+        margin: 0;
+        color: #d4d4d4;
+        font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+        font-size: 12px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .code-actions {
+        display: flex;
+        gap: 8px;
+        padding: 12px 16px;
+        background: #f8f9fa;
+        border-top: 1px solid #e9ecef;
+      }
+
+      /* Buttons */
+      .btn {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .15s;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .btn-primary { background: #fa5022; color: white; }
+      .btn-primary:hover { background: #e0441e; transform: translateY(-1px); }
+      .btn-secondary { background: white; color: #666; border: 1.5px solid #e0e0e0; }
+      .btn-secondary:hover { border-color: #fa5022; color: #fa5022; }
+
+      /* Divider within plans */
+      .plans-divider {
+        font-size: 10px;
+        font-weight: 700;
+        color: #bbb;
+        text-transform: uppercase;
+        letter-spacing: .4px;
+        margin: 8px 0 4px;
+      }
+
+      /* Hidden utility */
+      .hidden { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-content">
+        <div>
+          <div class="logo">Alma</div>
+        </div>
+        <div>
+          <h1>Interactive Playground</h1>
+          <p>Test all widget configurations in real-time</p>
+        </div>
+        <nav>
+          <a href="basic.html">Basic</a>
+          <a href="modal-only.html">Modal Only</a>
+          <a href="customized.html">Customized</a>
+          <a href="multiple.html">Multiple</a>
+          <a href="playground.html" class="active">Playground</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="playground">
+
+        <!-- ── Left: Controls ── -->
+        <div class="panel controls-panel">
+          <div class="panel-header">⚙️ Configuration</div>
+          <div class="panel-body">
+
+            <!-- Quick Presets -->
+            <div class="section">
+              <h3 class="section-title">⚡ Quick Presets</h3>
+              <div class="quick-presets">
+                <button class="preset-btn" data-preset="default">
+                  <span class="preset-name">🎯 Default</span>
+                  <span class="preset-desc">3x &amp; 4x only</span>
+                </button>
+                <button class="preset-btn" data-preset="with-1x">
+                  <span class="preset-name">💰 With Pay Now</span>
+                  <span class="preset-desc">1x + 3x + 4x</span>
+                </button>
+                <button class="preset-btn" data-preset="deferred">
+                  <span class="preset-name">📅 Deferred</span>
+                  <span class="preset-desc">J+15, J+30 + 3x</span>
+                </button>
+                <button class="preset-btn" data-preset="all">
+                  <span class="preset-name">🎁 All Plans</span>
+                  <span class="preset-desc">1x + 3x + 4x + J+15</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Merchant -->
+            <div class="section">
+              <h3 class="section-title">🔌 Merchant</h3>
+              <div class="field">
+                <label>Merchant ID</label>
+                <input type="text" id="merchantId" value="merchant_11gKoO333vEXacMNMUMUSc4c4g68g2Les4" />
+              </div>
+              <div class="field">
+                <label>API Mode</label>
+                <select id="apiMode">
+                  <option value="TEST" selected>TEST — Sandbox</option>
+                  <option value="LIVE">LIVE — Production</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Amount -->
+            <div class="section">
+              <h3 class="section-title">💳 Purchase Amount</h3>
+              <div class="field">
+                <label>Amount (€)</label>
+                <div class="amount-row">
+                  <input type="number" id="purchaseAmount" value="450" min="10" max="10000" step="10" />
+                  <input type="range" id="purchaseAmountSlider" value="450" min="10" max="10000" step="10" />
+                </div>
+                <div class="quick-amounts">
+                  <button class="quick-amount-btn" data-amount="50">50 €</button>
+                  <button class="quick-amount-btn" data-amount="100">100 €</button>
+                  <button class="quick-amount-btn" data-amount="300">300 €</button>
+                  <button class="quick-amount-btn" data-amount="500">500 €</button>
+                  <button class="quick-amount-btn" data-amount="1000">1 000 €</button>
+                  <button class="quick-amount-btn" data-amount="3000">3 000 €</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Plans -->
+            <div class="section">
+              <h3 class="section-title">📋 Plans</h3>
+              <div class="field">
+                <label>Mode</label>
+                <select id="plansMode">
+                  <option value="api" selected>API decides (recommended)</option>
+                  <option value="custom">Custom — send explicit plan queries</option>
+                </select>
+                <div class="help">Use "Custom" to test disabled (non-eligible) buttons with a low amount.</div>
+              </div>
+
+              <div id="custom-plans-panel" class="hidden">
+                <div class="field" style="margin-top:10px;">
+                  <label>Amount range for all plans (€)</label>
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div>
+                      <input type="number" id="plansMinAmount" value="1" min="0" step="1" placeholder="Min" />
+                      <div class="help">Min (€)</div>
+                    </div>
+                    <div>
+                      <input type="number" id="plansMaxAmount" value="200000" min="0" step="100" placeholder="Max" />
+                      <div class="help">Max (€)</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="plans-divider">Installments</div>
+                <div class="checkbox-field">
+                  <input type="checkbox" id="plan-1x" /><label for="plan-1x">1x — Pay Now (P1X)</label>
+                </div>
+                <div class="checkbox-field">
+                  <input type="checkbox" id="plan-2x" /><label for="plan-2x">2x</label>
+                </div>
+                <div class="checkbox-field">
+                  <input type="checkbox" id="plan-3x" checked /><label for="plan-3x">3x</label>
+                </div>
+                <div class="checkbox-field">
+                  <input type="checkbox" id="plan-4x" checked /><label for="plan-4x">4x</label>
+                </div>
+                <div class="checkbox-field">
+                  <input type="checkbox" id="plan-10x" /><label for="plan-10x">10x</label>
+                </div>
+
+                <div class="plans-divider" style="margin-top:10px;">Deferred</div>
+                <div class="checkbox-field">
+                  <input type="checkbox" id="plan-d15" /><label for="plan-d15">J+15 (15 days deferred)</label>
+                </div>
+                <div class="checkbox-field">
+                  <input type="checkbox" id="plan-d30" /><label for="plan-d30">J+30 (30 days deferred)</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Display -->
+            <div class="section">
+              <h3 class="section-title">🎨 Display</h3>
+
+              <div class="field">
+                <label>Locale</label>
+                <select id="locale">
+                  <option value="fr" selected>🇫🇷 Français</option>
+                  <option value="en">🇬🇧 English</option>
+                  <option value="de">🇩🇪 Deutsch</option>
+                  <option value="es">🇪🇸 Español</option>
+                  <option value="it">🇮🇹 Italiano</option>
+                  <option value="pt">🇵🇹 Português</option>
+                  <option value="nl">🇳🇱 Nederlands</option>
+                </select>
+              </div>
+
+              <div class="checkbox-field">
+                <input type="checkbox" id="monochrome" /><label for="monochrome">Monochrome (black &amp; white)</label>
+              </div>
+              <div class="checkbox-field">
+                <input type="checkbox" id="hideBorder" /><label for="hideBorder">Hide border</label>
+              </div>
+              <div class="checkbox-field">
+                <input type="checkbox" id="hideIfNotEligible" /><label for="hideIfNotEligible">Hide widget if not eligible</label>
+              </div>
+
+              <div class="field" style="margin-top:12px;">
+                <label>Auto-cycle delay (ms)</label>
+                <input type="number" id="transitionDelay" value="5500" min="-1" step="500" />
+                <div class="help">Time between plan tab switches. Use -1 to disable.</div>
+              </div>
+
+              <div class="field">
+                <label>Default selected plan</label>
+                <select id="suggestedPaymentPlan">
+                  <option value="">Auto (first eligible)</option>
+                  <option value="1">1x</option>
+                  <option value="3">3x</option>
+                  <option value="4">4x</option>
+                  <option value="10">10x</option>
+                  <option value="[3,4]">[3, 4] — fallback chain</option>
+                  <option value="[4,3]">[4, 3] — fallback chain</option>
+                </select>
+                <div class="help">First plan found in the list is used.</div>
+              </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="section">
+              <h3 class="section-title">💬 Modal</h3>
+              <div class="field">
+                <label>Integration mode</label>
+                <select id="modalIntegration">
+                  <option value="auto" selected>Auto — widget manages modal</option>
+                  <option value="manual">Manual — shared modal element</option>
+                </select>
+                <div class="help" id="modal-mode-help">
+                  <strong>Auto:</strong> a modal is created automatically when clicking a plan.<br>
+                </div>
+              </div>
+
+              <!-- Only visible in manual mode -->
+              <div id="manual-modal-options" class="hidden">
+                <div class="info-box orange">
+                  The widget will open the <code>#alma-playground-modal</code> element. You can also open it independently with the button below.
+                </div>
+                <div class="checkbox-field">
+                  <input type="checkbox" id="showExternalTrigger" />
+                  <label for="showExternalTrigger">Show "Open Payment Details" button</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Advanced -->
+            <div class="section">
+              <h3 class="section-title">🔧 Advanced</h3>
+
+              <div class="field">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                  <label style="margin:0;">Accepted Cards</label>
+                  <button class="btn btn-secondary" style="padding:3px 8px;font-size:11px;" id="clear-cards">Clear</button>
+                </div>
+                <div class="help" style="margin-bottom:8px;">Leave all unchecked to accept all cards.</div>
+                <div class="checkbox-field"><input type="checkbox" id="card-cb" /><label for="card-cb">CB</label></div>
+                <div class="checkbox-field"><input type="checkbox" id="card-visa" /><label for="card-visa">Visa</label></div>
+                <div class="checkbox-field"><input type="checkbox" id="card-mastercard" /><label for="card-mastercard">Mastercard</label></div>
+                <div class="checkbox-field"><input type="checkbox" id="card-amex" /><label for="card-amex">Amex</label></div>
+              </div>
+
+              <div class="field">
+                <label>Billing Country</label>
+                <select id="billingCountry">
+                  <option value="">Auto</option>
+                  <option value="FR" selected>FR</option>
+                  <option value="BE">BE</option>
+                  <option value="DE">DE</option>
+                  <option value="ES">ES</option>
+                  <option value="IT">IT</option>
+                  <option value="NL">NL</option>
+                  <option value="PT">PT</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Shipping Country</label>
+                <select id="shippingCountry">
+                  <option value="">Auto</option>
+                  <option value="FR" selected>FR</option>
+                  <option value="BE">BE</option>
+                  <option value="DE">DE</option>
+                  <option value="ES">ES</option>
+                  <option value="IT">IT</option>
+                  <option value="NL">NL</option>
+                  <option value="PT">PT</option>
+                </select>
+              </div>
+
+              <div class="checkbox-field">
+                <input type="checkbox" id="merchantCoversAllFees" />
+                <label for="merchantCoversAllFees">Merchant covers all fees</label>
+              </div>
+            </div>
+
+          </div><!-- /panel-body -->
+        </div><!-- /controls-panel -->
+
+        <!-- ── Right: Preview + Code ── -->
+        <div class="right-column">
+
+          <!-- Live Preview -->
+          <div class="panel">
+            <div class="panel-header preview">🎨 Live Preview</div>
+            <div class="panel-body">
+              <div class="widget-preview">
+                <div class="preview-section">
+                  <div class="preview-label">Payment Plans Widget</div>
+                  <div id="widget-container"></div>
+                </div>
+
+                <!-- External trigger button (manual mode only) -->
+                <div id="external-trigger-container"></div>
+
+                <!-- Manual modal target -->
+                <div id="alma-playground-modal"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Generated Code -->
+          <div class="panel code-panel">
+            <div class="panel-header code">💻 Generated Code</div>
+            <div class="tabs">
+              <button class="tab active" data-tab="javascript">JavaScript</button>
+              <button class="tab" data-tab="html">HTML</button>
+              <button class="tab" data-tab="config">Config JSON</button>
+            </div>
+
+            <div class="tab-content active" data-tab-content="javascript">
+              <div class="code-display"><pre id="code-output-js"></pre></div>
+              <div class="code-actions">
+                <button class="btn btn-primary" id="copy-js">📋 Copy</button>
+              </div>
+            </div>
+
+            <div class="tab-content" data-tab-content="html">
+              <div class="code-display"><pre id="code-output-html"></pre></div>
+              <div class="code-actions">
+                <button class="btn btn-primary" id="copy-html">📋 Copy</button>
+              </div>
+            </div>
+
+            <div class="tab-content" data-tab-content="config">
+              <div class="code-display"><pre id="code-output-config"></pre></div>
+              <div class="code-actions">
+                <button class="btn btn-primary" id="copy-config">📋 Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">🧩 Global API (Constants)</div>
+            <div class="panel-body">
+              <div class="help" style="margin-bottom:10px;">
+                Values exposed by the global <code>Alma</code> object (UMD bundle).
+              </div>
+              <div class="code-display"><pre id="constants-output"></pre></div>
+            </div>
+          </div>
+
+        </div><!-- /right-column -->
+      </div><!-- /playground -->
+    </div><!-- /container -->
+
+    <script>
+      let widgets = null
+      let currentMerchantId = null
+      let currentApiMode = null
+      const ALMA_BUNDLE_SRC = '/dist/alma-widgets.umd.js'
+      let playgroundStarted = false
+
+      // ── Bundle loader ────────────────────────────────────────────────────────
+      function loadAlmaBundle(retries = 80) {
+        if (window.Alma && Alma.Widgets) return Promise.resolve()
+        return new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = ALMA_BUNDLE_SRC
+          script.async = true
+          script.onload = () => resolve()
+          script.onerror = () => {
+            script.remove()
+            if (retries <= 0) { reject(new Error(`Failed to load ${ALMA_BUNDLE_SRC}`)); return }
+            setTimeout(() => loadAlmaBundle(retries - 1).then(resolve).catch(reject), 100)
+          }
+          document.head.appendChild(script)
+        })
+      }
+
+      // ── Helpers ──────────────────────────────────────────────────────────────
+      function initWidgets() {
+        const merchantId = document.getElementById('merchantId').value.trim()
+        const apiMode    = document.getElementById('apiMode').value
+        if (!merchantId) throw new Error('Missing merchantId')
+        if (merchantId !== currentMerchantId || apiMode !== currentApiMode) {
+          widgets = Alma.Widgets.initialize(merchantId, apiMode === 'LIVE' ? Alma.ApiMode.LIVE : Alma.ApiMode.TEST)
+          currentMerchantId = merchantId
+          currentApiMode    = apiMode
+        }
+      }
+
+      function getPlansConfig() {
+        if (document.getElementById('plansMode').value !== 'custom') return undefined
+        const minAmount = Math.round(Number(document.getElementById('plansMinAmount').value || 0) * 100)
+        const maxAmount = Math.round(Number(document.getElementById('plansMaxAmount').value || 0) * 100)
+        const plans = []
+        if (document.getElementById('plan-1x').checked)  plans.push({ installmentsCount: 1, minAmount, maxAmount })
+        if (document.getElementById('plan-2x').checked)  plans.push({ installmentsCount: 2, minAmount, maxAmount })
+        if (document.getElementById('plan-3x').checked)  plans.push({ installmentsCount: 3, minAmount, maxAmount })
+        if (document.getElementById('plan-4x').checked)  plans.push({ installmentsCount: 4, minAmount, maxAmount })
+        if (document.getElementById('plan-10x').checked) plans.push({ installmentsCount: 10, minAmount, maxAmount })
+        if (document.getElementById('plan-d15').checked) plans.push({ installmentsCount: 1, deferredDays: 15, minAmount, maxAmount })
+        if (document.getElementById('plan-d30').checked) plans.push({ installmentsCount: 1, deferredDays: 30, minAmount, maxAmount })
+        return plans.length > 0 ? plans : undefined
+      }
+
+      function getSelectedCards() {
+        const cards = []
+        if (document.getElementById('card-cb').checked)         cards.push('cb')
+        if (document.getElementById('card-visa').checked)       cards.push('visa')
+        if (document.getElementById('card-mastercard').checked) cards.push('mastercard')
+        if (document.getElementById('card-amex').checked)       cards.push('amex')
+        return cards.length > 0 ? cards : undefined
+      }
+
+      function getAmountCents() {
+        return Math.round(Number(document.getElementById('purchaseAmount').value) * 100)
+      }
+
+      // ── Update widget ────────────────────────────────────────────────────────
+      function updateWidget() {
+        if (!window.Alma || !Alma.Widgets) return
+
+        initWidgets()
+
+        const amountCents          = getAmountCents()
+        const locale               = document.getElementById('locale').value
+        const plans                = getPlansConfig()
+        const monochrome           = document.getElementById('monochrome').checked
+        const hideBorder           = document.getElementById('hideBorder').checked
+        const hideIfNotEligible    = document.getElementById('hideIfNotEligible').checked
+        const transitionDelay      = Number(document.getElementById('transitionDelay').value)
+        const suggestedPaymentPlan = document.getElementById('suggestedPaymentPlan').value
+        const modalIntegration     = document.getElementById('modalIntegration').value
+        const cards                = getSelectedCards()
+        const billingCountry       = document.getElementById('billingCountry').value || undefined
+        const shippingCountry      = document.getElementById('shippingCountry').value || undefined
+        const merchantCoversAllFees = document.getElementById('merchantCoversAllFees').checked || undefined
+        const showExternalTrigger  = document.getElementById('showExternalTrigger').checked
+
+        // Clear containers
+        document.getElementById('widget-container').innerHTML = ''
+        document.getElementById('external-trigger-container').innerHTML = ''
+
+        // When switching to auto mode, clear the manual modal container so
+        // stale alma-modal elements don't linger.
+        if (modalIntegration === 'auto') {
+          document.getElementById('alma-playground-modal').innerHTML = ''
+        }
+
+        // ── Manual modal setup ────────────────────────────────────────────────
+        // IMPORTANT: create the external-trigger button BEFORE calling addModal
+        // so that clickableSelector can find it via querySelectorAll.
+        if (modalIntegration === 'manual') {
+          if (showExternalTrigger) {
+            const btn = document.createElement('button')
+            btn.id = 'open-alma-modal'
+            btn.textContent = '🔍 Open Payment Details'
+            btn.style.cssText = [
+              'padding:12px 24px',
+              'background:#fa5022',
+              'color:white',
+              'border:none',
+              'border-radius:8px',
+              'font-size:14px',
+              'font-weight:600',
+              'cursor:pointer',
+              'width:100%',
+            ].join(';')
+            document.getElementById('external-trigger-container').appendChild(btn)
+          }
+
+          const modalOptions = {
+            container: '#alma-playground-modal',
+            purchaseAmount: amountCents,
+            locale,
+          }
+          if (plans)               modalOptions.plans = plans
+          if (cards)               modalOptions.cards = cards
+          if (billingCountry)      modalOptions.customerBillingCountry = billingCountry
+          if (shippingCountry)     modalOptions.customerShippingCountry = shippingCountry
+          if (merchantCoversAllFees) modalOptions.merchantCoversAllFees = merchantCoversAllFees
+          if (showExternalTrigger) modalOptions.clickableSelector = '#open-alma-modal'
+
+          widgets.add(Alma.Widgets.Modal, modalOptions)
+        }
+
+        // ── Payment Plans widget ──────────────────────────────────────────────
+        const paymentPlansOptions = {
+          container: '#widget-container',
+          purchaseAmount: amountCents,
+          locale, monochrome, hideBorder, hideIfNotEligible, transitionDelay,
+        }
+        if (plans) paymentPlansOptions.plans = plans
+        if (cards) paymentPlansOptions.cards = cards
+        if (suggestedPaymentPlan) {
+          paymentPlansOptions.suggestedPaymentPlan = suggestedPaymentPlan.startsWith('[')
+            ? JSON.parse(suggestedPaymentPlan)
+            : Number(suggestedPaymentPlan)
+        }
+        if (billingCountry)       paymentPlansOptions.customerBillingCountry = billingCountry
+        if (shippingCountry)      paymentPlansOptions.customerShippingCountry = shippingCountry
+        if (merchantCoversAllFees) paymentPlansOptions.merchantCoversAllFees = merchantCoversAllFees
+        if (modalIntegration === 'manual') {
+          paymentPlansOptions.modalSelector = '#alma-playground-modal alma-modal'
+        }
+
+        widgets.add(Alma.Widgets.PaymentPlans, paymentPlansOptions)
+
+        updateCodeOutputs()
+        updateApiPanel()
+      }
+
+      // ── Code generation ──────────────────────────────────────────────────────
+      function updateCodeOutputs() {
+        const merchantId           = document.getElementById('merchantId').value.trim()
+        const apiMode              = document.getElementById('apiMode').value
+        const amountCents          = getAmountCents()
+        const locale               = document.getElementById('locale').value
+        const plans                = getPlansConfig()
+        const monochrome           = document.getElementById('monochrome').checked
+        const hideBorder           = document.getElementById('hideBorder').checked
+        const hideIfNotEligible    = document.getElementById('hideIfNotEligible').checked
+        const transitionDelay      = Number(document.getElementById('transitionDelay').value)
+        const suggestedPaymentPlan = document.getElementById('suggestedPaymentPlan').value
+        const modalIntegration     = document.getElementById('modalIntegration').value
+        const cards                = getSelectedCards()
+        const billingCountry       = document.getElementById('billingCountry').value || undefined
+        const shippingCountry      = document.getElementById('shippingCountry').value || undefined
+        const merchantCoversAllFees = document.getElementById('merchantCoversAllFees').checked || undefined
+
+        const fmt = (v) => JSON.stringify(v, null, 2)
+
+        let jsCode = `const widgets = Alma.Widgets.initialize('${merchantId}', Alma.ApiMode.${apiMode})\n\n`
+
+        if (modalIntegration === 'manual') {
+          jsCode += `widgets.add(Alma.Widgets.Modal, ${fmt({
+            container: '#alma-modal',
+            purchaseAmount: amountCents,
+            locale,
+            ...(plans && { plans }),
+            ...(cards && { cards }),
+            ...(billingCountry && { customerBillingCountry: billingCountry }),
+            ...(shippingCountry && { customerShippingCountry: shippingCountry }),
+            ...(merchantCoversAllFees && { merchantCoversAllFees }),
+            clickableSelector: '#open-alma-modal',
+          })})\n\n`
+        }
+
+        jsCode += `widgets.add(Alma.Widgets.PaymentPlans, ${fmt({
+          container: '#widget-container',
+          purchaseAmount: amountCents,
+          locale,
+          ...(monochrome && { monochrome }),
+          ...(hideBorder && { hideBorder }),
+          ...(hideIfNotEligible && { hideIfNotEligible }),
+          ...(transitionDelay !== 5500 && { transitionDelay }),
+          ...(plans && { plans }),
+          ...(suggestedPaymentPlan && {
+            suggestedPaymentPlan: suggestedPaymentPlan.startsWith('[')
+              ? JSON.parse(suggestedPaymentPlan)
+              : Number(suggestedPaymentPlan),
+          }),
+          ...(cards && { cards }),
+          ...(billingCountry && { customerBillingCountry: billingCountry }),
+          ...(shippingCountry && { customerShippingCountry: shippingCountry }),
+          ...(merchantCoversAllFees && { merchantCoversAllFees }),
+          ...(modalIntegration === 'manual' && { modalSelector: '#alma-modal alma-modal' }),
+        })})`
+
+        document.getElementById('code-output-js').textContent = jsCode
+        document.getElementById('code-output-html').textContent = `<div id="widget-container"></div>
+${modalIntegration === 'manual' ? '<div id="alma-modal"></div>\n' : ''}
+<script src="https://cdn.alma.eu/widgets/alma-widgets.umd.js"><\/script>
+<script>
+${jsCode}
+<\/script>`
+
+        document.getElementById('code-output-config').textContent = JSON.stringify({
+          merchantId, apiMode, purchaseAmount: amountCents, locale,
+          ...(plans && { plans }),
+          ...(monochrome && { monochrome }),
+          ...(hideBorder && { hideBorder }),
+          ...(hideIfNotEligible && { hideIfNotEligible }),
+          ...(transitionDelay !== 5500 && { transitionDelay }),
+          ...(suggestedPaymentPlan && {
+            suggestedPaymentPlan: suggestedPaymentPlan.startsWith('[')
+              ? JSON.parse(suggestedPaymentPlan) : Number(suggestedPaymentPlan),
+          }),
+          ...(cards && { cards }),
+          ...(billingCountry && { customerBillingCountry: billingCountry }),
+          ...(shippingCountry && { customerShippingCountry: shippingCountry }),
+          ...(merchantCoversAllFees && { merchantCoversAllFees }),
+          modalIntegration,
+        }, null, 2)
+      }
+
+      function updateApiPanel() {
+        if (!window.Alma) return
+        const locale = document.getElementById('locale').value
+        const payload = {
+          ApiMode: Alma.ApiMode,
+          Widgets: Alma.Widgets,
+          Utils: {
+            priceToCents: Alma.Utils.priceToCents(12.34),
+            priceFromCents: Alma.Utils.priceFromCents(1234),
+            formatCents: Alma.Utils.formatCents(1234, locale),
+          },
+        }
+        document.getElementById('constants-output').textContent = JSON.stringify(payload, null, 2)
+      }
+
+      // ── UI helpers ───────────────────────────────────────────────────────────
+      function updatePlansModeUI() {
+        const custom = document.getElementById('plansMode').value === 'custom'
+        document.getElementById('custom-plans-panel').classList.toggle('hidden', !custom)
+      }
+
+      function updateModalModeUI() {
+        const manual = document.getElementById('modalIntegration').value === 'manual'
+        document.getElementById('manual-modal-options').classList.toggle('hidden', !manual)
+        document.getElementById('modal-mode-help').innerHTML = manual
+          ? '<strong>Manual:</strong> you create the modal element; the widget opens it when a plan is clicked.'
+          : '<strong>Auto:</strong> a modal is created automatically when clicking a plan.'
+      }
+
+      // ── Presets ──────────────────────────────────────────────────────────────
+      function applyPreset(preset) {
+        document.querySelectorAll('[id^="plan-"]').forEach(cb => cb.checked = false)
+        document.getElementById('plansMode').value = 'custom'
+        updatePlansModeUI()
+        const check = (id) => { const el = document.getElementById(id); if (el) el.checked = true }
+        switch (preset) {
+          case 'default':  check('plan-3x'); check('plan-4x'); break
+          case 'with-1x':  check('plan-1x'); check('plan-3x'); check('plan-4x'); break
+          case 'deferred': check('plan-d15'); check('plan-d30'); check('plan-3x'); break
+          case 'all':      check('plan-1x'); check('plan-3x'); check('plan-4x'); check('plan-d15'); break
+        }
+        document.querySelectorAll('.preset-btn').forEach(btn =>
+          btn.classList.toggle('active', btn.dataset.preset === preset))
+        updateWidget()
+      }
+
+      // ── Event listeners ──────────────────────────────────────────────────────
+      function setupListeners() {
+        // Generic: re-render on any input change
+        document.querySelectorAll('input, select').forEach(el => {
+          el.addEventListener('change', updateWidget)
+          if (el.type === 'number' || el.type === 'text') {
+            el.addEventListener('input', debounce(updateWidget, 400))
+          }
+        })
+
+        // Amount ↔ slider sync
+        const amtInput  = document.getElementById('purchaseAmount')
+        const amtSlider = document.getElementById('purchaseAmountSlider')
+        amtInput.addEventListener('input', () => { amtSlider.value = amtInput.value })
+        amtSlider.addEventListener('input', () => {
+          amtInput.value = amtSlider.value
+          updateWidget()
+        })
+
+        // Quick amount buttons
+        document.querySelectorAll('.quick-amount-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            amtInput.value  = btn.dataset.amount
+            amtSlider.value = btn.dataset.amount
+            updateWidget()
+          })
+        })
+
+        // Preset buttons
+        document.querySelectorAll('.preset-btn').forEach(btn =>
+          btn.addEventListener('click', () => applyPreset(btn.dataset.preset)))
+
+        // Plans mode toggle
+        document.getElementById('plansMode').addEventListener('change', () => {
+          updatePlansModeUI()
+          updateWidget()
+        })
+
+        // Modal mode toggle
+        document.getElementById('modalIntegration').addEventListener('change', () => {
+          updateModalModeUI()
+          updateWidget()
+        })
+
+        // Clear cards
+        document.getElementById('clear-cards').addEventListener('click', () => {
+          document.querySelectorAll('[id^="card-"]').forEach(cb => cb.checked = false)
+          updateWidget()
+        })
+
+        // Tab switching (code panel)
+        document.querySelectorAll('.tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            const name = tab.dataset.tab
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
+            tab.classList.add('active')
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'))
+            document.querySelector(`[data-tab-content="${name}"]`).classList.add('active')
+          })
+        })
+
+        // Copy buttons
+        document.getElementById('copy-js').addEventListener('click', () =>
+          copyToClipboard(document.getElementById('code-output-js').textContent))
+        document.getElementById('copy-html').addEventListener('click', () =>
+          copyToClipboard(document.getElementById('code-output-html').textContent))
+        document.getElementById('copy-config').addEventListener('click', () =>
+          copyToClipboard(document.getElementById('code-output-config').textContent))
+      }
+
+      // ── Utilities ────────────────────────────────────────────────────────────
+      function debounce(fn, ms) {
+        let t
+        return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms) }
+      }
+
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text)
+          .then(() => alert('✅ Copied to clipboard!'))
+          .catch(err => console.error('Copy failed:', err))
+      }
+
+      // ── Bootstrap ────────────────────────────────────────────────────────────
+      function startPlayground() {
+        if (playgroundStarted) return
+        playgroundStarted = true
+        setupListeners()
+        updatePlansModeUI()
+        updateModalModeUI()
+        updateWidget()
+        updateApiPanel()
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        loadAlmaBundle()
+          .then(() => {
+            if (!window.Alma || !Alma.Widgets) throw new Error('Alma.Widgets not available')
+            startPlayground()
+          })
+          .catch(err => console.error(err))
+      })
+    </script>
+  </body>
+</html>
