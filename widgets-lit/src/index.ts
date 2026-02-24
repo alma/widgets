@@ -2,6 +2,7 @@ import { ApiMode } from './constants'
 import { formatPrice } from './utils'
 import './components/payment-plans'
 import './components/modal'
+import type { AlmaModal } from './components/modal'
 
 type AttributeValue = string | number | boolean
 type JsonAttributeValue = unknown
@@ -90,7 +91,12 @@ const clickableListeners = new WeakSet<Element>()
  * the auto-modal and manual-modal event listeners.
  */
 const syncConfigToModal = (modal: HTMLElement, widget: HTMLElement) => {
-  const passthroughAttrs = ['plans', 'cards', 'customer-billing-country', 'customer-shipping-country']
+  const passthroughAttrs = [
+    'plans',
+    'cards',
+    'customer-billing-country',
+    'customer-shipping-country',
+  ]
   for (const attr of passthroughAttrs) {
     const value = widget.getAttribute(attr)
     if (value !== null) {
@@ -217,14 +223,14 @@ class AlmaWidgets {
       }
 
       // Create or reuse the modal element.
-      let modal = modalContainer.querySelector('alma-modal') as HTMLElement | null
+      let modal = modalContainer.querySelector('alma-modal') as AlmaModal | null
       if (!modal) {
-        modal = document.createElement('alma-modal')
+        modal = document.createElement('alma-modal') as AlmaModal
         modalContainer.appendChild(modal)
       }
 
       // Keep modal in sync with the widget configuration.
-      ;(modal as any).purchaseAmount = options.purchaseAmount
+      modal.purchaseAmount = options.purchaseAmount
       setAttributeOrRemove(modal, 'locale', options.locale)
       syncConfigToModal(modal, widget)
 
@@ -243,7 +249,7 @@ class AlmaWidgets {
           const purchaseAmount = event.detail?.purchaseAmount
 
           if (purchaseAmount !== undefined) {
-            ;(modal as any).purchaseAmount = purchaseAmount
+            modal!.purchaseAmount = purchaseAmount
           }
 
           // Keep the modal strictly aligned with the PaymentPlans configuration.
@@ -252,10 +258,10 @@ class AlmaWidgets {
           syncConfigToModal(modal as HTMLElement, widget as HTMLElement)
 
           // Open modal on the right plan.
-          if (selectedPlan && typeof (modal as any).openWithPlan === 'function') {
-            ;(modal as any).openWithPlan(selectedPlan)
+          if (selectedPlan && typeof modal!.openWithPlan === 'function') {
+            modal!.openWithPlan(selectedPlan)
           } else {
-            ;(modal as any).open()
+            modal!.open()
           }
         })
       }
@@ -273,8 +279,8 @@ class AlmaWidgets {
         const selectedPlan = event.detail?.plan
         const purchaseAmount = event.detail?.purchaseAmount
 
-        const modal = document.querySelector(modalSelector) as HTMLElement | null
-        if (!modal || typeof (modal as any).open !== 'function') {
+        const modal = document.querySelector(modalSelector) as AlmaModal | null
+        if (!modal || typeof modal.open !== 'function') {
           console.error(
             `[PaymentPlans] Modal not found or missing open() method. Selector: ${modalSelector}`,
           )
@@ -282,17 +288,17 @@ class AlmaWidgets {
         }
 
         if (purchaseAmount !== undefined) {
-          ;(modal as any).purchaseAmount = purchaseAmount
+          modal.purchaseAmount = purchaseAmount
         }
 
         // Keep the modal strictly aligned with the PaymentPlans configuration (manual mode).
         syncConfigToModal(modal, widget as HTMLElement)
 
         // Open modal with the selected plan
-        if (selectedPlan && typeof (modal as any).openWithPlan === 'function') {
-          ;(modal as any).openWithPlan(selectedPlan)
+        if (selectedPlan && typeof modal.openWithPlan === 'function') {
+          modal.openWithPlan(selectedPlan)
         } else {
-          ;(modal as any).open()
+          modal.open()
         }
       })
     }
@@ -334,15 +340,15 @@ class AlmaWidgets {
     }
 
     // Reuse existing modal instance when possible to avoid re-mounting.
-    let modal = container.querySelector('alma-modal') as HTMLElement | null
+    let modal = container.querySelector('alma-modal') as AlmaModal | null
     if (!modal) {
       container.innerHTML = ''
-      modal = document.createElement('alma-modal')
+      modal = document.createElement('alma-modal') as AlmaModal
       container.appendChild(modal)
     }
 
     // Update reactive properties/attributes
-    ;(modal as any).purchaseAmount = options.purchaseAmount
+    modal.purchaseAmount = options.purchaseAmount
 
     setAttributeOrRemove(modal, 'locale', options.locale)
     setJsonAttributeOrRemove(modal, 'plans', options.plans)
@@ -361,7 +367,7 @@ class AlmaWidgets {
 
         el.addEventListener('click', (e) => {
           e.preventDefault()
-          ;(modal as any).open()
+          modal!.open()
         })
       })
     }
@@ -378,8 +384,8 @@ class AlmaWidgets {
     }
 
     return {
-      open: () => (modal as any).open(),
-      close: () => (modal as any).close(),
+      open: () => modal!.open(),
+      close: () => modal!.close(),
     }
   }
 }
