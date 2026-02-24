@@ -25,6 +25,7 @@ import {
   setElementsInert,
 } from '../utils/a11y'
 import { CLOSE_ICON_SVG, ALMA_LOGO_PATH } from './assets'
+import { injectAlmaFonts } from '../utils/fonts'
 
 /**
  * Date formatting options for Intl.DateTimeFormat
@@ -232,7 +233,7 @@ export class AlmaModal extends LitElement {
     super.connectedCallback() // Always call super first!
 
     // Inject fonts into document head for Shadow DOM compatibility
-    this.injectFonts()
+    injectAlmaFonts()
 
     // Set initial mobile state and listen for breakpoint changes
     this.isMobile = this.mobileMediaQuery.matches
@@ -247,31 +248,6 @@ export class AlmaModal extends LitElement {
     } else {
       this.loading = false
     }
-  }
-
-  /**
-   * Inject Alma fonts into document head
-   * Shadow DOM can't always load @font-face correctly, so we inject them globally
-   */
-  private injectFonts() {
-    if (document.getElementById('alma-fonts-injected')) {
-      return // Already injected
-    }
-
-    const style = document.createElement('style')
-    style.id = 'alma-fonts-injected'
-    style.textContent = `
-      @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-      @font-face {
-        font-family: Argent;
-        src: url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.woff') format('woff');
-        font-weight: 600;
-        font-style: normal;
-        font-display: swap;
-      }
-    `
-    document.head.appendChild(style)
   }
 
   /**

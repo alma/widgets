@@ -594,7 +594,7 @@ Limited customization via CSS variables on the host page:
 
 Fonts are loaded from Alma CDN:
 - **Argent** (headings): ~60 KB
-- **Venn** (body): ~80 KB
+- **Inter** (body): ~80 KB
 
 Cannot be customized—fonts are fixed for brand consistency.
 
