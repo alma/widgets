@@ -31,6 +31,12 @@ export const modalStyles = css`
     padding: 0;
   }
 
+  .modal-overlay.bottom-sheet-open {
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+  }
+
   /* Modal Container (match Preact geometry and shadow) */
   .modal {
     background: var(--surface-white);
@@ -64,6 +70,55 @@ export const modalStyles = css`
 
   .modal-overlay.closing .modal.modal-panel {
     transform: translateX(100%);
+  }
+
+  .modal.modal-bottom-sheet {
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--alma-modal-radius-mobile);
+    max-height: 83vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: drawerSlideUp 0.25s ease-out;
+    flex-direction: column;
+  }
+
+  .modal.modal-bottom-sheet .modal-content-mobile {
+    padding-top: var(--spacing-16);
+    padding-left: var(--spacing-40);
+    padding-right: var(--spacing-40);
+    gap: var(--spacing-32);
+  }
+
+  .modal.modal-panel .modal-content-mobile {
+    gap: var(--spacing-32);
+  }
+
+  .modal.modal-bottom-sheet .modal-title,
+  .modal.modal-panel .modal-title {
+    margin-bottom: var(--spacing-12);
+  }
+
+  .modal.modal-bottom-sheet .schedule-total-wrapper,
+  .modal.modal-panel .schedule-total-wrapper {
+    margin-bottom: var(--spacing-16);
+  }
+
+  .modal.modal-bottom-sheet .info-section,
+  .modal.modal-panel .info-section {
+    margin-bottom: var(--spacing-16);
+  }
+
+  .modal.modal-bottom-sheet .cards-row,
+  .modal.modal-panel .cards-row {
+    margin-top: var(--spacing-8);
+  }
+
+  .modal.modal-bottom-sheet .logo-row,
+  .modal.modal-panel .logo-row {
+    margin-top: var(--spacing-8);
   }
 
   @keyframes modalSlideIn {
@@ -406,6 +461,23 @@ export const modalStyles = css`
     color: var(--alma-color-button-primary-text);
   }
 
+  .plan-buttons.tabs .plan-button {
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .plan-buttons.tabs .plan-button.active {
+    background: transparent;
+    color: var(--alma-color-text-primary);
+    border-bottom-color: var(--alma-color-button-primary-bg);
+  }
+
+  .plan-buttons.tabs .plan-button.active .plan-button-text {
+    color: var(--alma-color-text-primary);
+  }
+
   .plan-button-text,
   .total-label,
   .total-value {
@@ -452,22 +524,6 @@ export const modalStyles = css`
 
   .schedule-details {
     flex: 1;
-  }
-
-  .schedule-title {
-    font-family: var(--alma-modal-font-family-sans);
-    font-size: var(--alma-modal-body-font-size);
-    font-weight: var(--alma-font-weight-bold);
-    color: var(--alma-color-text-primary);
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
   }
 
   .installments-list {
@@ -627,11 +683,6 @@ export const modalStyles = css`
     border-top: none;
     align-items: center;
     flex-wrap: nowrap;
-  }
-
-  /* Hide the label in the Lit modal to match Preact (no "Accepted cards" text) */
-  .cards-label {
-    display: none;
   }
 
   .card-icon {

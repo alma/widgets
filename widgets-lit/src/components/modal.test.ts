@@ -184,4 +184,21 @@ describe('AlmaModal', () => {
     expect(overlay.classList.contains('panel-open')).to.equal(true)
     expect(panel).to.exist
   })
+
+  it('should render bottom-sheet mode when bottom-sheet is enabled', async () => {
+    const el = await fixture<AlmaModal>(html`
+      <alma-modal purchase-amount="45000" bottom-sheet></alma-modal>
+    `)
+
+    await waitUntil(() => fetchStub.called, 'fetch should have been called')
+
+    el.open()
+    await el.updateComplete
+
+    const overlay = el.shadowRoot!.querySelector('.modal-overlay') as HTMLElement
+    const sheet = el.shadowRoot!.querySelector('.modal-bottom-sheet') as HTMLElement | null
+
+    expect(overlay.classList.contains('bottom-sheet-open')).to.equal(true)
+    expect(sheet).to.exist
+  })
 })

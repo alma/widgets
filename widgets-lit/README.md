@@ -141,6 +141,8 @@ widgets.add(Alma.Widgets.PaymentPlans, {
   monochrome: false,                   // Orange (false) or black/white (true)
   colorScheme: 'gray',                 // Optional theme color for the widget
   compactMode: false,                  // Smaller buttons + compact logo, hides info text
+  inlineCompact: false,                // Shrinks width to fit visible plans
+  planStyle: 'buttons',                // 'buttons' (default) or 'tabs'
   hideBorder: false,                   // Hide container border
   hideIfNotEligible: false,            // Hide entire widget if no plans
 
@@ -170,8 +172,9 @@ widgets.add(Alma.Widgets.PaymentPlans, {
   modalSelector: '#my-modal alma-modal',  // Manual: connect to this modal
   // If not specified, modal is auto-created
 
-  // === LIFECYCLE (Advanced) ===
-  onPlanSelected: (plan) => { },       // Called when user clicks a plan
+  // === MODAL DISPLAY (AUTO/MANUAL) ===
+  panelMode: false,                    // Right-side slide panel
+  bottomSheet: false,                  // Bottom sheet on desktop
 })
 ```
 
@@ -204,6 +207,11 @@ widgets.add(Alma.Widgets.Modal, {
   // === DISPLAY ===
   locale: 'fr',                        // Language code
   cards: ['visa', 'mastercard'],       // Card logos to display
+  planStyle: 'buttons',                // 'buttons' (default) or 'tabs'
+
+  // === POSITIONING ===
+  panelMode: false,                    // Right-side slide panel
+  bottomSheet: false,                  // Bottom sheet on desktop
 
   // === FEES & RULES ===
   merchantCoversAllFees: false,        // Affects fee display

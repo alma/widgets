@@ -52,6 +52,8 @@ export class AlmaPaymentPlans extends LitElement {
   @property({ type: Boolean, attribute: 'merchant-covers-all-fees' })
   merchantCoversAllFees?: boolean
   @property({ type: Boolean, attribute: 'compact-mode' }) compactMode = false
+  @property({ type: Boolean, attribute: 'inline-compact' }) inlineCompact = false
+  @property({ type: String, attribute: 'plan-style' }) planStyle: 'buttons' | 'tabs' = 'buttons'
 
   // --- Private State (internal component state, triggers re-renders) ---
 
@@ -596,6 +598,8 @@ export class AlmaPaymentPlans extends LitElement {
       <div
         class="container ${this.hideBorder ? 'hide-border' : ''} ${this.compactMode
           ? 'compact'
+          : ''} ${this.inlineCompact ? 'inline-compact' : ''} ${this.planStyle === 'tabs'
+          ? 'plan-style-tabs'
           : ''}"
         role="region"
         aria-label="${t(lang, 'paymentPlans.regionLabel')}"
@@ -652,7 +656,7 @@ export class AlmaPaymentPlans extends LitElement {
                 `}
           </button>
           <div
-            class="payment-plans"
+            class="payment-plans ${this.planStyle === 'tabs' ? 'tabs' : ''}"
             role="group"
             aria-label="${t(lang, 'paymentPlans.planOptions')}"
           >

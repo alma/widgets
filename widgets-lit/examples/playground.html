@@ -568,6 +568,22 @@
                 </div>
               </div>
 
+              <div class="field">
+                <label>Inline compact</label>
+                <div class="checkbox-field">
+                  <input type="checkbox" id="inlineCompact" />
+                  <label for="inlineCompact">Inline compact (shrink width)</label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Plan style</label>
+                <select id="planStyle">
+                  <option value="buttons" selected>Buttons</option>
+                  <option value="tabs">Tabs</option>
+                </select>
+              </div>
+
               <div class="checkbox-field">
                 <input type="checkbox" id="monochrome" /><label for="monochrome">Monochrome (black &amp; white)</label>
               </div>
@@ -616,6 +632,11 @@
               <div class="checkbox-field">
                 <input type="checkbox" id="panelMode" />
                 <label for="panelMode">Panel mode (right slide)</label>
+              </div>
+
+              <div class="checkbox-field">
+                <input type="checkbox" id="bottomSheet" />
+                <label for="bottomSheet">Bottom sheet (desktop)</label>
               </div>
 
               <!-- Only visible in manual mode -->
@@ -774,7 +795,7 @@
         })
       }
 
-      // ── Helpers ──────────────────────────────────────────────────────────────
+      // ── Helpers ────────────────────────────────��─────────────────────────────
       function initWidgets() {
         const merchantId = document.getElementById('merchantId').value.trim()
         const apiMode    = document.getElementById('apiMode').value
@@ -839,6 +860,9 @@
         const showExternalTrigger  = document.getElementById('showExternalTrigger').checked
         const compactMode          = document.getElementById('compactMode').checked
         const panelMode           = document.getElementById('panelMode').checked
+        const inlineCompact        = document.getElementById('inlineCompact').checked
+        const planStyle            = document.getElementById('planStyle').value
+        const bottomSheet          = document.getElementById('bottomSheet').checked
 
         // Clear containers
         document.getElementById('widget-container').innerHTML = ''
@@ -893,6 +917,8 @@
             locale,
           }
           if (panelMode) modalOptions.panelMode = true
+          if (bottomSheet) modalOptions.bottomSheet = true
+          if (planStyle && planStyle !== 'buttons') modalOptions.planStyle = planStyle
           if (plans)               modalOptions.plans = plans
           if (cards)               modalOptions.cards = cards
           if (billingCountry)      modalOptions.customerBillingCountry = billingCountry
@@ -908,7 +934,7 @@
           container: '#widget-container',
           purchaseAmount: amountCents,
           locale, monochrome, hideBorder, hideIfNotEligible, transitionDelay, colorScheme,
-          compactMode,
+          compactMode, inlineCompact, planStyle, bottomSheet,
         }
         if (panelMode) paymentPlansOptions.panelMode = true
         if (plans) paymentPlansOptions.plans = plans
@@ -951,6 +977,9 @@
         const merchantCoversAllFees = document.getElementById('merchantCoversAllFees').checked || undefined
         const compactMode          = document.getElementById('compactMode').checked
         const panelMode           = document.getElementById('panelMode').checked
+        const inlineCompact        = document.getElementById('inlineCompact').checked
+        const planStyle            = document.getElementById('planStyle').value
+        const bottomSheet          = document.getElementById('bottomSheet').checked
 
         const fmt = (v) => JSON.stringify(v, null, 2)
 
@@ -962,6 +991,8 @@
             purchaseAmount: amountCents,
             locale,
             ...(panelMode && { panelMode: true }),
+            ...(bottomSheet && { bottomSheet: true }),
+            ...(planStyle !== 'buttons' && { planStyle }),
             ...(plans && { plans }),
             ...(cards && { cards }),
             ...(billingCountry && { customerBillingCountry: billingCountry }),
@@ -977,7 +1008,10 @@
           locale,
           ...(colorScheme !== 'orange' && { colorScheme }),
           ...(compactMode && { compactMode }),
+          ...(inlineCompact && { inlineCompact: true }),
+          ...(planStyle !== 'buttons' && { planStyle }),
           ...(panelMode && { panelMode: true }),
+          ...(bottomSheet && { bottomSheet: true }),
           ...(monochrome && { monochrome }),
           ...(hideBorder && { hideBorder }),
           ...(hideIfNotEligible && { hideIfNotEligible }),
@@ -995,19 +1029,14 @@
           ...(modalIntegration === 'manual' && { modalSelector: '#alma-modal alma-modal' }),
         })})`
 
-        document.getElementById('code-output-js').textContent = jsCode
-        document.getElementById('code-output-html').textContent = `<div id="widget-container"></div>
-${modalIntegration === 'manual' ? '<div id="alma-modal"></div>\n' : ''}
-<script src="https://cdn.alma.eu/widgets/alma-widgets.umd.js"><\/script>
-<script>
-${jsCode}
-<\/script>`
-
         document.getElementById('code-output-config').textContent = JSON.stringify({
           merchantId, apiMode, purchaseAmount: amountCents, locale,
           ...(colorScheme !== 'orange' && { colorScheme }),
           ...(compactMode && { compactMode }),
+          ...(inlineCompact && { inlineCompact: true }),
+          ...(planStyle !== 'buttons' && { planStyle }),
           ...(panelMode && { panelMode: true }),
+          ...(bottomSheet && { bottomSheet: true }),
           ...(plans && { plans }),
           ...(monochrome && { monochrome }),
           ...(hideBorder && { hideBorder }),
@@ -1023,6 +1052,13 @@ ${jsCode}
           ...(merchantCoversAllFees && { merchantCoversAllFees }),
           modalIntegration,
         }, null, 2)
+
+        document.getElementById('code-output-html').textContent = `<div id="widget-container"></div>
+${modalIntegration === 'manual' ? '<div id="alma-modal"></div>\n' : ''}
+<script src="https://cdn.alma.eu/widgets/alma-widgets.umd.js"><\/script>
+<script>
+${jsCode}
+<\/script>`
       }
 
       function updateApiPanel() {
@@ -1088,6 +1124,17 @@ ${jsCode}
           if (el.type === 'number' || el.type === 'text') {
             el.addEventListener('input', debounce(updateWidget, 400))
           }
+        })
+
+        // Ensure checkbox rows toggle reliably when clicking the row.
+        document.querySelectorAll('.checkbox-field').forEach(field => {
+          field.addEventListener('click', (event) => {
+            const input = field.querySelector('input[type="checkbox"]')
+            if (!input) return
+            if (event.target === input) return
+            input.checked = !input.checked
+            input.dispatchEvent(new Event('change', { bubbles: true }))
+          })
         })
 
         // Amount ↔ slider sync

@@ -142,7 +142,10 @@ class AlmaWidgets {
     locale?: string
     colorScheme?: 'orange' | 'light-gray' | 'gray' | 'dark-gray' | 'white' | 'black'
     compactMode?: boolean
+    inlineCompact?: boolean
+    planStyle?: 'buttons' | 'tabs'
     panelMode?: boolean
+    bottomSheet?: boolean
     plans?: Array<{
       installmentsCount: number
       deferredDays?: number
@@ -190,6 +193,8 @@ class AlmaWidgets {
     if (options.monochrome !== undefined) (widget as any).monochrome = options.monochrome
     if (options.hideBorder !== undefined) (widget as any).hideBorder = options.hideBorder
     if (options.compactMode !== undefined) (widget as any).compactMode = options.compactMode
+    if (options.inlineCompact !== undefined) (widget as any).inlineCompact = options.inlineCompact
+    if (options.planStyle) (widget as any).planStyle = options.planStyle
 
     setJsonAttributeOrRemove(widget, 'cards', options.cards)
 
@@ -239,6 +244,8 @@ class AlmaWidgets {
       modal.purchaseAmount = options.purchaseAmount
       setAttributeOrRemove(modal, 'locale', options.locale)
       if (options.panelMode !== undefined) (modal as any).panelMode = options.panelMode
+      if (options.bottomSheet !== undefined) (modal as any).bottomSheet = options.bottomSheet
+      if (options.planStyle) (modal as any).planStyle = options.planStyle
       syncConfigToModal(modal, widget)
 
       // Wire optional onModalClose callback (Preact API parity).
@@ -301,6 +308,12 @@ class AlmaWidgets {
         if (options.panelMode !== undefined) {
           ;(modal as any).panelMode = options.panelMode
         }
+        if (options.bottomSheet !== undefined) {
+          ;(modal as any).bottomSheet = options.bottomSheet
+        }
+        if (options.planStyle) {
+          ;(modal as any).planStyle = options.planStyle
+        }
 
         // Keep the modal strictly aligned with the PaymentPlans configuration (manual mode).
         syncConfigToModal(modal, widget as HTMLElement)
@@ -330,13 +343,8 @@ class AlmaWidgets {
     clickableSelector?: string
     locale?: string
     panelMode?: boolean
-    plans?: Array<{
-      installmentsCount: number
-      deferredDays?: number
-      deferredMonths?: number
-      minAmount: number
-      maxAmount: number
-    }>
+    bottomSheet?: boolean
+    planStyle?: 'buttons' | 'tabs'
     cards?: Array<'cb' | 'amex' | 'mastercard' | 'visa'>
     customerBillingCountry?: string
     customerShippingCountry?: string
@@ -364,6 +372,8 @@ class AlmaWidgets {
 
     setAttributeOrRemove(modal, 'locale', options.locale)
     if (options.panelMode !== undefined) (modal as any).panelMode = options.panelMode
+    if (options.bottomSheet !== undefined) (modal as any).bottomSheet = options.bottomSheet
+    if (options.planStyle) (modal as any).planStyle = options.planStyle
     setJsonAttributeOrRemove(modal, 'plans', options.plans)
     setJsonAttributeOrRemove(modal, 'cards', options.cards)
     setAttributeOrRemove(modal, 'customer-billing-country', options.customerBillingCountry)

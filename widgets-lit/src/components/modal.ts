@@ -123,6 +123,8 @@ export class AlmaModal extends LitElement {
   @property({ type: Boolean, attribute: 'merchant-covers-all-fees' })
   merchantCoversAllFees?: boolean
   @property({ type: Boolean, attribute: 'panel-mode' }) panelMode = false
+  @property({ type: Boolean, attribute: 'bottom-sheet' }) bottomSheet = false
+  @property({ type: String, attribute: 'plan-style' }) planStyle: 'buttons' | 'tabs' = 'buttons'
 
   // ===================================================================
   // PRIVATE STATE (internal component state, not exposed as HTML attributes)
@@ -875,7 +877,7 @@ export class AlmaModal extends LitElement {
     return html`
       <div
         id="payment-plans"
-        class="plan-buttons"
+        class="plan-buttons ${this.planStyle === 'tabs' ? 'tabs' : ''}"
         role="group"
         aria-labelledby="payment-plans-title"
         tabindex="-1"
@@ -1090,6 +1092,24 @@ export class AlmaModal extends LitElement {
   }
 
   /**
+   * Render accepted card logos (shared by desktop and mobile layouts)
+   */
+  private renderCardsRow() {
+    if (!this.cardsList || this.cardsList.length === 0) return null
+
+    return html`
+      <div class="cards-row">
+        <div class="cards-container">
+          ${this.cardsList.map(
+            (card) =>
+              html`<div class="card-icon card-${card}" role="img" aria-label="${card}"></div>`,
+          )}
+        </div>
+      </div>
+    `
+  }
+
+  /**
    * Render Desktop Modal Layout (2 columns)
    */
   private renderDesktopModal(lang: I18nLocale) {
@@ -1105,23 +1125,7 @@ export class AlmaModal extends LitElement {
           <div class="modal-title" id="modal-title" role="heading" aria-level="1">
             ${t(lang, this.modalTitleKey)}
           </div>
-          ${this.renderInfoSection(lang)}
-          ${this.cardsList && this.cardsList.length > 0
-            ? html`
-                <div class="cards-row">
-                  <div class="cards-container">
-                    ${this.cardsList.map(
-                      (card) =>
-                        html`<div
-                          class="card-icon card-${card}"
-                          role="img"
-                          aria-label="${card}"
-                        ></div>`,
-                    )}
-                  </div>
-                </div>
-              `
-            : ''}
+          ${this.renderInfoSection(lang)} ${this.renderCardsRow()}
           <div class="logo-row">${this.renderAlmaLogo()}</div>
         </div>
 
@@ -1152,23 +1156,7 @@ export class AlmaModal extends LitElement {
           ${this.currentPlan ? this.renderSchedule(this.currentPlan, lang) : ''}
           ${this.currentPlan ? this.renderTotalBlock(this.currentPlan, lang) : ''}
         </div>
-        ${this.renderInfoSection(lang)}
-        ${this.cardsList && this.cardsList.length > 0
-          ? html`
-              <div class="cards-row">
-                <div class="cards-container">
-                  ${this.cardsList.map(
-                    (card) =>
-                      html`<div
-                        class="card-icon card-${card}"
-                        role="img"
-                        aria-label="${card}"
-                      ></div>`,
-                  )}
-                </div>
-              </div>
-            `
-          : ''}
+        ${this.renderInfoSection(lang)} ${this.renderCardsRow()}
         <div class="logo-row">${this.renderAlmaLogo()}</div>
       </div>
     `
@@ -1181,12 +1169,14 @@ export class AlmaModal extends LitElement {
   render() {
     const lang = (this.locale.split('-')[0] as I18nLocale) || ('fr' as I18nLocale)
 
+    const useBottomSheet = this.bottomSheet === true
+
     return html`
       <div
         class="modal-overlay ${this.isOpen ? 'open' : ''} ${this.isClosing ? 'closing' : ''} ${this
           .panelMode
           ? 'panel-open'
-          : ''}"
+          : ''} ${useBottomSheet ? 'bottom-sheet-open' : ''}"
         @click=${this.handleOverlayClick}
         @keydown=${this.handleKeyDown}
         aria-hidden="${!this.isOpen}"
@@ -1203,11 +1193,10 @@ export class AlmaModal extends LitElement {
                 ${this.renderMobileModal(lang)}
               </div>
             `
-          : this.isMobile
+          : useBottomSheet
             ? html`
-                <!-- MOBILE LAYOUT (rendered only on <800px) -->
                 <div
-                  class="modal modal-mobile"
+                  class="modal modal-bottom-sheet"
                   role="dialog"
                   aria-modal="${this.isOpen}"
                   aria-labelledby="modal-title"
@@ -1216,18 +1205,31 @@ export class AlmaModal extends LitElement {
                   ${this.renderMobileModal(lang)}
                 </div>
               `
-            : html`
-                <!-- DESKTOP LAYOUT (rendered only on 800px+) -->
-                <div
-                  class="modal modal-desktop"
-                  role="dialog"
-                  aria-modal="${this.isOpen}"
-                  aria-labelledby="modal-title"
-                >
-                  ${this.renderSkipLinks(lang)} ${this.renderCloseButton(lang)}
-                  ${this.renderDesktopModal(lang)}
-                </div>
-              `}
+            : this.isMobile
+              ? html`
+                  <!-- MOBILE LAYOUT (rendered only on <800px) -->
+                  <div
+                    class="modal modal-mobile"
+                    role="dialog"
+                    aria-modal="${this.isOpen}"
+                    aria-labelledby="modal-title"
+                  >
+                    ${this.renderSkipLinks(lang)} ${this.renderCloseButton(lang)}
+                    ${this.renderMobileModal(lang)}
+                  </div>
+                `
+              : html`
+                  <!-- DESKTOP LAYOUT (rendered only on 800px+) -->
+                  <div
+                    class="modal modal-desktop"
+                    role="dialog"
+                    aria-modal="${this.isOpen}"
+                    aria-labelledby="modal-title"
+                  >
+                    ${this.renderSkipLinks(lang)} ${this.renderCloseButton(lang)}
+                    ${this.renderDesktopModal(lang)}
+                  </div>
+                `}
       </div>
     `
   }

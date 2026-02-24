@@ -28,9 +28,18 @@ export const paymentPlansStyles = css`
     gap: var(--spacing-8);
   }
 
+  .container.inline-compact {
+    width: max-content;
+    max-width: var(--alma-payment-container-width);
+  }
+
+  .container.inline-compact .payment-plans {
+    max-width: none;
+  }
+
   .container.compact {
-    padding: calc(var(--spacing-3) * 0.8);
-    gap: calc(var(--spacing-2) * 0.8);
+    padding: calc(var(--spacing-4) * 0.8);
+    gap: calc(var(--spacing-4) * 0.8);
   }
 
   :host([color-scheme='white']) .container,
@@ -65,6 +74,11 @@ export const paymentPlansStyles = css`
     flex-direction: row;
     align-items: flex-start;
     width: 100%;
+  }
+
+  .container.compact .primary-container,
+  .container.plan-style-tabs .primary-container {
+    align-items: center;
   }
 
   .logo-button {
@@ -203,48 +217,6 @@ export const paymentPlansStyles = css`
     color: var(--text-default);
   }
 
-  .amount {
-    font-weight: 700;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .cards {
-    display: flex;
-    gap: var(--spacing-4);
-    margin-top: var(--spacing-4);
-  }
-
-  .card-icon {
-    width: var(--alma-payment-card-width);
-    height: var(--alma-payment-card-height);
-  }
-
-  /* Accessibility: respect reduced motion preference (match Preact behavior) */
-  @media (prefers-reduced-motion: reduce) {
-    .plan-button {
-      transition: none;
-    }
-
-    .plan-button:hover {
-      transform: none;
-    }
-  }
-
-  .plan-button[disabled],
-  .plan-button.not-eligible {
-    opacity: 0.35;
-    cursor: not-allowed;
-  }
-
-  .plan-button[disabled]:hover,
-  .plan-button.not-eligible:hover {
-    transform: none;
-    background-color: transparent;
-  }
-
   :host([color-scheme='white']) .plan-button:not(.active),
   :host([color-scheme='light-gray']) .plan-button:not(.active),
   :host([color-scheme='gray']) .plan-button:not(.active),
@@ -264,5 +236,41 @@ export const paymentPlansStyles = css`
   :host([color-scheme='dark-gray']) .info p,
   :host([color-scheme='black']) .info p {
     color: var(--theme-primary, var(--alma-color-text-primary));
+  }
+
+  .payment-plans.tabs {
+    gap: var(--spacing-12);
+  }
+
+  .container.compact .payment-plans.tabs {
+    gap: var(--spacing-8);
+  }
+
+  .payment-plans.tabs .plan-button {
+    background: transparent;
+    border-radius: 0;
+    border-bottom: 2px solid transparent;
+    height: auto;
+    min-width: auto;
+    padding: 0 0 var(--spacing-4) 0;
+    font-weight: var(--weight-semi-bold);
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .payment-plans.tabs .plan-button.active {
+    background: transparent;
+    color: var(--theme-primary, var(--alma-color-text-primary));
+    border-bottom-color: var(--theme-primary, var(--alma-color-text-primary));
+  }
+
+  .payment-plans.tabs .plan-button.monochrome.active {
+    color: var(--alma-color-text-primary);
+    border-bottom-color: var(--alma-color-text-primary);
+  }
+
+  .payment-plans.tabs .plan-button.monochrome {
+    color: var(--alma-color-text-secondary);
   }
 `
