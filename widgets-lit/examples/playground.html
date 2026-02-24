@@ -1029,6 +1029,9 @@
           ...(modalIntegration === 'manual' && { modalSelector: '#alma-modal alma-modal' }),
         })})`
 
+        // Assign generated JavaScript code to output element
+        document.getElementById('code-output-js').textContent = jsCode
+
         document.getElementById('code-output-config').textContent = JSON.stringify({
           merchantId, apiMode, purchaseAmount: amountCents, locale,
           ...(colorScheme !== 'orange' && { colorScheme }),

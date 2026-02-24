@@ -198,6 +198,50 @@ export const paymentPlansStyles = css`
     outline: 1px solid var(--alma-color-focus-outline-monochrome);
   }
 
+  /* Ineligible plans (disabled state) */
+  .plan-button.not-eligible {
+    cursor: not-allowed;
+    opacity: 0.5;
+    color: var(--text-secondary);
+    background-color: transparent;
+  }
+
+  .plan-button.not-eligible:hover {
+    transform: none;
+    background-color: transparent;
+  }
+
+  .plan-button.not-eligible:focus,
+  .plan-button.not-eligible:focus-visible {
+    outline: none;
+  }
+
+  /* Color scheme specific disabled styles */
+  :host([color-scheme='white']) .plan-button.not-eligible,
+  :host([color-scheme='light-gray']) .plan-button.not-eligible,
+  :host([color-scheme='gray']) .plan-button.not-eligible {
+    color: var(--gray-700);
+    opacity: 0.6;
+  }
+
+  :host([color-scheme='dark-gray']) .plan-button.not-eligible,
+  :host([color-scheme='black']) .plan-button.not-eligible {
+    color: var(--gray-600);
+    opacity: 0.5;
+  }
+
+  .plan-button.monochrome.not-eligible {
+    color: var(--gray-700);
+    opacity: 0.5;
+  }
+
+  /* Tabs style disabled */
+  .payment-plans.tabs .plan-button.not-eligible {
+    color: var(--text-secondary);
+    border-bottom-color: transparent;
+    opacity: 0.4;
+  }
+
   .info {
     font-family: var(--alma-payment-font-family-sans);
     font-size: var(--alma-payment-info-font-size, 10px);

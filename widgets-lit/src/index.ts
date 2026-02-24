@@ -345,6 +345,13 @@ class AlmaWidgets {
     panelMode?: boolean
     bottomSheet?: boolean
     planStyle?: 'buttons' | 'tabs'
+    plans?: Array<{
+      installmentsCount: number
+      deferredDays?: number
+      deferredMonths?: number
+      minAmount: number
+      maxAmount: number
+    }>
     cards?: Array<'cb' | 'amex' | 'mastercard' | 'visa'>
     customerBillingCountry?: string
     customerShippingCountry?: string

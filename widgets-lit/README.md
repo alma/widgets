@@ -18,7 +18,7 @@ Ultra-lightweight, zero-dependency widgets with complete CSS isolation, reactive
 | **♿ Accessibility** | WCAG 2.1 AA (partial) - Skip links + focus trap + arrow navigation; Home/End keys missing |
 | **📱 Responsive** | Desktop modal, mobile drawer, tablet layouts |
 | **🎨 Customizable** | Monochrome mode, custom card logos, suggested plans |
-| **📦 Lightweight** | ~31 KB gzipped (30% smaller than Preact version) |
+| **📦 Lightweight** | ~37 KB gzipped (20% smaller than Preact version) |
 | **🔄 Zero Config** | Drop-in CDN script; auto-detects merchant & API mode |
 
 ---
@@ -612,10 +612,10 @@ See [docs/I18N.md](docs/I18N.md) for adding custom translations or Crowdin integ
 
 | Format | Uncompressed | Gzipped |
 |--------|-------------|---------|
-| UMD | ~95 KB | ~27 KB |
-| ES Module | ~133 KB | ~35 KB |
+| UMD | ~148 KB | ~37 KB |
+| ES Module | ~203 KB | ~49 KB |
 
-Load time: Typically <1.5s via CDN (before API call).
+> Sizes from actual build output. Load time: Typically <2s via CDN (before API call).
 
 ### Session Caching
 
@@ -1189,7 +1189,7 @@ widgets.add(Alma.Widgets.PaymentPlans, {
 ```
 
 **Improvements you get:**
-- ✅ 70% smaller bundle
+- ✅ 20% smaller bundle (37 KB gzipped vs 46 KB)
 - ✅ No re-mount needed for property updates
 - ✅ CSS fully isolated (Shadow DOM)
 - ✅ Faster cache hits (75% fewer API calls)
