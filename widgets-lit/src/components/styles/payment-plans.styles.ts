@@ -204,7 +204,7 @@ export const paymentPlansStyles = css`
   .plan-button[disabled],
   .plan-button.not-eligible {
     opacity: 0.35;
-    cursor: default;
+    cursor: not-allowed;
   }
 
   .plan-button[disabled]:hover,

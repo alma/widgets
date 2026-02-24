@@ -68,10 +68,24 @@ describe('<alma-payment-plans> behavior parity', () => {
   it('keeps auto-cycling when suggestedPaymentPlan is set and transitionDelay is explicitly set', async () => {
     const el = document.createElement('alma-payment-plans') as AlmaPaymentPlans
 
+    const originalMatchMedia = window.matchMedia
+    window.matchMedia = () =>
+      ({
+        matches: false,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      }) as any
     ;(el as any).loadEligibility = async () => {
       ;(el as any).loading = false
       ;(el as any).error = false
     }
+
+    el.setAttribute('suggested-payment-plan', '3')
+    el.setAttribute('transition-delay', '1500')
+    ;(el as any).transitionDelay = 1500
+
+    document.body.appendChild(el)
+    await nextFrame()
     ;(el as any).eligibilityPlans = [
       {
         eligible: true,
@@ -93,21 +107,13 @@ describe('<alma-payment-plans> behavior parity', () => {
       } as any,
     ]
 
-    el.setAttribute('suggested-payment-plan', '3')
-
-    // Explicitly setting transition-delay should keep animation enabled
-    el.setAttribute('transition-delay', '1500')
-    ;(el as any).transitionDelay = 1500
-
-    document.body.appendChild(el)
-    await nextFrame()
+    await el.updateComplete
     ;(el as any).startAnimation()
 
     expect((el as any).animationTimer).to.not.equal(undefined)
-
-    // Cleanup timer
     ;(el as any).stopAnimation()
     el.remove()
+    window.matchMedia = originalMatchMedia
   })
 
   it('renders nothing when hideIfNotEligible is true and there are no eligible plans', async () => {
@@ -162,6 +168,58 @@ describe('<alma-payment-plans> behavior parity', () => {
     await nextFrame()
 
     expect(el).to.exist
+
+    el.remove()
+  })
+
+  it('skips ineligible plans when auto-cycling', async () => {
+    const el = document.createElement('alma-payment-plans') as AlmaPaymentPlans
+
+    ;(el as any).loadEligibility = async () => {
+      ;(el as any).loading = false
+      ;(el as any).error = false
+    }
+
+    document.body.appendChild(el)
+    await nextFrame()
+    ;(el as any).eligibilityPlans = [
+      {
+        eligible: true,
+        installments_count: 2,
+        deferred_days: 0,
+        deferred_months: 0,
+        purchase_amount: 45000,
+        customer_total_cost_amount: 0,
+        customer_total_cost_bps: 0,
+      } as any,
+      {
+        eligible: false,
+        installments_count: 4,
+        deferred_days: 0,
+        deferred_months: 0,
+        purchase_amount: 45000,
+        customer_total_cost_amount: 0,
+        customer_total_cost_bps: 0,
+        constraints: { purchase_amount: { minimum: 900000, maximum: 13500000 } },
+      } as any,
+      {
+        eligible: true,
+        installments_count: 10,
+        deferred_days: 0,
+        deferred_months: 0,
+        purchase_amount: 45000,
+        customer_total_cost_amount: 0,
+        customer_total_cost_bps: 0,
+      } as any,
+    ]
+
+    await el.updateComplete
+
+    const nextFromFirst = (el as any).getNextEligibleIndex(0)
+    const nextFromLast = (el as any).getNextEligibleIndex(2)
+
+    expect(nextFromFirst).to.equal(2)
+    expect(nextFromLast).to.equal(0)
 
     el.remove()
   })

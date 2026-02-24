@@ -3,6 +3,7 @@ import '../components/payment-plans'
 import type { AlmaPaymentPlans } from '../components/payment-plans'
 import { stubEligibilityFetch, stubFetchJson } from '../test/mocks/fetch'
 import { ELIGIBILITY_WITH_INELIGIBLE_FIXTURE } from '../test/mocks/eligibility'
+import { formatPrice } from '../utils'
 
 /**
  * Unit tests for AlmaPaymentPlans Web Component
@@ -273,6 +274,120 @@ describe('AlmaPaymentPlans', () => {
       expect(eventFired).to.equal(false)
 
       el.removeEventListener('plan-selected', handler)
+    })
+
+    it('shows min amount info when purchase amount is below minimum', async () => {
+      fetchStub.restore()
+      fetchStub = stubFetchJson(ELIGIBILITY_WITH_INELIGIBLE_FIXTURE)
+
+      const el = await fixture<AlmaPaymentPlans>(html`
+        <alma-payment-plans
+          purchase-amount="45000"
+          .plans=${JSON.stringify([
+            { installmentsCount: 2, minAmount: 0, maxAmount: 0 },
+            { installmentsCount: 3, minAmount: 0, maxAmount: 0 },
+            { installmentsCount: 4, minAmount: 0, maxAmount: 0 },
+          ])}
+        ></alma-payment-plans>
+      `)
+
+      await waitUntil(() => fetchStub.called, 'fetch should have been called')
+      await waitUntil(
+        () => el.shadowRoot!.querySelectorAll('.plan-button').length > 0,
+        'Plan buttons should be visible',
+        { timeout: 2000 },
+      )
+
+      const buttons = Array.from(
+        el.shadowRoot!.querySelectorAll('.plan-button'),
+      ) as HTMLButtonElement[]
+      const ineligible = buttons.find((b) => b.getAttribute('aria-disabled') === 'true')
+      expect(ineligible).to.exist
+
+      ineligible!.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      await el.updateComplete
+
+      const minAmount = formatPrice(900000, 'fr')
+      const maxAmount = formatPrice(13500000, 'fr')
+      const infoText = el.shadowRoot!.querySelector('.info')?.textContent || ''
+
+      expect(infoText).to.contain(minAmount)
+      expect(infoText).to.not.contain(maxAmount)
+    })
+
+    it('shows max amount info when purchase amount is above maximum', async () => {
+      fetchStub.restore()
+      fetchStub = stubFetchJson(ELIGIBILITY_WITH_INELIGIBLE_FIXTURE)
+
+      const el = await fixture<AlmaPaymentPlans>(html`
+        <alma-payment-plans
+          purchase-amount="20000000"
+          .plans=${JSON.stringify([
+            { installmentsCount: 2, minAmount: 0, maxAmount: 0 },
+            { installmentsCount: 3, minAmount: 0, maxAmount: 0 },
+            { installmentsCount: 4, minAmount: 0, maxAmount: 0 },
+          ])}
+        ></alma-payment-plans>
+      `)
+
+      await waitUntil(() => fetchStub.called, 'fetch should have been called')
+      await waitUntil(
+        () => el.shadowRoot!.querySelectorAll('.plan-button').length > 0,
+        'Plan buttons should be visible',
+        { timeout: 2000 },
+      )
+
+      const buttons = Array.from(
+        el.shadowRoot!.querySelectorAll('.plan-button'),
+      ) as HTMLButtonElement[]
+      const ineligible = buttons.find((b) => b.getAttribute('aria-disabled') === 'true')
+      expect(ineligible).to.exist
+
+      ineligible!.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      await el.updateComplete
+
+      const maxAmount = formatPrice(13500000, 'fr')
+      const infoText = el.shadowRoot!.querySelector('.info')?.textContent || ''
+
+      expect(infoText).to.contain(maxAmount)
+    })
+
+    it('does not change the active plan on hover for ineligible plans', async () => {
+      fetchStub.restore()
+      fetchStub = stubFetchJson(ELIGIBILITY_WITH_INELIGIBLE_FIXTURE)
+
+      const el = await fixture<AlmaPaymentPlans>(html`
+        <alma-payment-plans
+          purchase-amount="45000"
+          .plans=${JSON.stringify([
+            { installmentsCount: 2, minAmount: 0, maxAmount: 0 },
+            { installmentsCount: 3, minAmount: 0, maxAmount: 0 },
+            { installmentsCount: 4, minAmount: 0, maxAmount: 0 },
+          ])}
+        ></alma-payment-plans>
+      `)
+
+      await waitUntil(() => fetchStub.called, 'fetch should have been called')
+      await waitUntil(
+        () => el.shadowRoot!.querySelectorAll('.plan-button').length > 0,
+        'Plan buttons should be visible',
+        { timeout: 2000 },
+      )
+
+      const buttons = Array.from(
+        el.shadowRoot!.querySelectorAll('.plan-button'),
+      ) as HTMLButtonElement[]
+      const activeBefore = buttons.find((b) => b.classList.contains('active'))
+      const ineligible = buttons.find((b) => b.getAttribute('aria-disabled') === 'true')
+
+      expect(activeBefore).to.exist
+      expect(ineligible).to.exist
+
+      ineligible!.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      await el.updateComplete
+
+      const activeAfter = buttons.find((b) => b.classList.contains('active'))
+      expect(activeAfter).to.equal(activeBefore)
     })
   })
 })

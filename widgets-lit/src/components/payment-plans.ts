@@ -67,6 +67,7 @@ export class AlmaPaymentPlans extends LitElement {
 
   // Accessibility: Store current announcement for screen readers
   @state() private a11yAnnouncement = ''
+  @state() private hoveredPlanIndex: number | null = null
 
   // Timer reference for plan cycling animation
   private animationTimer?: number
@@ -218,6 +219,10 @@ export class AlmaPaymentPlans extends LitElement {
       return
     }
 
+    const eligibleCountRaw = this.eligibilityPlans.filter((plan) => plan.eligible).length
+    const eligibleCount = eligibleCountRaw === 0 ? this.eligibilityPlans.length : eligibleCountRaw
+    if (eligibleCount <= 1) return
+
     // Ensure minimum delay of 1 second for usability
     const delay = Math.max(this.transitionDelay, 1000)
 
@@ -228,16 +233,30 @@ export class AlmaPaymentPlans extends LitElement {
       if (!this.animationActive) return
       if (this.eligibilityPlans.length <= 1) return
 
-      // Stop after one full cycle through all values.
-      if (this.animationIterationCount === this.eligibilityPlans.length + 1) {
+      if (this.animationIterationCount === eligibleCount + 1) {
         this.animationActive = false
         this.stopAnimation()
         return
       }
 
+      const nextIndex = this.getNextEligibleIndex(this.currentPlanIndex)
+      if (nextIndex === -1) return
+
       this.animationIterationCount += 1
-      this.currentPlanIndex = (this.currentPlanIndex + 1) % this.eligibilityPlans.length
+      this.currentPlanIndex = nextIndex
     }, delay)
+  }
+
+  private getNextEligibleIndex(currentIndex: number): number {
+    if (this.eligibilityPlans.length === 0) return -1
+
+    const total = this.eligibilityPlans.length
+    for (let i = 1; i <= total; i += 1) {
+      const nextIndex = (currentIndex + i) % total
+      if (this.eligibilityPlans[nextIndex]?.eligible) return nextIndex
+    }
+
+    return -1
   }
 
   /**
@@ -413,11 +432,14 @@ export class AlmaPaymentPlans extends LitElement {
       const min = plan.constraints?.purchase_amount?.minimum
       const max = plan.constraints?.purchase_amount?.maximum
 
-      // Constraints are returned in cents.
-      if (typeof min === 'number' && typeof max === 'number') {
+      if (typeof min === 'number' && this.purchaseAmount < min) {
         const minAmount = formatPrice(min, this.locale)
+        return html`${t(lang, 'paymentPlans.ineligibleMin', { minAmount })}`
+      }
+
+      if (typeof max === 'number' && this.purchaseAmount > max) {
         const maxAmount = formatPrice(max, this.locale)
-        return html`${t(lang, 'paymentPlans.ineligibleBetween', { minAmount, maxAmount })}`
+        return html`${t(lang, 'paymentPlans.ineligibleMax', { maxAmount })}`
       }
 
       if (typeof min === 'number') {
@@ -548,6 +570,8 @@ export class AlmaPaymentPlans extends LitElement {
 
     // Get currently displayed plan (for animation)
     const currentPlan = this.eligibilityPlans[this.currentPlanIndex]
+    const displayPlanIndex = this.hoveredPlanIndex ?? this.currentPlanIndex
+    const displayPlan = this.eligibilityPlans[displayPlanIndex]
 
     return html`
       <div
@@ -602,21 +626,25 @@ export class AlmaPaymentPlans extends LitElement {
                   ?disabled=${!isEligible}
                   tabindex=${isEligible ? 0 : -1}
                   @click=${() => {
-                    // Disabled/ineligible plans must be completely non-interactive.
                     if (!isEligible) return
                     this.currentPlanIndex = index
                     this.pauseAnimation()
                     this.handlePlanClick(plan)
                   }}
                   @mouseenter=${() => {
-                    // Disabled/ineligible plans must not be hoverable.
-                    if (!isEligible) return
+                    if (!isEligible) {
+                      this.hoveredPlanIndex = index
+                      return
+                    }
+                    this.hoveredPlanIndex = null
                     this.currentPlanIndex = index
                     this.pauseAnimation()
                   }}
                   @mouseleave=${() => {
-                    // Only resume for eligible plans.
-                    if (!isEligible) return
+                    if (!isEligible) {
+                      this.hoveredPlanIndex = null
+                      return
+                    }
                     this.resumeAnimation()
                   }}
                 >
@@ -628,7 +656,7 @@ export class AlmaPaymentPlans extends LitElement {
         </div>
 
         <div class="info-container" aria-live="polite" aria-atomic="true">
-          <div class="info">${this.renderPlanInfo(currentPlan, lang)}</div>
+          <div class="info">${this.renderPlanInfo(displayPlan, lang)}</div>
         </div>
 
         <!-- Accessibility: Screen reader announcements region (hidden visually) -->
