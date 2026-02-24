@@ -140,6 +140,7 @@ widgets.add(Alma.Widgets.PaymentPlans, {
   locale: 'fr',                        // Language code
   monochrome: false,                   // Orange (false) or black/white (true)
   colorScheme: 'gray',                 // Optional theme color for the widget
+  compactMode: false,                  // Smaller buttons + compact logo, hides info text
   hideBorder: false,                   // Hide container border
   hideIfNotEligible: false,            // Hide entire widget if no plans
 

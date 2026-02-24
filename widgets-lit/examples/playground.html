@@ -543,6 +543,14 @@
                 <div class="help">Changes the primary color of active buttons.</div>
               </div>
 
+              <div class="field">
+                <label>Compact mode</label>
+                <div class="checkbox-field">
+                  <input type="checkbox" id="compactMode" />
+                  <label for="compactMode">Compact mode</label>
+                </div>
+              </div>
+
               <div class="checkbox-field">
                 <input type="checkbox" id="monochrome" /><label for="monochrome">Monochrome (black &amp; white)</label>
               </div>
@@ -807,6 +815,7 @@
         const shippingCountry      = document.getElementById('shippingCountry').value || undefined
         const merchantCoversAllFees = document.getElementById('merchantCoversAllFees').checked || undefined
         const showExternalTrigger  = document.getElementById('showExternalTrigger').checked
+        const compactMode          = document.getElementById('compactMode').checked
 
         // Clear containers
         document.getElementById('widget-container').innerHTML = ''
@@ -875,6 +884,7 @@
           container: '#widget-container',
           purchaseAmount: amountCents,
           locale, monochrome, hideBorder, hideIfNotEligible, transitionDelay, colorScheme,
+          compactMode,
         }
         if (plans) paymentPlansOptions.plans = plans
         if (cards) paymentPlansOptions.cards = cards
@@ -914,6 +924,7 @@
         const billingCountry       = document.getElementById('billingCountry').value || undefined
         const shippingCountry      = document.getElementById('shippingCountry').value || undefined
         const merchantCoversAllFees = document.getElementById('merchantCoversAllFees').checked || undefined
+        const compactMode          = document.getElementById('compactMode').checked
 
         const fmt = (v) => JSON.stringify(v, null, 2)
 
@@ -938,6 +949,7 @@
           purchaseAmount: amountCents,
           locale,
           ...(colorScheme !== 'orange' && { colorScheme }),
+          ...(compactMode && { compactMode }),
           ...(monochrome && { monochrome }),
           ...(hideBorder && { hideBorder }),
           ...(hideIfNotEligible && { hideIfNotEligible }),
@@ -966,6 +978,7 @@ ${jsCode}
         document.getElementById('code-output-config').textContent = JSON.stringify({
           merchantId, apiMode, purchaseAmount: amountCents, locale,
           ...(colorScheme !== 'orange' && { colorScheme }),
+          ...(compactMode && { compactMode }),
           ...(plans && { plans }),
           ...(monochrome && { monochrome }),
           ...(hideBorder && { hideBorder }),
@@ -1023,7 +1036,10 @@ ${jsCode}
         document.querySelectorAll('[id^="plan-"]').forEach(cb => cb.checked = false)
         document.getElementById('plansMode').value = 'custom'
         updatePlansModeUI()
-        const check = (id) => { const el = document.getElementById(id); if (el) el.checked = true }
+        const check = (id) => {
+          const el = document.getElementById(id)
+          if (el) el.checked = true
+        }
         switch (preset) {
           case 'default':  check('plan-3x'); check('plan-4x'); break
           case 'with-1x':  check('plan-1x'); check('plan-3x'); check('plan-4x'); break

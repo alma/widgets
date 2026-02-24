@@ -51,6 +51,7 @@ export class AlmaPaymentPlans extends LitElement {
   customerShippingCountry?: string
   @property({ type: Boolean, attribute: 'merchant-covers-all-fees' })
   merchantCoversAllFees?: boolean
+  @property({ type: Boolean, attribute: 'compact-mode' }) compactMode = false
 
   // --- Private State (internal component state, triggers re-renders) ---
 
@@ -593,7 +594,9 @@ export class AlmaPaymentPlans extends LitElement {
 
     return html`
       <div
-        class="container ${this.hideBorder ? 'hide-border' : ''}"
+        class="container ${this.hideBorder ? 'hide-border' : ''} ${this.compactMode
+          ? 'compact'
+          : ''}"
         role="region"
         aria-label="${t(lang, 'paymentPlans.regionLabel')}"
       >
@@ -604,25 +607,49 @@ export class AlmaPaymentPlans extends LitElement {
             aria-label="${t(lang, 'paymentPlans.logoButton')}"
             type="button"
           >
-            <svg
-              class="logo"
-              width="42"
-              height="24"
-              viewBox="0 0 352 120"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              focusable="false"
-              role="img"
-            >
-              <title>Alma</title>
-              <path
-                d="${ALMA_LOGO_PATH}"
-                fill="${this.monochrome
-                  ? 'var(--alma-color-text-primary)'
-                  : 'var(--theme-primary, var(--alma-color-brand-primary))'}"
-              />
-            </svg>
+            ${this.compactMode
+              ? html`
+                  <svg
+                    class="logo"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 451 512"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    focusable="false"
+                    role="img"
+                  >
+                    <title>Alma</title>
+                    <path
+                      d="M347.22 123.046C323.434 29.8196 273.131 0 225.249 0C177.367 0 127.063 29.8196 103.278 123.046L0 512H101.787C118.369 447.034 169.48 410.847 225.249 410.847C281.018 410.847 332.129 447.099 348.71 512H450.56L347.22 123.046ZM225.249 320.219C192.831 320.219 163.456 333.083 141.782 353.937L200.159 127.594C205.748 105.96 214.008 99.0737 225.311 99.0737C236.614 99.0737 244.874 105.96 250.463 127.594L308.778 353.937C287.104 333.083 257.667 320.219 225.249 320.219Z"
+                      fill="${this.monochrome
+                        ? 'var(--alma-color-text-primary)'
+                        : 'var(--theme-primary, var(--alma-color-brand-primary))'}"
+                    />
+                  </svg>
+                `
+              : html`
+                  <svg
+                    class="logo"
+                    width="42"
+                    height="24"
+                    viewBox="0 0 352 120"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    focusable="false"
+                    role="img"
+                  >
+                    <title>Alma</title>
+                    <path
+                      d="${ALMA_LOGO_PATH}"
+                      fill="${this.monochrome
+                        ? 'var(--alma-color-text-primary)'
+                        : 'var(--theme-primary, var(--alma-color-brand-primary))'}"
+                    />
+                  </svg>
+                `}
           </button>
           <div
             class="payment-plans"
@@ -704,9 +731,13 @@ export class AlmaPaymentPlans extends LitElement {
           </div>
         </div>
 
-        <div class="info-container" aria-live="polite" aria-atomic="true">
-          <div class="info">${this.renderPlanInfo(displayPlan, lang)}</div>
-        </div>
+        ${this.compactMode
+          ? html``
+          : html`
+              <div class="info-container" aria-live="polite" aria-atomic="true">
+                <div class="info">${this.renderPlanInfo(displayPlan, lang)}</div>
+              </div>
+            `}
 
         <!-- Accessibility: Screen reader announcements region (hidden visually) -->
         <div class="sr-only" aria-live="polite" aria-atomic="true">${this.a11yAnnouncement}</div>

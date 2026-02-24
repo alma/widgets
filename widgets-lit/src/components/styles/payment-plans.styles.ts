@@ -28,6 +28,11 @@ export const paymentPlansStyles = css`
     gap: var(--spacing-8);
   }
 
+  .container.compact {
+    padding: calc(var(--spacing-3) * 0.8);
+    gap: calc(var(--spacing-2) * 0.8);
+  }
+
   :host([color-scheme='white']) .container,
   :host([color-scheme='light-gray']) .container,
   :host([color-scheme='off-white']) .container,
@@ -107,6 +112,11 @@ export const paymentPlansStyles = css`
     display: block;
   }
 
+  .container.compact .logo {
+    width: 16px;
+    height: 16px;
+  }
+
   .payment-plans {
     display: flex;
     flex-direction: row;
@@ -114,6 +124,10 @@ export const paymentPlansStyles = css`
     align-items: flex-start;
     max-width: 310px;
     flex-wrap: wrap;
+  }
+
+  .container.compact .payment-plans {
+    gap: calc(var(--spacing-2) * 0.8);
   }
 
   .plan-button {
@@ -134,6 +148,13 @@ export const paymentPlansStyles = css`
     height: 24px;
     min-width: 24px;
     margin: 0;
+  }
+
+  .container.compact .plan-button {
+    height: calc(24px * 0.8);
+    min-width: calc(24px * 0.8);
+    padding: 2px 8px;
+    font-size: calc(var(--alma-payment-plan-label-font-size) * 0.8);
   }
 
   .plan-button:hover {

@@ -145,6 +145,37 @@ describe('AlmaPaymentPlans', () => {
       expect(active).to.exist
       expect(active?.textContent || '').to.contain('3')
     })
+
+    it('should accept color-scheme attribute', async () => {
+      const el = await fixture<AlmaPaymentPlans>(html`
+        <alma-payment-plans purchase-amount="45000" color-scheme="gray"></alma-payment-plans>
+      `)
+
+      await el.updateComplete
+      expect(el.getAttribute('color-scheme')).to.equal('gray')
+    })
+
+    it('should render compact mode without info text and with compact logo', async () => {
+      const el = await fixture<AlmaPaymentPlans>(html`
+        <alma-payment-plans purchase-amount="45000" compact-mode></alma-payment-plans>
+      `)
+
+      await waitUntil(() => fetchStub.called, 'fetch should have been called')
+      await waitUntil(
+        () => el.shadowRoot!.querySelectorAll('.plan-button').length > 0,
+        'Plan buttons should be visible',
+        { timeout: 2000 },
+      )
+
+      const container = el.shadowRoot!.querySelector('.container') as HTMLElement
+      const info = el.shadowRoot!.querySelector('.info-container')
+      const logo = el.shadowRoot!.querySelector('svg.logo') as SVGElement
+
+      expect(container.classList.contains('compact')).to.equal(true)
+      expect(info).to.equal(null)
+      expect(logo.getAttribute('width')).to.equal('16')
+      expect(logo.getAttribute('height')).to.equal('16')
+    })
   })
 
   describe('Fallback rendering', () => {

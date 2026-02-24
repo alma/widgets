@@ -140,6 +140,7 @@ class AlmaWidgets {
     purchaseAmount: number
     locale?: string
     colorScheme?: 'orange' | 'light-gray' | 'gray' | 'dark-gray' | 'white' | 'black'
+    compactMode?: boolean
     plans?: Array<{
       installmentsCount: number
       deferredDays?: number
@@ -186,6 +187,7 @@ class AlmaWidgets {
       (widget as any).hideIfNotEligible = options.hideIfNotEligible
     if (options.monochrome !== undefined) (widget as any).monochrome = options.monochrome
     if (options.hideBorder !== undefined) (widget as any).hideBorder = options.hideBorder
+    if (options.compactMode !== undefined) (widget as any).compactMode = options.compactMode
 
     setJsonAttributeOrRemove(widget, 'cards', options.cards)
 
