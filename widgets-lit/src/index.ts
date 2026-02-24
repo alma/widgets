@@ -139,6 +139,7 @@ class AlmaWidgets {
     container: string
     purchaseAmount: number
     locale?: string
+    colorScheme?: 'orange' | 'light-gray' | 'gray' | 'dark-gray' | 'white' | 'black'
     plans?: Array<{
       installmentsCount: number
       deferredDays?: number
@@ -178,6 +179,7 @@ class AlmaWidgets {
     ;(widget as any).purchaseAmount = options.purchaseAmount
 
     setAttributeOrRemove(widget, 'locale', options.locale)
+    setAttributeOrRemove(widget, 'color-scheme', options.colorScheme)
     setJsonAttributeOrRemove(widget, 'plans', options.plans)
 
     if (options.hideIfNotEligible !== undefined)

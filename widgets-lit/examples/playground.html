@@ -260,15 +260,20 @@
         background: #f8f9fa;
         border-radius: 8px;
         border: 2px dashed #ddd;
+        transition: background 0.15s ease, border-color 0.15s ease;
       }
+      .preview-section.dark-preview {
+        background: #1f1f1f;
+        border-color: #4a4a4a;
+      }
+      .preview-section.custom-preview {
+        border-color: #999;
+      }
+
       .preview-label {
-        font-size: 11px;
-        font-weight: 700;
-        color: #888;
-        text-transform: uppercase;
-        letter-spacing: .5px;
-        margin-bottom: 14px;
+        margin-bottom: 16px;
       }
+
       #widget-container { min-height: 60px; }
       #external-trigger-container { margin-top: 4px; }
 
@@ -508,6 +513,34 @@
                   <option value="pt">🇵🇹 Português</option>
                   <option value="nl">🇳🇱 Nederlands</option>
                 </select>
+              </div>
+
+              <div class="field">
+                <label>Preview Background</label>
+                <select id="previewBackground">
+                  <option value="auto" selected>Auto (based on scheme)</option>
+                  <option value="light">Light (#f8f9fa)</option>
+                  <option value="dark">Dark (#1f1f1f)</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </div>
+              <div class="field" id="previewBackgroundCustom" style="display:none;">
+                <label>Custom Preview Color</label>
+                <input type="text" id="previewBackgroundValue" value="#1f1f1f" />
+                <div class="help">Any valid CSS color (hex, rgb, etc.).</div>
+              </div>
+
+              <div class="field">
+                <label>Color Scheme</label>
+                <select id="colorScheme">
+                  <option value="orange" selected>🟠 Orange (default)</option>
+                  <option value="light-gray">🔲 Light gray</option>
+                  <option value="gray">⚫ Gray</option>
+                  <option value="dark-gray">⬛ Dark gray</option>
+                  <option value="white">⚪ White</option>
+                  <option value="black">■ Black</option>
+                </select>
+                <div class="help">Changes the primary color of active buttons.</div>
               </div>
 
               <div class="checkbox-field">
@@ -759,6 +792,9 @@
 
         const amountCents          = getAmountCents()
         const locale               = document.getElementById('locale').value
+        const colorScheme          = document.getElementById('colorScheme').value
+        const previewBackground    = document.getElementById('previewBackground').value
+        const previewBackgroundValue = document.getElementById('previewBackgroundValue').value
         const plans                = getPlansConfig()
         const monochrome           = document.getElementById('monochrome').checked
         const hideBorder           = document.getElementById('hideBorder').checked
@@ -775,6 +811,21 @@
         // Clear containers
         document.getElementById('widget-container').innerHTML = ''
         document.getElementById('external-trigger-container').innerHTML = ''
+
+        const previewSection = document.querySelector('.preview-section')
+        const useDarkPreview = ['white', 'light-gray', 'gray'].includes(colorScheme)
+        const previewMode = previewBackground
+
+        if (previewSection) {
+          previewSection.classList.toggle(
+            'dark-preview',
+            previewMode === 'dark' || (previewMode === 'auto' && useDarkPreview),
+          )
+          previewSection.classList.toggle('custom-preview', previewMode === 'custom')
+          previewSection.style.background = previewMode === 'custom'
+            ? previewBackgroundValue
+            : ''
+        }
 
         // When switching to auto mode, clear the manual modal container so
         // stale alma-modal elements don't linger.
@@ -823,7 +874,7 @@
         const paymentPlansOptions = {
           container: '#widget-container',
           purchaseAmount: amountCents,
-          locale, monochrome, hideBorder, hideIfNotEligible, transitionDelay,
+          locale, monochrome, hideBorder, hideIfNotEligible, transitionDelay, colorScheme,
         }
         if (plans) paymentPlansOptions.plans = plans
         if (cards) paymentPlansOptions.cards = cards
@@ -851,6 +902,7 @@
         const apiMode              = document.getElementById('apiMode').value
         const amountCents          = getAmountCents()
         const locale               = document.getElementById('locale').value
+        const colorScheme          = document.getElementById('colorScheme').value
         const plans                = getPlansConfig()
         const monochrome           = document.getElementById('monochrome').checked
         const hideBorder           = document.getElementById('hideBorder').checked
@@ -885,6 +937,7 @@
           container: '#widget-container',
           purchaseAmount: amountCents,
           locale,
+          ...(colorScheme !== 'orange' && { colorScheme }),
           ...(monochrome && { monochrome }),
           ...(hideBorder && { hideBorder }),
           ...(hideIfNotEligible && { hideIfNotEligible }),
@@ -912,6 +965,7 @@ ${jsCode}
 
         document.getElementById('code-output-config').textContent = JSON.stringify({
           merchantId, apiMode, purchaseAmount: amountCents, locale,
+          ...(colorScheme !== 'orange' && { colorScheme }),
           ...(plans && { plans }),
           ...(monochrome && { monochrome }),
           ...(hideBorder && { hideBorder }),
@@ -956,6 +1010,12 @@ ${jsCode}
         document.getElementById('modal-mode-help').innerHTML = manual
           ? '<strong>Manual:</strong> you create the modal element; the widget opens it when a plan is clicked.'
           : '<strong>Auto:</strong> a modal is created automatically when clicking a plan.'
+      }
+
+      function updatePreviewBackgroundUI() {
+        const mode = document.getElementById('previewBackground').value
+        const custom = document.getElementById('previewBackgroundCustom')
+        if (custom) custom.style.display = mode === 'custom' ? 'block' : 'none'
       }
 
       // ── Presets ──────────────────────────────────────────────────────────────
@@ -1019,6 +1079,13 @@ ${jsCode}
           updateWidget()
         })
 
+        // Preview background mode toggle
+        document.getElementById('previewBackground').addEventListener('change', () => {
+          updatePreviewBackgroundUI()
+          updateWidget()
+        })
+        document.getElementById('previewBackgroundValue').addEventListener('input', debounce(updateWidget, 200))
+
         // Clear cards
         document.getElementById('clear-cards').addEventListener('click', () => {
           document.querySelectorAll('[id^="card-"]').forEach(cb => cb.checked = false)
@@ -1064,6 +1131,7 @@ ${jsCode}
         setupListeners()
         updatePlansModeUI()
         updateModalModeUI()
+        updatePreviewBackgroundUI()
         updateWidget()
         updateApiPanel()
       }

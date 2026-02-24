@@ -342,6 +342,75 @@ export const designTokensStyles = css`
     --alma-payment-card-height: 16px;
   }
 
-  /* Theme overrides are intentionally omitted for now.
-     Tokens are ready for theming via CSS variable overrides on the host element. */
+  /* Color Schemes (Theming) */
+  /* Default: Orange (default branding) */
+  :host([color-scheme='orange']),
+  :host {
+    --theme-primary: var(--alma-orange);
+    --theme-primary-dark: var(--dark-orange);
+    --theme-primary-soft: var(--soft-orange);
+    --theme-primary-light: var(--light-orange);
+    --theme-focus-shadow: rgba(250, 80, 34, 0.2);
+    --theme-primary-contrast: var(--white);
+  }
+
+  /* Light-gray scheme */
+  :host([color-scheme='light-gray']) {
+    --theme-primary: var(--light-gray);
+    --theme-primary-dark: var(--gray);
+    --theme-primary-soft: var(--off-white);
+    --theme-primary-light: var(--white);
+    --theme-focus-shadow: rgba(240, 240, 240, 0.2);
+    --theme-primary-contrast: var(--off-black);
+  }
+
+  /* Gray scheme */
+  :host([color-scheme='gray']) {
+    --theme-primary: var(--gray);
+    --theme-primary-dark: var(--dark-gray);
+    --theme-primary-soft: var(--light-gray);
+    --theme-primary-light: var(--off-white);
+    --theme-focus-shadow: rgba(202, 202, 202, 0.2);
+    --theme-primary-contrast: var(--off-black);
+  }
+
+  /* Dark-gray scheme */
+  :host([color-scheme='dark-gray']) {
+    --theme-primary: var(--dark-gray);
+    --theme-primary-dark: var(--off-black);
+    --theme-primary-soft: var(--gray);
+    --theme-primary-light: var(--light-gray);
+    --theme-focus-shadow: rgba(108, 108, 108, 0.2);
+    --theme-primary-contrast: var(--white);
+  }
+
+  /* White scheme */
+  :host([color-scheme='white']) {
+    --theme-primary: var(--white);
+    --theme-primary-dark: var(--off-white);
+    --theme-primary-soft: var(--background);
+    --theme-primary-light: var(--light-gray);
+    --theme-focus-shadow: rgba(255, 255, 255, 0.2);
+    --theme-primary-contrast: var(--off-black);
+  }
+
+  /* Black scheme */
+  :host([color-scheme='black']) {
+    --theme-primary: var(--black);
+    --theme-primary-dark: var(--off-black);
+    --theme-primary-soft: var(--dark-gray);
+    --theme-primary-light: var(--gray);
+    --theme-focus-shadow: rgba(0, 0, 0, 0.2);
+    --theme-primary-contrast: var(--white);
+  }
+
+  /* Monochrome mode (existing behavior for backward compatibility) */
+  /* When monochrome=true is set, the widget uses off-black/black tones */
+  :host([monochrome='true']) {
+    --alma-color-brand-primary: var(--off-black);
+    --alma-color-button-primary-bg: var(--off-black);
+    --alma-color-focus-outline: var(--off-black);
+    --theme-primary: var(--off-black);
+    --theme-primary-contrast: var(--white);
+  }
 `

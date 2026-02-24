@@ -28,6 +28,13 @@ export const paymentPlansStyles = css`
     gap: var(--spacing-8);
   }
 
+  :host([color-scheme='white']) .container,
+  :host([color-scheme='light-gray']) .container,
+  :host([color-scheme='off-white']) .container,
+  :host([color-scheme='gray']) .container {
+    background-color: transparent;
+  }
+
   /* Border behavior matches Preact:
      - default: border visible
      - hideBorder=true: border removed
@@ -142,8 +149,8 @@ export const paymentPlansStyles = css`
   }
 
   .plan-button.active {
-    color: var(--text-inverted);
-    background: var(--orange-alma);
+    color: var(--theme-primary-contrast, var(--text-inverted));
+    background: var(--theme-primary, var(--orange-alma));
     /* Preact doesn't pulse the active tab; keep it minimal for pixel parity. */
     animation: none;
   }
@@ -211,5 +218,32 @@ export const paymentPlansStyles = css`
   .plan-button.not-eligible:hover {
     transform: none;
     background-color: transparent;
+  }
+
+  :host([color-scheme='white']) .plan-button:not(.active),
+  :host([color-scheme='off-white']) .plan-button:not(.active),
+  :host([color-scheme='light-gray']) .plan-button:not(.active),
+  :host([color-scheme='gray']) .plan-button:not(.active),
+  :host([color-scheme='dark-gray']) .plan-button:not(.active),
+  :host([color-scheme='off-black']) .plan-button:not(.active),
+  :host([color-scheme='black']) .plan-button:not(.active) {
+    color: var(--theme-primary, var(--alma-color-text-primary));
+  }
+
+  :host([color-scheme='white']) .info,
+  :host([color-scheme='off-white']) .info,
+  :host([color-scheme='light-gray']) .info,
+  :host([color-scheme='gray']) .info,
+  :host([color-scheme='dark-gray']) .info,
+  :host([color-scheme='off-black']) .info,
+  :host([color-scheme='black']) .info,
+  :host([color-scheme='white']) .info p,
+  :host([color-scheme='off-white']) .info p,
+  :host([color-scheme='light-gray']) .info p,
+  :host([color-scheme='gray']) .info p,
+  :host([color-scheme='dark-gray']) .info p,
+  :host([color-scheme='off-black']) .info p,
+  :host([color-scheme='black']) .info p {
+    color: var(--theme-primary, var(--alma-color-text-primary));
   }
 `

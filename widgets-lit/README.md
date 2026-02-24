@@ -134,11 +134,12 @@ Displays a compact widget showing available payment options with automatic cycli
 widgets.add(Alma.Widgets.PaymentPlans, {
   // === REQUIRED ===
   container: '#alma-widget',           // CSS selector for mount point
-  purchaseAmount: 45000,               // Amount in cents (€450.00)
+  purchaseAmount: 45000,               // Amount in cents (EUR 450.00)
 
   // === DISPLAY ===
   locale: 'fr',                        // Language code
   monochrome: false,                   // Orange (false) or black/white (true)
+  colorScheme: 'gray',                 // Optional theme color for the widget
   hideBorder: false,                   // Hide container border
   hideIfNotEligible: false,            // Hide entire widget if no plans
 
@@ -610,6 +611,7 @@ widgets.add(Alma.Widgets.PaymentPlans, {
   container: '#widget',
   purchaseAmount: 45000,
   monochrome: false,  // Orange branding
+  colorScheme: 'orange',
 })
 ```
 
@@ -619,6 +621,15 @@ widgets.add(Alma.Widgets.PaymentPlans, {
   container: '#widget',
   purchaseAmount: 45000,
   monochrome: true,  // No colors
+})
+```
+
+#### Themed Color Scheme
+```javascript
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#widget',
+  purchaseAmount: 45000,
+  colorScheme: 'dark-gray',
 })
 ```
 

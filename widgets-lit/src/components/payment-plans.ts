@@ -620,7 +620,7 @@ export class AlmaPaymentPlans extends LitElement {
                 d="${ALMA_LOGO_PATH}"
                 fill="${this.monochrome
                   ? 'var(--alma-color-text-primary)'
-                  : 'var(--alma-color-brand-primary)'}"
+                  : 'var(--theme-primary, var(--alma-color-brand-primary))'}"
               />
             </svg>
           </button>
