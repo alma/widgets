@@ -11,7 +11,7 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         margin: 0;
         padding: 0;
-        background: #f0f2f5;
+        background: #f8f9fa;
         min-height: 100vh;
       }
 
@@ -108,6 +108,19 @@
         display: flex;
         align-items: center;
         gap: 6px;
+      }
+
+      .step-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #fa5022;
+        color: white;
+        font-size: 10px;
+        font-weight: 700;
       }
 
       /* ── Form fields ── */
@@ -384,10 +397,13 @@
         <div class="panel controls-panel">
           <div class="panel-header">⚙️ Configuration</div>
           <div class="panel-body">
+            <div class="info-box orange">
+              <strong>Quick start:</strong> 1) Set an amount, 2) Pick plans & style, 3) Copy the code below.
+            </div>
 
             <!-- Quick Presets -->
             <div class="section">
-              <h3 class="section-title">⚡ Quick Presets</h3>
+              <h3 class="section-title"><span class="step-badge">1</span> Quick Presets</h3>
               <div class="quick-presets">
                 <button class="preset-btn" data-preset="default">
                   <span class="preset-name">🎯 Default</span>
@@ -410,7 +426,7 @@
 
             <!-- Merchant -->
             <div class="section">
-              <h3 class="section-title">🔌 Merchant</h3>
+              <h3 class="section-title"><span class="step-badge">2</span> Merchant</h3>
               <div class="field">
                 <label>Merchant ID</label>
                 <input type="text" id="merchantId" value="merchant_11gKoO333vEXacMNMUMUSc4c4g68g2Les4" />
@@ -426,7 +442,7 @@
 
             <!-- Amount -->
             <div class="section">
-              <h3 class="section-title">💳 Purchase Amount</h3>
+              <h3 class="section-title"><span class="step-badge">3</span> Purchase Amount</h3>
               <div class="field">
                 <label>Amount (€)</label>
                 <div class="amount-row">
@@ -446,7 +462,7 @@
 
             <!-- Plans -->
             <div class="section">
-              <h3 class="section-title">📋 Plans</h3>
+              <h3 class="section-title"><span class="step-badge">4</span> Plans</h3>
               <div class="field">
                 <label>Mode</label>
                 <select id="plansMode">
@@ -500,7 +516,7 @@
 
             <!-- Display -->
             <div class="section">
-              <h3 class="section-title">🎨 Display</h3>
+              <h3 class="section-title"><span class="step-badge">5</span> Display</h3>
 
               <div class="field">
                 <label>Locale</label>
@@ -584,7 +600,7 @@
 
             <!-- Modal -->
             <div class="section">
-              <h3 class="section-title">💬 Modal</h3>
+              <h3 class="section-title"><span class="step-badge">6</span> Modal</h3>
               <div class="field">
                 <label>Integration mode</label>
                 <select id="modalIntegration">
@@ -615,7 +631,7 @@
 
             <!-- Advanced -->
             <div class="section">
-              <h3 class="section-title">🔧 Advanced</h3>
+              <h3 class="section-title"><span class="step-badge">7</span> Advanced</h3>
 
               <div class="field">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
