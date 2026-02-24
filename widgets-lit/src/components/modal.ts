@@ -122,6 +122,7 @@ export class AlmaModal extends LitElement {
   customerShippingCountry?: string
   @property({ type: Boolean, attribute: 'merchant-covers-all-fees' })
   merchantCoversAllFees?: boolean
+  @property({ type: Boolean, attribute: 'panel-mode' }) panelMode = false
 
   // ===================================================================
   // PRIVATE STATE (internal component state, not exposed as HTML attributes)
@@ -132,6 +133,7 @@ export class AlmaModal extends LitElement {
   // ===================================================================
 
   @state() private isOpen = false // Whether modal is visible
+  @state() private isClosing = false // Panel closing animation state
   @state() private eligibilityPlans: EligibilityPlan[] = [] // Plans from API
   @state() private loading = true // Loading state for API call
   @state() private currentPlanIndex = 0 // Currently selected plan tab (0, 1, 2, ...)
@@ -452,6 +454,7 @@ export class AlmaModal extends LitElement {
     // Enable skip links only when the modal was opened from keyboard navigation.
     this.keyboardOpen = this.interactionTracker.getLastInteraction() === 'keyboard'
 
+    this.isClosing = false
     this.isOpen = true // Setting state triggers automatic re-render!
 
     // Switch to specified plan if valid index provided
@@ -527,22 +530,34 @@ export class AlmaModal extends LitElement {
    * - Dispatches 'modal-closed' event
    */
   public close() {
-    this.isOpen = false // Setting state triggers automatic re-render!
-    this.keyboardOpen = false
+    const finishClose = () => {
+      this.isOpen = false
+      this.isClosing = false
+      this.keyboardOpen = false
 
-    // Restore page scrolling
-    document.body.style.overflow = ''
+      // Restore page scrolling
+      document.body.style.overflow = ''
 
-    // Restore focus to opener if possible.
-    if (this.openerElement) {
-      queueMicrotask(() => this.openerElement?.focus())
+      // Restore focus to opener if possible.
+      if (this.openerElement) {
+        queueMicrotask(() => this.openerElement?.focus())
+      }
+
+      // Restore page interactivity.
+      this.updateBackgroundInert(false)
+
+      // Dispatch event so external code can react to modal closing
+      this.dispatchEvent(new CustomEvent('modal-closed', { bubbles: true, composed: true }))
     }
 
-    // Restore page interactivity.
-    this.updateBackgroundInert(false)
+    // When panel mode is enabled, let the slide-out animation finish.
+    if (this.panelMode && this.isOpen && !this.isClosing) {
+      this.isClosing = true
+      window.setTimeout(() => finishClose(), 250)
+      return
+    }
 
-    // Dispatch event so external code can react to modal closing
-    this.dispatchEvent(new CustomEvent('modal-closed', { bubbles: true, composed: true }))
+    finishClose()
   }
 
   // ===================================================================
@@ -1168,16 +1183,18 @@ export class AlmaModal extends LitElement {
 
     return html`
       <div
-        class="modal-overlay ${this.isOpen ? 'open' : ''}"
+        class="modal-overlay ${this.isOpen ? 'open' : ''} ${this.isClosing ? 'closing' : ''} ${this
+          .panelMode
+          ? 'panel-open'
+          : ''}"
         @click=${this.handleOverlayClick}
         @keydown=${this.handleKeyDown}
         aria-hidden="${!this.isOpen}"
       >
-        ${this.isMobile
+        ${this.panelMode
           ? html`
-              <!-- MOBILE LAYOUT (rendered only on <800px) -->
               <div
-                class="modal modal-mobile"
+                class="modal modal-panel"
                 role="dialog"
                 aria-modal="${this.isOpen}"
                 aria-labelledby="modal-title"
@@ -1186,18 +1203,31 @@ export class AlmaModal extends LitElement {
                 ${this.renderMobileModal(lang)}
               </div>
             `
-          : html`
-              <!-- DESKTOP LAYOUT (rendered only on 800px+) -->
-              <div
-                class="modal modal-desktop"
-                role="dialog"
-                aria-modal="${this.isOpen}"
-                aria-labelledby="modal-title"
-              >
-                ${this.renderSkipLinks(lang)} ${this.renderCloseButton(lang)}
-                ${this.renderDesktopModal(lang)}
-              </div>
-            `}
+          : this.isMobile
+            ? html`
+                <!-- MOBILE LAYOUT (rendered only on <800px) -->
+                <div
+                  class="modal modal-mobile"
+                  role="dialog"
+                  aria-modal="${this.isOpen}"
+                  aria-labelledby="modal-title"
+                >
+                  ${this.renderSkipLinks(lang)} ${this.renderCloseButton(lang)}
+                  ${this.renderMobileModal(lang)}
+                </div>
+              `
+            : html`
+                <!-- DESKTOP LAYOUT (rendered only on 800px+) -->
+                <div
+                  class="modal modal-desktop"
+                  role="dialog"
+                  aria-modal="${this.isOpen}"
+                  aria-labelledby="modal-title"
+                >
+                  ${this.renderSkipLinks(lang)} ${this.renderCloseButton(lang)}
+                  ${this.renderDesktopModal(lang)}
+                </div>
+              `}
       </div>
     `
   }

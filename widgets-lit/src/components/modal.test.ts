@@ -167,4 +167,21 @@ describe('AlmaModal', () => {
 
     el.close()
   })
+
+  it('should render panel mode when panel-mode is enabled', async () => {
+    const el = await fixture<AlmaModal>(html`
+      <alma-modal purchase-amount="45000" panel-mode></alma-modal>
+    `)
+
+    await waitUntil(() => fetchStub.called, 'fetch should have been called')
+
+    el.open()
+    await el.updateComplete
+
+    const overlay = el.shadowRoot!.querySelector('.modal-overlay') as HTMLElement
+    const panel = el.shadowRoot!.querySelector('.modal-panel') as HTMLElement | null
+
+    expect(overlay.classList.contains('panel-open')).to.equal(true)
+    expect(panel).to.exist
+  })
 })

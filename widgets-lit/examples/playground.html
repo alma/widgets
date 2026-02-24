@@ -596,6 +596,11 @@
                 </div>
               </div>
 
+              <div class="checkbox-field">
+                <input type="checkbox" id="panelMode" />
+                <label for="panelMode">Panel mode (right slide)</label>
+              </div>
+
               <!-- Only visible in manual mode -->
               <div id="manual-modal-options" class="hidden">
                 <div class="info-box orange">
@@ -816,6 +821,7 @@
         const merchantCoversAllFees = document.getElementById('merchantCoversAllFees').checked || undefined
         const showExternalTrigger  = document.getElementById('showExternalTrigger').checked
         const compactMode          = document.getElementById('compactMode').checked
+        const panelMode           = document.getElementById('panelMode').checked
 
         // Clear containers
         document.getElementById('widget-container').innerHTML = ''
@@ -869,6 +875,7 @@
             purchaseAmount: amountCents,
             locale,
           }
+          if (panelMode) modalOptions.panelMode = true
           if (plans)               modalOptions.plans = plans
           if (cards)               modalOptions.cards = cards
           if (billingCountry)      modalOptions.customerBillingCountry = billingCountry
@@ -886,6 +893,7 @@
           locale, monochrome, hideBorder, hideIfNotEligible, transitionDelay, colorScheme,
           compactMode,
         }
+        if (panelMode) paymentPlansOptions.panelMode = true
         if (plans) paymentPlansOptions.plans = plans
         if (cards) paymentPlansOptions.cards = cards
         if (suggestedPaymentPlan) {
@@ -925,6 +933,7 @@
         const shippingCountry      = document.getElementById('shippingCountry').value || undefined
         const merchantCoversAllFees = document.getElementById('merchantCoversAllFees').checked || undefined
         const compactMode          = document.getElementById('compactMode').checked
+        const panelMode           = document.getElementById('panelMode').checked
 
         const fmt = (v) => JSON.stringify(v, null, 2)
 
@@ -935,6 +944,7 @@
             container: '#alma-modal',
             purchaseAmount: amountCents,
             locale,
+            ...(panelMode && { panelMode: true }),
             ...(plans && { plans }),
             ...(cards && { cards }),
             ...(billingCountry && { customerBillingCountry: billingCountry }),
@@ -950,6 +960,7 @@
           locale,
           ...(colorScheme !== 'orange' && { colorScheme }),
           ...(compactMode && { compactMode }),
+          ...(panelMode && { panelMode: true }),
           ...(monochrome && { monochrome }),
           ...(hideBorder && { hideBorder }),
           ...(hideIfNotEligible && { hideIfNotEligible }),
@@ -979,6 +990,7 @@ ${jsCode}
           merchantId, apiMode, purchaseAmount: amountCents, locale,
           ...(colorScheme !== 'orange' && { colorScheme }),
           ...(compactMode && { compactMode }),
+          ...(panelMode && { panelMode: true }),
           ...(plans && { plans }),
           ...(monochrome && { monochrome }),
           ...(hideBorder && { hideBorder }),

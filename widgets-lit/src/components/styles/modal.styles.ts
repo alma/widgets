@@ -25,6 +25,12 @@ export const modalStyles = css`
     display: flex;
   }
 
+  .modal-overlay.panel-open {
+    align-items: stretch;
+    justify-content: flex-end;
+    padding: 0;
+  }
+
   /* Modal Container (match Preact geometry and shadow) */
   .modal {
     background: var(--surface-white);
@@ -37,6 +43,27 @@ export const modalStyles = css`
     box-shadow: var(--alma-shadow-modal);
     position: relative;
     animation: modalSlideIn 0.25s ease-out;
+  }
+
+  /* Panel mode overrides base modal sizing/positioning */
+  .modal.modal-panel {
+    width: min(360px, 100%);
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    position: relative;
+    transform: translateX(100%);
+    transition: transform 0.25s ease-out;
+    animation: none;
+    padding: 16px;
+  }
+
+  .modal-overlay.open .modal.modal-panel {
+    transform: translateX(0);
+  }
+
+  .modal-overlay.closing .modal.modal-panel {
+    transform: translateX(100%);
   }
 
   @keyframes modalSlideIn {
@@ -58,6 +85,17 @@ export const modalStyles = css`
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes panelSlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 

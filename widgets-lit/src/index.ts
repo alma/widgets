@@ -141,6 +141,7 @@ class AlmaWidgets {
     locale?: string
     colorScheme?: 'orange' | 'light-gray' | 'gray' | 'dark-gray' | 'white' | 'black'
     compactMode?: boolean
+    panelMode?: boolean
     plans?: Array<{
       installmentsCount: number
       deferredDays?: number
@@ -236,6 +237,7 @@ class AlmaWidgets {
       // Keep modal in sync with the widget configuration.
       modal.purchaseAmount = options.purchaseAmount
       setAttributeOrRemove(modal, 'locale', options.locale)
+      if (options.panelMode !== undefined) (modal as any).panelMode = options.panelMode
       syncConfigToModal(modal, widget)
 
       // Wire optional onModalClose callback (Preact API parity).
@@ -295,6 +297,10 @@ class AlmaWidgets {
           modal.purchaseAmount = purchaseAmount
         }
 
+        if (options.panelMode !== undefined) {
+          ;(modal as any).panelMode = options.panelMode
+        }
+
         // Keep the modal strictly aligned with the PaymentPlans configuration (manual mode).
         syncConfigToModal(modal, widget as HTMLElement)
 
@@ -322,6 +328,7 @@ class AlmaWidgets {
     purchaseAmount: number
     clickableSelector?: string
     locale?: string
+    panelMode?: boolean
     plans?: Array<{
       installmentsCount: number
       deferredDays?: number
@@ -355,6 +362,7 @@ class AlmaWidgets {
     modal.purchaseAmount = options.purchaseAmount
 
     setAttributeOrRemove(modal, 'locale', options.locale)
+    if (options.panelMode !== undefined) (modal as any).panelMode = options.panelMode
     setJsonAttributeOrRemove(modal, 'plans', options.plans)
     setJsonAttributeOrRemove(modal, 'cards', options.cards)
     setAttributeOrRemove(modal, 'customer-billing-country', options.customerBillingCountry)
