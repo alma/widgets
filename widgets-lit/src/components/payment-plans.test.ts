@@ -200,6 +200,43 @@ describe('AlmaPaymentPlans', () => {
       expect(event).to.exist
       expect(event.detail).to.have.property('plan')
     })
+
+    it('moves focus and active plan with arrow keys between eligible plans', async () => {
+      fetchStub.restore()
+      fetchStub = stubFetchJson(ELIGIBILITY_WITH_INELIGIBLE_FIXTURE)
+
+      const el = await fixture<AlmaPaymentPlans>(html`
+        <alma-payment-plans
+          purchase-amount="45000"
+          .plans=${JSON.stringify([
+            { installmentsCount: 2, minAmount: 0, maxAmount: 0 },
+            { installmentsCount: 3, minAmount: 0, maxAmount: 0 },
+            { installmentsCount: 4, minAmount: 0, maxAmount: 0 },
+          ])}
+        ></alma-payment-plans>
+      `)
+
+      await waitUntil(() => fetchStub.called, 'fetch should have been called')
+      await waitUntil(
+        () => el.shadowRoot!.querySelectorAll('.plan-button').length > 0,
+        'Plan buttons should be visible',
+        { timeout: 2000 },
+      )
+
+      const buttons = Array.from(
+        el.shadowRoot!.querySelectorAll('.plan-button'),
+      ) as HTMLButtonElement[]
+
+      const firstEligible = buttons[0]
+      firstEligible.focus()
+      firstEligible.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }),
+      )
+      await el.updateComplete
+
+      const activeAfter = buttons.find((b) => b.classList.contains('active'))
+      expect(activeAfter).to.equal(buttons[1])
+    })
   })
 
   describe('Ineligible plans (visible but disabled)', () => {

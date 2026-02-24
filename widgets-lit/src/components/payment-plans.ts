@@ -259,6 +259,24 @@ export class AlmaPaymentPlans extends LitElement {
     return -1
   }
 
+  private getPrevEligibleIndex(currentIndex: number): number {
+    if (this.eligibilityPlans.length === 0) return -1
+
+    const total = this.eligibilityPlans.length
+    for (let i = 1; i <= total; i += 1) {
+      const prevIndex = (currentIndex - i + total) % total
+      if (this.eligibilityPlans[prevIndex]?.eligible) return prevIndex
+    }
+
+    return -1
+  }
+
+  private focusPlanButton(index: number) {
+    const buttons = this.shadowRoot?.querySelectorAll<HTMLButtonElement>('.plan-button')
+    const target = buttons?.[index]
+    if (target) target.focus()
+  }
+
   /**
    * Stop animation timer
    */
@@ -639,6 +657,37 @@ export class AlmaPaymentPlans extends LitElement {
                     this.hoveredPlanIndex = null
                     this.currentPlanIndex = index
                     this.pauseAnimation()
+                  }}
+                  @focus=${() => {
+                    if (!isEligible) return
+                    this.hoveredPlanIndex = null
+                    this.currentPlanIndex = index
+                    this.pauseAnimation()
+                  }}
+                  @blur=${() => {
+                    if (!isEligible) return
+                    this.resumeAnimation()
+                  }}
+                  @keydown=${(event: KeyboardEvent) => {
+                    if (!isEligible) return
+                    if (event.key === 'ArrowRight') {
+                      event.preventDefault()
+                      const nextIndex = this.getNextEligibleIndex(index)
+                      if (nextIndex === -1) return
+                      this.hoveredPlanIndex = null
+                      this.currentPlanIndex = nextIndex
+                      this.pauseAnimation()
+                      this.focusPlanButton(nextIndex)
+                    }
+                    if (event.key === 'ArrowLeft') {
+                      event.preventDefault()
+                      const prevIndex = this.getPrevEligibleIndex(index)
+                      if (prevIndex === -1) return
+                      this.hoveredPlanIndex = null
+                      this.currentPlanIndex = prevIndex
+                      this.pauseAnimation()
+                      this.focusPlanButton(prevIndex)
+                    }
                   }}
                   @mouseleave=${() => {
                     if (!isEligible) {
