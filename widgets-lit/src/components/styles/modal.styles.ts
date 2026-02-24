@@ -88,17 +88,6 @@ export const modalStyles = css`
     }
   }
 
-  @keyframes panelSlideIn {
-    from {
-      opacity: 0;
-      transform: translateX(60px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
   @media (max-width: 799px) {
     .modal-overlay {
       padding: 0;

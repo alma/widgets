@@ -35,7 +35,6 @@ export const paymentPlansStyles = css`
 
   :host([color-scheme='white']) .container,
   :host([color-scheme='light-gray']) .container,
-  :host([color-scheme='off-white']) .container,
   :host([color-scheme='gray']) .container {
     background-color: transparent;
   }
@@ -180,6 +179,14 @@ export const paymentPlansStyles = css`
     background: var(--text-default);
   }
 
+  .plan-button.monochrome:focus,
+  .plan-button.monochrome:focus-visible {
+    outline: 1px solid var(--alma-color-focus-outline-monochrome);
+  }
+
+    background: var(--text-default);
+  }
+
   .info {
     font-family: var(--alma-payment-font-family-sans);
     font-size: var(--alma-payment-info-font-size);
@@ -242,28 +249,22 @@ export const paymentPlansStyles = css`
   }
 
   :host([color-scheme='white']) .plan-button:not(.active),
-  :host([color-scheme='off-white']) .plan-button:not(.active),
   :host([color-scheme='light-gray']) .plan-button:not(.active),
   :host([color-scheme='gray']) .plan-button:not(.active),
   :host([color-scheme='dark-gray']) .plan-button:not(.active),
-  :host([color-scheme='off-black']) .plan-button:not(.active),
   :host([color-scheme='black']) .plan-button:not(.active) {
     color: var(--theme-primary, var(--alma-color-text-primary));
   }
 
   :host([color-scheme='white']) .info,
-  :host([color-scheme='off-white']) .info,
   :host([color-scheme='light-gray']) .info,
   :host([color-scheme='gray']) .info,
   :host([color-scheme='dark-gray']) .info,
-  :host([color-scheme='off-black']) .info,
   :host([color-scheme='black']) .info,
   :host([color-scheme='white']) .info p,
-  :host([color-scheme='off-white']) .info p,
   :host([color-scheme='light-gray']) .info p,
   :host([color-scheme='gray']) .info p,
   :host([color-scheme='dark-gray']) .info p,
-  :host([color-scheme='off-black']) .info p,
   :host([color-scheme='black']) .info p {
     color: var(--theme-primary, var(--alma-color-text-primary));
   }
