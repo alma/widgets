@@ -11,13 +11,13 @@ export const scheduleStyles = css`
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    background: var(--alma-color-surface-primary);
-    border: 1px solid var(--alma-color-border-subtle);
-    border-radius: var(--alma-radius-md);
-    padding: calc(var(--spacing-4) * 0.95);
+    background: var(--surface-white);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-16);
     display: flex;
     flex-direction: column;
-    gap: calc(var(--spacing-4) * 0.95);
+    gap: var(--spacing-12);
     margin: 0;
     font-size: 0.95em;
   }
@@ -28,11 +28,11 @@ export const scheduleStyles = css`
   }
 
   .schedule-widget.monochrome .installment-dot {
-    background-color: var(--colors-border-strong);
+    background-color: var(--border-strong);
   }
 
   .schedule-widget.monochrome .installment-item:first-child .installment-dot {
-    background-color: var(--off-black);
+    background-color: var(--text-default);
   }
 
   .schedule-widget.hide-border {
@@ -49,16 +49,16 @@ export const scheduleStyles = css`
   .no-plans,
   .error {
     text-align: center;
-    color: var(--alma-color-text-muted);
+    color: var(--text-secondary);
     font-size: var(--alma-modal-body-font-size);
-    padding: var(--spacing-4);
+    padding: var(--spacing-16);
   }
 
   .schedule-container {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2);
-    color: var(--alma-color-text-primary);
+    gap: var(--spacing-8);
+    color: var(--text-default);
   }
 
   .payment-schedule-description {
@@ -77,11 +77,11 @@ export const scheduleStyles = css`
 
   .installments-list {
     padding: 0;
-    margin-bottom: 16px;
+    margin-bottom: var(--spacing-16);
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2);
+    gap: var(--spacing-8);
   }
 
   .installment-item {
@@ -94,7 +94,9 @@ export const scheduleStyles = css`
   .installment-date {
     display: flex;
     align-items: center;
-    gap: var(--spacing-3);
+    gap: 0;
+    color: var(--text-default);
+    font-size: var(--alma-modal-installment-font-size);
   }
 
   .installment-dot {
@@ -102,11 +104,12 @@ export const scheduleStyles = css`
     height: 10px;
     border-radius: 50%;
     background-color: var(--alma-color-timeline-dot-soft);
+    margin-right: var(--spacing-16);
     z-index: 1;
   }
 
   .installment-dot::after {
-    border-left: 2px solid var(--colors-border-regular);
+    border-left: 2px solid var(--border-default);
     height: 58px;
     margin-left: 4px;
     content: ' ';
@@ -132,10 +135,10 @@ export const scheduleStyles = css`
   .credit-info {
     font-size: var(--alma-modal-info-font-size);
     line-height: 1.5;
-    color: var(--colors-text-primary);
+    color: var(--text-default);
     background-color: transparent;
-    padding: var(--spacing-3);
-    border-left: 2px solid var(--colors-border-regular);
+    padding: var(--spacing-16);
+    border-left: 2px solid var(--border-default);
     margin-left: 4px;
     margin-bottom: -8px;
   }
@@ -146,9 +149,9 @@ export const scheduleStyles = css`
 
   .total-block {
     font-family: var(--alma-modal-font-family-display);
-    background-color: var(--colors-surface-strong);
+    background-color: var(--surface-strong);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-4);
+    padding: var(--spacing-16);
   }
 
   .total-block p,
@@ -156,14 +159,14 @@ export const scheduleStyles = css`
     border: none;
     padding: 0;
     margin: 0;
-    color: var(--colors-text-primary);
+    color: var(--text-default);
     text-decoration: none;
   }
 
   .total-row.main-total {
     display: flex;
     justify-content: space-between;
-    font-size: var(--font-base);
+    font-size: var(--paragraph-md-font-size);
     font-weight: var(--weight-semi-bold);
   }
 
@@ -173,7 +176,7 @@ export const scheduleStyles = css`
     font-weight: var(--weight-bold);
     font-size: var(--alma-modal-info-font-size);
     line-height: var(--line-height-lg);
-    margin-top: var(--spacing-2);
+    margin-top: var(--spacing-8);
   }
 
   .fees-row .total-label,
@@ -183,21 +186,21 @@ export const scheduleStyles = css`
   }
 
   .credit-legal-text {
-    font-size: var(--font-xs);
+    font-size: var(--paragraph-xs-font-size);
     font-family: var(--alma-modal-font-family-sans);
-    margin-top: var(--spacing-2);
+    margin-top: var(--spacing-8);
     font-weight: var(--weight-normal);
     background: transparent;
     padding: 0;
     border-radius: 0;
-    color: var(--colors-text-primary);
+    color: var(--text-default);
     line-height: 1.5;
   }
 
   @media (max-width: 799px) {
     .schedule-widget {
       max-width: 100%;
-      border-radius: var(--alma-radius-sm);
+      border-radius: var(--radius-lg);
     }
   }
 `

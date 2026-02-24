@@ -51,13 +51,13 @@ export const paymentPlansStyles = css`
     padding: var(--spacing-16);
     text-align: center;
     color: var(--text-secondary);
-    font-size: var(--alma-payment-info-font-size);
+    font-size: var(--paragraph-2xs-font-size);
   }
 
   .error {
     padding: var(--spacing-16);
     color: var(--text-error);
-    font-size: var(--alma-payment-error-font-size);
+    font-size: var(--paragraph-2xs-font-size);
   }
 
   .primary-container {
@@ -184,12 +184,9 @@ export const paymentPlansStyles = css`
     outline: 1px solid var(--alma-color-focus-outline-monochrome);
   }
 
-    background: var(--text-default);
-  }
-
   .info {
     font-family: var(--alma-payment-font-family-sans);
-    font-size: var(--alma-payment-info-font-size);
+    font-size: var(--alma-payment-info-font-size, 10px);
     line-height: 16px;
     color: var(--text-secondary);
     text-align: center;
