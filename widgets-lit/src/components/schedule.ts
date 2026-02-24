@@ -1,7 +1,16 @@
 import { LitElement, html, PropertyValues } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import type { ConfigPlan, EligibilityPlan, Locale } from '../types'
-import { fetchEligibility, formatPrice, getWidgetConfig } from '../utils'
+import {
+  fetchEligibility,
+  formatPrice,
+  getPlanButtonText,
+  getWidgetConfig,
+  isPayNowExplicitlyConfigured,
+  isPayNowPlan,
+  parseConfigAttribute,
+  sortPlans,
+} from '../utils'
 import { t, Locale as I18nLocale } from '../i18n'
 import { designTokensStyles } from './styles/design-tokens.styles'
 import { sharedStyles } from './styles/shared.styles'
@@ -14,6 +23,7 @@ export class AlmaSchedule extends LitElement {
   @property({ type: Number, attribute: 'deferred-days' }) deferredDays = 0
   @property({ type: Number, attribute: 'deferred-months' }) deferredMonths = 0
   @property({ type: String }) locale: Locale = 'fr'
+  @property({ type: String }) plans?: string
   @property({ type: String, attribute: 'customer-billing-country' }) customerBillingCountry?: string
   @property({ type: String, attribute: 'customer-shipping-country' })
   customerShippingCountry?: string
@@ -26,12 +36,22 @@ export class AlmaSchedule extends LitElement {
   @state() private loading = false
   @state() private error = false
   @state() private schedulePlan: EligibilityPlan | null = null
+  @state() private eligibilityPlans: EligibilityPlan[] = []
+  @state() private currentPlanIndex = 0
 
   static styles = [designTokensStyles, sharedStyles, scheduleStyles]
 
+  private get configPlans(): ConfigPlan[] | undefined {
+    return parseConfigAttribute<ConfigPlan[]>(this.plans)
+  }
+
+  private get isSelectorMode(): boolean {
+    return this.installmentsCount <= 0
+  }
+
   async connectedCallback() {
     super.connectedCallback()
-    if (this.purchaseAmount > 0 && this.installmentsCount > 0) {
+    if (this.purchaseAmount > 0 && (this.installmentsCount > 0 || this.isSelectorMode)) {
       await this.loadEligibility()
     }
   }
@@ -45,19 +65,25 @@ export class AlmaSchedule extends LitElement {
       'customerBillingCountry',
       'customerShippingCountry',
       'merchantCoversAllFees',
+      'plans',
     ]
 
     if (relevant.some((key) => changedProperties.has(key as any))) {
-      if (this.purchaseAmount > 0 && this.installmentsCount > 0) {
+      if (this.purchaseAmount > 0 && (this.installmentsCount > 0 || this.isSelectorMode)) {
         await this.loadEligibility()
       } else {
         this.schedulePlan = null
+        this.eligibilityPlans = []
         this.loading = false
       }
     }
   }
 
-  private get planQuery(): ConfigPlan[] {
+  private get planQuery(): ConfigPlan[] | undefined {
+    if (this.isSelectorMode) {
+      return this.configPlans && this.configPlans.length > 0 ? this.configPlans : undefined
+    }
+
     return [
       {
         installmentsCount: this.installmentsCount,
@@ -91,6 +117,23 @@ export class AlmaSchedule extends LitElement {
         this.merchantCoversAllFees,
       )
 
+      if (this.isSelectorMode) {
+        const eligiblePlans = sortPlans(
+          plans
+            .filter((plan) => plan.eligible)
+            .filter(
+              (plan) => !isPayNowPlan(plan) || isPayNowExplicitlyConfigured(this.configPlans),
+            ),
+        )
+
+        this.eligibilityPlans = eligiblePlans
+        if (this.currentPlanIndex >= eligiblePlans.length) {
+          this.currentPlanIndex = 0
+        }
+        this.schedulePlan = eligiblePlans[this.currentPlanIndex] ?? null
+        return
+      }
+
       const match = plans.find(
         (plan) =>
           plan.installments_count === this.installmentsCount &&
@@ -100,9 +143,11 @@ export class AlmaSchedule extends LitElement {
       )
 
       this.schedulePlan = match || null
+      this.eligibilityPlans = []
     } catch (err) {
       this.error = true
       this.schedulePlan = null
+      this.eligibilityPlans = []
     } finally {
       this.loading = false
     }
@@ -281,6 +326,33 @@ export class AlmaSchedule extends LitElement {
     `
   }
 
+  private renderPlanButtons(lang: I18nLocale) {
+    return html`
+      <div class="plan-buttons" role="group" aria-label="${t(lang, 'modal.planOptions')}">
+        <div class="plan-buttons-container">
+          ${this.eligibilityPlans.map(
+            (plan, index) => html`
+              <button
+                type="button"
+                class="plan-button ${index === this.currentPlanIndex ? 'active' : ''}"
+                @click=${() => {
+                  this.currentPlanIndex = index
+                  this.schedulePlan = this.eligibilityPlans[index] ?? null
+                }}
+                aria-pressed="${index === this.currentPlanIndex}"
+                aria-label="${getPlanButtonText(plan, this.locale)}"
+              >
+                <span class="plan-button-text" aria-hidden="true"
+                  >${getPlanButtonText(plan, this.locale)}</span
+                >
+              </button>
+            `,
+          )}
+        </div>
+      </div>
+    `
+  }
+
   render() {
     const lang = (this.locale.split('-')[0] as I18nLocale) || ('fr' as I18nLocale)
 
@@ -294,6 +366,7 @@ export class AlmaSchedule extends LitElement {
         role="region"
         aria-label="${t(lang, 'modal.scheduleTitle')}"
       >
+        ${this.isSelectorMode ? this.renderPlanButtons(lang) : ''}
         <div class="schedule-total-wrapper">
           ${this.renderSchedule(this.schedulePlan, lang)}
           ${this.renderTotalBlock(this.schedulePlan, lang)}

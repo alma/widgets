@@ -190,4 +190,22 @@ describe('AlmaSchedule', () => {
       expect(noPlans).to.exist
     })
   })
+
+  describe('Plan selector variant', () => {
+    it('renders plan buttons when installmentsCount is 0 and plans are provided', async () => {
+      const el = await fixture<AlmaSchedule>(html`
+        <alma-schedule
+          purchase-amount="45000"
+          installments-count="0"
+          plans='[{"installmentsCount":3,"minAmount":0,"maxAmount":0},{"installmentsCount":4,"minAmount":0,"maxAmount":0}]'
+        ></alma-schedule>
+      `)
+
+      await waitUntil(() => fetchStub.called)
+      await waitUntil(() => (el.shadowRoot?.querySelectorAll('.plan-button').length || 0) > 0)
+
+      const buttons = el.shadowRoot?.querySelectorAll('.plan-button') || []
+      expect(buttons.length).to.be.greaterThan(0)
+    })
+  })
 })

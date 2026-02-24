@@ -411,9 +411,16 @@ class AlmaWidgets {
   public addSchedule(options: {
     container: string
     purchaseAmount: number
-    installmentsCount: number
+    installmentsCount?: number
     deferredDays?: number
     deferredMonths?: number
+    plans?: Array<{
+      installmentsCount: number
+      deferredDays?: number
+      deferredMonths?: number
+      minAmount: number
+      maxAmount: number
+    }>
     locale?: string
     customerBillingCountry?: string
     customerShippingCountry?: string
@@ -436,7 +443,7 @@ class AlmaWidgets {
     }
 
     ;(widget as any).purchaseAmount = options.purchaseAmount
-    ;(widget as any).installmentsCount = options.installmentsCount
+    ;(widget as any).installmentsCount = options.installmentsCount ?? 0
     ;(widget as any).deferredDays = options.deferredDays ?? 0
     ;(widget as any).deferredMonths = options.deferredMonths ?? 0
 
@@ -444,6 +451,7 @@ class AlmaWidgets {
     if (options.monochrome !== undefined) (widget as any).monochrome = options.monochrome
     if (options.hideBorder !== undefined) (widget as any).hideBorder = options.hideBorder
 
+    setJsonAttributeOrRemove(widget, 'plans', options.plans)
     setAttributeOrRemove(widget, 'locale', options.locale)
     setAttributeOrRemove(widget, 'customer-billing-country', options.customerBillingCountry)
     setAttributeOrRemove(widget, 'customer-shipping-country', options.customerShippingCountry)

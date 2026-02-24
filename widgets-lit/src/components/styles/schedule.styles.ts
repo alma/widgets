@@ -197,6 +197,55 @@ export const scheduleStyles = css`
     line-height: 1.5;
   }
 
+  .plan-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-12);
+    padding-bottom: var(--spacing-8);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .plan-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-8);
+  }
+
+  .plan-button {
+    height: var(--button-regular-height, 50px);
+    min-width: 50px;
+    border-radius: var(--alma-radius-md);
+    font-family: var(--alma-modal-font-family-display);
+    font-weight: var(--alma-font-weight-semibold);
+    font-size: var(--alma-modal-body-font-size);
+    cursor: pointer;
+    transition: var(--alma-transition-button);
+    border: 1px solid var(--alma-color-button-border);
+    background-color: var(--alma-color-button-secondary-bg);
+    color: var(--alma-color-button-secondary-text);
+    padding: 0;
+    margin: 0;
+  }
+
+  .plan-button-text {
+    display: inline;
+    border: none;
+    text-decoration: none;
+    margin: var(--spacing-32);
+    color: var(--alma-color-text-primary);
+  }
+
+  .plan-button.active {
+    background-color: var(--alma-color-button-primary-bg);
+    color: var(--alma-color-button-primary-text);
+    border: 0;
+  }
+
+  .plan-button.active .plan-button-text {
+    color: var(--alma-color-button-primary-text);
+  }
+
   @media (max-width: 799px) {
     .schedule-widget {
       max-width: 100%;

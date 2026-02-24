@@ -151,6 +151,15 @@
         cursor: pointer;
         user-select: none;
       }
+
+      pre {
+        background: #0f0f10;
+        color: #f5f5f5;
+        padding: 16px;
+        border-radius: 12px;
+        overflow: auto;
+        font-size: 12px;
+      }
     </style>
   </head>
   <body>
@@ -217,6 +226,17 @@
           <p>Longer credit plan with full disclosure.</p>
           <div id="schedule-10x" class="schedule-container"></div>
         </div>
+
+        <div class="card">
+          <h3>Plan selector schedule</h3>
+          <p>Lightweight modal-like schedule with plan buttons.</p>
+          <div id="schedule-selector" class="schedule-container"></div>
+        </div>
+      </div>
+
+      <div class="config-panel" style="margin-top: 24px;">
+        <h3>📋 Copy &amp; Paste Integration</h3>
+        <pre id="schedule-code"></pre>
       </div>
     </div>
 
@@ -228,6 +248,14 @@
       )
 
       const purchaseAmount = 60000
+
+      const schedulePlans = [
+        { installmentsCount: 1, deferredDays: 0, deferredMonths: 0, minAmount: 0, maxAmount: 0 },
+        { installmentsCount: 1, deferredDays: 15, deferredMonths: 0, minAmount: 0, maxAmount: 0 },
+        { installmentsCount: 3, deferredDays: 0, deferredMonths: 0, minAmount: 0, maxAmount: 0 },
+        { installmentsCount: 4, deferredDays: 0, deferredMonths: 0, minAmount: 0, maxAmount: 0 },
+        { installmentsCount: 10, deferredDays: 0, deferredMonths: 0, minAmount: 0, maxAmount: 0 },
+      ]
 
       function renderSchedules() {
         const isSmall = document.getElementById('small-checkbox').checked
@@ -281,14 +309,38 @@
           monochrome: isMonochrome,
           hideBorder: hideBorder,
         })
+
+        widgets.add(Alma.Widgets.Schedule, {
+          container: '#schedule-selector',
+          purchaseAmount,
+          installmentsCount: 0,
+          locale: 'fr',
+          plans: schedulePlans,
+          small: isSmall,
+          monochrome: isMonochrome,
+          hideBorder: hideBorder,
+        })
+
+        const code = `const widgets = Alma.Widgets.initialize('YOUR_MERCHANT_ID', Alma.ApiMode.TEST)
+
+widgets.add(Alma.Widgets.Schedule, {
+  container: '#schedule-selector',
+  purchaseAmount: ${purchaseAmount},
+  installmentsCount: 0,
+  locale: 'fr',
+  plans: ${JSON.stringify(schedulePlans, null, 2)},
+  small: ${isSmall},
+  monochrome: ${isMonochrome},
+  hideBorder: ${hideBorder},
+})`
+
+        document.getElementById('schedule-code').textContent = code
       }
 
-      // Listen to checkbox changes
       document.getElementById('small-checkbox').addEventListener('change', renderSchedules)
       document.getElementById('monochrome-checkbox').addEventListener('change', renderSchedules)
       document.getElementById('hide-border-checkbox').addEventListener('change', renderSchedules)
 
-      // Initial render
       renderSchedules()
     </script>
   </body>
