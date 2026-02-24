@@ -17,7 +17,7 @@ export const modalStyles = css`
     align-items: center;
     justify-content: center;
     z-index: 99999;
-    padding: var(--spacing-5);
+    padding: var(--spacing-20);
     backdrop-filter: none;
   }
 
@@ -27,7 +27,7 @@ export const modalStyles = css`
 
   /* Modal Container (match Preact geometry and shadow) */
   .modal {
-    background: var(--alma-color-surface-primary);
+    background: var(--surface-white);
     border-radius: var(--alma-modal-radius-desktop);
     max-width: 800px;
     width: calc(100% - 40px);
@@ -84,10 +84,10 @@ export const modalStyles = css`
     .modal-content-mobile {
       display: flex;
       flex-direction: column;
-      padding: var(--spacing-8);
+      padding: var(--spacing-32);
       flex: 1;
       overflow-y: auto;
-      gap: var(--spacing-6);
+      gap: var(--spacing-24);
     }
 
     /* Wrapper for schedule and total: no gap between them */
@@ -102,7 +102,7 @@ export const modalStyles = css`
     }
 
     .schedule-details {
-      margin-bottom: var(--spacing-4);
+      margin-bottom: var(--spacing-16);
     }
 
     .vertical-line {
@@ -115,7 +115,7 @@ export const modalStyles = css`
 
     .credit-info {
       margin-bottom: 6px !important;
-      padding: 0 var(--spacing-4) !important;
+      padding: 0 var(--spacing-16) !important;
     }
   }
 
@@ -164,21 +164,21 @@ export const modalStyles = css`
     position: static;
     width: auto;
     height: auto;
-    padding: var(--spacing-2) var(--spacing-4);
-    margin: var(--spacing-1);
-    background: var(--black);
-    color: var(--white);
+    padding: var(--spacing-8) var(--spacing-16);
+    margin: var(--spacing-4);
+    background: var(--foundation-black);
+    color: var(--foundation-white);
     text-decoration: none;
     border-radius: var(--radius-xs);
-    font-size: var(--font-sm);
+    font-size: var(--paragraph-sm-font-size);
     font-weight: var(--weight-semi-bold);
     box-shadow: var(--alma-shadow-focus-strong);
-    outline: 1px solid var(--alma-color-focus-outline);
+    outline: 1px solid var(--border-focus);
     z-index: 10000;
   }
 
   .skip-link:hover:focus {
-    background: var(--dark-gray);
+    background: var(--text-secondary);
   }
 
   /* Close Button - absolute positioned top right at 6px from corner */
@@ -186,7 +186,7 @@ export const modalStyles = css`
     position: absolute;
     top: 6px;
     right: 6px;
-    background: var(--off-black);
+    background: var(--gray-900);
     border: none;
     border-radius: 50%;
     width: 24px;
@@ -202,18 +202,18 @@ export const modalStyles = css`
 
   .close-button:hover,
   .close-button:focus {
-    background-color: var(--black);
+    background-color: var(--foundation-black);
   }
 
   .close-icon path {
-    fill: var(--white);
+    fill: var(--foundation-white);
   }
 
   /* Modal Content Container - 40% left, 60% right */
   .modal-content {
     display: grid;
     grid-template-columns: 45% 55%;
-    padding: var(--spacing-8);
+    padding: var(--spacing-32);
     flex: 1;
     overflow: hidden;
   }
@@ -222,18 +222,18 @@ export const modalStyles = css`
   .left-column {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-6);
+    gap: var(--spacing-24);
     max-width: 400px;
-    padding-right: var(--spacing-6);
+    padding-right: var(--spacing-24);
     overflow-y: auto;
   }
 
   .modal-title {
     font-family: var(--alma-modal-font-family-display) !important;
-    font-size: var(--font-title-md);
+    font-size: var(--paragraph-xl-font-size);
     font-weight: var(--weight-semi-bold);
     line-height: 130%;
-    color: var(--colors-text-primary);
+    color: var(--text-default);
     margin: 0;
     text-align: center;
   }
@@ -251,7 +251,7 @@ export const modalStyles = css`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: var(--spacing-2);
+    gap: var(--spacing-8);
   }
 
   /* Cards - aligned left */
@@ -274,7 +274,7 @@ export const modalStyles = css`
   .info-list {
     list-style: none;
     margin: 0;
-    padding: 0 var(--spacing-6);
+    padding: 0 var(--spacing-24);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -285,7 +285,7 @@ export const modalStyles = css`
     display: flex;
     align-items: center;
     line-height: var(--alma-line-height-comfortable);
-    gap: var(--spacing-4);
+    gap: var(--spacing-16);
     font-size: var(--alma-modal-info-font-size);
     color: var(--alma-color-text-primary);
   }
@@ -337,8 +337,8 @@ export const modalStyles = css`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: var(--spacing-6);
-    padding-bottom: var(--spacing-3);
+    margin-bottom: var(--spacing-24);
+    padding-bottom: var(--spacing-12);
     border-bottom: 1px solid var(--alma-color-border-plan-separator);
     max-width: 100%;
   }
@@ -365,7 +365,7 @@ export const modalStyles = css`
     display: inline;
     border: none;
     text-decoration: none;
-    margin: var(--spacing-8);
+    margin: var(--spacing-32);
     color: var(--alma-color-text-primary);
   }
 
@@ -444,14 +444,14 @@ export const modalStyles = css`
   }
 
   .installments-list {
-    padding: 0 var(--spacing-6);
+    padding: 0 var(--spacing-24);
     margin: 6px 0 0 0;
     font-family: var(--alma-modal-font-family-sans);
     color: var(--alma-color-text-primary);
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2);
+    gap: var(--spacing-8);
   }
 
   .installment-item {
@@ -483,7 +483,7 @@ export const modalStyles = css`
     height: 10px;
     border-radius: 50%;
     background-color: var(--alma-color-timeline-dot-soft);
-    margin-right: var(--spacing-4);
+    margin-right: var(--spacing-16);
     z-index: 1;
   }
 
@@ -495,7 +495,7 @@ export const modalStyles = css`
   /* Desktop draws the line segment under each dot (matches Preact). */
   @media (min-width: 800px) {
     .installment-dot::after {
-      border-left: 2px solid var(--colors-border-regular);
+      border-left: 2px solid var(--border-default);
       height: 28px;
       margin-left: 4px;
       content: ' ';
@@ -510,11 +510,11 @@ export const modalStyles = css`
     margin-bottom: 16px;
     font-family: var(--alma-modal-font-family-sans);
     font-size: var(--alma-modal-info-font-size);
-    color: var(--colors-text-primary);
+    color: var(--text-default);
     line-height: 1.5;
     background-color: transparent;
     border-radius: var(--radius-lg);
-    padding: var(--spacing-4);
+    padding: var(--spacing-16);
     position: relative;
     z-index: 2;
   }
@@ -526,9 +526,9 @@ export const modalStyles = css`
   /* Total block (gray box with all financial details) */
   .total-block {
     font-family: var(--alma-modal-font-family-display);
-    background-color: var(--colors-surface-strong);
+    background-color: var(--surface-strong);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-4);
+    padding: var(--spacing-16);
     z-index: 2;
     position: relative;
   }
@@ -538,7 +538,7 @@ export const modalStyles = css`
     border: none;
     padding: 0;
     margin: 0;
-    color: var(--colors-text-primary);
+    color: var(--text-default);
     text-decoration: none;
   }
 
@@ -546,9 +546,9 @@ export const modalStyles = css`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size: var(--font-base);
+    font-size: var(--paragraph-md-font-size);
     font-weight: var(--weight-semi-bold);
-    color: var(--colors-text-primary);
+    color: var(--text-default);
     padding: 0;
   }
 
@@ -565,26 +565,26 @@ export const modalStyles = css`
     font-size: var(--alma-modal-info-font-size);
     line-height: var(--line-height-lg);
     padding: 0;
-    margin-top: var(--spacing-2);
+    margin-top: var(--spacing-8);
   }
 
   .fees-row .total-label,
   .fees-row .total-value {
     font-size: var(--alma-modal-info-font-size);
-    color: var(--colors-text-primary);
+    color: var(--text-default);
     font-weight: var(--weight-bold);
   }
 
   /* Credit legal text (inside gray box) */
   .credit-legal-text {
-    font-size: var(--font-xs);
+    font-size: var(--paragraph-xs-font-size);
     font-family: var(--alma-modal-font-family-sans);
-    margin-top: var(--spacing-2);
+    margin-top: var(--spacing-8);
     font-weight: var(--weight-normal);
     background: transparent;
     padding: 0;
     border-radius: 0;
-    color: var(--colors-text-primary);
+    color: var(--text-default);
     line-height: 1.5;
   }
 
@@ -595,7 +595,7 @@ export const modalStyles = css`
     width: 100%;
     justify-content: center;
     gap: 10px;
-    margin: var(--spacing-6) 0;
+    margin: var(--spacing-24) 0;
     padding: 0;
     border-top: none;
     align-items: center;

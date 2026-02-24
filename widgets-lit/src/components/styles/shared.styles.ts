@@ -2,6 +2,9 @@ import { css } from 'lit'
 
 export const sharedStyles = css`
   .card-icon {
+    display: inline-block;
+    width: var(--alma-card-icon-width, 24px);
+    height: var(--alma-card-icon-height, 16px);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

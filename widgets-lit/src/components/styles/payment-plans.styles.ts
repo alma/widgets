@@ -19,13 +19,13 @@ export const paymentPlansStyles = css`
   .container {
     width: var(--alma-payment-container-width);
     max-width: 100%;
-    background-color: var(--alma-color-surface-primary);
-    border: 1px solid var(--alma-color-border-subtle);
+    background-color: var(--surface-white);
+    border: 1px solid var(--border-default);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: var(--spacing-3);
-    gap: var(--spacing-2);
+    padding: var(--spacing-12);
+    gap: var(--spacing-8);
   }
 
   /* Border behavior matches Preact:
@@ -37,15 +37,15 @@ export const paymentPlansStyles = css`
   }
 
   .loading {
-    padding: var(--spacing-4);
+    padding: var(--spacing-16);
     text-align: center;
-    color: var(--alma-color-text-secondary);
+    color: var(--text-secondary);
     font-size: var(--alma-payment-info-font-size);
   }
 
   .error {
-    padding: var(--spacing-4);
-    color: var(--alma-color-text-error);
+    padding: var(--spacing-16);
+    color: var(--text-error);
     font-size: var(--alma-payment-error-font-size);
   }
 
@@ -62,7 +62,7 @@ export const paymentPlansStyles = css`
     align-items: center;
     background-color: transparent;
     border: none;
-    margin: 0 var(--spacing-3) 0 0;
+    margin: 0 var(--spacing-12) 0 0;
     padding: 3px;
     font-family: inherit;
     font-size: inherit;
@@ -84,14 +84,14 @@ export const paymentPlansStyles = css`
   .logo-button:focus,
   .logo-button:focus-visible {
     background-color: transparent;
-    border-radius: var(--alma-radius-xs);
-    outline: 1px solid var(--alma-color-focus-outline);
+    border-radius: var(--radius-xs);
+    outline: 1px solid var(--border-focus);
     outline-offset: 2px;
   }
 
   .logo-button.monochrome:focus,
   .logo-button.monochrome:focus-visible {
-    outline: 1px solid var(--alma-color-focus-outline-monochrome);
+    outline: 1px solid var(--border-black);
   }
 
   .logo {
@@ -103,7 +103,7 @@ export const paymentPlansStyles = css`
   .payment-plans {
     display: flex;
     flex-direction: row;
-    gap: var(--spacing-2);
+    gap: var(--spacing-8);
     align-items: flex-start;
     max-width: 310px;
     flex-wrap: wrap;
@@ -114,10 +114,10 @@ export const paymentPlansStyles = css`
     border: none;
     background: transparent;
     cursor: pointer;
-    transition: var(--alma-transition-fast);
+    transition: var(--transition-25-ms);
     padding: 2px 10px;
-    color: var(--alma-color-text-primary);
-    border-radius: var(--alma-radius-xs);
+    color: var(--text-default);
+    border-radius: var(--radius-xs);
     font-weight: var(--alma-font-weight-bold);
     font-size: var(--alma-payment-plan-label-font-size);
     display: flex;
@@ -136,36 +136,27 @@ export const paymentPlansStyles = css`
 
   .plan-button:focus,
   .plan-button:focus-visible {
-    outline: 1px solid var(--alma-color-focus-outline);
+    outline: 1px solid var(--border-focus);
     outline-offset: 2px;
     background-color: transparent;
   }
 
   .plan-button.active {
-    color: var(--alma-color-button-primary-text);
-    background: var(--alma-color-button-primary-bg);
+    color: var(--text-inverted);
+    background: var(--orange-alma);
     /* Preact doesn't pulse the active tab; keep it minimal for pixel parity. */
     animation: none;
   }
 
   .plan-button.monochrome.active {
-    background: var(--alma-color-text-primary);
-  }
-
-  .plan-button.monochrome:focus,
-  .plan-button.monochrome:focus-visible {
-    outline: 1px solid var(--alma-color-focus-outline-monochrome);
-  }
-
-  .plan-button.active.monochrome {
-    background: var(--alma-color-text-primary);
+    background: var(--text-default);
   }
 
   .info {
     font-family: var(--alma-payment-font-family-sans);
     font-size: var(--alma-payment-info-font-size);
     line-height: 16px;
-    color: var(--alma-color-text-secondary);
+    color: var(--text-secondary);
     text-align: center;
     margin: 0;
     padding: 0;
@@ -177,7 +168,7 @@ export const paymentPlansStyles = css`
     padding: 0;
     border: none;
     background-color: transparent;
-    color: var(--alma-color-text-primary);
+    color: var(--text-default);
   }
 
   .amount {
@@ -190,8 +181,8 @@ export const paymentPlansStyles = css`
 
   .cards {
     display: flex;
-    gap: var(--spacing-1);
-    margin-top: var(--spacing-1);
+    gap: var(--spacing-4);
+    margin-top: var(--spacing-4);
   }
 
   .card-icon {
