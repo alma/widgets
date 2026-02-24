@@ -117,6 +117,18 @@ describe('AlmaSchedule', () => {
       expect(container?.classList.contains('hide-border')).to.equal(true)
     })
 
+    it('applies the light variant class', async () => {
+      const el = await fixture<AlmaSchedule>(html`
+        <alma-schedule purchase-amount="45000" installments-count="3" light></alma-schedule>
+      `)
+
+      await waitUntil(() => fetchStub.called)
+      await el.updateComplete
+
+      const container = el.shadowRoot?.querySelector('.schedule-widget') as HTMLElement | null
+      expect(container?.classList.contains('light')).to.equal(true)
+    })
+
     it('applies multiple variant classes when combined', async () => {
       const el = await fixture<AlmaSchedule>(html`
         <alma-schedule

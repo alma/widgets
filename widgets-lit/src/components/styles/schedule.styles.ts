@@ -246,6 +246,45 @@ export const scheduleStyles = css`
     color: var(--alma-color-button-primary-text);
   }
 
+  .schedule-widget.light .installment-dot,
+  .schedule-widget.light .installment-dot::after,
+  .schedule-widget.light .vertical-line {
+    display: none;
+  }
+
+  .schedule-widget.light .installment-date {
+    margin-left: 0;
+  }
+
+  .schedule-widget.light .total-block {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-family: var(--alma-modal-font-family-sans);
+  }
+
+  .schedule-widget.light .total-row.main-total {
+    font-size: var(--alma-modal-body-font-size);
+  }
+
+  .schedule-widget.light .total-row.fees-row {
+    font-size: var(--paragraph-xs-font-size);
+    color: var(--text-secondary);
+    margin-top: var(--spacing-4);
+  }
+
+  .schedule-widget.light .fees-row .total-label,
+  .schedule-widget.light .fees-row .total-value {
+    font-size: var(--paragraph-xs-font-size);
+    color: var(--text-secondary);
+  }
+
+  .schedule-widget.light .credit-info {
+    border-left: none;
+    padding: 0;
+    margin-left: 0;
+  }
+
   @media (max-width: 799px) {
     .schedule-widget {
       max-width: 100%;

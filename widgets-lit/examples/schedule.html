@@ -199,6 +199,11 @@
             <input type="checkbox" id="hide-border-checkbox" />
             <label for="hide-border-checkbox">Hide border</label>
           </div>
+
+          <div class="checkbox-option">
+            <input type="checkbox" id="light-checkbox" />
+            <label for="light-checkbox">Light mode</label>
+          </div>
         </div>
       </div>
 
@@ -261,6 +266,7 @@
         const isSmall = document.getElementById('small-checkbox').checked
         const isMonochrome = document.getElementById('monochrome-checkbox').checked
         const hideBorder = document.getElementById('hide-border-checkbox').checked
+        const isLight = document.getElementById('light-checkbox').checked
 
         widgets.add(Alma.Widgets.Schedule, {
           container: '#schedule-p1x',
@@ -272,6 +278,7 @@
           small: isSmall,
           monochrome: isMonochrome,
           hideBorder: hideBorder,
+          light: isLight,
         })
 
         widgets.add(Alma.Widgets.Schedule, {
@@ -284,6 +291,7 @@
           small: isSmall,
           monochrome: isMonochrome,
           hideBorder: hideBorder,
+          light: isLight,
         })
 
         widgets.add(Alma.Widgets.Schedule, {
@@ -296,6 +304,7 @@
           small: isSmall,
           monochrome: isMonochrome,
           hideBorder: hideBorder,
+          light: isLight,
         })
 
         widgets.add(Alma.Widgets.Schedule, {
@@ -308,6 +317,7 @@
           small: isSmall,
           monochrome: isMonochrome,
           hideBorder: hideBorder,
+          light: isLight,
         })
 
         widgets.add(Alma.Widgets.Schedule, {
@@ -319,6 +329,7 @@
           small: isSmall,
           monochrome: isMonochrome,
           hideBorder: hideBorder,
+          light: isLight,
         })
 
         const code = `const widgets = Alma.Widgets.initialize('YOUR_MERCHANT_ID', Alma.ApiMode.TEST)
@@ -332,6 +343,7 @@ widgets.add(Alma.Widgets.Schedule, {
   small: ${isSmall},
   monochrome: ${isMonochrome},
   hideBorder: ${hideBorder},
+  light: ${isLight},
 })`
 
         document.getElementById('schedule-code').textContent = code
@@ -340,6 +352,7 @@ widgets.add(Alma.Widgets.Schedule, {
       document.getElementById('small-checkbox').addEventListener('change', renderSchedules)
       document.getElementById('monochrome-checkbox').addEventListener('change', renderSchedules)
       document.getElementById('hide-border-checkbox').addEventListener('change', renderSchedules)
+      document.getElementById('light-checkbox').addEventListener('change', renderSchedules)
 
       renderSchedules()
     </script>

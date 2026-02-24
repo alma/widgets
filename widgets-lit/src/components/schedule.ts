@@ -32,6 +32,7 @@ export class AlmaSchedule extends LitElement {
   @property({ type: Boolean }) small = false
   @property({ type: Boolean }) monochrome = false
   @property({ type: Boolean, attribute: 'hide-border' }) hideBorder = false
+  @property({ type: Boolean }) light = false
 
   @state() private loading = false
   @state() private error = false
@@ -306,6 +307,7 @@ export class AlmaSchedule extends LitElement {
     if (this.small) classes.push('small')
     if (this.monochrome) classes.push('monochrome')
     if (this.hideBorder) classes.push('hide-border')
+    if (this.light) classes.push('light')
     return classes.join(' ')
   }
 

@@ -428,6 +428,7 @@ class AlmaWidgets {
     small?: boolean
     monochrome?: boolean
     hideBorder?: boolean
+    light?: boolean
   }): void {
     const container = document.querySelector(options.container)
     if (!container) {
@@ -450,6 +451,7 @@ class AlmaWidgets {
     if (options.small !== undefined) (widget as any).small = options.small
     if (options.monochrome !== undefined) (widget as any).monochrome = options.monochrome
     if (options.hideBorder !== undefined) (widget as any).hideBorder = options.hideBorder
+    if (options.light !== undefined) (widget as any).light = options.light
 
     setJsonAttributeOrRemove(widget, 'plans', options.plans)
     setAttributeOrRemove(widget, 'locale', options.locale)
