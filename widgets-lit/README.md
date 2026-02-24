@@ -15,10 +15,10 @@ Ultra-lightweight, zero-dependency widgets with complete CSS isolation, reactive
 | **⚡ Reactive Updates** | Change properties dynamically without re-mounting |
 | **🌍 13+ Languages** | FR, EN, DE, ES, IT, PT, NL + regional variants (en-US, fr-FR, etc.) |
 | **⏱️ Session Cache** | Smart caching + in-flight deduplication = 75% fewer API calls |
-| **♿ Accessibility** | WCAG 2.1 AA (partial) | Skip links + focus trap are covered; keyboard plan navigation still missing |
+| **♿ Accessibility** | WCAG 2.1 AA (partial) - Skip links + focus trap + arrow navigation; Home/End keys missing |
 | **📱 Responsive** | Desktop modal, mobile drawer, tablet layouts |
 | **🎨 Customizable** | Monochrome mode, custom card logos, suggested plans |
-| **📦 Lightweight** | ~26 KB gzipped (70% smaller than Preact version) |
+| **📦 Lightweight** | ~31 KB gzipped (30% smaller than Preact version) |
 | **🔄 Zero Config** | Drop-in CDN script; auto-detects merchant & API mode |
 
 ---
@@ -120,9 +120,13 @@ Displays a compact widget showing available payment options with automatic cycli
 #### User Interactions
 
 - **Click a plan button**: Opens detailed modal with payment schedule
-- **Hover**: Stops animation
-- **Keyboard Tab**: Focus individual plans
-- **Keyboard Escape**: Close associated modal
+- **Hover**: Pauses animation and shows plan info
+- **Keyboard Navigation**: 
+  - `Tab` / `Shift+Tab`: Move focus between eligible plans
+  - `ArrowLeft` / `ArrowRight`: Navigate between eligible plans (skips ineligible)
+  - `Enter` / `Space`: Select focused plan and open modal
+  - `Escape`: Close associated modal
+- **Focus behavior**: Focused plan becomes active and displays info (same as hover)
 
 #### Configuration
 
