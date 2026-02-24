@@ -346,62 +346,62 @@ export const designTokensStyles = css`
   /* Default: Orange (default branding) */
   :host([color-scheme='orange']),
   :host {
-    --theme-primary: var(--alma-orange);
-    --theme-primary-dark: var(--dark-orange);
-    --theme-primary-soft: var(--soft-orange);
-    --theme-primary-light: var(--light-orange);
+    --theme-primary: var(--orange-alma);
+    --theme-primary-dark: var(--orange-700);
+    --theme-primary-soft: var(--orange-400);
+    --theme-primary-light: var(--orange-300);
     --theme-focus-shadow: rgba(250, 80, 34, 0.2);
-    --theme-primary-contrast: var(--white);
+    --theme-primary-contrast: var(--foundation-white);
   }
 
   /* Light-gray scheme */
   :host([color-scheme='light-gray']) {
-    --theme-primary: var(--light-gray);
-    --theme-primary-dark: var(--gray);
-    --theme-primary-soft: var(--off-white);
-    --theme-primary-light: var(--white);
-    --theme-focus-shadow: rgba(240, 240, 240, 0.2);
-    --theme-primary-contrast: var(--off-black);
+    --theme-primary: var(--gray-600);
+    --theme-primary-dark: var(--gray-700);
+    --theme-primary-soft: var(--gray-default);
+    --theme-primary-light: var(--foundation-white);
+    --theme-focus-shadow: rgba(236, 236, 236, 0.2);
+    --theme-primary-contrast: var(--gray-900);
   }
 
   /* Gray scheme */
   :host([color-scheme='gray']) {
-    --theme-primary: var(--gray);
-    --theme-primary-dark: var(--dark-gray);
-    --theme-primary-soft: var(--light-gray);
-    --theme-primary-light: var(--off-white);
+    --theme-primary: var(--gray-700);
+    --theme-primary-dark: var(--gray-800);
+    --theme-primary-soft: var(--gray-600);
+    --theme-primary-light: var(--gray-default);
     --theme-focus-shadow: rgba(202, 202, 202, 0.2);
-    --theme-primary-contrast: var(--off-black);
+    --theme-primary-contrast: var(--gray-900);
   }
 
   /* Dark-gray scheme */
   :host([color-scheme='dark-gray']) {
-    --theme-primary: var(--dark-gray);
-    --theme-primary-dark: var(--off-black);
-    --theme-primary-soft: var(--gray);
-    --theme-primary-light: var(--light-gray);
+    --theme-primary: var(--gray-800);
+    --theme-primary-dark: var(--gray-900);
+    --theme-primary-soft: var(--gray-700);
+    --theme-primary-light: var(--gray-600);
     --theme-focus-shadow: rgba(108, 108, 108, 0.2);
-    --theme-primary-contrast: var(--white);
+    --theme-primary-contrast: var(--foundation-white);
   }
 
   /* White scheme */
   :host([color-scheme='white']) {
-    --theme-primary: var(--white);
-    --theme-primary-dark: var(--off-white);
-    --theme-primary-soft: var(--background);
-    --theme-primary-light: var(--light-gray);
+    --theme-primary: var(--foundation-white);
+    --theme-primary-dark: var(--gray-default);
+    --theme-primary-soft: var(--gray-page);
+    --theme-primary-light: var(--gray-600);
     --theme-focus-shadow: rgba(255, 255, 255, 0.2);
-    --theme-primary-contrast: var(--off-black);
+    --theme-primary-contrast: var(--gray-900);
   }
 
   /* Black scheme */
   :host([color-scheme='black']) {
-    --theme-primary: var(--black);
-    --theme-primary-dark: var(--off-black);
-    --theme-primary-soft: var(--dark-gray);
-    --theme-primary-light: var(--gray);
+    --theme-primary: var(--foundation-black);
+    --theme-primary-dark: var(--gray-900);
+    --theme-primary-soft: var(--gray-800);
+    --theme-primary-light: var(--gray-700);
     --theme-focus-shadow: rgba(0, 0, 0, 0.2);
-    --theme-primary-contrast: var(--white);
+    --theme-primary-contrast: var(--foundation-white);
   }
 
   /* Monochrome mode (existing behavior for backward compatibility) */
