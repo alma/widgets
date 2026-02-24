@@ -3,6 +3,7 @@ import { formatPrice } from './utils'
 import './components/payment-plans'
 import './components/modal'
 import type { AlmaModal } from './components/modal'
+import './components/schedule'
 
 type AttributeValue = string | number | boolean
 type JsonAttributeValue = unknown
@@ -400,6 +401,54 @@ class AlmaWidgets {
       close: () => modal!.close(),
     }
   }
+
+  /**
+   * Add a Schedule widget to the page
+   *
+   * This widget displays a detailed payment schedule (calendar view)
+   * and allows users to interact with their payment plans.
+   */
+  public addSchedule(options: {
+    container: string
+    purchaseAmount: number
+    installmentsCount: number
+    deferredDays?: number
+    deferredMonths?: number
+    locale?: string
+    customerBillingCountry?: string
+    customerShippingCountry?: string
+    merchantCoversAllFees?: boolean
+    small?: boolean
+    monochrome?: boolean
+    hideBorder?: boolean
+  }): void {
+    const container = document.querySelector(options.container)
+    if (!container) {
+      console.error(`Container ${options.container} not found`)
+      return
+    }
+
+    let widget = container.querySelector('alma-schedule') as HTMLElement | null
+    if (!widget) {
+      container.innerHTML = ''
+      widget = document.createElement('alma-schedule')
+      container.appendChild(widget)
+    }
+
+    ;(widget as any).purchaseAmount = options.purchaseAmount
+    ;(widget as any).installmentsCount = options.installmentsCount
+    ;(widget as any).deferredDays = options.deferredDays ?? 0
+    ;(widget as any).deferredMonths = options.deferredMonths ?? 0
+
+    if (options.small !== undefined) (widget as any).small = options.small
+    if (options.monochrome !== undefined) (widget as any).monochrome = options.monochrome
+    if (options.hideBorder !== undefined) (widget as any).hideBorder = options.hideBorder
+
+    setAttributeOrRemove(widget, 'locale', options.locale)
+    setAttributeOrRemove(widget, 'customer-billing-country', options.customerBillingCountry)
+    setAttributeOrRemove(widget, 'customer-shipping-country', options.customerShippingCountry)
+    setBooleanAttributeIfDefined(widget, 'merchant-covers-all-fees', options.merchantCoversAllFees)
+  }
 }
 
 // Global API - this is what developers use
@@ -418,23 +467,27 @@ export const Alma = {
       return {
         // Generic add method (uses constants like Alma.Widgets.PaymentPlans)
         add(
-          widgetType: 'PaymentPlans' | 'Modal',
+          widgetType: 'PaymentPlans' | 'Modal' | 'Schedule',
           options: any,
         ): void | { open: () => void; close: () => void } {
           if (widgetType === 'PaymentPlans') {
             widgets.addPaymentPlans(options)
           } else if (widgetType === 'Modal') {
             return widgets.addModal(options)
+          } else if (widgetType === 'Schedule') {
+            widgets.addSchedule(options)
           }
         },
         // Direct methods (alternative API)
         addPaymentPlans: widgets.addPaymentPlans.bind(widgets),
         addModal: widgets.addModal.bind(widgets),
+        addSchedule: widgets.addSchedule.bind(widgets),
       }
     },
     // Constants for widget types (used with add() method)
     PaymentPlans: 'PaymentPlans' as const,
     Modal: 'Modal' as const,
+    Schedule: 'Schedule' as const,
   },
 
   /**

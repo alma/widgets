@@ -227,6 +227,143 @@ widgets.add(Alma.Widgets.Modal, {
 })
 ```
 
+### Schedule Widget (`<alma-schedule>`)
+
+Displays a standalone payment schedule summary for a specific payment plan.
+
+#### What It Shows
+
+- **Installment Timeline**: Visual calendar with dates and amounts
+- **Timeline Dots**: Orange dots marking payment dates (first dot = today)
+- **Vertical Line**: Connects installments visually
+- **Total & Fees Block**: Complete breakdown with credit information
+- **Legal Text**: For credit plans (>4 installments), includes mandatory disclosure
+
+#### When to Use
+
+- **Checkout Page**: Show schedule for the selected payment plan
+- **Payment Selection**: Display multiple schedules side-by-side for comparison
+- **Product Page**: Illustrate payment schedule before cart
+- **Order Confirmation**: Show finalized payment schedule
+
+#### Configuration
+
+```javascript
+widgets.add(Alma.Widgets.Schedule, {
+  // === REQUIRED ===
+  container: '#alma-schedule',         // CSS selector for mount point
+  purchaseAmount: 60000,               // Amount in cents (EUR 600.00)
+  installmentsCount: 3,                // Number of installments (3, 4, 10, etc.)
+
+  // === DEFERRED PAYMENT ===
+  deferredDays: 0,                     // Days to defer (e.g., 15 for J+15)
+  deferredMonths: 0,                   // Months to defer (e.g., 1 for M+1)
+  // Note: For P1X (pay now), use installmentsCount: 1, deferredDays: 0
+
+  // === DISPLAY ===
+  locale: 'fr',                        // Language code
+  small: false,                        // 80% size (for compact layouts)
+  monochrome: false,                   // Black/gray dots instead of orange
+  hideBorder: false,                   // Remove outer border
+
+  // === FEES & RULES ===
+  merchantCoversAllFees: false,        // Affects fee display
+  customerBillingCountry: 'FR',        // For eligibility calculation
+  customerShippingCountry: 'FR',       // For eligibility calculation
+})
+```
+
+#### Examples
+
+**Basic 3x Schedule:**
+```javascript
+widgets.add(Alma.Widgets.Schedule, {
+  container: '#schedule-3x',
+  purchaseAmount: 60000,  // €600.00
+  installmentsCount: 3,
+  locale: 'fr',
+})
+```
+
+**Compact Monochrome (for sidebars):**
+```javascript
+widgets.add(Alma.Widgets.Schedule, {
+  container: '#schedule-sidebar',
+  purchaseAmount: 45000,
+  installmentsCount: 4,
+  small: true,           // 80% size
+  monochrome: true,      // Black/gray theme
+  hideBorder: true,      // No border
+  locale: 'en',
+})
+```
+
+**Deferred Payment (J+15):**
+```javascript
+widgets.add(Alma.Widgets.Schedule, {
+  container: '#schedule-deferred',
+  purchaseAmount: 50000,
+  installmentsCount: 1,
+  deferredDays: 15,      // Payment 15 days later
+  locale: 'fr',
+})
+```
+
+**Multiple Schedules for Comparison:**
+```html
+<div class="schedules-grid">
+  <div id="schedule-p1x"></div>
+  <div id="schedule-3x"></div>
+  <div id="schedule-10x"></div>
+</div>
+
+<script>
+  const widgets = Alma.Widgets.initialize('merchant_xxx', Alma.ApiMode.TEST)
+  const amount = 75000  // €750.00
+
+  // Pay now
+  widgets.add(Alma.Widgets.Schedule, {
+    container: '#schedule-p1x',
+    purchaseAmount: amount,
+    installmentsCount: 1,
+    locale: 'fr',
+  })
+
+  // 3 installments
+  widgets.add(Alma.Widgets.Schedule, {
+    container: '#schedule-3x',
+    purchaseAmount: amount,
+    installmentsCount: 3,
+    locale: 'fr',
+  })
+
+  // 10 installments (credit)
+  widgets.add(Alma.Widgets.Schedule, {
+    container: '#schedule-10x',
+    purchaseAmount: amount,
+    installmentsCount: 10,
+    locale: 'fr',
+  })
+</script>
+```
+
+#### Visual Variants
+
+| Variant | Use Case |
+|---------|----------|
+| **Default** | Standard schedule display |
+| **`small: true`** | Compact version (80% size) for tight layouts |
+| **`monochrome: true`** | Black/gray theme for neutral designs |
+| **`hideBorder: true`** | Borderless for seamless integration |
+| **All combined** | Ultra-compact, neutral, borderless schedule |
+
+#### Responsive Behavior
+
+- Automatically adjusts to container width
+- Mobile-optimized padding and spacing
+- Font sizes scale with `small` variant
+- Works in any container (cards, sidebars, modals)
+
 ---
 
 ## Usage Patterns & Examples

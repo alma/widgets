@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Schedule Example - Alma Widgets Lit</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #f8f9fa;
+        min-height: 100vh;
+      }
+
+      .nav {
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 12px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fa5022;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-links a {
+        color: #666;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #fa5022;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 20px;
+      }
+
+      .page-title {
+        font-size: 28px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+      }
+
+      .page-subtitle {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 24px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .card h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      .card p {
+        font-size: 13px;
+        color: #666;
+      }
+
+      .schedule-container {
+        min-height: 220px;
+      }
+
+      /* Config Panel */
+      .config-panel {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        margin-bottom: 24px;
+      }
+
+      .config-panel h3 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .config-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .checkbox-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .checkbox-option input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        accent-color: #fa5022;
+      }
+
+      .checkbox-option label {
+        font-size: 13px;
+        font-weight: 500;
+        color: #666;
+        cursor: pointer;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a class="nav-logo" href="basic.html">Alma</a>
+        <div class="nav-links">
+          <a href="basic.html">Basic</a>
+          <a href="modal-only.html">Modal Only</a>
+          <a href="customized.html">Customized</a>
+          <a href="multiple.html">Multiple</a>
+          <a href="schedule.html" class="active">Schedule</a>
+          <a href="playground.html">Playground</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1 class="page-title">Schedule Widget</h1>
+      <p class="page-subtitle">Standalone schedule summaries for checkout or payment selection screens.</p>
+
+      <!-- Config Panel -->
+      <div class="config-panel">
+        <h3>⚙️ Options</h3>
+        <div class="config-options">
+          <div class="checkbox-option">
+            <input type="checkbox" id="small-checkbox" />
+            <label for="small-checkbox">Small (80%)</label>
+          </div>
+
+          <div class="checkbox-option">
+            <input type="checkbox" id="monochrome-checkbox" />
+            <label for="monochrome-checkbox">Monochrome</label>
+          </div>
+
+          <div class="checkbox-option">
+            <input type="checkbox" id="hide-border-checkbox" />
+            <label for="hide-border-checkbox">Hide border</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>P1X (Pay now)</h3>
+          <p>Immediate payment schedule for a single installment.</p>
+          <div id="schedule-p1x" class="schedule-container"></div>
+        </div>
+
+        <div class="card">
+          <h3>J+15 (Deferred)</h3>
+          <p>Single deferred payment 15 days later.</p>
+          <div id="schedule-d15" class="schedule-container"></div>
+        </div>
+
+        <div class="card">
+          <h3>3x Installments</h3>
+          <p>Three monthly installments.</p>
+          <div id="schedule-3x" class="schedule-container"></div>
+        </div>
+
+        <div class="card">
+          <h3>10x Installments</h3>
+          <p>Longer credit plan with full disclosure.</p>
+          <div id="schedule-10x" class="schedule-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/dist/alma-widgets.umd.js"></script>
+    <script>
+      const widgets = Alma.Widgets.initialize(
+        'merchant_11gKoO333vEXacMNMUMUSc4c4g68g2Les4',
+        Alma.ApiMode.TEST,
+      )
+
+      const purchaseAmount = 60000
+
+      function renderSchedules() {
+        const isSmall = document.getElementById('small-checkbox').checked
+        const isMonochrome = document.getElementById('monochrome-checkbox').checked
+        const hideBorder = document.getElementById('hide-border-checkbox').checked
+
+        widgets.add(Alma.Widgets.Schedule, {
+          container: '#schedule-p1x',
+          purchaseAmount,
+          installmentsCount: 1,
+          deferredDays: 0,
+          deferredMonths: 0,
+          locale: 'fr',
+          small: isSmall,
+          monochrome: isMonochrome,
+          hideBorder: hideBorder,
+        })
+
+        widgets.add(Alma.Widgets.Schedule, {
+          container: '#schedule-d15',
+          purchaseAmount,
+          installmentsCount: 1,
+          deferredDays: 15,
+          deferredMonths: 0,
+          locale: 'fr',
+          small: isSmall,
+          monochrome: isMonochrome,
+          hideBorder: hideBorder,
+        })
+
+        widgets.add(Alma.Widgets.Schedule, {
+          container: '#schedule-3x',
+          purchaseAmount,
+          installmentsCount: 3,
+          deferredDays: 0,
+          deferredMonths: 0,
+          locale: 'fr',
+          small: isSmall,
+          monochrome: isMonochrome,
+          hideBorder: hideBorder,
+        })
+
+        widgets.add(Alma.Widgets.Schedule, {
+          container: '#schedule-10x',
+          purchaseAmount,
+          installmentsCount: 10,
+          deferredDays: 0,
+          deferredMonths: 0,
+          locale: 'fr',
+          small: isSmall,
+          monochrome: isMonochrome,
+          hideBorder: hideBorder,
+        })
+      }
+
+      // Listen to checkbox changes
+      document.getElementById('small-checkbox').addEventListener('change', renderSchedules)
+      document.getElementById('monochrome-checkbox').addEventListener('change', renderSchedules)
+      document.getElementById('hide-border-checkbox').addEventListener('change', renderSchedules)
+
+      // Initial render
+      renderSchedules()
+    </script>
+  </body>
+</html>
+
