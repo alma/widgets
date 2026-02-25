@@ -1,376 +1,493 @@
-# 🎨 CSS Customization Guide
+# 🎨 CSS Customization & Styling
 
 ## Overview
 
-The Alma Widgets use **CSS Custom Properties (CSS Variables)** that can be overridden from external stylesheets to fully customize the widget's appearance without modifying the widget code.
+The Alma Widgets use **Shadow DOM** for complete CSS isolation. This means:
 
-Despite using Shadow DOM for style isolation, CSS Custom Properties **inherit through the Shadow boundary**, allowing external customization.
+✅ **Benefits:**
+- Host website CSS doesn't affect widgets
+- Widget CSS doesn't leak to host website
+- Safe integration into any existing site
+
+⚠️ **Limitation:**
+- External CSS cannot directly style internal widget elements
+- CSS Variables cannot be injected from the host page (Shadow DOM boundary blocks inheritance)
+
+**For customization, use JavaScript configuration options instead.**
 
 ---
 
-## 🚀 Quick Start
+## Customization via JavaScript Configuration
 
-### Basic Example
+All styling customization is done through the widget configuration passed to `widgets.add()`.
+
+### Payment Plans Widget Options
+
+```javascript
+widgets.add(Alma.Widgets.PaymentPlans, {
+  // === COLOR SCHEME ===
+  monochrome: false,                   // true = black/gray, false = orange (default)
+  colorScheme: 'orange',               // Supported: 'orange', 'dark-gray', 'gray',
+                                       // 'light-gray', 'black', 'white', 'off-white'
+
+  // === SIZE & LAYOUT ===
+  compactMode: false,                  // true = smaller buttons + compact logo + no info text
+  inlineCompact: false,                // true = width shrinks to fit visible plans only
+  
+  // === STYLE VARIANT ===
+  planStyle: 'buttons',                // 'buttons' (default) or 'tabs'
+  
+  // === BORDERS ===
+  hideBorder: false,                   // true = remove outer border
+  
+  // === VISIBILITY ===
+  hideIfNotEligible: false,            // true = hide widget if no eligible plans
+})
+```
+
+### Modal Widget Options
+
+```javascript
+widgets.add(Alma.Widgets.Modal, {
+  // === LAYOUT VARIANT ===
+  panelMode: false,                    // true = right-side slide panel (480px width)
+  bottomSheet: false,                  // true = bottom sheet drawer (full height)
+  
+  // === STYLE VARIANT ===
+  planStyle: 'buttons',                // 'buttons' (default) or 'tabs'
+})
+```
+
+### Schedule Widget Options
+
+```javascript
+widgets.add(Alma.Widgets.Schedule, {
+  // === SIZE ===
+  small: false,                        // true = 80% scale (for compact layouts)
+  
+  // === COLOR SCHEME ===
+  monochrome: false,                   // true = black/gray dots, false = orange (default)
+  
+  // === DISPLAY ===
+  light: false,                        // true = minimal UI (no dots/line, simplified total)
+  
+  // === BORDERS ===
+  hideBorder: false,                   // true = remove outer border
+})
+```
+
+---
+
+## Color Scheme Options
+
+The `colorScheme` property on PaymentPlans offers different background colors:
+
+| Value | Description | Use Case |
+|-------|-------------|----------|
+| `'orange'` | Orange background (default Alma branding) | Standard Alma integration |
+| `'dark-gray'` | Dark gray (#6c6c6c) | Professional, subtle styling |
+| `'gray'` | Medium gray (#cacaca) | Neutral, balanced appearance |
+| `'light-gray'` | Light gray (#f0f0f0) | Subtle, minimal impact |
+| `'black'` | Pure black background | High contrast, premium feel |
+| `'white'` | White background | Transparent effect (depends on page) |
+| `'off-white'` | Off-white (#f9f9f9) | Soft white alternative |
+
+### Example: Different Color Schemes
+
+```javascript
+// Orange (default Alma branding)
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#plans',
+  purchaseAmount: 45000,
+  colorScheme: 'orange',
+})
+
+// Dark professional
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#plans-dark',
+  purchaseAmount: 45000,
+  colorScheme: 'dark-gray',
+})
+
+// Minimal white
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#plans-minimal',
+  purchaseAmount: 45000,
+  colorScheme: 'white',
+})
+```
+
+---
+
+## Layout Variants
+
+### Compact Mode
+
+`compactMode: true` shrinks the entire widget:
+- Smaller buttons (80% size)
+- Compact Alma logo (16x16px)
+- Info text hidden
+- Perfect for sidebars or tight spaces
+
+```javascript
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#sidebar',
+  purchaseAmount: 45000,
+  compactMode: true,
+})
+```
+
+### Inline Compact
+
+`inlineCompact: true` makes the widget width fit only the visible plan buttons:
+- Useful when you have only 2-3 plans
+- Widget shrinks to minimal width
+- Still maintains normal button size
+
+```javascript
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#inline-plans',
+  purchaseAmount: 45000,
+  inlineCompact: true,
+})
+```
+
+### Tab-Style Plans
+
+`planStyle: 'tabs'` renders plans as tabs instead of buttons:
+- Cleaner look for multiple plans
+- Plan name appears as tab header
+- Active plan underlined
+
+```javascript
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#plans-tabs',
+  purchaseAmount: 45000,
+  planStyle: 'tabs',
+})
+```
+
+### Modal Variants
+
+**Panel Mode** - Right-side slide panel (480px width):
+```javascript
+widgets.add(Alma.Widgets.Modal, {
+  container: '#modal',
+  purchaseAmount: 45000,
+  panelMode: true,
+})
+```
+
+**Bottom Sheet** - Full-height drawer from bottom:
+```javascript
+widgets.add(Alma.Widgets.Modal, {
+  container: '#modal',
+  purchaseAmount: 45000,
+  bottomSheet: true,
+})
+```
+
+---
+
+## Schedule Widget Variants
+
+### Small/Compact Schedule
+
+```javascript
+widgets.add(Alma.Widgets.Schedule, {
+  container: '#schedule',
+  purchaseAmount: 45000,
+  installmentsCount: 3,
+  small: true,  // 80% size
+})
+```
+
+### Monochrome Schedule
+
+```javascript
+widgets.add(Alma.Widgets.Schedule, {
+  container: '#schedule',
+  purchaseAmount: 45000,
+  installmentsCount: 3,
+  monochrome: true,  // Black/gray dots instead of orange
+})
+```
+
+### Light/Minimal Schedule
+
+```javascript
+widgets.add(Alma.Widgets.Schedule, {
+  container: '#schedule',
+  purchaseAmount: 45000,
+  installmentsCount: 3,
+  light: true,  // No dots/line, simplified total display
+})
+```
+
+---
+
+## Common Customization Patterns
+
+### Dark E-commerce Site with Orange Widgets
+
+```javascript
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#plans',
+  purchaseAmount: 45000,
+  monochrome: false,  // Keep orange (default)
+})
+
+// Optional: Host page provides dark background to make orange pop
+// In your host CSS:
+// #plans { background: #1a1a1a; }
+```
+
+### Luxury Brand Integration
+
+```javascript
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#plans',
+  purchaseAmount: 45000,
+  colorScheme: 'black',
+  planStyle: 'tabs',  // Modern tabs appearance
+})
+```
+
+### Minimal Checkout
+
+```javascript
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#plans',
+  purchaseAmount: 45000,
+  colorScheme: 'white',
+  hideBorder: true,
+  compactMode: true,
+})
+```
+
+### Sidebar Integration
+
+```javascript
+widgets.add(Alma.Widgets.PaymentPlans, {
+  container: '#sidebar-plans',
+  purchaseAmount: 45000,
+  compactMode: true,
+  colorScheme: 'light-gray',
+})
+```
+
+---
+
+## Shadow DOM & CSS Isolation
+
+### Why Shadow DOM?
+
+The widgets use Shadow DOM for **complete isolation**:
+
+```
+Host Page CSS  ───→  [Shadow DOM Boundary]  ←─  Widget CSS
+(no influence)                                   (protected)
+```
+
+This ensures:
+- ✅ Your site's CSS never breaks the widget
+- ✅ The widget's CSS never affects your site
+- ✅ Safe to add widgets to any existing website
+
+### Accessing Widget Elements
+
+Since widgets use Shadow DOM, you **cannot** access internal elements from the host page:
+
+```javascript
+// ❌ This won't work (Shadow DOM blocks access)
+document.querySelector('alma-payment-plans .plan-button')  // null
+
+// ✅ Instead, use the configuration options
+widgets.add(Alma.Widgets.PaymentPlans, {
+  planStyle: 'tabs',  // Change appearance via config
+})
+```
+
+### Animation & Visibility Control
+
+You can control widget visibility from the host page:
 
 ```html
 <style>
-  /* Target the widget with a CSS selector */
+  alma-payment-plans.hidden {
+    display: none;
+  }
+</style>
+
+<alma-payment-plans id="plans"></alma-payment-plans>
+
+<script>
+  // Toggle visibility
+  document.getElementById('plans').classList.add('hidden')
+  document.getElementById('plans').classList.remove('hidden')
+</script>
+```
+
+---
+
+## Host Page CSS Influence (Limited)
+
+Because of Shadow DOM isolation, **most internal styles cannot be overridden** from the host page. However, you can control the **outer element**:
+
+| What | Can Override | How |
+|------|--------------|-----|
+| Widget container size | ✅ Yes | Set `width`, `height`, `max-width` on the element |
+| Widget visibility | ✅ Yes | Use `display: none` or `visibility: hidden` |
+| Widget positioning | ✅ Yes | Set `position`, `top`, `left`, etc. on the element |
+| Margins around widget | ✅ Yes | Set `margin` on the element |
+| Z-index stacking | ✅ Yes | Set `z-index` for layering with other content |
+| **Internal element styles** | ❌ No | Shadow DOM prevents CSS from crossing the boundary |
+| **Font family/color inside** | ❌ No | Widget uses its own fonts + Shadow DOM protects styles |
+
+### Example: Responsive Widget Sizing
+
+```html
+<style>
   alma-payment-plans {
-    --alma-primary-color: #10b981;
-    --alma-border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px 0;
+  }
+  
+  @media (max-width: 768px) {
+    alma-payment-plans {
+      width: 100%;
+      max-width: 100%;
+    }
   }
 </style>
-
-<alma-payment-plans
-  purchase-amount="45000"
-  locale="fr"
-></alma-payment-plans>
 ```
 
-### Class-Based Customization
+### What You CANNOT Do (Shadow DOM Boundary)
 
-```html
-<style>
-  .my-custom-widget {
-    --alma-primary-color: #ec4899;
-    --alma-button-padding: 16px 28px;
-  }
-</style>
+```css
+/* ❌ These will NOT work due to Shadow DOM isolation */
 
-<alma-payment-plans
-  class="my-custom-widget"
-  purchase-amount="45000"
-></alma-payment-plans>
+alma-payment-plans .plan-button {
+  background: red !important;  /* Won't apply */
+}
+
+alma-payment-plans::part(plan-button) {
+  /* Won't work unless widget explicitly exports ::part() */
+}
+
+alma-payment-plans {
+  --custom-button-color: red;  /* CSS variables don't cross Shadow DOM */
+}
 ```
+
+The Shadow DOM boundary is **intentional** — it protects the widget from accidental style conflicts with your site's CSS.
 
 ---
 
-## 📋 Available CSS Variables
+## Testing & Previewing Customizations
 
-### 🎨 Colors
+### Playground
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--alma-primary-color` | `#fa5022` | Primary brand color (buttons, logo, active states) |
-| `--alma-secondary-color` | `#130a07` | Secondary text and UI elements |
-| `--alma-background` | `#fefefe` | Main background color |
-| `--alma-background-secondary` | `#f7f7f7` | Secondary background (cards, sections) |
+Use the [interactive Playground](../examples/playground.html) to:
+1. Adjust all configuration options in real-time
+2. See how the widget looks with different settings
+3. Copy generated integration code
 
-**Example - Brand Colors:**
-```css
-alma-payment-plans {
-  --alma-primary-color: #your-brand-color;
-  --alma-secondary-color: #your-text-color;
-}
+```bash
+npm run serve
+# Open http://localhost:3000/examples/playground.html
 ```
-
----
-
-### 🔲 Borders & Shapes
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--alma-border-radius` | `12px` | Global border radius |
-| `--alma-border-color` | `#ececec` | Border color for all elements |
-| `--alma-border-width` | `1px` | Border thickness |
-| `--alma-button-border-radius` | inherits from `--alma-border-radius` | Specific button border radius |
-
-**Example - Rounded Design:**
-```css
-alma-payment-plans {
-  --alma-border-radius: 24px;
-  --alma-button-border-radius: 50px; /* Pill-shaped buttons */
-}
-```
-
-**Example - Square/Minimal:**
-```css
-alma-payment-plans {
-  --alma-border-radius: 0;
-  --alma-border-width: 2px;
-  --alma-border-color: #000;
-}
-```
-
----
-
-### 📝 Typography
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--alma-font-family` | `'Inter', sans-serif` | Widget font family |
-| `--alma-font-size-base` | `14px` | Base font size |
-| `--alma-font-weight-normal` | `400` | Normal text weight |
-| `--alma-font-weight-bold` | `600` | Bold text weight |
-| `--alma-button-font-size` | `14px` | Button text size |
-
-**Example - Custom Font:**
-```css
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-alma-payment-plans {
-  --alma-font-family: 'Poppins', sans-serif;
-  --alma-font-size-base: 16px;
-}
-```
-
----
-
-### 📏 Spacing & Layout
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--alma-spacing-base` | `16px` | Base spacing unit |
-| `--alma-button-padding` | `14px 20px` | Button internal padding |
-
-**Example - Compact Layout:**
-```css
-alma-payment-plans {
-  --alma-spacing-base: 8px;
-  --alma-button-padding: 8px 16px;
-  --alma-button-font-size: 12px;
-}
-```
-
----
-
-## 🎯 Common Use Cases
-
-### 1. Match Brand Colors
-
-```css
-alma-payment-plans {
-  --alma-primary-color: #your-brand-primary;
-  --alma-secondary-color: #your-brand-secondary;
-}
-```
-
-### 2. Dark Mode
-
-```css
-alma-payment-plans {
-  --alma-primary-color: #fbbf24; /* Yellow accent */
-  --alma-secondary-color: #f9fafb; /* Light text */
-  --alma-background: #1f2937; /* Dark bg */
-  --alma-background-secondary: #111827;
-  --alma-border-color: #374151;
-}
-```
-
-### 3. Minimal Black & White
-
-```css
-alma-payment-plans {
-  --alma-primary-color: #000;
-  --alma-border-radius: 0;
-  --alma-border-width: 2px;
-  --alma-border-color: #000;
-}
-```
-
-### 4. Playful & Rounded
-
-```css
-alma-payment-plans {
-  --alma-primary-color: #ec4899; /* Pink */
-  --alma-border-radius: 24px;
-  --alma-button-border-radius: 50px;
-  --alma-button-padding: 16px 28px;
-}
-```
-
-### 5. Ultra-Compact
-
-```css
-alma-payment-plans {
-  --alma-spacing-base: 6px;
-  --alma-button-padding: 6px 12px;
-  --alma-button-font-size: 11px;
-  --alma-border-radius: 4px;
-}
-```
-
----
-
-## 🧪 Testing Your Customizations
-
-### Live Preview
-
-Visit the [CSS Customization Example page](./css-customization.html) to see 6 live examples with code snippets.
 
 ### Browser DevTools
 
-1. Open DevTools (F12)
+1. Open DevTools (F12) on any page with a widget
 2. Inspect the `<alma-payment-plans>` element
-3. Add CSS variables in the "Styles" panel
-4. Changes apply instantly
-
-**Example in DevTools Console:**
-```javascript
-const widget = document.querySelector('alma-payment-plans')
-widget.style.setProperty('--alma-primary-color', '#10b981')
-```
-
----
-
-## ⚠️ Limitations & Notes
-
-### What Can Be Customized
-
-✅ **Colors** - All color variables  
-✅ **Spacing** - Padding, margins, gaps  
-✅ **Typography** - Fonts, sizes, weights  
-✅ **Borders** - Radius, width, color  
-✅ **Layout** - Sizing via spacing variables  
-
-### What Cannot Be Customized via CSS Variables
-
-❌ **Layout Structure** - DOM structure is fixed  
-❌ **Internal Logic** - JavaScript behavior  
-❌ **Animation Timing** - Use `transition-delay` attribute instead  
-❌ **Shadow DOM Styles** - Cannot use external classes/IDs to style internal elements  
-
-For these, use the JavaScript configuration options:
-- `compactMode` - Reduced size variant
-- `planStyle` - 'buttons' or 'tabs' layout
-- `hideBorder` - Remove outer border
-- `monochrome` - Black & white mode
-
----
-
-## 🔧 Advanced Techniques
-
-### Per-Instance Customization
-
-```html
-<alma-payment-plans
-  class="product-page-widget"
-  purchase-amount="45000"
-></alma-payment-plans>
-
-<alma-payment-plans
-  class="checkout-widget"
-  purchase-amount="45000"
-></alma-payment-plans>
-
-<style>
-  .product-page-widget {
-    --alma-primary-color: #10b981;
-  }
-  
-  .checkout-widget {
-    --alma-primary-color: #3b82f6;
-  }
-</style>
-```
-
-### Responsive Customization
-
-```css
-alma-payment-plans {
-  --alma-button-padding: 14px 20px;
-}
-
-@media (max-width: 768px) {
-  alma-payment-plans {
-    --alma-button-padding: 10px 16px;
-    --alma-button-font-size: 12px;
-    --alma-spacing-base: 12px;
-  }
-}
-```
-
-### CSS Variables in JavaScript
+3. Note: You cannot directly modify Shadow DOM styles, but you can see the element's HTML attributes
+4. To test changes, update JavaScript properties:
 
 ```javascript
+// In DevTools Console:
 const widget = document.querySelector('alma-payment-plans')
-
-// Get current value
-const currentColor = getComputedStyle(widget)
-  .getPropertyValue('--alma-primary-color')
-
-// Set dynamically
-widget.style.setProperty('--alma-primary-color', '#10b981')
-
-// Remove override (back to default)
-widget.style.removeProperty('--alma-primary-color')
-```
-
-### Theming System
-
-```css
-/* Define themes */
-:root {
-  --theme-primary: #fa5022;
-  --theme-secondary: #130a07;
-}
-
-[data-theme="dark"] {
-  --theme-primary: #fbbf24;
-  --theme-secondary: #f9fafb;
-}
-
-[data-theme="green"] {
-  --theme-primary: #10b981;
-  --theme-secondary: #065f46;
-}
-
-/* Apply to widgets */
-alma-payment-plans {
-  --alma-primary-color: var(--theme-primary);
-  --alma-secondary-color: var(--theme-secondary);
-}
+widget.colorScheme = 'black'
+widget.compactMode = true
+widget.planStyle = 'tabs'
 ```
 
 ---
 
-## 📚 Reference
+## Font Customization
 
-### Complete Variable List
+Fonts are **loaded from Alma CDN and cannot be overridden**:
+- **Argent** (headings): Alma brand font
+- **Inter** (body): Standard UI font
 
-See the full list of available variables in:
-- [`src/components/styles/design-tokens.styles.ts`](../src/components/styles/design-tokens.styles.ts)
+This ensures consistent brand presentation across all integrations.
 
-### Examples
+### Font Loading
 
-- [CSS Customization Demo](./css-customization.html) - 6 live examples
-- [Playground](./playground.html) - Interactive widget tester
-
-### Related Documentation
-
-- [README.md](../README.md) - Main documentation
-- [FEATURE_PARITY.md](../docs/FEATURE_PARITY.md) - Feature comparison
-- [IMPLEMENTATION.md](../docs/IMPLEMENTATION.md) - Technical details
+Fonts are injected into the document head during widget initialization. They're shared across all widget instances on the page.
 
 ---
 
-## 💡 Tips & Best Practices
+## Performance Implications
 
-1. **Start with color overrides** - Most impactful customization
-2. **Test in your brand context** - Ensure accessibility (contrast ratios)
-3. **Use browser DevTools** - Experiment before committing to code
-4. **Keep defaults** - Only override what you need
-5. **Document your overrides** - Comment your custom CSS for maintainability
-6. **Test responsiveness** - Ensure customizations work on mobile
-7. **Check accessibility** - Maintain WCAG AA contrast ratios
-
-### WCAG Contrast Requirements
-
-For text on colored backgrounds:
-- **Normal text:** 4.5:1 minimum
-- **Large text:** 3:1 minimum
-- **UI components:** 3:1 minimum
-
-Use tools like [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) to validate.
+All configuration options are **performance-conscious**:
+- No extra API calls
+- No additional bundle size
+- Changes apply instantly (mostly visual updates)
+- Layout changes (like `compactMode`) are purely CSS
 
 ---
 
-## 🤝 Support
+## Support & Limitations
 
-If you need customization options not covered by CSS variables, please:
-1. Check the JavaScript configuration options first
-2. Open an issue on GitHub with your use case
-3. Consider if a new JavaScript option would benefit other users
+### What's Supported ✅
 
-**We're continuously expanding customization options based on merchant feedback!**
+- All JavaScript configuration options documented above
+- Dynamic property updates (no re-mount required)
+- Multiple widget instances with different customizations
+- Responsive behavior based on viewport
+
+### What's Not Supported ❌
+
+- **Injecting external CSS into Shadow DOM** ← This is by design; Shadow DOM prevents it for security/isolation
+- **Modifying internal widget elements from host page** ← JS can't pierce the Shadow DOM boundary
+- **CSS custom properties (--variables) across Shadow DOM boundary** ← Variables don't inherit through Shadow DOM
+- **Overriding internal fonts** ← Argent and Inter are loaded in the widget, not inherited
+- **Completely custom themes** ← Limited to provided options (colorScheme, planStyle, etc.)
+- **Using `::part()` pseudo-elements** ← Not exposed by these widgets
+
+### Need More Customization?
+
+If you need customization options not covered here:
+1. Check if an existing JavaScript option meets your needs
+2. Review the [examples/playground.html](../examples/playground.html) for all available options
+3. Consider if your use case would benefit from a new configuration option
+4. Open an issue on GitHub to request new customization options
+
+---
+
+## Migration from Preact Widget
+
+The Preact widget also used Shadow DOM, so CSS customization works the same way:
+
+**✅ Same:**
+- Configuration options (monochrome, compactMode, etc.)
+- No external CSS injection
+- Widget isolation
+
+**Improved in Lit:**
+- More granular styling options (colorScheme variants)
+- Better responsive layouts (planStyle, panelMode)
+- Additional variants (bottomSheet, light mode)
+
+---
+
+## Examples
+
+Complete customization examples are available:
+- [examples/basic.html](../examples/basic.html) - Default styling
+- [examples/customized.html](../examples/customized.html) - Multiple customization examples
+- [examples/playground.html](../examples/playground.html) - Interactive customization tool
 

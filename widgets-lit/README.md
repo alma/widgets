@@ -139,9 +139,10 @@ widgets.add(Alma.Widgets.PaymentPlans, {
   // === DISPLAY ===
   locale: 'fr',                        // Language code
   monochrome: false,                   // Orange (false) or black/white (true)
-  colorScheme: 'gray',                 // Optional theme color for the widget
+  colorScheme: 'orange',               // Color theme: 'orange', 'dark-gray', 'gray', 
+                                       // 'light-gray', 'black', 'white' (or 'off-white')
   compactMode: false,                  // Smaller buttons + compact logo, hides info text
-  inlineCompact: false,                // Shrinks width to fit visible plans
+  inlineCompact: false,                // Shrinks width to fit visible plans only
   planStyle: 'buttons',                // 'buttons' (default) or 'tabs'
   hideBorder: false,                   // Hide container border
   hideIfNotEligible: false,            // Hide entire widget if no plans
@@ -171,10 +172,6 @@ widgets.add(Alma.Widgets.PaymentPlans, {
   // === MODAL WIRING ===
   modalSelector: '#my-modal alma-modal',  // Manual: connect to this modal
   // If not specified, modal is auto-created
-
-  // === MODAL DISPLAY (AUTO/MANUAL) ===
-  panelMode: false,                    // Right-side slide panel
-  bottomSheet: false,                  // Bottom sheet on desktop
 })
 ```
 
@@ -209,9 +206,9 @@ widgets.add(Alma.Widgets.Modal, {
   cards: ['visa', 'mastercard'],       // Card logos to display
   planStyle: 'buttons',                // 'buttons' (default) or 'tabs'
 
-  // === POSITIONING ===
-  panelMode: false,                    // Right-side slide panel
-  bottomSheet: false,                  // Bottom sheet on desktop
+  // === LAYOUT VARIANTS ===
+  panelMode: false,                    // Right-side slide panel (width: 480px)
+  bottomSheet: false,                  // Bottom sheet on desktop (full height)
 
   // === FEES & RULES ===
   merchantCoversAllFees: false,        // Affects fee display
@@ -1226,7 +1223,7 @@ MIT – See [LICENSE](LICENSE) file
 
 ---
 
-**Last updated:** February 2025  
+**Last updated:** February 25, 2026  
 **Alma Widgets Version:** 1.0+  
 **Lit Version:** 3.0+
 

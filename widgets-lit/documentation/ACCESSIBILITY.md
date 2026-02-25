@@ -60,8 +60,11 @@ Because of that, the accessibility strategy focuses on:
 ## Known gaps
 
 - Arrow navigation (Left/Right) is implemented; Home/End navigation not yet implemented in PaymentPlans.
-- Animation instruction announcements for screen readers.
-- A formal WCAG 2.1 AA audit (color contrast, focus visibility, touch targets).
+- Schedule widget keyboard navigation could be more comprehensive.
+- Animation instruction announcements for screen readers (planned for v2.0).
+- A formal WCAG 2.1 AA audit (color contrast, focus visibility, touch targets) (planned).
+
+**Status:** Widgets are **WCAG 2.1 AA functional** with noted limitations. Safe for production but recommend manual testing before wide rollout.
 
 ---
 

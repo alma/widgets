@@ -59,21 +59,50 @@ Features not yet implemented or only partially implemented.
 
 ## Nice-to-have Improvements
 
-1. **Analytics hooks**
-   - Track: widget renders, plan selections, modal opens
+1. **PaymentPlans arrow key navigation (Home/End)**
+   - Would improve keyboard-only navigation experience
    - Priority: Low
+   - Effort: 2-3 hours
 
-2. **Error reporting**
-   - Integrate Sentry or similar for production monitoring
+2. **Animation instruction announcements**
+   - Screen reader users should hear animation state changes
    - Priority: Low
+   - Effort: 1-2 hours
+
+3. **Analytics & Event Hooks**
+   - Emit custom events for: plan selection, modal open/close, API calls
+   - Allows merchants to track widget interactions
+   - Priority: Low
+   - Effort: 4-6 hours
+
+4. **Error reporting integration**
+   - Optional Sentry or similar integration for production monitoring
+   - Priority: Very Low
+   - Effort: 2-3 hours
 
 ---
 
 ## Summary
 
-The Lit widget is feature-complete for the POC. Remaining gaps are non-blocking and limited to accessibility refinements and translation workflow automation.
+The Lit widget is **feature-complete for the POC stage**. All critical features are implemented:
 
-Priority order:
-1. WCAG 2.1 AA audit + keyboard navigation in PaymentPlans
-2. Animation instruction announcements
-3. Crowdin integration
+✅ **Implemented:**
+- PaymentPlans widget with all display/interaction options
+- Modal widget with responsive layouts (desktop modal, mobile drawer, panels)
+- Schedule widget (new in Lit, not in Preact)
+- Full API compatibility with Preact widget
+- Session cache + in-flight deduplication
+- 7+ language locales
+- 7 color scheme variants
+- CSS isolation via Shadow DOM
+
+⚠️ **Partial (but functional):**
+- WCAG 2.1 AA (partial keyboard navigation, good focus management)
+- Screen reader support (good ARIA labels, some announcements missing)
+
+❌ **Not yet implemented:**
+- Crowdin integration (planned for future when scaling i18n)
+- Home/End keyboard navigation in PaymentPlans
+- Animation instruction screen reader announcements
+
+**Recommendation:** Deploy as POC/beta. These gaps don't block merchant integration. Plan Crowdin + a11y refinements for v2.0 release.

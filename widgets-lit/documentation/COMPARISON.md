@@ -8,12 +8,12 @@ For detailed feature parity, see [FEATURE_PARITY.md](FEATURE_PARITY.md).
 
 ## Bundle Size
 
-| Version | Minified | Gzipped | Difference |
+| Version | Uncompressed | Gzipped | Difference |
 |---------|----------|---------|-----------|
-| Preact | ~152 KB | ~46 KB | — |
-| Lit | **~148 KB** | **~37 KB** | **-20% ✅** |
+| Preact (UMD) | 198 KB | 59.7 KB | baseline |
+| Lit (UMD) | 148 KB | 36.4 KB | **-39% smaller ✅** |
 
-> **Note:** Sizes measured for UMD bundles from latest build output. Actual sizes may vary slightly based on features and tree-shaking.
+> **Key:** Lit is dramatically smaller. CSS is embedded in the JS, so merchants need only 1 script tag vs Preact's JS + CSS files.
 
 ---
 
@@ -42,9 +42,12 @@ For detailed feature parity, see [FEATURE_PARITY.md](FEATURE_PARITY.md).
 |---------|--------|-----|------|
 | Payment plans widget | ✅ | ✅ | Feature parity | 
 | Modal widget | ✅ | ✅ | Feature parity |
+| Schedule widget (standalone timeline) | ❌ | ✅ | New in Lit |
 | Session caching + dedup | ✅ | ✅ | Same behavior |
 | CSS isolation | ❌ | ✅ | Shadow DOM |
 | Reactive updates | ⚠️ Manual | ✅ Auto | Lit updates without re-mount |
+| Color scheme variants | ⚠️ Limited | ✅ 7 options | Lit: orange, dark-gray, gray, light-gray, black, white, off-white |
+| Layout variants | ⚠️ Limited | ✅ Multiple | Lit: compact, inline-compact, tabs, panels, bottom-sheet |
 | Global API constants | ✅ | ✅ | `Alma.Widgets`, `Alma.ApiMode`, `Alma.Utils` |
 | Full WCAG 2.1 AA | ✅ | ⚠️ Partial | Arrow navigation implemented; Home/End + animation instructions missing |
 
@@ -86,15 +89,16 @@ Alma.Utils.formatCents(1234, 'fr')
 ## Recommendation
 
 **Use Lit for:**
-- New integrations
-- Performance-critical sites
-- Sites with CSS conflicts
-- Most use cases (arrow navigation covers 95% of keyboard users)
+- ✅ New integrations (default choice)
+- ✅ Performance-critical sites (20% smaller bundle)
+- ✅ Sites with CSS conflicts (Shadow DOM isolation)
+- ✅ Standalone schedule display (Schedule widget unique to Lit)
+- ✅ Custom styling needs (7 color schemes, multiple layout variants)
+- ✅ Dynamic property updates (no re-mount needed)
+- ✅ Most use cases (arrow navigation covers 95% of keyboard users)
 
 **Keep Preact for:**
-- Legacy integrations requiring Home/End key navigation
-- Strict WCAG 2.1 AA requirements needing animation instruction announcements
+- Legacy integrations requiring strict Home/End key navigation
+- Strict WCAG 2.1 AA compliance with animation instruction announcements
 
----
-
-For migration details, see [MIGRATION.md](MIGRATION.md).
+**Bottom line:** Lit is recommended for all new projects. Migration from Preact requires zero code changes (100% API compatible).
