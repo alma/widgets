@@ -61,12 +61,13 @@
 @font-face {
   font-family: Argent;
   src:
-    url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.eot') format('embedded-opentype'),
-    url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.woff') format('woff'),
-    url('https://cdn.almapay.com/fonts/Argent/ArgentCF-DemiBold.ttf') format('truetype');
+    url("https://use.typekit.net/af/ba7126/00000000000000007735f8a4/31/l?subset_id=2&fvd=n6&v=3") format("woff2"),
+    url("https://use.typekit.net/af/ba7126/00000000000000007735f8a4/31/d?subset_id=2&fvd=n6&v=3") format("woff"),
+    url("https://use.typekit.net/af/ba7126/00000000000000007735f8a4/31/a?subset_id=2&fvd=n6&v=3") format("opentype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
+  font-stretch: normal;
 }
 
 /**
