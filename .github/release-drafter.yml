@@ -14,7 +14,8 @@ categories:
     labels:
       - 'type: bugfix'
   - title: '📝 Documentation'
-    labels: 'type: docs'
+    labels:
+      - 'type: docs'
   - title: '🔐 Security'
     labels:
       - 'type: security'
