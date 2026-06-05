@@ -40,6 +40,12 @@
             <p>Polychrome widget</p>
 
             <div id="alma-widget-payment-plans2"></div>
+            <h3>450 €</h3>
+            <p>Widget with ineligible plans hidden automatically (non-price-range reasons)</p>
+            <div id="alma-widget-payment-plans3"></div>
+            <h3>450 €</h3>
+            <p>Widget with p4x grayed out (purchase amount out of range)</p>
+            <div id="alma-widget-payment-plans4"></div>
             <div id="alma-widget-modal"></div>
             <div class="add-to-cart">
               <button>Ajouter au panier</button>
@@ -106,6 +112,27 @@
           monochrome: false,
           cards: ['visa'],
           suggestedPaymentPlan: [2],
+        })
+        renderPaymentPlans(450 * 100, '#alma-widget-payment-plans3', {})
+        renderPaymentPlans(450 * 100, '#alma-widget-payment-plans4', {
+          plans: [
+            {
+              installmentsCount: 2,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
+              installmentsCount: 3,
+              minAmount: 5000,
+              maxAmount: 90000,
+            },
+            {
+              installmentsCount: 4,
+              minAmount: 5000,
+              maxAmount: 20000, // 450€ is above this → p4x grayed out with "Jusqu'à 200€"
+            },
+          ],
+          suggestedPaymentPlan: [3],
         })
       }
       generateRenderer()
