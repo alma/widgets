@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react'
 
-import { ApiConfig, ConfigPlan, EligibilityPlan, statusResponse } from '@/types'
+import {
+  ApiConfig,
+  ConfigPlan,
+  EligibilityPlan,
+  EligibilityPlanToDisplay,
+  statusResponse,
+} from '@/types'
 import { useSessionStorage } from 'hooks/useSessionStorage'
 import { fetchFromApi } from 'utils/fetch'
 import filterEligibility from 'utils/filterEligibility'
@@ -13,7 +19,7 @@ const useFetchEligibility = (
   customerBillingCountry?: string,
   customerShippingCountry?: string,
   merchantCoversAllFees?: boolean,
-): [EligibilityPlan[], statusResponse] => {
+): [EligibilityPlanToDisplay[], statusResponse] => {
   const [eligibility, setEligibility] = useState([] as EligibilityPlan[])
   const [status, setStatus] = useState(statusResponse.PENDING)
 

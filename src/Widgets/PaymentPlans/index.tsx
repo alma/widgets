@@ -80,9 +80,16 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     [eligibilityPlans],
   )
 
+  // Plans to render: automatically hide plans marked as hidden in filterEligibility
+  // (i.e. ineligible for a reason other than purchase_amount range)
+  const plansToDisplay = useMemo(
+    () => eligibilityPlans.filter((plan) => !plan.hidden),
+    [eligibilityPlans],
+  )
+
   // Determine which plan should be active initially based on merchant preferences
   const activePlanIndex = getIndexOfActivePlan({
-    eligibilityPlans,
+    eligibilityPlans: plansToDisplay,
     suggestedPaymentPlan: suggestedPaymentPlan ?? 0,
   })
 
@@ -104,11 +111,11 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   // Memoized array of eligible plan indices for keyboard navigation
   const eligiblePlanKeys = useMemo(
     () =>
-      eligibilityPlans.reduce<number[]>(
+      plansToDisplay.reduce<number[]>(
         (acc, plan, index) => (plan.eligible ? [...acc, index] : acc),
         [],
       ),
-    [eligibilityPlans],
+    [plansToDisplay],
   )
 
   /**
@@ -131,15 +138,15 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
   // Refs for managing focus on plan buttons during keyboard navigation
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
 
-  // Initialize button refs array when eligibility plans change
+  // Initialize button refs array when plans to display change
   useEffect(() => {
-    buttonRefs.current = buttonRefs.current.slice(0, eligibilityPlans.length)
-  }, [eligibilityPlans.length])
+    buttonRefs.current = buttonRefs.current.slice(0, plansToDisplay.length)
+  }, [plansToDisplay.length])
 
   // Announce plan changes to screen readers for accessibility
   useEffect(() => {
-    if (eligibilityPlans[current] && status === statusResponse.SUCCESS) {
-      const currentPlan = eligibilityPlans[current]
+    if (plansToDisplay[current] && status === statusResponse.SUCCESS) {
+      const currentPlan = plansToDisplay[current]
 
       const planDescription = getPlanDescription(currentPlan, intl)
       const announcementText = intl.formatMessage(
@@ -259,10 +266,10 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     )
   }
 
-  // Hide widget if no eligible plans and merchant wants to hide it, or if API failed
+  // Hide widget if no plans to display (all hidden or none), no eligible plans when required, or API failed
   if (
     (hideIfNotEligible && eligiblePlans.length === 0) ||
-    eligibilityPlans.length === 0 ||
+    plansToDisplay.length === 0 ||
     status === statusResponse.FAILED
   ) {
     return null
@@ -348,7 +355,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
               defaultMessage: 'Options de paiement disponibles',
             })}
           >
-            {eligibilityPlans.map((eligibilityPlan, key) => {
+            {plansToDisplay.map((eligibilityPlan, key) => {
               const isCurrent = key === current
               const isEligible = eligibilityPlan.eligible
 
@@ -442,13 +449,13 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
               s.info,
               {
                 [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
-                  eligibilityPlans[current] && !eligibilityPlans[current].eligible,
+                  plansToDisplay[current] && !plansToDisplay[current].eligible,
               },
               STATIC_CUSTOMISATION_CLASSES.paymentInfo,
             )}
             id="payment-info-text"
           >
-            {eligibilityPlans.length !== 0 && paymentPlanInfoText(eligibilityPlans[current])}
+            {plansToDisplay.length !== 0 && paymentPlanInfoText(plansToDisplay[current])}
           </div>
         </div>
       </div>

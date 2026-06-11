@@ -50,10 +50,18 @@ const filterEligibility = (
       )
     })
 
+    // Hide when there is no matching merchant config plan (installment count not available),
+    // or when the plan is ineligible and has no purchase_amount constraints from the API.
+    // The presence of constraints.purchase_amount means the plan is ineligible only due to
+    // price range — the widget can still show a meaningful "À partir de X€" condition.
+    // Without those constraints, there is nothing useful to display grayed out.
+    const hidden = !relatedConfigPlan || (!plan.eligible && !plan.constraints?.purchase_amount)
+
     return {
       ...plan,
       eligible: isPlanEligible(plan, relatedConfigPlan),
       ...getPaymentPlanBoundaries(plan, relatedConfigPlan),
+      hidden,
     }
   })
 }

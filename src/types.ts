@@ -54,6 +54,7 @@ export type ErrorResponse = {
 export type EligibilityPlanToDisplay = EligibilityPlan & {
   minAmount?: number
   maxAmount?: number
+  hidden?: boolean
 }
 
 export enum Locale {

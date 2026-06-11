@@ -522,6 +522,38 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
   },
 ]
 
+// Same as mockEligibilityPaymentPlanWithIneligiblePlan but the 4x plan is ineligible due to
+// a country restriction (not available in Belgium) — the API returns no purchase_amount constraints,
+// so there is nothing useful to display grayed out → the plan should be hidden entirely.
+export const mockEligibilityWithHiddenPlan = [
+  ...mockEligibilityPaymentPlanWithIneligiblePlan.slice(0, 2),
+  {
+    deferred_days: 0,
+    deferred_months: 0,
+    eligible: false,
+    installments_count: 4,
+    purchase_amount: 45000,
+    reasons: { installments_count: 'not_allowed' },
+    // No constraints.purchase_amount → plan is hidden, not grayed out
+  },
+]
+
+// 4x plan is ineligible due to purchase_amount range — the API returns constraints.purchase_amount,
+// so the widget can display a meaningful "À partir de X€" condition → the plan should be grayed out.
+export const mockEligibilityWithGrayedOutPlan = [
+  ...mockEligibilityPaymentPlanWithIneligiblePlan.slice(0, 2),
+  {
+    constraints: { purchase_amount: { maximum: 15000, minimum: 5000 } },
+    deferred_days: 0,
+    deferred_months: 0,
+    eligible: false,
+    installments_count: 4,
+    purchase_amount: 45000,
+    reasons: { purchase_amount: 'invalid_value' },
+    // constraints.purchase_amount present → plan is grayed out, not hidden
+  },
+]
+
 export const mockPlansWithoutDeferred = mockPlansAllEligible.filter(
   (plan) => plan.deferred_days === 0 && plan.deferred_months === 0 && plan.installments_count >= 2,
 )
