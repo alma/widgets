@@ -50,8 +50,11 @@ export default defineConfig({
     },
   },
   define: {
-    'process.env': process.env,
-    'import.meta.env.VITE_BUILD_VERSION': JSON.stringify(process.env.BUILD_VERSION || 'dev'),
+    // Inject only the specific env keys the bundle needs. Passing the whole
+    // `process.env` object inlines every build-machine variable into the
+    // published bundle (a leak Vite 6 now warns about).
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ?? 'production'),
+    'process.env.BUILD_VERSION': JSON.stringify(process.env.BUILD_VERSION ?? 'dev'),
   },
   plugins: [
     dts({ outDir: 'dist/types' }),
