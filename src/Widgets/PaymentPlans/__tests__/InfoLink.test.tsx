@@ -1,7 +1,6 @@
-/* eslint-disable testing-library/no-unnecessary-act */
 import React from 'react'
 
-import { act, screen, waitFor } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { axe } from 'jest-axe'
 
@@ -30,19 +29,14 @@ describe('Payment info line (know more link)', () => {
   })
 
   const renderWithKnowMoreHint = async () => {
-    await act(async () => {
-      render(
-        <PaymentPlanWidget
-          purchaseAmount={40000}
-          suggestedPaymentPlan={10}
-          apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
-        />,
-      )
-    })
-
-    await act(async () => {
-      await screen.findByTestId('widget-container')
-    })
+    render(
+      <PaymentPlanWidget
+        purchaseAmount={40000}
+        suggestedPaymentPlan={10}
+        apiData={{ domain: ApiMode.TEST, merchantId: '11gKoO333vEXacMNMUMUSc4c4g68g2Les4' }}
+      />,
+    )
+    await screen.findByTestId('widget-container')
   }
 
   it('exposes the info line as an accessible button when the plan is eligible', async () => {
@@ -63,13 +57,9 @@ describe('Payment info line (know more link)', () => {
     expect(screen.queryByTestId('modal-container')).not.toBeInTheDocument()
 
     const infoText = document.getElementById('payment-info-text') as HTMLElement
-    await act(async () => {
-      await user.click(infoText)
-    })
+    await user.click(infoText)
 
-    await waitFor(() => {
-      expect(screen.getByTestId('modal-container')).toBeInTheDocument()
-    })
+    expect(await screen.findByTestId('modal-container')).toBeInTheDocument()
   })
 
   it('opens the modal when the info line is activated with the keyboard', async () => {
@@ -77,17 +67,12 @@ describe('Payment info line (know more link)', () => {
     await renderWithKnowMoreHint()
 
     const infoText = document.getElementById('payment-info-text') as HTMLElement
-    await act(async () => {
-      infoText.focus()
-    })
+    infoText.focus()
     expect(infoText).toHaveFocus()
 
-    await act(async () => {
-      await user.keyboard('{Enter}')
-    })
-    await waitFor(() => {
-      expect(screen.getByTestId('modal-container')).toBeInTheDocument()
-    })
+    await user.keyboard('{Enter}')
+
+    expect(await screen.findByTestId('modal-container')).toBeInTheDocument()
   })
 
   it('has no accessibility violations with the clickable info line', async () => {

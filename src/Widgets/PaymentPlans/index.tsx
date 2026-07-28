@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from '
 import cx from 'classnames'
 import { useIntl } from 'react-intl'
 
-import { ApiConfig, Card, ConfigPlan, statusResponse } from '@/types'
+import { ApiConfig, Card, ConfigPlan, EligibilityPlanToDisplay, statusResponse } from '@/types'
 import { AlmaLogo } from 'assets/almaLogo'
 import Loader from 'components/Loader'
 import { useAnimationInstructions } from 'hooks/useAnimationInstructions'
@@ -286,12 +286,12 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
     }
   }
 
-  const currentPlanToDisplay = plansToDisplay[current]
+  const currentPlanToDisplay: EligibilityPlanToDisplay | undefined = plansToDisplay[current]
 
   // Plans with more than 4 installments show a "know more" hint that must open the modal.
   const isInfoClickable =
     eligiblePlans.length > 0 &&
-    Boolean(currentPlanToDisplay?.eligible) &&
+    !!currentPlanToDisplay?.eligible &&
     currentPlanToDisplay.installments_count > 4
 
   const infoInteractiveProps: React.HTMLAttributes<HTMLDivElement> = {}
@@ -468,7 +468,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
               s.info,
               {
                 [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
-                  currentPlanToDisplay && !currentPlanToDisplay.eligible,
+                  !currentPlanToDisplay?.eligible,
                 [s.clickable]: isInfoClickable,
               },
               STATIC_CUSTOMISATION_CLASSES.paymentInfo,
@@ -476,7 +476,7 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
             id="payment-info-text"
             {...infoInteractiveProps}
           >
-            {plansToDisplay.length !== 0 && paymentPlanInfoText(currentPlanToDisplay)}
+            {currentPlanToDisplay && paymentPlanInfoText(currentPlanToDisplay)}
           </div>
         </div>
       </div>
