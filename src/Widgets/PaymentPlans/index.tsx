@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from '
 import cx from 'classnames'
 import { useIntl } from 'react-intl'
 
-import { ApiConfig, Card, ConfigPlan, statusResponse } from '@/types'
+import { ApiConfig, Card, ConfigPlan, EligibilityPlanToDisplay, statusResponse } from '@/types'
 import { AlmaLogo } from 'assets/almaLogo'
 import Loader from 'components/Loader'
 import { useAnimationInstructions } from 'hooks/useAnimationInstructions'
@@ -279,12 +279,31 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
    * Handle opening the eligibility modal
    * Prevents default behavior and only opens if there are eligible plans
    */
-  const handleOpenModal = (
-    e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>,
-  ) => {
+  const handleOpenModal = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.preventDefault()
     if (eligiblePlans.length > 0) {
       openModal()
+    }
+  }
+
+  const currentPlanToDisplay: EligibilityPlanToDisplay | undefined = plansToDisplay[current]
+
+  // Plans with more than 4 installments show a "know more" hint that must open the modal.
+  const isInfoClickable =
+    eligiblePlans.length > 0 &&
+    !!currentPlanToDisplay?.eligible &&
+    currentPlanToDisplay.installments_count > 4
+
+  const infoInteractiveProps: React.HTMLAttributes<HTMLDivElement> = {}
+  if (isInfoClickable) {
+    infoInteractiveProps.role = 'button'
+    infoInteractiveProps.tabIndex = 0
+    infoInteractiveProps['aria-haspopup'] = 'dialog'
+    infoInteractiveProps.onClick = handleOpenModal
+    infoInteractiveProps.onKeyDown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        handleOpenModal(e)
+      }
     }
   }
 
@@ -449,13 +468,15 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
               s.info,
               {
                 [cx(s.notEligible, STATIC_CUSTOMISATION_CLASSES.notEligibleOption)]:
-                  plansToDisplay[current] && !plansToDisplay[current].eligible,
+                  !currentPlanToDisplay?.eligible,
+                [s.clickable]: isInfoClickable,
               },
               STATIC_CUSTOMISATION_CLASSES.paymentInfo,
             )}
             id="payment-info-text"
+            {...infoInteractiveProps}
           >
-            {plansToDisplay.length !== 0 && paymentPlanInfoText(plansToDisplay[current])}
+            {currentPlanToDisplay && paymentPlanInfoText(currentPlanToDisplay)}
           </div>
         </div>
       </div>
