@@ -21,7 +21,6 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
   const total = priceFromCents(getTotalPurchaseAmount(currentPlan))
   const creditCost = priceFromCents(getTotalCreditCost(currentPlan))
   const annualPercentageRate = getAnnualPercentageRate(currentPlan)
-  const customerFees = priceFromCents(getTotalCreditCost(currentPlan))
   const isCredit = currentPlan.installments_count > 4
   const initialDeposit = priceFromCents(getInitialDeposit(currentPlan))
   const financedAmount = priceFromCents(getFinancedAmount(currentPlan))
@@ -85,7 +84,7 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
                 tagName="span"
               />
               <span>
-                <FormattedNumber value={customerFees} style="currency" currency="EUR" />
+                <FormattedNumber value={creditCost} style="currency" currency="EUR" />
               </span>
             </>
           )}
