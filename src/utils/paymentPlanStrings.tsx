@@ -6,6 +6,7 @@ import { FormattedDate, FormattedMessage, FormattedNumber, IntlShape } from 'rea
 import { EligibilityPlan, EligibilityPlanToDisplay } from '@/types'
 import { isP1X, priceFromCents } from '@/utils'
 import s from '@/utils/paymentPlanStrings.module.css'
+import { isPayLater } from '@/utils/regulatoryFigures'
 
 export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
   const {
@@ -291,7 +292,7 @@ export const getPlanDescription = (plan: EligibilityPlan, intl: IntlShape) => {
       defaultMessage: 'Payer maintenant',
     })
   }
-  if (plan.installments_count === 1 && (plan.deferred_days > 0 || plan.deferred_months > 0)) {
+  if (isPayLater(plan)) {
     return intl.formatMessage(
       {
         id: 'payment-plan-strings.pay.deferred.button',
