@@ -20,12 +20,13 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
   const intl = useIntl()
   const total = priceFromCents(getTotalPurchaseAmount(currentPlan))
   const creditCost = priceFromCents(getTotalCreditCost(currentPlan))
-  const TAEG = getAnnualPercentageRate(currentPlan)
+  const annualPercentageRate = getAnnualPercentageRate(currentPlan)
   const customerFees = priceFromCents(getTotalCreditCost(currentPlan))
   const isCredit = currentPlan.installments_count > 4
-  const firstInstallmentAmount = priceFromCents(getInitialDeposit(currentPlan))
-  const totalWithoutFirstInstallment = priceFromCents(getFinancedAmount(currentPlan))
-  const durationInMonths = getCreditDurationInMonths(currentPlan)
+  const initialDeposit = priceFromCents(getInitialDeposit(currentPlan))
+  const financedAmount = priceFromCents(getFinancedAmount(currentPlan))
+  const creditDurationInMonths = getCreditDurationInMonths(currentPlan)
+  const purchaseAmount = total - creditCost
 
   return (
     <>
@@ -62,13 +63,13 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
               <span className={s.creditCost}>
                 <FormattedMessage
                   id="credit-features.credit-cost-display"
-                  defaultMessage="{creditCost} (TAEG {taegPercentage})"
+                  defaultMessage="{creditCost} (TAEG {annualPercentageRate})"
                   values={{
                     creditCost: intl.formatNumber(creditCost, {
                       style: 'currency',
                       currency: 'EUR',
                     }),
-                    taegPercentage: intl.formatNumber(TAEG, {
+                    annualPercentageRate: intl.formatNumber(annualPercentageRate, {
                       style: 'percent',
                       maximumFractionDigits: 2,
                     }),
@@ -93,22 +94,22 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ curre
           <div className={s.creditInfoLegalText}>
             <FormattedMessage
               id="credit-features.legal-text"
-              defaultMessage="Crédit d'un montant de {totalWithoutFirstInstallment} au taux débiteur fixe de {taegPercentage} sur une durée de {installmeentsCountWithoutFirst} mois. Permettant, en complément d'un acompte de {firstInstallmentAmount}, de financer un achat d'un montant de {productPriceWithoutCreditCost}. Sous réserve d'étude et d'acceptation par Alma. Délai légal de rétractation de 14 jours. Simulation présentée par Alma, immatriculée au RCS Nanterre sous le numéro 839 100 575, établissement de paiement et société de financement agréée par l’ACPR sous le n° 17408 (numéro CIB / Code banque)."
+              defaultMessage="Crédit d'un montant de {financedAmount} au taux débiteur fixe de {annualPercentageRate} sur une durée de {creditDurationInMonths} mois. Permettant, en complément d'un acompte de {initialDeposit}, de financer un achat d'un montant de {purchaseAmount}. Sous réserve d'étude et d'acceptation par Alma. Délai légal de rétractation de 14 jours. Simulation présentée par Alma, immatriculée au RCS Nanterre sous le numéro 839 100 575, établissement de paiement et société de financement agréée par l’ACPR sous le n° 17408 (numéro CIB / Code banque)."
               values={{
-                totalWithoutFirstInstallment: intl.formatNumber(totalWithoutFirstInstallment, {
+                financedAmount: intl.formatNumber(financedAmount, {
                   style: 'currency',
                   currency: 'EUR',
                 }),
-                taegPercentage: intl.formatNumber(TAEG, {
+                annualPercentageRate: intl.formatNumber(annualPercentageRate, {
                   style: 'percent',
                   maximumFractionDigits: 2,
                 }),
-                installmeentsCountWithoutFirst: durationInMonths,
-                firstInstallmentAmount: intl.formatNumber(firstInstallmentAmount, {
+                creditDurationInMonths,
+                initialDeposit: intl.formatNumber(initialDeposit, {
                   style: 'currency',
                   currency: 'EUR',
                 }),
-                productPriceWithoutCreditCost: intl.formatNumber(total - creditCost, {
+                purchaseAmount: intl.formatNumber(purchaseAmount, {
                   style: 'currency',
                   currency: 'EUR',
                 }),
