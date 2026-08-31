@@ -15,7 +15,7 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
     installments_count: installmentsCount,
   } = payment
 
-  if (installmentsCount === 1 && !deferredDays && !deferredMonths) {
+  if (isP1X(payment)) {
     return (
       <FormattedMessage
         id="payment-plan-strings.pay.now.button"
@@ -59,7 +59,7 @@ export const paymentPlanShorthandText = (payment: EligibilityPlan, intl: IntlSha
     installments_count: installmentsCount,
   } = payment
 
-  if (installmentsCount === 1 && !deferredDays && !deferredMonths) {
+  if (isP1X(payment)) {
     return intl.formatMessage({
       id: 'payment-plan-strings.pay.now.button',
       defaultMessage: 'Payer maintenant',
@@ -286,7 +286,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
 }
 
 export const getPlanDescription = (plan: EligibilityPlan, intl: IntlShape) => {
-  if (plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0) {
+  if (isP1X(plan)) {
     return intl.formatMessage({
       id: 'payment-plan-strings.pay.now.button',
       defaultMessage: 'Payer maintenant',
