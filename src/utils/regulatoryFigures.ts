@@ -3,6 +3,14 @@ import { EligibilityPlan } from '@/types'
 export const isDeferred = (plan: EligibilityPlan): boolean =>
   plan.deferred_days > 0 || plan.deferred_months > 0
 
+export const isPayLater = (plan: EligibilityPlan): boolean =>
+  plan.installments_count === 1 && isDeferred(plan)
+
+export const isPNX = (plan: EligibilityPlan): boolean => plan.installments_count > 1
+
+export const requiresLegalDisclosure = (plan: EligibilityPlan): boolean =>
+  isPayLater(plan) || isPNX(plan)
+
 export const getTotalCreditCost = (plan: EligibilityPlan): number => plan.customer_total_cost_amount
 
 export const getTotalPurchaseAmount = (plan: EligibilityPlan): number =>

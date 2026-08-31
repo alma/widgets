@@ -6,6 +6,9 @@ import {
   getTotalCreditCost,
   getTotalPurchaseAmount,
   isDeferred,
+  isPayLater,
+  isPNX,
+  requiresLegalDisclosure,
 } from '@/utils/regulatoryFigures'
 import { mockPlansAllEligible } from 'test/fixtures'
 
@@ -138,6 +141,75 @@ describe('regulatoryFigures', () => {
     it('should return annual_interest_rate converted into a rate', () => {
       const planWithInterest = { ...mockPlansAllEligible[0], annual_interest_rate: 500 }
       expect(getAnnualPercentageRate(planWithInterest)).toBe(0.05)
+    })
+  })
+
+  describe('requiresLegalDisclosure', () => {
+    it('should return false for a p1x plan', () => {
+      const p1xPlan = mockPlansAllEligible[0]
+      expect(requiresLegalDisclosure(p1xPlan)).toBe(false)
+    })
+    it('should return true for a non-p1x plan', () => {
+      const pnxPlan = { ...mockPlansAllEligible[0], installments_count: 2 }
+      expect(requiresLegalDisclosure(pnxPlan)).toBe(true)
+    })
+    it('should return true for a deferred p1x plan (Pay Later)', () => {
+      const payLaterPlan = { ...mockPlansAllEligible[0], deferred_months: 1 }
+      expect(requiresLegalDisclosure(payLaterPlan)).toBe(true)
+    })
+    it('should return true for a deferred, multi-installment plan', () => {
+      const deferredPnxPlan = {
+        ...mockPlansAllEligible[0],
+        installments_count: 2,
+        deferred_months: 1,
+      }
+      expect(requiresLegalDisclosure(deferredPnxPlan)).toBe(true)
+    })
+  })
+
+  describe('isPayLater', () => {
+    it('should return false for a non-deferred p1x plan', () => {
+      const p1xPlan = mockPlansAllEligible[0]
+      expect(isPayLater(p1xPlan)).toBe(false)
+    })
+    it('should return true for a deferred p1x plan', () => {
+      const payLaterPlan = { ...mockPlansAllEligible[0], deferred_months: 1 }
+      expect(isPayLater(payLaterPlan)).toBe(true)
+    })
+    it('should return false for a non-deferred, multi-installment plan', () => {
+      const pnxPlan = { ...mockPlansAllEligible[0], installments_count: 2 }
+      expect(isPayLater(pnxPlan)).toBe(false)
+    })
+    it('should return false for a deferred, multi-installment plan', () => {
+      const deferredPnxPlan = {
+        ...mockPlansAllEligible[0],
+        installments_count: 2,
+        deferred_months: 1,
+      }
+      expect(isPayLater(deferredPnxPlan)).toBe(false)
+    })
+  })
+
+  describe('isPNX', () => {
+    it('should return false for a single-installment plan', () => {
+      const p1xPlan = mockPlansAllEligible[0]
+      expect(isPNX(p1xPlan)).toBe(false)
+    })
+    it('should return false for a deferred single-installment plan (Pay Later, not PNX)', () => {
+      const payLaterPlan = { ...mockPlansAllEligible[0], deferred_months: 1 }
+      expect(isPNX(payLaterPlan)).toBe(false)
+    })
+    it('should return true for a multi-installment plan', () => {
+      const pnxPlan = { ...mockPlansAllEligible[0], installments_count: 2 }
+      expect(isPNX(pnxPlan)).toBe(true)
+    })
+    it('should return true for a multi-installment plan regardless of deferred status', () => {
+      const deferredPnxPlan = {
+        ...mockPlansAllEligible[0],
+        installments_count: 2,
+        deferred_months: 1,
+      }
+      expect(isPNX(deferredPnxPlan)).toBe(true)
     })
   })
 })
