@@ -38,9 +38,8 @@
 @font-face {
   font-family: Venn;
   src:
-    url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.eot') format('embedded-opentype'),
-    url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.woff') format('woff'),
-    url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.ttf') format('truetype');
+    url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.woff2') format('woff2'),
+    url('https://cdn.almapay.com/fonts/Venn/Venn-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -49,9 +48,8 @@
 @font-face {
   font-family: Venn;
   src:
-    url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.eot?#iefix') format('embedded-opentype'),
-    url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.woff') format('woff'),
-    url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.ttf') format('truetype');
+    url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.woff2') format('woff2'),
+    url('https://cdn.almapay.com/fonts/Venn/Venn-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
