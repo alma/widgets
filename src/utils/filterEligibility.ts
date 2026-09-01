@@ -1,4 +1,5 @@
 import { ConfigPlan, EligibilityPlan, EligibilityPlanToDisplay } from '@/types'
+import { isP1X } from '@/utils'
 
 const isPlanEligible = (plan: EligibilityPlan, configPlan?: ConfigPlan) => {
   if (!plan.eligible) {
@@ -27,10 +28,7 @@ const filterEligibility = (
 ): EligibilityPlanToDisplay[] => {
   // Remove P1X if no configuration is provided
   if (!configPlans) {
-    return eligibilities.filter(
-      (plan) =>
-        !(plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0),
-    )
+    return eligibilities.filter((plan) => !isP1X(plan))
   }
 
   // Else check if the plan is eligible regarding the related configPlan
