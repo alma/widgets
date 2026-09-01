@@ -683,7 +683,7 @@ export const mockDeferredP1XPlan: EligibilityPlan = {
  * Returns a copy of `plan` with its `transaction_country` overridden.
  * The input plan is never mutated, so shared fixtures stay reusable across tests.
  */
-export const withCountry = <T extends EligibilityPlan>(plan: T, countryCode: string): T => ({
+export const withCountry = (plan: EligibilityPlan, countryCode: string): EligibilityPlan => ({
   ...plan,
   transaction_country: countryCode,
 })

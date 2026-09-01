@@ -168,8 +168,9 @@ describe('useFetchEligibility', () => {
     )
 
     await waitFor(() => {
-      expect(result.current[0]).toHaveLength(1)
+      expect(result.current[1]).toBe(statusResponse.SUCCESS)
     })
+    expect(result.current[0]).toHaveLength(1)
     expect(result.current[0][0].transaction_country).toBe('IT')
   })
 })
