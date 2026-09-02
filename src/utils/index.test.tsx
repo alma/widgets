@@ -94,6 +94,7 @@ describe('utils', () => {
         eligible: true, // This part is important
         installments_count: 10,
         purchase_amount: 1000,
+        transaction_country: 'FR',
         // Also no payment-plan
       }),
     ).toThrow(
