@@ -26,6 +26,9 @@
 
   /* Some merchants override font size which impacts rem - using px instead even if not recommended for accessibility */
   --font-tiny: 10px;
+
+  /* DCC2 warning sentence: one point above the legal mentions (--font-tiny) */
+  --font-warning: 11px;
   --font-x-small: 12px;
   --font-small: 14px;
   --font-base: 16px;
