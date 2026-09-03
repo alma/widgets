@@ -55,5 +55,18 @@
   "payment-plan-strings.pay.now.button": "Jetzt bezahlen",
   "skip-links.payment-info": "Zu den Zahlungsinformationen gehen",
   "skip-links.payment-plans": "Zu den Zahlungsoptionen gehen",
-  "skip-links.payment-schedule": "Zum Zahlungskalender gehen"
+  "skip-links.payment-schedule": "Zum Zahlungskalender gehen",
+  "warning-message.be": "Bitte beachten Sie: Geld zu leihen kostet auch Geld.",
+  "warning-message.de.with-fees": "Achtung! Kreditaufnahme kostet Geld.",
+  "warning-message.de.without-fees": "Ein Kredit ist verbindlich und muss zurückgezahlt werden. Prüfen Sie die Kosten des Kredits, bevor Sie sich verpflichten.",
+  "warning-message.es": "Bitte beachten Sie: Ein Kredit ist eine Verpflichtung und muss zurückgezahlt werden. Prüfen Sie die Kosten des Kredits und Ihre Rückzahlungsfähigkeit, bevor Sie sich dazu verpflichten.",
+  "warning-message.fr": "Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.",
+  "warning-message.gb": "Achtung! Geld zu leihen kostet Geld.",
+  "warning-message.it.with-fees": "Achtung: Geld zu leihen ist mit Kosten verbunden.",
+  "warning-message.it.without-fees": "Wichtig: Ein Kredit ist eine Verpflichtung und muss zurückgezahlt werden. Prüfen Sie die Kosten des Kredits, bevor Sie sich festlegen.",
+  "warning-message.lu": "Achtung! Geld zu leihen kostet Geld.",
+  "warning-message.nl.with-fees": "Bitte beachten Sie: Geld zu leihen kostet auch Geld.",
+  "warning-message.nl.without-fees": "Achtung: Ein Kredit ist mit Verpflichtungen verbunden und muss zurückgezahlt werden. Prüfen Sie die Kosten des Kredits und Ihre Rückzahlungsfähigkeit, bevor Sie einen Vertrag abschließen.",
+  "warning-message.pt.with-fees": "Achtung! Geld zu leihen ist mit Kosten verbunden.",
+  "warning-message.pt.without-fees": "Achtung! Ein Kredit ist eine Verpflichtung und muss zurückgezahlt werden. Prüfen Sie die Kreditkosten und Ihre Rückzahlungsfähigkeit, bevor Sie eine Verpflichtung eingehen."
 }

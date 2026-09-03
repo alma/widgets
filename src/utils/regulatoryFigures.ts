@@ -19,6 +19,11 @@ export const getTotalCreditCost = (plan: EligibilityPlanToDisplay): number =>
 
 export const getCustomerFees = (plan: EligibilityPlanToDisplay): number => plan.customer_fee ?? 0
 
+// Fee sharing means the customer bears the fees, as opposed to the merchant covering them all.
+// Fees only, deliberately: `customer_total_cost_amount` also carries a credit plan's interest, so
+// a P10 whose whole customer cost is interest is not fee sharing.
+export const hasFeeSharing = (plan: EligibilityPlanToDisplay): boolean => getCustomerFees(plan) > 0
+
 export const getTotalPurchaseAmount = (plan: EligibilityPlanToDisplay): number =>
   plan.purchase_amount + getTotalCreditCost(plan)
 
