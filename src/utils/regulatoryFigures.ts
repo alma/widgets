@@ -6,10 +6,13 @@ export const isDeferred = (plan: EligibilityPlanToDisplay): boolean =>
 export const isPayLater = (plan: EligibilityPlanToDisplay): boolean =>
   plan.installments_count === 1 && isDeferred(plan)
 
-export const isPNX = (plan: EligibilityPlanToDisplay): boolean => plan.installments_count > 1
+export const isPNX = (plan: EligibilityPlanToDisplay): boolean =>
+  plan.installments_count > 1 && plan.installments_count <= 4
+
+export const isCredit = (plan: EligibilityPlanToDisplay): boolean => plan.installments_count > 4
 
 export const requiresLegalDisclosure = (plan: EligibilityPlanToDisplay): boolean =>
-  isPayLater(plan) || isPNX(plan)
+  isPayLater(plan) || isPNX(plan) || isCredit(plan)
 
 export const getTotalCreditCost = (plan: EligibilityPlanToDisplay): number =>
   plan.customer_total_cost_amount ?? 0
@@ -23,7 +26,7 @@ export const getInitialDeposit = (plan: EligibilityPlanToDisplay): number =>
 export const getFinancedAmount = (plan: EligibilityPlanToDisplay): number =>
   getTotalPurchaseAmount(plan) - getInitialDeposit(plan)
 
-// Only used for PNX plans
+// Only used for PNX and credit plans
 export const getCreditDurationInMonths = (plan: EligibilityPlanToDisplay): number =>
   plan.installments_count - 1
 

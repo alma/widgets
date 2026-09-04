@@ -5,6 +5,7 @@ import {
   getInitialDeposit,
   getTotalCreditCost,
   getTotalPurchaseAmount,
+  isCredit,
   isDeferred,
   isPayLater,
   isPNX,
@@ -165,6 +166,10 @@ describe('regulatoryFigures', () => {
       }
       expect(requiresLegalDisclosure(deferredPnxPlan)).toBe(true)
     })
+    it('should return true for a credit plan', () => {
+      const creditPlan = { ...mockPlansAllEligible[0], installments_count: 5 }
+      expect(requiresLegalDisclosure(creditPlan)).toBe(true)
+    })
   })
 
   describe('isPayLater', () => {
@@ -210,6 +215,29 @@ describe('regulatoryFigures', () => {
         deferred_months: 1,
       }
       expect(isPNX(deferredPnxPlan)).toBe(true)
+    })
+    it('should return false for a credit plan (installments_count > 4)', () => {
+      const creditPlan = { ...mockPlansAllEligible[0], installments_count: 5 }
+      expect(isPNX(creditPlan)).toBe(false)
+    })
+    it('should return true for the upper bound of installments_count (4)', () => {
+      const pnxPlan = { ...mockPlansAllEligible[0], installments_count: 4 }
+      expect(isPNX(pnxPlan)).toBe(true)
+    })
+  })
+
+  describe('isCredit', () => {
+    it('should return false for a single-installment plan', () => {
+      const p1xPlan = mockPlansAllEligible[0]
+      expect(isCredit(p1xPlan)).toBe(false)
+    })
+    it('should return false for a plan with 4 or fewer installments', () => {
+      const pnxPlan = { ...mockPlansAllEligible[0], installments_count: 4 }
+      expect(isCredit(pnxPlan)).toBe(false)
+    })
+    it('should return true for a plan with more than 4 installments', () => {
+      const creditPlan = { ...mockPlansAllEligible[0], installments_count: 5 }
+      expect(isCredit(creditPlan)).toBe(true)
     })
   })
 })
