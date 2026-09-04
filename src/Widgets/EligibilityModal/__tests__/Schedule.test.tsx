@@ -16,6 +16,7 @@ it('should be displayed', async () => {
         eligible: false,
         installments_count: 6,
         purchase_amount: 0,
+        transaction_country: 'FR',
       }}
     />,
   )

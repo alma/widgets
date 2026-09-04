@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 
 import { Card, EligibilityPlan, statusResponse } from '@/types'
 import { desktopWidth, isP1X } from '@/utils'
+import { isDeferred } from '@/utils/regulatoryFigures'
 import { LoadingIndicator } from 'components/LoadingIndicator/LoadingIndicator'
 import Modal from 'components/Modal'
 import SkipLinks from 'components/SkipLinks'
@@ -36,9 +37,7 @@ const EligibilityModal: FunctionComponent<Props> = ({
   const currentPlan = eligiblePlans[currentPlanIndex]
   const intl = useIntl()
 
-  const isSomePlanDeferred = eligibilityPlans.some(
-    (plan) => plan.deferred_days > 0 || plan.deferred_months > 0,
-  )
+  const isSomePlanDeferred = eligibilityPlans.some(isDeferred)
 
   // Skip links definition for RGAA accessibility
   // Towards the 3 main sections that users may want to quickly consult

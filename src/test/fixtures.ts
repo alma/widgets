@@ -18,6 +18,7 @@ export const mockPlansAllEligible: EligibilityPlan[] = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     customer_total_cost_amount: 0,
@@ -36,6 +37,7 @@ export const mockPlansAllEligible: EligibilityPlan[] = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     customer_total_cost_amount: 0,
@@ -61,6 +63,7 @@ export const mockPlansAllEligible: EligibilityPlan[] = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     customer_total_cost_amount: 135,
@@ -93,6 +96,7 @@ export const mockPlansAllEligible: EligibilityPlan[] = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     customer_total_cost_amount: 1062,
@@ -132,6 +136,7 @@ export const mockPlansAllEligible: EligibilityPlan[] = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     annual_interest_rate: 1720,
@@ -224,6 +229,7 @@ export const mockPlansAllEligible: EligibilityPlan[] = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
 ]
 
@@ -245,6 +251,7 @@ export const mockButtonPlans = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     customer_total_cost_amount: 0,
@@ -263,6 +270,7 @@ export const mockButtonPlans = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     customer_total_cost_amount: 0,
@@ -288,6 +296,7 @@ export const mockButtonPlans = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     customer_total_cost_amount: 135,
@@ -320,6 +329,7 @@ export const mockButtonPlans = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     customer_total_cost_amount: 1202,
@@ -359,6 +369,7 @@ export const mockButtonPlans = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     annual_interest_rate: 1719,
@@ -451,6 +462,7 @@ export const mockButtonPlans = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
 ]
 
@@ -474,6 +486,7 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     customer_fee: 0,
@@ -501,6 +514,7 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
       },
     ],
     purchase_amount: 45000,
+    transaction_country: 'FR',
   },
   {
     constraints: { purchase_amount: { maximum: 20000, minimum: 9000 } },
@@ -509,6 +523,7 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
     eligible: false,
     installments_count: 4,
     purchase_amount: 45000,
+    transaction_country: 'FR',
     reasons: { purchase_amount: 'invalid_value' },
   },
   {
@@ -518,6 +533,7 @@ export const mockEligibilityPaymentPlanWithIneligiblePlan = [
     eligible: false,
     installments_count: 10,
     purchase_amount: 45000,
+    transaction_country: 'FR',
     reasons: { purchase_amount: 'invalid_value' },
   },
 ]
@@ -533,6 +549,7 @@ export const mockEligibilityWithHiddenPlan = [
     eligible: false,
     installments_count: 4,
     purchase_amount: 45000,
+    transaction_country: 'FR',
     reasons: { installments_count: 'not_allowed' },
     // No constraints.purchase_amount → plan is hidden, not grayed out
   },
@@ -549,6 +566,7 @@ export const mockEligibilityWithGrayedOutPlan = [
     eligible: false,
     installments_count: 4,
     purchase_amount: 45000,
+    transaction_country: 'FR',
     reasons: { purchase_amount: 'invalid_value' },
     // constraints.purchase_amount present → plan is grayed out, not hidden
   },
@@ -569,3 +587,103 @@ export const configPlans: ConfigPlan[] = mockPlansAllEligible.map((plan) => ({
   minAmount: 90_00,
   maxAmount: 3350_00,
 }))
+
+// Deferred (30 days) 3x plan, without customer fees.
+export const mockDeferredMultiInstallmentPlanWithoutFees: EligibilityPlan = {
+  customer_total_cost_amount: 0,
+  customer_total_cost_bps: 0,
+  deferred_days: 30,
+  deferred_months: 0,
+  eligible: true,
+  installments_count: 3,
+  payment_plan: [
+    {
+      customer_fee: 0,
+      customer_interest: 0,
+      due_date: 1640942762,
+      purchase_amount: 15000,
+      total_amount: 15000,
+    },
+    {
+      customer_fee: 0,
+      customer_interest: 0,
+      due_date: 1643621162,
+      purchase_amount: 15000,
+      total_amount: 15000,
+    },
+    {
+      customer_fee: 0,
+      customer_interest: 0,
+      due_date: 1646299562,
+      purchase_amount: 15000,
+      total_amount: 15000,
+    },
+  ],
+  purchase_amount: 45000,
+  transaction_country: 'FR',
+}
+
+// Same plan as above, with customer fees charged on the first installment.
+export const mockDeferredMultiInstallmentPlanWithFees: EligibilityPlan = {
+  customer_total_cost_amount: 135,
+  customer_total_cost_bps: 30,
+  deferred_days: 30,
+  deferred_months: 0,
+  eligible: true,
+  installments_count: 3,
+  payment_plan: [
+    {
+      customer_fee: 135,
+      customer_interest: 0,
+      due_date: 1640942762,
+      purchase_amount: 15000,
+      total_amount: 15135,
+    },
+    {
+      customer_fee: 0,
+      customer_interest: 0,
+      due_date: 1643621162,
+      purchase_amount: 15000,
+      total_amount: 15000,
+    },
+    {
+      customer_fee: 0,
+      customer_interest: 0,
+      due_date: 1646299562,
+      purchase_amount: 15000,
+      total_amount: 15000,
+    },
+  ],
+  purchase_amount: 45000,
+  transaction_country: 'FR',
+}
+
+// Deferred P1X: a single installment paid 30 days later (pay later).
+export const mockDeferredP1XPlan: EligibilityPlan = {
+  customer_total_cost_amount: 0,
+  customer_total_cost_bps: 0,
+  deferred_days: 30,
+  deferred_months: 0,
+  eligible: true,
+  installments_count: 1,
+  payment_plan: [
+    {
+      customer_fee: 0,
+      customer_interest: 0,
+      due_date: 1640942762,
+      purchase_amount: 45000,
+      total_amount: 45000,
+    },
+  ],
+  purchase_amount: 45000,
+  transaction_country: 'FR',
+}
+
+/**
+ * Returns a copy of `plan` with its `transaction_country` overridden.
+ * The input plan is never mutated, so shared fixtures stay reusable across tests.
+ */
+export const withCountry = (plan: EligibilityPlan, countryCode: string): EligibilityPlan => ({
+  ...plan,
+  transaction_country: countryCode,
+})

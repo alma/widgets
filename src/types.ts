@@ -44,6 +44,7 @@ export type EligibilityPlan = {
   constraints?: {
     purchase_amount?: { minimum: number; maximum: number }
   }
+  transaction_country: string
 }
 
 export type ErrorResponse = {
