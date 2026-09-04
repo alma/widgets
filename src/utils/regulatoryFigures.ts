@@ -17,6 +17,8 @@ export const requiresLegalDisclosure = (plan: EligibilityPlanToDisplay): boolean
 export const getTotalCreditCost = (plan: EligibilityPlanToDisplay): number =>
   plan.customer_total_cost_amount ?? 0
 
+export const getCustomerFees = (plan: EligibilityPlanToDisplay): number => plan.customer_fee ?? 0
+
 export const getTotalPurchaseAmount = (plan: EligibilityPlanToDisplay): number =>
   plan.purchase_amount + getTotalCreditCost(plan)
 

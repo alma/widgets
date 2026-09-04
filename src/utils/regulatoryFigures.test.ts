@@ -1,6 +1,7 @@
 import {
   getAnnualPercentageRate,
   getCreditDurationInMonths,
+  getCustomerFees,
   getFinancedAmount,
   getInitialDeposit,
   getTotalCreditCost,
@@ -37,6 +38,21 @@ describe('regulatoryFigures', () => {
     it('should return the combined fees and interest amount', () => {
       const planWithCreditCost = { ...mockPlansAllEligible[0], customer_total_cost_amount: 1000 }
       expect(getTotalCreditCost(planWithCreditCost)).toBe(1000)
+    })
+  })
+
+  describe('getCustomerFees', () => {
+    it('should return 0 when there is no fee', () => {
+      const p1xPlan = mockPlansAllEligible[0]
+      expect(getCustomerFees(p1xPlan)).toBe(0)
+    })
+    it('should return the customer fee amount', () => {
+      const planWithFees = { ...mockPlansAllEligible[0], customer_fee: 135 }
+      expect(getCustomerFees(planWithFees)).toBe(135)
+    })
+    it('should return 0 when customer_fee is undefined', () => {
+      const planWithoutFees = { ...mockPlansAllEligible[0], customer_fee: undefined }
+      expect(getCustomerFees(planWithoutFees)).toBe(0)
     })
   })
 
