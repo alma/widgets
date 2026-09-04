@@ -4,8 +4,8 @@
   padding: 0;
   margin: 4px 0;
   text-decoration: none;
-  font-size: var(--font-warning);
+  font-size: var(--font-x-small);
   font-family: 'Venn', sans-serif;
   font-weight: var(--weight-normal);
-  color: var(--off-black);
+  color: var(--dark-gray);
 }
