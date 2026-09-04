@@ -1,15 +1,15 @@
-import { EligibilityPlan } from '@/types'
+import { EligibilityPlanToDisplay } from '@/types'
 
 type Args = {
   suggestedPaymentPlan: number | number[]
-  eligibilityPlans: EligibilityPlan[]
+  eligibilityPlans: EligibilityPlanToDisplay[]
 }
 
 /**
  * It returns the **index** of the **first eligible plan** that matches the default installments count
  *
  * @param {number | number[]} suggestedPaymentPlan
- * @param {EligibilityPlan[]} eligibilityPlans
+ * @param {EligibilityPlanToDisplay[]} eligibilityPlans
  * @returns number (index of the first eligible plan that matches the default installments count)
  */
 export const getIndexOfActivePlan = ({ suggestedPaymentPlan, eligibilityPlans }: Args): number => {

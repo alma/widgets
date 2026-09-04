@@ -3,12 +3,12 @@ import React, { ReactNode } from 'react'
 import { secondsToMilliseconds } from 'date-fns'
 import { FormattedDate, FormattedMessage, FormattedNumber, IntlShape } from 'react-intl'
 
-import { EligibilityPlan, EligibilityPlanToDisplay } from '@/types'
+import { EligibilityPlanToDisplay } from '@/types'
 import { isP1X, priceFromCents } from '@/utils'
 import s from '@/utils/paymentPlanStrings.module.css'
 import { isPayLater } from '@/utils/regulatoryFigures'
 
-export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
+export const paymentPlanShorthandName = (payment: EligibilityPlanToDisplay): ReactNode => {
   const {
     deferred_days: deferredDays,
     deferred_months: deferredMonths,
@@ -52,7 +52,10 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
  * String version of paymentPlanShorthandName that returns a translated string
  * instead of a ReactNode for use in aria-label attributes for example
  */
-export const paymentPlanShorthandText = (payment: EligibilityPlan, intl: IntlShape): string => {
+export const paymentPlanShorthandText = (
+  payment: EligibilityPlanToDisplay,
+  intl: IntlShape,
+): string => {
   const {
     deferred_days: deferredDays,
     deferred_months: deferredMonths,
@@ -285,7 +288,7 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
   )
 }
 
-export const getPlanDescription = (plan: EligibilityPlan, intl: IntlShape) => {
+export const getPlanDescription = (plan: EligibilityPlanToDisplay, intl: IntlShape) => {
   if (isP1X(plan)) {
     return intl.formatMessage({
       id: 'payment-plan-strings.pay.now.button',

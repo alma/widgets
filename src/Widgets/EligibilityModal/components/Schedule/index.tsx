@@ -3,13 +3,16 @@ import React, { FC } from 'react'
 import cx from 'classnames'
 import { FormattedMessage } from 'react-intl'
 
-import { EligibilityPlan } from '@/types'
+import { EligibilityPlanToDisplay } from '@/types'
 import Installment from 'components/Installments/Installment'
 import TotalBlock from 'components/Installments/TotalBlock'
 import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
 import s from 'Widgets/EligibilityModal/components/Schedule/Schedule.module.css'
 
-const Schedule: FC<{ currentPlan: EligibilityPlan; id?: string }> = ({ currentPlan, id }) => (
+const Schedule: FC<{ currentPlan: EligibilityPlanToDisplay; id?: string }> = ({
+  currentPlan,
+  id,
+}) => (
   <div
     id={id}
     className={s.scheduleContainer}
