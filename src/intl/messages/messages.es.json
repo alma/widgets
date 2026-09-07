@@ -55,5 +55,18 @@
   "payment-plan-strings.pay.now.button": "Pagar ahora",
   "skip-links.payment-info": "Ir a la información de pago",
   "skip-links.payment-plans": "Ir a las opciones de pago",
-  "skip-links.payment-schedule": "Ir al calendario de pagos"
+  "skip-links.payment-schedule": "Ir al calendario de pagos",
+  "warning-message.be": "Ojo, pedir dinero prestado también cuesta dinero.",
+  "warning-message.de.with-fees": "¡Atención! Solicitar un crédito tiene un coste.",
+  "warning-message.de.without-fees": "Un crédito es una obligación y hay que devolverlo. Comprueba el coste del crédito antes de comprometerte.",
+  "warning-message.es": "Atención, un crédito es vinculante y debe ser devuelto. Comprueba el coste del préstamo y tu capacidad de reembolso antes de comprometerte.",
+  "warning-message.fr": "¡Atención! Un crédito cuesta dinero y hay que devolverlo.",
+  "warning-message.gb": "¡Atención! Pedir dinero prestado cuesta dinero.",
+  "warning-message.it.with-fees": "Atención: pedir dinero prestado conlleva gastos.",
+  "warning-message.it.without-fees": "Importante: un préstamo es un compromiso y hay que devolverlo. Comprueba el coste del préstamo antes de comprometerte.",
+  "warning-message.lu": "¡Atención! Pedir dinero prestado cuesta dinero.",
+  "warning-message.nl.with-fees": "Ojo, pedir dinero prestado también cuesta dinero.",
+  "warning-message.nl.without-fees": "Atención: un préstamo conlleva obligaciones y debe reembolsarse. Comprueba el coste del préstamo y tu capacidad de reembolso antes de firmar un contrato.",
+  "warning-message.pt.with-fees": "¡Atención! Pedir dinero prestado tiene un coste.",
+  "warning-message.pt.without-fees": "¡Atención! Un crédito es un compromiso y debe reembolsarse. Comprueba el coste del crédito y tu capacidad de reembolso antes de comprometerte."
 }

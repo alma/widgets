@@ -55,5 +55,18 @@
   "payment-plan-strings.pay.now.button": "Pagar agora",
   "skip-links.payment-info": "Ir para as informações de pagamento",
   "skip-links.payment-plans": "Ir para as opções de pagamento",
-  "skip-links.payment-schedule": "Ir para o calendário de pagamentos"
+  "skip-links.payment-schedule": "Ir para o calendário de pagamentos",
+  "warning-message.be": "Atenção: pedir dinheiro emprestado também custa dinheiro.",
+  "warning-message.de.with-fees": "Atenção! Contratar um crédito tem custos.",
+  "warning-message.de.without-fees": "Um crédito implica compromissos e tem de ser reembolsado. Verifique o custo do crédito antes de se comprometer.",
+  "warning-message.es": "Atenção: um crédito implica compromissos e tem de ser reembolsado. Verifique o custo do empréstimo e a sua capacidade de reembolso antes de se comprometer.",
+  "warning-message.fr": "Atenção! Um crédito tem um custo e tem de ser reembolsado.",
+  "warning-message.gb": "Atenção! Pedir dinheiro emprestado tem custos.",
+  "warning-message.it.with-fees": "Atenção: pedir dinheiro emprestado implica custos.",
+  "warning-message.it.without-fees": "Importante: um empréstimo implica compromissos e tem de ser reembolsado. Verifique o custo do empréstimo antes de se comprometer.",
+  "warning-message.lu": "Atenção! Pedir dinheiro emprestado tem custos.",
+  "warning-message.nl.with-fees": "Atenção: pedir dinheiro emprestado também custa dinheiro.",
+  "warning-message.nl.without-fees": "Atenção: um empréstimo implica obrigações e tem de ser reembolsado. Verifique o custo do empréstimo e a sua capacidade de reembolso antes de celebrar um contrato.",
+  "warning-message.pt.with-fees": "Atenção! Pedir dinheiro emprestado tem custos.",
+  "warning-message.pt.without-fees": "Atenção! Um crédito é um compromisso e deve ser reembolsado. Verifique o custo do crédito e a sua capacidade de reembolso antes de se comprometer."
 }
