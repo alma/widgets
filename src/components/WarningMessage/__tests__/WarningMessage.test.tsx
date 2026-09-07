@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { screen } from '@testing-library/react'
-
 import render from '@/test'
+import { EligibilityPlanToDisplay } from '@/types'
 import WarningMessage from 'components/WarningMessage'
 import {
   mockDeferredMultiInstallmentPlanWithFees,
@@ -22,71 +21,52 @@ const nonDeferredWithoutFees = mockPlansAllEligible.find(
     plan.customer_fee === 0,
 )!
 
-const warningText = () => screen.getByTestId('warning-message').textContent
+// The component renders the sentence and nothing else, so the container's text is exactly what a
+// customer reads.
+const warningFor = (plan: EligibilityPlanToDisplay) =>
+  render(<WarningMessage currentPlan={plan} />).container.textContent
 
 describe('WarningMessage', () => {
   it('should render the with-fees variant of the transaction country', () => {
-    render(
-      <WarningMessage currentPlan={withCountry(mockDeferredMultiInstallmentPlanWithFees, 'IT')} />,
+    expect(warningFor(withCountry(mockDeferredMultiInstallmentPlanWithFees, 'IT'))).toBe(
+      "Attention : emprunter de l'argent entraîne des coûts.",
     )
-
-    expect(warningText()).toBe("Attention : emprunter de l'argent entraîne des coûts.")
   })
 
   it('should render the without-fees variant of the same country', () => {
-    render(
-      <WarningMessage
-        currentPlan={withCountry(mockDeferredMultiInstallmentPlanWithoutFees, 'IT')}
-      />,
-    )
-
-    expect(warningText()).toBe(
+    expect(warningFor(withCountry(mockDeferredMultiInstallmentPlanWithoutFees, 'IT'))).toBe(
       'Important : un prêt est contraignant et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.',
     )
   })
 
   it('should render the variant of a second country', () => {
-    render(
-      <WarningMessage currentPlan={withCountry(mockDeferredMultiInstallmentPlanWithFees, 'DE')} />,
+    expect(warningFor(withCountry(mockDeferredMultiInstallmentPlanWithFees, 'DE'))).toBe(
+      "Attention ! Souscrire un crédit coûte de l'argent.",
     )
-
-    expect(warningText()).toBe("Attention ! Souscrire un crédit coûte de l'argent.")
   })
 
   it('should render the same sentence with and without fees where the mapping says so', () => {
-    const { unmount } = render(
-      <WarningMessage currentPlan={withCountry(mockDeferredMultiInstallmentPlanWithFees, 'FR')} />,
-    )
-    const withFees = warningText()
-    unmount()
+    const withFees = warningFor(withCountry(mockDeferredMultiInstallmentPlanWithFees, 'FR'))
+    const withoutFees = warningFor(withCountry(mockDeferredMultiInstallmentPlanWithoutFees, 'FR'))
 
-    render(
-      <WarningMessage
-        currentPlan={withCountry(mockDeferredMultiInstallmentPlanWithoutFees, 'FR')}
-      />,
-    )
-
-    expect(warningText()).toBe(withFees)
+    expect(withoutFees).toBe(withFees)
     expect(withFees).toBe("Attention ! Un crédit coûte de l'argent et doit être remboursé.")
   })
 
   it('should render the same sentence for a deferred P1X plan as for its non-deferred equivalent', () => {
     // Both plans are booked in Italy and share their fee sharing, so only the deferred status
     // differs — which must not influence the variant.
-    const { unmount } = render(
-      <WarningMessage currentPlan={withCountry(mockDeferredP1XPlan, 'IT')} />,
-    )
-    const deferredP1X = warningText()
-    unmount()
+    const deferredP1X = warningFor(withCountry(mockDeferredP1XPlan, 'IT'))
+    const nonDeferred = warningFor(withCountry(nonDeferredWithoutFees, 'IT'))
 
-    render(<WarningMessage currentPlan={withCountry(nonDeferredWithoutFees, 'IT')} />)
-
-    expect(deferredP1X).toBe(warningText())
+    expect(deferredP1X).toBe(nonDeferred)
   })
 
   it('should render nothing for a country without an approved sentence', () => {
-    render(<WarningMessage currentPlan={withCountry(mockDeferredP1XPlan, 'ZZ')} />)
+    const { container } = render(
+      <WarningMessage currentPlan={withCountry(mockDeferredP1XPlan, 'ZZ')} />,
+    )
 
-    expect(screen.queryByTestId('warning-message')).not.toBeInTheDocument()
+    expect(container).toBeEmptyDOMElement()
   })
 })

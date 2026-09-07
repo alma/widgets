@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import { defineMessages, MessageDescriptor, useIntl } from 'react-intl'
 
 import { EligibilityPlanToDisplay } from '@/types'
-import { hasFeeSharing } from '@/utils/regulatoryFigures'
+import { getCustomerFees } from '@/utils/regulatoryFigures'
 import s from 'components/WarningMessage/WarningMessage.module.css'
 
 /**
@@ -107,9 +107,13 @@ const WarningMessage: FC<Props> = ({ currentPlan }) => {
   // be worse than showing none.
   if (!variants) return null
 
+  // Fees only, deliberately: `customer_total_cost_amount` also carries a credit plan's
+  // interest, so a P10 whose whole customer cost is interest is not fee sharing.
+  const hasFees = getCustomerFees(currentPlan) > 0
+
   return (
-    <p className={s.warning} data-testid="warning-message">
-      {intl.formatMessage(hasFeeSharing(currentPlan) ? variants.withFees : variants.withoutFees)}
+    <p className={s.warning}>
+      {intl.formatMessage(hasFees ? variants.withFees : variants.withoutFees)}
     </p>
   )
 }
