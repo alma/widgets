@@ -55,5 +55,18 @@
   "payment-plan-strings.pay.now.button": "Betaal nu",
   "skip-links.payment-info": "Ga naar betalingsinformatie",
   "skip-links.payment-plans": "Ga naar betalingsopties",
-  "skip-links.payment-schedule": "Ga naar de betalingskalender"
+  "skip-links.payment-schedule": "Ga naar de betalingskalender",
+  "warning-message.be": "Let op, geld lenen kost ook geld.",
+  "warning-message.de.with-fees": "Let op! Het afsluiten van een lening kost geld.",
+  "warning-message.de.without-fees": "Een lening is een verplichting en moet worden terugbetaald. Controleer de kosten van de lening voordat u een verbintenis aangaat.",
+  "warning-message.es": "Let op: een lening is een verplichting en moet worden terugbetaald. Controleer de kosten van de lening en of u deze kunt terugbetalen voordat u een verbintenis aangaat.",
+  "warning-message.fr": "Let op! Een lening kost geld en moet worden terugbetaald.",
+  "warning-message.gb": "Let op! Geld lenen kost geld.",
+  "warning-message.it.with-fees": "Let op: geld lenen brengt kosten met zich mee.",
+  "warning-message.it.without-fees": "Belangrijk: een lening is bindend en moet worden terugbetaald. Controleer de kosten van de lening voordat u zich vastlegt.",
+  "warning-message.lu": "Let op! Geld lenen kost geld.",
+  "warning-message.nl.with-fees": "Let op, geld lenen kost ook geld.",
+  "warning-message.nl.without-fees": "Let op: een lening is bindend en moet worden terugbetaald. Controleer de kosten van de lening en uw terugbetalingscapaciteit voordat u een overeenkomst aangaat.",
+  "warning-message.pt.with-fees": "Let op! Geld lenen brengt kosten met zich mee.",
+  "warning-message.pt.without-fees": "Let op! Een lening is een verplichting en moet worden terugbetaald. Controleer de kosten van de lening en of u deze kunt terugbetalen voordat u zich vastlegt."
 }

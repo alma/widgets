@@ -55,5 +55,18 @@
   "payment-plan-strings.pay.now.button": "Payer maintenant",
   "skip-links.payment-info": "Aller aux informations de paiement",
   "skip-links.payment-plans": "Aller aux options de paiement",
-  "skip-links.payment-schedule": "Aller au calendrier de paiement"
+  "skip-links.payment-schedule": "Aller au calendrier de paiement",
+  "warning-message.be": "Attention, emprunter de l'argent coûte aussi de l'argent.",
+  "warning-message.de.with-fees": "Attention ! Souscrire un crédit coûte de l'argent.",
+  "warning-message.de.without-fees": "Un crédit est contraignant et doit être remboursé. Vérifiez le coût du crédit avant de vous engager.",
+  "warning-message.es": "Attention, un crédit est contraignant et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de vous engager.",
+  "warning-message.fr": "Attention ! Un crédit coûte de l'argent et doit être remboursé.",
+  "warning-message.gb": "Attention ! Emprunter de l'argent coûte de l'argent.",
+  "warning-message.it.with-fees": "Attention : emprunter de l'argent entraîne des coûts.",
+  "warning-message.it.without-fees": "Important : un prêt est contraignant et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.",
+  "warning-message.lu": "Attention ! Emprunter de l'argent coûte de l'argent.",
+  "warning-message.nl.with-fees": "Attention, emprunter de l'argent coûte aussi de l'argent.",
+  "warning-message.nl.without-fees": "Attention : un prêt est contraignant et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de conclure un contrat.",
+  "warning-message.pt.with-fees": "Attention ! Emprunter de l'argent a un coût.",
+  "warning-message.pt.without-fees": "Attention ! Un crédit est un engagement et doit être remboursé. Vérifiez le coût du crédit et votre capacité de remboursement avant de vous engager."
 }
