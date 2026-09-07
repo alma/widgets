@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react'
 import cx from 'classnames'
 import { FormattedMessage, FormattedNumber, useIntl } from 'react-intl'
 
-import { EligibilityPlan } from '@/types'
+import { EligibilityPlanToDisplay } from '@/types'
 import { priceFromCents } from '@/utils'
 import {
   getAnnualPercentageRate,
@@ -16,7 +16,9 @@ import {
 import s from 'components/Installments/TotalBlock/TotalBlock.module.css'
 import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
 
-const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlan }> = ({ currentPlan }) => {
+const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlanToDisplay }> = ({
+  currentPlan,
+}) => {
   const intl = useIntl()
   const total = priceFromCents(getTotalPurchaseAmount(currentPlan))
   const creditCost = priceFromCents(getTotalCreditCost(currentPlan))

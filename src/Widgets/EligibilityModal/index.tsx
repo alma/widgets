@@ -3,7 +3,7 @@ import React, { FunctionComponent, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useMediaQuery } from 'react-responsive'
 
-import { Card, EligibilityPlan, statusResponse } from '@/types'
+import { Card, EligibilityPlanToDisplay, statusResponse } from '@/types'
 import { desktopWidth, isP1X } from '@/utils'
 import { isDeferred } from '@/utils/regulatoryFigures'
 import { LoadingIndicator } from 'components/LoadingIndicator/LoadingIndicator'
@@ -18,7 +18,7 @@ import MobileModal from 'Widgets/EligibilityModal/MobileModal'
 type Props = {
   initialPlanIndex?: number
   onClose: (event: React.MouseEvent | React.KeyboardEvent) => void
-  eligibilityPlans: EligibilityPlan[]
+  eligibilityPlans: EligibilityPlanToDisplay[]
   status: statusResponse
   cards?: Card[]
 }

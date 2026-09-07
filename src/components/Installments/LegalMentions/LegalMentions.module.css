@@ -1,0 +1,10 @@
+.legalMentions {
+  font-size: var(--font-tiny);
+  font-family: 'Venn', sans-serif;
+  font-weight: var(--weight-normal);
+}
+
+.disclaimerLink {
+  color: inherit;
+  text-decoration: none;
+}

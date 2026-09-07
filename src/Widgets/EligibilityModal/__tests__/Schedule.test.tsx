@@ -11,6 +11,8 @@ it('should be displayed', async () => {
       currentPlan={{
         customer_total_cost_amount: 0,
         customer_total_cost_bps: 0,
+        customer_interest: 0,
+        customer_fee: 0,
         deferred_days: 0,
         deferred_months: 0,
         eligible: false,

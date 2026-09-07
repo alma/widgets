@@ -12,7 +12,7 @@ const isPlanEligible = (plan: EligibilityPlan, configPlan?: ConfigPlan) => {
 
 const getPaymentPlanBoundaries = (plan: EligibilityPlan, configPlan?: ConfigPlan) => {
   // When the plan is not eligible, the purchase amount constraints is given from the merchant config
-  const purchaseAmountConstraints = plan.constraints?.purchase_amount
+  const purchaseAmountConstraints = plan.eligible ? undefined : plan.constraints?.purchase_amount
   if (purchaseAmountConstraints && configPlan) {
     return {
       minAmount: Math.max(configPlan.minAmount, purchaseAmountConstraints?.minimum),
