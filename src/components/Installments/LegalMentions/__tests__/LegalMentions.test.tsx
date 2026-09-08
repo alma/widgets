@@ -41,7 +41,7 @@ describe('standard PNX/Credit variant', () => {
 
     const legalMentions = screen.getByTestId('legal-mentions')
     expect(legalMentions).toHaveTextContent(
-      "Crédit de 428,95 € au taux débiteur fixe de 17,2 % sur 9 mois. Permettant, avec un acompte de 47,69 €, de financer un achat de 450,00 €.",
+      'Crédit de 428,95 € au taux débiteur fixe de 17,2 % sur 9 mois. Permettant, avec un acompte de 47,69 €, de financer un achat de 450,00 €.',
     )
     expect(legalMentions).toHaveTextContent(DISCLAIMER)
     expect(legalMentions).not.toHaveTextContent('incluant des frais')

@@ -64,7 +64,49 @@ describe('PaymentPlan has credit', () => {
     await userEvent.hover(screen.getByText('3x'))
     expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
     await userEvent.hover(screen.getByText('10x'))
+    expect(screen.getByText(/47,73 € puis 9 x 47,66 €/)).toBeInTheDocument()
     expect(screen.getByText(/Cliquez pour en savoir plus/)).toBeInTheDocument()
+  })
+
+  const infoLine = () => document.getElementById('payment-info-text') as HTMLElement
+
+  it('shows the breakdown and the know-more line for a credit plan', async () => {
+    await setUpTest()
+
+    await userEvent.hover(screen.getByText('10x'))
+
+    expect(infoLine()).toHaveTextContent('47,73 € puis 9 x 47,66 €')
+    expect(infoLine()).toHaveTextContent('Cliquez pour en savoir plus')
+    expect(infoLine()).toHaveAttribute('role', 'button')
+  })
+
+  it('shows the know-more line for a P2X-P4X plan, which had none before', async () => {
+    await setUpTest()
+
+    await userEvent.hover(screen.getByText('3x'))
+
+    expect(infoLine()).toHaveTextContent('151,35 € puis 2 x 150,00 €')
+    expect(infoLine()).toHaveTextContent('Cliquez pour en savoir plus')
+  })
+
+  it('keeps the deferred wording and adds the know-more line for a deferred P1X plan', async () => {
+    await setUpTest()
+
+    await userEvent.hover(screen.getByText('M+1'))
+
+    expect(infoLine()).toHaveTextContent('450,00 € à payer le 21 novembre 2021')
+    expect(infoLine()).toHaveTextContent('Cliquez pour en savoir plus')
+    expect(infoLine()).toHaveAttribute('role', 'button')
+  })
+
+  it('leaves a non-deferred P1X plan with a single, non-clickable line', async () => {
+    await setUpTest()
+
+    await userEvent.hover(screen.getByText('Payer maintenant'))
+
+    expect(infoLine()).toHaveTextContent('Payer maintenant 450,00 €')
+    expect(infoLine()).not.toHaveTextContent('Cliquez pour en savoir plus')
+    expect(infoLine()).not.toHaveAttribute('role', 'button')
   })
 
   it('stops iterating when an element has been hovered', async () => {
