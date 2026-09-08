@@ -74,15 +74,15 @@ describe('plans provided', () => {
       expect(totalElement).toHaveTextContent('Total')
       expect(totalElement).toHaveTextContent('460,62 €')
     })
-    it('should display credit specific features', async () => {
+    it('should display legal disclosures when required', async () => {
       await userEvent.click(screen.getByText('10x'))
       const totalElement = screen.getByTestId('modal-summary')
       expect(totalElement).toHaveTextContent('Dont coût du crédit')
       expect(totalElement).toHaveTextContent('26,64 € (TAEG 17,2 %)')
-      expect(screen.getByText('Un crédit vous engage et doit être remboursé.')).toBeInTheDocument()
       expect(
-        screen.getByText('Vérifiez vos capacités de remboursement avant de vous engager.'),
+        screen.getByText("Attention ! Un crédit coûte de l'argent et doit être remboursé."),
       ).toBeInTheDocument()
+      expect(screen.getByTestId('legal-mentions')).toBeInTheDocument()
     })
   })
 

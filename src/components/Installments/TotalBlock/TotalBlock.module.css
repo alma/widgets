@@ -28,21 +28,6 @@
   font-size: var(--font-medium);
 }
 
-.creditInfo {
-  margin: 4px 0;
-  font-family: 'Venn', sans-serif;
-  border-radius: 20px;
-  border: 1px solid var(--off-white);
-  padding: 16px;
-  z-index: 2;
-  position: relative;
-  font-size: var(--font-base);
-}
-
-.creditInfoTitle {
-  font-weight: var(--weight-bold);
-}
-
 .fees {
   display: flex;
   font-family: 'Venn', sans-serif;
@@ -55,11 +40,4 @@
 
 .creditCost {
   text-align: right;
-}
-
-.creditInfoLegalText {
-  font-size: var(--font-tiny);
-  font-family: 'Venn', sans-serif;
-  margin-top: 8px;
-  font-weight: var(--weight-normal);
 }
