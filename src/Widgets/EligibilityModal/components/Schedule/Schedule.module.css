@@ -20,6 +20,14 @@
   color: var(--off-black);
 }
 
+.warningContainer {
+  margin: 12px 0;
+}
+
+.legalMentionsContainer {
+  margin-top: 12px;
+}
+
 @media (min-width: 800px) {
   .schedule {
     overflow-y: auto;
