@@ -72,7 +72,7 @@ describe('ModalContainer', () => {
         'Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.',
       )
       expect(element).toHaveTextContent('Total450,00 €')
-      expect(element).toHaveTextContent('Dont frais (TTC)0,00 €')
+      expect(element).toHaveTextContent('Dont coût du crédit (TTC)0,00 €')
       expect(element).toHaveTextContent('21 novembre 2021')
     })
 
@@ -91,7 +91,7 @@ describe('ModalContainer', () => {
         '21 janvier 2022',
         '112,50 €',
       ]
-      const expectedTotal = ['Total', '462,02 €', 'Dont frais (TTC)', '12,02 €']
+      const expectedTotal = ['Total', '462,02 €', 'Dont coût du crédit (TTC)', '12,02 €']
 
       expect(installmentElement).toHaveTextContent(expectedInstallments.join(''))
       expect(totalElement).toHaveTextContent(expectedTotal.join(''))
@@ -149,7 +149,7 @@ describe('ModalContainer', () => {
         '21 décembre 2021',
         '150,00 €',
       ]
-      const expectedTotal = ['Total', '451,35 €', 'Dont frais (TTC)', '1,35 €']
+      const expectedTotal = ['Total', '451,35 €', 'Dont coût du crédit (TTC)', '1,35 €']
 
       expect(installmentElement).toHaveTextContent(expectedInstallments.join(''))
       expect(totalElement).toHaveTextContent(expectedTotal.join(''))

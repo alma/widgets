@@ -4,7 +4,7 @@ import cx from 'classnames'
 import { FormattedMessage, FormattedNumber, useIntl } from 'react-intl'
 
 import { EligibilityPlanToDisplay } from '@/types'
-import { priceFromCents } from '@/utils'
+import { isP1X, priceFromCents } from '@/utils'
 import {
   getAnnualPercentageRate,
   getTotalCreditCost,
@@ -20,7 +20,6 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlanToDisplay }> =
   const total = priceFromCents(getTotalPurchaseAmount(currentPlan))
   const creditCost = priceFromCents(getTotalCreditCost(currentPlan))
   const annualPercentageRate = getAnnualPercentageRate(currentPlan)
-  const isCredit = currentPlan.installments_count > 4
 
   return (
     <div
@@ -32,11 +31,22 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlanToDisplay }> =
         <FormattedNumber value={total || 0} style="currency" currency="EUR" />
       </p>
       <p className={cx(s.fees, STATIC_CUSTOMISATION_CLASSES.scheduleCredit)}>
-        {isCredit ? (
+        {isP1X(currentPlan) ? (
+          <>
+            <FormattedMessage
+              id="installments.total-fees"
+              defaultMessage="Dont frais (TTC)"
+              tagName="span"
+            />
+            <span className={s.creditCost}>
+              <FormattedNumber value={creditCost} style="currency" currency="EUR" />
+            </span>
+          </>
+        ) : (
           <>
             <FormattedMessage
               id="credit-features.total-credit-cost"
-              defaultMessage="Dont coût du crédit"
+              defaultMessage="Dont coût du crédit (TTC)"
             />
             <span className={s.creditCost}>
               <FormattedMessage
@@ -49,21 +59,11 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlanToDisplay }> =
                   }),
                   annualPercentageRate: intl.formatNumber(annualPercentageRate, {
                     style: 'percent',
+                    minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   }),
                 }}
               />
-            </span>
-          </>
-        ) : (
-          <>
-            <FormattedMessage
-              id="installments.total-fees"
-              defaultMessage="Dont frais (TTC)"
-              tagName="span"
-            />
-            <span>
-              <FormattedNumber value={creditCost} style="currency" currency="EUR" />
             </span>
           </>
         )}
