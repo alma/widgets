@@ -213,26 +213,23 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
 
     if (isP1X(payment)) {
       return (
-        <>
-          <p>
-            <FormattedMessage
-              id="payment-plan-strings.pay-now"
-              defaultMessage="Payer maintenant {totalAmount}"
-              values={{
-                totalAmount: (
-                  <FormattedNumber
-                    value={priceFromCents(paymentPlan[0].total_amount)}
-                    style="currency"
-                    currency="EUR"
-                  />
-                ),
-                installmentsCount,
-              }}
-            />
-            {withNoFee(payment)}
-          </p>
-          {knowMoreLine(payment)}
-        </>
+        <p>
+          <FormattedMessage
+            id="payment-plan-strings.pay-now"
+            defaultMessage="Payer maintenant {totalAmount}"
+            values={{
+              totalAmount: (
+                <FormattedNumber
+                  value={priceFromCents(paymentPlan[0].total_amount)}
+                  style="currency"
+                  currency="EUR"
+                />
+              ),
+              installmentsCount,
+            }}
+          />
+          {withNoFee(payment)}
+        </p>
       )
     }
 
