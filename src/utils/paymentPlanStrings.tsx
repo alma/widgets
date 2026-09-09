@@ -175,7 +175,20 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     throw Error(
       `No payment plan provided for payment in ${installmentsCount} installments. Please contact us if you see this error.`,
     )
-  } else if (deferredDaysCount !== 0 && installmentsCount === 1) {
+  }
+
+  if (installmentsCount <= 0) {
+    return (
+      <p>
+        <FormattedMessage
+          id="payment-plan-strings.default-message"
+          defaultMessage="Payez en plusieurs fois avec Alma"
+        />
+      </p>
+    )
+  }
+
+  if (deferredDaysCount !== 0 && installmentsCount === 1) {
     return (
       <>
         <p>
@@ -205,18 +218,41 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
         {knowMoreLine(payment)}
       </>
     )
-  } else if (installmentsCount > 0) {
-    const areInstallmentsOfSameAmount = paymentPlan?.every(
-      (installment, index) =>
-        index === 0 || installment.total_amount === paymentPlan[0].total_amount,
-    )
+  }
 
-    if (isP1X(payment)) {
-      return (
+  if (isP1X(payment)) {
+    return (
+      <p>
+        <FormattedMessage
+          id="payment-plan-strings.pay-now"
+          defaultMessage="Payer maintenant {totalAmount}"
+          values={{
+            totalAmount: (
+              <FormattedNumber
+                value={priceFromCents(paymentPlan[0].total_amount)}
+                style="currency"
+                currency="EUR"
+              />
+            ),
+            installmentsCount,
+          }}
+        />
+        {withNoFee(payment)}
+      </p>
+    )
+  }
+
+  const areInstallmentsOfSameAmount = paymentPlan.every(
+    (installment, index) => index === 0 || installment.total_amount === paymentPlan[0].total_amount,
+  )
+
+  if (areInstallmentsOfSameAmount) {
+    return (
+      <>
         <p>
           <FormattedMessage
-            id="payment-plan-strings.pay-now"
-            defaultMessage="Payer maintenant {totalAmount}"
+            id="payment-plan-strings.multiple-installments-same-amount"
+            defaultMessage="{installmentsCount} x {totalAmount}"
             values={{
               totalAmount: (
                 <FormattedNumber
@@ -230,71 +266,39 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
           />
           {withNoFee(payment)}
         </p>
-      )
-    }
-
-    if (areInstallmentsOfSameAmount) {
-      return (
-        <>
-          <p>
-            <FormattedMessage
-              id="payment-plan-strings.multiple-installments-same-amount"
-              defaultMessage="{installmentsCount} x {totalAmount}"
-              values={{
-                totalAmount: (
-                  <FormattedNumber
-                    value={priceFromCents(paymentPlan[0].total_amount)}
-                    style="currency"
-                    currency="EUR"
-                  />
-                ),
-                installmentsCount,
-              }}
-            />
-            {withNoFee(payment)}
-          </p>
-          {knowMoreLine(payment)}
-        </>
-      )
-    }
-
-    return (
-      <>
-        <p>
-          <FormattedMessage
-            id="payment-plan-strings.multiple-installments"
-            defaultMessage="{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}}}"
-            values={{
-              firstInstallmentAmount: (
-                <FormattedNumber
-                  value={priceFromCents(paymentPlan[0].total_amount)}
-                  style="currency"
-                  currency="EUR"
-                />
-              ),
-              numberOfRemainingInstallments: installmentsCount - 1,
-              othersInstallmentAmount: (
-                <FormattedNumber
-                  value={priceFromCents(paymentPlan[1].total_amount)}
-                  style="currency"
-                  currency="EUR"
-                />
-              ),
-            }}
-          />
-          {withNoFee(payment)}
-        </p>
         {knowMoreLine(payment)}
       </>
     )
   }
+
   return (
-    <p>
-      <FormattedMessage
-        id="payment-plan-strings.default-message"
-        defaultMessage="Payez en plusieurs fois avec Alma"
-      />
-    </p>
+    <>
+      <p>
+        <FormattedMessage
+          id="payment-plan-strings.multiple-installments"
+          defaultMessage="{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}}}"
+          values={{
+            firstInstallmentAmount: (
+              <FormattedNumber
+                value={priceFromCents(paymentPlan[0].total_amount)}
+                style="currency"
+                currency="EUR"
+              />
+            ),
+            numberOfRemainingInstallments: installmentsCount - 1,
+            othersInstallmentAmount: (
+              <FormattedNumber
+                value={priceFromCents(paymentPlan[1].total_amount)}
+                style="currency"
+                currency="EUR"
+              />
+            ),
+          }}
+        />
+        {withNoFee(payment)}
+      </p>
+      {knowMoreLine(payment)}
+    </>
   )
 }
 
@@ -315,19 +319,19 @@ export const getPlanDescription = (plan: EligibilityPlanToDisplay, intl: IntlSha
         deferredTime:
           plan.deferred_months > 0
             ? intl.formatMessage(
-                {
-                  id: 'payment-plan-strings.deferred.months',
-                  defaultMessage: '{months, number} {months, plural, one {mois} other {mois}}',
-                },
-                { months: plan.deferred_months },
-              )
+              {
+                id: 'payment-plan-strings.deferred.months',
+                defaultMessage: '{months, number} {months, plural, one {mois} other {mois}}',
+              },
+              { months: plan.deferred_months },
+            )
             : intl.formatMessage(
-                {
-                  id: 'payment-plan-strings.deferred.days',
-                  defaultMessage: '{days, number} {days, plural, one {jour} other {jours}}',
-                },
-                { days: plan.deferred_days },
-              ),
+              {
+                id: 'payment-plan-strings.deferred.days',
+                defaultMessage: '{days, number} {days, plural, one {jour} other {jours}}',
+              },
+              { days: plan.deferred_days },
+            ),
       },
     )
   }
