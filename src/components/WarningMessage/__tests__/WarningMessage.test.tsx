@@ -6,7 +6,7 @@ import WarningMessage from 'components/WarningMessage'
 import {
   mockDeferredMultiInstallmentPlanWithFees,
   mockDeferredMultiInstallmentPlanWithoutFees,
-  mockDeferredP1XPlan,
+  mockPayLater30DaysEligiblePlan,
   mockPlansAllEligible,
   withCountry,
 } from 'test/fixtures'
@@ -56,7 +56,7 @@ describe('WarningMessage', () => {
   it('should render the same sentence for a deferred P1X plan as for its non-deferred equivalent', () => {
     // Both plans are booked in Italy and share their fee sharing, so only the deferred status
     // differs — which must not influence the variant.
-    const deferredP1X = warningFor(withCountry(mockDeferredP1XPlan, 'IT'))
+    const deferredP1X = warningFor(withCountry(mockPayLater30DaysEligiblePlan, 'IT'))
     const nonDeferred = warningFor(withCountry(nonDeferredWithoutFees, 'IT'))
 
     expect(deferredP1X).toBe(nonDeferred)
@@ -64,7 +64,7 @@ describe('WarningMessage', () => {
 
   it('should render nothing for a country without an approved sentence', () => {
     const { container } = render(
-      <WarningMessage currentPlan={withCountry(mockDeferredP1XPlan, 'ZZ')} />,
+      <WarningMessage currentPlan={withCountry(mockPayLater30DaysEligiblePlan, 'ZZ')} />,
     )
 
     expect(container).toBeEmptyDOMElement()

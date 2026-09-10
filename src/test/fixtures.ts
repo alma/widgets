@@ -38,9 +38,14 @@ export const mockIneligiblePlan = (partials: Partial<IneligiblePlan> = {}): Inel
 
 export const mockP1XEligiblePlan = mockEligiblePlan()
 
-export const mockPayLaterEligiblePlan = mockEligiblePlan({
+export const mockPayLaterOneMonthEligiblePlan = mockEligiblePlan({
   deferred_months: 1,
   payment_plan: [mockPaymentPlan({ due_date: 1641029162 })],
+})
+
+export const mockPayLater30DaysEligiblePlan = mockEligiblePlan({
+  deferred_days: 30,
+  payment_plan: [mockPaymentPlan({ due_date: 1640942762 })],
 })
 
 export const mockP2XEligiblePlan = mockEligiblePlan({
@@ -158,7 +163,7 @@ export const mockP4XIneligiblePlan = mockIneligiblePlan({
 
 export const mockPlansAllEligible: EligibilityPlan[] = [
   mockP1XEligiblePlan,
-  mockPayLaterEligiblePlan,
+  mockPayLaterOneMonthEligiblePlan,
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockP4XEligiblePlanWithFees,
@@ -166,7 +171,7 @@ export const mockPlansAllEligible: EligibilityPlan[] = [
 ]
 
 export const mockButtonPlans: EligibilityPlan[] = [
-  mockPayLaterEligiblePlan,
+  mockPayLaterOneMonthEligiblePlan,
   mockP1XEligiblePlan,
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
@@ -175,17 +180,8 @@ export const mockButtonPlans: EligibilityPlan[] = [
 ]
 
 export const mockEligibilityPaymentPlanWithIneligiblePlan: EligibilityPlan[] = [
-  mockEligiblePlan({
-    deferred_days: 30,
-    payment_plan: [mockPaymentPlan({ due_date: 1654262242 })],
-  }),
-  mockEligiblePlan({
-    installments_count: 2,
-    payment_plan: [
-      mockPaymentPlan({ due_date: 1651670242, purchase_amount: 22500, total_amount: 22500 }),
-      mockPaymentPlan({ due_date: 1654348642, purchase_amount: 22500, total_amount: 22500 }),
-    ],
-  }),
+  mockPayLater30DaysEligiblePlan,
+  mockP2XEligiblePlan,
   mockIneligiblePlan({ installments_count: 4 }),
   mockIneligiblePlan({
     installments_count: 10,
@@ -263,12 +259,6 @@ export const mockDeferredMultiInstallmentPlanWithFees: EligibilityPlan = mockEli
     mockPaymentPlan({ due_date: 1643621162, purchase_amount: 15000, total_amount: 15000 }),
     mockPaymentPlan({ due_date: 1646299562, purchase_amount: 15000, total_amount: 15000 }),
   ],
-})
-
-// Deferred P1X: a single installment paid 30 days later (pay later).
-export const mockDeferredP1XPlan: EligibilityPlan = mockEligiblePlan({
-  deferred_days: 30,
-  payment_plan: [mockPaymentPlan({ due_date: 1640942762 })],
 })
 
 /**

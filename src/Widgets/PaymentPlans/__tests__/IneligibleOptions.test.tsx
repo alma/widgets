@@ -70,7 +70,7 @@ describe('PaymentPlan has ineligible options from configPlans', () => {
   })
 
   it('only iterates over active plans', async () => {
-    expect(screen.getByText('450,00 € à payer le 3 juin 2022 (sans frais)')).toBeInTheDocument()
+    expect(screen.getByText('450,00 € à payer le 31 décembre 2021 (sans frais)')).toBeInTheDocument()
     act(() => {
       jest.advanceTimersByTime(animationDuration)
     })

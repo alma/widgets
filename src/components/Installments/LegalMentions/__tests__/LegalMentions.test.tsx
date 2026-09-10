@@ -5,7 +5,7 @@ import { screen } from '@testing-library/react'
 import render from '@/test'
 import {
   mockDeferredMultiInstallmentPlanWithoutFees,
-  mockDeferredP1XPlan,
+  mockPayLater30DaysEligiblePlan,
   mockPlansAllEligible,
   withCountry,
 } from '@/test/fixtures'
@@ -74,7 +74,7 @@ describe('standard PNX/Credit variant', () => {
 
 describe('P1X Pay Later variant', () => {
   it('renders the without-fee-sharing wording for a deferred single-installment plan with no customer cost', () => {
-    render(<LegalMentions currentPlan={mockDeferredP1XPlan} />)
+    render(<LegalMentions currentPlan={mockPayLater30DaysEligiblePlan} />)
 
     const legalMentions = screen.getByTestId('legal-mentions')
     expect(legalMentions).toHaveTextContent(
@@ -86,7 +86,7 @@ describe('P1X Pay Later variant', () => {
 
   it('renders the with-fee-sharing wording for a deferred single-installment plan with a nonzero customer cost', () => {
     const planWithFees = {
-      ...mockDeferredP1XPlan,
+      ...mockPayLater30DaysEligiblePlan,
       customer_fee: 540,
       customer_total_cost_amount: 540,
       customer_total_cost_bps: 120,
@@ -102,7 +102,7 @@ describe('P1X Pay Later variant', () => {
   })
 
   it('uses month-based deferred duration wording when deferred_months is set', () => {
-    const planDeferredByMonths = { ...mockDeferredP1XPlan, deferred_days: 0, deferred_months: 2 }
+    const planDeferredByMonths = { ...mockPayLater30DaysEligiblePlan, deferred_days: 0, deferred_months: 2 }
 
     render(<LegalMentions currentPlan={planDeferredByMonths} />)
 
@@ -113,7 +113,7 @@ describe('P1X Pay Later variant', () => {
   })
 
   it('falls back to the epoch when there is no payment plan to read a due date from', () => {
-    const planWithoutPaymentPlan = { ...mockDeferredP1XPlan, payment_plan: [] }
+    const planWithoutPaymentPlan = { ...mockPayLater30DaysEligiblePlan, payment_plan: [] }
 
     render(<LegalMentions currentPlan={planWithoutPaymentPlan} />)
 
@@ -125,12 +125,12 @@ describe('P1X Pay Later variant', () => {
 
   it('does not depend on transaction_country', () => {
     const { unmount } = render(
-      <LegalMentions currentPlan={withCountry(mockDeferredP1XPlan, 'FR')} />,
+      <LegalMentions currentPlan={withCountry(mockPayLater30DaysEligiblePlan, 'FR')} />,
     )
     const frText = screen.getByTestId('legal-mentions').textContent
     unmount()
 
-    render(<LegalMentions currentPlan={withCountry(mockDeferredP1XPlan, 'US')} />)
+    render(<LegalMentions currentPlan={withCountry(mockPayLater30DaysEligiblePlan, 'US')} />)
     const usText = screen.getByTestId('legal-mentions').textContent
 
     expect(usText).toBe(frText)
