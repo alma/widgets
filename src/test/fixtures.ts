@@ -106,12 +106,3 @@ export const configPlans: ConfigPlan[] = mockPlansAllEligible.map((plan) => ({
   minAmount: 90_00,
   maxAmount: 3350_00,
 }))
-
-/**
- * Returns a copy of `plan` with its `transaction_country` overridden.
- * The input plan is never mutated, so shared fixtures stay reusable across tests.
- */
-export const withCountry = (plan: EligibilityPlan, countryCode: string): EligibilityPlan => ({
-  ...plan,
-  transaction_country: countryCode,
-})
