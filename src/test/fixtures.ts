@@ -166,115 +166,12 @@ export const mockPlansAllEligible: EligibilityPlan[] = [
 ]
 
 export const mockButtonPlans: EligibilityPlan[] = [
-  mockEligiblePlan({
-    deferred_months: 1,
-    payment_plan: [mockPaymentPlan({ due_date: 1637498000 })],
-  }),
-  mockEligiblePlan({ payment_plan: [mockPaymentPlan({ due_date: 1634819600 })] }),
-  mockEligiblePlan({
-    installments_count: 2,
-    payment_plan: [
-      mockPaymentPlan({ due_date: 1634819600, purchase_amount: 22500, total_amount: 22500 }),
-      mockPaymentPlan({ due_date: 1637498000, purchase_amount: 22500, total_amount: 22500 }),
-    ],
-  }),
-  mockEligiblePlan({
-    customer_total_cost_amount: 135,
-    customer_total_cost_bps: 30,
-    customer_fee: 135,
-    installments_count: 3,
-    payment_plan: [
-      mockPaymentPlan({
-        customer_fee: 135,
-        due_date: 1634819600,
-        purchase_amount: 15000,
-        total_amount: 15135,
-      }),
-      mockPaymentPlan({ due_date: 1637498000, purchase_amount: 15000, total_amount: 15000 }),
-      mockPaymentPlan({ due_date: 1640090000, purchase_amount: 15000, total_amount: 15000 }),
-    ],
-  }),
-  mockEligiblePlan({
-    customer_total_cost_amount: 1202,
-    customer_total_cost_bps: 267,
-    customer_fee: 1202,
-    installments_count: 4,
-    payment_plan: [
-      mockPaymentPlan({
-        customer_fee: 1202,
-        due_date: 1634819600,
-        purchase_amount: 11250,
-        total_amount: 12452,
-      }),
-      mockPaymentPlan({ due_date: 1637498000, purchase_amount: 11250, total_amount: 11250 }),
-      mockPaymentPlan({ due_date: 1640090000, purchase_amount: 11250, total_amount: 11250 }),
-      mockPaymentPlan({ due_date: 1642768400, purchase_amount: 11250, total_amount: 11250 }),
-    ],
-  }),
-  mockEligiblePlan({
-    annual_interest_rate: 1719,
-    customer_total_cost_amount: 2667,
-    customer_total_cost_bps: 593,
-    customer_interest: 1719,
-    installments_count: 10,
-    payment_plan: [
-      mockPaymentPlan({ due_date: 1634819600, purchase_amount: 4773, total_amount: 4773 }),
-      mockPaymentPlan({
-        customer_interest: 492,
-        due_date: 1637498000,
-        purchase_amount: 4274,
-        total_amount: 4766,
-      }),
-      mockPaymentPlan({
-        customer_interest: 472,
-        due_date: 1640090000,
-        purchase_amount: 4294,
-        total_amount: 4766,
-      }),
-      mockPaymentPlan({
-        customer_interest: 429,
-        due_date: 1642768400,
-        purchase_amount: 4337,
-        total_amount: 4766,
-      }),
-      mockPaymentPlan({
-        customer_interest: 371,
-        due_date: 1645446800,
-        purchase_amount: 4395,
-        total_amount: 4766,
-      }),
-      mockPaymentPlan({
-        customer_interest: 281,
-        due_date: 1647866000,
-        purchase_amount: 4485,
-        total_amount: 4766,
-      }),
-      mockPaymentPlan({
-        customer_interest: 250,
-        due_date: 1650544400,
-        purchase_amount: 4516,
-        total_amount: 4766,
-      }),
-      mockPaymentPlan({
-        customer_interest: 183,
-        due_date: 1653136400,
-        purchase_amount: 4583,
-        total_amount: 4766,
-      }),
-      mockPaymentPlan({
-        customer_interest: 127,
-        due_date: 1655814800,
-        purchase_amount: 4639,
-        total_amount: 4766,
-      }),
-      mockPaymentPlan({
-        customer_interest: 62,
-        due_date: 1658406800,
-        purchase_amount: 4704,
-        total_amount: 4766,
-      }),
-    ],
-  }),
+  mockPayLaterEligiblePlan,
+  mockP1XEligiblePlan,
+  mockP2XEligiblePlan,
+  mockP3XEligiblePlanWithFees,
+  mockP4XEligiblePlanWithFees,
+  mockP10XEligiblePlan,
 ]
 
 export const mockEligibilityPaymentPlanWithIneligiblePlan: EligibilityPlan[] = [
