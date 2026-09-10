@@ -88,19 +88,19 @@ const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
     const deferredDuration =
       deferredMonths > 0
         ? formatMessage(
-          {
-            id: 'payment-plan-strings.deferred.months',
-            defaultMessage: '{months, number} {months, plural, one {mois} other {mois}}',
-          },
-          { months: deferredMonths },
-        )
+            {
+              id: 'payment-plan-strings.deferred.months',
+              defaultMessage: '{months, number} {months, plural, one {mois} other {mois}}',
+            },
+            { months: deferredMonths },
+          )
         : formatMessage(
-          {
-            id: 'payment-plan-strings.deferred.days',
-            defaultMessage: '{days, number} {days, plural, one {jour} other {jours}}',
-          },
-          { days: deferredDays },
-        )
+            {
+              id: 'payment-plan-strings.deferred.days',
+              defaultMessage: '{days, number} {days, plural, one {jour} other {jours}}',
+            },
+            { days: deferredDays },
+          )
 
     const totalDue = formatPrice(getTotalPurchaseAmount(currentPlan), {
       minimumFractionDigits: 2,
