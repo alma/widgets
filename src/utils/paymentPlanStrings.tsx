@@ -177,17 +177,6 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     )
   }
 
-  if (installmentsCount <= 0) {
-    return (
-      <p>
-        <FormattedMessage
-          id="payment-plan-strings.default-message"
-          defaultMessage="Payez en plusieurs fois avec Alma"
-        />
-      </p>
-    )
-  }
-
   if (deferredDaysCount !== 0 && installmentsCount === 1) {
     return (
       <>
@@ -319,19 +308,19 @@ export const getPlanDescription = (plan: EligibilityPlanToDisplay, intl: IntlSha
         deferredTime:
           plan.deferred_months > 0
             ? intl.formatMessage(
-              {
-                id: 'payment-plan-strings.deferred.months',
-                defaultMessage: '{months, number} {months, plural, one {mois} other {mois}}',
-              },
-              { months: plan.deferred_months },
-            )
+                {
+                  id: 'payment-plan-strings.deferred.months',
+                  defaultMessage: '{months, number} {months, plural, one {mois} other {mois}}',
+                },
+                { months: plan.deferred_months },
+              )
             : intl.formatMessage(
-              {
-                id: 'payment-plan-strings.deferred.days',
-                defaultMessage: '{days, number} {days, plural, one {jour} other {jours}}',
-              },
-              { days: plan.deferred_days },
-            ),
+                {
+                  id: 'payment-plan-strings.deferred.days',
+                  defaultMessage: '{days, number} {days, plural, one {jour} other {jours}}',
+                },
+                { days: plan.deferred_days },
+              ),
       },
     )
   }
