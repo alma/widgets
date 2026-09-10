@@ -22,12 +22,12 @@ export const mockP4XEligiblePlanWithFees = baseEligiblePlan.withInstallmentsCoun
 export const mockP10XEligiblePlan = baseEligiblePlan.withInstallmentsCount(10).withInterest(1720)
 
 // Deferred (30 days) 3x plan, without customer fees.
-export const mockDeferredMultiInstallmentPlanWithoutFees: EligibilityPlan = baseEligiblePlan
+export const mockDeferredMultiInstallmentPlanWithoutFees = baseEligiblePlan
   .withInstallmentsCount(3)
   .withDeferredDays(30)
 
 // Same plan as above, with customer fees charged on the first installment.
-export const mockDeferredMultiInstallmentPlanWithFees: EligibilityPlan = baseEligiblePlan
+export const mockDeferredMultiInstallmentPlanWithFees = baseEligiblePlan
   .withInstallmentsCount(3)
   .withDeferredDays(30)
   .withFees(135)

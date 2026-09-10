@@ -4,7 +4,7 @@ import { ApiMode } from '@/consts'
 import { statusResponse } from '@/types'
 import useFetchEligibility from 'hooks/useFetchEligibility'
 import { useSessionStorage } from 'hooks/useSessionStorage'
-import { configPlans, mockPlansAllEligible, withCountry } from 'test/fixtures'
+import { configPlans, mockP2XEligiblePlan, mockPlansAllEligible } from 'test/fixtures'
 import { fetchFromApi } from 'utils/fetch'
 import filterEligibility from 'utils/filterEligibility'
 
@@ -151,8 +151,7 @@ describe('useFetchEligibility', () => {
     mockSessionStorage()
     // The API answers with an Italian transaction while the customer addresses are French, so a
     // plan carrying `IT` can only come from the response itself. Which plan it is does not matter.
-    const [anyEligiblePlan] = mockPlansAllEligible
-    const planInItaly = withCountry(anyEligiblePlan, 'IT')
+    const planInItaly = mockP2XEligiblePlan.withCountry('IT')
     ;(fetchFromApi as jest.Mock).mockImplementation(async () => [planInItaly])
 
     const { result } = renderHook(() =>

@@ -5,9 +5,9 @@ import { screen } from '@testing-library/react'
 import render from '@/test'
 import {
   mockDeferredMultiInstallmentPlanWithoutFees,
+  mockP2XEligiblePlan,
   mockPayLater30DaysEligiblePlan,
   mockPlansAllEligible,
-  withCountry,
 } from '@/test/fixtures'
 import LegalMentions from 'components/Installments/LegalMentions'
 
@@ -60,12 +60,12 @@ describe('standard PNX/Credit variant', () => {
 
   it('does not depend on transaction_country', () => {
     const { unmount } = render(
-      <LegalMentions currentPlan={withCountry(mockPlansAllEligible[2], 'FR')} />,
+      <LegalMentions currentPlan={mockP2XEligiblePlan.withCountry('FR')} />,
     )
     const frText = screen.getByTestId('legal-mentions').textContent
     unmount()
 
-    render(<LegalMentions currentPlan={withCountry(mockPlansAllEligible[2], 'US')} />)
+    render(<LegalMentions currentPlan={mockP2XEligiblePlan.withCountry('US')} />)
     const usText = screen.getByTestId('legal-mentions').textContent
 
     expect(usText).toBe(frText)
@@ -85,12 +85,7 @@ describe('P1X Pay Later variant', () => {
   })
 
   it('renders the with-fee-sharing wording for a deferred single-installment plan with a nonzero customer cost', () => {
-    const planWithFees = {
-      ...mockPayLater30DaysEligiblePlan,
-      customer_fee: 540,
-      customer_total_cost_amount: 540,
-      customer_total_cost_bps: 120,
-    }
+    const planWithFees = mockPayLater30DaysEligiblePlan.withFees(540)
 
     render(<LegalMentions currentPlan={planWithFees} />)
 
@@ -125,12 +120,12 @@ describe('P1X Pay Later variant', () => {
 
   it('does not depend on transaction_country', () => {
     const { unmount } = render(
-      <LegalMentions currentPlan={withCountry(mockPayLater30DaysEligiblePlan, 'FR')} />,
+      <LegalMentions currentPlan={mockPayLater30DaysEligiblePlan.withCountry('FR')} />,
     )
     const frText = screen.getByTestId('legal-mentions').textContent
     unmount()
 
-    render(<LegalMentions currentPlan={withCountry(mockPayLater30DaysEligiblePlan, 'US')} />)
+    render(<LegalMentions currentPlan={mockPayLater30DaysEligiblePlan.withCountry('US')} />)
     const usText = screen.getByTestId('legal-mentions').textContent
 
     expect(usText).toBe(frText)
