@@ -56,5 +56,4 @@ const Schedule: FC<{ currentPlan: EligibilityPlanToDisplay; id?: string }> = ({
   </div>
 )
 
-
 export default Schedule
