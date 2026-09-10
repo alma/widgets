@@ -33,7 +33,7 @@ describe('Custom transition delay', () => {
   })
 
   it(`iterates on each plan every ${animationDuration}ms then returns to the beginning`, () => {
-    expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+    expect(screen.getByText(/450,00 € à payer le 1 janvier 2022/)).toBeInTheDocument()
     expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
     act(() => {
       jest.advanceTimersByTime(animationDuration)
@@ -53,7 +53,7 @@ describe('Custom transition delay', () => {
     act(() => {
       jest.advanceTimersByTime(animationDuration)
     })
-    expect(screen.getByText('124,52 € puis 3 x 112,50 €')).toBeInTheDocument()
+    expect(screen.getByText('123,12 € puis 3 x 112,50 €')).toBeInTheDocument()
     act(() => {
       jest.advanceTimersByTime(animationDuration)
     })
@@ -61,7 +61,7 @@ describe('Custom transition delay', () => {
     act(() => {
       jest.advanceTimersByTime(animationDuration)
     })
-    expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+    expect(screen.getByText(/450,00 € à payer le 1 janvier 2022/)).toBeInTheDocument()
     expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
   })
 })

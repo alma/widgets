@@ -59,12 +59,12 @@ describe('PaymentPlan has credit', () => {
   it('displays the message corresponding to the payment plan hovered', async () => {
     await setUpTest()
 
-    expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+    expect(screen.getByText(/450,00 € à payer le 1 janvier 2022/)).toBeInTheDocument()
     expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
     await userEvent.hover(screen.getByText('3x'))
     expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
     await userEvent.hover(screen.getByText('10x'))
-    expect(screen.getByText(/47,73 € puis 9 x 47,66 €/)).toBeInTheDocument()
+    expect(screen.getByText(/48,62 € puis 9 x 48,62 €/)).toBeInTheDocument()
     expect(screen.getByText(/Cliquez pour en savoir plus/)).toBeInTheDocument()
   })
 
@@ -75,7 +75,7 @@ describe('PaymentPlan has credit', () => {
 
     await userEvent.hover(screen.getByText('10x'))
 
-    expect(infoLine()).toHaveTextContent('47,73 € puis 9 x 47,66 €')
+    expect(infoLine()).toHaveTextContent('48,62 € puis 9 x 48,62 €')
     expect(infoLine()).toHaveTextContent('Cliquez pour en savoir plus')
     expect(infoLine()).toHaveAttribute('role', 'button')
   })
@@ -94,7 +94,7 @@ describe('PaymentPlan has credit', () => {
 
     await userEvent.hover(screen.getByText('M+1'))
 
-    expect(infoLine()).toHaveTextContent('450,00 € à payer le 21 novembre 2021')
+    expect(infoLine()).toHaveTextContent('450,00 € à payer le 1 janvier 2022')
     expect(infoLine()).toHaveTextContent('Cliquez pour en savoir plus')
     expect(infoLine()).toHaveAttribute('role', 'button')
   })

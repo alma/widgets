@@ -6,20 +6,10 @@ import WarningMessage from 'components/WarningMessage'
 import {
   mockDeferredMultiInstallmentPlanWithFees,
   mockDeferredMultiInstallmentPlanWithoutFees,
-  mockDeferredP1XPlan,
-  mockPlansAllEligible,
-  withCountry,
+  mockP1XEligiblePlan,
+  mockPayLater30DaysEligiblePlan,
 } from 'test/fixtures'
 
-// Picked by predicate rather than by index so the test does not depend on the fixture ordering.
-// `plan.eligible` first narrows the union to EligiblePlan, which is what carries `customer_fee`.
-const nonDeferredWithoutFees = mockPlansAllEligible.find(
-  (plan) =>
-    plan.eligible &&
-    plan.deferred_days === 0 &&
-    plan.deferred_months === 0 &&
-    plan.customer_fee === 0,
-)!
 
 // The component renders the sentence and nothing else, so the container's text is exactly what a
 // customer reads.
@@ -28,26 +18,26 @@ const warningFor = (plan: EligibilityPlanToDisplay) =>
 
 describe('WarningMessage', () => {
   it('should render the with-fees variant of the transaction country', () => {
-    expect(warningFor(withCountry(mockDeferredMultiInstallmentPlanWithFees, 'IT'))).toBe(
+    expect(warningFor(mockDeferredMultiInstallmentPlanWithFees.withCountry('IT'))).toBe(
       "Attention : emprunter de l'argent entraîne des coûts.",
     )
   })
 
   it('should render the without-fees variant of the same country', () => {
-    expect(warningFor(withCountry(mockDeferredMultiInstallmentPlanWithoutFees, 'IT'))).toBe(
+    expect(warningFor(mockDeferredMultiInstallmentPlanWithoutFees.withCountry('IT'))).toBe(
       'Important : un prêt est contraignant et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.',
     )
   })
 
   it('should render the variant of a second country', () => {
-    expect(warningFor(withCountry(mockDeferredMultiInstallmentPlanWithFees, 'DE'))).toBe(
+    expect(warningFor(mockDeferredMultiInstallmentPlanWithFees.withCountry('DE'))).toBe(
       "Attention ! Souscrire un crédit coûte de l'argent.",
     )
   })
 
   it('should render the same sentence with and without fees where the mapping says so', () => {
-    const withFees = warningFor(withCountry(mockDeferredMultiInstallmentPlanWithFees, 'FR'))
-    const withoutFees = warningFor(withCountry(mockDeferredMultiInstallmentPlanWithoutFees, 'FR'))
+    const withFees = warningFor(mockDeferredMultiInstallmentPlanWithFees.withCountry('FR'))
+    const withoutFees = warningFor(mockDeferredMultiInstallmentPlanWithoutFees.withCountry('FR'))
 
     expect(withoutFees).toBe(withFees)
     expect(withFees).toBe("Attention ! Un crédit coûte de l'argent et doit être remboursé.")
@@ -56,15 +46,15 @@ describe('WarningMessage', () => {
   it('should render the same sentence for a deferred P1X plan as for its non-deferred equivalent', () => {
     // Both plans are booked in Italy and share their fee sharing, so only the deferred status
     // differs — which must not influence the variant.
-    const deferredP1X = warningFor(withCountry(mockDeferredP1XPlan, 'IT'))
-    const nonDeferred = warningFor(withCountry(nonDeferredWithoutFees, 'IT'))
+    const deferredP1X = warningFor(mockPayLater30DaysEligiblePlan.withCountry('IT'))
+    const nonDeferred = warningFor(mockP1XEligiblePlan.withCountry('IT'))
 
     expect(deferredP1X).toBe(nonDeferred)
   })
 
   it('should render nothing for a country without an approved sentence', () => {
     const { container } = render(
-      <WarningMessage currentPlan={withCountry(mockDeferredP1XPlan, 'ZZ')} />,
+      <WarningMessage currentPlan={mockPayLater30DaysEligiblePlan.withCountry('ZZ')} />,
     )
 
     expect(container).toBeEmptyDOMElement()

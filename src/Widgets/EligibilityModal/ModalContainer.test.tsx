@@ -73,7 +73,7 @@ describe('ModalContainer', () => {
       )
       expect(element).toHaveTextContent('Total450,00 €')
       expect(element).toHaveTextContent('Dont coût du crédit (TTC)0,00 €')
-      expect(element).toHaveTextContent('21 novembre 2021')
+      expect(element).toHaveTextContent('1 janvier 2022')
     })
 
     it('should display the schedule for the selected payment plan', async () => {
@@ -82,16 +82,16 @@ describe('ModalContainer', () => {
       const installmentElement = screen.getByTestId('modal-container')
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [
-        '21 octobre 2021',
-        '124,52 €',
-        '21 novembre 2021',
+        'Aujourd\'hui',
+        '123,12 €',
+        '1 janvier 2022',
         '112,50 €',
-        '21 décembre 2021',
+        '1 février 2022',
         '112,50 €',
-        '21 janvier 2022',
+        '1 mars 2022',
         '112,50 €',
       ]
-      const expectedTotal = ['Total', '462,02 €', 'Dont coût du crédit (TTC)', '12,02 €']
+      const expectedTotal = ['Total', '460,62 €', 'Dont coût du crédit (TTC)', '10,62 €']
 
       expect(installmentElement).toHaveTextContent(expectedInstallments.join(''))
       expect(totalElement).toHaveTextContent(expectedTotal.join(''))
@@ -142,11 +142,11 @@ describe('ModalContainer', () => {
       const installmentElement = screen.getByTestId('modal-container')
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [
-        '21 octobre 2021',
+        'Aujourd\'hui',
         '151,35 €',
-        '21 novembre 2021',
+        '1 janvier 2022',
         '150,00 €',
-        '21 décembre 2021',
+        '1 février 2022',
         '150,00 €',
       ]
       const expectedTotal = ['Total', '451,35 €', 'Dont coût du crédit (TTC)', '1,35 €']

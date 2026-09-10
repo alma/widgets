@@ -16,9 +16,9 @@ const checkModalElements = async (): Promise<void> => {
   expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
   const modalContainer = screen.getByTestId('modal-container')
   expect(within(modalContainer).getByText('3x')).toBeInTheDocument()
-  expect(within(modalContainer).getByText('21 octobre 2021')).toBeInTheDocument()
-  expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
-  expect(within(modalContainer).getByText('21 décembre 2021')).toBeInTheDocument()
+  expect(within(modalContainer).getByText('Aujourd\'hui')).toBeInTheDocument()
+  expect(within(modalContainer).getByText('1 janvier 2022')).toBeInTheDocument()
+  expect(within(modalContainer).getByText('1 février 2022')).toBeInTheDocument()
   expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(2)
 }
 
@@ -81,11 +81,11 @@ describe('Modal initializes with the correct plan', () => {
       }),
     )
 
-    expect(screen.getByText(/450,00 € à payer le 21 novembre 2021/)).toBeInTheDocument()
+    expect(screen.getByText(/450,00 € à payer le 1 janvier 2022/)).toBeInTheDocument()
     expect(screen.getByText(/(sans frais)/)).toBeInTheDocument()
     expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
     const modalContainer = screen.getByTestId('modal-container')
-    expect(within(modalContainer).getByText('21 novembre 2021')).toBeInTheDocument()
+    expect(within(modalContainer).getByText('1 janvier 2022')).toBeInTheDocument()
     expect(within(modalContainer).getAllByText('450,00 €')).toHaveLength(2)
   })
   it('should call onModalClose on close', async () => {

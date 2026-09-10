@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 
 import render from '@/test'
 import { statusResponse } from '@/types'
-import { mockPayNowPlan, mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
+import { mockP1XEligiblePlan, mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
 import EligibilityModal from 'Widgets/EligibilityModal'
 
 describe('plans provided', () => {
@@ -79,7 +79,7 @@ describe('plans provided', () => {
       await userEvent.click(screen.getByText('10x'))
       const totalElement = screen.getByTestId('modal-summary')
       expect(totalElement).toHaveTextContent('Dont coût du crédit')
-      expect(totalElement).toHaveTextContent('26,64 € (TAEG 17,20 %)')
+      expect(totalElement).toHaveTextContent('36,23 € (TAEG 17,20 %)')
       expect(
         screen.getByText("Attention ! Un crédit coûte de l'argent et doit être remboursé."),
       ).toBeInTheDocument()
@@ -91,7 +91,7 @@ describe('plans provided', () => {
     const setup = async () => {
       render(
         <EligibilityModal
-          eligibilityPlans={mockPayNowPlan}
+          eligibilityPlans={[mockP1XEligiblePlan]}
           status={statusResponse.SUCCESS}
           onClose={() => jest.fn()}
           // 1st plan is P1X
