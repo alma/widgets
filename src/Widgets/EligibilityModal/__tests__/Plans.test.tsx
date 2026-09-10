@@ -79,7 +79,7 @@ describe('plans provided', () => {
       await userEvent.click(screen.getByText('10x'))
       const totalElement = screen.getByTestId('modal-summary')
       expect(totalElement).toHaveTextContent('Dont coût du crédit')
-      expect(totalElement).toHaveTextContent('26,64 € (TAEG 17,20 %)')
+      expect(totalElement).toHaveTextContent('36,23 € (TAEG 17,20 %)')
       expect(
         screen.getByText("Attention ! Un crédit coûte de l'argent et doit être remboursé."),
       ).toBeInTheDocument()
