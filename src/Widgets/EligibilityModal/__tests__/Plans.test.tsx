@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 
 import render from '@/test'
 import { statusResponse } from '@/types'
-import { mockPayNowPlan, mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
+import { mockP1XEligiblePlan, mockPlansAllEligible, mockPlansWithoutDeferred } from 'test/fixtures'
 import EligibilityModal from 'Widgets/EligibilityModal'
 
 describe('plans provided', () => {
@@ -91,7 +91,7 @@ describe('plans provided', () => {
     const setup = async () => {
       render(
         <EligibilityModal
-          eligibilityPlans={mockPayNowPlan}
+          eligibilityPlans={[mockP1XEligiblePlan]}
           status={statusResponse.SUCCESS}
           onClose={() => jest.fn()}
           // 1st plan is P1X

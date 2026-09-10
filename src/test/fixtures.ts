@@ -48,8 +48,6 @@ export const mockPlansWithoutDeferred: EligibilityPlan[] = [
   mockP10XEligiblePlan,
 ]
 
-export const mockPayNowPlan: EligibilityPlan[] = [mockP1XEligiblePlan]
-
 export const mockButtonPlans: EligibilityPlan[] = [
   mockPayLaterOneMonthEligiblePlan,
   mockP1XEligiblePlan,
