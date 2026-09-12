@@ -89,11 +89,14 @@ describe('utils', () => {
       paymentPlanInfoText({
         customer_total_cost_amount: 10,
         customer_total_cost_bps: 10,
+        customer_interest: 10,
+        customer_fee: 0,
         deferred_days: 10,
         deferred_months: 0,
         eligible: true, // This part is important
         installments_count: 10,
         purchase_amount: 1000,
+        transaction_country: 'FR',
         // Also no payment-plan
       }),
     ).toThrow(

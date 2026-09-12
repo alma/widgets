@@ -1,4 +1,4 @@
-import { EligibilityPlan } from '@/types'
+import { EligibilityPlanToDisplay } from '@/types'
 
 export function priceToCents(price: number): number {
   return Math.round(price * 100)
@@ -16,5 +16,5 @@ export const secondsToMilliseconds = (date: number): number => date * 1000
 
 export const desktopWidth = 800
 
-export const isP1X = (plan: EligibilityPlan): boolean =>
+export const isP1X = (plan: EligibilityPlanToDisplay): boolean =>
   plan?.installments_count === 1 && plan?.deferred_days === 0 && plan?.deferred_months === 0

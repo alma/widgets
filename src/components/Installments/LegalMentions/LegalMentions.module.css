@@ -1,0 +1,15 @@
+.legalMentions {
+  /* Limit impact on p custom css from external css file */
+  border: none;
+  padding: 4px;
+  text-decoration: none;
+  font-size: var(--font-tiny);
+  font-family: 'Venn', sans-serif;
+  font-weight: var(--weight-normal);
+  color: var(--dark-gray);
+}
+
+.disclaimerLink {
+  color: inherit;
+  text-decoration: none;
+}

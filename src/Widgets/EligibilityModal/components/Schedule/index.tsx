@@ -3,13 +3,19 @@ import React, { FC } from 'react'
 import cx from 'classnames'
 import { FormattedMessage } from 'react-intl'
 
-import { EligibilityPlan } from '@/types'
+import { EligibilityPlanToDisplay } from '@/types'
+import { requiresLegalDisclosure } from '@/utils/regulatoryFigures'
 import Installment from 'components/Installments/Installment'
+import LegalMentions from 'components/Installments/LegalMentions'
 import TotalBlock from 'components/Installments/TotalBlock'
+import WarningMessage from 'components/WarningMessage'
 import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
 import s from 'Widgets/EligibilityModal/components/Schedule/Schedule.module.css'
 
-const Schedule: FC<{ currentPlan: EligibilityPlan; id?: string }> = ({ currentPlan, id }) => (
+const Schedule: FC<{ currentPlan: EligibilityPlanToDisplay; id?: string }> = ({
+  currentPlan,
+  id,
+}) => (
   <div
     id={id}
     className={s.scheduleContainer}
@@ -35,7 +41,17 @@ const Schedule: FC<{ currentPlan: EligibilityPlan; id?: string }> = ({ currentPl
           </li>
         ))}
       </ul>
+      {requiresLegalDisclosure(currentPlan) && (
+        <div className={s.warningContainer}>
+          <WarningMessage currentPlan={currentPlan} />
+        </div>
+      )}
       <TotalBlock currentPlan={currentPlan} />
+      {requiresLegalDisclosure(currentPlan) && (
+        <div className={s.legalMentionsContainer}>
+          <LegalMentions currentPlan={currentPlan} />
+        </div>
+      )}
     </div>
   </div>
 )

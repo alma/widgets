@@ -3,13 +3,13 @@ import React, { FC, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import { useIntl } from 'react-intl'
 
-import { EligibilityPlan } from '@/types'
+import { EligibilityPlanToDisplay } from '@/types'
 import { paymentPlanShorthandName, paymentPlanShorthandText } from 'utils/paymentPlanStrings'
 import STATIC_CUSTOMISATION_CLASSES from 'Widgets/EligibilityModal/classNames.const'
 import s from 'Widgets/EligibilityModal/components/EligibilityPlansButtons/EligibilityPlansButtons.module.css'
 
 const EligibilityPlansButtons: FC<{
-  eligibilityPlans: EligibilityPlan[]
+  eligibilityPlans: EligibilityPlanToDisplay[]
   currentPlanIndex: number
   // eslint-disable-next-line no-unused-vars
   setCurrentPlanIndex: (index: number) => void
