@@ -1,12 +1,19 @@
 # Gotchas discovered while building this playground
 
 These are non-obvious pitfalls hit while building and rewriting the DCC2 QA playground. The
-playground itself is never committed (see SKILL.md), and only `playground/main.ts`,
-`playground/mockFetch.ts`, `playground/dom.ts`, and `playground/tsconfig.json` are bundled as real
-assets (`assets/playground/`) rather than rewritten each time, because their content never depends
-on the feature under test. Everything else — including the control panel — is written fresh per
-feature using plain DOM APIs (no framework, no JSX), so these write-ups include the actual minimal
-code for each fix so they're usable on their own without a working copy to lean on.
+playground itself is never committed (see SKILL.md), and `playground/main.ts`,
+`playground/mockFetch.ts`, `playground/dom.ts`, `playground/harnessConfig.ts`,
+`playground/ConfigPanel.ts`, `playground/ConfigPlansEditor.ts`, `playground/planDrafts.ts`,
+`playground/PlanDraftCard.ts`, `playground/ResponseEditor.ts`, `playground/almaLogo.ts`,
+`playground/formatDueDate.ts`, `playground/productPreview.ts`, `playground/playground.css`,
+`playground/tsconfig.json`, and `playground/index.html` are bundled as real assets
+(`assets/playground/`) rather than rewritten
+each time, because their content never depends on the feature under test — `ConfigPanel.ts` is the
+one partial exception,
+copied as a starting point that Step 3 may extend with a field or two. `App.ts` (and, optionally,
+`planSummary.ts`) is written fresh per feature using plain DOM APIs (no framework, no JSX), so
+these write-ups include the actual minimal code for each fix so they're usable on their own
+without a working copy to lean on.
 
 Why no framework: the widget under test is aliased to Preact today, but that's an implementation
 detail of `@alma/widgets` the playground doesn't need to share — its only real coupling is the
@@ -14,21 +21,27 @@ public `Widgets.initialize(...).add(...)` call (gotcha 4), already framework-agn
 `@alma/widgets` has a real, planned migration to native Web Components; a vanilla-DOM panel never
 needs a rewrite when that lands.
 
-1. Install the mock before anything else runs
-2. `sessionStorage` caches eligibility responses for an hour
-3. `playground/index.html` cannot link anything outside the `playground/` directory
-4. Mount through `Widgets.initialize(...).add(...)`, not the component directly
-5. Native drag-and-drop's automatic ghost image can render far more than the dragged element
-6. Gate a draggable wrapper's drag-start to a specific handle
-7. Resolve "which item is this" from a stable id, never a captured list index
-8. Build a node's listeners exactly once; updates may only mutate values
-9. Don't sync `state → input.value` from that input's own handler
-10. A `<details>` element's open/closed state just works — no special handling needed
-11. `npx tsc --noEmit` alone does NOT typecheck `playground/` — it silently skips it
-12. Never delete a `syncList`-managed handle from outside `syncList` itself
-13. `ineligiblePlanBuilder().withConstraints(...)` takes a nested shape
-14. `element.hidden` can be silently overridden by the element's own CSS
-15. `syncList` must skip re-appending a node that's already in the right place
+## Contents
+
+1. [Install the mock before anything else runs](#1-install-the-mock-before-anything-else-runs)
+2. [`sessionStorage` caches eligibility responses for an hour](#2-sessionstorage-caches-eligibility-responses-for-an-hour)
+3. [`playground/index.html` cannot link anything outside the `playground/` directory](#3-playgroundindexhtml-cannot-link-anything-outside-the-playground-directory)
+4. [Mount through `Widgets.initialize(...).add(...)`, not the component directly](#4-mount-through-widgetsinitializeadd-not-the-component-directly)
+5. [Native drag-and-drop's automatic ghost image can render far more than the dragged element](#5-native-drag-and-drops-automatic-ghost-image-can-render-far-more-than-the-dragged-element)
+6. [Gate a draggable wrapper's drag-start to a specific handle](#6-gate-a-draggable-wrappers-drag-start-to-a-specific-handle)
+7. [Resolve "which item is this" from a stable id, never a captured list index](#7-resolve-which-item-is-this-from-a-stable-id-never-a-captured-list-index)
+8. [Build a node's listeners exactly once; updates may only mutate values](#8-build-a-nodes-listeners-exactly-once-updates-may-only-mutate-values)
+9. [Don't sync `state → input.value` from that input's own handler](#9-dont-sync-state--inputvalue-from-that-inputs-own-handler)
+10. [A `<details>` element's open/closed state just works — no special handling needed](#10-a-details-elements-openclosed-state-just-works--no-special-handling-needed)
+11. [`npx tsc --noEmit` alone does NOT typecheck `playground/` — it silently skips it](#11-npx-tsc---noemit-alone-does-not-typecheck-playground--it-silently-skips-it)
+12. [Never delete a `syncList`-managed handle from outside `syncList` itself](#12-never-delete-a-synclist-managed-handle-from-outside-synclist-itself)
+13. [`ineligiblePlanBuilder().withConstraints(...)` takes a nested shape](#13-ineligibleplanbuilderwithconstraints-takes-a-nested-shape)
+14. [`element.hidden` can be silently overridden by the element's own CSS](#14-elementhidden-can-be-silently-overridden-by-the-elements-own-css)
+15. [`syncList` must skip re-appending a node that's already in the right place](#15-synclist-must-skip-re-appending-a-node-thats-already-in-the-right-place)
+16. [`Widgets.add`'s `plans` option: `undefined` and `[]` are different states, not interchangeable](#16-widgetsadds-plans-option-undefined-and--are-different-states-not-interchangeable)
+17. [`purchase_amount` lives at the harness level (unit price × quantity), never on a `PlanDraft`](#17-purchase_amount-lives-at-the-harness-level-unit-price--quantity-never-on-a-plandraft)
+18. [`isDuplicateInstallments`/`isValidDraft` need the whole drafts array, not just the one draft](#18-isduplicateinstallmentsisvaliddraft-need-the-whole-drafts-array-not-just-the-one-draft)
+19. [The due-dates chip row must reuse `draftToEligibilityPlan`, never recompute dates independently](#19-the-due-dates-chip-row-must-reuse-drafttoeligibilityplan-never-recompute-dates-independently)
 
 ## 1. Install the mock before anything else runs
 
@@ -81,7 +94,7 @@ Use the same public entry point a real merchant's script does:
 
 ```ts
 const widgets = Widgets.initialize(merchantId, apiMode) // once, up front — neither arg changes at runtime; apiMode is Widgets.initialize's second (`mode: ApiMode`) parameter, named `domain` only inside ApiData
-widgets.add(Widgets.PaymentPlans, { container: '#qa-widget-container', purchaseAmount, locale })
+widgets.add(Widgets.PaymentPlans, { container: '#pg-widget-container', purchaseAmount, locale })
 ```
 
 This exercises `widgets_controller.tsx` too (which wraps the widget in its own `<IntlProvider>`,
@@ -112,7 +125,7 @@ let dragState: { index: number | null; allowed: boolean; dragImage: HTMLElement 
 
 wrapper.addEventListener('dragstart', (event) => {
   if (!dragState.allowed) { event.preventDefault(); return }
-  const card = wrapper.querySelector('.qa-plan-card')
+  const card = wrapper.querySelector('.pg-plan-card')
   if (card instanceof HTMLElement) {
     const { width, height } = card.getBoundingClientRect()
     const clone = card.cloneNode(true) as HTMLElement
@@ -136,7 +149,7 @@ handle element; its `mousedown` listener flips a flag; the wrapper's `dragstart`
 that flag and calls `event.preventDefault()` if it isn't set:
 
 ```ts
-const handle = el('span', { className: 'qa-plan-drag-handle', 'aria-label': 'Drag to reorder' }, ['⠿'])
+const handle = el('span', { className: 'pg-plan-drag-handle', 'aria-label': 'Drag to reorder' }, ['⠿'])
 handle.addEventListener('mousedown', () => { dragState.allowed = true })
 ```
 
@@ -188,7 +201,7 @@ not-yet-filled-in draft starts open), and native `<summary>` click-toggling and 
 node-reuse (`dom.ts`) do the rest for free:
 
 ```ts
-const details = el('details', { className: 'qa-plan-card-details', open: draft.installmentsCount === 0 })
+const details = el('details', { className: 'pg-plan-card-details', open: draft.installmentsCount === 0 })
 ```
 
 ## 11. `npx tsc --noEmit` alone does NOT typecheck `playground/` — it silently skips it
@@ -226,6 +239,15 @@ scoped tsconfig from gotcha 11 caught it. Always write:
 .withConstraints({ purchase_amount: { minimum: draft.minAmount, maximum: draft.maxAmount } })
 ```
 
+Not hypothetical: the flat (wrong) shape — `.withConstraints({ minimum, maximum })`, no
+`purchase_amount` wrapper — has been found actually shipped, uncaught, in code that calls this same
+builder. It compiled and ran without any visible error for the exact reason this gotcha exists: the
+code that had it wasn't covered by any `tsc -p` run, only by a dev server that transpiles but
+doesn't typecheck. If `withConstraints(...)` output ever looks wrong in the running playground (an
+ineligible plan's constraints missing or empty), this is the first thing to check, gotcha 11's
+scoped tsconfig notwithstanding — copying example code that itself has this bug is an easy way to
+reintroduce it here.
+
 ## 14. `element.hidden` can be silently overridden by the element's own CSS
 
 The `hidden` DOM property works by setting the `hidden` attribute, which the browser's
@@ -234,15 +256,15 @@ rule that also sets `display` on the same element — not because of a specifici
 source order, but because CSS resolves **origin before specificity**: at normal priority, an
 author-origin declaration always beats a user-agent-origin declaration, regardless of which
 selector is more specific or which rule is written later. So if the element's own class also sets
-`display` (e.g. `.qa-pill { display: inline-flex }`), that rule wins outright — `.qa-pill` would
+`display` (e.g. `.pg-pill { display: inline-flex }`), that rule wins outright — `.pg-pill` would
 still win even if its selector had *lower* specificity than `[hidden]`. This produced a real bug
 here: an error pill's `.hidden` toggle compiled fine, looked correct in the code, and simply
-never hid anything, because `.qa-pill` already set `display: inline-flex`.
+never hid anything, because `.pg-pill` already set `display: inline-flex`.
 
 Before reaching for `element.hidden`, check whether the element's own class sets `display` at
 all. If it does, toggle `style.display` directly instead:
 ```ts
-// Not `.hidden` — `.qa-pill` sets its own `display`, and an author-origin rule always beats the
+// Not `.hidden` — `.pg-pill` sets its own `display`, and an author-origin rule always beats the
 // `[hidden]` user-agent rule regardless of specificity, so `.hidden` can't override it here.
 errorPill.style.display = shouldShow ? '' : 'none'
 ```
@@ -280,3 +302,76 @@ focus survives. The bundled `dom.ts` already has this fix; if `syncList` is ever
 instead of copied from `assets/playground/`, this is the detail that's easy to miss because the
 naive version *looks* correct and only breaks on the specific case of "re-render while a
 descendant has focus."
+
+## 16. `Widgets.add`'s `plans` option: `undefined` and `[]` are different states, not interchangeable
+
+`PaymentPlanWidgetOptions.plans` being unset entirely vs. set to an empty array reach
+`filterEligibility.ts` as two different states, not one: no merchant plan config at all is the
+production default that hides every P1X plan, while an explicit empty array is a merchant with
+zero configured plans — a state `ConfigPlansEditor.ts`'s own "no rows" empty-state message already
+distinguishes at the UI level. Passing `[]` in `App.ts` whenever
+`state.configPlans` happens to be empty collapses that distinction back down to one state and
+silently breaks the exact scenario `ConfigPlansEditor.ts` exists to demonstrate:
+
+```ts
+widgets.add(Widgets.PaymentPlans, {
+  container: '#pg-widget-mount',
+  purchaseAmount: config.purchaseAmount,
+  plans: state.configPlans.length > 0 ? toPlanOptions(state.configPlans) : undefined,
+  locale: config.locale,
+})
+```
+
+## 17. `purchase_amount` lives at the harness level (unit price × quantity), never on a `PlanDraft`
+
+`PlanDraft` (bundled `planDrafts.ts`) has no `purchaseAmount`/`purchase_amount` field at all —
+every mocked plan shares one purchase amount, computed once in `App.ts` as
+`config.purchaseAmount * quantity` (unit price from `ConfigPanel.ts`, quantity from the product
+mockup's `<select>`), the same way a real merchant's product page only has one price × quantity,
+not one per plan. `draftToEligibilityPlan(draft, purchaseAmount)`, `buildPlanDraftCard({ ...,
+purchaseAmount, ... })`, and `buildResponseEditor(state, getPurchaseAmount, ...)` all take it as an
+explicit parameter (the response editor as a *getter function*, not a snapshot value, since
+`getPurchaseAmount()` is called again on every render — quantity can change independently of any
+draft edit). The temptation, coming from an earlier version of this playground that did give each
+draft its own `purchaseAmount` field, is to add it back per-draft "for convenience" — don't; it
+reintroduces a way for two mocked plans to silently disagree about what purchase amount the widget
+was actually fetching against.
+
+Because `ResponseEditor.ts`'s own display (summaries, due-dates chips) and `productPreview.ts`'s
+price heading both depend on this *external* value, `buildResponseEditor(...)` and
+`buildProductPreview(...)` each return `{ element, refresh(...) }` instead of a bare `HTMLElement`
+— call both `.refresh(...)` calls from `App.ts`'s `refreshWidgetPreview()` (or wherever quantity
+changes) so they stay in sync even when no draft itself was edited:
+```ts
+const responseEditor = buildResponseEditor(responseState, () => config.purchaseAmount * quantity, refreshWidgetPreview, PRESETS, summarize)
+const productPreview = buildProductPreview({ productName: '...', unitPriceCents: config.purchaseAmount, quantity, onQuantityChange: (next) => { quantity = next; refreshWidgetPreview() }, widgetMount })
+// ...
+function refreshWidgetPreview(): void {
+  // ...set up the mock, call widgets.add(...)...
+  responseEditor.refresh()
+  productPreview.refresh(config.purchaseAmount, quantity)
+}
+```
+
+## 18. `isDuplicateInstallments`/`isValidDraft` need the whole drafts array, not just the one draft
+
+Both are two-argument functions — `isDuplicateInstallments(drafts, draft)` and
+`isValidDraft(drafts, draft)` — because installments count doubles as this playground's per-draft
+identity for merchant-plan-config matching (mirrors `ConfigPlansEditor.ts`'s rows, also keyed by
+installments count): whether one draft is a duplicate can only be answered by looking at its
+siblings, not at the draft in isolation. `ResponseEditor.ts` already threads the full `state.drafts`
+array through on every call (`isDuplicateInstallments(state.drafts, draft)` when building/updating
+each card, `state.drafts.filter((draft) => isValidDraft(state.drafts, draft))` for the JSON
+preview) — if `App.ts` or a rewritten `planSummary.ts` ever needs either function directly, pass
+the array, not just the one draft, or the check silently always returns `false`.
+
+## 19. The due-dates chip row must reuse `draftToEligibilityPlan`, never recompute dates independently
+
+`PlanDraftCard.ts`'s due-dates chip row (eligible drafts only) gets its dates by calling
+`draftToEligibilityPlan(draft, purchaseAmount).payment_plan.map((installment) => installment.due_date)`
+— the *exact same* function the mocked response itself is built from, not an independent
+recalculation of installment schedules from `deferredDays`/`deferredMonths`. Reimplementing that
+math separately (even correctly, once) creates two sources of truth that can drift the next time
+`src/test/planBuilders.ts`'s own schedule logic changes — the whole point of this playground is
+that what's shown here is guaranteed to match what the widget will actually fetch, not just an
+approximation of it.

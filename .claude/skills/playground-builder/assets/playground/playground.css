@@ -1,0 +1,766 @@
+/* Generic playground chrome: every selector here is a pg-* class (sections, fields, buttons,
+   cards, pills, tables, JSON preview) with no feature-specific values, so it applies unchanged to
+   any feature's playground — copied verbatim like dom.ts/mockFetch.ts, never rewritten. Uses the
+   widget's own CSS custom properties where they exist (var(--alma-orange, ...) etc.) with
+   hardcoded fallbacks, so it stays visually consistent with the widget under test even standalone.
+   See SKILL.md's class vocabulary table for what Step 3's written-fresh files (App.ts,
+   PlanDraftCard.ts, ResponseEditor.ts, ...) should build their markup out of, rather than
+   inventing new class names per feature. */
+
+:root {
+  --pg-space-1: 4px;
+  --pg-space-2: 8px;
+  --pg-space-3: 12px;
+  --pg-space-4: 16px;
+  --pg-space-5: 24px;
+  --pg-space-6: 32px;
+  --pg-radius-sm: 6px;
+  --pg-radius-md: 10px;
+  --pg-radius-lg: 14px;
+  --pg-border: var(--light-gray, #dcdcdc);
+  --pg-text: var(--off-black, #1a1a1a);
+  --pg-text-muted: var(--dark-gray, #4a4a4a);
+  --pg-text-subtle: #8a8f98;
+  --pg-accent: var(--alma-orange, #fa5022);
+  --pg-accent-soft: var(--soft-orange, #ffeadb);
+  --pg-bg-card: #fff;
+  --pg-bg-subtle: var(--off-white, #f9f9f9);
+  --pg-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --pg-shadow-md: 0 2px 8px rgba(16, 24, 40, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: #eef1f5;
+}
+
+/* ---------- Page layout ---------- */
+
+.pg-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--pg-space-5);
+  width: 100%;
+  padding: var(--pg-space-5) var(--pg-space-4) var(--pg-space-6);
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  color: var(--pg-text);
+}
+
+.pg-app-header {
+  margin-bottom: var(--pg-space-5);
+}
+
+.pg-app-header h1 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.pg-app-header p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--pg-text-muted);
+  max-width: 60ch;
+}
+
+.pg-app-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.pg-app-header-title h1 {
+  margin: 0;
+}
+
+.pg-panel {
+  flex: 0 0 460px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.pg-preview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pg-space-3);
+  min-height: calc(100vh - var(--pg-space-5) - var(--pg-space-6));
+}
+
+.pg-preview-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pg-text-subtle);
+}
+
+.pg-preview-label::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4bb543;
+  box-shadow: 0 0 0 3px rgba(75, 181, 67, 0.18);
+}
+
+.pg-preview-surface {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Product card in the preview pane — a small stand-in "merchant page" (name, quantity, price)
+   around the widget, matching examples/basic.html's product block. */
+
+.product {
+  width: 400px;
+  max-width: 100%;
+  padding: var(--pg-space-5);
+  background: var(--pg-bg-card);
+  border-radius: var(--pg-radius-lg);
+  box-shadow: var(--pg-shadow-md);
+  text-align: center;
+}
+
+.product h1 {
+  margin: 0 0 var(--pg-space-3);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--pg-text);
+}
+
+.product select {
+  padding: 5px 8px;
+  font-size: 13px;
+  color: var(--pg-text);
+  background: #fff;
+  border: 1px solid var(--pg-border);
+  border-radius: var(--pg-radius-sm);
+  margin-bottom: var(--pg-space-3);
+}
+
+.product h3 {
+  margin: 0 0 var(--pg-space-4);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--pg-text-muted);
+}
+
+.pg-widget-slot {
+  margin-bottom: var(--pg-space-4);
+  text-align: left;
+}
+
+.add-to-cart button {
+  width: 100%;
+  padding: 11px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--pg-text);
+  border: none;
+  border-radius: var(--pg-radius-sm);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.add-to-cart button:hover {
+  background: #333;
+}
+
+/* ---------- Accordion sections ---------- */
+
+.pg-section {
+  border: 1px solid var(--pg-border);
+  border-radius: var(--pg-radius-md);
+  background: var(--pg-bg-card);
+  box-shadow: var(--pg-shadow-sm);
+  margin-bottom: var(--pg-space-4);
+  overflow: hidden;
+}
+
+.pg-section > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pg-space-2);
+  padding: 13px var(--pg-space-4);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--pg-text);
+  transition: background-color 0.15s ease;
+}
+
+.pg-section > summary::-webkit-details-marker {
+  display: none;
+}
+
+.pg-section > summary:hover {
+  background: var(--pg-bg-subtle);
+}
+
+.pg-section > summary:focus-visible {
+  outline: 2px solid var(--pg-accent);
+  outline-offset: -2px;
+}
+
+.pg-section-chevron {
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--pg-text-subtle);
+  border-bottom: 2px solid var(--pg-text-subtle);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.pg-section[open] > summary .pg-section-chevron,
+.pg-plan-card-details[open] > summary .pg-section-chevron {
+  transform: rotate(-135deg);
+}
+
+.pg-section-body {
+  padding: var(--pg-space-3) var(--pg-space-4) var(--pg-space-4);
+  border-top: 1px solid var(--pg-border);
+}
+
+.pg-subheading {
+  margin: var(--pg-space-4) 0 var(--pg-space-2);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--pg-text-subtle);
+}
+
+/* ---------- Callouts (explanatory text) ---------- */
+
+.pg-callout {
+  margin: var(--pg-space-2) 0 var(--pg-space-3);
+  padding: 8px 10px;
+  background: var(--pg-bg-subtle);
+  border-left: 3px solid var(--pg-border);
+  border-radius: 0 var(--pg-radius-sm) var(--pg-radius-sm) 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--pg-text-muted);
+}
+
+.pg-callout code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.pg-callout strong {
+  color: var(--pg-text);
+}
+
+/* ---------- Form fields ---------- */
+
+.pg-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: var(--pg-space-3);
+}
+
+.pg-field label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--pg-text-subtle);
+}
+
+.pg-field input,
+.pg-field select {
+  padding: 8px 10px;
+  font-size: 14px;
+  color: var(--pg-text);
+  background: #fff;
+  border: 1px solid var(--pg-border);
+  border-radius: var(--pg-radius-sm);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.pg-field input:focus,
+.pg-field select:focus {
+  outline: none;
+  border-color: var(--pg-accent);
+  box-shadow: 0 0 0 3px var(--pg-accent-soft);
+}
+
+/* Toggle rows: a checkbox paired with an explanation, styled as one actionable unit */
+
+.pg-toggle-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  margin: var(--pg-space-2) 0 var(--pg-space-3);
+  background: var(--pg-bg-subtle);
+  border: 1px solid var(--pg-border);
+  border-radius: var(--pg-radius-sm);
+}
+
+.pg-toggle-row input[type='checkbox'] {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: var(--pg-accent);
+  cursor: pointer;
+}
+
+.pg-toggle-row label {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--pg-text-muted);
+  cursor: pointer;
+}
+
+.pg-toggle-row code {
+  background: var(--pg-accent-soft);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 11.5px;
+}
+
+/* ---------- Buttons ---------- */
+
+.pg-button-row {
+  display: flex;
+  gap: var(--pg-space-2);
+  flex-wrap: wrap;
+  margin: var(--pg-space-2) 0;
+}
+
+.pg-inline-error {
+  margin: 0 0 var(--pg-space-3);
+  font-size: 12px;
+  color: var(--alma-red, #cf2020);
+}
+
+.pg-button {
+  cursor: pointer;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: var(--pg-radius-sm);
+  border: 1px solid var(--pg-accent);
+  background: #fff;
+  color: var(--pg-accent);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+  line-height: 1.3;
+}
+
+.pg-button:hover {
+  background: var(--pg-accent-soft);
+}
+
+.pg-button:focus-visible {
+  outline: 2px solid var(--pg-accent);
+  outline-offset: 1px;
+}
+
+.pg-button--primary {
+  background: var(--pg-accent);
+  color: #fff;
+}
+
+.pg-button--primary:hover {
+  background: #e2431a;
+}
+
+.pg-button--ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--pg-text-muted);
+}
+
+.pg-button--ghost:hover {
+  background: var(--pg-bg-subtle);
+  color: var(--pg-text);
+}
+
+.pg-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+/* ---------- Plan card drag-and-drop ---------- */
+
+.pg-plan-drag-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--pg-space-2);
+}
+
+.pg-plan-drag-item .pg-plan-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.pg-plan-drag-item--over .pg-plan-card {
+  border-top: 2px solid var(--pg-accent);
+}
+
+.pg-plan-drag-handle {
+  flex-shrink: 0;
+  padding: var(--pg-space-3) 2px;
+  color: var(--pg-text-subtle);
+  font-size: 14px;
+  line-height: 1;
+  cursor: grab;
+  user-select: none;
+}
+
+.pg-plan-drag-handle:active {
+  cursor: grabbing;
+}
+
+/* ---------- Plan cards ---------- */
+
+.pg-plan-card {
+  position: relative;
+  border: 1px solid var(--pg-border);
+  border-radius: var(--pg-radius-md);
+  padding: var(--pg-space-3) var(--pg-space-4) var(--pg-space-4);
+  margin-bottom: var(--pg-space-3);
+  background: var(--pg-bg-card);
+  box-shadow: var(--pg-shadow-sm);
+  border-left: 3px solid var(--pg-border);
+}
+
+.pg-plan-card--eligible {
+  border-left-color: #4bb543;
+}
+
+.pg-plan-card--ineligible {
+  border-left-color: var(--alma-red, #cf2020);
+}
+
+.pg-plan-card-details > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 22px;
+}
+
+.pg-plan-card-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.pg-plan-card-details[open] > summary {
+  margin-bottom: var(--pg-space-3);
+}
+
+.pg-plan-summary-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--pg-text-muted);
+}
+
+.pg-plan-card-body .pg-switch-label {
+  margin-bottom: var(--pg-space-3);
+}
+
+.pg-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.pg-pill--eligible {
+  background: var(--soft-green, #e2f3e1);
+  color: #2f7d29;
+}
+
+.pg-pill--ineligible {
+  background: var(--soft-red, #ffecec);
+  color: var(--alma-red, #cf2020);
+}
+
+.pg-pill--error {
+  background: var(--alma-red, #cf2020);
+  color: #fff;
+  padding: 3px 7px;
+}
+
+.pg-switch-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--pg-text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.pg-switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.pg-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.pg-switch-track {
+  position: absolute;
+  inset: 0;
+  background: var(--pg-border);
+  border-radius: 999px;
+  transition: background-color 0.15s ease;
+}
+
+.pg-switch-track::before {
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  top: 2px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.15s ease;
+  box-shadow: var(--pg-shadow-sm);
+}
+
+.pg-switch input:checked + .pg-switch-track {
+  background: #4bb543;
+}
+
+.pg-switch input:checked + .pg-switch-track::before {
+  transform: translateX(14px);
+}
+
+.pg-switch input:focus-visible + .pg-switch-track {
+  outline: 2px solid var(--pg-accent);
+  outline-offset: 2px;
+}
+
+.pg-remove {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--pg-text-subtle);
+  font-size: 13px;
+  line-height: 1;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.pg-remove:hover {
+  background: var(--soft-red, #ffecec);
+  color: var(--alma-red, #cf2020);
+}
+
+.pg-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 12px;
+}
+
+.pg-plan-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--pg-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.pg-plan-grid input,
+.pg-plan-grid select {
+  padding: 6px 8px;
+  font-size: 13.5px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--pg-text);
+  background: #fff;
+  border: 1px solid var(--pg-border);
+  border-radius: var(--pg-radius-sm);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.pg-plan-grid input:focus,
+.pg-plan-grid select:focus {
+  outline: none;
+  border-color: var(--pg-accent);
+  box-shadow: 0 0 0 3px var(--pg-accent-soft);
+}
+
+.pg-plan-grid input.pg-field-invalid {
+  border-color: var(--alma-red, #cf2020);
+}
+
+.pg-field-error {
+  margin-top: 2px;
+  font-size: 10.5px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--alma-red, #cf2020);
+}
+
+.pg-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--pg-space-3);
+}
+
+.pg-chip-row-label {
+  flex-basis: 100%;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--pg-text-subtle);
+  margin-bottom: 2px;
+}
+
+.pg-chip {
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--pg-bg-subtle);
+  border: 1px solid var(--pg-border);
+  color: var(--pg-text-muted);
+  white-space: nowrap;
+}
+
+/* ---------- Config plans table ---------- */
+
+.pg-plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--pg-space-3);
+}
+
+.pg-plan-table th {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--pg-text-subtle);
+  text-align: left;
+  padding: 0 6px 6px;
+}
+
+.pg-plan-table td {
+  padding: 2px;
+}
+
+.pg-plan-table input {
+  width: 100%;
+  padding: 5px 6px;
+  font-size: 13px;
+  color: var(--pg-text);
+  background: #fff;
+  border: 1px solid var(--pg-border);
+  border-radius: var(--pg-radius-sm);
+}
+
+.pg-plan-table input:focus {
+  outline: none;
+  border-color: var(--pg-accent);
+  box-shadow: 0 0 0 3px var(--pg-accent-soft);
+}
+
+.pg-remove-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--pg-text-subtle);
+  font-size: 12px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.pg-remove-inline:hover {
+  background: var(--soft-red, #ffecec);
+  color: var(--alma-red, #cf2020);
+}
+
+/* ---------- JSON preview ---------- */
+
+.pg-json-preview {
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 300px;
+  overflow-y: auto;
+  background: var(--pg-text);
+  color: #d4d4d4;
+  padding: var(--pg-space-3);
+  border-radius: var(--pg-radius-sm);
+  margin-top: var(--pg-space-2);
+}

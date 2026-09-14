@@ -16,9 +16,16 @@ export function el<K extends keyof HTMLElementTagNameMap>(
       node.addEventListener(key.slice(2).toLowerCase(), value as EventListener)
     } else if (key === 'className') {
       node.className = value as string
+    } else if (key === 'draggable') {
+      // Unlike true boolean attributes (open, required, disabled, ...), `draggable` is an
+      // enumerated attribute: the browser only reads the literal string "true"/"false", not mere
+      // presence — so it needs an explicit value in both directions, not the presence-only branch
+      // below (which would just omit the attribute for `false` and leave it non-draggable by
+      // default, right by accident rather than by correctly writing `draggable="false"`).
+      node.setAttribute('draggable', value ? 'true' : 'false')
     } else if (value !== undefined && value !== false && value !== null) {
-      // Boolean attributes (open, required, disabled, draggable, ...) just need to be present;
-      // setAttribute with a truthy string does that correctly for both boolean and string props.
+      // Boolean attributes (open, required, disabled, ...) just need to be present; setAttribute
+      // with a truthy string does that correctly for both boolean and string props.
       node.setAttribute(key, String(value))
     }
   }
