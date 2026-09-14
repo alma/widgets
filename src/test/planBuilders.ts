@@ -1,5 +1,8 @@
-import { EligiblePlan, IneligiblePlan, PaymentPlan } from '@/types'
+/* Identifiers mirror the snake_case API field names being built */
+/* eslint-disable camelcase */
 import { addDays, addMonths, fromUnixTime, getUnixTime } from 'date-fns'
+
+import { EligiblePlan, IneligiblePlan, PaymentPlan } from '@/types'
 
 const DEFAULT_DUE_DATE = 1638350762
 const BPS_SCALE = 10000
@@ -184,12 +187,14 @@ const attachBuilderMethods = <P extends object, M extends object>(
   methods: M,
 ): Readonly<P & M> => {
   const builder = { ...plan } as P & M
-  for (const key of Object.keys(methods) as (keyof M)[]) {
+  ;(Object.keys(methods) as (keyof M)[]).forEach((key) => {
     Object.defineProperty(builder, key, { value: methods[key], enumerable: false })
-  }
+  })
   return Object.freeze(builder)
 }
 
+/* Circular by design: these methods return EligiblePlanBuilder, which is declared from this interface. */
+/* eslint-disable no-use-before-define */
 interface EligiblePlanBuilderMethods {
   withPurchaseAmount(amount: number): EligiblePlanBuilder
   withInstallmentsCount(count: number): EligiblePlanBuilder
@@ -199,6 +204,7 @@ interface EligiblePlanBuilderMethods {
   withCountry(countryCode: string): EligiblePlanBuilder
   withInterest(annualInterestRate: number): EligiblePlanBuilder
 }
+/* eslint-enable no-use-before-define */
 
 export type EligiblePlanBuilder = EligiblePlan & EligiblePlanBuilderMethods
 
@@ -232,6 +238,8 @@ const EMPTY_ELIGIBLE_PLAN: EligiblePlan = {
 
 export const eligiblePlanBuilder = (): EligiblePlanBuilder => buildEligiblePlan(EMPTY_ELIGIBLE_PLAN)
 
+/* Circular by design: these methods return IneligiblePlanBuilder, which is declared from this interface. */
+/* eslint-disable no-use-before-define */
 interface IneligiblePlanBuilderMethods {
   withPurchaseAmount(amount: number): IneligiblePlanBuilder
   withInstallmentsCount(count: number): IneligiblePlanBuilder
@@ -239,6 +247,8 @@ interface IneligiblePlanBuilderMethods {
   withConstraints(constraints: IneligiblePlan['constraints']): IneligiblePlanBuilder
   withReasons(reasons: IneligiblePlan['reasons']): IneligiblePlanBuilder
 }
+
+/* eslint-enable no-use-before-define */
 
 export type IneligiblePlanBuilder = IneligiblePlan & IneligiblePlanBuilderMethods
 

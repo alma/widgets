@@ -16,7 +16,7 @@ const checkModalElements = async (): Promise<void> => {
   expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
   const modalContainer = screen.getByTestId('modal-container')
   expect(within(modalContainer).getByText('3x')).toBeInTheDocument()
-  expect(within(modalContainer).getByText('Aujourd\'hui')).toBeInTheDocument()
+  expect(within(modalContainer).getByText("Aujourd'hui")).toBeInTheDocument()
   expect(within(modalContainer).getByText('1 janvier 2022')).toBeInTheDocument()
   expect(within(modalContainer).getByText('1 février 2022')).toBeInTheDocument()
   expect(within(modalContainer).getAllByText('150,00 €')).toHaveLength(2)

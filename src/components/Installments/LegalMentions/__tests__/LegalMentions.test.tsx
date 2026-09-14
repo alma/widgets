@@ -41,7 +41,7 @@ describe('standard PNX/Credit variant', () => {
 
     const legalMentions = screen.getByTestId('legal-mentions')
     expect(legalMentions).toHaveTextContent(
-      "Crédit de 437,61 € au taux débiteur fixe de 17,2 % sur 9 mois. Permettant, avec un acompte de 48,62 €, de financer un achat de 450,00 €.",
+      'Crédit de 437,61 € au taux débiteur fixe de 17,2 % sur 9 mois. Permettant, avec un acompte de 48,62 €, de financer un achat de 450,00 €.',
     )
     expect(legalMentions).toHaveTextContent(DISCLAIMER)
     expect(legalMentions).not.toHaveTextContent('incluant des frais')
@@ -97,7 +97,11 @@ describe('P1X Pay Later variant', () => {
   })
 
   it('uses month-based deferred duration wording when deferred_months is set', () => {
-    const planDeferredByMonths = { ...mockPayLater30DaysEligiblePlan, deferred_days: 0, deferred_months: 2 }
+    const planDeferredByMonths = {
+      ...mockPayLater30DaysEligiblePlan,
+      deferred_days: 0,
+      deferred_months: 2,
+    }
 
     render(<LegalMentions currentPlan={planDeferredByMonths} />)
 

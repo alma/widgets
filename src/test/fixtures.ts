@@ -1,5 +1,5 @@
+import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
 import { ConfigPlan, EligibilityPlan } from '@/types'
-import { eligiblePlanBuilder, ineligiblePlanBuilder } from './planBuilders'
 
 const baseEligiblePlan = eligiblePlanBuilder().withPurchaseAmount(45000)
 

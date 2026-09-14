@@ -82,7 +82,7 @@ describe('ModalContainer', () => {
       const installmentElement = screen.getByTestId('modal-container')
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [
-        'Aujourd\'hui',
+        "Aujourd'hui",
         '123,12 €',
         '1 janvier 2022',
         '112,50 €',
@@ -142,7 +142,7 @@ describe('ModalContainer', () => {
       const installmentElement = screen.getByTestId('modal-container')
       const totalElement = screen.getByTestId('modal-summary')
       const expectedInstallments = [
-        'Aujourd\'hui',
+        "Aujourd'hui",
         '151,35 €',
         '1 janvier 2022',
         '150,00 €',

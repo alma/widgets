@@ -10,7 +10,6 @@ import {
   mockPayLater30DaysEligiblePlan,
 } from 'test/fixtures'
 
-
 // The component renders the sentence and nothing else, so the container's text is exactly what a
 // customer reads.
 const warningFor = (plan: EligibilityPlanToDisplay) =>
