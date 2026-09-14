@@ -122,7 +122,7 @@
   width: 100%;
   flex-direction: column;
   display: flex;
-  align-items: start;
+  align-items: center;
 }
 
 .info {
@@ -140,6 +140,16 @@
   border: none;
   background-color: transparent;
   color: var(--off-black);
+}
+
+@media screen and (min-width: 800px) {
+  .infoContainer {
+    align-items: start;
+  }
+
+  .info {
+    text-align: start;
+  }
 }
 
 /* Live region for screen reader announcements */
