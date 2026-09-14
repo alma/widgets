@@ -56,7 +56,7 @@ just infrastructure:
 2. Copy `playground/main.ts`, `playground/mockFetch.ts`, `playground/dom.ts`,
    `playground/harnessConfig.ts`, `playground/ConfigPanel.ts`, `playground/ConfigPlansEditor.ts`,
    `playground/planDrafts.ts`, `playground/PlanDraftCard.ts`, `playground/ResponseEditor.ts`,
-   `playground/almaLogo.ts`, `playground/formatDueDate.ts`, `playground/productPreview.ts`,
+   `playground/formatDueDate.ts`, `playground/productPreview.ts`,
    `playground/playground.css`, `playground/tsconfig.json`, and `playground/index.html` from
    `${CLAUDE_SKILL_DIR}/assets/playground/` verbatim — never retype or re-derive them from the
    gotchas that describe them. This isn't optional plumbing to skip for a "simpler" playground; see
@@ -68,7 +68,7 @@ just infrastructure:
 3. `main.ts` calls `mountApp(container)` — `playground/App.ts` (Step 3) must export a function
    with that exact name and signature, since that's the contract the bundled entry point relies
    on. `App.ts` wires `buildConfigPanel`, `buildConfigPlansEditor`, `buildResponseEditor`, and
-   `buildProductPreview`/`buildAlmaLogo` together, defines this feature's own preset list (built
+   `buildProductPreview` together, defines this feature's own preset list (built
    from the bundled `makeEligibleDraft`/`makeIneligibleDraft`), and passes `configPlans` through as
    `Widgets.add`'s `plans` option (`undefined` when the list is empty, not `[]` — an empty array
    and "option not passed" are different states to `filterEligibility.ts`). Purchase amount is
@@ -85,7 +85,7 @@ just infrastructure:
 
 Step 2 is done when `playground/main.ts`, `mockFetch.ts`, `dom.ts`, `harnessConfig.ts`,
 `ConfigPanel.ts`, `ConfigPlansEditor.ts`, `planDrafts.ts`, `PlanDraftCard.ts`, `ResponseEditor.ts`,
-`almaLogo.ts`, `formatDueDate.ts`, `productPreview.ts`, `playground.css`, `tsconfig.json`, and
+`formatDueDate.ts`, `productPreview.ts`, `playground.css`, `tsconfig.json`, and
 `index.html` all exist under `playground/`, `vite.playground.config.ts` exists at the repo root,
 and `ensure-setup.sh` has run — not before moving to Step 3.
 
@@ -119,7 +119,7 @@ a class documented with no caveat that in fact had zero usage).
 | A single-line inline error (e.g. next to a button) | `pg-inline-error` (available for `App.ts`'s own feature-specific errors — no baseline usage) |
 
 Page-level layout (`App.ts`, written once and reused as-is across features): `pg-layout` (the two-
-column shell), `pg-app-header`/`pg-app-header-title` (page header + `buildAlmaLogo()`),
+column shell), `pg-app-header`/`pg-app-header-title` (page header),
 `pg-panel` (left column, scrollable), `pg-preview`/`pg-preview-label`/`pg-preview-surface` (right
 column, the live-preview pane). The product mockup wrapping the widget mount inside the preview
 pane (built by the bundled `productPreview.ts`, not written by hand) uses `product` (the card),
@@ -244,15 +244,14 @@ the pitfalls in `references/gotchas.md`; rewriting risks reintroducing them. Ins
 | `playground/planSummary.ts` | Optional. Only written when a feature wants custom category wording (DCC2's "pay later"/"PNX"/"credit" labels, say) beyond the bundled generic `defaultSummarizeDraft`; `App.ts` passes whichever one it imports into `buildResponseEditor`/cards. | Written fresh, scoped to the feature, optional |
 | `playground/PlanDraftCard.ts` | Builds one collapsible card per mocked plan draft: eligible/ineligible toggle + status pill, per-variant field grid, due-dates chip row (eligible drafts only, derived from `draftToEligibilityPlan` — gotcha 19), required/duplicate validation (gotchas 7-9). | Copied from `assets/playground/` |
 | `playground/ResponseEditor.ts` | Orchestrates the draft list via `syncList`: add/remove, drag-to-reorder (gotchas 5-7, 12), cross-draft duplicate detection, quick-scenario presets (passed in, not a fixed import — Step 3 point 5), response delay/error simulation, raw JSON preview. Returns `{ element, refresh() }`, not a bare element — `App.ts` calls `.refresh()` whenever `purchaseAmount` changes independently of the draft list (gotcha 17). | Copied from `assets/playground/` |
-| `playground/almaLogo.ts` | `ALMA_LOGO_SVG` + `buildAlmaLogo()` — the real Alma wordmark, inlined per gotcha 3. | Copied from `assets/playground/` |
 | `playground/formatDueDate.ts` | `formatDueDate(unixSeconds)`, used by `PlanDraftCard.ts`'s due-dates chip row. | Copied from `assets/playground/` |
 | `playground/productPreview.ts` | `buildProductPreview({ productName, unitPriceCents, quantity, quantities?, onQuantityChange, widgetMount })` — the product-card shell (title, quantity select, price, the widget's own mount slot, "add to cart") wrapping the widget preview, mirroring `examples/basic.html`. Returns `{ element, refresh(unitPriceCents, quantity) }`, not a bare element — same reason as `ResponseEditor.ts` (gotcha 17): the unit price can change from `ConfigPanel.ts` independently of this component. | Copied from `assets/playground/` |
-| `playground/App.ts` | Exports `mountApp(container)`; wires `ConfigPanel.ts`, `ConfigPlansEditor.ts`, `ResponseEditor.ts`, `productPreview.ts`, and `almaLogo.ts` to one shared state object plus local `quantity` state; defines this feature's presets (Step 3 point 5) and, if written, imports `planSummary.ts`'s `summarize`; seeds `configPlans`/`drafts` with matching non-empty defaults (Step 3 point 2) instead of starting empty; mounts the widget via `Widgets.initialize(...).add(...)`, passing `configPlans` through as the `plans` option and `config.purchaseAmount * quantity` as `purchaseAmount` — gotchas 4 and 17. | Written fresh, scoped to the feature |
+| `playground/App.ts` | Exports `mountApp(container)`; wires `ConfigPanel.ts`, `ConfigPlansEditor.ts`, `ResponseEditor.ts`, and `productPreview.ts` to one shared state object plus local `quantity` state; defines this feature's presets (Step 3 point 5) and, if written, imports `planSummary.ts`'s `summarize`; seeds `configPlans`/`drafts` with matching non-empty defaults (Step 3 point 2) instead of starting empty; mounts the widget via `Widgets.initialize(...).add(...)`, passing `configPlans` through as the `plans` option and `config.purchaseAmount * quantity` as `purchaseAmount` — gotchas 4 and 17. | Written fresh, scoped to the feature |
 | `playground/playground.css` | Styles for the panel — the full `pg-*` class vocabulary (see the table above Step 3). Fully generic: no feature-specific selectors, safe to reuse unchanged every time. | Copied from `assets/playground/` |
 
 Every path above, plus `vite.playground.config.ts`, is gitignored (`scripts/ensure-setup.sh`
 ensures this). `main.ts`, `mockFetch.ts`, `dom.ts`, `harnessConfig.ts`, `ConfigPlansEditor.ts`,
-`planDrafts.ts`, `PlanDraftCard.ts`, `ResponseEditor.ts`, `almaLogo.ts`, `formatDueDate.ts`,
+`planDrafts.ts`, `PlanDraftCard.ts`, `ResponseEditor.ts`, `formatDueDate.ts`,
 `productPreview.ts`, `playground.css`, `tsconfig.json`, and `index.html` are bundled and copied
 byte-for-byte — their content never depends on the feature under test, so copying them avoids
 retyping the gotchas that describe them from memory each time. `ConfigPanel.ts` is also bundled
@@ -261,8 +260,3 @@ but, unlike those, is a starting point Step 3 may extend. `App.ts` is written fr
 depends on the feature under test); `planSummary.ts` is written fresh only when a feature wants
 custom category wording. Use this table (plus the class vocabulary table above) as the map of
 what to create, and `references/gotchas.md` for the parts that are easy to get subtly wrong.
-
-The Alma logo in `App.ts`'s `pg-app-header-title` is already handled by the bundled
-`almaLogo.ts` (`buildAlmaLogo()`) — inlined as an SVG string constant rather than imported from a
-component or linked as a raw `<img src>`, see gotcha 3. Any *other* small static image a specific
-feature needs should follow the same pattern.

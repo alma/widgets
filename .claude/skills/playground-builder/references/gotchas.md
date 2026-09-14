@@ -4,7 +4,7 @@ These are non-obvious pitfalls hit while building and rewriting the DCC2 QA play
 playground itself is never committed (see SKILL.md), and `playground/main.ts`,
 `playground/mockFetch.ts`, `playground/dom.ts`, `playground/harnessConfig.ts`,
 `playground/ConfigPanel.ts`, `playground/ConfigPlansEditor.ts`, `playground/planDrafts.ts`,
-`playground/PlanDraftCard.ts`, `playground/ResponseEditor.ts`, `playground/almaLogo.ts`,
+`playground/PlanDraftCard.ts`, `playground/ResponseEditor.ts`,
 `playground/formatDueDate.ts`, `playground/productPreview.ts`, `playground/playground.css`,
 `playground/tsconfig.json`, and `playground/index.html` are bundled as real assets
 (`assets/playground/`) rather than rewritten
