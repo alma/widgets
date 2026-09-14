@@ -125,7 +125,7 @@ const withInstallmentsCount = (plan: EligiblePlan, installments_count: number): 
     ...plan,
     installments_count,
     payment_plan: Array.from({ length: installments_count }, (_, index) => {
-      const amount = perInstallment + (index === installments_count - 1 ? remainder : 0)
+      const amount = perInstallment + (index === 0 ? remainder : 0)
       return generateInstallment({
         due_date: shiftDueDate(DEFAULT_DUE_DATE, index, addMonths),
         purchase_amount: amount,

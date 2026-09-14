@@ -66,11 +66,11 @@ describe('eligiblePlanBuilder', () => {
       ])
     })
 
-    it('should put the rounding remainder on the last installment when the amount does not divide evenly', () => {
+    it('should put the rounding remainder on the first installment when the amount does not divide evenly', () => {
       const plan = eligiblePlanBuilder().withPurchaseAmount(10000).withInstallmentsCount(3)
 
       expect(plan.payment_plan.map((installment) => installment.purchase_amount)).toEqual([
-        3333, 3333, 3334,
+        3334, 3333, 3333,
       ])
       const total = plan.payment_plan.reduce(
         (sum, installment) => sum + installment.purchase_amount,
