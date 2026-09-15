@@ -5,9 +5,10 @@ import { screen } from '@testing-library/react'
 import render from '@/test'
 import {
   mockDeferredMultiInstallmentPlanWithoutFees,
+  mockP10XEligiblePlan,
   mockP2XEligiblePlan,
+  mockP3XEligiblePlanWithFees,
   mockPayLater30DaysEligiblePlan,
-  mockPlansAllEligible,
 } from '@/test/fixtures'
 import LegalMentions from 'components/Installments/LegalMentions'
 
@@ -27,7 +28,7 @@ describe('standard PNX/Credit variant', () => {
   })
 
   it('renders the with-fee-sharing wording for a plan with a nonzero customer cost', () => {
-    render(<LegalMentions currentPlan={mockPlansAllEligible[3]} />)
+    render(<LegalMentions currentPlan={mockP3XEligiblePlanWithFees} />)
 
     const legalMentions = screen.getByTestId('legal-mentions')
     expect(legalMentions).toHaveTextContent(
@@ -37,7 +38,7 @@ describe('standard PNX/Credit variant', () => {
   })
 
   it('renders the without-fee-mention wording for a Credit plan (>4 installments) even when it has a nonzero customer cost', () => {
-    render(<LegalMentions currentPlan={mockPlansAllEligible[5]} />)
+    render(<LegalMentions currentPlan={mockP10XEligiblePlan} />)
 
     const legalMentions = screen.getByTestId('legal-mentions')
     expect(legalMentions).toHaveTextContent(
