@@ -192,11 +192,14 @@ describe('eligiblePlanBuilder', () => {
 
       expect(plan.annual_interest_rate).toBe(1720)
       expect(plan.payment_plan).toHaveLength(10)
-      // interest decreases and principal increases as the balance is paid down
-      expect(plan.payment_plan[0].customer_interest).toBeGreaterThan(
+      // the first installment is due the same day as the purchase, so it carries no interest —
+      // it's a deposit, not a financed installment
+      expect(plan.payment_plan[0].customer_interest).toBe(0)
+      // interest decreases and principal increases as the financed balance is paid down
+      expect(plan.payment_plan[1].customer_interest).toBeGreaterThan(
         plan.payment_plan[9].customer_interest,
       )
-      expect(plan.payment_plan[0].purchase_amount).toBeLessThan(
+      expect(plan.payment_plan[1].purchase_amount).toBeLessThan(
         plan.payment_plan[9].purchase_amount,
       )
       // no rounding drift: principal portions sum back to the purchase amount
@@ -214,6 +217,36 @@ describe('eligiblePlanBuilder', () => {
       expect(plan.customer_total_cost_amount).toBe(totalInterest)
     })
 
+    // Golden values from a real eligibility-endpoint response (900€, 10 installments, 16.82% APR).
+    it('should match the amortization schedule returned by the real eligibility API', () => {
+      const plan = eligiblePlanBuilder()
+        .withPurchaseAmount(90000)
+        .withInstallmentsCount(10)
+        .withInterest(1682)
+
+      expect(
+        plan.payment_plan.map((installment) => [
+          installment.customer_interest,
+          installment.purchase_amount,
+          installment.total_amount,
+        ]),
+      ).toEqual([
+        [0, 9540, 9540],
+        [1049, 8484, 9533],
+        [939, 8594, 9533],
+        [826, 8707, 9533],
+        [713, 8820, 9533],
+        [598, 8935, 9533],
+        [481, 9052, 9533],
+        [363, 9170, 9533],
+        [244, 9289, 9533],
+        [124, 9409, 9533],
+      ])
+      expect(plan.customer_interest).toBe(5337)
+      expect(plan.customer_total_cost_amount).toBe(5337)
+      expect(plan.customer_total_cost_bps).toBe(593)
+    })
+
     it('should produce no interest for a 0 rate', () => {
       const plan = eligiblePlanBuilder()
         .withPurchaseAmount(45000)
@@ -224,6 +257,10 @@ describe('eligiblePlanBuilder', () => {
         true,
       )
       expect(plan.customer_interest).toBe(0)
+      // falls back to an even split, same as withInstallmentsCount with no interest applied
+      expect(plan.payment_plan.map((installment) => installment.purchase_amount)).toEqual([
+        15000, 15000, 15000,
+      ])
     })
   })
 

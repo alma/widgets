@@ -135,8 +135,10 @@ const withInstallmentsCount = (plan: EligiblePlan, installments_count: number): 
   }
 }
 
-// Declining-balance (annuity) amortization: a fixed total payment per installment,
-// with the interest/principal split shifting over time as the balance goes down.
+// Declining-balance (annuity) amortization: a fixed total payment per financed installment, with
+// the interest/principal split shifting over time as the balance goes down.
+// The first installment is an interest-free deposit, not part of the financed balance.
+// Only the remaining installments amortize what's financed.
 const withInterest = (plan: EligiblePlan, annualInterestRate: number): EligiblePlan => {
   requireStep(
     plan.payment_plan.length > 0,
@@ -146,32 +148,58 @@ const withInterest = (plan: EligiblePlan, annualInterestRate: number): EligibleP
 
   const installmentsCount = plan.payment_plan.length
   // annualInterestRate is in basis points, matching the annual_interest_rate field convention
-  // (e.g. 1720 for 17.20%) — convert to a monthly decimal rate.
-  const monthlyRate = annualInterestRate / BPS_SCALE / NB_MONTH_BY_YEAR
-  const payment =
-    monthlyRate === 0
-      ? Math.round(plan.purchase_amount / installmentsCount)
-      : Math.round(
-          (plan.purchase_amount * monthlyRate) / (1 - (1 + monthlyRate) ** -installmentsCount),
-        )
+  // (e.g. 1720 for 17.20%). The periodic rate is the actuarial monthly-compounded equivalent of
+  // the annual rate
+  const monthlyRate = (1 + annualInterestRate / BPS_SCALE) ** (1 / NB_MONTH_BY_YEAR) - 1
 
-  let balance = plan.purchase_amount
+  // Annuity discount factor: present value of `periods` installments of 1. Dividing a present
+  // value by it gives the fixed periodic payment that amortizes it (used for `payment` below).
+  // Iterative rather than the closed form (1-(1+r)^-periods)/r, which is 0/0 at monthlyRate === 0.
+  const discountFactorSum = (periods: number): number => {
+    let sum = 0
+    let discount = 1
+    for (let i = 0; i < periods; i += 1) {
+      discount /= 1 + monthlyRate
+      sum += discount
+    }
+    return sum
+  }
+
+  const buildInstallment = (
+    installment: PaymentPlan,
+    principal: number,
+    interest: number,
+  ): PaymentPlan => ({
+    ...installment,
+    customer_interest: interest,
+    purchase_amount: principal,
+    total_amount: principal + interest + installment.customer_fee,
+  })
+
+  const financedInstallmentsCount = installmentsCount - 1
+  // Annuity-due: the fixed payment for the financed installments, discounted one extra period
+  // since the deposit (the "0th" payment) is due today.
+  const payment = Math.floor(
+    plan.purchase_amount / (discountFactorSum(installmentsCount) * (1 + monthlyRate)),
+  )
+  const financedBalance = Math.floor(payment * discountFactorSum(financedInstallmentsCount))
+  const deposit = plan.purchase_amount - financedBalance
+
   let totalInterest = 0
+  let balance = financedBalance
+  const [firstInstallment, ...financedInstallments] = plan.payment_plan
 
-  const payment_plan = plan.payment_plan.map((installment, index) => {
-    const isLastInstallment = index === installmentsCount - 1
-    const interest = monthlyRate === 0 ? 0 : Math.round(balance * monthlyRate)
+  const financedPaymentPlan = financedInstallments.map((installment, index) => {
+    const isLastInstallment = index === financedInstallmentsCount - 1
+    const interest = isLastInstallment ? payment - balance : Math.round(balance * monthlyRate)
     const principal = isLastInstallment ? balance : payment - interest
     balance -= principal
     totalInterest += interest
 
-    return {
-      ...installment,
-      customer_interest: interest,
-      purchase_amount: principal,
-      total_amount: principal + interest + installment.customer_fee,
-    }
+    return buildInstallment(installment, principal, interest)
   })
+
+  const payment_plan = [buildInstallment(firstInstallment, deposit, 0), ...financedPaymentPlan]
 
   return {
     ...plan,

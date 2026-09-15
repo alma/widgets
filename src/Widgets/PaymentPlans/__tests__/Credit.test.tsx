@@ -64,7 +64,7 @@ describe('PaymentPlan has credit', () => {
     await userEvent.hover(screen.getByText('3x'))
     expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
     await userEvent.hover(screen.getByText('10x'))
-    expect(screen.getByText(/48,62 € puis 9 x 48,62 €/)).toBeInTheDocument()
+    expect(screen.getByText(/47,77 € puis 9 x 47,72 €/)).toBeInTheDocument()
     expect(screen.getByText(/Cliquez pour en savoir plus/)).toBeInTheDocument()
   })
 
@@ -75,7 +75,7 @@ describe('PaymentPlan has credit', () => {
 
     await userEvent.hover(screen.getByText('10x'))
 
-    expect(infoLine()).toHaveTextContent('48,62 € puis 9 x 48,62 €')
+    expect(infoLine()).toHaveTextContent('47,77 € puis 9 x 47,72 €')
     expect(infoLine()).toHaveTextContent('Cliquez pour en savoir plus')
     expect(infoLine()).toHaveAttribute('role', 'button')
   })
