@@ -14,7 +14,7 @@
   "accessibility.plan-selection-changed": "Plan sélectionné : {planDescription}",
   "accessibility.skip-links.navigation.aria-label": "Navigation rapide",
   "accessibility.visa-card.aria-label": "Carte Visa acceptée",
-  "credit-features.credit-cost-display": "{creditCost} (TAEG {annualPercentageRate})",
+  "credit-features.credit-cost-display": "{creditCost} (TAEG {annualPercentageRate} inclus)",
   "credit-features.total-credit-cost": "Dont coût du crédit (TTC)",
   "eligibility-modal.bullet-1": "Choisissez <strong>Alma</strong> au moment du paiement.",
   "eligibility-modal.bullet-2": "Laissez-vous guider et validez votre paiement en <strong>2 minutes.</strong>",

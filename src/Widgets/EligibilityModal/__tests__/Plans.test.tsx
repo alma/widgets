@@ -57,7 +57,7 @@ describe('plans provided', () => {
       const totalElement = screen.getByTestId('modal-summary')
       expect(totalElement).toHaveTextContent('Total')
       expect(totalElement).toHaveTextContent('Dont coût du crédit (TTC)')
-      expect(totalElement).toHaveTextContent('0,00 € (TAEG 0,00 %)')
+      expect(totalElement).toHaveTextContent('0,00 € (TAEG 0,00 % inclus)')
     })
     it('should display the schedule for the selected payment plan', async () => {
       await userEvent.click(screen.getByText('4x'))
@@ -79,7 +79,7 @@ describe('plans provided', () => {
       await userEvent.click(screen.getByText('10x'))
       const totalElement = screen.getByTestId('modal-summary')
       expect(totalElement).toHaveTextContent('Dont coût du crédit')
-      expect(totalElement).toHaveTextContent('27,25 € (TAEG 17,20 %)')
+      expect(totalElement).toHaveTextContent('27,25 € (TAEG 17,20 % inclus)')
       expect(
         screen.getByText("Attention ! Un crédit coûte de l'argent et doit être remboursé."),
       ).toBeInTheDocument()
@@ -172,7 +172,7 @@ describe('plans provided', () => {
       expect(totalElement).toHaveTextContent('Total')
       expect(totalElement).toHaveTextContent('451,35 €')
       expect(totalElement).toHaveTextContent('Dont coût du crédit (TTC)')
-      expect(totalElement).toHaveTextContent('1,35 € (TAEG 0,00 %)')
+      expect(totalElement).toHaveTextContent('1,35 € (TAEG 0,00 % inclus)')
     })
   })
 })
