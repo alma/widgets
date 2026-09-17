@@ -13,3 +13,9 @@ stats.html
 dist/
 raw/
 clean-package/
+
+# Local playground (see .claude/skills/playground-builder) — scratch, per-session, never committed.
+# Anchored to the repo root (leading slash): an unanchored `playground/` also matches
+# .claude/skills/playground-builder/assets/playground/, which must stay tracked.
+/playground/
+/vite.playground.config.ts
