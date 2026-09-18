@@ -1,566 +1,103 @@
+import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
 import { ConfigPlan, EligibilityPlan } from '@/types'
 
+const baseEligiblePlan = eligiblePlanBuilder().withPurchaseAmount(45000)
+
+export const mockP1XEligiblePlan = baseEligiblePlan.withInstallmentsCount(1)
+
+export const mockPayLaterOneMonthEligiblePlan = baseEligiblePlan
+  .withInstallmentsCount(1)
+  .withDeferredMonths(1)
+
+export const mockPayLater30DaysEligiblePlan = baseEligiblePlan
+  .withInstallmentsCount(1)
+  .withDeferredDays(30)
+
+export const mockP2XEligiblePlan = baseEligiblePlan.withInstallmentsCount(2)
+
+export const mockP3XEligiblePlanWithFees = baseEligiblePlan.withInstallmentsCount(3).withFees(135)
+
+export const mockP4XEligiblePlanWithFees = baseEligiblePlan.withInstallmentsCount(4).withFees(1062)
+
+export const mockP10XEligiblePlan = baseEligiblePlan.withInstallmentsCount(10).withInterest(1720)
+
+// Deferred (30 days) 3x plan, without customer fees.
+export const mockDeferredMultiInstallmentPlanWithoutFees = baseEligiblePlan
+  .withInstallmentsCount(3)
+  .withDeferredDays(30)
+
+// Same plan as above, with customer fees charged on the first installment.
+export const mockDeferredMultiInstallmentPlanWithFees = baseEligiblePlan
+  .withInstallmentsCount(3)
+  .withDeferredDays(30)
+  .withFees(135)
+
 export const mockPlansAllEligible: EligibilityPlan[] = [
-  {
-    customer_total_cost_amount: 0,
-    customer_total_cost_bps: 0,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 1,
-    payment_plan: [
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1638350762,
-        purchase_amount: 45000,
-        total_amount: 45000,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    customer_total_cost_amount: 0,
-    customer_total_cost_bps: 0,
-    deferred_days: 0,
-    deferred_months: 1,
-    eligible: true,
-    installments_count: 1,
-    payment_plan: [
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1641029162,
-        purchase_amount: 45000,
-        total_amount: 45000,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    customer_total_cost_amount: 0,
-    customer_total_cost_bps: 0,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 2,
-    payment_plan: [
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1638350762,
-        purchase_amount: 22500,
-        total_amount: 22500,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1641029162,
-        purchase_amount: 22500,
-        total_amount: 22500,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    customer_total_cost_amount: 135,
-    customer_total_cost_bps: 30,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 3,
-    payment_plan: [
-      {
-        customer_fee: 135,
-        customer_interest: 0,
-        due_date: 1638350762,
-        purchase_amount: 15000,
-        total_amount: 15135,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1641029162,
-        purchase_amount: 15000,
-        total_amount: 15000,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1643707562,
-        purchase_amount: 15000,
-        total_amount: 15000,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    customer_total_cost_amount: 1062,
-    customer_total_cost_bps: 236,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 4,
-    payment_plan: [
-      {
-        customer_fee: 1062,
-        customer_interest: 0,
-        due_date: 1638350762,
-        purchase_amount: 11250,
-        total_amount: 12312,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1641029162,
-        purchase_amount: 11250,
-        total_amount: 11250,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1643707562,
-        purchase_amount: 11250,
-        total_amount: 11250,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1646126762,
-        purchase_amount: 11250,
-        total_amount: 11250,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    annual_interest_rate: 1720,
-    customer_total_cost_amount: 2664,
-    customer_total_cost_bps: 592,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 10,
-    payment_plan: [
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1638350762,
-        purchase_amount: 4770,
-        refunded_interest: 0,
-        total_amount: 4769,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 493,
-        due_date: 1641029162,
-        purchase_amount: 4273,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 488,
-        due_date: 1643707562,
-        purchase_amount: 4278,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 388,
-        due_date: 1646126762,
-        purchase_amount: 4378,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 370,
-        due_date: 1648805162,
-        purchase_amount: 4396,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 301,
-        due_date: 1651397162,
-        purchase_amount: 4465,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 250,
-        due_date: 1654075562,
-        purchase_amount: 4516,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 183,
-        due_date: 1656667562,
-        purchase_amount: 4583,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 127,
-        due_date: 1659345962,
-        purchase_amount: 4639,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 64,
-        due_date: 1662024362,
-        purchase_amount: 4702,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-    ],
-    purchase_amount: 45000,
-  },
+  mockP1XEligiblePlan,
+  mockPayLaterOneMonthEligiblePlan,
+  mockP2XEligiblePlan,
+  mockP3XEligiblePlanWithFees,
+  mockP4XEligiblePlanWithFees,
+  mockP10XEligiblePlan,
 ]
 
-export const mockButtonPlans = [
-  {
-    customer_total_cost_amount: 0,
-    customer_total_cost_bps: 0,
-    deferred_days: 0,
-    deferred_months: 1,
-    eligible: true,
-    installments_count: 1,
-    payment_plan: [
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1637498000,
-        purchase_amount: 45000,
-        total_amount: 45000,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    customer_total_cost_amount: 0,
-    customer_total_cost_bps: 0,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 1,
-    payment_plan: [
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1634819600,
-        purchase_amount: 45000,
-        total_amount: 45000,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    customer_total_cost_amount: 0,
-    customer_total_cost_bps: 0,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 2,
-    payment_plan: [
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1634819600,
-        purchase_amount: 22500,
-        total_amount: 22500,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1634819600,
-        purchase_amount: 22500,
-        total_amount: 22500,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    customer_total_cost_amount: 135,
-    customer_total_cost_bps: 30,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 3,
-    payment_plan: [
-      {
-        customer_fee: 135,
-        customer_interest: 0,
-        due_date: 1634819600,
-        purchase_amount: 15000,
-        total_amount: 15135,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1637498000,
-        purchase_amount: 15000,
-        total_amount: 15000,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1640090000,
-        purchase_amount: 15000,
-        total_amount: 15000,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    customer_total_cost_amount: 1202,
-    customer_total_cost_bps: 267,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 4,
-    payment_plan: [
-      {
-        customer_fee: 1202,
-        customer_interest: 0,
-        due_date: 1634819600,
-        purchase_amount: 11250,
-        total_amount: 12452,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1637498000,
-        purchase_amount: 11250,
-        total_amount: 11250,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1640090000,
-        purchase_amount: 11250,
-        total_amount: 11250,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1642768400,
-        purchase_amount: 11250,
-        total_amount: 11250,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    annual_interest_rate: 1719,
-    customer_total_cost_amount: 2667,
-    customer_total_cost_bps: 593,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 10,
-    payment_plan: [
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1634819600,
-        purchase_amount: 4773,
-        refunded_interest: 0,
-        total_amount: 4773,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 492,
-        due_date: 1637498000,
-        purchase_amount: 4274,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 472,
-        due_date: 1640090000,
-        purchase_amount: 4294,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 429,
-        due_date: 1642768400,
-        purchase_amount: 4337,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 371,
-        due_date: 1645446800,
-        purchase_amount: 4395,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 281,
-        due_date: 1647866000,
-        purchase_amount: 4485,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 250,
-        due_date: 1650544400,
-        purchase_amount: 4516,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 183,
-        due_date: 1653136400,
-        purchase_amount: 4583,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 127,
-        due_date: 1655814800,
-        purchase_amount: 4639,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 62,
-        due_date: 1658406800,
-        purchase_amount: 4704,
-        refunded_interest: 0,
-        total_amount: 4766,
-      },
-    ],
-    purchase_amount: 45000,
-  },
+export const mockPlansWithoutDeferred: EligibilityPlan[] = [
+  mockP2XEligiblePlan,
+  mockP3XEligiblePlanWithFees,
+  mockP4XEligiblePlanWithFees,
+  mockP10XEligiblePlan,
 ]
 
-export const mockEligibilityPaymentPlanWithIneligiblePlan = [
-  {
-    customer_fee: 0,
-    customer_interest: 0,
-    customer_total_cost_amount: 0,
-    customer_total_cost_bps: 0,
-    deferred_days: 30,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 1,
-    payment_plan: [
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1654262242,
-        purchase_amount: 45000,
-        total_amount: 45000,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    customer_fee: 0,
-    customer_interest: 0,
-    customer_total_cost_amount: 0,
-    customer_total_cost_bps: 0,
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: true,
-    installments_count: 2,
-    payment_plan: [
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1651670242,
-        purchase_amount: 22500,
-        total_amount: 22500,
-      },
-      {
-        customer_fee: 0,
-        customer_interest: 0,
-        due_date: 1654348642,
-        purchase_amount: 22500,
-        total_amount: 22500,
-      },
-    ],
-    purchase_amount: 45000,
-  },
-  {
-    constraints: { purchase_amount: { maximum: 20000, minimum: 9000 } },
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: false,
-    installments_count: 4,
-    purchase_amount: 45000,
-    reasons: { purchase_amount: 'invalid_value' },
-  },
-  {
-    constraints: { purchase_amount: { maximum: 135000, minimum: 90000 } },
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: false,
-    installments_count: 10,
-    purchase_amount: 45000,
-    reasons: { purchase_amount: 'invalid_value' },
-  },
+export const mockButtonPlans: EligibilityPlan[] = [
+  mockPayLaterOneMonthEligiblePlan,
+  mockP1XEligiblePlan,
+  mockP2XEligiblePlan,
+  mockP3XEligiblePlanWithFees,
+  mockP4XEligiblePlanWithFees,
+  mockP10XEligiblePlan,
+]
+
+export const baseIneligblePlan = ineligiblePlanBuilder().withPurchaseAmount(45000)
+
+export const mockP4XIneligiblePlan = baseIneligblePlan
+  .withInstallmentsCount(4)
+  .withReasons({ purchase_amount: 'invalid_value' })
+  .withConstraints({ purchase_amount: { maximum: 20000, minimum: 9000 } })
+
+export const mockP10XIneligiblePlan = baseIneligblePlan
+  .withInstallmentsCount(10)
+  .withReasons({ purchase_amount: 'invalid_value' })
+  .withConstraints({ purchase_amount: { maximum: 135000, minimum: 90000 } })
+
+export const mockEligibilityPaymentPlanWithIneligiblePlan: EligibilityPlan[] = [
+  mockPayLater30DaysEligiblePlan,
+  mockP2XEligiblePlan,
+  mockP4XIneligiblePlan,
+  mockP10XIneligiblePlan,
 ]
 
 // Same as mockEligibilityPaymentPlanWithIneligiblePlan but the 4x plan is ineligible due to
 // a country restriction (not available in Belgium) — the API returns no purchase_amount constraints,
 // so there is nothing useful to display grayed out → the plan should be hidden entirely.
-export const mockEligibilityWithHiddenPlan = [
+export const mockEligibilityWithHiddenPlan: EligibilityPlan[] = [
   ...mockEligibilityPaymentPlanWithIneligiblePlan.slice(0, 2),
-  {
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: false,
-    installments_count: 4,
-    purchase_amount: 45000,
-    reasons: { installments_count: 'not_allowed' },
+  baseIneligblePlan
+    .withInstallmentsCount(4)
+    .withReasons({ installments_count: 'not_allowed' })
     // No constraints.purchase_amount → plan is hidden, not grayed out
-  },
+    .withConstraints(undefined),
 ]
 
 // 4x plan is ineligible due to purchase_amount range — the API returns constraints.purchase_amount,
 // so the widget can display a meaningful "À partir de X€" condition → the plan should be grayed out.
-export const mockEligibilityWithGrayedOutPlan = [
+export const mockEligibilityWithGrayedOutPlan: EligibilityPlan[] = [
   ...mockEligibilityPaymentPlanWithIneligiblePlan.slice(0, 2),
-  {
-    constraints: { purchase_amount: { maximum: 15000, minimum: 5000 } },
-    deferred_days: 0,
-    deferred_months: 0,
-    eligible: false,
-    installments_count: 4,
-    purchase_amount: 45000,
-    reasons: { purchase_amount: 'invalid_value' },
+  baseIneligblePlan
+    .withInstallmentsCount(4)
+    .withReasons({ purchase_amount: 'invalid_value' })
     // constraints.purchase_amount present → plan is grayed out, not hidden
-  },
+    .withConstraints({ purchase_amount: { maximum: 15000, minimum: 5000 } }),
 ]
-
-export const mockPlansWithoutDeferred = mockPlansAllEligible.filter(
-  (plan) => plan.deferred_days === 0 && plan.deferred_months === 0 && plan.installments_count >= 2,
-)
-
-export const mockPayNowPlan = mockPlansAllEligible.filter(
-  (plan) => plan.deferred_days === 0 && plan.deferred_months === 0 && plan.installments_count === 1,
-)
 
 export const configPlans: ConfigPlan[] = mockPlansAllEligible.map((plan) => ({
   installmentsCount: plan.installments_count,

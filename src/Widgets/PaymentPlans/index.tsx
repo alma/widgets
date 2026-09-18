@@ -16,6 +16,7 @@ import {
   paymentPlanInfoText,
   paymentPlanShorthandName,
 } from 'utils/paymentPlanStrings'
+import { requiresLegalDisclosure } from 'utils/regulatoryFigures'
 import STATIC_CUSTOMISATION_CLASSES from 'Widgets//PaymentPlans/classNames.const'
 import EligibilityModal from 'Widgets/EligibilityModal'
 import s from 'Widgets/PaymentPlans/PaymentPlans.module.css'
@@ -288,11 +289,12 @@ const PaymentPlanWidget: FunctionComponent<Props> = ({
 
   const currentPlanToDisplay: EligibilityPlanToDisplay | undefined = plansToDisplay[current]
 
-  // Plans with more than 4 installments show a "know more" hint that must open the modal.
+  // Every plan requiring legal disclosure shows a "know more" hint that must open the modal —
+  // P2X-P12X and deferred P1X, so no longer just credit plans.
   const isInfoClickable =
     eligiblePlans.length > 0 &&
     !!currentPlanToDisplay?.eligible &&
-    currentPlanToDisplay.installments_count > 4
+    requiresLegalDisclosure(currentPlanToDisplay)
 
   const infoInteractiveProps: React.HTMLAttributes<HTMLDivElement> = {}
   if (isInfoClickable) {
