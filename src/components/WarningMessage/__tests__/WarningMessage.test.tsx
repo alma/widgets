@@ -18,19 +18,19 @@ const warningFor = (plan: EligibilityPlanToDisplay) =>
 describe('WarningMessage', () => {
   it('should render the with-fees variant of the transaction country', () => {
     expect(warningFor(mockDeferredMultiInstallmentPlanWithFees.withCountry('IT'))).toBe(
-      "Attention : emprunter de l'argent entraîne des coûts.",
+      "Attention ! Emprunter de l'argent a un coût.",
     )
   })
 
   it('should render the without-fees variant of the same country', () => {
     expect(warningFor(mockDeferredMultiInstallmentPlanWithoutFees.withCountry('IT'))).toBe(
-      'Important : un prêt est contraignant et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.',
+      'Important, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.',
     )
   })
 
   it('should render the variant of a second country', () => {
     expect(warningFor(mockDeferredMultiInstallmentPlanWithFees.withCountry('DE'))).toBe(
-      "Attention ! Souscrire un crédit coûte de l'argent.",
+      "Attention ! Emprunter de l'argent a un coût.",
     )
   })
 

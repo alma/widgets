@@ -27,7 +27,7 @@ const messages = defineMessages({
   nlWithoutFees: {
     id: 'warning-message.nl.without-fees',
     defaultMessage:
-      'Attention : un prêt est contraignant et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de conclure un contrat.',
+      'Attention : un prêt vous engage et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de conclure un contrat.',
   },
   nlWithFees: {
     id: 'warning-message.nl.with-fees',
@@ -36,25 +36,25 @@ const messages = defineMessages({
   itWithoutFees: {
     id: 'warning-message.it.without-fees',
     defaultMessage:
-      'Important : un prêt est contraignant et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.',
+      'Important, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.',
   },
   itWithFees: {
     id: 'warning-message.it.with-fees',
-    defaultMessage: "Attention : emprunter de l'argent entraîne des coûts.",
+    defaultMessage: "Attention ! Emprunter de l'argent a un coût.",
   },
   deWithoutFees: {
     id: 'warning-message.de.without-fees',
     defaultMessage:
-      'Un crédit est contraignant et doit être remboursé. Vérifiez le coût du crédit avant de vous engager.',
+      'Attention, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.',
   },
   deWithFees: {
     id: 'warning-message.de.with-fees',
-    defaultMessage: "Attention ! Souscrire un crédit coûte de l'argent.",
+    defaultMessage: "Attention ! Emprunter de l'argent a un coût.",
   },
   ptWithoutFees: {
     id: 'warning-message.pt.without-fees',
     defaultMessage:
-      'Attention ! Un crédit est un engagement et doit être remboursé. Vérifiez le coût du crédit et votre capacité de remboursement avant de vous engager.',
+      'Attention, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de vous engager.',
   },
   ptWithFees: {
     id: 'warning-message.pt.with-fees',
@@ -63,11 +63,11 @@ const messages = defineMessages({
   es: {
     id: 'warning-message.es',
     defaultMessage:
-      'Attention, un crédit est contraignant et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de vous engager.',
+      'Attention, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de vous engager.',
   },
   gb: {
     id: 'warning-message.gb',
-    defaultMessage: "Attention ! Emprunter de l'argent coûte de l'argent.",
+    defaultMessage: "Attention ! Emprunter de l'argent a un coût.",
   },
 })
 
