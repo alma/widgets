@@ -3,18 +3,19 @@ import React, { ReactNode } from 'react'
 import { secondsToMilliseconds } from 'date-fns'
 import { FormattedDate, FormattedMessage, FormattedNumber, IntlShape } from 'react-intl'
 
-import { EligibilityPlan, EligibilityPlanToDisplay } from '@/types'
+import { EligibilityPlanToDisplay } from '@/types'
 import { isP1X, priceFromCents } from '@/utils'
 import s from '@/utils/paymentPlanStrings.module.css'
+import { isPayLater, requiresLegalDisclosure } from '@/utils/regulatoryFigures'
 
-export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode => {
+export const paymentPlanShorthandName = (payment: EligibilityPlanToDisplay): ReactNode => {
   const {
     deferred_days: deferredDays,
     deferred_months: deferredMonths,
     installments_count: installmentsCount,
   } = payment
 
-  if (installmentsCount === 1 && !deferredDays && !deferredMonths) {
+  if (isP1X(payment)) {
     return (
       <FormattedMessage
         id="payment-plan-strings.pay.now.button"
@@ -51,14 +52,17 @@ export const paymentPlanShorthandName = (payment: EligibilityPlan): ReactNode =>
  * String version of paymentPlanShorthandName that returns a translated string
  * instead of a ReactNode for use in aria-label attributes for example
  */
-export const paymentPlanShorthandText = (payment: EligibilityPlan, intl: IntlShape): string => {
+export const paymentPlanShorthandText = (
+  payment: EligibilityPlanToDisplay,
+  intl: IntlShape,
+): string => {
   const {
     deferred_days: deferredDays,
     deferred_months: deferredMonths,
     installments_count: installmentsCount,
   } = payment
 
-  if (installmentsCount === 1 && !deferredDays && !deferredMonths) {
+  if (isP1X(payment)) {
     return intl.formatMessage({
       id: 'payment-plan-strings.pay.now.button',
       defaultMessage: 'Payer maintenant',
@@ -101,6 +105,19 @@ const withNoFee = (payment: EligibilityPlanToDisplay) => {
       </>
     )
   }
+}
+
+const knowMoreLine = (payment: EligibilityPlanToDisplay): ReactNode => {
+  if (!payment.eligible || !requiresLegalDisclosure(payment)) return null
+  return (
+    <p className={s.openModalInfo}>
+      <FormattedMessage
+        id="payment-plan-strings.credit"
+        defaultMessage="Cliquez pour en savoir plus"
+        description="Link to credit details"
+      />
+    </p>
+  )
 }
 
 export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNode => {
@@ -158,57 +175,15 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
     throw Error(
       `No payment plan provided for payment in ${installmentsCount} installments. Please contact us if you see this error.`,
     )
-  } else if (deferredDaysCount !== 0 && installmentsCount === 1) {
+  }
+
+  if (deferredDaysCount !== 0 && installmentsCount === 1) {
     return (
-      <p>
-        <FormattedMessage
-          id="payment-plan-strings.deferred"
-          defaultMessage="{totalAmount} à payer le {dueDate}"
-          values={{
-            totalAmount: (
-              <FormattedNumber
-                value={priceFromCents(paymentPlan[0].total_amount)}
-                style="currency"
-                currency="EUR"
-              />
-            ),
-            dueDate: (
-              <FormattedDate
-                value={secondsToMilliseconds(paymentPlan[0].due_date)}
-                day="numeric"
-                month="long"
-                year="numeric"
-              />
-            ),
-          }}
-        />
-        {withNoFee(payment)}
-      </p>
-    )
-  } else if (installmentsCount > 0) {
-    const areInstallmentsOfSameAmount = paymentPlan?.every(
-      (installment, index) =>
-        index === 0 || installment.total_amount === paymentPlan[0].total_amount,
-    )
-
-    if (installmentsCount > 4) {
-      return (
-        <p className={s.openModalInfo}>
-          <FormattedMessage
-            id="payment-plan-strings.credit"
-            defaultMessage="Cliquez pour en savoir plus"
-            description="Link to credit details"
-          />
-        </p>
-      )
-    }
-
-    if (isP1X(payment)) {
-      return (
+      <>
         <p>
           <FormattedMessage
-            id="payment-plan-strings.pay-now"
-            defaultMessage="Payer maintenant {totalAmount}"
+            id="payment-plan-strings.deferred"
+            defaultMessage="{totalAmount} à payer le {dueDate}"
             values={{
               totalAmount: (
                 <FormattedNumber
@@ -217,16 +192,52 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
                   currency="EUR"
                 />
               ),
-              installmentsCount,
+              dueDate: (
+                <FormattedDate
+                  value={secondsToMilliseconds(paymentPlan[0].due_date)}
+                  day="numeric"
+                  month="long"
+                  year="numeric"
+                />
+              ),
             }}
           />
           {withNoFee(payment)}
         </p>
-      )
-    }
+        {knowMoreLine(payment)}
+      </>
+    )
+  }
 
-    if (areInstallmentsOfSameAmount) {
-      return (
+  if (isP1X(payment)) {
+    return (
+      <p>
+        <FormattedMessage
+          id="payment-plan-strings.pay-now"
+          defaultMessage="Payer maintenant {totalAmount}"
+          values={{
+            totalAmount: (
+              <FormattedNumber
+                value={priceFromCents(paymentPlan[0].total_amount)}
+                style="currency"
+                currency="EUR"
+              />
+            ),
+            installmentsCount,
+          }}
+        />
+        {withNoFee(payment)}
+      </p>
+    )
+  }
+
+  const areInstallmentsOfSameAmount = paymentPlan.every(
+    (installment, index) => index === 0 || installment.total_amount === paymentPlan[0].total_amount,
+  )
+
+  if (areInstallmentsOfSameAmount) {
+    return (
+      <>
         <p>
           <FormattedMessage
             id="payment-plan-strings.multiple-installments-same-amount"
@@ -244,10 +255,13 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
           />
           {withNoFee(payment)}
         </p>
-      )
-    }
+        {knowMoreLine(payment)}
+      </>
+    )
+  }
 
-    return (
+  return (
+    <>
       <p>
         <FormattedMessage
           id="payment-plan-strings.multiple-installments"
@@ -272,26 +286,19 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
         />
         {withNoFee(payment)}
       </p>
-    )
-  }
-  return (
-    <p>
-      <FormattedMessage
-        id="payment-plan-strings.default-message"
-        defaultMessage="Payez en plusieurs fois avec Alma"
-      />
-    </p>
+      {knowMoreLine(payment)}
+    </>
   )
 }
 
-export const getPlanDescription = (plan: EligibilityPlan, intl: IntlShape) => {
-  if (plan.installments_count === 1 && plan.deferred_days === 0 && plan.deferred_months === 0) {
+export const getPlanDescription = (plan: EligibilityPlanToDisplay, intl: IntlShape) => {
+  if (isP1X(plan)) {
     return intl.formatMessage({
       id: 'payment-plan-strings.pay.now.button',
       defaultMessage: 'Payer maintenant',
     })
   }
-  if (plan.installments_count === 1 && (plan.deferred_days > 0 || plan.deferred_months > 0)) {
+  if (isPayLater(plan)) {
     return intl.formatMessage(
       {
         id: 'payment-plan-strings.pay.deferred.button',
