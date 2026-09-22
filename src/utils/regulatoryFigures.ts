@@ -32,5 +32,7 @@ export const getFinancedAmount = (plan: EligibilityPlanToDisplay): number =>
 export const getCreditDurationInMonths = (plan: EligibilityPlanToDisplay): number =>
   plan.installments_count - 1
 
-export const getAnnualPercentageRate = (plan: EligibilityPlanToDisplay): number =>
-  (plan.annual_interest_rate ?? 0) / 10000
+export const getAnnualPercentageRate = (plan: EligibilityPlanToDisplay): number => {
+  if (!plan.customer_interest) return 0
+  return (plan.annual_interest_rate ?? 0) / 10000
+}
