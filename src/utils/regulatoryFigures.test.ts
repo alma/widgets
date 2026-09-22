@@ -152,12 +152,28 @@ describe('regulatoryFigures', () => {
 
   describe('getAnnualPercentageRate', () => {
     it('should return 0 when annual_interest_rate is not set', () => {
-      const p1xPlan = { ...mockPlansAllEligible[0], annual_interest_rate: undefined }
+      const p1xPlan = {
+        ...mockPlansAllEligible[0],
+        customer_interest: 100,
+        annual_interest_rate: undefined,
+      }
       expect(getAnnualPercentageRate(p1xPlan)).toBe(0)
     })
     it('should return annual_interest_rate converted into a rate', () => {
-      const planWithInterest = { ...mockPlansAllEligible[0], annual_interest_rate: 500 }
+      const planWithInterest = {
+        ...mockPlansAllEligible[0],
+        customer_interest: 100,
+        annual_interest_rate: 500,
+      }
       expect(getAnnualPercentageRate(planWithInterest)).toBe(0.05)
+    })
+    it('should return 0 when customer_interest is 0, even if annual_interest_rate is set', () => {
+      const planWithoutCustomerInterest = {
+        ...mockPlansAllEligible[0],
+        customer_interest: 0,
+        annual_interest_rate: 500,
+      }
+      expect(getAnnualPercentageRate(planWithoutCustomerInterest)).toBe(0)
     })
   })
 
