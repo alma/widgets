@@ -64,18 +64,18 @@ describe('PaymentPlan has credit', () => {
     await userEvent.hover(screen.getByText('3x'))
     expect(screen.getByText(/151,35 € puis 2 x 150,00 €/)).toBeInTheDocument()
     await userEvent.hover(screen.getByText('10x'))
-    expect(screen.getByText(/47,77 € puis 9 x 47,72 €/)).toBeInTheDocument()
+    expect(screen.queryByText(/47,77 € puis 9 x 47,72 €/)).not.toBeInTheDocument()
     expect(screen.getByText(/Cliquez pour en savoir plus/)).toBeInTheDocument()
   })
 
   const infoLine = () => document.getElementById('payment-info-text') as HTMLElement
 
-  it('shows the breakdown and the know-more line for a credit plan', async () => {
+  it('shows only the know-more line, without the installment breakdown, for a credit plan', async () => {
     await setUpTest()
 
     await userEvent.hover(screen.getByText('10x'))
 
-    expect(infoLine()).toHaveTextContent('47,77 € puis 9 x 47,72 €')
+    expect(infoLine()).not.toHaveTextContent('47,77 € puis 9 x 47,72 €')
     expect(infoLine()).toHaveTextContent('Cliquez pour en savoir plus')
     expect(infoLine()).toHaveAttribute('role', 'button')
   })
