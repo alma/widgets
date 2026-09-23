@@ -34,3 +34,10 @@ export const getCreditDurationInMonths = (plan: EligibilityPlanToDisplay): numbe
 
 export const getAnnualPercentageRate = (plan: EligibilityPlanToDisplay): number =>
   (plan.annual_interest_rate ?? 0) / 10000
+
+export const getCustomerLendingRate = (plan: EligibilityPlanToDisplay): number => {
+  if (isCredit(plan)) {
+    return getAnnualPercentageRate(plan)
+  }
+  return 0
+}

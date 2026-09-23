@@ -2,6 +2,7 @@ import {
   getAnnualPercentageRate,
   getCreditDurationInMonths,
   getCustomerFees,
+  getCustomerLendingRate,
   getFinancedAmount,
   getInitialDeposit,
   getTotalCreditCost,
@@ -158,6 +159,37 @@ describe('regulatoryFigures', () => {
     it('should return annual_interest_rate converted into a rate', () => {
       const planWithInterest = { ...mockPlansAllEligible[0], annual_interest_rate: 500 }
       expect(getAnnualPercentageRate(planWithInterest)).toBe(0.05)
+    })
+  })
+
+  describe('getCustomerLendingRate', () => {
+    it('should return 0 for a p1x plan, even if annual_interest_rate is set', () => {
+      const p1xPlan = { ...mockPlansAllEligible[0], annual_interest_rate: 500 }
+      expect(getCustomerLendingRate(p1xPlan)).toBe(0)
+    })
+    it('should return 0 for a PNX plan, even if annual_interest_rate is set', () => {
+      const pnxPlan = {
+        ...mockPlansAllEligible[0],
+        installments_count: 4,
+        annual_interest_rate: 500,
+      }
+      expect(getCustomerLendingRate(pnxPlan)).toBe(0)
+    })
+    it('should return the annual percentage rate for a credit plan', () => {
+      const creditPlan = {
+        ...mockPlansAllEligible[0],
+        installments_count: 5,
+        annual_interest_rate: 500,
+      }
+      expect(getCustomerLendingRate(creditPlan)).toBe(0.05)
+    })
+    it('should return 0 for a credit plan without an annual_interest_rate', () => {
+      const creditPlan = {
+        ...mockPlansAllEligible[0],
+        installments_count: 5,
+        annual_interest_rate: undefined,
+      }
+      expect(getCustomerLendingRate(creditPlan)).toBe(0)
     })
   })
 
