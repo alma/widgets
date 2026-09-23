@@ -6,9 +6,9 @@ import { FormatNumberOptions, FormattedMessage, useIntl } from 'react-intl'
 import { EligibilityPlanToDisplay } from '@/types'
 import { priceFromCents } from '@/utils'
 import {
-  getAnnualPercentageRate,
   getCreditDurationInMonths,
   getCustomerFees,
+  getCustomerLendingRate,
   getFinancedAmount,
   getInitialDeposit,
   getTotalPurchaseAmount,
@@ -56,7 +56,7 @@ const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
   const financedAmount = formatPrice(getFinancedAmount(currentPlan))
   const creditDurationInMonths = getCreditDurationInMonths(currentPlan)
   const initialDeposit = formatPrice(getInitialDeposit(currentPlan))
-  const annualPercentageRate = formatNumber(getAnnualPercentageRate(currentPlan), {
+  const customerLendingRate = formatNumber(getCustomerLendingRate(currentPlan), {
     style: 'percent',
     maximumFractionDigits: 2,
   })
@@ -66,10 +66,10 @@ const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
       <div className={s.legalMentions} data-testid="legal-mentions">
         <FormattedMessage
           id="legal-mentions.credit-or-pnx-without-fees"
-          defaultMessage="Crédit de {financedAmount} au taux débiteur fixe de {annualPercentageRate} sur {creditDurationInMonths} mois. Permettant, avec un acompte de {initialDeposit}, de financer un achat de {purchaseAmount}. {disclaimer}"
+          defaultMessage="Crédit de {financedAmount} au taux débiteur fixe de {customerLendingRate} sur {creditDurationInMonths} mois. Permettant, avec un acompte de {initialDeposit}, de financer un achat de {purchaseAmount}. {disclaimer}"
           values={{
             financedAmount,
-            annualPercentageRate,
+            customerLendingRate,
             creditDurationInMonths,
             initialDeposit,
             purchaseAmount,
@@ -116,10 +116,10 @@ const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
         {hasFees ? (
           <FormattedMessage
             id="legal-mentions.pay-later-with-fees"
-            defaultMessage="Crédit de {financedAmount} au taux débiteur fixe de {annualPercentageRate} sur {deferredDuration}. Permettant de financer un achat de {purchaseAmount}, incluant des frais de {fees}. Montant total dû : {totalDue}, prélevés le {dueDate}. {disclaimer}"
+            defaultMessage="Crédit de {financedAmount} au taux débiteur fixe de {customerLendingRate} sur {deferredDuration}. Permettant de financer un achat de {purchaseAmount}, incluant des frais de {fees}. Montant total dû : {totalDue}, prélevés le {dueDate}. {disclaimer}"
             values={{
               financedAmount,
-              annualPercentageRate,
+              customerLendingRate,
               deferredDuration,
               purchaseAmount,
               fees: formatPrice(fees),
@@ -131,10 +131,10 @@ const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
         ) : (
           <FormattedMessage
             id="legal-mentions.pay-later-without-fees"
-            defaultMessage="Crédit de {financedAmount} au taux débiteur fixe de {annualPercentageRate} sur {deferredDuration}. Permettant de financer un achat de {purchaseAmount}. Montant total dû : {totalDue}, prélevés le {dueDate}. {disclaimer}"
+            defaultMessage="Crédit de {financedAmount} au taux débiteur fixe de {customerLendingRate} sur {deferredDuration}. Permettant de financer un achat de {purchaseAmount}. Montant total dû : {totalDue}, prélevés le {dueDate}. {disclaimer}"
             values={{
               financedAmount,
-              annualPercentageRate,
+              customerLendingRate,
               deferredDuration,
               purchaseAmount,
               totalDue,
@@ -152,10 +152,10 @@ const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
       {hasFees ? (
         <FormattedMessage
           id="legal-mentions.pnx-with-fees"
-          defaultMessage="Crédit de {financedAmount} au taux débiteur fixe de {annualPercentageRate} sur {creditDurationInMonths} mois. Permettant, avec un acompte de {initialDeposit}, incluant des frais de {fees}, de financer un achat de {purchaseAmount}. {disclaimer}"
+          defaultMessage="Crédit de {financedAmount} au taux débiteur fixe de {customerLendingRate} sur {creditDurationInMonths} mois. Permettant, avec un acompte de {initialDeposit}, incluant des frais de {fees}, de financer un achat de {purchaseAmount}. {disclaimer}"
           values={{
             financedAmount,
-            annualPercentageRate,
+            customerLendingRate,
             creditDurationInMonths,
             initialDeposit,
             fees: formatPrice(fees),
@@ -166,10 +166,10 @@ const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
       ) : (
         <FormattedMessage
           id="legal-mentions.credit-or-pnx-without-fees"
-          defaultMessage="Crédit de {financedAmount} au taux débiteur fixe de {annualPercentageRate} sur {creditDurationInMonths} mois. Permettant, avec un acompte de {initialDeposit}, de financer un achat de {purchaseAmount}. {disclaimer}"
+          defaultMessage="Crédit de {financedAmount} au taux débiteur fixe de {customerLendingRate} sur {creditDurationInMonths} mois. Permettant, avec un acompte de {initialDeposit}, de financer un achat de {purchaseAmount}. {disclaimer}"
           values={{
             financedAmount,
-            annualPercentageRate,
+            customerLendingRate,
             creditDurationInMonths,
             initialDeposit,
             purchaseAmount,
