@@ -51,7 +51,7 @@ const TotalBlock: FunctionComponent<{ currentPlan: EligibilityPlanToDisplay }> =
             <span className={s.creditCost}>
               <FormattedMessage
                 id="credit-features.credit-cost-display"
-                defaultMessage="{creditCost} (TAEG {annualPercentageRate} inclus)"
+                defaultMessage="{creditCost} (TAEG {annualPercentageRate})"
                 values={{
                   creditCost: intl.formatNumber(creditCost, {
                     style: 'currency',
