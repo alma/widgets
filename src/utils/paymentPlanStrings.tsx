@@ -6,7 +6,7 @@ import { FormattedDate, FormattedMessage, FormattedNumber, IntlShape } from 'rea
 import { EligibilityPlanToDisplay } from '@/types'
 import { isP1X, priceFromCents } from '@/utils'
 import s from '@/utils/paymentPlanStrings.module.css'
-import { isPayLater, requiresLegalDisclosure } from '@/utils/regulatoryFigures'
+import { isCredit, isPayLater, requiresLegalDisclosure } from '@/utils/regulatoryFigures'
 
 export const paymentPlanShorthandName = (payment: EligibilityPlanToDisplay): ReactNode => {
   const {
@@ -229,6 +229,10 @@ export const paymentPlanInfoText = (payment: EligibilityPlanToDisplay): ReactNod
         {withNoFee(payment)}
       </p>
     )
+  }
+
+  if (isCredit(payment)) {
+    return knowMoreLine(payment)
   }
 
   const areInstallmentsOfSameAmount = paymentPlan.every(
