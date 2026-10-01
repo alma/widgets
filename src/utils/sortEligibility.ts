@@ -1,13 +1,12 @@
 import { EligibilityPlanToDisplay } from '@/types'
-import { getDeferredDays } from '@/utils'
 
-// Sort by installments count, then by deferral (P1X, J+15, J+30, 2x, 3x…)
+// Sort by installments count, then deferred days before deferred months (P1X, J+15, J+30, M+1, 2x…)
 const sortEligibility = (plans: EligibilityPlanToDisplay[]): EligibilityPlanToDisplay[] =>
   [...plans].sort(
     (a, b) =>
       a.installments_count - b.installments_count ||
-      getDeferredDays(a.deferred_months, a.deferred_days) -
-        getDeferredDays(b.deferred_months, b.deferred_days),
+      a.deferred_months - b.deferred_months ||
+      a.deferred_days - b.deferred_days,
   )
 
 export default sortEligibility

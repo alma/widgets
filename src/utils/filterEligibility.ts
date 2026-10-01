@@ -1,5 +1,5 @@
 import { ConfigPlan, EligibilityPlan, EligibilityPlanToDisplay } from '@/types'
-import { getDeferredDays, isP1X } from '@/utils'
+import { isP1X } from '@/utils'
 
 const isPlanEligible = (plan: EligibilityPlan, configPlan?: ConfigPlan) => {
   if (!plan.eligible) {
@@ -33,14 +33,15 @@ const filterEligibility = (
 
   // Else check if the plan is eligible regarding the related configPlan
   return eligibilities.map((plan) => {
-    const eligibilityDeferredDays = getDeferredDays(plan.deferred_months, plan.deferred_days)
+    const eligibilityDeferredDays =
+      (plan.deferred_months ? plan.deferred_months : 0) * 30 +
+      (plan.deferred_days ? plan.deferred_days : 0)
 
     // find the related configPlan
     const relatedConfigPlan = configPlans.find((configPlan) => {
-      const configPlanDeferredDays = getDeferredDays(
-        configPlan.deferredMonths,
-        configPlan.deferredDays,
-      )
+      const configPlanDeferredDays =
+        (configPlan.deferredMonths ? configPlan.deferredMonths : 0) * 30 +
+        (configPlan.deferredDays ? configPlan.deferredDays : 0)
       return (
         plan.installments_count === configPlan.installmentsCount &&
         eligibilityDeferredDays === configPlanDeferredDays

@@ -18,5 +18,3 @@ export const desktopWidth = 800
 
 export const isP1X = (plan: EligibilityPlanToDisplay): boolean =>
   plan?.installments_count === 1 && plan?.deferred_days === 0 && plan?.deferred_months === 0
-
-export const getDeferredDays = (months = 0, days = 0): number => months * 30 + days
