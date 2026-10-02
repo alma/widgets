@@ -10,6 +10,7 @@ import {
 import { useSessionStorage } from 'hooks/useSessionStorage'
 import { fetchFromApi } from 'utils/fetch'
 import filterEligibility from 'utils/filterEligibility'
+import sortEligibility from 'utils/sortEligibility'
 import { isMoreThanOneHourAgo } from 'utils/utilsForStorage'
 
 const useFetchEligibility = (
@@ -115,6 +116,6 @@ const useFetchEligibility = (
     setCache,
     clearCache,
   ])
-  return [filterEligibility(eligibility, plans), status]
+  return [sortEligibility(filterEligibility(eligibility, plans)), status]
 }
 export default useFetchEligibility
