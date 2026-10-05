@@ -1,6 +1,6 @@
-import { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
+import type { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
 import { isP1X } from '@/domain/plans/plan-kind'
-import { ConfigPlan, EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { ConfigPlan, EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 
 const isPlanEligible = (plan: EligibilityPlan, configPlan?: ConfigPlan) => {
   if (!plan.eligible) {

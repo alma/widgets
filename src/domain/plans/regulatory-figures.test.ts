@@ -172,5 +172,4 @@ describe('regulatoryFigures', () => {
       expect(getCustomerLendingRate(creditPlan)).toBe(0)
     })
   })
-
 })

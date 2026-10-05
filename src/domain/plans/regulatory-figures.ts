@@ -1,5 +1,5 @@
 import { isCredit, isDeferred } from '@/domain/plans/plan-kind'
-import { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 
 export const getTotalCreditCost = (plan: EligibilityPlanToDisplay): number =>
   plan.customer_total_cost_amount ?? 0

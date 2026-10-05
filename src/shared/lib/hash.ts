@@ -1,4 +1,3 @@
-/* eslint-disable */
 // Function to hash a string
 // https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
 export const hashStringForStorage = (str: string): string =>

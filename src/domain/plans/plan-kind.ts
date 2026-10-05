@@ -1,4 +1,4 @@
-import { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 
 export const isP1X = (plan: EligibilityPlanToDisplay): boolean =>
   plan?.installments_count === 1 && plan?.deferred_days === 0 && plan?.deferred_months === 0

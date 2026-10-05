@@ -1,6 +1,10 @@
 /* Identifiers mirror the snake_case API field names being built */
 /* eslint-disable camelcase */
-import { EligiblePlan, IneligiblePlan, PaymentPlan } from '@/domain/plans/api/eligibility.types'
+import type {
+  EligiblePlan,
+  IneligiblePlan,
+  PaymentPlan,
+} from '@/domain/plans/api/eligibility.types'
 import { addDays, addMonths, fromUnixTime, getUnixTime } from '@/shared/lib/date'
 
 const DEFAULT_DUE_DATE = 1638350762

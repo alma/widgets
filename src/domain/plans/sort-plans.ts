@@ -1,4 +1,4 @@
-import { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 
 // Sort by installments count, then deferred days before deferred months (P1X, J+15, J+30, M+1, 2x…)
 const sortEligibility = (plans: EligibilityPlanToDisplay[]): EligibilityPlanToDisplay[] =>

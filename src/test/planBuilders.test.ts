@@ -1,4 +1,4 @@
-import { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
+import type { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
 import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
 
 describe('eligiblePlanBuilder', () => {
