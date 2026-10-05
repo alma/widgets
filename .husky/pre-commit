@@ -1,1 +1,2 @@
-npx tsc --noEmit
+npm run typecheck
+npm run test:no-coverage -- --changed --passWithNoTests

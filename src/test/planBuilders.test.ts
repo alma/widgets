@@ -2,6 +2,10 @@ import { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
 import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
 
 describe('eligiblePlanBuilder', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs()
+  })
+
   it('should support the full chain', () => {
     const plan = eligiblePlanBuilder()
       .withPurchaseAmount(45000)
@@ -89,6 +93,8 @@ describe('eligiblePlanBuilder', () => {
 
     it('should clamp the due dates to the last day of a shorter month', () => {
       // 31 January, then 28 February and 3 April 2022, as date-fns 4.4.0 computes them under TZ=UTC.
+      // The helpers work in local time, and 3 April is in daylight saving time in many zones.
+      vi.stubEnv('TZ', 'UTC')
       const plan = eligiblePlanBuilder()
         .withPurchaseAmount(45000)
         .withInstallmentsCount(3)
