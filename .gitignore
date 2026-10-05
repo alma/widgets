@@ -13,3 +13,9 @@ stats.html
 dist/
 raw/
 clean-package/
+.ref-worktree/
+dist-ref/
+storybook-static/
+__screenshots__/
+.claude/settings.local.json
+.claude/worktrees/
