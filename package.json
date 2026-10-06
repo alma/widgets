@@ -33,7 +33,9 @@
     "translations:extract": "formatjs extract 'src/**/*.ts*' --out-file 'src/intl/messages.json' --format simple --ignore 'src/*.d.ts' && prettier ./src/intl --write",
     "translations:upload": "crowdin upload sources",
     "translations:download": "crowdin download && prettier ./src/intl --write",
-    "prepare": "husky"
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
@@ -42,6 +44,7 @@
     "@formatjs/cli": "^6.3.5",
     "@octokit/core": "^6.1.2",
     "@rollup/plugin-image": "^3.0.3",
+    "@storybook/web-components-vite": "^10.6.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
@@ -52,6 +55,7 @@
     "@types/node": "^22.8.4",
     "@types/react-modal": "^3.16.3",
     "@typescript-eslint/parser": "^8.12.2",
+    "chromatic": "^18.11.0",
     "clean-css": "^5.3.3",
     "commitizen": "^4.3.1",
     "core-js": "^3.38.1",
@@ -74,8 +78,10 @@
     "jest-config": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.2.10",
+    "lit": "^3.3.3",
     "prettier": "^3.3.3",
     "rollup": "^4.24.3",
+    "storybook": "^10.6.1",
     "stylelint": "^13.13.1",
     "stylelint-a11y": "^1.2.3",
     "stylelint-config-standard": "^22.0.0",

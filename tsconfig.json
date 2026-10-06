@@ -4,7 +4,7 @@
     "outDir": "dist/lib",
     "typeRoots": ["node_modules/@types"],
     "baseUrl": ".",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "target": "esnext",
     "module": "esnext",
     "lib": ["es2015", "es2016", "es2017", "dom"],
@@ -29,5 +29,5 @@
       "@/*": ["src/*"],
     }
   },
-  "include": ["src", "setupTests.ts", "vite.config.ts", "scripts"],
+  "include": ["src", ".storybook", "setupTests.ts", "vite.config.ts", "scripts"],
 }

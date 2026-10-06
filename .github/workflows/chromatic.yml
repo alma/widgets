@@ -1,0 +1,29 @@
+name: Chromatic
+
+on:
+  push:
+    branches: [ master, feature/lit-migration ]
+  pull_request:
+    branches: [ master, feature/lit-migration ]
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Chromatic walks the git history to find the baseline of each snapshot
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: 'npm'
+      - run: npm ci
+      - uses: chromaui/action@38afd264ef2241136f12d039093c2724748bec08 # v18.11.0
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          buildScriptName: build-storybook
+          # Visual changes don't fail the job: Chromatic reports them in its own "UI Tests" check,
+          # which stays pending until someone accepts or denies them
+          exitZeroOnChanges: true
