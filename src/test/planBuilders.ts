@@ -1,8 +1,7 @@
 /* Identifiers mirror the snake_case API field names being built */
 /* eslint-disable camelcase */
-import { addDays, addMonths, fromUnixTime, getUnixTime } from 'date-fns'
-
-import { EligiblePlan, IneligiblePlan, PaymentPlan } from '@/types'
+import { EligiblePlan, IneligiblePlan, PaymentPlan } from '@/domain/plans/api/eligibility.types'
+import { addDays, addMonths, fromUnixTime, getUnixTime } from '@/shared/lib/date'
 
 const DEFAULT_DUE_DATE = 1638350762
 const BPS_SCALE = 10000
@@ -28,8 +27,7 @@ const deriveTotalCosts = (plan: {
   }
 }
 
-// date-fns treats a numeric argument as milliseconds, but due_date is Unix seconds —
-// round-trip through from/getUnixTime to bridge the units.
+// due_date is Unix seconds — round-trip through from/getUnixTime to bridge the units.
 const shiftDueDate = (
   dueDate: number,
   offset: number,

@@ -1,5 +1,5 @@
-import { EligibilityPlan } from '@/types'
-import { eligiblePlanBuilder, ineligiblePlanBuilder } from 'test/planBuilders'
+import { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
+import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
 
 describe('eligiblePlanBuilder', () => {
   it('should support the full chain', () => {
@@ -85,6 +85,19 @@ describe('eligiblePlanBuilder', () => {
       const [first, second, third] = plan.payment_plan.map((installment) => installment.due_date)
       expect(second - first).toBeGreaterThan(0)
       expect(third - second).toBeGreaterThan(0)
+    })
+
+    it('should clamp the due dates to the last day of a shorter month', () => {
+      // 31 January, then 28 February and 3 April 2022, as date-fns 4.4.0 computes them under TZ=UTC.
+      const plan = eligiblePlanBuilder()
+        .withPurchaseAmount(45000)
+        .withInstallmentsCount(3)
+        .withDeferredDays(30)
+        .withDeferredMonths(1)
+
+      expect(plan.payment_plan.map((installment) => installment.due_date)).toEqual([
+        1643621162, 1646040362, 1648977962,
+      ])
     })
 
     it('should rebuild the payment plan when called again with a different count', () => {

@@ -1,5 +1,6 @@
+import { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
+import { ConfigPlan } from '@/domain/plans/plans.types'
 import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
-import { ConfigPlan, EligibilityPlan } from '@/types'
 
 const baseEligiblePlan = eligiblePlanBuilder().withPurchaseAmount(45000)
 
