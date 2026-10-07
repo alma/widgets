@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - master
+      - feature/lit-migration
 
 jobs:
   aqua:

@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, feature/lit-migration ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, feature/lit-migration ]
 
 jobs:
   lint:
@@ -50,7 +50,7 @@ jobs:
           node-version-file: .nvmrc
           cache: 'npm'
       - run: npm ci
-      - run: npm run build
+      - run: npm run typecheck
 
   update-release-draft:
     if: github.ref == 'refs/heads/master'
