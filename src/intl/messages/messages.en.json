@@ -53,16 +53,12 @@
   "skip-links.payment-plans": "Go to payment options",
   "skip-links.payment-schedule": "Go to payment calendar",
   "warning-message.be": "Caution! Borrowing money also costs money.",
-  "warning-message.de.with-fees": "Caution! Borrowing money costs money.",
-  "warning-message.de.without-fees": "A loan is a financial obligation and must be repaid. Be sure to check the cost of the loan before you commit.",
-  "warning-message.es": "Warning! A loan is a commitment and must be repaid. Be sure to check the cost of the loan and your ability to repay it before you commit.",
+  "warning-message.de": "Caution! Borrowing money costs money.",
+  "warning-message.es": "Warning! Borrowing money costs money.",
   "warning-message.fr": "Warning! A loan costs money and must be repaid.",
   "warning-message.gb": "Caution! Borrowing money costs money.",
-  "warning-message.it.with-fees": "Caution! Borrowing money costs money.",
-  "warning-message.it.without-fees": "Important: A loan is a financial commitment and must be repaid. Be sure to check the cost of the loan before you commit to it.",
+  "warning-message.it": "Caution! Borrowing money costs money.",
   "warning-message.lu": "Warning! Borrowing money costs money.",
-  "warning-message.nl.with-fees": "Caution! Borrowing money also costs money.",
-  "warning-message.nl.without-fees": "Warning: A loan is a binding commitment and must be repaid. Be sure to check the cost of the loan and your ability to repay it before signing a contract.",
-  "warning-message.pt.with-fees": "Caution! Borrowing money costs money.",
-  "warning-message.pt.without-fees": "Warning! A loan is a commitment and must be repaid. Be sure to check the cost of the loan and your ability to repay it before you commit."
+  "warning-message.nl": "Caution! Borrowing money also costs money.",
+  "warning-message.pt": "Caution! Borrowing money costs money."
 }
