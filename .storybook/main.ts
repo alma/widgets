@@ -4,7 +4,7 @@ import type { StorybookConfig } from '@storybook/web-components-vite'
 const LIBRARY_BUILD_PLUGINS = ['vite:dts', 'minify-css']
 
 const config: StorybookConfig = {
-  stories: ['../src/stories/**/*.stories.ts'],
+  stories: ['../src/**/*.stories.ts'],
   framework: '@storybook/web-components-vite',
   core: { disableTelemetry: true },
   // Storybook reuses vite.config.ts (aliases, preact/compat, CSS modules) but builds an app, not

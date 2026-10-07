@@ -9,6 +9,10 @@ on:
 jobs:
   chromatic:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # To comment the build result on the PR
+      pull-requests: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -21,9 +25,51 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - uses: chromaui/action@38afd264ef2241136f12d039093c2724748bec08 # v18.11.0
+        id: chromatic
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           buildScriptName: build-storybook
           # Visual changes don't fail the job: Chromatic reports them in its own "UI Tests" check,
           # which stays pending until someone accepts or denies them
           exitZeroOnChanges: true
+      - name: Comment the Chromatic result on the PR
+        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          OUTCOME: ${{ steps.chromatic.outcome }}
+          STORYBOOK_URL: ${{ steps.chromatic.outputs.storybookUrl }}
+          BUILD_URL: ${{ steps.chromatic.outputs.buildUrl }}
+          PENDING_COUNT: ${{ steps.chromatic.outputs.pendingCount }}
+        with:
+          script: |
+            // A single comment per PR, found by this marker and updated on every build
+            const marker = '<!-- chromatic-build -->'
+            const { OUTCOME, STORYBOOK_URL, BUILD_URL, PENDING_COUNT } = process.env
+            const { owner, repo } = context.repo
+            const { number: issue_number, head } = context.payload.pull_request
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`
+
+            let result
+            if (OUTCOME !== 'success') {
+              result = `🤕 The Chromatic build failed, see the [workflow logs](${runUrl}).`
+            } else if (Number(PENDING_COUNT) > 0) {
+              result = `🧐 Chromatic found ${PENDING_COUNT} visual change(s) to review: [review them in Chromatic](${BUILD_URL}).`
+            } else {
+              result = '👌 Chromatic found no visual changes to review.'
+            }
+            const storybook = STORYBOOK_URL
+              ? `[Storybook of ${head.sha.slice(0, 7)}](${STORYBOOK_URL})\n\n`
+              : ''
+            const body = `${marker}\n${storybook}${result}`
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+            })
+            const previous = comments.find((comment) => comment.body?.includes(marker))
+            if (previous) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: previous.id, body })
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body })
+            }

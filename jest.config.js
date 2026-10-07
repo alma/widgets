@@ -19,7 +19,7 @@ module.exports = {
     '<rootDir>/**/*.tsx',
     '<rootDir>/**/*.ts',
     '!<rootDir>/*/polyfills.js',
-    '!<rootDir>/stories/**',
+    '!<rootDir>/**/*.stories.*',
   ],
   coverageDirectory: path.join(__dirname, 'coverage'),
   coverageThreshold: {
