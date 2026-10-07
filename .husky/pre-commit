@@ -1,3 +1,3 @@
-npx tsc --noEmit
-npm run test:no-coverage -- --only-changed
+npm run typecheck
+npm run test:no-coverage -- --changed --passWithNoTests
 npx lint-staged
