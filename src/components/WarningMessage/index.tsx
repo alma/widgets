@@ -3,11 +3,10 @@ import React, { FC } from 'react'
 import { defineMessages, MessageDescriptor, useIntl } from 'react-intl'
 
 import { EligibilityPlanToDisplay } from '@/types'
-import { getCustomerFees } from '@/utils/regulatoryFigures'
 import s from 'components/WarningMessage/WarningMessage.module.css'
 
 /**
- * One entry per sentence of the DCC2 "Warning sentence" mapping. As for
+ * One entry per country of the DCC2 "Warning sentence" mapping. As for
  * `credit-features.legal-text`, `defaultMessage` holds the French source string only: every other
  * locale is filled in by Crowdin, so the Dutch/Italian/German/… wording is never hardcoded here.
  */
@@ -24,46 +23,25 @@ const messages = defineMessages({
     id: 'warning-message.be',
     defaultMessage: "Attention, emprunter de l'argent coûte aussi de l'argent.",
   },
-  nlWithoutFees: {
-    id: 'warning-message.nl.without-fees',
-    defaultMessage:
-      'Attention : un prêt vous engage et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de conclure un contrat.',
-  },
-  nlWithFees: {
-    id: 'warning-message.nl.with-fees',
+  nl: {
+    id: 'warning-message.nl',
     defaultMessage: "Attention, emprunter de l'argent coûte aussi de l'argent.",
   },
-  itWithoutFees: {
-    id: 'warning-message.it.without-fees',
-    defaultMessage:
-      'Important, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.',
-  },
-  itWithFees: {
-    id: 'warning-message.it.with-fees',
+  it: {
+    id: 'warning-message.it',
     defaultMessage: "Attention ! Emprunter de l'argent a un coût.",
   },
-  deWithoutFees: {
-    id: 'warning-message.de.without-fees',
-    defaultMessage:
-      'Attention, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.',
-  },
-  deWithFees: {
-    id: 'warning-message.de.with-fees',
+  de: {
+    id: 'warning-message.de',
     defaultMessage: "Attention ! Emprunter de l'argent a un coût.",
   },
-  ptWithoutFees: {
-    id: 'warning-message.pt.without-fees',
-    defaultMessage:
-      'Attention, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de vous engager.',
-  },
-  ptWithFees: {
-    id: 'warning-message.pt.with-fees',
+  pt: {
+    id: 'warning-message.pt',
     defaultMessage: "Attention ! Emprunter de l'argent a un coût.",
   },
   es: {
     id: 'warning-message.es',
-    defaultMessage:
-      'Attention, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de vous engager.',
+    defaultMessage: "Attention ! Emprunter de l'argent coûte de l'argent.",
   },
   gb: {
     id: 'warning-message.gb',
@@ -71,51 +49,36 @@ const messages = defineMessages({
   },
 })
 
-type WarningVariants = {
-  withFees: MessageDescriptor
-  withoutFees: MessageDescriptor
-}
-
 /**
- * Keyed by `transaction_country`, never by plan family or deferred status: a deferred P1X plan gets
- * the same sentence as any other plan booked in the same country with the same fee sharing.
- * Countries whose mapping reads "Same" in both columns point at a single message id.
+ * Keyed by `transaction_country` only
  */
-const WARNINGS_BY_COUNTRY: Record<string, WarningVariants> = {
-  FR: { withoutFees: messages.fr, withFees: messages.fr },
-  LU: { withoutFees: messages.lu, withFees: messages.lu },
+const WARNINGS_BY_COUNTRY: Record<string, MessageDescriptor> = {
+  FR: messages.fr,
+  LU: messages.lu,
   // Belgium is a single id: the FR/NL split of the mapping is a locale concern, so Crowdin serves
   // the Dutch wording to nl visitors rather than us branching on the country twice.
-  BE: { withoutFees: messages.be, withFees: messages.be },
-  NL: { withoutFees: messages.nlWithoutFees, withFees: messages.nlWithFees },
-  IT: { withoutFees: messages.itWithoutFees, withFees: messages.itWithFees },
-  DE: { withoutFees: messages.deWithoutFees, withFees: messages.deWithFees },
-  PT: { withoutFees: messages.ptWithoutFees, withFees: messages.ptWithFees },
-  ES: { withoutFees: messages.es, withFees: messages.es },
-  GB: { withoutFees: messages.gb, withFees: messages.gb },
+  BE: messages.be,
+  NL: messages.nl,
+  IT: messages.it,
+  DE: messages.de,
+  PT: messages.pt,
+  ES: messages.es,
+  GB: messages.gb,
   // The mapping names this row "UK"; accept the non-ISO code in case the API sends it.
-  UK: { withoutFees: messages.gb, withFees: messages.gb },
+  UK: messages.gb,
 }
 
 type Props = { currentPlan: EligibilityPlanToDisplay }
 
 const WarningMessage: FC<Props> = ({ currentPlan }) => {
   const intl = useIntl()
-  const variants = WARNINGS_BY_COUNTRY[currentPlan.transaction_country?.toUpperCase()]
+  const warning = WARNINGS_BY_COUNTRY[currentPlan.transaction_country?.toUpperCase()]
 
   // An unmapped country has no approved wording, and showing another country's legal warning would
   // be worse than showing none.
-  if (!variants) return null
+  if (!warning) return null
 
-  // Fees only, deliberately: `customer_total_cost_amount` also carries a credit plan's
-  // interest, so a P10 whose whole customer cost is interest is not fee sharing.
-  const hasFees = getCustomerFees(currentPlan) > 0
-
-  return (
-    <p className={s.warning}>
-      {intl.formatMessage(hasFees ? variants.withFees : variants.withoutFees)}
-    </p>
-  )
+  return <p className={s.warning}>{intl.formatMessage(warning)}</p>
 }
 
 export default WarningMessage
