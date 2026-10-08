@@ -15,7 +15,12 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
-  collectCoverageFrom: ['<rootDir>/**/*.tsx', '<rootDir>/**/*.ts', '!<rootDir>/*/polyfills.js'],
+  collectCoverageFrom: [
+    '<rootDir>/**/*.tsx',
+    '<rootDir>/**/*.ts',
+    '!<rootDir>/*/polyfills.js',
+    '!<rootDir>/**/*.stories.*',
+  ],
   coverageDirectory: path.join(__dirname, 'coverage'),
   coverageThreshold: {
     global: {

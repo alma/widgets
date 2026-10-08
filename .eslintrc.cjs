@@ -113,6 +113,7 @@ module.exports = {
           '**/*.test.ts',
           '**/test/**',
           '**/__tests__/**',
+          '**/*.stories.*',
           '**/setupTests.ts',
           'test-utils',
         ],
