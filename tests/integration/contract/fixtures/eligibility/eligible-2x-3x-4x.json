@@ -1,0 +1,107 @@
+[
+  {
+    "customer_total_cost_amount": 0,
+    "customer_total_cost_bps": 0,
+    "customer_interest": 0,
+    "customer_fee": 0,
+    "deferred_days": 0,
+    "deferred_months": 0,
+    "eligible": true,
+    "installments_count": 2,
+    "payment_plan": [
+      {
+        "customer_fee": 0,
+        "customer_interest": 0,
+        "due_date": 1638350762,
+        "purchase_amount": 22500,
+        "total_amount": 22500
+      },
+      {
+        "customer_fee": 0,
+        "customer_interest": 0,
+        "due_date": 1641029162,
+        "purchase_amount": 22500,
+        "total_amount": 22500
+      }
+    ],
+    "purchase_amount": 45000,
+    "transaction_country": "FR"
+  },
+  {
+    "customer_total_cost_amount": 135,
+    "customer_total_cost_bps": 30,
+    "customer_interest": 0,
+    "customer_fee": 135,
+    "deferred_days": 0,
+    "deferred_months": 0,
+    "eligible": true,
+    "installments_count": 3,
+    "payment_plan": [
+      {
+        "customer_fee": 135,
+        "customer_interest": 0,
+        "due_date": 1638350762,
+        "purchase_amount": 15000,
+        "total_amount": 15135
+      },
+      {
+        "customer_fee": 0,
+        "customer_interest": 0,
+        "due_date": 1641029162,
+        "purchase_amount": 15000,
+        "total_amount": 15000
+      },
+      {
+        "customer_fee": 0,
+        "customer_interest": 0,
+        "due_date": 1643707562,
+        "purchase_amount": 15000,
+        "total_amount": 15000
+      }
+    ],
+    "purchase_amount": 45000,
+    "transaction_country": "FR"
+  },
+  {
+    "customer_total_cost_amount": 1062,
+    "customer_total_cost_bps": 236,
+    "customer_interest": 0,
+    "customer_fee": 1062,
+    "deferred_days": 0,
+    "deferred_months": 0,
+    "eligible": true,
+    "installments_count": 4,
+    "payment_plan": [
+      {
+        "customer_fee": 1062,
+        "customer_interest": 0,
+        "due_date": 1638350762,
+        "purchase_amount": 11250,
+        "total_amount": 12312
+      },
+      {
+        "customer_fee": 0,
+        "customer_interest": 0,
+        "due_date": 1641029162,
+        "purchase_amount": 11250,
+        "total_amount": 11250
+      },
+      {
+        "customer_fee": 0,
+        "customer_interest": 0,
+        "due_date": 1643707562,
+        "purchase_amount": 11250,
+        "total_amount": 11250
+      },
+      {
+        "customer_fee": 0,
+        "customer_interest": 0,
+        "due_date": 1646126762,
+        "purchase_amount": 11250,
+        "total_amount": 11250
+      }
+    ],
+    "purchase_amount": 45000,
+    "transaction_country": "FR"
+  }
+]
