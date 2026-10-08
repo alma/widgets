@@ -1,0 +1,53 @@
+[
+  {
+    "deferred_days": 0,
+    "deferred_months": 0,
+    "eligible": false,
+    "installments_count": 2,
+    "purchase_amount": 45000,
+    "transaction_country": "FR",
+    "reasons": {
+      "purchase_amount": "invalid_value"
+    },
+    "constraints": {
+      "purchase_amount": {
+        "minimum": 90000,
+        "maximum": 135000
+      }
+    }
+  },
+  {
+    "deferred_days": 0,
+    "deferred_months": 0,
+    "eligible": false,
+    "installments_count": 3,
+    "purchase_amount": 45000,
+    "transaction_country": "FR",
+    "reasons": {
+      "purchase_amount": "invalid_value"
+    },
+    "constraints": {
+      "purchase_amount": {
+        "minimum": 90000,
+        "maximum": 135000
+      }
+    }
+  },
+  {
+    "deferred_days": 0,
+    "deferred_months": 0,
+    "eligible": false,
+    "installments_count": 4,
+    "purchase_amount": 45000,
+    "transaction_country": "FR",
+    "reasons": {
+      "purchase_amount": "invalid_value"
+    },
+    "constraints": {
+      "purchase_amount": {
+        "minimum": 90000,
+        "maximum": 135000
+      }
+    }
+  }
+]
