@@ -57,7 +57,11 @@ export default defineConfig({
     'process.env.BUILD_VERSION': JSON.stringify(process.env.BUILD_VERSION ?? 'dev'),
   },
   plugins: [
-    dts({ outDir: 'dist/types', exclude: ['node_modules/**', 'src/**/*.stories.*'] }),
+    dts({
+      outDir: 'dist/types',
+      // Stories and test helpers are not part of the published package
+      exclude: ['node_modules/**', 'src/**/*.stories.*', 'src/test/**'],
+    }),
     nodePolyfills(),
     {
       name: 'minify-css',

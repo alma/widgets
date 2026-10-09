@@ -1,9 +1,36 @@
 import type { Decorator, Preview } from '@storybook/web-components-vite'
+import { http, HttpResponse } from 'msw'
+import { setupWorker } from 'msw/browser'
+import { mswLoader } from 'msw-storybook-addon/csf3'
+
+import { ApiMode } from '@/consts'
 
 import merchantCss from '../examples/style.css?inline'
-import { mockEligibilityApi } from './mockEligibilityApi'
 
 const MERCHANT_CSS_ID = 'merchant-css'
+
+/**
+ * Fails every Alma API request that the story doesn't mock, so no story can reach the real API.
+ * The handlers a story sets in `parameters.msw` take precedence over these.
+ */
+const blockAlmaApi = Object.values(ApiMode).map((origin) =>
+  http.all(`${origin}/*`, ({ request }) => {
+    console.error(`No MSW handler for ${request.method} ${request.url} in this story`)
+    return HttpResponse.error()
+  }),
+)
+
+/**
+ * Starts MSW, which answers the API requests that stories mock with `parameters.msw` (see
+ * src/test/eligibilityHandlers.ts). Requests that aren't for the Alma API (Storybook, Vite, fonts)
+ * go through untouched.
+ */
+const startMsw = async () => {
+  // Handlers passed to setupWorker() survive the reset that runs between stories
+  const worker = setupWorker(...blockAlmaApi)
+  await worker.start({ quiet: true, onUnhandledRequest: 'bypass' })
+  return worker
+}
 
 /**
  * Adds examples/style.css to the page when the "Merchant CSS" toolbar toggle is on. That
@@ -21,6 +48,7 @@ const withMerchantCss: Decorator = (story, { globals }) => {
 }
 
 const preview: Preview = {
+  loaders: [mswLoader(startMsw)],
   decorators: [withMerchantCss],
   globalTypes: {
     merchantCss: {
@@ -56,10 +84,9 @@ const preview: Preview = {
       },
     },
   },
-  beforeEach: ({ parameters }) => {
+  beforeEach: () => {
     // The widget caches the eligibility response for an hour: start every story without it
     sessionStorage.clear()
-    return mockEligibilityApi(parameters.eligibility ?? 'pending')
   },
 }
 
