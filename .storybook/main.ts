@@ -5,6 +5,8 @@ const LIBRARY_BUILD_PLUGINS = ['vite:dts', 'minify-css']
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.ts'],
+  // Serves MSW's mockServiceWorker.js. Not in the root public/ folder: Vite would copy it into dist/
+  staticDirs: ['./public'],
   framework: '@storybook/web-components-vite',
   core: { disableTelemetry: true },
   // Storybook reuses vite.config.ts (aliases, preact/compat, CSS modules) but builds an app, not

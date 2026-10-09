@@ -79,6 +79,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.2.10",
     "lit": "^3.3.3",
+    "msw": "^2.15.0",
+    "msw-storybook-addon": "^3.0.3",
     "prettier": "^3.3.3",
     "rollup": "^4.24.3",
     "storybook": "^10.6.1",
@@ -131,5 +133,10 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "msw": {
+    "workerDirectory": [
+      ".storybook/public"
+    ]
   }
 }

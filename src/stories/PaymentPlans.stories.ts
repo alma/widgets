@@ -2,6 +2,7 @@ import type { Meta, StoryContext, StoryObj } from '@storybook/web-components-vit
 import { waitFor } from 'storybook/test'
 
 import { ApiMode, Widgets } from '@/index'
+import { eligibilityPending, eligibilityPlans } from '@/test/eligibilityHandlers'
 import { mockPlansAllEligible } from '@/test/fixtures'
 import { Locale, PaymentPlanWidgetOptions } from '@/types'
 
@@ -49,10 +50,10 @@ export default meta
 type Story = StoryObj<Options>
 
 export const Loading: Story = {
-  parameters: { eligibility: 'pending' },
+  parameters: { msw: { handlers: [eligibilityPending()] } },
 }
 
 export const AllPlansEligible: Story = {
-  parameters: { eligibility: mockPlansAllEligible },
+  parameters: { msw: { handlers: [eligibilityPlans(mockPlansAllEligible)] } },
   play: waitForEligibility,
 }
