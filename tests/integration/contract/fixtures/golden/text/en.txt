@@ -1,0 +1,2205 @@
+=== payment-plans loading
+
+
+=== payment-plans several plans
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: 2 x €225.00 (free of charge)
+text: Click to find out more
+text: Selected plan: 2x
+
+=== payment-plans one plan
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option 3x
+text: 3x
+text: Information on the selected payment plan
+text: €151.35 then 2 x €150.00
+text: Click to find out more
+text: Selected plan: 3x
+
+=== payment-plans all not eligible without plans
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+text: Information on the selected payment plan
+text: Until €0.00
+text: Selected plan: 2x
+
+=== payment-plans not eligible below minAmount
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+text: Information on the selected payment plan
+text: From €900.00
+text: Selected plan: 2x
+
+=== payment-plans not eligible above maxAmount
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option 4x
+text: 4x
+text: Information on the selected payment plan
+text: Until €200.00
+text: Selected plan: 4x
+
+=== standalone modal, pending, desktop
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+
+=== standalone modal, pending, mobile
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+
+=== standalone modal, success, desktop
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== standalone modal, success, mobile
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+
+=== standalone modal, no eligibility, desktop
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Oops, looks like the simulation didn't work.
+
+=== standalone modal, no eligibility, mobile
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: Oops, looks like the simulation didn't work.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+
+=== standalone modal, failed, desktop
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+
+=== standalone modal, failed, mobile
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+
+=== plan kinds, widget and modal with each plan selected in turn, desktop
+-- widget
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+text: Selected plan: Pay now
+-- widget, plan 2 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: €450.00 to pay the December 16, 2021 (free of charge)
+text: Click to find out more
+text: Selected plan: Deferred payment: 15 days
+-- widget, plan 3 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: €450.00 to pay the December 31, 2021 (free of charge)
+text: Click to find out more
+text: Selected plan: Deferred payment: 30 days
+-- widget, plan 4 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: €450.00 to pay the January 1, 2022 (free of charge)
+text: Click to find out more
+text: Selected plan: Deferred payment: 1 months
+-- widget, plan 5 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: 2 x €225.00 (free of charge)
+text: Click to find out more
+text: Selected plan: 2x
+-- widget, plan 6 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: €151.35 then 2 x €150.00
+text: Click to find out more
+text: Selected plan: 3x
+-- widget, plan 7 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: €123.12 then 3 x €112.50
+text: Click to find out more
+text: Selected plan: 4x
+-- widget, plan 8 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Click to find out more
+text: Selected plan: 10x
+-- modal opened on plan 1
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+text: Selected plan: Pay now
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma - Pay now
+text: 2
+text: Enter your
+text: credit card details.
+text: 3
+text: !
+text: Your payment is instantly validated at
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €450.00
+text: €450.00
+text: Total
+text: Of which costs (incl. VAT)
+text: €0.00
+-- modal, plan 2 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: December 16, 2021
+text: €450.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 15 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 16, 2021. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 3 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: December 31, 2021
+text: €450.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 30 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 31, 2021. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 4 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: January 1, 2022
+text: €450.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 1 months. Financing a purchase of €450.00. Total amount due: €450.00, debited on January 1, 2022. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 5 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 6 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €151.35
+text: January 1, 2022
+text: €150.00
+text: February 1, 2022
+text: €150.00
+text: Warning! A loan costs money and must be repaid.
+text: €451.35
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €1.35 (APR 0.00%)
+text: A loan of €300.00 at a fixed borrowing rate of 0% over 2 months. Financing, in addition to a €151.35 down payment which includes fees of €1.35, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 7 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €123.12
+text: January 1, 2022
+text: €112.50
+text: February 1, 2022
+text: €112.50
+text: March 1, 2022
+text: €112.50
+text: Warning! A loan costs money and must be repaid.
+text: €460.62
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €10.62 (APR 0.00%)
+text: A loan of €337.50 at a fixed borrowing rate of 0% over 3 months. Financing, in addition to a €123.12 down payment which includes fees of €10.62, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 8 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €47.77
+text: January 1, 2022
+text: €47.72
+text: February 1, 2022
+text: €47.72
+text: March 1, 2022
+text: €47.72
+text: April 1, 2022
+text: €47.72
+text: May 1, 2022
+text: €47.72
+text: June 1, 2022
+text: €47.72
+text: July 1, 2022
+text: €47.72
+text: August 1, 2022
+text: €47.72
+text: September 1, 2022
+text: €47.72
+text: Warning! A loan costs money and must be repaid.
+text: €477.25
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €27.25 (APR 17.20%)
+text: A loan of €429.48 at a fixed borrowing rate of 17.2% over 9 months. Financing, in addition to a €47.77 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== plan kinds, widget and modal with each plan selected in turn, mobile
+-- widget
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+text: Selected plan: Pay now
+-- widget, plan 2 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: €450.00 to pay the December 16, 2021 (free of charge)
+text: Click to find out more
+text: Selected plan: Deferred payment: 15 days
+-- widget, plan 3 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: €450.00 to pay the December 31, 2021 (free of charge)
+text: Click to find out more
+text: Selected plan: Deferred payment: 30 days
+-- widget, plan 4 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: €450.00 to pay the January 1, 2022 (free of charge)
+text: Click to find out more
+text: Selected plan: Deferred payment: 1 months
+-- widget, plan 5 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: 2 x €225.00 (free of charge)
+text: Click to find out more
+text: Selected plan: 2x
+-- widget, plan 6 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: €151.35 then 2 x €150.00
+text: Click to find out more
+text: Selected plan: 3x
+-- widget, plan 7 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: €123.12 then 3 x €112.50
+text: Click to find out more
+text: Selected plan: 4x
+-- widget, plan 8 hovered
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Click to find out more
+text: Selected plan: 10x
+-- modal opened on plan 1
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+text: Selected plan: Pay now
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €450.00
+text: €450.00
+text: Total
+text: Of which costs (incl. VAT)
+text: €0.00
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma - Pay now
+text: 2
+text: Enter your
+text: credit card details.
+text: 3
+text: !
+text: Your payment is instantly validated at
+-- modal, plan 2 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: December 16, 2021
+text: €450.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 15 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 16, 2021. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+-- modal, plan 3 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: December 31, 2021
+text: €450.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 30 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 31, 2021. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+-- modal, plan 4 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: January 1, 2022
+text: €450.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 1 months. Financing a purchase of €450.00. Total amount due: €450.00, debited on January 1, 2022. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+-- modal, plan 5 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+-- modal, plan 6 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €151.35
+text: January 1, 2022
+text: €150.00
+text: February 1, 2022
+text: €150.00
+text: Warning! A loan costs money and must be repaid.
+text: €451.35
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €1.35 (APR 0.00%)
+text: A loan of €300.00 at a fixed borrowing rate of 0% over 2 months. Financing, in addition to a €151.35 down payment which includes fees of €1.35, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+-- modal, plan 7 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €123.12
+text: January 1, 2022
+text: €112.50
+text: February 1, 2022
+text: €112.50
+text: March 1, 2022
+text: €112.50
+text: Warning! A loan costs money and must be repaid.
+text: €460.62
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €10.62 (APR 0.00%)
+text: A loan of €337.50 at a fixed borrowing rate of 0% over 3 months. Financing, in addition to a €123.12 down payment which includes fees of €10.62, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+-- modal, plan 8 selected
+text: Available payment options
+aria-label: Open Alma payment options to find out more
+aria-label: Available payment options
+aria-label: Payment option Pay now
+text: Pay now
+aria-label: Payment option Deferred payment: 15 days
+text: D+15
+aria-label: Payment option Deferred payment: 30 days
+text: D+30
+aria-label: Payment option Deferred payment: 1 months
+text: M+1
+aria-label: Payment option 2x
+text: 2x
+aria-label: Payment option 3x
+text: 3x
+aria-label: Payment option 4x
+text: 4x
+aria-label: Payment option 10x
+text: 10x
+text: Information on the selected payment plan
+text: Pay now €450.00 (free of charge)
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments or later by credit card with Alma.
+text: Available payment options
+aria-label: Select payment plan Pay now
+text: Pay now
+aria-label: Select payment plan D+15
+text: D+15
+aria-label: Select payment plan D+30
+text: D+30
+aria-label: Select payment plan M+1
+text: M+1
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+aria-label: Select payment plan 10x
+text: 10x
+text: Payment schedule
+text: Today
+text: €47.77
+text: January 1, 2022
+text: €47.72
+text: February 1, 2022
+text: €47.72
+text: March 1, 2022
+text: €47.72
+text: April 1, 2022
+text: €47.72
+text: May 1, 2022
+text: €47.72
+text: June 1, 2022
+text: €47.72
+text: July 1, 2022
+text: €47.72
+text: August 1, 2022
+text: €47.72
+text: September 1, 2022
+text: €47.72
+text: Warning! A loan costs money and must be repaid.
+text: €477.25
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €27.25 (APR 17.20%)
+text: A loan of €429.48 at a fixed borrowing rate of 17.2% over 9 months. Financing, in addition to a €47.77 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+
+=== warning, FR, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Warning! A loan costs money and must be repaid.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, LU, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Warning! Borrowing money costs money.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, BE, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Caution! Borrowing money also costs money.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Caution! Borrowing money also costs money.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, IT, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Caution! Borrowing money costs money.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, DE, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Caution! Borrowing money costs money.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, PT, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Caution! Borrowing money costs money.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, ES, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Warning! Borrowing money costs money.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, GB, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Caution! Borrowing money costs money.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, UK, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: Caution! Borrowing money costs money.
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, US, without customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 2x
+text: 2x
+aria-label: Select payment plan 3x
+text: 3x
+aria-label: Select payment plan 4x
+text: 4x
+text: Payment schedule
+text: Today
+text: €225.00
+text: January 1, 2022
+text: €225.00
+text: €450.00
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €0.00 (APR 0.00%)
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, with customer_fee
+aria-label: Close window
+aria-label: Quick navigation
+text: Go to payment options
+text: Go to payment information
+text: Go to payment calendar
+text: Pay in installments by credit card with Alma.
+text: How to pay
+text: 1
+text: Choose at checkout.
+text: Alma
+text: 2
+text: Let us guide you and validate your payment in
+text: 2 minutes.
+text: 3
+text: by advancing or postponing your deadlines at your own pace.
+text: Stay in control
+text: Available payment options
+aria-label: Select payment plan 3x
+text: 3x
+text: Payment schedule
+text: Today
+text: €151.35
+text: January 1, 2022
+text: €150.00
+text: February 1, 2022
+text: €150.00
+text: Caution! Borrowing money also costs money.
+text: €451.35
+text: Total
+text: Of which cost of credit (incl. VAT)
+text: €1.35 (APR 0.00%)
+text: A loan of €300.00 at a fixed borrowing rate of 0% over 2 months. Financing, in addition to a €151.35 down payment which includes fees of €1.35, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com

@@ -1,0 +1,2205 @@
+=== payment-plans loading
+
+
+=== payment-plans several plans
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: In 2 rate mensili di 225,00 € (senza interessi)
+text: Clicca qui per saperne di più
+text: Piano selezionato: 2x
+
+=== payment-plans one plan
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento 3x
+text: 3x
+text: Informazioni sul piano di pagamento selezionato
+text: Oggi paghi 151,35 € poi 2 rate mensili di 150,00 €
+text: Clicca qui per saperne di più
+text: Piano selezionato: 3x
+
+=== payment-plans all not eligible without plans
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+text: Informazioni sul piano di pagamento selezionato
+text: Disponibile fino a 0,00 €
+text: Piano selezionato: 2x
+
+=== payment-plans not eligible below minAmount
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+text: Informazioni sul piano di pagamento selezionato
+text: Pagamento rateale disponibile a partire da 900,00 €
+text: Piano selezionato: 2x
+
+=== payment-plans not eligible above maxAmount
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento 4x
+text: 4x
+text: Informazioni sul piano di pagamento selezionato
+text: Disponibile fino a 200,00 €
+text: Piano selezionato: 4x
+
+=== standalone modal, pending, desktop
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+
+=== standalone modal, pending, mobile
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+
+=== standalone modal, success, desktop
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== standalone modal, success, mobile
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+
+=== standalone modal, no eligibility, desktop
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Ops, sembra che qualcosa non abbia funzionato.
+
+=== standalone modal, no eligibility, mobile
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Ops, sembra che qualcosa non abbia funzionato.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+
+=== standalone modal, failed, desktop
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+
+=== standalone modal, failed, mobile
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+
+=== plan kinds, widget and modal with each plan selected in turn, desktop
+-- widget
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+text: Piano selezionato: Paga ora
+-- widget, plan 2 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: 450,00 € da pagare il 16 dicembre 2021 (senza interessi)
+text: Clicca qui per saperne di più
+text: Piano selezionato: Pagamento dilazionato: 15 giorni
+-- widget, plan 3 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: 450,00 € da pagare il 31 dicembre 2021 (senza interessi)
+text: Clicca qui per saperne di più
+text: Piano selezionato: Pagamento dilazionato: 30 giorni
+-- widget, plan 4 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: 450,00 € da pagare il 1 gennaio 2022 (senza interessi)
+text: Clicca qui per saperne di più
+text: Piano selezionato: Pagamento dilazionato: 1 mesi
+-- widget, plan 5 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: In 2 rate mensili di 225,00 € (senza interessi)
+text: Clicca qui per saperne di più
+text: Piano selezionato: 2x
+-- widget, plan 6 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Oggi paghi 151,35 € poi 2 rate mensili di 150,00 €
+text: Clicca qui per saperne di più
+text: Piano selezionato: 3x
+-- widget, plan 7 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Oggi paghi 123,12 € poi 3 rate mensili di 112,50 €
+text: Clicca qui per saperne di più
+text: Piano selezionato: 4x
+-- widget, plan 8 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Clicca qui per saperne di più
+text: Piano selezionato: 10x
+-- modal opened on plan 1
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+text: Piano selezionato: Paga ora
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Scegli alla cassa.
+text: Alma - Paga ora
+text: 2
+text: Inserisci i dati della tua
+text: carta bancaria.
+text: 3
+text: Ricevi la istantaneamente!
+text: conferma di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 450,00 €
+text: 450,00 €
+text: Totale
+text: Di cui commissioni
+text: 0,00 €
+-- modal, plan 2 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: 16 dicembre 2021
+text: 450,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 450,00 € con tasso fisso dello 0% su 15 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 16 dicembre 2021. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 3 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: 31 dicembre 2021
+text: 450,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 450,00 € con tasso fisso dello 0% su 30 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 31 dicembre 2021. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 4 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: 1 gennaio 2022
+text: 450,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 450,00 € con tasso fisso dello 0% su 1 mesi. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 1 gennaio 2022. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 5 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 6 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 151,35 €
+text: 1 gennaio 2022
+text: 150,00 €
+text: 1 febbraio 2022
+text: 150,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 451,35 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 1,35 € (TAEG 0,00%)
+text: Prestito di 300,00 € con tasso fisso dello 0% per 2 mesi. Con un acconto di 151,35 € comprensivo di spese pari a 1,35 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 7 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 123,12 €
+text: 1 gennaio 2022
+text: 112,50 €
+text: 1 febbraio 2022
+text: 112,50 €
+text: 1 marzo 2022
+text: 112,50 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 460,62 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 10,62 € (TAEG 0,00%)
+text: Prestito di 337,50 € con tasso fisso dello 0% per 3 mesi. Con un acconto di 123,12 € comprensivo di spese pari a 10,62 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 8 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 47,77 €
+text: 1 gennaio 2022
+text: 47,72 €
+text: 1 febbraio 2022
+text: 47,72 €
+text: 1 marzo 2022
+text: 47,72 €
+text: 1 aprile 2022
+text: 47,72 €
+text: 1 maggio 2022
+text: 47,72 €
+text: 1 giugno 2022
+text: 47,72 €
+text: 1 luglio 2022
+text: 47,72 €
+text: 1 agosto 2022
+text: 47,72 €
+text: 1 settembre 2022
+text: 47,72 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 477,25 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 27,25 € (TAEG 17,20%)
+text: Prestito di 429,48 € con tasso fisso dello 17,2% per 9 mesi. Con un acconto di 47,77 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== plan kinds, widget and modal with each plan selected in turn, mobile
+-- widget
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+text: Piano selezionato: Paga ora
+-- widget, plan 2 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: 450,00 € da pagare il 16 dicembre 2021 (senza interessi)
+text: Clicca qui per saperne di più
+text: Piano selezionato: Pagamento dilazionato: 15 giorni
+-- widget, plan 3 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: 450,00 € da pagare il 31 dicembre 2021 (senza interessi)
+text: Clicca qui per saperne di più
+text: Piano selezionato: Pagamento dilazionato: 30 giorni
+-- widget, plan 4 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: 450,00 € da pagare il 1 gennaio 2022 (senza interessi)
+text: Clicca qui per saperne di più
+text: Piano selezionato: Pagamento dilazionato: 1 mesi
+-- widget, plan 5 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: In 2 rate mensili di 225,00 € (senza interessi)
+text: Clicca qui per saperne di più
+text: Piano selezionato: 2x
+-- widget, plan 6 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Oggi paghi 151,35 € poi 2 rate mensili di 150,00 €
+text: Clicca qui per saperne di più
+text: Piano selezionato: 3x
+-- widget, plan 7 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Oggi paghi 123,12 € poi 3 rate mensili di 112,50 €
+text: Clicca qui per saperne di più
+text: Piano selezionato: 4x
+-- widget, plan 8 hovered
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Clicca qui per saperne di più
+text: Piano selezionato: 10x
+-- modal opened on plan 1
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+text: Piano selezionato: Paga ora
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 450,00 €
+text: 450,00 €
+text: Totale
+text: Di cui commissioni
+text: 0,00 €
+text: Come pagare
+text: 1
+text: Scegli alla cassa.
+text: Alma - Paga ora
+text: 2
+text: Inserisci i dati della tua
+text: carta bancaria.
+text: 3
+text: Ricevi la istantaneamente!
+text: conferma di pagamento
+-- modal, plan 2 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: 16 dicembre 2021
+text: 450,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 450,00 € con tasso fisso dello 0% su 15 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 16 dicembre 2021. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+-- modal, plan 3 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: 31 dicembre 2021
+text: 450,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 450,00 € con tasso fisso dello 0% su 30 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 31 dicembre 2021. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+-- modal, plan 4 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: 1 gennaio 2022
+text: 450,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 450,00 € con tasso fisso dello 0% su 1 mesi. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 1 gennaio 2022. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+-- modal, plan 5 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+-- modal, plan 6 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 151,35 €
+text: 1 gennaio 2022
+text: 150,00 €
+text: 1 febbraio 2022
+text: 150,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 451,35 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 1,35 € (TAEG 0,00%)
+text: Prestito di 300,00 € con tasso fisso dello 0% per 2 mesi. Con un acconto di 151,35 € comprensivo di spese pari a 1,35 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+-- modal, plan 7 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 123,12 €
+text: 1 gennaio 2022
+text: 112,50 €
+text: 1 febbraio 2022
+text: 112,50 €
+text: 1 marzo 2022
+text: 112,50 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 460,62 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 10,62 € (TAEG 0,00%)
+text: Prestito di 337,50 € con tasso fisso dello 0% per 3 mesi. Con un acconto di 123,12 € comprensivo di spese pari a 10,62 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+-- modal, plan 8 selected
+text: Opzioni di pagamento disponibili
+aria-label: Aprire le opzioni di pagamento Alma per saperne di più
+aria-label: Opzioni di pagamento disponibili
+aria-label: Opzione di pagamento Paga ora
+text: Paga ora
+aria-label: Opzione di pagamento Pagamento dilazionato: 15 giorni
+text: G+15
+aria-label: Opzione di pagamento Pagamento dilazionato: 30 giorni
+text: G+30
+aria-label: Opzione di pagamento Pagamento dilazionato: 1 mesi
+text: M+1
+aria-label: Opzione di pagamento 2x
+text: 2x
+aria-label: Opzione di pagamento 3x
+text: 3x
+aria-label: Opzione di pagamento 4x
+text: 4x
+aria-label: Opzione di pagamento 10x
+text: 10x
+text: Informazioni sul piano di pagamento selezionato
+text: Paga ora 450,00 € (senza interessi)
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento Paga ora
+text: Paga ora
+aria-label: Selezionare il piano di pagamento G+15
+text: G+15
+aria-label: Selezionare il piano di pagamento G+30
+text: G+30
+aria-label: Selezionare il piano di pagamento M+1
+text: M+1
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+aria-label: Selezionare il piano di pagamento 10x
+text: 10x
+text: Piano di pagamento
+text: Oggi
+text: 47,77 €
+text: 1 gennaio 2022
+text: 47,72 €
+text: 1 febbraio 2022
+text: 47,72 €
+text: 1 marzo 2022
+text: 47,72 €
+text: 1 aprile 2022
+text: 47,72 €
+text: 1 maggio 2022
+text: 47,72 €
+text: 1 giugno 2022
+text: 47,72 €
+text: 1 luglio 2022
+text: 47,72 €
+text: 1 agosto 2022
+text: 47,72 €
+text: 1 settembre 2022
+text: 47,72 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 477,25 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 27,25 € (TAEG 17,20%)
+text: Prestito di 429,48 € con tasso fisso dello 17,2% per 9 mesi. Con un acconto di 47,77 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+
+=== warning, FR, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione! Un prestito ha un costo e deve essere rimborsato.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, LU, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione! Prendere in prestito denaro comporta dei costi.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, BE, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione: prendere in prestito denaro comporta anche dei costi.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione: prendere in prestito denaro comporta anche dei costi.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, IT, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione: prendere in prestito denaro comporta dei costi.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, DE, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione! Prendere in prestito denaro comporta dei costi.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, PT, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione: prendere in prestito denaro comporta dei costi.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, ES, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione! Prendere in prestito denaro comporta dei costi.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, GB, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione! Prendere in prestito denaro comporta dei costi.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, UK, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: Attenzione! Prendere in prestito denaro comporta dei costi.
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, US, without customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 2x
+text: 2x
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+aria-label: Selezionare il piano di pagamento 4x
+text: 4x
+text: Piano di pagamento
+text: Oggi
+text: 225,00 €
+text: 1 gennaio 2022
+text: 225,00 €
+text: 450,00 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 0,00 € (TAEG 0,00%)
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, with customer_fee
+aria-label: Chiudere la finestra
+aria-label: Navigazione rapida
+text: Vai alle opzioni di pagamento
+text: Vai alle informazioni di pagamento
+text: Vai al calendario dei pagamenti
+text: Paga a rate con Alma, senza registrazione.
+text: Come pagare
+text: 1
+text: Seleziona come metodo di pagamento.
+text: Alma
+text: 2
+text: Segui le istruzioni e completa l'acquisto
+text: in meno di 2 minuti.
+text: 3
+text: e modifica le scadenze secondo le tue esigenze.
+text: Gestisci il tuo piano di pagamento
+text: Opzioni di pagamento disponibili
+aria-label: Selezionare il piano di pagamento 3x
+text: 3x
+text: Piano di pagamento
+text: Oggi
+text: 151,35 €
+text: 1 gennaio 2022
+text: 150,00 €
+text: 1 febbraio 2022
+text: 150,00 €
+text: Attenzione: prendere in prestito denaro comporta anche dei costi.
+text: 451,35 €
+text: Totale
+text: Di cui costo del credito (IVA inclusa)
+text: 1,35 € (TAEG 0,00%)
+text: Prestito di 300,00 € con tasso fisso dello 0% per 2 mesi. Con un acconto di 151,35 € comprensivo di spese pari a 1,35 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: almapay.com
+text: support@almapay.com

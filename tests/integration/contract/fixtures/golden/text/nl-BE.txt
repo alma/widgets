@@ -1,0 +1,2205 @@
+=== payment-plans loading
+
+
+=== payment-plans several plans
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: 2 x € 225,00 (zonder extra kosten)
+text: Klik hier voor meer informatie
+text: Gekozen plan: 2x
+
+=== payment-plans one plan
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie 3x
+text: 3x
+text: Informatie over het geselecteerde betalingsplan
+text: Eerst € 151,35 , daarna 2 x € 150,00
+text: Klik hier voor meer informatie
+text: Gekozen plan: 3x
+
+=== payment-plans all not eligible without plans
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+text: Informatie over het geselecteerde betalingsplan
+text: Tot € 0,00
+text: Gekozen plan: 2x
+
+=== payment-plans not eligible below minAmount
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+text: Informatie over het geselecteerde betalingsplan
+text: Vanaf € 900,00
+text: Gekozen plan: 2x
+
+=== payment-plans not eligible above maxAmount
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie 4x
+text: 4x
+text: Informatie over het geselecteerde betalingsplan
+text: Tot € 200,00
+text: Gekozen plan: 4x
+
+=== standalone modal, pending, desktop
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+
+=== standalone modal, pending, mobile
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+
+=== standalone modal, success, desktop
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== standalone modal, success, mobile
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+
+=== standalone modal, no eligibility, desktop
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Oeps, het lijkt erop dat de simulatie niet werkte.
+
+=== standalone modal, no eligibility, mobile
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Oeps, het lijkt erop dat de simulatie niet werkte.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+
+=== standalone modal, failed, desktop
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+
+=== standalone modal, failed, mobile
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+
+=== plan kinds, widget and modal with each plan selected in turn, desktop
+-- widget
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+text: Gekozen plan: Betaal nu
+-- widget, plan 2 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: € 450,00 te betalen op 16 december 2021 (zonder extra kosten)
+text: Klik hier voor meer informatie
+text: Gekozen plan: Uitgesteld betalen: 15 dagen
+-- widget, plan 3 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: € 450,00 te betalen op 31 december 2021 (zonder extra kosten)
+text: Klik hier voor meer informatie
+text: Gekozen plan: Uitgesteld betalen: 30 dagen
+-- widget, plan 4 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: € 450,00 te betalen op 1 januari 2022 (zonder extra kosten)
+text: Klik hier voor meer informatie
+text: Gekozen plan: Uitgesteld betalen: 1 maanden
+-- widget, plan 5 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: 2 x € 225,00 (zonder extra kosten)
+text: Klik hier voor meer informatie
+text: Gekozen plan: 2x
+-- widget, plan 6 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Eerst € 151,35 , daarna 2 x € 150,00
+text: Klik hier voor meer informatie
+text: Gekozen plan: 3x
+-- widget, plan 7 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Eerst € 123,12 , daarna 3 x € 112,50
+text: Klik hier voor meer informatie
+text: Gekozen plan: 4x
+-- widget, plan 8 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Klik hier voor meer informatie
+text: Gekozen plan: 10x
+-- modal opened on plan 1
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+text: Gekozen plan: Betaal nu
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma - Betaal nu
+text: 2
+text: Vul je in
+text: gegevens
+text: 3
+text: van jouw betaling is direct!
+text: De bevestiging
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 450,00
+text: € 450,00
+text: Totaal
+text: Waarvan kosten (incl. BTW)
+text: € 0,00
+-- modal, plan 2 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: 16 december 2021
+text: € 450,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 15 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 16 december 2021. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 3 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: 31 december 2021
+text: € 450,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 30 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 31 december 2021. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 4 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: 1 januari 2022
+text: € 450,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 1 maanden. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 1 januari 2022. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 5 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 6 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 151,35
+text: 1 januari 2022
+text: € 150,00
+text: 1 februari 2022
+text: € 150,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 451,35
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 1,35 (JKP 0,00%)
+text: Krediet van € 300,00 tegen een vaste debetrente van 0% over een looptijd van 2 maanden. Hiermee kunt u, met een aanbetaling van € 151,35 inclusief kosten van € 1,35, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 7 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 123,12
+text: 1 januari 2022
+text: € 112,50
+text: 1 februari 2022
+text: € 112,50
+text: 1 maart 2022
+text: € 112,50
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 460,62
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 10,62 (JKP 0,00%)
+text: Krediet van € 337,50 tegen een vaste debetrente van 0% over een looptijd van 3 maanden. Hiermee kunt u, met een aanbetaling van € 123,12 inclusief kosten van € 10,62, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 8 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 47,77
+text: 1 januari 2022
+text: € 47,72
+text: 1 februari 2022
+text: € 47,72
+text: 1 maart 2022
+text: € 47,72
+text: 1 april 2022
+text: € 47,72
+text: 1 mei 2022
+text: € 47,72
+text: 1 juni 2022
+text: € 47,72
+text: 1 juli 2022
+text: € 47,72
+text: 1 augustus 2022
+text: € 47,72
+text: 1 september 2022
+text: € 47,72
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 477,25
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 27,25 (JKP 17,20%)
+text: Krediet van € 429,48 tegen een vaste debetrente van 17,2% over een looptijd van 9 maanden. Hiermee kunt u, met een aanbetaling van € 47,77, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== plan kinds, widget and modal with each plan selected in turn, mobile
+-- widget
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+text: Gekozen plan: Betaal nu
+-- widget, plan 2 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: € 450,00 te betalen op 16 december 2021 (zonder extra kosten)
+text: Klik hier voor meer informatie
+text: Gekozen plan: Uitgesteld betalen: 15 dagen
+-- widget, plan 3 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: € 450,00 te betalen op 31 december 2021 (zonder extra kosten)
+text: Klik hier voor meer informatie
+text: Gekozen plan: Uitgesteld betalen: 30 dagen
+-- widget, plan 4 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: € 450,00 te betalen op 1 januari 2022 (zonder extra kosten)
+text: Klik hier voor meer informatie
+text: Gekozen plan: Uitgesteld betalen: 1 maanden
+-- widget, plan 5 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: 2 x € 225,00 (zonder extra kosten)
+text: Klik hier voor meer informatie
+text: Gekozen plan: 2x
+-- widget, plan 6 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Eerst € 151,35 , daarna 2 x € 150,00
+text: Klik hier voor meer informatie
+text: Gekozen plan: 3x
+-- widget, plan 7 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Eerst € 123,12 , daarna 3 x € 112,50
+text: Klik hier voor meer informatie
+text: Gekozen plan: 4x
+-- widget, plan 8 hovered
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Klik hier voor meer informatie
+text: Gekozen plan: 10x
+-- modal opened on plan 1
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+text: Gekozen plan: Betaal nu
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 450,00
+text: € 450,00
+text: Totaal
+text: Waarvan kosten (incl. BTW)
+text: € 0,00
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma - Betaal nu
+text: 2
+text: Vul je in
+text: gegevens
+text: 3
+text: van jouw betaling is direct!
+text: De bevestiging
+-- modal, plan 2 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: 16 december 2021
+text: € 450,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 15 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 16 december 2021. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+-- modal, plan 3 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: 31 december 2021
+text: € 450,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 30 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 31 december 2021. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+-- modal, plan 4 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: 1 januari 2022
+text: € 450,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 1 maanden. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 1 januari 2022. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+-- modal, plan 5 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+-- modal, plan 6 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 151,35
+text: 1 januari 2022
+text: € 150,00
+text: 1 februari 2022
+text: € 150,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 451,35
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 1,35 (JKP 0,00%)
+text: Krediet van € 300,00 tegen een vaste debetrente van 0% over een looptijd van 2 maanden. Hiermee kunt u, met een aanbetaling van € 151,35 inclusief kosten van € 1,35, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+-- modal, plan 7 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 123,12
+text: 1 januari 2022
+text: € 112,50
+text: 1 februari 2022
+text: € 112,50
+text: 1 maart 2022
+text: € 112,50
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 460,62
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 10,62 (JKP 0,00%)
+text: Krediet van € 337,50 tegen een vaste debetrente van 0% over een looptijd van 3 maanden. Hiermee kunt u, met een aanbetaling van € 123,12 inclusief kosten van € 10,62, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+-- modal, plan 8 selected
+text: Betalingsopties beschikbaar
+aria-label: Open Alma betalingsopties voor meer informatie
+aria-label: Betalingsopties beschikbaar
+aria-label: Betalingsoptie Betaal nu
+text: Betaal nu
+aria-label: Betalingsoptie Uitgesteld betalen: 15 dagen
+text: D+15
+aria-label: Betalingsoptie Uitgesteld betalen: 30 dagen
+text: D+30
+aria-label: Betalingsoptie Uitgesteld betalen: 1 maanden
+text: M+1
+aria-label: Betalingsoptie 2x
+text: 2x
+aria-label: Betalingsoptie 3x
+text: 3x
+aria-label: Betalingsoptie 4x
+text: 4x
+aria-label: Betalingsoptie 10x
+text: 10x
+text: Informatie over het geselecteerde betalingsplan
+text: Betaal nu € 450,00 (zonder extra kosten)
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal later of in termijnen met Alma - helemaal rentevrij.
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan Betaal nu
+text: Betaal nu
+aria-label: Selecteer betalingsplan D+15
+text: D+15
+aria-label: Selecteer betalingsplan D+30
+text: D+30
+aria-label: Selecteer betalingsplan M+1
+text: M+1
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+aria-label: Selecteer betalingsplan 10x
+text: 10x
+text: Betalingsschema
+text: Vandaag
+text: € 47,77
+text: 1 januari 2022
+text: € 47,72
+text: 1 februari 2022
+text: € 47,72
+text: 1 maart 2022
+text: € 47,72
+text: 1 april 2022
+text: € 47,72
+text: 1 mei 2022
+text: € 47,72
+text: 1 juni 2022
+text: € 47,72
+text: 1 juli 2022
+text: € 47,72
+text: 1 augustus 2022
+text: € 47,72
+text: 1 september 2022
+text: € 47,72
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 477,25
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 27,25 (JKP 17,20%)
+text: Krediet van € 429,48 tegen een vaste debetrente van 17,2% over een looptijd van 9 maanden. Hiermee kunt u, met een aanbetaling van € 47,77, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+
+=== warning, FR, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Een lening kost geld en moet worden terugbetaald.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, LU, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Geld lenen kost geld.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, BE, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op, geld lenen kost ook geld.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op, geld lenen kost ook geld.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, IT, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Geld lenen kost geld.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, DE, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Geld lenen kost geld.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, PT, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Geld lenen kost geld.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, ES, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Geld lenen kost geld.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, GB, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Geld lenen kost geld.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, UK, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: Let op! Geld lenen kost geld.
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, US, without customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 2x
+text: 2x
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+aria-label: Selecteer betalingsplan 4x
+text: 4x
+text: Betalingsschema
+text: Vandaag
+text: € 225,00
+text: 1 januari 2022
+text: € 225,00
+text: € 450,00
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 0,00 (JKP 0,00%)
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, with customer_fee
+aria-label: Venster sluiten
+aria-label: Snelle navigatie
+text: Ga naar betalingsopties
+text: Ga naar betalingsinformatie
+text: Ga naar de betalingskalender
+text: Betaal in termijnen bij Alma - helemaal rentevrij.
+text: Hoe betalen?
+text: 1
+text: Kies bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.
+text: Alma
+text: 2
+text: Betaal gemakkelijk . Je hebt hier geen account voor nodig.
+text: binnen 1 minuut
+text: 3
+text: en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.
+text: Behoud de controle
+text: Betalingsopties beschikbaar
+aria-label: Selecteer betalingsplan 3x
+text: 3x
+text: Betalingsschema
+text: Vandaag
+text: € 151,35
+text: 1 januari 2022
+text: € 150,00
+text: 1 februari 2022
+text: € 150,00
+text: Let op, geld lenen kost ook geld.
+text: € 451,35
+text: Totaal
+text: Waarvan kredietkosten (incl. BTW)
+text: € 1,35 (JKP 0,00%)
+text: Krediet van € 300,00 tegen een vaste debetrente van 0% over een looptijd van 2 maanden. Hiermee kunt u, met een aanbetaling van € 151,35 inclusief kosten van € 1,35, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
