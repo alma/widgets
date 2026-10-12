@@ -53,16 +53,12 @@
   "skip-links.payment-plans": "Vai alle opzioni di pagamento",
   "skip-links.payment-schedule": "Vai al calendario dei pagamenti",
   "warning-message.be": "Attenzione: prendere in prestito denaro comporta anche dei costi.",
-  "warning-message.de.with-fees": "Attenzione! Prendere in prestito denaro comporta dei costi.",
-  "warning-message.de.without-fees": "Un prestito comporta degli obblighi e deve essere rimborsato. Verificate il costo del prestito prima di impegnarvi.",
-  "warning-message.es": "Attenzione: un prestito è un impegno vincolante e deve essere rimborsato. Verificate il costo del prestito e la vostra capacità di rimborso prima di impegnarvi.",
+  "warning-message.de": "Attenzione! Prendere in prestito denaro comporta dei costi.",
+  "warning-message.es": "Attenzione! Prendere in prestito denaro comporta dei costi.",
   "warning-message.fr": "Attenzione! Un prestito ha un costo e deve essere rimborsato.",
   "warning-message.gb": "Attenzione! Prendere in prestito denaro comporta dei costi.",
-  "warning-message.it.with-fees": "Attenzione: prendere in prestito denaro comporta dei costi.",
-  "warning-message.it.without-fees": "Importante: un prestito è vincolante e deve essere rimborsato. Verifichi il costo del prestito prima di impegnarsi.",
+  "warning-message.it": "Attenzione: prendere in prestito denaro comporta dei costi.",
   "warning-message.lu": "Attenzione! Prendere in prestito denaro comporta dei costi.",
-  "warning-message.nl.with-fees": "Attenzione: prendere in prestito denaro comporta anche dei costi.",
-  "warning-message.nl.without-fees": "Attenzione: un prestito è vincolante e deve essere rimborsato. Verificate il costo del prestito e la vostra capacità di rimborso prima di stipulare un contratto.",
-  "warning-message.pt.with-fees": "Attenzione! Prendere in prestito denaro comporta dei costi.",
-  "warning-message.pt.without-fees": "Attenzione! Un prestito è un impegno e deve essere rimborsato. Verificate il costo del prestito e la vostra capacità di rimborso prima di impegnarvi."
+  "warning-message.nl": "Attenzione: prendere in prestito denaro comporta anche dei costi.",
+  "warning-message.pt": "Attenzione: prendere in prestito denaro comporta dei costi."
 }
