@@ -1,0 +1,10 @@
+/*
+ * Source: the #alma-widget rule in the inline <style> of Alma's Shopify theme block (a private repo), with the Liquid placeholder replaced.
+ * Container markup: <div id="alma-widget"></div>
+ * Mount: #alma-widget
+ */
+
+#alma-widget {
+  display: flex;
+  justify-content: flex-start;
+}
