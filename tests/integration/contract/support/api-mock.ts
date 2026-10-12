@@ -8,6 +8,8 @@ export type RecordedCall = {
   headers: Record<string, string>
   // The request body parsed from JSON.
   body: unknown
+  // The request body as sent, for tests that pin the order of the keys.
+  rawBody: unknown
   cache: RequestCache | undefined
 }
 
@@ -34,6 +36,7 @@ export const mockEligibilityApi = (reply: EligibilityReply): EligibilityApi => {
       method: init.method ?? 'GET',
       headers: Object.fromEntries(new Headers(init.headers).entries()),
       body: typeof init.body === 'string' ? JSON.parse(init.body) : init.body,
+      rawBody: init.body,
       cache: init.cache,
     })
     if ('networkError' in reply) return Promise.reject(new TypeError('Failed to fetch'))
