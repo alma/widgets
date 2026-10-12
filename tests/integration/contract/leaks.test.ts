@@ -25,8 +25,11 @@ const threePlans = JSON.parse(
 // constant keeps the tests passing, and lowering it below master's count makes them fail.
 type Counts = Record<string, number>
 const MASTER_LISTENERS_AFTER_REPLACEMENT: Counts = {}
-const MASTER_LISTENERS_AFTER_THREE_CYCLES: Counts = {}
+// react-modal adds a capturing `focus` listener on `document` that master never removes. It is one
+// listener however many times the modal opens.
+const MASTER_LISTENERS_AFTER_THREE_CYCLES: Counts = { 'document:focus': 1 }
 const MASTER_TIMERS_AFTER_REPLACEMENT = 2
+const MASTER_TIMERS_AFTER_THREE_CYCLES = 1
 
 let Alma: ReturnType<typeof loadUmd>
 let spies: ListenerSpies
@@ -86,6 +89,21 @@ describe('listener spies', () => {
   })
 })
 
+describe('listener spies, options', () => {
+  it('counts a capture listener apart from a bubble one, and skips a once listener', () => {
+    const listener = () => {}
+    document.addEventListener('probe', listener)
+    document.addEventListener('probe', listener, true)
+    document.addEventListener('probe', () => {}, { once: true })
+    expect(spies.attached()).toEqual({ 'document:probe': 2 })
+
+    document.removeEventListener('probe', listener, { capture: true })
+    expect(spies.attached()).toEqual({ 'document:probe': 1 })
+    document.removeEventListener('probe', listener)
+    expect(spies.attached()).toEqual({})
+  })
+})
+
 describe('leaks, no worse than master', () => {
   it("leaves at most master's listeners and timers after a replacement", async () => {
     mockEligibilityApi({ json: threePlans })
@@ -116,5 +134,6 @@ describe('leaks, no worse than master', () => {
     await tick(1000)
 
     expectNoMoreThan(spies.attached(), MASTER_LISTENERS_AFTER_THREE_CYCLES)
+    expect(vi.getTimerCount()).toBeLessThanOrEqual(MASTER_TIMERS_AFTER_THREE_CYCLES)
   })
 })
