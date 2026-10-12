@@ -5,14 +5,12 @@ import { mswLoader } from 'msw-storybook-addon/csf3'
 
 import { ApiMode } from '@/consts'
 
-import merchantCss from '../examples/style.css?inline'
+import merchantPageCss from '../examples/style.css?inline'
+import merchantCustomizationCss from './merchant-customization.css?inline'
 
 const MERCHANT_CSS_ID = 'merchant-css'
 
-/**
- * Fails every Alma API request that the story doesn't mock, so no story can reach the real API.
- * The handlers a story sets in `parameters.msw` take precedence over these.
- */
+// Blocks the Alma API requests a story doesn't mock, so no story reaches the real API
 const blockAlmaApi = Object.values(ApiMode).map((origin) =>
   http.all(`${origin}/*`, ({ request }) => {
     console.error(`No MSW handler for ${request.method} ${request.url} in this story`)
@@ -20,31 +18,46 @@ const blockAlmaApi = Object.values(ApiMode).map((origin) =>
   }),
 )
 
-/**
- * Starts MSW, which answers the API requests that stories mock with `parameters.msw` (see
- * src/test/eligibilityHandlers.ts). Requests that aren't for the Alma API (Storybook, Vite, fonts)
- * go through untouched.
- */
 const startMsw = async () => {
-  // Handlers passed to setupWorker() survive the reset that runs between stories
+  // Handlers passed to setupWorker() are kept between stories
   const worker = setupWorker(...blockAlmaApi)
   await worker.start({ quiet: true, onUnhandledRequest: 'bypass' })
   return worker
 }
 
-/**
- * Adds examples/style.css to the page when the "Merchant CSS" toolbar toggle is on. That
- * stylesheet mimics a merchant theme that fights the widget styles (root font size, button styles…).
- */
+// `on`: a merchant page theme. `customized`: the same, plus a widget customization
 const withMerchantCss: Decorator = (story, { globals }) => {
   document.getElementById(MERCHANT_CSS_ID)?.remove()
-  if (globals.merchantCss === 'on') {
+  if (globals.merchantCss === 'on' || globals.merchantCss === 'customized') {
     const style = document.createElement('style')
     style.id = MERCHANT_CSS_ID
-    style.textContent = merchantCss
+    style.textContent =
+      globals.merchantCss === 'customized'
+        ? `${merchantPageCss}\n${merchantCustomizationCss}`
+        : merchantPageCss
     document.head.append(style)
   }
   return story()
+}
+
+// Undoes what the modal adds to <body>, so it doesn't show in the next story
+const keepBodyClean = () => {
+  const initialChildren = new Set(document.body.children)
+  const initialAttributes = [document.documentElement, document.body].map((element) => ({
+    element,
+    className: element.className,
+    style: element.getAttribute('style'),
+  }))
+  return () => {
+    Array.from(document.body.children)
+      .filter((child) => !initialChildren.has(child))
+      .forEach((child) => child.remove())
+    initialAttributes.forEach(({ element, className, style }) => {
+      element.className = className
+      if (style === null) element.removeAttribute('style')
+      else element.setAttribute('style', style)
+    })
+  }
 }
 
 const preview: Preview = {
@@ -52,13 +65,17 @@ const preview: Preview = {
   decorators: [withMerchantCss],
   globalTypes: {
     merchantCss: {
-      description: 'Load the merchant stylesheet of examples/style.css',
+      description: 'Load merchant CSS around the widget',
       toolbar: {
         title: 'Merchant CSS',
         icon: 'paintbrush',
         items: [
           { value: 'off', title: 'Without merchant CSS' },
-          { value: 'on', title: 'With merchant CSS' },
+          { value: 'on', title: 'Merchant page CSS (should not affect the widget)' },
+          {
+            value: 'customized',
+            title: 'Merchant page CSS + widget customization (should restyle it)',
+          },
         ],
         dynamicTitle: true,
       },
@@ -66,27 +83,24 @@ const preview: Preview = {
   },
   initialGlobals: { merchantCss: 'off' },
   parameters: {
-    // The eligibility modal switches between its mobile and desktop layouts at 800px
+    // The modal switches layouts at 800px
     viewport: {
       options: {
         mobile: { name: 'Mobile', styles: { width: '375px', height: '812px' } },
         desktop: { name: 'Desktop', styles: { width: '1280px', height: '800px' } },
       },
     },
-    // Chromatic snapshots every story once per mode. Chromatic pairs a snapshot with its baseline
-    // by story and mode name, so renaming a mode drops the baselines accepted for it.
+    // Some stories add the modes of src/test/storybookModes.ts
     chromatic: {
       modes: {
-        mobile: { viewport: 'mobile', merchantCss: 'off' },
         desktop: { viewport: 'desktop', merchantCss: 'off' },
-        'mobile merchant-css': { viewport: 'mobile', merchantCss: 'on' },
-        'desktop merchant-css': { viewport: 'desktop', merchantCss: 'on' },
       },
     },
   },
   beforeEach: () => {
-    // The widget caches the eligibility response for an hour: start every story without it
+    // The widget caches the eligibility response for an hour
     sessionStorage.clear()
+    return keepBodyClean()
   },
 }
 
