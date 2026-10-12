@@ -62,7 +62,7 @@ type Case = {
   reply?: Reply
   options?: Record<string, unknown>
   widget?: 'PaymentPlans' | 'Modal'
-  /** Breaks the page before add(). Returns what the test needs to undo, if anything. */
+  /** Breaks the page before add(). The test restores the storage afterwards. */
   before?: () => void
   /** Runs after add(), with what add() returned. */
   after?: (returned: unknown) => void | Promise<void>
@@ -102,7 +102,13 @@ const observe = async ({
     api = mockEligibilityApi(reply)
   }
 
-  before?.()
+  try {
+    before?.()
+  } catch (error) {
+    // A broken test must not keep Vitest's listeners away.
+    await escapes.stop()
+    throw error
+  }
   let returned: unknown
   try {
     returned = addWidget(Alma, Alma.Widgets[widget], options)
