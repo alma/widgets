@@ -346,6 +346,77 @@ const buildDatesFixture = () => ({
   ),
 })
 
+// Guards the shape of the fixtures, so that a change of this script can't drop entries without
+// anyone noticing. The tags that throw are known: react-intl rejects `fr_FR` as a locale.
+const THROWING_TAGS = ['fr_FR']
+const DUE_DATE_COUNT = 13
+
+const assertShape = (condition, message) => {
+  if (!condition) throw new Error(`Fixture shape: ${message}`)
+}
+
+const assertMessagesFixture = ({ inputs, locales }) => {
+  assertShape(Object.keys(locales).length === TAGS.length, `expected ${TAGS.length} tags`)
+  Object.entries(locales).forEach(([tag, entry]) => {
+    if (THROWING_TAGS.includes(tag)) {
+      assertShape(entry.throws && !entry.messages, `${tag} must record the error and no output`)
+      return
+    }
+    assertShape(!entry.throws, `${tag} throws: ${entry.throws}`)
+    const outputs = [
+      ...Object.entries(entry.messages).flatMap(([id, output]) =>
+        typeof output === 'object'
+          ? Object.entries(output).map(([value, text]) => [`${id}[${value}]`, text])
+          : [[id, output]],
+      ),
+      ...Object.entries(entry.callSites).flatMap(([id, byInput]) =>
+        Object.entries(byInput).map(([input, text]) => [`${id}(${input})`, text]),
+      ),
+    ]
+    outputs.forEach(([name, text]) =>
+      assertShape(typeof text === 'string' && text !== '', `${tag}: ${name} has no output`),
+    )
+    Object.entries(inputs.messages).forEach(([id, spec]) => {
+      const output = entry.messages[id]
+      assertShape(output !== undefined, `${tag} has no output for ${id}`)
+      if (spec.numericArguments.length) {
+        const values = Object.keys(output).map(Number)
+        assertShape(
+          values.length === PLURAL_VALUES.length && PLURAL_VALUES.every((v) => values.includes(v)),
+          `${tag}: ${id} needs one output for each of ${PLURAL_VALUES}`,
+        )
+      }
+    })
+    assertShape(
+      Object.keys(entry.messages).length === Object.keys(inputs.messages).length,
+      `${tag} has outputs that no message asks for`,
+    )
+    CALL_SITES.forEach((site) =>
+      assertShape(
+        site.inputs.every((input) => entry.callSites[site.id]?.[input] !== undefined),
+        `${tag} lacks outputs for ${site.id}`,
+      ),
+    )
+  })
+}
+
+const assertDatesFixture = ({ dueDates: due, zones }) => {
+  assertShape(due.length === DUE_DATE_COUNT, `expected ${DUE_DATE_COUNT} due dates`)
+  assertShape(new Set(due).size === due.length, 'the due dates must be distinct')
+  assertShape(Object.keys(zones).length === ZONES.length, `expected ${ZONES.length} zones`)
+  Object.entries(zones).forEach(([zone, byDate]) => {
+    assertShape(Object.keys(byDate).length === DUE_DATE_COUNT, `${zone} lacks due dates`)
+    const todayStart = DAY_STARTS[zone]
+    due.forEach((date) =>
+      // isToday must hold exactly inside the local day of the fixed now.
+      assertShape(
+        byDate[date].isToday === (date >= todayStart && date < todayStart + SECONDS_IN_DAY),
+        `${zone}: wrong isToday for ${date}`,
+      ),
+    )
+  })
+}
+
 const zoneArgument = process.argv.find((argument) => argument.startsWith('--zone='))?.slice(7)
 
 // Node reads TZ and LC_ALL at startup, so a process that doesn't have them starts itself again.
@@ -361,9 +432,13 @@ if (process.env.TZ !== expectedTz || process.env.LC_ALL !== LC_ALL) {
 if (zoneArgument) {
   process.stdout.write(JSON.stringify(datesOfZone(zoneArgument)))
 } else {
+  const messagesFixture = buildMessagesFixture()
+  const datesFixture = buildDatesFixture()
+  assertMessagesFixture(messagesFixture)
+  assertDatesFixture(datesFixture)
   const generated = [
-    [messagesFile, serialize(buildMessagesFixture())],
-    [datesFile, serialize(buildDatesFixture())],
+    [messagesFile, serialize(messagesFixture)],
+    [datesFile, serialize(datesFixture)],
   ]
   if (process.argv.includes('--check')) {
     const stale = generated.filter(([file, content]) => {
