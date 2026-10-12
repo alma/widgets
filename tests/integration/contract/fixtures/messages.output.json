@@ -1,0 +1,3973 @@
+{
+  "meta": {
+    "formatjsIntl": "2.10.15",
+    "node": "v24.21.0",
+    "icu": "78.3",
+    "cldr": "48.0",
+    "TZ": "UTC",
+    "LC_ALL": "en_US.UTF-8"
+  },
+  "inputs": {
+    "pluralValues": [
+      0,
+      1,
+      2
+    ],
+    "textValue": "The string \"[name]\", with the name of the argument",
+    "richTextTag": "The text of a tag between <tag> and </tag>",
+    "messages": {
+      "accessibility.amex-card.aria-label": {
+        "defaultMessage": "Carte American Express acceptée",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.animation-control-instructions": {
+        "defaultMessage": "Animation automatique des plans de paiement active. Survolez ou naviguez avec les flèches pour arrêter l'animation.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.cb-card.aria-label": {
+        "defaultMessage": "Carte Bancaire CB acceptée",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.close-button.aria-label": {
+        "defaultMessage": "Fermer la fenêtre",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.mastercard.aria-label": {
+        "defaultMessage": "Carte Mastercard acceptée",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.payment-info.section-title": {
+        "defaultMessage": "Informations sur le plan de paiement sélectionné",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.payment-options.listbox.aria-label": {
+        "defaultMessage": "Options de paiement disponibles",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.payment-plan-button.aria-label": {
+        "defaultMessage": "Sélectionner le plan de paiement {planName}",
+        "numericArguments": [],
+        "textArguments": [
+          "planName"
+        ],
+        "tags": []
+      },
+      "accessibility.payment-plan.option.aria-label": {
+        "defaultMessage": "Option de paiement {planDescription}",
+        "numericArguments": [],
+        "textArguments": [
+          "planDescription"
+        ],
+        "tags": []
+      },
+      "accessibility.payment-plans.section-title": {
+        "defaultMessage": "Options de paiement disponibles",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.payment-schedule-title": {
+        "defaultMessage": "Calendrier de paiement",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.payment-widget.open-button.aria-label": {
+        "defaultMessage": "Ouvrir les options de paiement Alma pour en savoir plus",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.plan-selection-changed": {
+        "defaultMessage": "Plan sélectionné : {planDescription}",
+        "numericArguments": [],
+        "textArguments": [
+          "planDescription"
+        ],
+        "tags": []
+      },
+      "accessibility.skip-links.navigation.aria-label": {
+        "defaultMessage": "Navigation rapide",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "accessibility.visa-card.aria-label": {
+        "defaultMessage": "Carte Visa acceptée",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "credit-features.credit-cost-display": {
+        "defaultMessage": "{creditCost} (TAEG {annualPercentageRate})",
+        "numericArguments": [],
+        "textArguments": [
+          "annualPercentageRate",
+          "creditCost"
+        ],
+        "tags": []
+      },
+      "credit-features.total-credit-cost": {
+        "defaultMessage": "Dont coût du crédit (TTC)",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "eligibility-modal.bullet-1": {
+        "defaultMessage": "Choisissez <strong>Alma</strong> au moment du paiement.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": [
+          "strong"
+        ]
+      },
+      "eligibility-modal.bullet-2": {
+        "defaultMessage": "Laissez-vous guider et validez votre paiement en <strong>2 minutes.</strong>",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": [
+          "strong"
+        ]
+      },
+      "eligibility-modal.bullet-3": {
+        "defaultMessage": "<strong>Gardez le contrôle</strong> en avançant ou reculant vos échéances à votre rythme.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": [
+          "strong"
+        ]
+      },
+      "eligibility-modal.info-title": {
+        "defaultMessage": "Comment procéder au paiement",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "eligibility-modal.no-eligibility": {
+        "defaultMessage": "Oups, il semblerait que la simulation n'ait pas fonctionné.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "eligibility-modal.p1x-bullet-1": {
+        "defaultMessage": "Choisissez <strong>Alma - Payer maintenant</strong> au moment du paiement.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": [
+          "strong"
+        ]
+      },
+      "eligibility-modal.p1x-bullet-2": {
+        "defaultMessage": "Renseignez les informations de votre <strong>carte bancaire.</strong>",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": [
+          "strong"
+        ]
+      },
+      "eligibility-modal.p1x-bullet-3": {
+        "defaultMessage": "<strong>La validation </strong> de votre paiement est instantanée !",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": [
+          "strong"
+        ]
+      },
+      "eligibility-modal.title-deferred-plan": {
+        "defaultMessage": "Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "eligibility-modal.title-normal": {
+        "defaultMessage": "Payez en plusieurs fois par carte bancaire avec Alma.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "eligibility-modal.title-pay-now": {
+        "defaultMessage": "Payez comptant par carte bancaire avec Alma.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "installments.today": {
+        "defaultMessage": "Aujourd'hui",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "installments.total-amount": {
+        "defaultMessage": "Total",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "installments.total-fees": {
+        "defaultMessage": "Dont frais (TTC)",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "legal-mentions.credit-or-pnx-without-fees": {
+        "defaultMessage": "Crédit de {financedAmount} au taux débiteur fixe de {customerLendingRate} sur {creditDurationInMonths} mois. Permettant, avec un acompte de {initialDeposit}, de financer un achat de {purchaseAmount}. {disclaimer}",
+        "numericArguments": [],
+        "textArguments": [
+          "creditDurationInMonths",
+          "customerLendingRate",
+          "disclaimer",
+          "financedAmount",
+          "initialDeposit",
+          "purchaseAmount"
+        ],
+        "tags": []
+      },
+      "legal-mentions.disclaimer": {
+        "defaultMessage": "Sous réserve d'acceptation par Alma SAS (<link>almapay.com</link>), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": [
+          "link",
+          "mail"
+        ]
+      },
+      "legal-mentions.pay-later-with-fees": {
+        "defaultMessage": "Crédit de {financedAmount} au taux débiteur fixe de {customerLendingRate} sur {deferredDuration}. Permettant de financer un achat de {purchaseAmount}, incluant des frais de {fees}. Montant total dû : {totalDue}, prélevés le {dueDate}. {disclaimer}",
+        "numericArguments": [],
+        "textArguments": [
+          "customerLendingRate",
+          "deferredDuration",
+          "disclaimer",
+          "dueDate",
+          "fees",
+          "financedAmount",
+          "purchaseAmount",
+          "totalDue"
+        ],
+        "tags": []
+      },
+      "legal-mentions.pay-later-without-fees": {
+        "defaultMessage": "Crédit de {financedAmount} au taux débiteur fixe de {customerLendingRate} sur {deferredDuration}. Permettant de financer un achat de {purchaseAmount}. Montant total dû : {totalDue}, prélevés le {dueDate}. {disclaimer}",
+        "numericArguments": [],
+        "textArguments": [
+          "customerLendingRate",
+          "deferredDuration",
+          "disclaimer",
+          "dueDate",
+          "financedAmount",
+          "purchaseAmount",
+          "totalDue"
+        ],
+        "tags": []
+      },
+      "legal-mentions.pnx-with-fees": {
+        "defaultMessage": "Crédit de {financedAmount} au taux débiteur fixe de {customerLendingRate} sur {creditDurationInMonths} mois. Permettant, avec un acompte de {initialDeposit}, incluant des frais de {fees}, de financer un achat de {purchaseAmount}. {disclaimer}",
+        "numericArguments": [],
+        "textArguments": [
+          "creditDurationInMonths",
+          "customerLendingRate",
+          "disclaimer",
+          "fees",
+          "financedAmount",
+          "initialDeposit",
+          "purchaseAmount"
+        ],
+        "tags": []
+      },
+      "payment-plan-strings.credit": {
+        "defaultMessage": "Cliquez pour en savoir plus",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "payment-plan-strings.day-abbreviation": {
+        "defaultMessage": "J{deferredDays}",
+        "numericArguments": [],
+        "textArguments": [
+          "deferredDays"
+        ],
+        "tags": []
+      },
+      "payment-plan-strings.deferred": {
+        "defaultMessage": "{totalAmount} à payer le {dueDate}",
+        "numericArguments": [],
+        "textArguments": [
+          "dueDate",
+          "totalAmount"
+        ],
+        "tags": []
+      },
+      "payment-plan-strings.deferred.days": {
+        "defaultMessage": "{days, number} {days, plural, one {jour} other {jours}}",
+        "numericArguments": [
+          "days"
+        ],
+        "textArguments": [],
+        "tags": []
+      },
+      "payment-plan-strings.deferred.months": {
+        "defaultMessage": "{months, number} {months, plural, one {mois} other {mois}}",
+        "numericArguments": [
+          "months"
+        ],
+        "textArguments": [],
+        "tags": []
+      },
+      "payment-plan-strings.ineligible-greater-than-max": {
+        "defaultMessage": "Jusqu'à {maxAmount}",
+        "numericArguments": [],
+        "textArguments": [
+          "maxAmount"
+        ],
+        "tags": []
+      },
+      "payment-plan-strings.ineligible-lower-than-min": {
+        "defaultMessage": "À partir de {minAmount}",
+        "numericArguments": [],
+        "textArguments": [
+          "minAmount"
+        ],
+        "tags": []
+      },
+      "payment-plan-strings.month-abbreviation": {
+        "defaultMessage": "M{deferredMonths}",
+        "numericArguments": [],
+        "textArguments": [
+          "deferredMonths"
+        ],
+        "tags": []
+      },
+      "payment-plan-strings.multiple-installments": {
+        "defaultMessage": "{numberOfRemainingInstallments, plural, one {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}} other {{firstInstallmentAmount} puis {numberOfRemainingInstallments} x {othersInstallmentAmount}}}",
+        "numericArguments": [
+          "numberOfRemainingInstallments"
+        ],
+        "textArguments": [
+          "firstInstallmentAmount",
+          "othersInstallmentAmount"
+        ],
+        "tags": []
+      },
+      "payment-plan-strings.multiple-installments-same-amount": {
+        "defaultMessage": "{installmentsCount} x {totalAmount}",
+        "numericArguments": [],
+        "textArguments": [
+          "installmentsCount",
+          "totalAmount"
+        ],
+        "tags": []
+      },
+      "payment-plan-strings.no-fee": {
+        "defaultMessage": "(sans frais)",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "payment-plan-strings.pay-now": {
+        "defaultMessage": "Payer maintenant {totalAmount}",
+        "numericArguments": [],
+        "textArguments": [
+          "totalAmount"
+        ],
+        "tags": []
+      },
+      "payment-plan-strings.pay.deferred.button": {
+        "defaultMessage": "Payer en différé : {deferredTime}",
+        "numericArguments": [],
+        "textArguments": [
+          "deferredTime"
+        ],
+        "tags": []
+      },
+      "payment-plan-strings.pay.now.button": {
+        "defaultMessage": "Payer maintenant",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "skip-links.payment-info": {
+        "defaultMessage": "Aller aux informations de paiement",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "skip-links.payment-plans": {
+        "defaultMessage": "Aller aux options de paiement",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "skip-links.payment-schedule": {
+        "defaultMessage": "Aller au calendrier de paiement",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "warning-message.be": {
+        "defaultMessage": "Attention, emprunter de l'argent coûte aussi de l'argent.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "warning-message.de": {
+        "defaultMessage": "Attention ! Emprunter de l'argent a un coût.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "warning-message.es": {
+        "defaultMessage": "Attention ! Emprunter de l'argent coûte de l'argent.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "warning-message.fr": {
+        "defaultMessage": "Attention ! Un crédit coûte de l'argent et doit être remboursé.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "warning-message.gb": {
+        "defaultMessage": "Attention ! Emprunter de l'argent a un coût.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "warning-message.it": {
+        "defaultMessage": "Attention ! Emprunter de l'argent a un coût.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "warning-message.lu": {
+        "defaultMessage": "Attention ! Emprunter de l'argent coûte de l'argent.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "warning-message.nl": {
+        "defaultMessage": "Attention, emprunter de l'argent coûte aussi de l'argent.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      },
+      "warning-message.pt": {
+        "defaultMessage": "Attention ! Emprunter de l'argent a un coût.",
+        "numericArguments": [],
+        "textArguments": [],
+        "tags": []
+      }
+    },
+    "callSites": [
+      {
+        "id": "installment.amount",
+        "file": "src/components/Installments/Installment/index.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "installment.date",
+        "file": "src/components/Installments/Installment/index.tsx",
+        "call": "formatDate",
+        "options": {
+          "day": "numeric",
+          "month": "long",
+          "year": "numeric"
+        },
+        "inputs": [
+          1638350762000,
+          1640995199000,
+          1640995200000
+        ]
+      },
+      {
+        "id": "legal-mentions.price",
+        "file": "src/components/Installments/LegalMentions/index.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "legal-mentions.total-due",
+        "file": "src/components/Installments/LegalMentions/index.tsx",
+        "call": "formatNumber",
+        "options": {
+          "minimumFractionDigits": 2,
+          "maximumFractionDigits": 2,
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "legal-mentions.customer-lending-rate",
+        "file": "src/components/Installments/LegalMentions/index.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "percent",
+          "maximumFractionDigits": 2
+        },
+        "inputs": [
+          0,
+          0.0525,
+          0.172,
+          0.17205
+        ]
+      },
+      {
+        "id": "legal-mentions.due-date",
+        "file": "src/components/Installments/LegalMentions/index.tsx",
+        "call": "formatDate",
+        "options": {
+          "day": "numeric",
+          "month": "long",
+          "year": "numeric"
+        },
+        "inputs": [
+          1638350762000,
+          1640995199000,
+          1640995200000
+        ]
+      },
+      {
+        "id": "total-block.total",
+        "file": "src/components/Installments/TotalBlock/index.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "total-block.credit-cost",
+        "file": "src/components/Installments/TotalBlock/index.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "total-block.credit-cost-in-message",
+        "file": "src/components/Installments/TotalBlock/index.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "total-block.annual-percentage-rate",
+        "file": "src/components/Installments/TotalBlock/index.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "percent",
+          "minimumFractionDigits": 2,
+          "maximumFractionDigits": 2
+        },
+        "inputs": [
+          0,
+          0.0525,
+          0.172,
+          0.17205
+        ]
+      },
+      {
+        "id": "payment-plan-strings.ineligible-max-amount",
+        "file": "src/utils/paymentPlanStrings.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "payment-plan-strings.ineligible-min-amount",
+        "file": "src/utils/paymentPlanStrings.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "payment-plan-strings.deferred-total-amount",
+        "file": "src/utils/paymentPlanStrings.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "payment-plan-strings.deferred-due-date",
+        "file": "src/utils/paymentPlanStrings.tsx",
+        "call": "formatDate",
+        "options": {
+          "day": "numeric",
+          "month": "long",
+          "year": "numeric"
+        },
+        "inputs": [
+          1638350762000,
+          1640995199000,
+          1640995200000
+        ]
+      },
+      {
+        "id": "payment-plan-strings.pay-now-total-amount",
+        "file": "src/utils/paymentPlanStrings.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "payment-plan-strings.same-amount-total-amount",
+        "file": "src/utils/paymentPlanStrings.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "payment-plan-strings.first-installment-amount",
+        "file": "src/utils/paymentPlanStrings.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      },
+      {
+        "id": "payment-plan-strings.others-installment-amount",
+        "file": "src/utils/paymentPlanStrings.tsx",
+        "call": "formatNumber",
+        "options": {
+          "style": "currency",
+          "currency": "EUR"
+        },
+        "inputs": [
+          0,
+          1.35,
+          150,
+          1234.5,
+          12345.67
+        ]
+      }
+    ]
+  },
+  "locales": {
+    "en": {
+      "catalogue": "en",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "American Express card accepted",
+        "accessibility.animation-control-instructions": "Automatic animation of payment plans active. Hover or navigate with the arrows to stop animation.",
+        "accessibility.cb-card.aria-label": "CB credit card accepted",
+        "accessibility.close-button.aria-label": "Close window",
+        "accessibility.mastercard.aria-label": "Mastercard accepted",
+        "accessibility.payment-info.section-title": "Information on the selected payment plan",
+        "accessibility.payment-options.listbox.aria-label": "Available payment options",
+        "accessibility.payment-plan-button.aria-label": "Select payment plan [planName]",
+        "accessibility.payment-plan.option.aria-label": "Payment option [planDescription]",
+        "accessibility.payment-plans.section-title": "Available payment options",
+        "accessibility.payment-schedule-title": "Payment schedule",
+        "accessibility.payment-widget.open-button.aria-label": "Open Alma payment options to find out more",
+        "accessibility.plan-selection-changed": "Selected plan: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Quick navigation",
+        "accessibility.visa-card.aria-label": "Visa card accepted",
+        "credit-features.credit-cost-display": "[creditCost] (APR [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Of which cost of credit (incl. VAT)",
+        "eligibility-modal.bullet-1": "Choose <strong>Alma</strong> at checkout.",
+        "eligibility-modal.bullet-2": "Let us guide you and validate your payment in <strong>2 minutes.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Stay in control</strong> by advancing or postponing your deadlines at your own pace.",
+        "eligibility-modal.info-title": "How to pay",
+        "eligibility-modal.no-eligibility": "Oops, looks like the simulation didn't work.",
+        "eligibility-modal.p1x-bullet-1": "Choose <strong>Alma - Pay now</strong> at checkout.",
+        "eligibility-modal.p1x-bullet-2": "Enter your <strong>credit card details.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong>Your payment is instantly validated at </strong> !",
+        "eligibility-modal.title-deferred-plan": "Pay in installments or later by credit card with Alma.",
+        "eligibility-modal.title-normal": "Pay in installments by credit card with Alma.",
+        "eligibility-modal.title-pay-now": "Pay cash by credit card with Alma.",
+        "installments.today": "Today",
+        "installments.total-amount": "Total",
+        "installments.total-fees": "Of which costs (incl. VAT)",
+        "legal-mentions.credit-or-pnx-without-fees": "A loan of [financedAmount] at a fixed borrowing rate of [customerLendingRate] over [creditDurationInMonths] months. Financing, in addition to a [initialDeposit] down payment, a purchase of [purchaseAmount]. [disclaimer]",
+        "legal-mentions.disclaimer": "Subject to approval by Alma SAS (<link>almapay.com</link>), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "A loan of [financedAmount] at a fixed borrowing rate of [customerLendingRate] on [deferredDuration]. Financing, which includes fees of [fees], a purchase of [purchaseAmount]. Total amount due: [totalDue], debited on [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Loan from [financedAmount] at a fixed borrowing rate of [customerLendingRate] on [deferredDuration]. Financing a purchase of [purchaseAmount]. Total amount due: [totalDue], debited on [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "A loan of [financedAmount] at a fixed borrowing rate of [customerLendingRate] over [creditDurationInMonths] months. Financing, in addition to a [initialDeposit] down payment which includes fees of [fees], a purchase of [purchaseAmount]. [disclaimer]",
+        "payment-plan-strings.credit": "Click to find out more",
+        "payment-plan-strings.day-abbreviation": "D[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] to pay the [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 days",
+          "1": "1 day",
+          "2": "2 days"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 months",
+          "1": "1 months",
+          "2": "2 months"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Until [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "From [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] then 0 x [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] then 1 x [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] then 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(free of charge)",
+        "payment-plan-strings.pay-now": "Pay now [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Deferred payment: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Pay now",
+        "skip-links.payment-info": "Go to payment information",
+        "skip-links.payment-plans": "Go to payment options",
+        "skip-links.payment-schedule": "Go to payment calendar",
+        "warning-message.be": "Caution! Borrowing money also costs money.",
+        "warning-message.de": "Caution! Borrowing money costs money.",
+        "warning-message.es": "Warning! Borrowing money costs money.",
+        "warning-message.fr": "Warning! A loan costs money and must be repaid.",
+        "warning-message.gb": "Caution! Borrowing money costs money.",
+        "warning-message.it": "Caution! Borrowing money costs money.",
+        "warning-message.lu": "Warning! Borrowing money costs money.",
+        "warning-message.nl": "Caution! Borrowing money also costs money.",
+        "warning-message.pt": "Caution! Borrowing money costs money."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "installment.date": {
+          "1638350762000": "December 1, 2021",
+          "1640995199000": "December 31, 2021",
+          "1640995200000": "January 1, 2022"
+        },
+        "legal-mentions.price": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "legal-mentions.total-due": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0%",
+          "0.0525": "5.25%",
+          "0.172": "17.2%",
+          "0.17205": "17.21%"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "December 1, 2021",
+          "1640995199000": "December 31, 2021",
+          "1640995200000": "January 1, 2022"
+        },
+        "total-block.total": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "total-block.credit-cost": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0.00%",
+          "0.0525": "5.25%",
+          "0.172": "17.20%",
+          "0.17205": "17.21%"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "December 1, 2021",
+          "1640995199000": "December 31, 2021",
+          "1640995200000": "January 1, 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        }
+      }
+    },
+    "fr-FR": {
+      "catalogue": "fr",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "Carte American Express acceptée",
+        "accessibility.animation-control-instructions": "Animation automatique des plans de paiement active. Survolez ou naviguez avec les flèches pour arrêter l'animation.",
+        "accessibility.cb-card.aria-label": "Carte Bancaire CB acceptée",
+        "accessibility.close-button.aria-label": "Fermer la fenêtre",
+        "accessibility.mastercard.aria-label": "Carte Mastercard acceptée",
+        "accessibility.payment-info.section-title": "Informations sur le plan de paiement sélectionné",
+        "accessibility.payment-options.listbox.aria-label": "Options de paiement disponibles",
+        "accessibility.payment-plan-button.aria-label": "Sélectionner le plan de paiement [planName]",
+        "accessibility.payment-plan.option.aria-label": "Option de paiement [planDescription]",
+        "accessibility.payment-plans.section-title": "Options de paiement disponibles",
+        "accessibility.payment-schedule-title": "Calendrier de paiement",
+        "accessibility.payment-widget.open-button.aria-label": "Ouvrir les options de paiement Alma pour en savoir plus",
+        "accessibility.plan-selection-changed": "Plan sélectionné : [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Navigation rapide",
+        "accessibility.visa-card.aria-label": "Carte Visa acceptée",
+        "credit-features.credit-cost-display": "[creditCost] (TAEG [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Dont coût du crédit (TTC)",
+        "eligibility-modal.bullet-1": "Choisissez <strong>Alma</strong> au moment du paiement.",
+        "eligibility-modal.bullet-2": "Laissez-vous guider et validez votre paiement en <strong>2 minutes.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Gardez le contrôle</strong> en avançant ou reculant vos échéances à votre rythme.",
+        "eligibility-modal.info-title": "Comment procéder au paiement",
+        "eligibility-modal.no-eligibility": "Oups, il semblerait que la simulation n'ait pas fonctionné.",
+        "eligibility-modal.p1x-bullet-1": "Choisissez <strong>Alma - Payer maintenant</strong> au moment du paiement.",
+        "eligibility-modal.p1x-bullet-2": "Renseignez les informations de votre <strong>carte bancaire.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong>La validation </strong> de votre paiement est instantanée !",
+        "eligibility-modal.title-deferred-plan": "Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.",
+        "eligibility-modal.title-normal": "Payez en plusieurs fois par carte bancaire avec Alma.",
+        "eligibility-modal.title-pay-now": "Payez comptant par carte bancaire avec Alma.",
+        "installments.today": "Aujourd'hui",
+        "installments.total-amount": "Total",
+        "installments.total-fees": "Dont frais (TTC)",
+        "legal-mentions.credit-or-pnx-without-fees": "Crédit de [financedAmount] au taux débiteur fixe de [customerLendingRate] sur [creditDurationInMonths] mois. Permettant, avec un acompte de [initialDeposit], de financer un achat de [purchaseAmount]. [disclaimer]",
+        "legal-mentions.disclaimer": "Sous réserve d'acceptation par Alma SAS (<link>almapay.com</link>), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Crédit de [financedAmount] au taux débiteur fixe de [customerLendingRate] sur [deferredDuration]. Permettant de financer un achat de [purchaseAmount], incluant des frais de [fees]. Montant total dû : [totalDue], prélevés le [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Crédit de [financedAmount] au taux débiteur fixe de [customerLendingRate] sur [deferredDuration]. Permettant de financer un achat de [purchaseAmount]. Montant total dû : [totalDue], prélevés le [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Crédit de [financedAmount] au taux débiteur fixe de [customerLendingRate] sur [creditDurationInMonths] mois. Permettant, avec un acompte de [initialDeposit], incluant des frais de [fees], de financer un achat de [purchaseAmount]. [disclaimer]",
+        "payment-plan-strings.credit": "Cliquez pour en savoir plus",
+        "payment-plan-strings.day-abbreviation": "J[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] à payer le [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 jour",
+          "1": "1 jour",
+          "2": "2 jours"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 mois",
+          "1": "1 mois",
+          "2": "2 mois"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Jusqu'à [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "À partir de [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] puis 0 x [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] puis 1 x [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] puis 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(sans frais)",
+        "payment-plan-strings.pay-now": "Payer maintenant [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Payer en différé : [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Payer maintenant",
+        "skip-links.payment-info": "Aller aux informations de paiement",
+        "skip-links.payment-plans": "Aller aux options de paiement",
+        "skip-links.payment-schedule": "Aller au calendrier de paiement",
+        "warning-message.be": "Attention, emprunter de l'argent coûte aussi de l'argent.",
+        "warning-message.de": "Attention ! Emprunter de l'argent a un coût.",
+        "warning-message.es": "Attention ! Emprunter de l'argent coûte de l'argent.",
+        "warning-message.fr": "Attention ! Un crédit coûte de l'argent et doit être remboursé.",
+        "warning-message.gb": "Attention ! Emprunter de l'argent a un coût.",
+        "warning-message.it": "Attention ! Emprunter de l'argent a un coût.",
+        "warning-message.lu": "Attention ! Emprunter de l'argent coûte de l'argent.",
+        "warning-message.nl": "Attention, emprunter de l'argent coûte aussi de l'argent.",
+        "warning-message.pt": "Attention ! Emprunter de l'argent a un coût."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "installment.date": {
+          "1638350762000": "1 décembre 2021",
+          "1640995199000": "31 décembre 2021",
+          "1640995200000": "1 janvier 2022"
+        },
+        "legal-mentions.price": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "legal-mentions.total-due": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,2 %",
+          "0.17205": "17,21 %"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 décembre 2021",
+          "1640995199000": "31 décembre 2021",
+          "1640995200000": "1 janvier 2022"
+        },
+        "total-block.total": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.credit-cost": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,20 %",
+          "0.17205": "17,21 %"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 décembre 2021",
+          "1640995199000": "31 décembre 2021",
+          "1640995200000": "1 janvier 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        }
+      }
+    },
+    "fr": {
+      "catalogue": "fr",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "Carte American Express acceptée",
+        "accessibility.animation-control-instructions": "Animation automatique des plans de paiement active. Survolez ou naviguez avec les flèches pour arrêter l'animation.",
+        "accessibility.cb-card.aria-label": "Carte Bancaire CB acceptée",
+        "accessibility.close-button.aria-label": "Fermer la fenêtre",
+        "accessibility.mastercard.aria-label": "Carte Mastercard acceptée",
+        "accessibility.payment-info.section-title": "Informations sur le plan de paiement sélectionné",
+        "accessibility.payment-options.listbox.aria-label": "Options de paiement disponibles",
+        "accessibility.payment-plan-button.aria-label": "Sélectionner le plan de paiement [planName]",
+        "accessibility.payment-plan.option.aria-label": "Option de paiement [planDescription]",
+        "accessibility.payment-plans.section-title": "Options de paiement disponibles",
+        "accessibility.payment-schedule-title": "Calendrier de paiement",
+        "accessibility.payment-widget.open-button.aria-label": "Ouvrir les options de paiement Alma pour en savoir plus",
+        "accessibility.plan-selection-changed": "Plan sélectionné : [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Navigation rapide",
+        "accessibility.visa-card.aria-label": "Carte Visa acceptée",
+        "credit-features.credit-cost-display": "[creditCost] (TAEG [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Dont coût du crédit (TTC)",
+        "eligibility-modal.bullet-1": "Choisissez <strong>Alma</strong> au moment du paiement.",
+        "eligibility-modal.bullet-2": "Laissez-vous guider et validez votre paiement en <strong>2 minutes.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Gardez le contrôle</strong> en avançant ou reculant vos échéances à votre rythme.",
+        "eligibility-modal.info-title": "Comment procéder au paiement",
+        "eligibility-modal.no-eligibility": "Oups, il semblerait que la simulation n'ait pas fonctionné.",
+        "eligibility-modal.p1x-bullet-1": "Choisissez <strong>Alma - Payer maintenant</strong> au moment du paiement.",
+        "eligibility-modal.p1x-bullet-2": "Renseignez les informations de votre <strong>carte bancaire.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong>La validation </strong> de votre paiement est instantanée !",
+        "eligibility-modal.title-deferred-plan": "Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.",
+        "eligibility-modal.title-normal": "Payez en plusieurs fois par carte bancaire avec Alma.",
+        "eligibility-modal.title-pay-now": "Payez comptant par carte bancaire avec Alma.",
+        "installments.today": "Aujourd'hui",
+        "installments.total-amount": "Total",
+        "installments.total-fees": "Dont frais (TTC)",
+        "legal-mentions.credit-or-pnx-without-fees": "Crédit de [financedAmount] au taux débiteur fixe de [customerLendingRate] sur [creditDurationInMonths] mois. Permettant, avec un acompte de [initialDeposit], de financer un achat de [purchaseAmount]. [disclaimer]",
+        "legal-mentions.disclaimer": "Sous réserve d'acceptation par Alma SAS (<link>almapay.com</link>), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Crédit de [financedAmount] au taux débiteur fixe de [customerLendingRate] sur [deferredDuration]. Permettant de financer un achat de [purchaseAmount], incluant des frais de [fees]. Montant total dû : [totalDue], prélevés le [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Crédit de [financedAmount] au taux débiteur fixe de [customerLendingRate] sur [deferredDuration]. Permettant de financer un achat de [purchaseAmount]. Montant total dû : [totalDue], prélevés le [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Crédit de [financedAmount] au taux débiteur fixe de [customerLendingRate] sur [creditDurationInMonths] mois. Permettant, avec un acompte de [initialDeposit], incluant des frais de [fees], de financer un achat de [purchaseAmount]. [disclaimer]",
+        "payment-plan-strings.credit": "Cliquez pour en savoir plus",
+        "payment-plan-strings.day-abbreviation": "J[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] à payer le [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 jour",
+          "1": "1 jour",
+          "2": "2 jours"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 mois",
+          "1": "1 mois",
+          "2": "2 mois"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Jusqu'à [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "À partir de [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] puis 0 x [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] puis 1 x [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] puis 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(sans frais)",
+        "payment-plan-strings.pay-now": "Payer maintenant [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Payer en différé : [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Payer maintenant",
+        "skip-links.payment-info": "Aller aux informations de paiement",
+        "skip-links.payment-plans": "Aller aux options de paiement",
+        "skip-links.payment-schedule": "Aller au calendrier de paiement",
+        "warning-message.be": "Attention, emprunter de l'argent coûte aussi de l'argent.",
+        "warning-message.de": "Attention ! Emprunter de l'argent a un coût.",
+        "warning-message.es": "Attention ! Emprunter de l'argent coûte de l'argent.",
+        "warning-message.fr": "Attention ! Un crédit coûte de l'argent et doit être remboursé.",
+        "warning-message.gb": "Attention ! Emprunter de l'argent a un coût.",
+        "warning-message.it": "Attention ! Emprunter de l'argent a un coût.",
+        "warning-message.lu": "Attention ! Emprunter de l'argent coûte de l'argent.",
+        "warning-message.nl": "Attention, emprunter de l'argent coûte aussi de l'argent.",
+        "warning-message.pt": "Attention ! Emprunter de l'argent a un coût."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "installment.date": {
+          "1638350762000": "1 décembre 2021",
+          "1640995199000": "31 décembre 2021",
+          "1640995200000": "1 janvier 2022"
+        },
+        "legal-mentions.price": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "legal-mentions.total-due": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,2 %",
+          "0.17205": "17,21 %"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 décembre 2021",
+          "1640995199000": "31 décembre 2021",
+          "1640995200000": "1 janvier 2022"
+        },
+        "total-block.total": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.credit-cost": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,20 %",
+          "0.17205": "17,21 %"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 décembre 2021",
+          "1640995199000": "31 décembre 2021",
+          "1640995200000": "1 janvier 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        }
+      }
+    },
+    "de-DE": {
+      "catalogue": "de",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "American Express-Karte akzeptiert",
+        "accessibility.animation-control-instructions": "Automatische Animation der Zahlungspläne aktiv. Bewegen Sie den Mauszeiger über oder navigieren Sie mit den Pfeiltasten, um die Animation zu stoppen.",
+        "accessibility.cb-card.aria-label": "Kreditkarte CB akzeptiert",
+        "accessibility.close-button.aria-label": "Fenster schließen",
+        "accessibility.mastercard.aria-label": "Mastercard akzeptiert",
+        "accessibility.payment-info.section-title": "Informationen über den ausgewählten Zahlungsplan",
+        "accessibility.payment-options.listbox.aria-label": "Verfügbare Zahlungsoptionen",
+        "accessibility.payment-plan-button.aria-label": "Wählen Sie den Zahlungsplan [planName]",
+        "accessibility.payment-plan.option.aria-label": "Zahlungsoption [planDescription]",
+        "accessibility.payment-plans.section-title": "Verfügbare Zahlungsoptionen",
+        "accessibility.payment-schedule-title": "Ratenplan für die Zahlung",
+        "accessibility.payment-widget.open-button.aria-label": "Öffne Almas Zahlungsoptionen, um mehr zu erfahren",
+        "accessibility.plan-selection-changed": "Ausgewählter Plan: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Schnelle Navigation",
+        "accessibility.visa-card.aria-label": "Visa-Karte wird akzeptiert",
+        "credit-features.credit-cost-display": "[creditCost] (effektiver Jahreszins [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Davon Kreditkosten",
+        "eligibility-modal.bullet-1": "Wählen Sie <strong>Alma</strong> beim Check-out. ",
+        "eligibility-modal.bullet-2": "Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in <strong>2 Minuten.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Behalten Sie die Kontrolle</strong> , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.",
+        "eligibility-modal.info-title": "Wie erfolgt die Bezahlung",
+        "eligibility-modal.no-eligibility": "Ups, die Prüfung hat anscheinend nicht funktioniert.",
+        "eligibility-modal.p1x-bullet-1": "Wählen Sie <strong>Alma - Jetzt bezahlen</strong> zum Zeitpunkt der Zahlung.",
+        "eligibility-modal.p1x-bullet-2": "Tragen Sie Ihre <strong>Kreditkarteninformationen ein.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong> Die Bestätigung </strong> Ihrer Zahlung erfolgt sofort !",
+        "eligibility-modal.title-deferred-plan": "Zahlen Sie mit Alma in Raten oder später.",
+        "eligibility-modal.title-normal": "Zahlen Sie mit Alma in mehreren Raten.",
+        "eligibility-modal.title-pay-now": "Bezahlen Sie auf einmal mit Alma per Kreditkarte.",
+        "installments.today": "Heute",
+        "installments.total-amount": "Gesamtsumme",
+        "installments.total-fees": "Davon Kosten",
+        "legal-mentions.credit-or-pnx-without-fees": "Für einen Einkauf im Wert von [purchaseAmount] beträgt die Anzahlung [initialDeposit]. Der Kreditbetrag beläuft sich auf [financedAmount] bei einem festen Sollzinssatz von [customerLendingRate] p. a. und einer Laufzeit von [creditDurationInMonths] Monaten. [disclaimer]",
+        "legal-mentions.disclaimer": "Vorbehaltlich der Genehmigung durch Alma SAS (<link>almapay.com</link>), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Kredit über [financedAmount] zum festen Sollzinssatz von [customerLendingRate] über [deferredDuration]. Zur Finanzierung eines Kaufs von [purchaseAmount], einschließlich Gebühren in Höhe von [fees]. Gesamtbetrag: [totalDue], abgebucht am [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Kredit über [financedAmount] zum festen Sollzinssatz von [customerLendingRate] über [deferredDuration]. Zur Finanzierung eines Kaufs von [purchaseAmount]. Gesamtbetrag: [totalDue], abgebucht am [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Für einen Einkauf im Wert von [purchaseAmount] beträgt die Anzahlung [initialDeposit] einschließlich Gebühren in Höhe von [fees]. Der Kreditbetrag beläuft sich auf [financedAmount] bei einem festen Sollzinssatz von [customerLendingRate] p. a. und einer Laufzeit von [creditDurationInMonths] Monaten. [disclaimer]",
+        "payment-plan-strings.credit": "Klicken Sie, um mehr zu erfahren",
+        "payment-plan-strings.day-abbreviation": "T[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] zu zahlen am [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 Tage",
+          "1": "1 Tag",
+          "2": "2 Tage"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 Monate",
+          "1": "1 Monate",
+          "2": "2 Monate"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Bis zu [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "Ab [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] dann 0 x [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] dann 1 x [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] dann 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(0% Finanzierung)",
+        "payment-plan-strings.pay-now": "Zahlen Sie jetzt [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Aufgeschobenes Bezahlen: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Jetzt bezahlen",
+        "skip-links.payment-info": "Zu den Zahlungsinformationen gehen",
+        "skip-links.payment-plans": "Zu den Zahlungsoptionen gehen",
+        "skip-links.payment-schedule": "Zum Zahlungskalender gehen",
+        "warning-message.be": "Achtung: Geld leihen kostet auch Geld.",
+        "warning-message.de": "Achtung! Kreditaufnahme kostet Geld.",
+        "warning-message.es": "Achtung! Geld zu leihen kostet Geld.",
+        "warning-message.fr": "Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.",
+        "warning-message.gb": "Achtung! Geld zu leihen kostet Geld.",
+        "warning-message.it": "Achtung! Kreditaufnahme kostet Geld.",
+        "warning-message.lu": "Achtung! Geld zu leihen kostet Geld.",
+        "warning-message.nl": "Achtung: Geld leihen kostet auch Geld.",
+        "warning-message.pt": "Achtung! Kreditaufnahme kostet Geld."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "installment.date": {
+          "1638350762000": "1. Dezember 2021",
+          "1640995199000": "31. Dezember 2021",
+          "1640995200000": "1. Januar 2022"
+        },
+        "legal-mentions.price": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.total-due": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,2 %",
+          "0.17205": "17,21 %"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1. Dezember 2021",
+          "1640995199000": "31. Dezember 2021",
+          "1640995200000": "1. Januar 2022"
+        },
+        "total-block.total": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,20 %",
+          "0.17205": "17,21 %"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1. Dezember 2021",
+          "1640995199000": "31. Dezember 2021",
+          "1640995200000": "1. Januar 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        }
+      }
+    },
+    "de": {
+      "catalogue": "de",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "American Express-Karte akzeptiert",
+        "accessibility.animation-control-instructions": "Automatische Animation der Zahlungspläne aktiv. Bewegen Sie den Mauszeiger über oder navigieren Sie mit den Pfeiltasten, um die Animation zu stoppen.",
+        "accessibility.cb-card.aria-label": "Kreditkarte CB akzeptiert",
+        "accessibility.close-button.aria-label": "Fenster schließen",
+        "accessibility.mastercard.aria-label": "Mastercard akzeptiert",
+        "accessibility.payment-info.section-title": "Informationen über den ausgewählten Zahlungsplan",
+        "accessibility.payment-options.listbox.aria-label": "Verfügbare Zahlungsoptionen",
+        "accessibility.payment-plan-button.aria-label": "Wählen Sie den Zahlungsplan [planName]",
+        "accessibility.payment-plan.option.aria-label": "Zahlungsoption [planDescription]",
+        "accessibility.payment-plans.section-title": "Verfügbare Zahlungsoptionen",
+        "accessibility.payment-schedule-title": "Ratenplan für die Zahlung",
+        "accessibility.payment-widget.open-button.aria-label": "Öffne Almas Zahlungsoptionen, um mehr zu erfahren",
+        "accessibility.plan-selection-changed": "Ausgewählter Plan: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Schnelle Navigation",
+        "accessibility.visa-card.aria-label": "Visa-Karte wird akzeptiert",
+        "credit-features.credit-cost-display": "[creditCost] (effektiver Jahreszins [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Davon Kreditkosten",
+        "eligibility-modal.bullet-1": "Wählen Sie <strong>Alma</strong> beim Check-out. ",
+        "eligibility-modal.bullet-2": "Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in <strong>2 Minuten.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Behalten Sie die Kontrolle</strong> , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.",
+        "eligibility-modal.info-title": "Wie erfolgt die Bezahlung",
+        "eligibility-modal.no-eligibility": "Ups, die Prüfung hat anscheinend nicht funktioniert.",
+        "eligibility-modal.p1x-bullet-1": "Wählen Sie <strong>Alma - Jetzt bezahlen</strong> zum Zeitpunkt der Zahlung.",
+        "eligibility-modal.p1x-bullet-2": "Tragen Sie Ihre <strong>Kreditkarteninformationen ein.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong> Die Bestätigung </strong> Ihrer Zahlung erfolgt sofort !",
+        "eligibility-modal.title-deferred-plan": "Zahlen Sie mit Alma in Raten oder später.",
+        "eligibility-modal.title-normal": "Zahlen Sie mit Alma in mehreren Raten.",
+        "eligibility-modal.title-pay-now": "Bezahlen Sie auf einmal mit Alma per Kreditkarte.",
+        "installments.today": "Heute",
+        "installments.total-amount": "Gesamtsumme",
+        "installments.total-fees": "Davon Kosten",
+        "legal-mentions.credit-or-pnx-without-fees": "Für einen Einkauf im Wert von [purchaseAmount] beträgt die Anzahlung [initialDeposit]. Der Kreditbetrag beläuft sich auf [financedAmount] bei einem festen Sollzinssatz von [customerLendingRate] p. a. und einer Laufzeit von [creditDurationInMonths] Monaten. [disclaimer]",
+        "legal-mentions.disclaimer": "Vorbehaltlich der Genehmigung durch Alma SAS (<link>almapay.com</link>), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Kredit über [financedAmount] zum festen Sollzinssatz von [customerLendingRate] über [deferredDuration]. Zur Finanzierung eines Kaufs von [purchaseAmount], einschließlich Gebühren in Höhe von [fees]. Gesamtbetrag: [totalDue], abgebucht am [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Kredit über [financedAmount] zum festen Sollzinssatz von [customerLendingRate] über [deferredDuration]. Zur Finanzierung eines Kaufs von [purchaseAmount]. Gesamtbetrag: [totalDue], abgebucht am [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Für einen Einkauf im Wert von [purchaseAmount] beträgt die Anzahlung [initialDeposit] einschließlich Gebühren in Höhe von [fees]. Der Kreditbetrag beläuft sich auf [financedAmount] bei einem festen Sollzinssatz von [customerLendingRate] p. a. und einer Laufzeit von [creditDurationInMonths] Monaten. [disclaimer]",
+        "payment-plan-strings.credit": "Klicken Sie, um mehr zu erfahren",
+        "payment-plan-strings.day-abbreviation": "T[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] zu zahlen am [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 Tage",
+          "1": "1 Tag",
+          "2": "2 Tage"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 Monate",
+          "1": "1 Monate",
+          "2": "2 Monate"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Bis zu [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "Ab [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] dann 0 x [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] dann 1 x [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] dann 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(0% Finanzierung)",
+        "payment-plan-strings.pay-now": "Zahlen Sie jetzt [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Aufgeschobenes Bezahlen: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Jetzt bezahlen",
+        "skip-links.payment-info": "Zu den Zahlungsinformationen gehen",
+        "skip-links.payment-plans": "Zu den Zahlungsoptionen gehen",
+        "skip-links.payment-schedule": "Zum Zahlungskalender gehen",
+        "warning-message.be": "Achtung: Geld leihen kostet auch Geld.",
+        "warning-message.de": "Achtung! Kreditaufnahme kostet Geld.",
+        "warning-message.es": "Achtung! Geld zu leihen kostet Geld.",
+        "warning-message.fr": "Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.",
+        "warning-message.gb": "Achtung! Geld zu leihen kostet Geld.",
+        "warning-message.it": "Achtung! Kreditaufnahme kostet Geld.",
+        "warning-message.lu": "Achtung! Geld zu leihen kostet Geld.",
+        "warning-message.nl": "Achtung: Geld leihen kostet auch Geld.",
+        "warning-message.pt": "Achtung! Kreditaufnahme kostet Geld."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "installment.date": {
+          "1638350762000": "1. Dezember 2021",
+          "1640995199000": "31. Dezember 2021",
+          "1640995200000": "1. Januar 2022"
+        },
+        "legal-mentions.price": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.total-due": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,2 %",
+          "0.17205": "17,21 %"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1. Dezember 2021",
+          "1640995199000": "31. Dezember 2021",
+          "1640995200000": "1. Januar 2022"
+        },
+        "total-block.total": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,20 %",
+          "0.17205": "17,21 %"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1. Dezember 2021",
+          "1640995199000": "31. Dezember 2021",
+          "1640995200000": "1. Januar 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1.234,50 €",
+          "12345.67": "12.345,67 €"
+        }
+      }
+    },
+    "it": {
+      "catalogue": "it",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "Carta American Express accettata",
+        "accessibility.animation-control-instructions": "L'animazione automatica dei piani di pagamento è attiva. Passare il mouse sopra o navigare con le frecce per fermare l'animazione.",
+        "accessibility.cb-card.aria-label": "Carta di credito CB accettata",
+        "accessibility.close-button.aria-label": "Chiudere la finestra",
+        "accessibility.mastercard.aria-label": "Mastercard accettata",
+        "accessibility.payment-info.section-title": "Informazioni sul piano di pagamento selezionato",
+        "accessibility.payment-options.listbox.aria-label": "Opzioni di pagamento disponibili",
+        "accessibility.payment-plan-button.aria-label": "Selezionare il piano di pagamento [planName]",
+        "accessibility.payment-plan.option.aria-label": "Opzione di pagamento [planDescription]",
+        "accessibility.payment-plans.section-title": "Opzioni di pagamento disponibili",
+        "accessibility.payment-schedule-title": "Piano di pagamento",
+        "accessibility.payment-widget.open-button.aria-label": "Aprire le opzioni di pagamento Alma per saperne di più",
+        "accessibility.plan-selection-changed": "Piano selezionato: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Navigazione rapida",
+        "accessibility.visa-card.aria-label": "Carta Visa accettata",
+        "credit-features.credit-cost-display": "[creditCost] (TAEG [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Di cui costo del credito (IVA inclusa)",
+        "eligibility-modal.bullet-1": "Seleziona <strong>Alma</strong> come metodo di pagamento.",
+        "eligibility-modal.bullet-2": "Segui le istruzioni e completa l'acquisto <strong>in meno di 2 minuti.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Gestisci il tuo piano di pagamento</strong> e modifica le scadenze secondo le tue esigenze.",
+        "eligibility-modal.info-title": "Come pagare",
+        "eligibility-modal.no-eligibility": "Ops, sembra che qualcosa non abbia funzionato.",
+        "eligibility-modal.p1x-bullet-1": "Scegli <strong>Alma - Paga ora</strong> alla cassa.",
+        "eligibility-modal.p1x-bullet-2": "Inserisci i dati della tua <strong>carta bancaria.</strong>",
+        "eligibility-modal.p1x-bullet-3": "Ricevi la <strong>conferma di pagamento</strong> istantaneamente!",
+        "eligibility-modal.title-deferred-plan": "Paga a rate con Alma, senza registrazione.",
+        "eligibility-modal.title-normal": "Paga a rate con Alma, senza registrazione.",
+        "eligibility-modal.title-pay-now": "Paga ora con carta tramite Alma.",
+        "installments.today": "Oggi",
+        "installments.total-amount": "Totale",
+        "installments.total-fees": "Di cui commissioni",
+        "legal-mentions.credit-or-pnx-without-fees": "Prestito di [financedAmount] con tasso fisso dello [customerLendingRate] per [creditDurationInMonths] mesi. Con un acconto di [initialDeposit], Alma finanzia un acquisto di [purchaseAmount]. [disclaimer]",
+        "legal-mentions.disclaimer": "Previa accettazione da parte di Alma SAS (<link>almapay.com</link>), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Prestito di [financedAmount] con tasso fisso dello [customerLendingRate] su [deferredDuration]. Comprensivo di spese pari a [fees], Alma finanzia un acquisto di [purchaseAmount]. Importo totale dovuto: [totalDue], addebitato il [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Prestito di [financedAmount] con tasso fisso dello [customerLendingRate] su [deferredDuration]. Alma finanzia un acquisto di [purchaseAmount]. Importo totale dovuto: [totalDue], addebitato il [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Prestito di [financedAmount] con tasso fisso dello [customerLendingRate] per [creditDurationInMonths] mesi. Con un acconto di [initialDeposit] comprensivo di spese pari a [fees], Alma finanzia un acquisto di [purchaseAmount]. [disclaimer]",
+        "payment-plan-strings.credit": "Clicca qui per saperne di più",
+        "payment-plan-strings.day-abbreviation": "G[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] da pagare il [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 giorni",
+          "1": "1 giorno",
+          "2": "2 giorni"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 mesi",
+          "1": "1 mesi",
+          "2": "2 mesi"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Disponibile fino a [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "Pagamento rateale disponibile a partire da [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "Oggi paghi [firstInstallmentAmount] poi 0 rate mensili di [othersInstallmentAmount]",
+          "1": "Oggi paghi [firstInstallmentAmount] poi tra 1 mese [othersInstallmentAmount]",
+          "2": "Oggi paghi [firstInstallmentAmount] poi 2 rate mensili di [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "In [installmentsCount] rate mensili di [totalAmount]",
+        "payment-plan-strings.no-fee": "(senza interessi)",
+        "payment-plan-strings.pay-now": "Paga ora [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Pagamento dilazionato: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Paga ora",
+        "skip-links.payment-info": "Vai alle informazioni di pagamento",
+        "skip-links.payment-plans": "Vai alle opzioni di pagamento",
+        "skip-links.payment-schedule": "Vai al calendario dei pagamenti",
+        "warning-message.be": "Attenzione: prendere in prestito denaro comporta anche dei costi.",
+        "warning-message.de": "Attenzione! Prendere in prestito denaro comporta dei costi.",
+        "warning-message.es": "Attenzione! Prendere in prestito denaro comporta dei costi.",
+        "warning-message.fr": "Attenzione! Un prestito ha un costo e deve essere rimborsato.",
+        "warning-message.gb": "Attenzione! Prendere in prestito denaro comporta dei costi.",
+        "warning-message.it": "Attenzione: prendere in prestito denaro comporta dei costi.",
+        "warning-message.lu": "Attenzione! Prendere in prestito denaro comporta dei costi.",
+        "warning-message.nl": "Attenzione: prendere in prestito denaro comporta anche dei costi.",
+        "warning-message.pt": "Attenzione: prendere in prestito denaro comporta dei costi."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "installment.date": {
+          "1638350762000": "1 dicembre 2021",
+          "1640995199000": "31 dicembre 2021",
+          "1640995200000": "1 gennaio 2022"
+        },
+        "legal-mentions.price": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.total-due": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0%",
+          "0.0525": "5,25%",
+          "0.172": "17,2%",
+          "0.17205": "17,21%"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 dicembre 2021",
+          "1640995199000": "31 dicembre 2021",
+          "1640995200000": "1 gennaio 2022"
+        },
+        "total-block.total": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00%",
+          "0.0525": "5,25%",
+          "0.172": "17,20%",
+          "0.17205": "17,21%"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 dicembre 2021",
+          "1640995199000": "31 dicembre 2021",
+          "1640995200000": "1 gennaio 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        }
+      }
+    },
+    "it-IT": {
+      "catalogue": "it",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "Carta American Express accettata",
+        "accessibility.animation-control-instructions": "L'animazione automatica dei piani di pagamento è attiva. Passare il mouse sopra o navigare con le frecce per fermare l'animazione.",
+        "accessibility.cb-card.aria-label": "Carta di credito CB accettata",
+        "accessibility.close-button.aria-label": "Chiudere la finestra",
+        "accessibility.mastercard.aria-label": "Mastercard accettata",
+        "accessibility.payment-info.section-title": "Informazioni sul piano di pagamento selezionato",
+        "accessibility.payment-options.listbox.aria-label": "Opzioni di pagamento disponibili",
+        "accessibility.payment-plan-button.aria-label": "Selezionare il piano di pagamento [planName]",
+        "accessibility.payment-plan.option.aria-label": "Opzione di pagamento [planDescription]",
+        "accessibility.payment-plans.section-title": "Opzioni di pagamento disponibili",
+        "accessibility.payment-schedule-title": "Piano di pagamento",
+        "accessibility.payment-widget.open-button.aria-label": "Aprire le opzioni di pagamento Alma per saperne di più",
+        "accessibility.plan-selection-changed": "Piano selezionato: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Navigazione rapida",
+        "accessibility.visa-card.aria-label": "Carta Visa accettata",
+        "credit-features.credit-cost-display": "[creditCost] (TAEG [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Di cui costo del credito (IVA inclusa)",
+        "eligibility-modal.bullet-1": "Seleziona <strong>Alma</strong> come metodo di pagamento.",
+        "eligibility-modal.bullet-2": "Segui le istruzioni e completa l'acquisto <strong>in meno di 2 minuti.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Gestisci il tuo piano di pagamento</strong> e modifica le scadenze secondo le tue esigenze.",
+        "eligibility-modal.info-title": "Come pagare",
+        "eligibility-modal.no-eligibility": "Ops, sembra che qualcosa non abbia funzionato.",
+        "eligibility-modal.p1x-bullet-1": "Scegli <strong>Alma - Paga ora</strong> alla cassa.",
+        "eligibility-modal.p1x-bullet-2": "Inserisci i dati della tua <strong>carta bancaria.</strong>",
+        "eligibility-modal.p1x-bullet-3": "Ricevi la <strong>conferma di pagamento</strong> istantaneamente!",
+        "eligibility-modal.title-deferred-plan": "Paga a rate con Alma, senza registrazione.",
+        "eligibility-modal.title-normal": "Paga a rate con Alma, senza registrazione.",
+        "eligibility-modal.title-pay-now": "Paga ora con carta tramite Alma.",
+        "installments.today": "Oggi",
+        "installments.total-amount": "Totale",
+        "installments.total-fees": "Di cui commissioni",
+        "legal-mentions.credit-or-pnx-without-fees": "Prestito di [financedAmount] con tasso fisso dello [customerLendingRate] per [creditDurationInMonths] mesi. Con un acconto di [initialDeposit], Alma finanzia un acquisto di [purchaseAmount]. [disclaimer]",
+        "legal-mentions.disclaimer": "Previa accettazione da parte di Alma SAS (<link>almapay.com</link>), istituto di pagamento autorizzato dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Prestito di [financedAmount] con tasso fisso dello [customerLendingRate] su [deferredDuration]. Comprensivo di spese pari a [fees], Alma finanzia un acquisto di [purchaseAmount]. Importo totale dovuto: [totalDue], addebitato il [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Prestito di [financedAmount] con tasso fisso dello [customerLendingRate] su [deferredDuration]. Alma finanzia un acquisto di [purchaseAmount]. Importo totale dovuto: [totalDue], addebitato il [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Prestito di [financedAmount] con tasso fisso dello [customerLendingRate] per [creditDurationInMonths] mesi. Con un acconto di [initialDeposit] comprensivo di spese pari a [fees], Alma finanzia un acquisto di [purchaseAmount]. [disclaimer]",
+        "payment-plan-strings.credit": "Clicca qui per saperne di più",
+        "payment-plan-strings.day-abbreviation": "G[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] da pagare il [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 giorni",
+          "1": "1 giorno",
+          "2": "2 giorni"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 mesi",
+          "1": "1 mesi",
+          "2": "2 mesi"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Disponibile fino a [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "Pagamento rateale disponibile a partire da [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "Oggi paghi [firstInstallmentAmount] poi 0 rate mensili di [othersInstallmentAmount]",
+          "1": "Oggi paghi [firstInstallmentAmount] poi tra 1 mese [othersInstallmentAmount]",
+          "2": "Oggi paghi [firstInstallmentAmount] poi 2 rate mensili di [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "In [installmentsCount] rate mensili di [totalAmount]",
+        "payment-plan-strings.no-fee": "(senza interessi)",
+        "payment-plan-strings.pay-now": "Paga ora [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Pagamento dilazionato: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Paga ora",
+        "skip-links.payment-info": "Vai alle informazioni di pagamento",
+        "skip-links.payment-plans": "Vai alle opzioni di pagamento",
+        "skip-links.payment-schedule": "Vai al calendario dei pagamenti",
+        "warning-message.be": "Attenzione: prendere in prestito denaro comporta anche dei costi.",
+        "warning-message.de": "Attenzione! Prendere in prestito denaro comporta dei costi.",
+        "warning-message.es": "Attenzione! Prendere in prestito denaro comporta dei costi.",
+        "warning-message.fr": "Attenzione! Un prestito ha un costo e deve essere rimborsato.",
+        "warning-message.gb": "Attenzione! Prendere in prestito denaro comporta dei costi.",
+        "warning-message.it": "Attenzione: prendere in prestito denaro comporta dei costi.",
+        "warning-message.lu": "Attenzione! Prendere in prestito denaro comporta dei costi.",
+        "warning-message.nl": "Attenzione: prendere in prestito denaro comporta anche dei costi.",
+        "warning-message.pt": "Attenzione: prendere in prestito denaro comporta dei costi."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "installment.date": {
+          "1638350762000": "1 dicembre 2021",
+          "1640995199000": "31 dicembre 2021",
+          "1640995200000": "1 gennaio 2022"
+        },
+        "legal-mentions.price": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.total-due": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0%",
+          "0.0525": "5,25%",
+          "0.172": "17,2%",
+          "0.17205": "17,21%"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 dicembre 2021",
+          "1640995199000": "31 dicembre 2021",
+          "1640995200000": "1 gennaio 2022"
+        },
+        "total-block.total": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00%",
+          "0.0525": "5,25%",
+          "0.172": "17,20%",
+          "0.17205": "17,21%"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 dicembre 2021",
+          "1640995199000": "31 dicembre 2021",
+          "1640995200000": "1 gennaio 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        }
+      }
+    },
+    "es": {
+      "catalogue": "es",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "Se acepta la tarjeta American Express",
+        "accessibility.animation-control-instructions": "La animación automática de los planes de pago está activa. Pase el ratón por encima o desplácese con las flechas para detener la animación.",
+        "accessibility.cb-card.aria-label": "Se acepta tarjeta de crédito CB",
+        "accessibility.close-button.aria-label": "Cerrar ventana",
+        "accessibility.mastercard.aria-label": "Se acepta Mastercard",
+        "accessibility.payment-info.section-title": "Información sobre el plan de pago seleccionado",
+        "accessibility.payment-options.listbox.aria-label": "Formas de pago disponibles",
+        "accessibility.payment-plan-button.aria-label": "Selecciona el plan de pago [planName]",
+        "accessibility.payment-plan.option.aria-label": "Forma de pago [planDescription]",
+        "accessibility.payment-plans.section-title": "Formas de pago disponibles",
+        "accessibility.payment-schedule-title": "Calendario de pagos",
+        "accessibility.payment-widget.open-button.aria-label": "Abre las opciones de pago de Alma para saber más",
+        "accessibility.plan-selection-changed": "Plan seleccionado: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Navegación rápida",
+        "accessibility.visa-card.aria-label": "Se acepta tarjeta Visa",
+        "credit-features.credit-cost-display": "[creditCost] (TAE [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Del cual, coste del crédito (IVA incluido)",
+        "eligibility-modal.bullet-1": "Elige <strong>Alma</strong> como método de pago.",
+        "eligibility-modal.bullet-2": "Déjate guiar y válida tu pago en <strong>2 minutos.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Mantén el control</strong> adelantando o aplazando los plazos a su propio ritmo.",
+        "eligibility-modal.info-title": "Cómo pagar",
+        "eligibility-modal.no-eligibility": "Uy, parece que la simulación no ha funcionado.",
+        "eligibility-modal.p1x-bullet-1": "Elije <strong>Alma - Pagar ahora</strong> al momento de la compra.",
+        "eligibility-modal.p1x-bullet-2": "Introduce los datos de tu tarjeta bancaria en <strong>.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong>¡La validación </strong> de tu pago es instantánea!",
+        "eligibility-modal.title-deferred-plan": "Paga a plazos o posteriormente con tarjeta bancaria con Alma.",
+        "eligibility-modal.title-normal": "Pagar a plazos con tarjeta bancaria con Alma.",
+        "eligibility-modal.title-pay-now": "Paga de contado con tu tarjeta bancaria a través de alma.",
+        "installments.today": "Hoy",
+        "installments.total-amount": "Total",
+        "installments.total-fees": "De los cuales, costes administativos (IVA incluido)",
+        "legal-mentions.credit-or-pnx-without-fees": "Crédito de [financedAmount] a un tipo de interés fijo del [customerLendingRate] durante [creditDurationInMonths] meses. Permite, con un pago inicial de [initialDeposit], financiar una compra de [purchaseAmount]. [disclaimer]",
+        "legal-mentions.disclaimer": "Sujeto a la aceptación por parte de Alma SAS (<link>almapay.com</link>), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Crédito de [financedAmount] a un tipo de interés deudor fijo de [customerLendingRate] en [deferredDuration]. Destinado a financiar una compra de [purchaseAmount], incluyendo los gastos de [fees]. Importe total adeudado: [totalDue], que se cargará el [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Crédito de [financedAmount] con un tipo de interés deudor fijo de [customerLendingRate] en [deferredDuration]. Que permite financiar una compra de [purchaseAmount]. Importe total adeudado: [totalDue], que se deducirá el [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Crédito de [financedAmount] a un tipo de interés fijo del [customerLendingRate] durante [creditDurationInMonths] meses. Permite, con un pago inicial de [initialDeposit] que incluye gastos de [fees], financiar una compra de [purchaseAmount]. [disclaimer]",
+        "payment-plan-strings.credit": "Pincha aqui para más información",
+        "payment-plan-strings.day-abbreviation": "D[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] a pagar el [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 días",
+          "1": "1 día",
+          "2": "2 días"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 meses",
+          "1": "1 meses",
+          "2": "2 meses"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Hasta [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "Desde [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] hoy, después 0 mensualidades de [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] hoy, después 1 mensualidad de [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] hoy, después 2 mensualidades de [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] plazos de [totalAmount]",
+        "payment-plan-strings.no-fee": "(sin intereses)",
+        "payment-plan-strings.pay-now": "Pague ahora [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Pago aplazado: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Pagar ahora",
+        "skip-links.payment-info": "Ir a la información de pago",
+        "skip-links.payment-plans": "Ir a las opciones de pago",
+        "skip-links.payment-schedule": "Ir al calendario de pagos",
+        "warning-message.be": "¡Atención! Pedir dinero prestado también cuesta dinero.",
+        "warning-message.de": "¡Atención! Pedir dinero prestado cuesta dinero.",
+        "warning-message.es": "Atención: tomar dinero prestado cuesta dinero.",
+        "warning-message.fr": "¡Atención! Un crédito cuesta dinero y hay que devolverlo.",
+        "warning-message.gb": "¡Atención! Pedir dinero prestado cuesta dinero.",
+        "warning-message.it": "Atención: tomar dinero prestado cuesta dinero.",
+        "warning-message.lu": "¡Atención! Pedir dinero prestado cuesta dinero.",
+        "warning-message.nl": "Atención: tomar dinero prestado cuesta dinero.",
+        "warning-message.pt": "Atención: tomar dinero prestado cuesta dinero."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "installment.date": {
+          "1638350762000": "1 de diciembre de 2021",
+          "1640995199000": "31 de diciembre de 2021",
+          "1640995200000": "1 de enero de 2022"
+        },
+        "legal-mentions.price": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.total-due": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,2 %",
+          "0.17205": "17,21 %"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 de diciembre de 2021",
+          "1640995199000": "31 de diciembre de 2021",
+          "1640995200000": "1 de enero de 2022"
+        },
+        "total-block.total": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,20 %",
+          "0.17205": "17,21 %"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 de diciembre de 2021",
+          "1640995199000": "31 de diciembre de 2021",
+          "1640995200000": "1 de enero de 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        }
+      }
+    },
+    "es-ES": {
+      "catalogue": "es",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "Se acepta la tarjeta American Express",
+        "accessibility.animation-control-instructions": "La animación automática de los planes de pago está activa. Pase el ratón por encima o desplácese con las flechas para detener la animación.",
+        "accessibility.cb-card.aria-label": "Se acepta tarjeta de crédito CB",
+        "accessibility.close-button.aria-label": "Cerrar ventana",
+        "accessibility.mastercard.aria-label": "Se acepta Mastercard",
+        "accessibility.payment-info.section-title": "Información sobre el plan de pago seleccionado",
+        "accessibility.payment-options.listbox.aria-label": "Formas de pago disponibles",
+        "accessibility.payment-plan-button.aria-label": "Selecciona el plan de pago [planName]",
+        "accessibility.payment-plan.option.aria-label": "Forma de pago [planDescription]",
+        "accessibility.payment-plans.section-title": "Formas de pago disponibles",
+        "accessibility.payment-schedule-title": "Calendario de pagos",
+        "accessibility.payment-widget.open-button.aria-label": "Abre las opciones de pago de Alma para saber más",
+        "accessibility.plan-selection-changed": "Plan seleccionado: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Navegación rápida",
+        "accessibility.visa-card.aria-label": "Se acepta tarjeta Visa",
+        "credit-features.credit-cost-display": "[creditCost] (TAE [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Del cual, coste del crédito (IVA incluido)",
+        "eligibility-modal.bullet-1": "Elige <strong>Alma</strong> como método de pago.",
+        "eligibility-modal.bullet-2": "Déjate guiar y válida tu pago en <strong>2 minutos.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Mantén el control</strong> adelantando o aplazando los plazos a su propio ritmo.",
+        "eligibility-modal.info-title": "Cómo pagar",
+        "eligibility-modal.no-eligibility": "Uy, parece que la simulación no ha funcionado.",
+        "eligibility-modal.p1x-bullet-1": "Elije <strong>Alma - Pagar ahora</strong> al momento de la compra.",
+        "eligibility-modal.p1x-bullet-2": "Introduce los datos de tu tarjeta bancaria en <strong>.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong>¡La validación </strong> de tu pago es instantánea!",
+        "eligibility-modal.title-deferred-plan": "Paga a plazos o posteriormente con tarjeta bancaria con Alma.",
+        "eligibility-modal.title-normal": "Pagar a plazos con tarjeta bancaria con Alma.",
+        "eligibility-modal.title-pay-now": "Paga de contado con tu tarjeta bancaria a través de alma.",
+        "installments.today": "Hoy",
+        "installments.total-amount": "Total",
+        "installments.total-fees": "De los cuales, costes administativos (IVA incluido)",
+        "legal-mentions.credit-or-pnx-without-fees": "Crédito de [financedAmount] a un tipo de interés fijo del [customerLendingRate] durante [creditDurationInMonths] meses. Permite, con un pago inicial de [initialDeposit], financiar una compra de [purchaseAmount]. [disclaimer]",
+        "legal-mentions.disclaimer": "Sujeto a la aceptación por parte de Alma SAS (<link>almapay.com</link>), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Crédito de [financedAmount] a un tipo de interés deudor fijo de [customerLendingRate] en [deferredDuration]. Destinado a financiar una compra de [purchaseAmount], incluyendo los gastos de [fees]. Importe total adeudado: [totalDue], que se cargará el [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Crédito de [financedAmount] con un tipo de interés deudor fijo de [customerLendingRate] en [deferredDuration]. Que permite financiar una compra de [purchaseAmount]. Importe total adeudado: [totalDue], que se deducirá el [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Crédito de [financedAmount] a un tipo de interés fijo del [customerLendingRate] durante [creditDurationInMonths] meses. Permite, con un pago inicial de [initialDeposit] que incluye gastos de [fees], financiar una compra de [purchaseAmount]. [disclaimer]",
+        "payment-plan-strings.credit": "Pincha aqui para más información",
+        "payment-plan-strings.day-abbreviation": "D[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] a pagar el [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 días",
+          "1": "1 día",
+          "2": "2 días"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 meses",
+          "1": "1 meses",
+          "2": "2 meses"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Hasta [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "Desde [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] hoy, después 0 mensualidades de [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] hoy, después 1 mensualidad de [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] hoy, después 2 mensualidades de [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] plazos de [totalAmount]",
+        "payment-plan-strings.no-fee": "(sin intereses)",
+        "payment-plan-strings.pay-now": "Pague ahora [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Pago aplazado: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Pagar ahora",
+        "skip-links.payment-info": "Ir a la información de pago",
+        "skip-links.payment-plans": "Ir a las opciones de pago",
+        "skip-links.payment-schedule": "Ir al calendario de pagos",
+        "warning-message.be": "¡Atención! Pedir dinero prestado también cuesta dinero.",
+        "warning-message.de": "¡Atención! Pedir dinero prestado cuesta dinero.",
+        "warning-message.es": "Atención: tomar dinero prestado cuesta dinero.",
+        "warning-message.fr": "¡Atención! Un crédito cuesta dinero y hay que devolverlo.",
+        "warning-message.gb": "¡Atención! Pedir dinero prestado cuesta dinero.",
+        "warning-message.it": "Atención: tomar dinero prestado cuesta dinero.",
+        "warning-message.lu": "¡Atención! Pedir dinero prestado cuesta dinero.",
+        "warning-message.nl": "Atención: tomar dinero prestado cuesta dinero.",
+        "warning-message.pt": "Atención: tomar dinero prestado cuesta dinero."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "installment.date": {
+          "1638350762000": "1 de diciembre de 2021",
+          "1640995199000": "31 de diciembre de 2021",
+          "1640995200000": "1 de enero de 2022"
+        },
+        "legal-mentions.price": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.total-due": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,2 %",
+          "0.17205": "17,21 %"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 de diciembre de 2021",
+          "1640995199000": "31 de diciembre de 2021",
+          "1640995200000": "1 de enero de 2022"
+        },
+        "total-block.total": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,20 %",
+          "0.17205": "17,21 %"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 de diciembre de 2021",
+          "1640995199000": "31 de diciembre de 2021",
+          "1640995200000": "1 de enero de 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12.345,67 €"
+        }
+      }
+    },
+    "pt": {
+      "catalogue": "pt",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "Aceita cartão American Express",
+        "accessibility.animation-control-instructions": "A animação automática dos planos de pagamento está ativa. Passe o rato por cima ou navegue com as setas para parar a animação.",
+        "accessibility.cb-card.aria-label": "Aceita-se cartão de crédito CB",
+        "accessibility.close-button.aria-label": "Fechar a janela",
+        "accessibility.mastercard.aria-label": "Aceita Mastercard",
+        "accessibility.payment-info.section-title": "Informações sobre o plano de pagamento selecionado",
+        "accessibility.payment-options.listbox.aria-label": "Opções de pagamento disponíveis",
+        "accessibility.payment-plan-button.aria-label": "Selecionar plano de pagamento [planName]",
+        "accessibility.payment-plan.option.aria-label": "Opção de pagamento [planDescription]",
+        "accessibility.payment-plans.section-title": "Opções de pagamento disponíveis",
+        "accessibility.payment-schedule-title": "Calendário de pagamento",
+        "accessibility.payment-widget.open-button.aria-label": "Abrir as opções de pagamento da Alma para saber mais",
+        "accessibility.plan-selection-changed": "Plano selecionado: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Navegação rápida",
+        "accessibility.visa-card.aria-label": "Aceita cartão Visa",
+        "credit-features.credit-cost-display": "[creditCost] (TAEG [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Dos quais custo do crédito (incl. IVA)",
+        "eligibility-modal.bullet-1": "Seleccionar <strong>Alma - Pay Now</strong> no final da compra.",
+        "eligibility-modal.bullet-2": "Siga as instruções e valide o seu pagamento em <strong>2 minutos.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Mantenha o controlo</strong> adiando as datas de pagamento ao seu próprio ritmo.",
+        "eligibility-modal.info-title": "Como pagar",
+        "eligibility-modal.no-eligibility": "Ups, parece que a simulação não funcionou.",
+        "eligibility-modal.p1x-bullet-1": "Escolha <strong>Alma - Pague agora</strong> no checkout.",
+        "eligibility-modal.p1x-bullet-2": "Preencha os dados do seu <strong>cartão de bancário.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong>A validação </strong> do seu pagamento é instantânea!",
+        "eligibility-modal.title-deferred-plan": "Pagar em prestações ou mais tarde por cartão de crédito com Alma.",
+        "eligibility-modal.title-normal": "Pagar em prestações por cartão bancário com a Alma.",
+        "eligibility-modal.title-pay-now": "Pague na integralidade com a Alma por cartão bancário.",
+        "installments.today": "Hoje",
+        "installments.total-amount": "Total",
+        "installments.total-fees": "Das quais comissões (incl. IVA)",
+        "legal-mentions.credit-or-pnx-without-fees": "Para uma compra de [purchaseAmount]: paga um valor inicial de [initialDeposit]. O valor restante financiado é de [financedAmount], a taxa de juros fixa de [customerLendingRate] durante [creditDurationInMonths] meses. [disclaimer]",
+        "legal-mentions.disclaimer": "Sujeito à aprovação da Alma SAS (<link>almapay.com</link>), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Crédito de [financedAmount] com taxa de juro devedora fixa de [customerLendingRate] em [deferredDuration]. Destinado a financiar uma compra de [purchaseAmount], incluindo despesas de [fees]. Montante total a pagar: [totalDue], cobrado em [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Crédito de [financedAmount] com taxa de juro fixa de [customerLendingRate] em [deferredDuration]. Destinado a financiar uma compra de [purchaseAmount]. Montante total a pagar: [totalDue], a cobrar em [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Para uma compra de [purchaseAmount]: paga um valor inicial de [initialDeposit] que inclui [fees] de custos. O valor restante financiado é de [financedAmount], a taxa de juros fixa de [customerLendingRate] durante [creditDurationInMonths] meses. [disclaimer]",
+        "payment-plan-strings.credit": "Clique aqui para saber mais",
+        "payment-plan-strings.day-abbreviation": "D[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] a pagar em [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 dia",
+          "1": "1 dia",
+          "2": "2 dias"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 meses",
+          "1": "1 meses",
+          "2": "2 meses"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Até [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "A partir de [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] depois 0 x [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] depois 1 x [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] depois 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(sem encargos)",
+        "payment-plan-strings.pay-now": "Pagar agora [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Pagamento diferido: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Pagar agora",
+        "skip-links.payment-info": "Ir para as informações de pagamento",
+        "skip-links.payment-plans": "Ir para as opções de pagamento",
+        "skip-links.payment-schedule": "Ir para o calendário de pagamentos",
+        "warning-message.be": "Atenção: pedir dinheiro emprestado também custa dinheiro.",
+        "warning-message.de": "Atenção! Pedir dinheiro emprestado tem custos.",
+        "warning-message.es": "Atenção! Pedir dinheiro emprestado tem custos.",
+        "warning-message.fr": "Atenção! Um crédito tem um custo e tem de ser reembolsado.",
+        "warning-message.gb": "Atenção! Pedir dinheiro emprestado tem custos.",
+        "warning-message.it": "Atenção! Pedir dinheiro emprestado tem custos.",
+        "warning-message.lu": "Atenção! Pedir dinheiro emprestado tem custos.",
+        "warning-message.nl": "Atenção: pedir dinheiro emprestado também custa dinheiro.",
+        "warning-message.pt": "Atenção! Pedir dinheiro emprestado tem dinheiro."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "installment.date": {
+          "1638350762000": "1 de dezembro de 2021",
+          "1640995199000": "31 de dezembro de 2021",
+          "1640995200000": "1 de janeiro de 2022"
+        },
+        "legal-mentions.price": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "legal-mentions.total-due": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0%",
+          "0.0525": "5,25%",
+          "0.172": "17,2%",
+          "0.17205": "17,21%"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 de dezembro de 2021",
+          "1640995199000": "31 de dezembro de 2021",
+          "1640995200000": "1 de janeiro de 2022"
+        },
+        "total-block.total": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.credit-cost": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00%",
+          "0.0525": "5,25%",
+          "0.172": "17,20%",
+          "0.17205": "17,21%"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 de dezembro de 2021",
+          "1640995199000": "31 de dezembro de 2021",
+          "1640995200000": "1 de janeiro de 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        }
+      }
+    },
+    "pt-PT": {
+      "catalogue": "pt",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "Aceita cartão American Express",
+        "accessibility.animation-control-instructions": "A animação automática dos planos de pagamento está ativa. Passe o rato por cima ou navegue com as setas para parar a animação.",
+        "accessibility.cb-card.aria-label": "Aceita-se cartão de crédito CB",
+        "accessibility.close-button.aria-label": "Fechar a janela",
+        "accessibility.mastercard.aria-label": "Aceita Mastercard",
+        "accessibility.payment-info.section-title": "Informações sobre o plano de pagamento selecionado",
+        "accessibility.payment-options.listbox.aria-label": "Opções de pagamento disponíveis",
+        "accessibility.payment-plan-button.aria-label": "Selecionar plano de pagamento [planName]",
+        "accessibility.payment-plan.option.aria-label": "Opção de pagamento [planDescription]",
+        "accessibility.payment-plans.section-title": "Opções de pagamento disponíveis",
+        "accessibility.payment-schedule-title": "Calendário de pagamento",
+        "accessibility.payment-widget.open-button.aria-label": "Abrir as opções de pagamento da Alma para saber mais",
+        "accessibility.plan-selection-changed": "Plano selecionado: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Navegação rápida",
+        "accessibility.visa-card.aria-label": "Aceita cartão Visa",
+        "credit-features.credit-cost-display": "[creditCost] (TAEG [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Dos quais custo do crédito (incl. IVA)",
+        "eligibility-modal.bullet-1": "Seleccionar <strong>Alma - Pay Now</strong> no final da compra.",
+        "eligibility-modal.bullet-2": "Siga as instruções e valide o seu pagamento em <strong>2 minutos.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Mantenha o controlo</strong> adiando as datas de pagamento ao seu próprio ritmo.",
+        "eligibility-modal.info-title": "Como pagar",
+        "eligibility-modal.no-eligibility": "Ups, parece que a simulação não funcionou.",
+        "eligibility-modal.p1x-bullet-1": "Escolha <strong>Alma - Pague agora</strong> no checkout.",
+        "eligibility-modal.p1x-bullet-2": "Preencha os dados do seu <strong>cartão de bancário.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong>A validação </strong> do seu pagamento é instantânea!",
+        "eligibility-modal.title-deferred-plan": "Pagar em prestações ou mais tarde por cartão de crédito com Alma.",
+        "eligibility-modal.title-normal": "Pagar em prestações por cartão bancário com a Alma.",
+        "eligibility-modal.title-pay-now": "Pague na integralidade com a Alma por cartão bancário.",
+        "installments.today": "Hoje",
+        "installments.total-amount": "Total",
+        "installments.total-fees": "Das quais comissões (incl. IVA)",
+        "legal-mentions.credit-or-pnx-without-fees": "Para uma compra de [purchaseAmount]: paga um valor inicial de [initialDeposit]. O valor restante financiado é de [financedAmount], a taxa de juros fixa de [customerLendingRate] durante [creditDurationInMonths] meses. [disclaimer]",
+        "legal-mentions.disclaimer": "Sujeito à aprovação da Alma SAS (<link>almapay.com</link>), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Crédito de [financedAmount] com taxa de juro devedora fixa de [customerLendingRate] em [deferredDuration]. Destinado a financiar uma compra de [purchaseAmount], incluindo despesas de [fees]. Montante total a pagar: [totalDue], cobrado em [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Crédito de [financedAmount] com taxa de juro fixa de [customerLendingRate] em [deferredDuration]. Destinado a financiar uma compra de [purchaseAmount]. Montante total a pagar: [totalDue], a cobrar em [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Para uma compra de [purchaseAmount]: paga um valor inicial de [initialDeposit] que inclui [fees] de custos. O valor restante financiado é de [financedAmount], a taxa de juros fixa de [customerLendingRate] durante [creditDurationInMonths] meses. [disclaimer]",
+        "payment-plan-strings.credit": "Clique aqui para saber mais",
+        "payment-plan-strings.day-abbreviation": "D[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] a pagar em [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 dias",
+          "1": "1 dia",
+          "2": "2 dias"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 meses",
+          "1": "1 meses",
+          "2": "2 meses"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Até [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "A partir de [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] depois 0 x [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] depois 1 x [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] depois 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(sem encargos)",
+        "payment-plan-strings.pay-now": "Pagar agora [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Pagamento diferido: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Pagar agora",
+        "skip-links.payment-info": "Ir para as informações de pagamento",
+        "skip-links.payment-plans": "Ir para as opções de pagamento",
+        "skip-links.payment-schedule": "Ir para o calendário de pagamentos",
+        "warning-message.be": "Atenção: pedir dinheiro emprestado também custa dinheiro.",
+        "warning-message.de": "Atenção! Pedir dinheiro emprestado tem custos.",
+        "warning-message.es": "Atenção! Pedir dinheiro emprestado tem custos.",
+        "warning-message.fr": "Atenção! Um crédito tem um custo e tem de ser reembolsado.",
+        "warning-message.gb": "Atenção! Pedir dinheiro emprestado tem custos.",
+        "warning-message.it": "Atenção! Pedir dinheiro emprestado tem custos.",
+        "warning-message.lu": "Atenção! Pedir dinheiro emprestado tem custos.",
+        "warning-message.nl": "Atenção: pedir dinheiro emprestado também custa dinheiro.",
+        "warning-message.pt": "Atenção! Pedir dinheiro emprestado tem dinheiro."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "installment.date": {
+          "1638350762000": "1 de dezembro de 2021",
+          "1640995199000": "31 de dezembro de 2021",
+          "1640995200000": "1 de janeiro de 2022"
+        },
+        "legal-mentions.price": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "legal-mentions.total-due": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0%",
+          "0.0525": "5,25%",
+          "0.172": "17,2%",
+          "0.17205": "17,21%"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 de dezembro de 2021",
+          "1640995199000": "31 de dezembro de 2021",
+          "1640995200000": "1 de janeiro de 2022"
+        },
+        "total-block.total": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.credit-cost": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00%",
+          "0.0525": "5,25%",
+          "0.172": "17,20%",
+          "0.17205": "17,21%"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 de dezembro de 2021",
+          "1640995199000": "31 de dezembro de 2021",
+          "1640995200000": "1 de janeiro de 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1234,50 €",
+          "12345.67": "12 345,67 €"
+        }
+      }
+    },
+    "nl": {
+      "catalogue": "nl",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "American Express kaart geaccepteerd",
+        "accessibility.animation-control-instructions": "Automatische animatie van betalingsplannen is actief. Beweeg erover of navigeer met de pijltjes om de animatie te stoppen.",
+        "accessibility.cb-card.aria-label": "CB creditcard geaccepteerd",
+        "accessibility.close-button.aria-label": "Venster sluiten",
+        "accessibility.mastercard.aria-label": "Mastercard geaccepteerd",
+        "accessibility.payment-info.section-title": "Informatie over het geselecteerde betalingsplan",
+        "accessibility.payment-options.listbox.aria-label": "Betalingsopties beschikbaar",
+        "accessibility.payment-plan-button.aria-label": "Selecteer betalingsplan [planName]",
+        "accessibility.payment-plan.option.aria-label": "Betalingsoptie [planDescription]",
+        "accessibility.payment-plans.section-title": "Betalingsopties beschikbaar",
+        "accessibility.payment-schedule-title": "Betalingsschema",
+        "accessibility.payment-widget.open-button.aria-label": "Open Alma betalingsopties voor meer informatie",
+        "accessibility.plan-selection-changed": "Gekozen plan: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Snelle navigatie",
+        "accessibility.visa-card.aria-label": "Visa-kaart geaccepteerd",
+        "credit-features.credit-cost-display": "[creditCost] (JKP [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Waarvan kredietkosten (incl. BTW)",
+        "eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.",
+        "eligibility-modal.bullet-2": "Betaal gemakkelijk <strong>binnen 1 minuut </strong>. Je hebt hier geen account voor nodig.",
+        "eligibility-modal.bullet-3": "<strong>Behoud de controle </strong> en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.",
+        "eligibility-modal.info-title": "Hoe betalen?",
+        "eligibility-modal.no-eligibility": "Oeps, het lijkt erop dat de simulatie niet werkte.",
+        "eligibility-modal.p1x-bullet-1": "Kies <strong>Alma - Betaal nu</strong> bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.",
+        "eligibility-modal.p1x-bullet-2": "Vul je <strong>gegevens </strong> in",
+        "eligibility-modal.p1x-bullet-3": "<strong>De bevestiging </strong> van jouw betaling is direct!",
+        "eligibility-modal.title-deferred-plan": "Betaal later of in termijnen met Alma - helemaal rentevrij.",
+        "eligibility-modal.title-normal": "Betaal in termijnen bij Alma - helemaal rentevrij.",
+        "eligibility-modal.title-pay-now": "Betaal met iDEAL of per creditcard bij Alma.",
+        "installments.today": "Vandaag",
+        "installments.total-amount": "Totaal",
+        "installments.total-fees": "Waarvan kosten (incl. BTW)",
+        "legal-mentions.credit-or-pnx-without-fees": "Krediet van [financedAmount] tegen een vaste debetrente van [customerLendingRate] over een looptijd van [creditDurationInMonths] maanden. Hiermee kunt u, met een aanbetaling van [initialDeposit], een aankoop van [purchaseAmount] financieren. [disclaimer]",
+        "legal-mentions.disclaimer": "Onder voorbehoud van goedkeuring door Alma SAS (<link>almapay.com</link>), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Krediet van [financedAmount] tegen een vaste debetrentevoet van [customerLendingRate] op [deferredDuration]. Hiermee kan een aankoop worden gefinancierd via [purchaseAmount], inclusief kosten van [fees]. Totaal verschuldigd bedrag: [totalDue], afgeschreven op [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Krediet van [financedAmount] tegen een vaste debetrentevoet van [customerLendingRate] op [deferredDuration]. Hiermee kan een aankoop worden gefinancierd via [purchaseAmount]. Totaal verschuldigd bedrag: [totalDue], afgeschreven op [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Krediet van [financedAmount] tegen een vaste debetrente van [customerLendingRate] over een looptijd van [creditDurationInMonths] maanden. Hiermee kunt u, met een aanbetaling van [initialDeposit] inclusief kosten van [fees], een aankoop van [purchaseAmount] financieren. [disclaimer]",
+        "payment-plan-strings.credit": "Klik hier voor meer informatie",
+        "payment-plan-strings.day-abbreviation": "D[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] te betalen op [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 dagen",
+          "1": "1 dag",
+          "2": "2 dagen"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 maanden",
+          "1": "1 maanden",
+          "2": "2 maanden"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Tot [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "Vanaf [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "Eerst [firstInstallmentAmount], daarna 0 x [othersInstallmentAmount]",
+          "1": "Eerst [firstInstallmentAmount], daarna 1 x [othersInstallmentAmount]",
+          "2": "Eerst [firstInstallmentAmount], daarna 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(zonder extra kosten)",
+        "payment-plan-strings.pay-now": "Betaal nu [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Uitgesteld betalen: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Betaal nu",
+        "skip-links.payment-info": "Ga naar betalingsinformatie",
+        "skip-links.payment-plans": "Ga naar betalingsopties",
+        "skip-links.payment-schedule": "Ga naar de betalingskalender",
+        "warning-message.be": "Let op, geld lenen kost ook geld.",
+        "warning-message.de": "Let op! Geld lenen kost geld.",
+        "warning-message.es": "Let op! Geld lenen kost geld.",
+        "warning-message.fr": "Let op! Een lening kost geld en moet worden terugbetaald.",
+        "warning-message.gb": "Let op! Geld lenen kost geld.",
+        "warning-message.it": "Let op! Geld lenen kost geld.",
+        "warning-message.lu": "Let op! Geld lenen kost geld.",
+        "warning-message.nl": "Let op, geld lenen kost ook geld.",
+        "warning-message.pt": "Let op! Geld lenen kost geld."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "installment.date": {
+          "1638350762000": "1 december 2021",
+          "1640995199000": "31 december 2021",
+          "1640995200000": "1 januari 2022"
+        },
+        "legal-mentions.price": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "legal-mentions.total-due": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0%",
+          "0.0525": "5,25%",
+          "0.172": "17,2%",
+          "0.17205": "17,21%"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 december 2021",
+          "1640995199000": "31 december 2021",
+          "1640995200000": "1 januari 2022"
+        },
+        "total-block.total": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.credit-cost": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00%",
+          "0.0525": "5,25%",
+          "0.172": "17,20%",
+          "0.17205": "17,21%"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 december 2021",
+          "1640995199000": "31 december 2021",
+          "1640995200000": "1 januari 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        }
+      }
+    },
+    "nl-NL": {
+      "catalogue": "nl",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "American Express kaart geaccepteerd",
+        "accessibility.animation-control-instructions": "Automatische animatie van betalingsplannen is actief. Beweeg erover of navigeer met de pijltjes om de animatie te stoppen.",
+        "accessibility.cb-card.aria-label": "CB creditcard geaccepteerd",
+        "accessibility.close-button.aria-label": "Venster sluiten",
+        "accessibility.mastercard.aria-label": "Mastercard geaccepteerd",
+        "accessibility.payment-info.section-title": "Informatie over het geselecteerde betalingsplan",
+        "accessibility.payment-options.listbox.aria-label": "Betalingsopties beschikbaar",
+        "accessibility.payment-plan-button.aria-label": "Selecteer betalingsplan [planName]",
+        "accessibility.payment-plan.option.aria-label": "Betalingsoptie [planDescription]",
+        "accessibility.payment-plans.section-title": "Betalingsopties beschikbaar",
+        "accessibility.payment-schedule-title": "Betalingsschema",
+        "accessibility.payment-widget.open-button.aria-label": "Open Alma betalingsopties voor meer informatie",
+        "accessibility.plan-selection-changed": "Gekozen plan: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Snelle navigatie",
+        "accessibility.visa-card.aria-label": "Visa-kaart geaccepteerd",
+        "credit-features.credit-cost-display": "[creditCost] (JKP [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Waarvan kredietkosten (incl. BTW)",
+        "eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.",
+        "eligibility-modal.bullet-2": "Betaal gemakkelijk <strong>binnen 1 minuut </strong>. Je hebt hier geen account voor nodig.",
+        "eligibility-modal.bullet-3": "<strong>Behoud de controle </strong> en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.",
+        "eligibility-modal.info-title": "Hoe betalen?",
+        "eligibility-modal.no-eligibility": "Oeps, het lijkt erop dat de simulatie niet werkte.",
+        "eligibility-modal.p1x-bullet-1": "Kies <strong>Alma - Betaal nu</strong> bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.",
+        "eligibility-modal.p1x-bullet-2": "Vul je <strong>gegevens </strong> in",
+        "eligibility-modal.p1x-bullet-3": "<strong>De bevestiging </strong> van jouw betaling is direct!",
+        "eligibility-modal.title-deferred-plan": "Betaal later of in termijnen met Alma - helemaal rentevrij.",
+        "eligibility-modal.title-normal": "Betaal in termijnen bij Alma - helemaal rentevrij.",
+        "eligibility-modal.title-pay-now": "Betaal met iDEAL of per creditcard bij Alma.",
+        "installments.today": "Vandaag",
+        "installments.total-amount": "Totaal",
+        "installments.total-fees": "Waarvan kosten (incl. BTW)",
+        "legal-mentions.credit-or-pnx-without-fees": "Krediet van [financedAmount] tegen een vaste debetrente van [customerLendingRate] over een looptijd van [creditDurationInMonths] maanden. Hiermee kunt u, met een aanbetaling van [initialDeposit], een aankoop van [purchaseAmount] financieren. [disclaimer]",
+        "legal-mentions.disclaimer": "Onder voorbehoud van goedkeuring door Alma SAS (<link>almapay.com</link>), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Krediet van [financedAmount] tegen een vaste debetrentevoet van [customerLendingRate] op [deferredDuration]. Hiermee kan een aankoop worden gefinancierd via [purchaseAmount], inclusief kosten van [fees]. Totaal verschuldigd bedrag: [totalDue], afgeschreven op [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Krediet van [financedAmount] tegen een vaste debetrentevoet van [customerLendingRate] op [deferredDuration]. Hiermee kan een aankoop worden gefinancierd via [purchaseAmount]. Totaal verschuldigd bedrag: [totalDue], afgeschreven op [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Krediet van [financedAmount] tegen een vaste debetrente van [customerLendingRate] over een looptijd van [creditDurationInMonths] maanden. Hiermee kunt u, met een aanbetaling van [initialDeposit] inclusief kosten van [fees], een aankoop van [purchaseAmount] financieren. [disclaimer]",
+        "payment-plan-strings.credit": "Klik hier voor meer informatie",
+        "payment-plan-strings.day-abbreviation": "D[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] te betalen op [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 dagen",
+          "1": "1 dag",
+          "2": "2 dagen"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 maanden",
+          "1": "1 maanden",
+          "2": "2 maanden"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Tot [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "Vanaf [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "Eerst [firstInstallmentAmount], daarna 0 x [othersInstallmentAmount]",
+          "1": "Eerst [firstInstallmentAmount], daarna 1 x [othersInstallmentAmount]",
+          "2": "Eerst [firstInstallmentAmount], daarna 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(zonder extra kosten)",
+        "payment-plan-strings.pay-now": "Betaal nu [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Uitgesteld betalen: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Betaal nu",
+        "skip-links.payment-info": "Ga naar betalingsinformatie",
+        "skip-links.payment-plans": "Ga naar betalingsopties",
+        "skip-links.payment-schedule": "Ga naar de betalingskalender",
+        "warning-message.be": "Let op, geld lenen kost ook geld.",
+        "warning-message.de": "Let op! Geld lenen kost geld.",
+        "warning-message.es": "Let op! Geld lenen kost geld.",
+        "warning-message.fr": "Let op! Een lening kost geld en moet worden terugbetaald.",
+        "warning-message.gb": "Let op! Geld lenen kost geld.",
+        "warning-message.it": "Let op! Geld lenen kost geld.",
+        "warning-message.lu": "Let op! Geld lenen kost geld.",
+        "warning-message.nl": "Let op, geld lenen kost ook geld.",
+        "warning-message.pt": "Let op! Geld lenen kost geld."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "installment.date": {
+          "1638350762000": "1 december 2021",
+          "1640995199000": "31 december 2021",
+          "1640995200000": "1 januari 2022"
+        },
+        "legal-mentions.price": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "legal-mentions.total-due": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0%",
+          "0.0525": "5,25%",
+          "0.172": "17,2%",
+          "0.17205": "17,21%"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 december 2021",
+          "1640995199000": "31 december 2021",
+          "1640995200000": "1 januari 2022"
+        },
+        "total-block.total": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.credit-cost": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00%",
+          "0.0525": "5,25%",
+          "0.172": "17,20%",
+          "0.17205": "17,21%"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 december 2021",
+          "1640995199000": "31 december 2021",
+          "1640995200000": "1 januari 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        }
+      }
+    },
+    "nl-BE": {
+      "catalogue": "nl",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "American Express kaart geaccepteerd",
+        "accessibility.animation-control-instructions": "Automatische animatie van betalingsplannen is actief. Beweeg erover of navigeer met de pijltjes om de animatie te stoppen.",
+        "accessibility.cb-card.aria-label": "CB creditcard geaccepteerd",
+        "accessibility.close-button.aria-label": "Venster sluiten",
+        "accessibility.mastercard.aria-label": "Mastercard geaccepteerd",
+        "accessibility.payment-info.section-title": "Informatie over het geselecteerde betalingsplan",
+        "accessibility.payment-options.listbox.aria-label": "Betalingsopties beschikbaar",
+        "accessibility.payment-plan-button.aria-label": "Selecteer betalingsplan [planName]",
+        "accessibility.payment-plan.option.aria-label": "Betalingsoptie [planDescription]",
+        "accessibility.payment-plans.section-title": "Betalingsopties beschikbaar",
+        "accessibility.payment-schedule-title": "Betalingsschema",
+        "accessibility.payment-widget.open-button.aria-label": "Open Alma betalingsopties voor meer informatie",
+        "accessibility.plan-selection-changed": "Gekozen plan: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Snelle navigatie",
+        "accessibility.visa-card.aria-label": "Visa-kaart geaccepteerd",
+        "credit-features.credit-cost-display": "[creditCost] (JKP [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Waarvan kredietkosten (incl. BTW)",
+        "eligibility-modal.bullet-1": "Kies <strong>Alma</strong> bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.",
+        "eligibility-modal.bullet-2": "Betaal gemakkelijk <strong>binnen 1 minuut </strong>. Je hebt hier geen account voor nodig.",
+        "eligibility-modal.bullet-3": "<strong>Behoud de controle </strong> en bepaal je eigen tempo. Bij Alma schuif je de deadlines gemakkelijk vooruit of achteruit. Zonder bijkomende kosten.",
+        "eligibility-modal.info-title": "Hoe betalen?",
+        "eligibility-modal.no-eligibility": "Oeps, het lijkt erop dat de simulatie niet werkte.",
+        "eligibility-modal.p1x-bullet-1": "Kies <strong>Alma - Betaal nu</strong> bij het afrekenen om de eerste termijnbetaling te voldoen. Dit kan gemakkelijk via jouw favoriete betaalmethode.",
+        "eligibility-modal.p1x-bullet-2": "Vul je <strong>gegevens </strong> in",
+        "eligibility-modal.p1x-bullet-3": "<strong>De bevestiging </strong> van jouw betaling is direct!",
+        "eligibility-modal.title-deferred-plan": "Betaal later of in termijnen met Alma - helemaal rentevrij.",
+        "eligibility-modal.title-normal": "Betaal in termijnen bij Alma - helemaal rentevrij.",
+        "eligibility-modal.title-pay-now": "Betaal met iDEAL of per creditcard bij Alma.",
+        "installments.today": "Vandaag",
+        "installments.total-amount": "Totaal",
+        "installments.total-fees": "Waarvan kosten (incl. BTW)",
+        "legal-mentions.credit-or-pnx-without-fees": "Krediet van [financedAmount] tegen een vaste debetrente van [customerLendingRate] over een looptijd van [creditDurationInMonths] maanden. Hiermee kunt u, met een aanbetaling van [initialDeposit], een aankoop van [purchaseAmount] financieren. [disclaimer]",
+        "legal-mentions.disclaimer": "Onder voorbehoud van goedkeuring door Alma SAS (<link>almapay.com</link>), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "Krediet van [financedAmount] tegen een vaste debetrentevoet van [customerLendingRate] op [deferredDuration]. Hiermee kan een aankoop worden gefinancierd via [purchaseAmount], inclusief kosten van [fees]. Totaal verschuldigd bedrag: [totalDue], afgeschreven op [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Krediet van [financedAmount] tegen een vaste debetrentevoet van [customerLendingRate] op [deferredDuration]. Hiermee kan een aankoop worden gefinancierd via [purchaseAmount]. Totaal verschuldigd bedrag: [totalDue], afgeschreven op [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "Krediet van [financedAmount] tegen een vaste debetrente van [customerLendingRate] over een looptijd van [creditDurationInMonths] maanden. Hiermee kunt u, met een aanbetaling van [initialDeposit] inclusief kosten van [fees], een aankoop van [purchaseAmount] financieren. [disclaimer]",
+        "payment-plan-strings.credit": "Klik hier voor meer informatie",
+        "payment-plan-strings.day-abbreviation": "D[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] te betalen op [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 dagen",
+          "1": "1 dag",
+          "2": "2 dagen"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 maanden",
+          "1": "1 maanden",
+          "2": "2 maanden"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Tot [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "Vanaf [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "Eerst [firstInstallmentAmount], daarna 0 x [othersInstallmentAmount]",
+          "1": "Eerst [firstInstallmentAmount], daarna 1 x [othersInstallmentAmount]",
+          "2": "Eerst [firstInstallmentAmount], daarna 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(zonder extra kosten)",
+        "payment-plan-strings.pay-now": "Betaal nu [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Uitgesteld betalen: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Betaal nu",
+        "skip-links.payment-info": "Ga naar betalingsinformatie",
+        "skip-links.payment-plans": "Ga naar betalingsopties",
+        "skip-links.payment-schedule": "Ga naar de betalingskalender",
+        "warning-message.be": "Let op, geld lenen kost ook geld.",
+        "warning-message.de": "Let op! Geld lenen kost geld.",
+        "warning-message.es": "Let op! Geld lenen kost geld.",
+        "warning-message.fr": "Let op! Een lening kost geld en moet worden terugbetaald.",
+        "warning-message.gb": "Let op! Geld lenen kost geld.",
+        "warning-message.it": "Let op! Geld lenen kost geld.",
+        "warning-message.lu": "Let op! Geld lenen kost geld.",
+        "warning-message.nl": "Let op, geld lenen kost ook geld.",
+        "warning-message.pt": "Let op! Geld lenen kost geld."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "installment.date": {
+          "1638350762000": "1 december 2021",
+          "1640995199000": "31 december 2021",
+          "1640995200000": "1 januari 2022"
+        },
+        "legal-mentions.price": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "legal-mentions.total-due": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0%",
+          "0.0525": "5,25%",
+          "0.172": "17,2%",
+          "0.17205": "17,21%"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 december 2021",
+          "1640995199000": "31 december 2021",
+          "1640995200000": "1 januari 2022"
+        },
+        "total-block.total": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.credit-cost": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00%",
+          "0.0525": "5,25%",
+          "0.172": "17,20%",
+          "0.17205": "17,21%"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 december 2021",
+          "1640995199000": "31 december 2021",
+          "1640995200000": "1 januari 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "€ 0,00",
+          "150": "€ 150,00",
+          "1.35": "€ 1,35",
+          "1234.5": "€ 1.234,50",
+          "12345.67": "€ 12.345,67"
+        }
+      }
+    },
+    "FR": {
+      "catalogue": "en",
+      "errorCodes": [],
+      "messages": {
+        "accessibility.amex-card.aria-label": "American Express card accepted",
+        "accessibility.animation-control-instructions": "Automatic animation of payment plans active. Hover or navigate with the arrows to stop animation.",
+        "accessibility.cb-card.aria-label": "CB credit card accepted",
+        "accessibility.close-button.aria-label": "Close window",
+        "accessibility.mastercard.aria-label": "Mastercard accepted",
+        "accessibility.payment-info.section-title": "Information on the selected payment plan",
+        "accessibility.payment-options.listbox.aria-label": "Available payment options",
+        "accessibility.payment-plan-button.aria-label": "Select payment plan [planName]",
+        "accessibility.payment-plan.option.aria-label": "Payment option [planDescription]",
+        "accessibility.payment-plans.section-title": "Available payment options",
+        "accessibility.payment-schedule-title": "Payment schedule",
+        "accessibility.payment-widget.open-button.aria-label": "Open Alma payment options to find out more",
+        "accessibility.plan-selection-changed": "Selected plan: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Quick navigation",
+        "accessibility.visa-card.aria-label": "Visa card accepted",
+        "credit-features.credit-cost-display": "[creditCost] (APR [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Of which cost of credit (incl. VAT)",
+        "eligibility-modal.bullet-1": "Choose <strong>Alma</strong> at checkout.",
+        "eligibility-modal.bullet-2": "Let us guide you and validate your payment in <strong>2 minutes.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Stay in control</strong> by advancing or postponing your deadlines at your own pace.",
+        "eligibility-modal.info-title": "How to pay",
+        "eligibility-modal.no-eligibility": "Oops, looks like the simulation didn't work.",
+        "eligibility-modal.p1x-bullet-1": "Choose <strong>Alma - Pay now</strong> at checkout.",
+        "eligibility-modal.p1x-bullet-2": "Enter your <strong>credit card details.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong>Your payment is instantly validated at </strong> !",
+        "eligibility-modal.title-deferred-plan": "Pay in installments or later by credit card with Alma.",
+        "eligibility-modal.title-normal": "Pay in installments by credit card with Alma.",
+        "eligibility-modal.title-pay-now": "Pay cash by credit card with Alma.",
+        "installments.today": "Today",
+        "installments.total-amount": "Total",
+        "installments.total-fees": "Of which costs (incl. VAT)",
+        "legal-mentions.credit-or-pnx-without-fees": "A loan of [financedAmount] at a fixed borrowing rate of [customerLendingRate] over [creditDurationInMonths] months. Financing, in addition to a [initialDeposit] down payment, a purchase of [purchaseAmount]. [disclaimer]",
+        "legal-mentions.disclaimer": "Subject to approval by Alma SAS (<link>almapay.com</link>), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "A loan of [financedAmount] at a fixed borrowing rate of [customerLendingRate] on [deferredDuration]. Financing, which includes fees of [fees], a purchase of [purchaseAmount]. Total amount due: [totalDue], debited on [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Loan from [financedAmount] at a fixed borrowing rate of [customerLendingRate] on [deferredDuration]. Financing a purchase of [purchaseAmount]. Total amount due: [totalDue], debited on [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "A loan of [financedAmount] at a fixed borrowing rate of [customerLendingRate] over [creditDurationInMonths] months. Financing, in addition to a [initialDeposit] down payment which includes fees of [fees], a purchase of [purchaseAmount]. [disclaimer]",
+        "payment-plan-strings.credit": "Click to find out more",
+        "payment-plan-strings.day-abbreviation": "D[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] to pay the [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 day",
+          "1": "1 day",
+          "2": "2 days"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 months",
+          "1": "1 months",
+          "2": "2 months"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Until [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "From [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] then 0 x [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] then 1 x [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] then 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(free of charge)",
+        "payment-plan-strings.pay-now": "Pay now [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Deferred payment: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Pay now",
+        "skip-links.payment-info": "Go to payment information",
+        "skip-links.payment-plans": "Go to payment options",
+        "skip-links.payment-schedule": "Go to payment calendar",
+        "warning-message.be": "Caution! Borrowing money also costs money.",
+        "warning-message.de": "Caution! Borrowing money costs money.",
+        "warning-message.es": "Warning! Borrowing money costs money.",
+        "warning-message.fr": "Warning! A loan costs money and must be repaid.",
+        "warning-message.gb": "Caution! Borrowing money costs money.",
+        "warning-message.it": "Caution! Borrowing money costs money.",
+        "warning-message.lu": "Warning! Borrowing money costs money.",
+        "warning-message.nl": "Caution! Borrowing money also costs money.",
+        "warning-message.pt": "Caution! Borrowing money costs money."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "installment.date": {
+          "1638350762000": "1 décembre 2021",
+          "1640995199000": "31 décembre 2021",
+          "1640995200000": "1 janvier 2022"
+        },
+        "legal-mentions.price": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "legal-mentions.total-due": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,2 %",
+          "0.17205": "17,21 %"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "1 décembre 2021",
+          "1640995199000": "31 décembre 2021",
+          "1640995200000": "1 janvier 2022"
+        },
+        "total-block.total": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.credit-cost": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0,00 %",
+          "0.0525": "5,25 %",
+          "0.172": "17,20 %",
+          "0.17205": "17,21 %"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "1 décembre 2021",
+          "1640995199000": "31 décembre 2021",
+          "1640995200000": "1 janvier 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "0,00 €",
+          "150": "150,00 €",
+          "1.35": "1,35 €",
+          "1234.5": "1 234,50 €",
+          "12345.67": "12 345,67 €"
+        }
+      }
+    },
+    "fr_FR": {
+      "catalogue": "fr",
+      "errorCodes": [],
+      "throws": "RangeError: Incorrect locale information provided"
+    },
+    "xx": {
+      "catalogue": "en",
+      "errorCodes": [
+        "MISSING_DATA"
+      ],
+      "messages": {
+        "accessibility.amex-card.aria-label": "American Express card accepted",
+        "accessibility.animation-control-instructions": "Automatic animation of payment plans active. Hover or navigate with the arrows to stop animation.",
+        "accessibility.cb-card.aria-label": "CB credit card accepted",
+        "accessibility.close-button.aria-label": "Close window",
+        "accessibility.mastercard.aria-label": "Mastercard accepted",
+        "accessibility.payment-info.section-title": "Information on the selected payment plan",
+        "accessibility.payment-options.listbox.aria-label": "Available payment options",
+        "accessibility.payment-plan-button.aria-label": "Select payment plan [planName]",
+        "accessibility.payment-plan.option.aria-label": "Payment option [planDescription]",
+        "accessibility.payment-plans.section-title": "Available payment options",
+        "accessibility.payment-schedule-title": "Payment schedule",
+        "accessibility.payment-widget.open-button.aria-label": "Open Alma payment options to find out more",
+        "accessibility.plan-selection-changed": "Selected plan: [planDescription]",
+        "accessibility.skip-links.navigation.aria-label": "Quick navigation",
+        "accessibility.visa-card.aria-label": "Visa card accepted",
+        "credit-features.credit-cost-display": "[creditCost] (APR [annualPercentageRate])",
+        "credit-features.total-credit-cost": "Of which cost of credit (incl. VAT)",
+        "eligibility-modal.bullet-1": "Choose <strong>Alma</strong> at checkout.",
+        "eligibility-modal.bullet-2": "Let us guide you and validate your payment in <strong>2 minutes.</strong>",
+        "eligibility-modal.bullet-3": "<strong>Stay in control</strong> by advancing or postponing your deadlines at your own pace.",
+        "eligibility-modal.info-title": "How to pay",
+        "eligibility-modal.no-eligibility": "Oops, looks like the simulation didn't work.",
+        "eligibility-modal.p1x-bullet-1": "Choose <strong>Alma - Pay now</strong> at checkout.",
+        "eligibility-modal.p1x-bullet-2": "Enter your <strong>credit card details.</strong>",
+        "eligibility-modal.p1x-bullet-3": "<strong>Your payment is instantly validated at </strong> !",
+        "eligibility-modal.title-deferred-plan": "Pay in installments or later by credit card with Alma.",
+        "eligibility-modal.title-normal": "Pay in installments by credit card with Alma.",
+        "eligibility-modal.title-pay-now": "Pay cash by credit card with Alma.",
+        "installments.today": "Today",
+        "installments.total-amount": "Total",
+        "installments.total-fees": "Of which costs (incl. VAT)",
+        "legal-mentions.credit-or-pnx-without-fees": "A loan of [financedAmount] at a fixed borrowing rate of [customerLendingRate] over [creditDurationInMonths] months. Financing, in addition to a [initialDeposit] down payment, a purchase of [purchaseAmount]. [disclaimer]",
+        "legal-mentions.disclaimer": "Subject to approval by Alma SAS (<link>almapay.com</link>), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+        "legal-mentions.pay-later-with-fees": "A loan of [financedAmount] at a fixed borrowing rate of [customerLendingRate] on [deferredDuration]. Financing, which includes fees of [fees], a purchase of [purchaseAmount]. Total amount due: [totalDue], debited on [dueDate]. [disclaimer]",
+        "legal-mentions.pay-later-without-fees": "Loan from [financedAmount] at a fixed borrowing rate of [customerLendingRate] on [deferredDuration]. Financing a purchase of [purchaseAmount]. Total amount due: [totalDue], debited on [dueDate]. [disclaimer]",
+        "legal-mentions.pnx-with-fees": "A loan of [financedAmount] at a fixed borrowing rate of [customerLendingRate] over [creditDurationInMonths] months. Financing, in addition to a [initialDeposit] down payment which includes fees of [fees], a purchase of [purchaseAmount]. [disclaimer]",
+        "payment-plan-strings.credit": "Click to find out more",
+        "payment-plan-strings.day-abbreviation": "D[deferredDays]",
+        "payment-plan-strings.deferred": "[totalAmount] to pay the [dueDate]",
+        "payment-plan-strings.deferred.days": {
+          "0": "0 days",
+          "1": "1 day",
+          "2": "2 days"
+        },
+        "payment-plan-strings.deferred.months": {
+          "0": "0 months",
+          "1": "1 months",
+          "2": "2 months"
+        },
+        "payment-plan-strings.ineligible-greater-than-max": "Until [maxAmount]",
+        "payment-plan-strings.ineligible-lower-than-min": "From [minAmount]",
+        "payment-plan-strings.month-abbreviation": "M[deferredMonths]",
+        "payment-plan-strings.multiple-installments": {
+          "0": "[firstInstallmentAmount] then 0 x [othersInstallmentAmount]",
+          "1": "[firstInstallmentAmount] then 1 x [othersInstallmentAmount]",
+          "2": "[firstInstallmentAmount] then 2 x [othersInstallmentAmount]"
+        },
+        "payment-plan-strings.multiple-installments-same-amount": "[installmentsCount] x [totalAmount]",
+        "payment-plan-strings.no-fee": "(free of charge)",
+        "payment-plan-strings.pay-now": "Pay now [totalAmount]",
+        "payment-plan-strings.pay.deferred.button": "Deferred payment: [deferredTime]",
+        "payment-plan-strings.pay.now.button": "Pay now",
+        "skip-links.payment-info": "Go to payment information",
+        "skip-links.payment-plans": "Go to payment options",
+        "skip-links.payment-schedule": "Go to payment calendar",
+        "warning-message.be": "Caution! Borrowing money also costs money.",
+        "warning-message.de": "Caution! Borrowing money costs money.",
+        "warning-message.es": "Warning! Borrowing money costs money.",
+        "warning-message.fr": "Warning! A loan costs money and must be repaid.",
+        "warning-message.gb": "Caution! Borrowing money costs money.",
+        "warning-message.it": "Caution! Borrowing money costs money.",
+        "warning-message.lu": "Warning! Borrowing money costs money.",
+        "warning-message.nl": "Caution! Borrowing money also costs money.",
+        "warning-message.pt": "Caution! Borrowing money costs money."
+      },
+      "callSites": {
+        "installment.amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "installment.date": {
+          "1638350762000": "December 1, 2021",
+          "1640995199000": "December 31, 2021",
+          "1640995200000": "January 1, 2022"
+        },
+        "legal-mentions.price": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "legal-mentions.total-due": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "legal-mentions.customer-lending-rate": {
+          "0": "0%",
+          "0.0525": "5.25%",
+          "0.172": "17.2%",
+          "0.17205": "17.21%"
+        },
+        "legal-mentions.due-date": {
+          "1638350762000": "December 1, 2021",
+          "1640995199000": "December 31, 2021",
+          "1640995200000": "January 1, 2022"
+        },
+        "total-block.total": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "total-block.credit-cost": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "total-block.credit-cost-in-message": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "total-block.annual-percentage-rate": {
+          "0": "0.00%",
+          "0.0525": "5.25%",
+          "0.172": "17.20%",
+          "0.17205": "17.21%"
+        },
+        "payment-plan-strings.ineligible-max-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.ineligible-min-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.deferred-total-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.deferred-due-date": {
+          "1638350762000": "December 1, 2021",
+          "1640995199000": "December 31, 2021",
+          "1640995200000": "January 1, 2022"
+        },
+        "payment-plan-strings.pay-now-total-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.same-amount-total-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.first-installment-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        },
+        "payment-plan-strings.others-installment-amount": {
+          "0": "€0.00",
+          "150": "€150.00",
+          "1.35": "€1.35",
+          "1234.5": "€1,234.50",
+          "12345.67": "€12,345.67"
+        }
+      }
+    }
+  }
+}
