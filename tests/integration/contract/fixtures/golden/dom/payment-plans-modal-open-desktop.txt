@@ -1,0 +1,97 @@
+<div id="alma-widget">
+  <div class="alma-payment-plans-container monochrome widgetContainer" data-testid="widget-container" id="alma-widget-payment-plans-main-container">
+    <div aria-labelledby="payment-plans-title" class="alma-payment-plans-eligibility-line primaryContainer" role="region">
+      <div aria-level="2" class="sr-only" id="payment-plans-title" role="heading">
+      <button aria-describedby="payment-info-text" aria-haspopup="dialog" aria-label="Open Alma payment options to find out more" class="alma-payment-plans-know-more-action clickable knowMore monochrome" type="button">
+        <svg aria-hidden="true" data-testid="Alma-Logo" fill="none" focusable="false" height="24" viewBox="0 0 352 120" width="42" xmlns="http://www.w3.org/2000/svg">
+      <div aria-label="Available payment options" class="alma-payment-plans-eligibility-options paymentPlans" role="listbox">
+        <button aria-describedby="payment-info-text" aria-disabled="false" aria-label="Payment option 2x" aria-selected="false" class="planButton" role="option" tabindex="0" type="button">
+        <button aria-describedby="payment-info-text" aria-disabled="false" aria-label="Payment option 3x" aria-selected="true" class="active alma-payment-plans-active-option monochrome planButton" role="option" tabindex="0" type="button">
+        <button aria-describedby="payment-info-text" aria-disabled="false" aria-label="Payment option 4x" aria-selected="false" class="planButton" role="option" tabindex="0" type="button">
+        <button aria-describedby="payment-info-text" aria-disabled="false" aria-label="Payment option 10x" aria-selected="false" class="planButton" role="option" tabindex="0" type="button">
+    <div aria-labelledby="payment-info-title" class="infoContainer" role="region">
+      <div aria-level="2" class="sr-only" id="payment-info-title" role="heading">
+      <div aria-haspopup="dialog" class="alma-payment-plans-payment-info clickable info" id="payment-info-text" role="button" tabindex="0">
+        <p>
+        <p class="openModalInfo">
+  <div aria-live="assertive" class="announceText" role="alert">
+<div class="ReactModalPortal">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open overlay">
+    <div aria-describedby="modal-info-element" aria-labelledby="modal-title" aria-modal="true" class="ReactModal__Content ReactModal__Content--after-open modal" id="alma-widget-modal-main-container" role="dialog" tabindex="-1">
+      <div class="header">
+        <button aria-label="Close window" class="alma-eligibility-modal-close-button closeButton" data-testid="modal-close-button" type="button">
+          <svg aria-hidden="true" fill="none" focusable="false" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+      <div class="content contentScrollable">
+        <nav aria-label="Quick navigation" class="skipLinks" role="navigation">
+          <ul class="skipLinksList">
+            <li class="skipLinkItem">
+              <a class="skipLink" href="#payment-plans">
+            <li class="skipLinkItem">
+              <a class="skipLink" href="#payment-info">
+            <li class="skipLinkItem">
+              <a class="skipLink" href="#payment-schedule">
+        <div aria-labelledby="modal-title" aria-modal="true" class="alma-eligibility-modal-desktop-modal container" data-testid="modal-container" role="dialog">
+          <div class="alma-eligibility-modal-left-side block left">
+            <div aria-level="1" class="alma-eligibility-modal-title title" data-testid="modal-title-element" id="modal-title" role="heading">
+            <div aria-describedby="payment-info-description" aria-labelledby="payment-info-title" class="alma-eligibility-modal-info list" data-testid="modal-info-element" id="payment-info" role="region" tabindex="-1">
+              <div aria-level="2" class="sr-only" id="payment-info-title" role="heading">
+              <ol id="payment-info-description">
+                <li class="listItem">
+                  <div class="alma-eligibility-modal-bullet bullet">
+                  <div class="alma-eligibility-modal-info-message">
+                    <strong>
+                <li class="listItem">
+                  <div class="alma-eligibility-modal-bullet bullet">
+                  <div class="alma-eligibility-modal-info-message">
+                    <strong>
+                <li class="listItem">
+                  <div class="alma-eligibility-modal-bullet bullet">
+                  <div class="alma-eligibility-modal-info-message">
+                    <strong>
+            <svg aria-hidden="true" class="logo" fill="none" focusable="false" height="24" viewBox="0 0 352 120" width="75" xmlns="http://www.w3.org/2000/svg">
+          <div class="alma-eligibility-modal-right-side block">
+            <div aria-labelledby="payment-plans-title" role="region">
+              <div>
+                <div aria-level="2" class="sr-only" id="payment-plans-title" role="heading">
+                <div aria-labelledby="payment-plans-title" class="alma-eligibility-modal-eligibility-options buttons" id="payment-plans" role="group">
+                  <button aria-describedby="payment-info" aria-label="Select payment plan 2x" aria-pressed="false" type="button">
+                    <span class="textButton">
+                  <button aria-current="true" aria-describedby="payment-info" aria-label="Select payment plan 3x" aria-pressed="true" class="active alma-eligibility-modal-active-option" type="button">
+                    <span class="textButton">
+                  <button aria-describedby="payment-info" aria-label="Select payment plan 4x" aria-pressed="false" type="button">
+                    <span class="textButton">
+                  <button aria-describedby="payment-info" aria-label="Select payment plan 10x" aria-pressed="false" type="button">
+                    <span class="textButton">
+            <div aria-labelledby="payment-schedule-title" class="scheduleArea" role="region">
+              <div class="verticalLine">
+              <div aria-describedby="payment-schedule-description" aria-labelledby="payment-schedule-title" class="scheduleContainer" id="payment-schedule" role="region" tabindex="-1">
+                <div aria-level="2" class="sr-only" id="payment-schedule-title" role="heading">
+                <div id="payment-schedule-description">
+                  <ul class="alma-eligibility-modal-schedule-details schedule" data-testid="modal-installments-element">
+                    <li class="scheduleItem">
+                      <div class="installment" data-testid="installment-0">
+                        <div class="date">
+                          <div class="dot isCurrent">
+                          <strong>
+                        <div class="bold">
+                    <li class="scheduleItem">
+                      <div class="installment" data-testid="installment-1">
+                        <div class="date">
+                          <div class="dot">
+                        <div>
+                    <li class="scheduleItem">
+                      <div class="installment" data-testid="installment-2">
+                        <div class="date">
+                          <div class="dot">
+                        <div>
+                  <div class="warningContainer">
+                    <p class="warning">
+                  <div class="alma-eligibility-modal-summary container" data-testid="modal-summary">
+                    <p class="alma-eligibility-modal-schedule-total total">
+                      <span>
+                    <p class="alma-eligibility-modal-schedule-credit fees">
+                      <span class="creditCost">
+                  <div class="legalMentionsContainer">
+                    <div class="legalMentions" data-testid="legal-mentions">
+                      <a class="disclaimerLink" href="https://almapay.com" rel="noopener noreferrer" target="_blank">
+                      <a class="disclaimerLink" href="mailto:support@almapay.com">

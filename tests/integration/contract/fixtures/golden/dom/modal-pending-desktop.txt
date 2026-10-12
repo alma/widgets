@@ -1,0 +1,39 @@
+<div id="alma-widget">
+<div class="ReactModalPortal">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open overlay">
+    <div aria-describedby="modal-info-element" aria-labelledby="modal-title" aria-modal="true" class="ReactModal__Content ReactModal__Content--after-open modal" id="alma-widget-modal-main-container" role="dialog" tabindex="-1">
+      <div class="header">
+        <button aria-label="Close window" class="alma-eligibility-modal-close-button closeButton" data-testid="modal-close-button" type="button">
+          <svg aria-hidden="true" fill="none" focusable="false" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+      <div class="content contentScrollable">
+        <nav aria-label="Quick navigation" class="skipLinks" role="navigation">
+          <ul class="skipLinksList">
+            <li class="skipLinkItem">
+              <a class="skipLink" href="#payment-plans">
+            <li class="skipLinkItem">
+              <a class="skipLink" href="#payment-info">
+            <li class="skipLinkItem">
+              <a class="skipLink" href="#payment-schedule">
+        <div aria-labelledby="modal-title" aria-modal="true" class="alma-eligibility-modal-desktop-modal container" data-testid="modal-container" role="dialog">
+          <div class="alma-eligibility-modal-left-side block left">
+            <div aria-level="1" class="alma-eligibility-modal-title title" data-testid="modal-title-element" id="modal-title" role="heading">
+            <div aria-describedby="payment-info-description" aria-labelledby="payment-info-title" class="alma-eligibility-modal-info list" data-testid="modal-info-element" id="payment-info" role="region" tabindex="-1">
+              <div aria-level="2" class="sr-only" id="payment-info-title" role="heading">
+              <ol id="payment-info-description">
+                <li class="listItem">
+                  <div class="alma-eligibility-modal-bullet bullet">
+                  <div class="alma-eligibility-modal-info-message">
+                    <strong>
+                <li class="listItem">
+                  <div class="alma-eligibility-modal-bullet bullet">
+                  <div class="alma-eligibility-modal-info-message">
+                    <strong>
+                <li class="listItem">
+                  <div class="alma-eligibility-modal-bullet bullet">
+                  <div class="alma-eligibility-modal-info-message">
+                    <strong>
+            <svg aria-hidden="true" class="logo" fill="none" focusable="false" height="24" viewBox="0 0 352 120" width="75" xmlns="http://www.w3.org/2000/svg">
+          <div class="alma-eligibility-modal-right-side block">
+            <div aria-live="polite" class="loader" role="status">
+              <div class="loadingIndicator" data-testid="loader">
+                <svg fill="none" height="134" viewBox="0 0 120 134" width="120" xmlns="http://www.w3.org/2000/svg">
