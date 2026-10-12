@@ -27,6 +27,8 @@ export default defineConfig({
           if (assetInfo.name === 'style.css') return 'widgets.css'
           return assetInfo?.name || '[name].[ext]'
         },
+        // Reuse window.Alma instead of overwriting it, so Alma.InPage survives any load order
+        extend: true,
       },
       watch: {
         exclude: ['node_modules/**', 'examples'],
