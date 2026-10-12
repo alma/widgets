@@ -67,6 +67,7 @@ jobs:
       - run: npm ci
       - run: npm run build:ref
       - run: npm run test:contract:ref
+      - run: npm run fixtures:messages -- --check
 
   update-release-draft:
     if: github.ref == 'refs/heads/master'
