@@ -1,0 +1,15 @@
+<div id="alma-widget">
+  <div class="alma-payment-plans-container monochrome widgetContainer" data-testid="widget-container" id="alma-widget-payment-plans-main-container">
+    <div aria-labelledby="payment-plans-title" class="alma-payment-plans-eligibility-line primaryContainer" role="region">
+      <div aria-level="2" class="sr-only" id="payment-plans-title" role="heading">
+      <button aria-describedby="payment-info-text" aria-haspopup="dialog" aria-label="Open Alma payment options to find out more" class="alma-payment-plans-know-more-action clickable knowMore monochrome" type="button">
+        <svg aria-hidden="true" data-testid="Alma-Logo" fill="none" focusable="false" height="24" viewBox="0 0 352 120" width="42" xmlns="http://www.w3.org/2000/svg">
+      <div aria-label="Available payment options" class="alma-payment-plans-eligibility-options paymentPlans" role="listbox">
+        <button aria-describedby="payment-info-text" aria-disabled="true" aria-label="Payment option 2x" aria-selected="true" class="active alma-payment-plans-active-option alma-payment-plans-not-eligible-option monochrome notEligible planButton" role="option" tabindex="-1" type="button">
+        <button aria-describedby="payment-info-text" aria-disabled="true" aria-label="Payment option 3x" aria-selected="false" class="alma-payment-plans-not-eligible-option notEligible planButton" role="option" tabindex="-1" type="button">
+        <button aria-describedby="payment-info-text" aria-disabled="true" aria-label="Payment option 4x" aria-selected="false" class="alma-payment-plans-not-eligible-option notEligible planButton" role="option" tabindex="-1" type="button">
+    <div aria-labelledby="payment-info-title" class="infoContainer" role="region">
+      <div aria-level="2" class="sr-only" id="payment-info-title" role="heading">
+      <div class="alma-payment-plans-not-eligible-option alma-payment-plans-payment-info info notEligible" id="payment-info-text">
+        <p>
+  <div aria-live="assertive" class="announceText" role="alert">
