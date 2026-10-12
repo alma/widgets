@@ -1,7 +1,9 @@
 /*
  * Source: third-party plugin CSS found by GitHub code search for the alma-* class names, compiled from SCSS once.
- * Container markup: <div class="alma-widget--cart-page"></div>
+ * Container markup (cart-page): <div class="alma-widget--cart-page"></div>
  * Mount: .alma-widget--cart-page
+ * Container markup (offcanvas): <div class="alma-widget--offcanvas"></div>
+ * Mount: .alma-widget--offcanvas
  */
 
 .alma-widget--cart-page, .alma-widget--offcanvas {
