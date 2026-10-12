@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "formatjsIntl": "2.10.15",
+    "node": "v24.21.0",
+    "icu": "78.3",
+    "cldr": "48.0",
+    "LC_ALL": "en_US.UTF-8"
+  },
+  "now": 1638350762000,
+  "dueDates": [
+    1638350762,
+    1638316799,
+    1638316800,
+    1638403199,
+    1638403200,
+    1638266399,
+    1638266400,
+    1638352799,
+    1638352800,
+    1638331199,
+    1638331200,
+    1638417599,
+    1638417600
+  ],
+  "formatOptions": {
+    "day": "numeric",
+    "month": "long",
+    "year": "numeric"
+  },
+  "zones": {
+    "UTC": {
+      "1638266399": {
+        "isToday": false,
+        "fr": "30 novembre 2021",
+        "en": "November 30, 2021"
+      },
+      "1638266400": {
+        "isToday": false,
+        "fr": "30 novembre 2021",
+        "en": "November 30, 2021"
+      },
+      "1638316799": {
+        "isToday": false,
+        "fr": "30 novembre 2021",
+        "en": "November 30, 2021"
+      },
+      "1638316800": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638331199": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638331200": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638350762": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638352799": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638352800": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638403199": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638403200": {
+        "isToday": false,
+        "fr": "2 décembre 2021",
+        "en": "December 2, 2021"
+      },
+      "1638417599": {
+        "isToday": false,
+        "fr": "2 décembre 2021",
+        "en": "December 2, 2021"
+      },
+      "1638417600": {
+        "isToday": false,
+        "fr": "2 décembre 2021",
+        "en": "December 2, 2021"
+      }
+    },
+    "Pacific/Kiritimati": {
+      "1638266399": {
+        "isToday": false,
+        "fr": "30 novembre 2021",
+        "en": "November 30, 2021"
+      },
+      "1638266400": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638316799": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638316800": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638331199": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638331200": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638350762": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638352799": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638352800": {
+        "isToday": false,
+        "fr": "2 décembre 2021",
+        "en": "December 2, 2021"
+      },
+      "1638403199": {
+        "isToday": false,
+        "fr": "2 décembre 2021",
+        "en": "December 2, 2021"
+      },
+      "1638403200": {
+        "isToday": false,
+        "fr": "2 décembre 2021",
+        "en": "December 2, 2021"
+      },
+      "1638417599": {
+        "isToday": false,
+        "fr": "2 décembre 2021",
+        "en": "December 2, 2021"
+      },
+      "1638417600": {
+        "isToday": false,
+        "fr": "2 décembre 2021",
+        "en": "December 2, 2021"
+      }
+    },
+    "America/Guadeloupe": {
+      "1638266399": {
+        "isToday": false,
+        "fr": "30 novembre 2021",
+        "en": "November 30, 2021"
+      },
+      "1638266400": {
+        "isToday": false,
+        "fr": "30 novembre 2021",
+        "en": "November 30, 2021"
+      },
+      "1638316799": {
+        "isToday": false,
+        "fr": "30 novembre 2021",
+        "en": "November 30, 2021"
+      },
+      "1638316800": {
+        "isToday": false,
+        "fr": "30 novembre 2021",
+        "en": "November 30, 2021"
+      },
+      "1638331199": {
+        "isToday": false,
+        "fr": "30 novembre 2021",
+        "en": "November 30, 2021"
+      },
+      "1638331200": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638350762": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638352799": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638352800": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638403199": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638403200": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638417599": {
+        "isToday": true,
+        "fr": "1 décembre 2021",
+        "en": "December 1, 2021"
+      },
+      "1638417600": {
+        "isToday": false,
+        "fr": "2 décembre 2021",
+        "en": "December 2, 2021"
+      }
+    }
+  }
+}

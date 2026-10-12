@@ -31,7 +31,8 @@
     "translations:extract": "echo 'translations:extract is disabled until the Lit message descriptors exist, because it would empty src/intl/messages.json.' >&2 && exit 1",
     "translations:upload": "crowdin upload sources",
     "translations:download": "crowdin download && prettier ./src/intl --write",
-    "prepare": "husky"
+    "prepare": "husky",
+    "fixtures:messages": "node scripts/generate-message-fixture.mjs"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
