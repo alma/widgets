@@ -63,15 +63,25 @@ const withCountry = <T extends { transaction_country: string }>(
   transaction_country,
 })
 
+// A fee-only plan carries no interest, but the fee is still a cost of credit: annualize it over
+// the plan's installment spacing (installments_count - 1 months) to get an annual_interest_rate
+// matching the API's bps convention, so TAEG display (getAnnualPercentageRate) isn't stuck at 0.
+const annualizeFeeRate = (fee: number, purchaseAmount: number, durationInMonths: number): number =>
+  purchaseAmount === 0
+    ? 0
+    : Math.round(((fee / purchaseAmount) * NB_MONTH_BY_YEAR * BPS_SCALE) / durationInMonths)
+
 const withFees = (plan: EligiblePlan, customer_fee: number): EligiblePlan => {
   requireStep(
     plan.payment_plan.length > 0,
     'withFees',
     'plan has no installments yet — call withInstallmentsCount(...) first',
   )
+  const durationInMonths = Math.max(plan.installments_count - 1, 1)
   return {
     ...plan,
     customer_fee,
+    annual_interest_rate: annualizeFeeRate(customer_fee, plan.purchase_amount, durationInMonths),
     ...deriveTotalCosts({ ...plan, customer_fee }),
     payment_plan: plan.payment_plan.map((installment, index) => {
       const fee = index === 0 ? customer_fee : 0
