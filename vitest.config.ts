@@ -2,16 +2,38 @@ import { resolve } from 'node:path'
 
 import { defineConfig } from 'vitest/config'
 
-// Every test runs in UTC unless it sets another zone.
-process.env.TZ = 'UTC'
-
 export default defineConfig({
   resolve: {
     alias: { '@': resolve(__dirname, 'src') },
   },
   test: {
     globals: true,
-    coverage: { provider: 'v8' },
+    setupFiles: ['src/test/setup.ts'],
+    coverage: {
+      provider: 'v8',
+      include: ['src/**/*.ts'],
+      exclude: [
+        'src/**/*.test.ts',
+        'src/**/*.stories.ts',
+        'src/**/*.d.ts',
+        'src/**/*.types.ts',
+        'src/test/**',
+        // Their tests aren't ported yet. Each port removes its file from this list.
+        'src/domain/plans/index.ts',
+        'src/domain/plans/plans.const.ts',
+        'src/public-api/public-api.const.ts',
+        'src/shared/config/api-url.const.ts',
+        'src/shared/lib/http.ts',
+        'src/widgets/eligibility-modal/eligibility-modal.const.ts',
+        'src/widgets/payment-plans/payment-plans.const.ts',
+      ],
+      thresholds: {
+        branches: 88,
+        functions: 95,
+        lines: 95,
+        statements: 95,
+      },
+    },
     projects: [
       {
         extends: true,
@@ -19,6 +41,9 @@ export default defineConfig({
           name: 'unit',
           environment: 'jsdom',
           include: ['src/**/*.test.ts'],
+          setupFiles: ['src/test/setup-jsdom.ts'],
+          // Like identity-obj-proxy on master: styles.planButton is 'planButton'.
+          css: { modules: { classNameStrategy: 'non-scoped' } },
         },
       },
       {
