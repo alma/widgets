@@ -27,7 +27,7 @@
     "test:contract": "WIDGETS_DIST=dist vitest run --project contract",
     "test:unit": "vitest run --project unit",
     "test:browser": "vitest run --project browser",
-    "test:browser:install": "playwright install chromium",
+    "test:browser:install": "playwright install --only-shell chromium",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --ext .ts ./src/ ./tests/ && stylelint 'src/**/*.css'",
     "lint:fix": "eslint --fix --ext .ts ./src/ ./tests/ && stylelint 'src/**/*.css' --fix",
