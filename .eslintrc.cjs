@@ -252,7 +252,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/*.test.ts', '**/test/**', '**/__tests__/**'],
+        devDependencies: ['**/*.test.ts', '**/test/**', '**/__tests__/**', 'tests/**'],
       },
     ],
     'import/extensions': [
@@ -326,6 +326,28 @@ module.exports = {
         'import/no-restricted-paths': 'off',
         // A test may define several classes, for example to apply a decorator twice to one tag.
         // Production code keeps one class per file.
+        'max-classes-per-file': 'off',
+        ...ALLOW_NETWORK,
+        'no-restricted-globals': banList(AIRBNB_GLOBALS),
+      },
+    },
+    {
+      // Contract tests are black-box tests on the built bundles. They import each other with
+      // relative paths, because @/ points to src/, and never import from src/.
+      files: ['tests/**/*.ts'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              {
+                group: ['@/*', 'src', 'src/*', '**/src', '**/src/*'],
+                message:
+                  'Contract tests run on the built bundles in dist-ref/ and dist/. They never import from src/.',
+              },
+            ],
+          },
+        ],
         'max-classes-per-file': 'off',
         ...ALLOW_NETWORK,
         'no-restricted-globals': banList(AIRBNB_GLOBALS),

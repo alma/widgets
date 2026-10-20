@@ -21,6 +21,16 @@ export default defineConfig({
           include: ['src/**/*.test.ts'],
         },
       },
+      {
+        // Black-box tests on a built bundle: dist-ref/ (master) or dist/ (Lit), chosen by WIDGETS_DIST.
+        extends: true,
+        test: {
+          name: 'contract',
+          environment: 'jsdom',
+          include: ['tests/integration/contract/**/*.test.ts'],
+          setupFiles: ['tests/integration/contract/support/setup.ts'],
+        },
+      },
     ],
   },
 })

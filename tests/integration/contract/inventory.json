@@ -1,0 +1,110 @@
+{
+  "classes": {
+    "paymentPlans": [
+      "alma-payment-plans-container",
+      "alma-payment-plans-eligibility-line",
+      "alma-payment-plans-eligibility-options",
+      "alma-payment-plans-not-eligible-option",
+      "alma-payment-plans-payment-info",
+      "alma-payment-plans-active-option",
+      "alma-payment-plans-know-more-action"
+    ],
+    "modal": [
+      "alma-eligibility-modal-desktop-modal",
+      "alma-eligibility-modal-mobile-modal",
+      "alma-eligibility-modal-left-side",
+      "alma-eligibility-modal-bullet",
+      "alma-eligibility-modal-right-side",
+      "alma-eligibility-modal-title",
+      "alma-eligibility-modal-info",
+      "alma-eligibility-modal-info-message",
+      "alma-eligibility-modal-eligibility-options",
+      "alma-eligibility-modal-active-option",
+      "alma-eligibility-modal-close-button",
+      "alma-eligibility-modal-schedule-details",
+      "alma-eligibility-modal-schedule-total",
+      "alma-eligibility-modal-schedule-credit",
+      "alma-eligibility-modal-card-logos",
+      "alma-eligibility-modal-summary"
+    ]
+  },
+  "ids": {
+    "contract": [
+      "alma-widget-payment-plans-main-container",
+      "alma-widget-modal-main-container",
+      "payment-plans-title",
+      "payment-info-text"
+    ],
+    "internal": [
+      "payment-info-title",
+      "modal-title",
+      "payment-plans",
+      "payment-info",
+      "payment-info-description",
+      "payment-schedule",
+      "payment-schedule-title",
+      "payment-schedule-description"
+    ]
+  },
+  "dataTestIds": [
+    "widget-container",
+    "Alma-Logo",
+    "loader",
+    "modal-container",
+    "modal-close-button",
+    "modal-title-element",
+    "modal-info-element",
+    "modal-installments-element",
+    "modal-summary",
+    "legal-mentions",
+    "card-logos",
+    "card-logo-{card}",
+    "installment-{index}"
+  ],
+  "rootCustomProperties": [
+    "--weight-normal",
+    "--weight-medium",
+    "--weight-semi-bold",
+    "--weight-bold",
+    "--alma-orange",
+    "--soft-orange",
+    "--alma-blue",
+    "--soft-blue",
+    "--alma-yellow",
+    "--soft-yellow",
+    "--alma-green",
+    "--soft-green",
+    "--alma-red",
+    "--soft-red",
+    "--off-white",
+    "--light-gray",
+    "--dark-gray",
+    "--off-black",
+    "--white",
+    "--black",
+    "--font-tiny",
+    "--font-x-small",
+    "--font-small",
+    "--font-base",
+    "--font-medium",
+    "--font-large",
+    "--font-x-large"
+  ],
+  "locales": [
+    "en",
+    "fr-FR",
+    "fr",
+    "de-DE",
+    "de",
+    "it",
+    "it-IT",
+    "es",
+    "es-ES",
+    "pt",
+    "pt-PT",
+    "nl",
+    "nl-NL",
+    "nl-BE"
+  ],
+  "catalogues": ["de", "en", "es", "fr", "it", "nl", "pt"]
+}
