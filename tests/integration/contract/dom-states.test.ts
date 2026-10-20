@@ -372,11 +372,10 @@ describe.each(WIDTHS)('modal at $name width', ({ name, width }) => {
   })
 
   describe('opened from the widget by a click on the second plan', () => {
-    beforeEach(async () => {
-      await renderModalFromWidget(1, { cards: ['cb', 'visa'] })
-    })
+    const openFromWidget = () => renderModalFromWidget(1, { cards: ['cb', 'visa'] })
 
-    it('has the shell, the layout and the clicked plan active', () => {
+    it('has the shell, the layout and the clicked plan active', async () => {
+      await openFromWidget()
       expectModalShell()
       expectLayout(name)
       expect(within('.alma-eligibility-modal-active-option')).toHaveLength(1)
@@ -384,33 +383,36 @@ describe.each(WIDTHS)('modal at $name width', ({ name, width }) => {
       expect(planButtons()[1].getAttribute('aria-selected')).toBe('true')
     })
 
-    it('keeps the widget in the container', () => {
+    it('keeps the widget in the container', async () => {
+      await openFromWidget()
       expect(containerChildren(container())).toHaveLength(2)
       expect(container().querySelector('#alma-widget-payment-plans-main-container')).not.toBeNull()
     })
 
     // The widget and the modal each render these headings, so both IDs are on the page twice.
-    it('repeats the ID of two headings', () => {
+    it('repeats the ID of two headings', async () => {
+      await openFromWidget()
       expect(document.querySelectorAll('#payment-plans-title')).toHaveLength(2)
       expect(document.querySelectorAll('#payment-info-title')).toHaveLength(2)
     })
   })
 
   describe.each(STANDALONE_STATES)('standalone modal, $state', ({ state, reply }) => {
-    beforeEach(async () => {
-      await renderStandaloneModal(reply, { cards: ['cb', 'visa'] })
-    })
+    const openStandalone = () => renderStandaloneModal(reply, { cards: ['cb', 'visa'] })
 
-    it('has the shell and the layout', () => {
+    it('has the shell and the layout', async () => {
+      await openStandalone()
       expectModalShell()
       expectLayout(name)
     })
 
-    it('leaves the container with no element child', () => {
+    it('leaves the container with no element child', async () => {
+      await openStandalone()
       expect(containerChildren(container())).toEqual([])
     })
 
-    it('shows the content of its state', () => {
+    it('shows the content of its state', async () => {
+      await openStandalone()
       const statuses = within('[role="status"]')
       const alerts = within('[role="alert"]')
       const loaders = within('[data-testid="loader"]')
@@ -576,12 +578,17 @@ const TEST_ID_ELEMENTS: Record<string, string[]> = {
 const testIdPattern = (name: string) => new RegExp(`^${name.replace(/\{\w+\}/g, '.+')}$`)
 
 describe('inventory on the page', () => {
-  let desktop: Seen[]
-  let mobile: Seen[]
-  beforeAll(async () => {
-    desktop = await everyState(DESKTOP_WIDTH)
-    mobile = await everyState(MOBILE_WIDTH)
-  })
+  // The first test that needs the states renders them, and the others reuse the result.
+  const renderStates = async () => {
+    const desktop = await everyState(DESKTOP_WIDTH)
+    const mobile = await everyState(MOBILE_WIDTH)
+    return { desktop, mobile, all: [...desktop, ...mobile] }
+  }
+  let states: ReturnType<typeof renderStates> | undefined
+  const seenOnPage = () => {
+    states ??= renderStates()
+    return states
+  }
 
   const tagsOf = (seen: Seen[], matches: (item: Seen) => boolean) => [
     ...new Set(seen.filter(matches).map(({ tag }) => tag)),
@@ -601,34 +608,35 @@ describe('inventory on the page', () => {
   const ID_NAMES = [...inventory.ids.contract, ...inventory.ids.internal]
 
   CLASS_NAMES.forEach((name) => {
-    it(`puts the class ${name} on the element type of master`, () => {
-      const tags = tagsOf([...desktop, ...mobile], ({ classes: tokens }) => tokens.includes(name))
+    it(`puts the class ${name} on the element type of master`, async () => {
+      const { all } = await seenOnPage()
+      const tags = tagsOf(all, ({ classes: tokens }) => tokens.includes(name))
       expect(tags.length).toBeGreaterThan(0)
       tags.forEach((tag) => expect(CLASS_ELEMENTS[name]).toContain(tag))
     })
   })
 
   ID_NAMES.forEach((name) => {
-    it(`puts the ID ${name} on the element type of master`, () => {
-      const tags = tagsOf([...desktop, ...mobile], ({ id }) => id === name)
+    it(`puts the ID ${name} on the element type of master`, async () => {
+      const { all } = await seenOnPage()
+      const tags = tagsOf(all, ({ id }) => id === name)
       expect(tags.length).toBeGreaterThan(0)
       tags.forEach((tag) => expect(ID_ELEMENTS[name]).toContain(tag))
     })
   })
 
   inventory.dataTestIds.forEach((name) => {
-    it(`puts the data-testid ${name} on the element type of master`, () => {
+    it(`puts the data-testid ${name} on the element type of master`, async () => {
+      const { all } = await seenOnPage()
       const pattern = testIdPattern(name)
-      const tags = tagsOf(
-        [...desktop, ...mobile],
-        ({ testId }) => testId !== null && pattern.test(testId),
-      )
+      const tags = tagsOf(all, ({ testId }) => testId !== null && pattern.test(testId))
       expect(tags.length).toBeGreaterThan(0)
       tags.forEach((tag) => expect(TEST_ID_ELEMENTS[name]).toContain(tag))
     })
   })
 
-  it('shows the left and right side classes at desktop width only', () => {
+  it('shows the left and right side classes at desktop width only', async () => {
+    const { desktop, mobile } = await seenOnPage()
     const sides = ['alma-eligibility-modal-left-side', 'alma-eligibility-modal-right-side']
     const mobileOnly = 'alma-eligibility-modal-mobile-modal'
     sides.forEach((side) => {
@@ -640,13 +648,13 @@ describe('inventory on the page', () => {
   })
 
   // On master only a unit test sets `alma-logo`, so no widget state carries it.
-  it('matches nothing for the lowercase alma-logo test ID', () => {
-    expect([...desktop, ...mobile].filter(({ testId }) => testId === 'alma-logo')).toEqual([])
+  it('matches nothing for the lowercase alma-logo test ID', async () => {
+    const { all } = await seenOnPage()
+    expect(all.filter(({ testId }) => testId === 'alma-logo')).toEqual([])
   })
 
-  it('has no class token undefined', () => {
-    expect(
-      [...desktop, ...mobile].filter(({ classes: tokens }) => tokens.includes('undefined')),
-    ).toEqual([])
+  it('has no class token undefined', async () => {
+    const { all } = await seenOnPage()
+    expect(all.filter(({ classes: tokens }) => tokens.includes('undefined'))).toEqual([])
   })
 })
