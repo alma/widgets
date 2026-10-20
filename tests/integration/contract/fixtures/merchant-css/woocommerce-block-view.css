@@ -1,0 +1,9 @@
+/*
+ * Source: alma/alma-woocommerce-gateway, commit d85edfc4bf597c0acc538f59c89ba6d57d62dbd3, src/alma-widget-block/alma-widget-block-view.css (the block's front-end viewStyle).
+ * Container markup: <div id="alma-widget-container"><div class="alma-widget"></div></div>
+ * Mount: .alma-widget
+ */
+
+#alma-widget .alma-payment-plans-container {
+	width: 100% !important;
+}
