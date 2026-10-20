@@ -48,6 +48,16 @@ describe('widgets.umd.js', () => {
     expect(Object.keys(window.Alma as object).sort()).toEqual(MEMBERS)
   })
 
+  // In-page can set window.Alma.InPage before widgets loads (MP-138)
+  it('keeps what window.Alma already holds as a classic script', () => {
+    const InPage = {}
+    const Alma = { InPage }
+    const window = runInFreshWindow('widgets.umd.js', { Alma })
+    expect(window.Alma).toBe(Alma)
+    expect((window.Alma as typeof Alma).InPage).toBe(InPage)
+    expect(Object.keys(window.Alma as object).sort()).toEqual([...MEMBERS, 'InPage'].sort())
+  })
+
   it('calls an anonymous define once with exports under AMD, and leaves window.Alma unset', () => {
     const define = vi.fn()
     const window = runInFreshWindow('widgets.umd.js', {
@@ -79,6 +89,16 @@ describe('widgets-wc.umd.js', () => {
   it('sets window.Alma as a classic script', () => {
     const window = runInFreshWindow('widgets-wc.umd.js')
     expect(Object.keys(window.Alma as object).sort()).toEqual(MEMBERS)
+  })
+
+  // In-page can set window.Alma.InPage before widgets loads (MP-138)
+  it('keeps what window.Alma already holds as a classic script', () => {
+    const InPage = {}
+    const Alma = { InPage }
+    const window = runInFreshWindow('widgets-wc.umd.js', { Alma })
+    expect(window.Alma).toBe(Alma)
+    expect((window.Alma as typeof Alma).InPage).toBe(InPage)
+    expect(Object.keys(window.Alma as object).sort()).toEqual([...MEMBERS, 'InPage'].sort())
   })
 })
 
