@@ -20,6 +20,9 @@
     "node": ">=6.0.0"
   },
   "scripts": {
+    "start": "vite build --watch",
+    "build": "tsc --noEmit && vite build",
+    "build:contract": "BUILD_VERSION=contract-test vite build",
     "test": "vitest run --project unit --coverage",
     "test:no-coverage": "vitest run --project unit",
     "build:ref": "node scripts/build-ref.mjs",
