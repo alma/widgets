@@ -1,0 +1,2205 @@
+=== payment-plans loading
+
+
+=== payment-plans several plans
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 2 x 225,00 € (0% Finanzierung)
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: 2x
+
+=== payment-plans one plan
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption 3x
+text: 3x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 151,35 € dann 2 x 150,00 €
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: 3x
+
+=== payment-plans all not eligible without plans
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Bis zu 0,00 €
+text: Ausgewählter Plan: 2x
+
+=== payment-plans not eligible below minAmount
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Ab 900,00 €
+text: Ausgewählter Plan: 2x
+
+=== payment-plans not eligible above maxAmount
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption 4x
+text: 4x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Bis zu 200,00 €
+text: Ausgewählter Plan: 4x
+
+=== standalone modal, pending, desktop
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+
+=== standalone modal, pending, mobile
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+
+=== standalone modal, success, desktop
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== standalone modal, success, mobile
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+
+=== standalone modal, no eligibility, desktop
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Ups, die Prüfung hat anscheinend nicht funktioniert.
+
+=== standalone modal, no eligibility, mobile
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Ups, die Prüfung hat anscheinend nicht funktioniert.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+
+=== standalone modal, failed, desktop
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+
+=== standalone modal, failed, mobile
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+
+=== plan kinds, widget and modal with each plan selected in turn, desktop
+-- widget
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+text: Ausgewählter Plan: Jetzt bezahlen
+-- widget, plan 2 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 450,00 € zu zahlen am 16. Dezember 2021 (0% Finanzierung)
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: Aufgeschobenes Bezahlen: 15 Tage
+-- widget, plan 3 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 450,00 € zu zahlen am 31. Dezember 2021 (0% Finanzierung)
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: Aufgeschobenes Bezahlen: 30 Tage
+-- widget, plan 4 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 450,00 € zu zahlen am 1. Januar 2022 (0% Finanzierung)
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: Aufgeschobenes Bezahlen: 1 Monate
+-- widget, plan 5 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 2 x 225,00 € (0% Finanzierung)
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: 2x
+-- widget, plan 6 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 151,35 € dann 2 x 150,00 €
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: 3x
+-- widget, plan 7 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 123,12 € dann 3 x 112,50 €
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: 4x
+-- widget, plan 8 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: 10x
+-- modal opened on plan 1
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+text: Ausgewählter Plan: Jetzt bezahlen
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie zum Zeitpunkt der Zahlung.
+text: Alma - Jetzt bezahlen
+text: 2
+text: Tragen Sie Ihre
+text: Kreditkarteninformationen ein.
+text: 3
+text: Ihrer Zahlung erfolgt sofort !
+text: Die Bestätigung
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 450,00 €
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kosten
+text: 0,00 €
+-- modal, plan 2 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: 16. Dezember 2021
+text: 450,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Kredit über 450,00 € zum festen Sollzinssatz von 0 % über 15 Tage. Zur Finanzierung eines Kaufs von 450,00 €. Gesamtbetrag: 450,00 €, abgebucht am 16. Dezember 2021. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 3 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: 31. Dezember 2021
+text: 450,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Kredit über 450,00 € zum festen Sollzinssatz von 0 % über 30 Tage. Zur Finanzierung eines Kaufs von 450,00 €. Gesamtbetrag: 450,00 €, abgebucht am 31. Dezember 2021. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 4 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: 1. Januar 2022
+text: 450,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Kredit über 450,00 € zum festen Sollzinssatz von 0 % über 1 Monate. Zur Finanzierung eines Kaufs von 450,00 €. Gesamtbetrag: 450,00 €, abgebucht am 1. Januar 2022. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 5 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 6 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 151,35 €
+text: 1. Januar 2022
+text: 150,00 €
+text: 1. Februar 2022
+text: 150,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 451,35 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 1,35 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 151,35 € einschließlich Gebühren in Höhe von 1,35 €. Der Kreditbetrag beläuft sich auf 300,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 2 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 7 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 123,12 €
+text: 1. Januar 2022
+text: 112,50 €
+text: 1. Februar 2022
+text: 112,50 €
+text: 1. März 2022
+text: 112,50 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 460,62 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 10,62 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 123,12 € einschließlich Gebühren in Höhe von 10,62 €. Der Kreditbetrag beläuft sich auf 337,50 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 3 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 8 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 47,77 €
+text: 1. Januar 2022
+text: 47,72 €
+text: 1. Februar 2022
+text: 47,72 €
+text: 1. März 2022
+text: 47,72 €
+text: 1. April 2022
+text: 47,72 €
+text: 1. Mai 2022
+text: 47,72 €
+text: 1. Juni 2022
+text: 47,72 €
+text: 1. Juli 2022
+text: 47,72 €
+text: 1. August 2022
+text: 47,72 €
+text: 1. September 2022
+text: 47,72 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 477,25 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 27,25 € (effektiver Jahreszins 17,20 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 47,77 €. Der Kreditbetrag beläuft sich auf 429,48 € bei einem festen Sollzinssatz von 17,2 % p. a. und einer Laufzeit von 9 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== plan kinds, widget and modal with each plan selected in turn, mobile
+-- widget
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+text: Ausgewählter Plan: Jetzt bezahlen
+-- widget, plan 2 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 450,00 € zu zahlen am 16. Dezember 2021 (0% Finanzierung)
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: Aufgeschobenes Bezahlen: 15 Tage
+-- widget, plan 3 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 450,00 € zu zahlen am 31. Dezember 2021 (0% Finanzierung)
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: Aufgeschobenes Bezahlen: 30 Tage
+-- widget, plan 4 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 450,00 € zu zahlen am 1. Januar 2022 (0% Finanzierung)
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: Aufgeschobenes Bezahlen: 1 Monate
+-- widget, plan 5 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 2 x 225,00 € (0% Finanzierung)
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: 2x
+-- widget, plan 6 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 151,35 € dann 2 x 150,00 €
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: 3x
+-- widget, plan 7 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: 123,12 € dann 3 x 112,50 €
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: 4x
+-- widget, plan 8 hovered
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Klicken Sie, um mehr zu erfahren
+text: Ausgewählter Plan: 10x
+-- modal opened on plan 1
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+text: Ausgewählter Plan: Jetzt bezahlen
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 450,00 €
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kosten
+text: 0,00 €
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie zum Zeitpunkt der Zahlung.
+text: Alma - Jetzt bezahlen
+text: 2
+text: Tragen Sie Ihre
+text: Kreditkarteninformationen ein.
+text: 3
+text: Ihrer Zahlung erfolgt sofort !
+text: Die Bestätigung
+-- modal, plan 2 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: 16. Dezember 2021
+text: 450,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Kredit über 450,00 € zum festen Sollzinssatz von 0 % über 15 Tage. Zur Finanzierung eines Kaufs von 450,00 €. Gesamtbetrag: 450,00 €, abgebucht am 16. Dezember 2021. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+-- modal, plan 3 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: 31. Dezember 2021
+text: 450,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Kredit über 450,00 € zum festen Sollzinssatz von 0 % über 30 Tage. Zur Finanzierung eines Kaufs von 450,00 €. Gesamtbetrag: 450,00 €, abgebucht am 31. Dezember 2021. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+-- modal, plan 4 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: 1. Januar 2022
+text: 450,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Kredit über 450,00 € zum festen Sollzinssatz von 0 % über 1 Monate. Zur Finanzierung eines Kaufs von 450,00 €. Gesamtbetrag: 450,00 €, abgebucht am 1. Januar 2022. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+-- modal, plan 5 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+-- modal, plan 6 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 151,35 €
+text: 1. Januar 2022
+text: 150,00 €
+text: 1. Februar 2022
+text: 150,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 451,35 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 1,35 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 151,35 € einschließlich Gebühren in Höhe von 1,35 €. Der Kreditbetrag beläuft sich auf 300,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 2 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+-- modal, plan 7 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 123,12 €
+text: 1. Januar 2022
+text: 112,50 €
+text: 1. Februar 2022
+text: 112,50 €
+text: 1. März 2022
+text: 112,50 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 460,62 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 10,62 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 123,12 € einschließlich Gebühren in Höhe von 10,62 €. Der Kreditbetrag beläuft sich auf 337,50 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 3 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+-- modal, plan 8 selected
+text: Verfügbare Zahlungsoptionen
+aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
+aria-label: Verfügbare Zahlungsoptionen
+aria-label: Zahlungsoption Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 15 Tage
+text: T+15
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 30 Tage
+text: T+30
+aria-label: Zahlungsoption Aufgeschobenes Bezahlen: 1 Monate
+text: M+1
+aria-label: Zahlungsoption 2x
+text: 2x
+aria-label: Zahlungsoption 3x
+text: 3x
+aria-label: Zahlungsoption 4x
+text: 4x
+aria-label: Zahlungsoption 10x
+text: 10x
+text: Informationen über den ausgewählten Zahlungsplan
+text: Zahlen Sie jetzt 450,00 € (0% Finanzierung)
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in Raten oder später.
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
+text: Jetzt bezahlen
+aria-label: Wählen Sie den Zahlungsplan T+15
+text: T+15
+aria-label: Wählen Sie den Zahlungsplan T+30
+text: T+30
+aria-label: Wählen Sie den Zahlungsplan M+1
+text: M+1
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+aria-label: Wählen Sie den Zahlungsplan 10x
+text: 10x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 47,77 €
+text: 1. Januar 2022
+text: 47,72 €
+text: 1. Februar 2022
+text: 47,72 €
+text: 1. März 2022
+text: 47,72 €
+text: 1. April 2022
+text: 47,72 €
+text: 1. Mai 2022
+text: 47,72 €
+text: 1. Juni 2022
+text: 47,72 €
+text: 1. Juli 2022
+text: 47,72 €
+text: 1. August 2022
+text: 47,72 €
+text: 1. September 2022
+text: 47,72 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 477,25 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 27,25 € (effektiver Jahreszins 17,20 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 47,77 €. Der Kreditbetrag beläuft sich auf 429,48 € bei einem festen Sollzinssatz von 17,2 % p. a. und einer Laufzeit von 9 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+
+=== warning, FR, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Ein Kredit kostet Geld und muss zurückgezahlt werden.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, LU, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Geld zu leihen kostet Geld.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, BE, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung: Geld leihen kostet auch Geld.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung: Geld leihen kostet auch Geld.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, IT, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Kreditaufnahme kostet Geld.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, DE, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Kreditaufnahme kostet Geld.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, PT, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Kreditaufnahme kostet Geld.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, ES, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Geld zu leihen kostet Geld.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, GB, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Geld zu leihen kostet Geld.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, UK, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: Achtung! Geld zu leihen kostet Geld.
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, US, without customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 2x
+text: 2x
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+aria-label: Wählen Sie den Zahlungsplan 4x
+text: 4x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 225,00 €
+text: 1. Januar 2022
+text: 225,00 €
+text: 450,00 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 0,00 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, with customer_fee
+aria-label: Fenster schließen
+aria-label: Schnelle Navigation
+text: Zu den Zahlungsoptionen gehen
+text: Zu den Zahlungsinformationen gehen
+text: Zum Zahlungskalender gehen
+text: Zahlen Sie mit Alma in mehreren Raten.
+text: Wie erfolgt die Bezahlung
+text: 1
+text: Wählen Sie beim Check-out.
+text: Alma
+text: 2
+text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: 2 Minuten.
+text: 3
+text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
+text: Behalten Sie die Kontrolle
+text: Verfügbare Zahlungsoptionen
+aria-label: Wählen Sie den Zahlungsplan 3x
+text: 3x
+text: Ratenplan für die Zahlung
+text: Heute
+text: 151,35 €
+text: 1. Januar 2022
+text: 150,00 €
+text: 1. Februar 2022
+text: 150,00 €
+text: Achtung: Geld leihen kostet auch Geld.
+text: 451,35 €
+text: Gesamtsumme
+text: Davon Kreditkosten
+text: 1,35 € (effektiver Jahreszins 0,00 %)
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 151,35 € einschließlich Gebühren in Höhe von 1,35 €. Der Kreditbetrag beläuft sich auf 300,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 2 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: almapay.com
+text: support@almapay.com

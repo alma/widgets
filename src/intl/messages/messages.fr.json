@@ -53,16 +53,12 @@
   "skip-links.payment-plans": "Aller aux options de paiement",
   "skip-links.payment-schedule": "Aller au calendrier de paiement",
   "warning-message.be": "Attention, emprunter de l'argent coûte aussi de l'argent.",
-  "warning-message.de.with-fees": "Attention ! Emprunter de l'argent a un coût.",
-  "warning-message.de.without-fees": "Attention, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.",
-  "warning-message.es": "Attention, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de vous engager.",
+  "warning-message.de": "Attention ! Emprunter de l'argent a un coût.",
+  "warning-message.es": "Attention ! Emprunter de l'argent coûte de l'argent.",
   "warning-message.fr": "Attention ! Un crédit coûte de l'argent et doit être remboursé.",
   "warning-message.gb": "Attention ! Emprunter de l'argent a un coût.",
-  "warning-message.it.with-fees": "Attention ! Emprunter de l'argent a un coût.",
-  "warning-message.it.without-fees": "Important, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt avant de vous engager.",
+  "warning-message.it": "Attention ! Emprunter de l'argent a un coût.",
   "warning-message.lu": "Attention ! Emprunter de l'argent coûte de l'argent.",
-  "warning-message.nl.with-fees": "Attention, emprunter de l'argent coûte aussi de l'argent.",
-  "warning-message.nl.without-fees": "Attention : un prêt vous engage et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de conclure un contrat.",
-  "warning-message.pt.with-fees": "Attention ! Emprunter de l'argent a un coût.",
-  "warning-message.pt.without-fees": "Attention, un crédit vous engage et doit être remboursé. Vérifiez le coût du prêt et votre capacité de remboursement avant de vous engager."
+  "warning-message.nl": "Attention, emprunter de l'argent coûte aussi de l'argent.",
+  "warning-message.pt": "Attention ! Emprunter de l'argent a un coût."
 }

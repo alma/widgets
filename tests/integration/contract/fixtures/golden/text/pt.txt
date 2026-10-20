@@ -1,0 +1,2205 @@
+=== payment-plans loading
+
+
+=== payment-plans several plans
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: 2 x € 225,00 (sem encargos)
+text: Clique aqui para saber mais
+text: Plano selecionado: 2x
+
+=== payment-plans one plan
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento 3x
+text: 3x
+text: Informações sobre o plano de pagamento selecionado
+text: € 151,35 depois 2 x € 150,00
+text: Clique aqui para saber mais
+text: Plano selecionado: 3x
+
+=== payment-plans all not eligible without plans
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+text: Informações sobre o plano de pagamento selecionado
+text: Até € 0,00
+text: Plano selecionado: 2x
+
+=== payment-plans not eligible below minAmount
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+text: Informações sobre o plano de pagamento selecionado
+text: A partir de € 900,00
+text: Plano selecionado: 2x
+
+=== payment-plans not eligible above maxAmount
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento 4x
+text: 4x
+text: Informações sobre o plano de pagamento selecionado
+text: Até € 200,00
+text: Plano selecionado: 4x
+
+=== standalone modal, pending, desktop
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+
+=== standalone modal, pending, mobile
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+
+=== standalone modal, success, desktop
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== standalone modal, success, mobile
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+
+=== standalone modal, no eligibility, desktop
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Ups, parece que a simulação não funcionou.
+
+=== standalone modal, no eligibility, mobile
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Ups, parece que a simulação não funcionou.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+
+=== standalone modal, failed, desktop
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+
+=== standalone modal, failed, mobile
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+
+=== plan kinds, widget and modal with each plan selected in turn, desktop
+-- widget
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+text: Plano selecionado: Pagar agora
+-- widget, plan 2 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: € 450,00 a pagar em 16 de dezembro de 2021 (sem encargos)
+text: Clique aqui para saber mais
+text: Plano selecionado: Pagamento diferido: 15 dias
+-- widget, plan 3 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: € 450,00 a pagar em 31 de dezembro de 2021 (sem encargos)
+text: Clique aqui para saber mais
+text: Plano selecionado: Pagamento diferido: 30 dias
+-- widget, plan 4 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: € 450,00 a pagar em 1 de janeiro de 2022 (sem encargos)
+text: Clique aqui para saber mais
+text: Plano selecionado: Pagamento diferido: 1 meses
+-- widget, plan 5 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: 2 x € 225,00 (sem encargos)
+text: Clique aqui para saber mais
+text: Plano selecionado: 2x
+-- widget, plan 6 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: € 151,35 depois 2 x € 150,00
+text: Clique aqui para saber mais
+text: Plano selecionado: 3x
+-- widget, plan 7 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: € 123,12 depois 3 x € 112,50
+text: Clique aqui para saber mais
+text: Plano selecionado: 4x
+-- widget, plan 8 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Clique aqui para saber mais
+text: Plano selecionado: 10x
+-- modal opened on plan 1
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+text: Plano selecionado: Pagar agora
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Como pagar
+text: 1
+text: Escolha no checkout.
+text: Alma - Pague agora
+text: 2
+text: Preencha os dados do seu
+text: cartão de bancário.
+text: 3
+text: do seu pagamento é instantânea!
+text: A validação
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 450,00
+text: € 450,00
+text: Total
+text: Das quais comissões (incl. IVA)
+text: € 0,00
+-- modal, plan 2 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: 16 de dezembro de 2021
+text: € 450,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 15 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 16 de dezembro de 2021. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 3 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: 31 de dezembro de 2021
+text: € 450,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 30 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 31 de dezembro de 2021. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 4 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: 1 de janeiro de 2022
+text: € 450,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 1 meses. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 1 de janeiro de 2022. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 5 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 6 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 151,35
+text: 1 de janeiro de 2022
+text: € 150,00
+text: 1 de fevereiro de 2022
+text: € 150,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 451,35
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 1,35 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 151,35 que inclui € 1,35 de custos. O valor restante financiado é de € 300,00, a taxa de juros fixa de 0% durante 2 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 7 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 123,12
+text: 1 de janeiro de 2022
+text: € 112,50
+text: 1 de fevereiro de 2022
+text: € 112,50
+text: 1 de março de 2022
+text: € 112,50
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 460,62
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 10,62 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 123,12 que inclui € 10,62 de custos. O valor restante financiado é de € 337,50, a taxa de juros fixa de 0% durante 3 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 8 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 47,77
+text: 1 de janeiro de 2022
+text: € 47,72
+text: 1 de fevereiro de 2022
+text: € 47,72
+text: 1 de março de 2022
+text: € 47,72
+text: 1 de abril de 2022
+text: € 47,72
+text: 1 de maio de 2022
+text: € 47,72
+text: 1 de junho de 2022
+text: € 47,72
+text: 1 de julho de 2022
+text: € 47,72
+text: 1 de agosto de 2022
+text: € 47,72
+text: 1 de setembro de 2022
+text: € 47,72
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 477,25
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 27,25 (TAEG 17,20%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 47,77. O valor restante financiado é de € 429,48, a taxa de juros fixa de 17,2% durante 9 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== plan kinds, widget and modal with each plan selected in turn, mobile
+-- widget
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+text: Plano selecionado: Pagar agora
+-- widget, plan 2 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: € 450,00 a pagar em 16 de dezembro de 2021 (sem encargos)
+text: Clique aqui para saber mais
+text: Plano selecionado: Pagamento diferido: 15 dias
+-- widget, plan 3 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: € 450,00 a pagar em 31 de dezembro de 2021 (sem encargos)
+text: Clique aqui para saber mais
+text: Plano selecionado: Pagamento diferido: 30 dias
+-- widget, plan 4 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: € 450,00 a pagar em 1 de janeiro de 2022 (sem encargos)
+text: Clique aqui para saber mais
+text: Plano selecionado: Pagamento diferido: 1 meses
+-- widget, plan 5 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: 2 x € 225,00 (sem encargos)
+text: Clique aqui para saber mais
+text: Plano selecionado: 2x
+-- widget, plan 6 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: € 151,35 depois 2 x € 150,00
+text: Clique aqui para saber mais
+text: Plano selecionado: 3x
+-- widget, plan 7 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: € 123,12 depois 3 x € 112,50
+text: Clique aqui para saber mais
+text: Plano selecionado: 4x
+-- widget, plan 8 hovered
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Clique aqui para saber mais
+text: Plano selecionado: 10x
+-- modal opened on plan 1
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+text: Plano selecionado: Pagar agora
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 450,00
+text: € 450,00
+text: Total
+text: Das quais comissões (incl. IVA)
+text: € 0,00
+text: Como pagar
+text: 1
+text: Escolha no checkout.
+text: Alma - Pague agora
+text: 2
+text: Preencha os dados do seu
+text: cartão de bancário.
+text: 3
+text: do seu pagamento é instantânea!
+text: A validação
+-- modal, plan 2 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: 16 de dezembro de 2021
+text: € 450,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 15 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 16 de dezembro de 2021. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+-- modal, plan 3 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: 31 de dezembro de 2021
+text: € 450,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 30 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 31 de dezembro de 2021. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+-- modal, plan 4 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: 1 de janeiro de 2022
+text: € 450,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 1 meses. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 1 de janeiro de 2022. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+-- modal, plan 5 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+-- modal, plan 6 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 151,35
+text: 1 de janeiro de 2022
+text: € 150,00
+text: 1 de fevereiro de 2022
+text: € 150,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 451,35
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 1,35 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 151,35 que inclui € 1,35 de custos. O valor restante financiado é de € 300,00, a taxa de juros fixa de 0% durante 2 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+-- modal, plan 7 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 123,12
+text: 1 de janeiro de 2022
+text: € 112,50
+text: 1 de fevereiro de 2022
+text: € 112,50
+text: 1 de março de 2022
+text: € 112,50
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 460,62
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 10,62 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 123,12 que inclui € 10,62 de custos. O valor restante financiado é de € 337,50, a taxa de juros fixa de 0% durante 3 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+-- modal, plan 8 selected
+text: Opções de pagamento disponíveis
+aria-label: Abrir as opções de pagamento da Alma para saber mais
+aria-label: Opções de pagamento disponíveis
+aria-label: Opção de pagamento Pagar agora
+text: Pagar agora
+aria-label: Opção de pagamento Pagamento diferido: 15 dias
+text: D+15
+aria-label: Opção de pagamento Pagamento diferido: 30 dias
+text: D+30
+aria-label: Opção de pagamento Pagamento diferido: 1 meses
+text: M+1
+aria-label: Opção de pagamento 2x
+text: 2x
+aria-label: Opção de pagamento 3x
+text: 3x
+aria-label: Opção de pagamento 4x
+text: 4x
+aria-label: Opção de pagamento 10x
+text: 10x
+text: Informações sobre o plano de pagamento selecionado
+text: Pagar agora € 450,00 (sem encargos)
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações ou mais tarde por cartão de crédito com Alma.
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento Pagar agora
+text: Pagar agora
+aria-label: Selecionar plano de pagamento D+15
+text: D+15
+aria-label: Selecionar plano de pagamento D+30
+text: D+30
+aria-label: Selecionar plano de pagamento M+1
+text: M+1
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+aria-label: Selecionar plano de pagamento 10x
+text: 10x
+text: Calendário de pagamento
+text: Hoje
+text: € 47,77
+text: 1 de janeiro de 2022
+text: € 47,72
+text: 1 de fevereiro de 2022
+text: € 47,72
+text: 1 de março de 2022
+text: € 47,72
+text: 1 de abril de 2022
+text: € 47,72
+text: 1 de maio de 2022
+text: € 47,72
+text: 1 de junho de 2022
+text: € 47,72
+text: 1 de julho de 2022
+text: € 47,72
+text: 1 de agosto de 2022
+text: € 47,72
+text: 1 de setembro de 2022
+text: € 47,72
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 477,25
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 27,25 (TAEG 17,20%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 47,77. O valor restante financiado é de € 429,48, a taxa de juros fixa de 17,2% durante 9 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+
+=== warning, FR, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Um crédito tem um custo e tem de ser reembolsado.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, LU, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Pedir dinheiro emprestado tem custos.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, BE, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção: pedir dinheiro emprestado também custa dinheiro.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção: pedir dinheiro emprestado também custa dinheiro.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, IT, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Pedir dinheiro emprestado tem custos.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, DE, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Pedir dinheiro emprestado tem custos.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, PT, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Pedir dinheiro emprestado tem dinheiro.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, ES, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Pedir dinheiro emprestado tem custos.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, GB, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Pedir dinheiro emprestado tem custos.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, UK, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: Atenção! Pedir dinheiro emprestado tem custos.
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, US, without customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 2x
+text: 2x
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+aria-label: Selecionar plano de pagamento 4x
+text: 4x
+text: Calendário de pagamento
+text: Hoje
+text: € 225,00
+text: 1 de janeiro de 2022
+text: € 225,00
+text: € 450,00
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 0,00 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, with customer_fee
+aria-label: Fechar a janela
+aria-label: Navegação rápida
+text: Ir para as opções de pagamento
+text: Ir para as informações de pagamento
+text: Ir para o calendário de pagamentos
+text: Pagar em prestações por cartão bancário com a Alma.
+text: Como pagar
+text: 1
+text: Seleccionar no final da compra.
+text: Alma - Pay Now
+text: 2
+text: Siga as instruções e valide o seu pagamento em
+text: 2 minutos.
+text: 3
+text: adiando as datas de pagamento ao seu próprio ritmo.
+text: Mantenha o controlo
+text: Opções de pagamento disponíveis
+aria-label: Selecionar plano de pagamento 3x
+text: 3x
+text: Calendário de pagamento
+text: Hoje
+text: € 151,35
+text: 1 de janeiro de 2022
+text: € 150,00
+text: 1 de fevereiro de 2022
+text: € 150,00
+text: Atenção: pedir dinheiro emprestado também custa dinheiro.
+text: € 451,35
+text: Total
+text: Dos quais custo do crédito (incl. IVA)
+text: € 1,35 (TAEG 0,00%)
+text: Para uma compra de € 450,00: paga um valor inicial de € 151,35 que inclui € 1,35 de custos. O valor restante financiado é de € 300,00, a taxa de juros fixa de 0% durante 2 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: almapay.com
+text: support@almapay.com

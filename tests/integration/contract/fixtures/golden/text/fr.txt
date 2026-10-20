@@ -1,0 +1,2205 @@
+=== payment-plans loading
+
+
+=== payment-plans several plans
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 2 x 225,00 € (sans frais)
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : 2x
+
+=== payment-plans one plan
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement 3x
+text: 3x
+text: Informations sur le plan de paiement sélectionné
+text: 151,35 € puis 2 x 150,00 €
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : 3x
+
+=== payment-plans all not eligible without plans
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+text: Informations sur le plan de paiement sélectionné
+text: Jusqu'à 0,00 €
+text: Plan sélectionné : 2x
+
+=== payment-plans not eligible below minAmount
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+text: Informations sur le plan de paiement sélectionné
+text: À partir de 900,00 €
+text: Plan sélectionné : 2x
+
+=== payment-plans not eligible above maxAmount
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement 4x
+text: 4x
+text: Informations sur le plan de paiement sélectionné
+text: Jusqu'à 200,00 €
+text: Plan sélectionné : 4x
+
+=== standalone modal, pending, desktop
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+
+=== standalone modal, pending, mobile
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+
+=== standalone modal, success, desktop
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== standalone modal, success, mobile
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+
+=== standalone modal, no eligibility, desktop
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Oups, il semblerait que la simulation n'ait pas fonctionné.
+
+=== standalone modal, no eligibility, mobile
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Oups, il semblerait que la simulation n'ait pas fonctionné.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+
+=== standalone modal, failed, desktop
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+
+=== standalone modal, failed, mobile
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+
+=== plan kinds, widget and modal with each plan selected in turn, desktop
+-- widget
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+text: Plan sélectionné : Payer maintenant
+-- widget, plan 2 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 450,00 € à payer le 16 décembre 2021 (sans frais)
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : Payer en différé : 15 jours
+-- widget, plan 3 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 450,00 € à payer le 31 décembre 2021 (sans frais)
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : Payer en différé : 30 jours
+-- widget, plan 4 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 450,00 € à payer le 1 janvier 2022 (sans frais)
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : Payer en différé : 1 mois
+-- widget, plan 5 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 2 x 225,00 € (sans frais)
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : 2x
+-- widget, plan 6 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 151,35 € puis 2 x 150,00 €
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : 3x
+-- widget, plan 7 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 123,12 € puis 3 x 112,50 €
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : 4x
+-- widget, plan 8 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : 10x
+-- modal opened on plan 1
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+text: Plan sélectionné : Payer maintenant
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma - Payer maintenant
+text: 2
+text: Renseignez les informations de votre
+text: carte bancaire.
+text: 3
+text: de votre paiement est instantanée !
+text: La validation
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 450,00 €
+text: 450,00 €
+text: Total
+text: Dont frais (TTC)
+text: 0,00 €
+-- modal, plan 2 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: 16 décembre 2021
+text: 450,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 15 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 16 décembre 2021. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 3 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: 31 décembre 2021
+text: 450,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 30 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 31 décembre 2021. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 4 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: 1 janvier 2022
+text: 450,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 1 janvier 2022. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 5 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 6 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 151,35 €
+text: 1 janvier 2022
+text: 150,00 €
+text: 1 février 2022
+text: 150,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 451,35 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 1,35 € (TAEG 0,00 %)
+text: Crédit de 300,00 € au taux débiteur fixe de 0 % sur 2 mois. Permettant, avec un acompte de 151,35 €, incluant des frais de 1,35 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 7 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 123,12 €
+text: 1 janvier 2022
+text: 112,50 €
+text: 1 février 2022
+text: 112,50 €
+text: 1 mars 2022
+text: 112,50 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 460,62 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 10,62 € (TAEG 0,00 %)
+text: Crédit de 337,50 € au taux débiteur fixe de 0 % sur 3 mois. Permettant, avec un acompte de 123,12 €, incluant des frais de 10,62 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+-- modal, plan 8 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 47,77 €
+text: 1 janvier 2022
+text: 47,72 €
+text: 1 février 2022
+text: 47,72 €
+text: 1 mars 2022
+text: 47,72 €
+text: 1 avril 2022
+text: 47,72 €
+text: 1 mai 2022
+text: 47,72 €
+text: 1 juin 2022
+text: 47,72 €
+text: 1 juillet 2022
+text: 47,72 €
+text: 1 août 2022
+text: 47,72 €
+text: 1 septembre 2022
+text: 47,72 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 477,25 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 27,25 € (TAEG 17,20 %)
+text: Crédit de 429,48 € au taux débiteur fixe de 17,2 % sur 9 mois. Permettant, avec un acompte de 47,77 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== plan kinds, widget and modal with each plan selected in turn, mobile
+-- widget
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+text: Plan sélectionné : Payer maintenant
+-- widget, plan 2 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 450,00 € à payer le 16 décembre 2021 (sans frais)
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : Payer en différé : 15 jours
+-- widget, plan 3 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 450,00 € à payer le 31 décembre 2021 (sans frais)
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : Payer en différé : 30 jours
+-- widget, plan 4 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 450,00 € à payer le 1 janvier 2022 (sans frais)
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : Payer en différé : 1 mois
+-- widget, plan 5 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 2 x 225,00 € (sans frais)
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : 2x
+-- widget, plan 6 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 151,35 € puis 2 x 150,00 €
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : 3x
+-- widget, plan 7 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: 123,12 € puis 3 x 112,50 €
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : 4x
+-- widget, plan 8 hovered
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Cliquez pour en savoir plus
+text: Plan sélectionné : 10x
+-- modal opened on plan 1
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+text: Plan sélectionné : Payer maintenant
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 450,00 €
+text: 450,00 €
+text: Total
+text: Dont frais (TTC)
+text: 0,00 €
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma - Payer maintenant
+text: 2
+text: Renseignez les informations de votre
+text: carte bancaire.
+text: 3
+text: de votre paiement est instantanée !
+text: La validation
+-- modal, plan 2 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: 16 décembre 2021
+text: 450,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 15 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 16 décembre 2021. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+-- modal, plan 3 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: 31 décembre 2021
+text: 450,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 30 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 31 décembre 2021. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+-- modal, plan 4 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: 1 janvier 2022
+text: 450,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 1 janvier 2022. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+-- modal, plan 5 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+-- modal, plan 6 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 151,35 €
+text: 1 janvier 2022
+text: 150,00 €
+text: 1 février 2022
+text: 150,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 451,35 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 1,35 € (TAEG 0,00 %)
+text: Crédit de 300,00 € au taux débiteur fixe de 0 % sur 2 mois. Permettant, avec un acompte de 151,35 €, incluant des frais de 1,35 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+-- modal, plan 7 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 123,12 €
+text: 1 janvier 2022
+text: 112,50 €
+text: 1 février 2022
+text: 112,50 €
+text: 1 mars 2022
+text: 112,50 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 460,62 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 10,62 € (TAEG 0,00 %)
+text: Crédit de 337,50 € au taux débiteur fixe de 0 % sur 3 mois. Permettant, avec un acompte de 123,12 €, incluant des frais de 10,62 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+-- modal, plan 8 selected
+text: Options de paiement disponibles
+aria-label: Ouvrir les options de paiement Alma pour en savoir plus
+aria-label: Options de paiement disponibles
+aria-label: Option de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Option de paiement Payer en différé : 15 jours
+text: J+15
+aria-label: Option de paiement Payer en différé : 30 jours
+text: J+30
+aria-label: Option de paiement Payer en différé : 1 mois
+text: M+1
+aria-label: Option de paiement 2x
+text: 2x
+aria-label: Option de paiement 3x
+text: 3x
+aria-label: Option de paiement 4x
+text: 4x
+aria-label: Option de paiement 10x
+text: 10x
+text: Informations sur le plan de paiement sélectionné
+text: Payer maintenant 450,00 € (sans frais)
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement Payer maintenant
+text: Payer maintenant
+aria-label: Sélectionner le plan de paiement J+15
+text: J+15
+aria-label: Sélectionner le plan de paiement J+30
+text: J+30
+aria-label: Sélectionner le plan de paiement M+1
+text: M+1
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+aria-label: Sélectionner le plan de paiement 10x
+text: 10x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 47,77 €
+text: 1 janvier 2022
+text: 47,72 €
+text: 1 février 2022
+text: 47,72 €
+text: 1 mars 2022
+text: 47,72 €
+text: 1 avril 2022
+text: 47,72 €
+text: 1 mai 2022
+text: 47,72 €
+text: 1 juin 2022
+text: 47,72 €
+text: 1 juillet 2022
+text: 47,72 €
+text: 1 août 2022
+text: 47,72 €
+text: 1 septembre 2022
+text: 47,72 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 477,25 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 27,25 € (TAEG 17,20 %)
+text: Crédit de 429,48 € au taux débiteur fixe de 17,2 % sur 9 mois. Permettant, avec un acompte de 47,77 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+
+=== warning, FR, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Un crédit coûte de l'argent et doit être remboursé.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, LU, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Emprunter de l'argent coûte de l'argent.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, BE, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention, emprunter de l'argent coûte aussi de l'argent.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention, emprunter de l'argent coûte aussi de l'argent.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, IT, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Emprunter de l'argent a un coût.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, DE, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Emprunter de l'argent a un coût.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, PT, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Emprunter de l'argent a un coût.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, ES, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Emprunter de l'argent coûte de l'argent.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, GB, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Emprunter de l'argent a un coût.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, UK, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: Attention ! Emprunter de l'argent a un coût.
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, US, without customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 2x
+text: 2x
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+aria-label: Sélectionner le plan de paiement 4x
+text: 4x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 225,00 €
+text: 1 janvier 2022
+text: 225,00 €
+text: 450,00 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 0,00 € (TAEG 0,00 %)
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
+
+=== warning, NL, with customer_fee
+aria-label: Fermer la fenêtre
+aria-label: Navigation rapide
+text: Aller aux options de paiement
+text: Aller aux informations de paiement
+text: Aller au calendrier de paiement
+text: Payez en plusieurs fois par carte bancaire avec Alma.
+text: Comment procéder au paiement
+text: 1
+text: Choisissez au moment du paiement.
+text: Alma
+text: 2
+text: Laissez-vous guider et validez votre paiement en
+text: 2 minutes.
+text: 3
+text: en avançant ou reculant vos échéances à votre rythme.
+text: Gardez le contrôle
+text: Options de paiement disponibles
+aria-label: Sélectionner le plan de paiement 3x
+text: 3x
+text: Calendrier de paiement
+text: Aujourd'hui
+text: 151,35 €
+text: 1 janvier 2022
+text: 150,00 €
+text: 1 février 2022
+text: 150,00 €
+text: Attention, emprunter de l'argent coûte aussi de l'argent.
+text: 451,35 €
+text: Total
+text: Dont coût du crédit (TTC)
+text: 1,35 € (TAEG 0,00 %)
+text: Crédit de 300,00 € au taux débiteur fixe de 0 % sur 2 mois. Permettant, avec un acompte de 151,35 €, incluant des frais de 1,35 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: almapay.com
+text: support@almapay.com
