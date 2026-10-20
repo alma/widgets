@@ -1,14 +1,14 @@
-import { resolve } from 'node:path'
-
 import { defineConfig } from 'vitest/config'
+
+import { alias, define } from './vite.config'
 
 // Every test runs in UTC unless it sets another zone.
 process.env.TZ = 'UTC'
 
 export default defineConfig({
-  resolve: {
-    alias: { '@': resolve(__dirname, 'src') },
-  },
+  // Same alias and env values as the build.
+  resolve: { alias },
+  define,
   test: {
     globals: true,
     coverage: { provider: 'v8' },
