@@ -196,6 +196,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:lit/recommended',
+    'plugin:lit-a11y/recommended',
     'plugin:prettier/recommended',
     'prettier',
   ],
