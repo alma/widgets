@@ -251,12 +251,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'prefer-destructuring': 'off',
     'import/no-cycle': 'error',
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: ['**/*.test.ts', '**/test/**', '**/__tests__/**', 'tests/**'],
-      },
-    ],
+    // Vite bundles every import into dist/, so any file may import a devDependency.
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/extensions': [
       'error',
       'ignorePackages',
