@@ -12,7 +12,6 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    setupFiles: ['src/test/setup.ts'],
     coverage: {
       provider: 'v8',
       include: ['src/**/*.ts'],
@@ -46,7 +45,7 @@ export default defineConfig({
           environment: 'jsdom',
           include: ['src/**/*.test.ts'],
           exclude: [...configDefaults.exclude, ...BROWSER_TESTS],
-          setupFiles: ['src/test/setup-jsdom.ts'],
+          setupFiles: ['src/test/setup.ts', 'src/test/setup-jsdom.ts'],
           // Like identity-obj-proxy on master: styles.planButton is 'planButton'.
           css: { modules: { classNameStrategy: 'non-scoped' } },
         },
@@ -56,6 +55,7 @@ export default defineConfig({
         test: {
           name: 'browser',
           include: BROWSER_TESTS,
+          setupFiles: ['src/test/setup.ts'],
           browser: {
             enabled: true,
             provider: playwright(),
@@ -66,6 +66,7 @@ export default defineConfig({
       },
       {
         // Black-box tests on a built bundle: dist-ref/ (master) or dist/ (Lit), chosen by WIDGETS_DIST.
+        // They skip src/test/setup.ts, because they never load code from src/.
         extends: true,
         test: {
           name: 'contract',
