@@ -172,7 +172,7 @@ describe('plans provided', () => {
       expect(totalElement).toHaveTextContent('Total')
       expect(totalElement).toHaveTextContent('451,35 €')
       expect(totalElement).toHaveTextContent('Dont coût du crédit (TTC)')
-      expect(totalElement).toHaveTextContent('1,35 € (TAEG 0,00 %)')
+      expect(totalElement).toHaveTextContent('1,35 € (TAEG 1,80 %)')
     })
   })
 })
