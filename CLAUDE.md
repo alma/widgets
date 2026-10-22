@@ -4,8 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `@alma/widgets` is an npm package (also served via jsDelivr) of embeddable payment-plan widgets for
 merchants using Alma's BNPL API. The widgets are being migrated from React to Lit. The React code is
-deleted and stays readable on master. The Lit code arrives in steps, so `src/index.ts` and the
-build don't exist yet.
+deleted and stays readable on master. The Lit code arrives in steps, so a doc may name a file or a
+script that doesn't exist yet. Don't create a script that is missing from `package.json`: it
+belongs to work that hasn't landed.
 
 ## Commands
 
@@ -31,10 +32,10 @@ Husky `pre-commit` already runs the typecheck, the tests of the changed files an
   jsdom can't do (layout, real Tab navigation), and `unit` runs every other `*.test.ts` in jsdom.
   Only `src/modal.browser.test.ts` needs a browser. `npm run test:browser:install` must have run
   once, or `npm test` and the `pre-push` hook fail.
-- `src/test/setup.ts` runs before every test file. It fixes `Date.now()` to master's "today"
-  (`1638350762000`), adds the `vitest-axe` matchers, and after each test restores the spies, clears
-  the mock calls, and empties `<body>`, its `ReactModal__Body--open` class, `sessionStorage` and the
-  `warnOnce` memory.
+- `src/test/setup.ts` runs before every unit and browser test file, but not the contract tests. It
+  fixes `Date.now()` to master's "today" (`1638350762000`), adds the `vitest-axe` matchers, and
+  after each test restores the spies, clears the mock calls, and empties `<body>`, its
+  `ReactModal__Body--open` class, `sessionStorage` and the `warnOnce` memory.
 - `src/test/setup-jsdom.ts` runs in the `unit` project only. It puts the time zone back to UTC after
   each test and mocks `matchMedia` (no query matches), `no-scroll` and the canvas context axe needs.
   In unit tests, a CSS module class name equals its key (`styles.planButton === 'planButton'`).
@@ -45,12 +46,29 @@ Husky `pre-commit` already runs the typecheck, the tests of the changed files an
 
 ## Architecture
 
+- Before you create any file under `src/`, read `.claude/rules/architecture.md` and the rule files
+  that its table lists for that folder. Claude Code loads a rule file only after a file under its
+  paths is read or written, and for a new file that happens after the first Write.
 - The code in `src/` sits in four layers: `public-api/`, `widgets/`, `domain/` and `shared/`.
   `.claude/rules/architecture.md` describes them and loads for `src/**`, and `.eslintrc.cjs`
   enforces its import rules.
 - `src/intl/` holds the Crowdin catalogues. Don't hand-edit `src/intl/messages/*.json`.
   `npm run translations:extract` exits with code 1 until the Lit message descriptors exist, so it
-  can't empty `src/intl/messages.json`.
+  can't empty `src/intl/messages.json`. `npm run translations:upload` and `translations:download`
+  sync with Crowdin, and only a developer runs them.
+
+## Contract tests
+
+```bash
+npm run build:ref                      # build master at scripts/ref-sha.txt into dist-ref/
+npm run test:contract:ref              # contract tests on dist-ref/
+npm run test:contract                  # contract tests on dist/
+npm run fixtures:messages              # write the message and date fixtures from master's libraries
+npm run fixtures:messages -- --check   # fail when the fixtures are out of date
+```
+
+- `tests/integration/contract/` holds black-box tests on the built bundles. A feature PR never
+  edits them. It only removes its own entries from `expected-failures.json`, once those tests pass.
 
 ## Gotchas
 
