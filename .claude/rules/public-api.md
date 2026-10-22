@@ -23,7 +23,7 @@ Generic advice that doesn't apply here: public custom element tags, attributes a
 ## Files and request
 
 - **ARCH-20** The five published files keep their names: `widgets.js`, `widgets.umd.js`, `widgets-wc.umd.js`, `widgets.css` and `widgets.min.css`. The UMD file sets `window.Alma` as a classic script, keeps what `window.Alma` already holds, works under CommonJS and defines an AMD module. Why: merchants and plugins load these files by name, and Magento 2 loads the bundle through RequireJS. Check: contract tests.
-- **ARCH-15** No dynamic `import()`. Everything ships in the one bundle. Why: merchants load the five published files by name, and the UMD file is one classic script. Check: review.
+- **ARCH-15** No dynamic `import()`. Everything ships in the one bundle. Why: merchants load the five published files by name, and the UMD file is one classic script. Check: lint.
 - **ARCH-21** The eligibility request stays `POST /v2/payments/eligibility` with the headers `Authorization: Alma-Merchant-Auth <merchantId>` and `X-Alma-Agent: Alma Widget/<version>`, cached for one hour in `sessionStorage`. The JavaScript sends no other request. Why: the API expects this request, and merchants expect no tracking. Check: contract tests.
 
 ## Contract tests

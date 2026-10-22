@@ -90,7 +90,7 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`, `__tests__/`) put t
 
 - **ARCH-01** The port reproduces master's behaviour at the reference commit, quirks included. Why: the contract tests compare the Lit build with master's build. Check: contract tests.
 - **ARCH-02** A feature PR never edits `tests/integration/contract/`. It only removes its own entries from `expected-failures.json`, once those tests pass. Why: the contract tests pin what merchants rely on, so editing one hides a break. Only a contract-test PR or a master sync changes them. Check: review.
-- **A11Y-07** Only `src/modal.browser.test.ts` runs in Chromium. Every other test runs in jsdom. Why: jsdom has no layout and no real Tab navigation, which only the modal's focus handling needs. Check: review.
+- **A11Y-07** Only `src/modal.browser.test.ts` runs in Chromium. Every other test runs in jsdom. Why: jsdom has no layout and no real Tab navigation, which only the modal's focus handling needs. Check: tests.
 
 The React code is deleted on this branch. Read it at the reference commit in `scripts/ref-sha.txt`, which `npm run build:ref` builds into `dist-ref/`: `git ls-tree -r --name-only "$(cat scripts/ref-sha.txt)" -- src/components/Loader` lists a folder, and `git show "$(cat scripts/ref-sha.txt)":src/components/Loader/index.tsx` prints a file.
 
