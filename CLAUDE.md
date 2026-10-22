@@ -27,10 +27,10 @@ Husky `pre-commit` already runs the typecheck, the tests of the changed files an
 
 ## Tests
 
-- Two Vitest projects: `unit` runs every `*.test.ts` in jsdom, and `browser` runs only
-  `src/modal.browser.test.ts` in headless Chromium, for what jsdom can't do (layout, real Tab
-  navigation). `npm run test:browser:install` must have run once, or `npm test` and the `pre-push`
-  hook fail.
+- Two Vitest projects: `browser` runs the `*.browser.test.ts` files in headless Chromium, for what
+  jsdom can't do (layout, real Tab navigation), and `unit` runs every other `*.test.ts` in jsdom.
+  Only `src/modal.browser.test.ts` needs a browser. `npm run test:browser:install` must have run
+  once, or `npm test` and the `pre-push` hook fail.
 - `src/test/setup.ts` runs before every test file. It fixes `Date.now()` to master's "today"
   (`1638350762000`), adds the `vitest-axe` matchers, and after each test restores the spies, clears
   the mock calls, and empties `<body>`, its `ReactModal__Body--open` class, `sessionStorage` and the

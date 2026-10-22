@@ -4,7 +4,7 @@ import { playwright } from '@vitest/browser-playwright'
 import { configDefaults, defineConfig } from 'vitest/config'
 
 // jsdom has no layout and no real Tab navigation, so only the modal's focus tests need a browser.
-const BROWSER_TESTS = ['src/modal.browser.test.ts']
+const BROWSER_TESTS = ['src/**/*.browser.test.ts']
 
 export default defineConfig({
   resolve: {
