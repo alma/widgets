@@ -35,6 +35,8 @@ jobs:
           node-version-file: .nvmrc
           cache: 'npm'
       - run: npm ci
+      - name: Install Chromium for the browser tests
+        run: npm run test:browser:install -- --with-deps
       - run: npm run test
 
   build:
