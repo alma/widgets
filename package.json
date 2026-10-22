@@ -39,9 +39,11 @@
     "translations:upload": "crowdin upload sources",
     "translations:download": "crowdin download && prettier ./src/intl --write",
     "prepare": "husky",
-    "fixtures:messages": "node scripts/generate-message-fixture.mjs"
+    "fixtures:messages": "node scripts/generate-message-fixture.mjs",
+    "lint:package": "publint; attw --pack .; exit 0"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@crowdin/cli": "^4.3.0",
@@ -67,6 +69,8 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-lit": "^2.3.1",
+    "eslint-plugin-lit-a11y": "^4.1.4",
     "eslint-plugin-prettier": "^5.2.1",
     "expect-type": "^1.1.0",
     "husky": "^9.1.6",
@@ -75,6 +79,7 @@
     "playwright": "^1.64.1",
     "postcss": "^8.5.6",
     "prettier": "^3.3.3",
+    "publint": "^0.3.25",
     "stylelint": "^13.13.1",
     "stylelint-a11y": "^1.2.3",
     "stylelint-config-standard": "^22.0.0",

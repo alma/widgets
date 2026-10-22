@@ -54,6 +54,8 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run check:es2021
+      # Never fails the job.
+      - run: npm run lint:package
 
   contract:
     runs-on: ubuntu-latest

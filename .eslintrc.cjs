@@ -196,6 +196,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:lit/recommended',
+    'plugin:lit-a11y/recommended',
     'plugin:prettier/recommended',
     'prettier',
   ],
@@ -249,12 +251,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'prefer-destructuring': 'off',
     'import/no-cycle': 'error',
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: ['**/*.test.ts', '**/test/**', '**/__tests__/**', 'tests/**'],
-      },
-    ],
+    // Vite bundles every import into dist/, so any file may import a devDependency.
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/extensions': [
       'error',
       'ignorePackages',

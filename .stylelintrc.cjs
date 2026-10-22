@@ -13,6 +13,22 @@ module.exports = {
     'a11y/no-text-align-justify': true,
     'a11y/selector-pseudo-class-focus': true,
     'selector-class-pattern': null,
+    // Keeps the widget easy to override. master's ID-scoped .sr-only rules are exempt.
+    'selector-max-specificity': [
+      '0,3,0',
+      {
+        ignoreSelectors: [
+          '#alma-widget-payment-plans-main-container',
+          '#alma-widget-modal-main-container',
+        ],
+      },
+    ],
+    // Bans bare type selectors such as `p`.
+    'selector-max-type': [0, { ignore: ['descendant', 'child', 'compounded', 'next-sibling'] }],
+    // Cascade layers and :where() change override order. The widget has no Shadow DOM.
+    'at-rule-disallowed-list': ['layer'],
+    'selector-pseudo-class-disallowed-list': ['where', 'host', 'host-context'],
+    'selector-pseudo-element-disallowed-list': ['part', 'slotted'],
   },
   ignoreFiles: [
     '**/*.js',
