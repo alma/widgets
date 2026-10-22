@@ -1,0 +1,36 @@
+/* A loud merchant customization, through the public alma-* classes only */
+
+/* Scoped to the merchant's container, like in examples/style.css */
+#alma-widget .alma-payment-plans-container {
+  border: 2px dashed #1d4ed8;
+  border-radius: 0;
+}
+
+#alma-widget .alma-payment-plans-eligibility-options button,
+#alma-widget .alma-payment-plans-payment-info p {
+  color: #1d4ed8;
+}
+
+#alma-widget .alma-payment-plans-eligibility-options .alma-payment-plans-active-option {
+  background-color: #db2777;
+  color: #fff;
+}
+
+#alma-widget .alma-payment-plans-not-eligible-option {
+  text-decoration: line-through;
+}
+
+/* Eligibility modal */
+.alma-eligibility-modal-title {
+  color: #15803d;
+}
+
+.alma-eligibility-modal-eligibility-options > button.alma-eligibility-modal-active-option {
+  background-color: #db2777;
+  color: #fff;
+}
+
+.alma-eligibility-modal-schedule-details li,
+.alma-eligibility-modal-summary .alma-eligibility-modal-schedule-total {
+  color: #1d4ed8;
+}
