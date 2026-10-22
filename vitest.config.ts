@@ -21,9 +21,11 @@ export default defineConfig({
         'src/**/*.types.ts',
         'src/test/**',
         // Their tests aren't ported yet. Each port removes its file from this list.
+        'src/index.ts',
         'src/domain/plans/index.ts',
         'src/domain/plans/plans.const.ts',
         'src/public-api/public-api.const.ts',
+        'src/public-api/widgets.ts',
         'src/shared/config/api-url.const.ts',
         'src/shared/lib/http.ts',
         'src/widgets/eligibility-modal/eligibility-modal.const.ts',
