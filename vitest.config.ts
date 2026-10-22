@@ -1,15 +1,14 @@
-import { resolve } from 'node:path'
-
 import { playwright } from '@vitest/browser-playwright'
 import { configDefaults, defineConfig } from 'vitest/config'
+import { alias, define } from './vite.config'
 
 // jsdom has no layout and no real Tab navigation, so only the modal's focus tests need a browser.
 const BROWSER_TESTS = ['src/**/*.browser.test.ts']
 
 export default defineConfig({
-  resolve: {
-    alias: { '@': resolve(__dirname, 'src') },
-  },
+  // Same alias and env values as the build.
+  resolve: { alias },
+  define,
   test: {
     globals: true,
     coverage: {
@@ -22,9 +21,11 @@ export default defineConfig({
         'src/**/*.types.ts',
         'src/test/**',
         // Their tests aren't ported yet. Each port removes its file from this list.
+        'src/index.ts',
         'src/domain/plans/index.ts',
         'src/domain/plans/plans.const.ts',
         'src/public-api/public-api.const.ts',
+        'src/public-api/widgets.ts',
         'src/shared/config/api-url.const.ts',
         'src/shared/lib/http.ts',
         'src/widgets/eligibility-modal/eligibility-modal.const.ts',

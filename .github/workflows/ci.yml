@@ -52,7 +52,8 @@ jobs:
           node-version-file: .nvmrc
           cache: 'npm'
       - run: npm ci
-      - run: npm run typecheck
+      - run: npm run build
+      - run: npm run check:es2021
 
   contract:
     runs-on: ubuntu-latest
@@ -70,6 +71,8 @@ jobs:
       - run: npm run build:ref
       - run: npm run test:contract:ref
       - run: npm run fixtures:messages -- --check
+      - run: npm run build:contract
+      - run: npm run test:contract
 
   update-release-draft:
     if: github.ref == 'refs/heads/master'

@@ -42,7 +42,11 @@ const track =
     return undefined
   }
 
-/** Same signature as Vitest's test(name, fn, timeout), plus the expected failures of dist/. */
+/**
+ * Same signature as Vitest's test(name, fn, timeout), plus the expected failures of dist/.
+ * Only a failure inside fn counts as expected, so setup that calls into the bundle (add(), open(), a
+ * render helper) goes in fn. Hooks only load the bundle or set up the page.
+ */
 export const test = (name: string, fn: TestFn, timeout?: number) =>
   vitestTest(name, track(fn) as never, timeout)
 
