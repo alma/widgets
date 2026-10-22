@@ -1,0 +1,8 @@
+/* expect: selector-pseudo-class-disallowed-list */
+:host {
+  color: red;
+}
+
+:host-context(.dark) {
+  color: white;
+}

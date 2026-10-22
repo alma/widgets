@@ -1,0 +1,4 @@
+/* expect: selector-pseudo-element-disallowed-list */
+.a::slotted(.b) {
+  color: red;
+}

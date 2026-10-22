@@ -35,6 +35,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint --ext .ts ./src/ ./tests/ && stylelint 'src/**/*.css'",
     "lint:fix": "eslint --fix --ext .ts ./src/ ./tests/ && stylelint 'src/**/*.css' --fix",
+    "test:harness": "node scripts/test-harness.mjs",
     "translations:extract": "echo 'translations:extract is disabled until the Lit message descriptors exist, because it would empty src/intl/messages.json.' >&2 && exit 1",
     "translations:upload": "crowdin upload sources",
     "translations:download": "crowdin download && prettier ./src/intl --write",
@@ -106,11 +107,11 @@
     }
   },
   "lint-staged": {
-    "src/**/*.ts": [
+    "src/{*.ts,!(__lint-fixtures__)/**/*.ts}": [
       "prettier --write",
       "eslint --fix"
     ],
-    "src/**/*.css": [
+    "src/{*.css,!(__lint-fixtures__)/**/*.css}": [
       "stylelint --fix"
     ],
     "{tests,scripts}/**/*.{ts,mjs}": [

@@ -1,0 +1,16 @@
+/* expect: nothing */
+.info p {
+  margin: 0;
+}
+
+.buttons > button {
+  margin: 0;
+}
+
+h2.title {
+  margin: 0;
+}
+
+#alma-widget-modal-main-container .sr-only {
+  position: absolute;
+}
