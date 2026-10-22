@@ -6,6 +6,26 @@ import { Locale } from '@/shared/i18n/i18n.const'
 import { withMerchantCss } from './decorators/merchant-css'
 import { withModalContainer } from './decorators/modal-container'
 
+// Undoes what the modal adds to <body>, so it doesn't show in the next story
+const keepBodyClean = () => {
+  const initialChildren = new Set(document.body.children)
+  const initialAttributes = [document.documentElement, document.body].map((element) => ({
+    element,
+    className: element.className,
+    style: element.getAttribute('style'),
+  }))
+  return () => {
+    Array.from(document.body.children)
+      .filter((child) => !initialChildren.has(child))
+      .forEach((child) => child.remove())
+    initialAttributes.forEach(({ element, className, style }) => {
+      element.className = className
+      if (style === null) element.removeAttribute('style')
+      else element.setAttribute('style', style)
+    })
+  }
+}
+
 const preview: Preview = {
   decorators: [withModalContainer, withMerchantCss],
   globalTypes: {
@@ -16,7 +36,15 @@ const preview: Preview = {
         icon: 'paintbrush',
         items: [
           { value: 'off', title: 'Without merchant CSS' },
-          { value: 'on', title: 'With merchant CSS' },
+          { value: 'on', title: 'Merchant page CSS (should not affect the widget)' },
+          {
+            value: 'customized',
+            title: 'Merchant page CSS + widget customization (should restyle it)',
+          },
+          {
+            value: 'fixtures',
+            title: 'Merchant page CSS + the merchant CSS of the contract tests',
+          },
         ],
         dynamicTitle: true,
       },
@@ -43,6 +71,11 @@ const preview: Preview = {
       // The panel informs. The blocking accessibility checks run in Vitest.
       test: 'todo',
     },
+  },
+  beforeEach: () => {
+    // The widget caches the eligibility response for an hour
+    sessionStorage.clear()
+    return keepBodyClean()
   },
 }
 
