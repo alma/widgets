@@ -1,0 +1,6 @@
+/* expect: at-rule-disallowed-list */
+@layer widgets {
+  .a {
+    color: red;
+  }
+}

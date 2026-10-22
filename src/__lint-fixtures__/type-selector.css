@@ -1,0 +1,4 @@
+/* expect: selector-max-type */
+p {
+  color: red;
+}

@@ -180,6 +180,113 @@ const TYPES_ONLY = {
     'A .types.ts file holds types only. Use import type and export type, and put enums and other runtime values in a .const.ts file.',
 }
 
+// The 4.x bans in src/. Each message starts with what it bans, then names what 4.x uses instead.
+const LIGHT_DOM_ELEMENT = 'Extend LightDomElement from @/shared/ui/lit/light-dom-element'
+const SAFE_CUSTOM_ELEMENT =
+  'Register the tag with safeCustomElement from @/shared/ui/lit/safe-custom-element'
+const LINKED_CSS =
+  'CSS stays in the linked stylesheet, so merchant overrides keep winning. Import the CSS module and bind its classes with classMap.'
+const LIT_ELEMENT_BAN = {
+  selector: ':matches(ClassDeclaration, ClassExpression)[superClass.name="LitElement"]',
+  message: `No LitElement subclass: ${LIGHT_DOM_ELEMENT}, which renders in light DOM so merchant CSS applies.`,
+}
+const ATTACH_SHADOW_BAN = {
+  selector: 'CallExpression[callee.property.name="attachShadow"]',
+  message: `No attachShadow: a shadow root stops merchant CSS. ${LIGHT_DOM_ELEMENT}.`,
+}
+const STATIC_STYLES_BAN = {
+  selector: ':matches(PropertyDefinition, MethodDefinition)[static=true][key.name="styles"]',
+  message: `No static styles: ${LINKED_CSS}`,
+}
+const ADOPTED_STYLE_SHEETS_BAN = {
+  selector: 'MemberExpression[property.name="adoptedStyleSheets"]',
+  message: `No adoptedStyleSheets: ${LINKED_CSS}`,
+}
+const CUSTOM_EVENT_BAN = {
+  selector: 'NewExpression[callee.name="CustomEvent"]',
+  message:
+    'No CustomEvent: 4.x adds no events. Call the callback that the merchant passed in the options.',
+}
+const REFLECT_BAN = {
+  selector: 'Property[key.name="reflect"][value.value=true]',
+  message: 'No reflect: true: 4.x adds no attributes. Leave reflect off.',
+}
+const DYNAMIC_IMPORT_BAN = {
+  selector: 'ImportExpression',
+  message: 'No dynamic import(): everything ships in the one bundle. Use a static import.',
+}
+const INNER_HTML_BAN = {
+  selector: 'AssignmentExpression > MemberExpression.left[property.name="innerHTML"]',
+  message:
+    'No innerHTML assignment: render with a Lit template, which escapes text. Rich text becomes a template too.',
+}
+const TIME_ZONE_BAN = {
+  selector: 'Property[key.name="timeZone"]',
+  message:
+    "No timeZone option: dates stay in the shopper's local time, like master. Use the helpers in @/shared/lib/date.",
+}
+const CUSTOM_ELEMENT_BAN = {
+  selector: 'Decorator > CallExpression.expression[callee.name="customElement"]',
+  message: `No @customElement: ${SAFE_CUSTOM_ELEMENT}, so the first bundle on the page wins.`,
+}
+const DEFINE_BAN = {
+  selector:
+    'CallExpression[callee.property.name="define"][callee.object.name="customElements"], CallExpression[callee.property.name="define"][callee.object.property.name="customElements"]',
+  message: `No customElements.define: ${SAFE_CUSTOM_ELEMENT}, so the first bundle on the page wins.`,
+}
+const SRC_BANS = [
+  LIT_ELEMENT_BAN,
+  ATTACH_SHADOW_BAN,
+  STATIC_STYLES_BAN,
+  ADOPTED_STYLE_SHEETS_BAN,
+  CUSTOM_EVENT_BAN,
+  REFLECT_BAN,
+  DYNAMIC_IMPORT_BAN,
+  INNER_HTML_BAN,
+  TIME_ZONE_BAN,
+  CUSTOM_ELEMENT_BAN,
+  DEFINE_BAN,
+]
+const srcSyntax = (bans) => ['error', ...AIRBNB_SYNTAX, ...bans]
+
+// Packages the bundle dropped, with what replaces each of them.
+const NO_REACT =
+  'The bundle has no React in 4.x. Write a Lit template function or a reactive controller.'
+const DROPPED_PACKAGES = [
+  ['react', NO_REACT],
+  ['react-dom', NO_REACT],
+  ['preact', NO_REACT],
+  ['react-intl', 'Format messages with the catalogues and helpers in @/shared/i18n.'],
+  ['classnames', 'Bind CSS-module classes with classMap from lit/directives/class-map.js.'],
+  ['date-fns', 'Use the date helpers in @/shared/lib/date, which give the same results.'],
+  [
+    'react-modal',
+    "The eligibility modal renders react-modal's markup with its own portal controller.",
+  ],
+  ['react-responsive', 'Use the media query controller in @/shared/ui.'],
+  [
+    '@testing-library/react',
+    'Mount widgets through the public API, as merchants do, and query them with @testing-library/dom.',
+  ],
+  ['jest-axe', 'Use vitest-axe, whose matchers src/test/setup.ts loads.'],
+]
+const DROPPED_PATHS = DROPPED_PACKAGES.map(([name, message]) => ({ name, message }))
+const DROPPED_PATTERNS = DROPPED_PACKAGES.map(([name, message]) => ({
+  group: [`${name}/*`],
+  message,
+}))
+const UNSAFE_LIT = {
+  group: [
+    'lit/directives/unsafe-*',
+    'lit-html/directives/unsafe-*',
+    'lit/static-html.js',
+    'lit-html/static.js',
+  ],
+  message:
+    'No unsafe directive or static-html: render with a plain Lit template, which escapes text. Rich text becomes a template too.',
+}
+const IMPORT_BAN_PATTERNS = [...DROPPED_PATTERNS, UNSAFE_LIT]
+
 module.exports = {
   env: {
     browser: true,
@@ -208,7 +315,8 @@ module.exports = {
     sourceType: 'module',
     project: ['./tsconfig.json'],
   },
-  ignorePatterns: ['/*.*'],
+  // The lint fixtures break the rules on purpose. npm run test:harness lints them.
+  ignorePatterns: ['/*.*', 'src/__lint-fixtures__/'],
   rules: {
     ...AIRBNB_OPT_OUTS,
     'prettier/prettier': ['error'],
@@ -287,13 +395,27 @@ module.exports = {
   },
   overrides: [
     {
+      // The 4.x bans. An override replaces a rule's options, so the overrides below repeat them.
+      files: ['src/**/*.ts'],
+      rules: {
+        'no-restricted-syntax': srcSyntax(SRC_BANS),
+        'no-restricted-imports': [
+          'error',
+          { paths: DROPPED_PATHS, patterns: [RELATIVE_IMPORTS, ...IMPORT_BAN_PATTERNS] },
+        ],
+      },
+    },
+    {
       // domain/ is plain TypeScript. An override replaces the rule's options
       // instead of merging them, so it repeats RELATIVE_IMPORTS and the network bans.
       files: ['src/domain/**/*.ts'],
       rules: {
         'no-restricted-imports': [
           'error',
-          { paths: LIT_PATHS, patterns: [RELATIVE_IMPORTS, LIT_PATTERNS] },
+          {
+            paths: [...LIT_PATHS, ...DROPPED_PATHS],
+            patterns: [RELATIVE_IMPORTS, LIT_PATTERNS, ...IMPORT_BAN_PATTERNS],
+          },
         ],
         'no-restricted-globals': banList([...RESTRICTED_GLOBALS, ...DOM_BANS]),
       },
@@ -313,8 +435,16 @@ module.exports = {
       rules: { 'no-restricted-globals': banList(without(RESTRICTED_GLOBALS, [PROCESS_BAN])) },
     },
     {
-      files: ['src/**/*.types.ts'],
-      rules: { 'no-restricted-syntax': ['error', TYPES_ONLY] },
+      // The base class is the one subclass of LitElement.
+      files: ['src/shared/ui/lit/light-dom-element.ts'],
+      rules: { 'no-restricted-syntax': srcSyntax(without(SRC_BANS, [LIT_ELEMENT_BAN])) },
+    },
+    {
+      // The registration decorator is the one place that defines a tag.
+      files: ['src/shared/ui/lit/safe-custom-element.ts'],
+      rules: {
+        'no-restricted-syntax': srcSyntax(without(SRC_BANS, [CUSTOM_ELEMENT_BAN, DEFINE_BAN])),
+      },
     },
     {
       // Tests and stories put the layers together, so the fetch and sessionStorage bans stay open
@@ -328,6 +458,18 @@ module.exports = {
         ...ALLOW_NETWORK,
         'no-restricted-globals': banList(AIRBNB_GLOBALS),
       },
+    },
+    {
+      // Tests build their DOM by hand and define test tags. Stories don't.
+      files: ['src/**/*.test.ts', 'src/**/__tests__/**', 'src/test/**'],
+      rules: {
+        'no-restricted-syntax': srcSyntax(without(SRC_BANS, [INNER_HTML_BAN, DEFINE_BAN])),
+      },
+    },
+    {
+      // Last, so a .types.ts file keeps every ban on top of its own.
+      files: ['src/**/*.types.ts'],
+      rules: { 'no-restricted-syntax': srcSyntax([...SRC_BANS, TYPES_ONLY]) },
     },
     {
       // Contract tests are black-box tests on the built bundles. They import each other with
