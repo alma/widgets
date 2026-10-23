@@ -4,9 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `@alma/widgets` is an npm package (also served via jsDelivr) of embeddable payment-plan widgets for
 merchants using Alma's BNPL API. The widgets are being migrated from React to Lit. The React code is
-deleted and stays readable on master. The Lit code arrives in steps, so a doc may name a file or a
-script that doesn't exist yet. Don't create a script that is missing from `package.json`: it
-belongs to work that hasn't landed.
+deleted and stays readable on master. In these docs, "master" means the master commit that
+`scripts/ref-sha.txt` names, the React reference that the port reproduces. The Lit code arrives in
+steps, so a doc may name a file or a script that doesn't exist yet. Don't create a script that is
+missing from `package.json`: it belongs to work that hasn't landed.
 
 ## Commands
 

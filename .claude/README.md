@@ -28,15 +28,16 @@ Tested with Claude Code 2.1.291.
 
 | Rule file | Loads for | Covers |
 | --- | --- | --- |
-| `architecture.md` | `src/**` | Layers, imports, placement, suffixes, the React original, the contract tests |
-| `domain.md` | `src/domain/` | Plain TypeScript, with no DOM and no Lit |
+| `architecture.md` | `src/**` | Layers, imports, placement, bans across `src/`, suffixes, the React original, tests |
+| `domain.md` | `src/domain/`, `src/shared/lib/http.ts` | The eligibility request and its cache |
 | `widgets.md` | `src/widgets/`, `src/shared/ui/` | Lit in light DOM and the merchant contract of the elements |
-| `public-api.md` | `src/public-api/`, `src/index.ts` | The merchant contract: API, options, files, request |
+| `public-api.md` | `src/public-api/`, `src/index.ts` | The merchant contract: API, options, files |
 | `lit-styling.md` | `src/widgets/`, `src/shared/ui/`, `src/styles/` | CSS that merchants can still override |
 | `lit-accessibility.md` | `src/widgets/`, `src/shared/ui/`, `src/modal.browser.test.ts` | Accessibility as master has it, and the modal |
 
 Each rule has an ID, such as `ARCH-06`, with its reason and its check: lint, a test or review. A
-rule that applies to several folders has the same ID and wording in each file.
+rule lives in the one file whose `paths:` cover every file it governs. When two files that never
+load together both need it, as for ARCH-08, each holds a copy with the same ID and wording.
 
 ## How the rules load
 

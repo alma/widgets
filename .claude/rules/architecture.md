@@ -13,7 +13,7 @@ Claude Code loads a rule file only after Claude reads, edits or writes a file un
 
 | Folder | Rule files, on top of this one |
 | --- | --- |
-| `src/domain/` | `domain.md` |
+| `src/domain/`, `src/shared/lib/http.ts` | `domain.md` |
 | `src/widgets/`, `src/shared/ui/` | `widgets.md`, `lit-styling.md`, `lit-accessibility.md` |
 | `src/public-api/`, `src/index.ts` | `public-api.md` |
 | `src/styles/` | `lit-styling.md` |
@@ -69,8 +69,12 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`, `__tests__/`) put t
 - **LAYER-05** `domain/` is plain TypeScript. It imports no `lit`, `lit-html`, `lit-element`, `@lit/*` or `@lit-labs/*` package, and it uses none of the globals `window`, `document`, `customElements`, `HTMLElement`, `Element`, `Node` and `ShadowRoot`. Its tests may use the DOM globals, because they run in jsdom, but not Lit. Why: the 5.0 UI rewrite leaves `domain/` unchanged. Check: lint.
 - **LAYER-06** Lit code lives only in `widgets/` and `shared/ui/`. Why: the other layers stay plain TypeScript, which the 5.0 UI rewrite keeps. Check: lint in `domain/`, review elsewhere.
 - **LAYER-07** `fetch` and `sessionStorage` appear only in `domain/plans/api/` and `shared/lib/http.ts`, `window.fetch`, `globalThis.sessionStorage` and `self.fetch` included. Why: the widget sends one request and caches it in one place. Check: lint.
-- **LAYER-08** Node globals (`Buffer`, `require`, `__dirname`, `__filename`, `global`, `process`) appear only in tests and `src/test/`. Only `src/shared/config/` reads `process.env.BUILD_VERSION`, which Vite replaces at build time. A bare `setTimeout` returns `NodeJS.Timeout`, so store a timer id as `ReturnType<typeof setTimeout>`. Why: the widget runs in a browser, where they throw, but tsc accepts them because `@types/node` loads next to the DOM types. Check: lint.
+- **LAYER-08** Node globals (`Buffer`, `require`, `__dirname`, `__filename`, `global`, `process`) appear only in tests and `src/test/`, apart from LAYER-12. Why: the widget runs in a browser, where they throw, but tsc accepts them because `@types/node` loads next to the DOM types. Check: lint.
+- **LAYER-12** Only `src/shared/config/` reads `process.env.BUILD_VERSION`. Why: Vite replaces that one value at build time, and any other use of `process` throws in the browser. Check: lint.
+- **LAYER-13** A timer id has the type `ReturnType<typeof setTimeout>`, or comes from `window.setTimeout`. Why: with `@types/node` loaded, a bare `setTimeout` returns `NodeJS.Timeout`. Check: typecheck.
 - **LAYER-09** No relative imports. Write `@/domain/plans/plan-kind`, never `./plan-kind` or `../plans/plan-kind`. `@/` is the only alias and it maps to `src/`. Why: an import reads the same in every file. Check: lint.
+- **ARCH-03** No import of `react`, `react-dom`, `preact`, `react-intl`, `classnames`, `date-fns`, `react-modal`, `react-responsive`, `@testing-library/react` or `jest-axe`. Use `classMap`, `shared/lib/date.ts`, `shared/i18n/` and `vitest-axe` instead. Why: the bundle drops React and its libraries. Check: lint.
+- **ARCH-05** Dates go through `shared/lib/date.ts`, which works in local time like master. Never pass a `timeZone` option to `Intl`. Why: a `timeZone` would change the due dates that shoppers see. Check: lint.
 
 ## File suffixes
 
@@ -86,13 +90,15 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`, `__tests__/`) put t
 | `.const.ts` | runtime constants and enums |
 | `.messages.ts` | message descriptors, next to the code that formats them |
 
-## The React original and the contract tests
+## The React original
 
 - **ARCH-01** The port reproduces master's behaviour at the reference commit, quirks included. Why: the contract tests compare the Lit build with master's build. Check: contract tests.
-- **ARCH-02** A feature PR never edits `tests/integration/contract/`. It only removes its own entries from `expected-failures.json`, once those tests pass. Why: the contract tests pin what merchants rely on, so editing one hides a break. Only a contract-test PR or a master sync changes them. Check: review.
-- **A11Y-07** Only `src/modal.browser.test.ts` runs in Chromium. Every other test runs in jsdom. Why: jsdom has no layout and no real Tab navigation, which only the modal's focus handling needs. Check: tests.
 
 The React code is deleted on this branch. Read it at the reference commit in `scripts/ref-sha.txt`, which `npm run build:ref` builds into `dist-ref/`: `git ls-tree -r --name-only "$(cat scripts/ref-sha.txt)" -- src/components/Loader` lists a folder, and `git show "$(cat scripts/ref-sha.txt)":src/components/Loader/index.tsx` prints a file.
+
+## Tests
+
+- **A11Y-07** Only `src/modal.browser.test.ts` runs in Chromium. Every other test runs in jsdom. Why: jsdom has no layout and no real Tab navigation, which only the modal's focus handling needs. Check: tests.
 
 ## Constraints from outside `src/`
 
