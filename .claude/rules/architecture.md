@@ -75,6 +75,7 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`, `__tests__/`) put t
 - **LAYER-09** No relative imports. Write `@/domain/plans/plan-kind`, never `./plan-kind` or `../plans/plan-kind`. `@/` is the only alias and it maps to `src/`. Why: an import reads the same in every file. Check: lint.
 - **ARCH-03** No import of `react`, `react-dom`, `preact`, `react-intl`, `classnames`, `date-fns`, `react-modal`, `react-responsive`, `@testing-library/react` or `jest-axe`. Use `classMap`, `shared/lib/date.ts`, `shared/i18n/` and `vitest-axe` instead. Why: the bundle drops React and its libraries. Check: lint.
 - **ARCH-05** Dates go through `shared/lib/date.ts`, which works in local time like master. Never pass a `timeZone` option to `Intl`. Why: a `timeZone` would change the due dates that shoppers see. Check: lint.
+- **ARCH-15** No dynamic `import()`. Everything ships in the one bundle. Why: merchants load the five published files by name, and the UMD file is one classic script. Check: lint.
 
 ## File suffixes
 
