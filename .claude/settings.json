@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm test *)",
+      "Bash(npm run test:no-coverage *)",
+      "Bash(npm run test:unit *)",
+      "Bash(npm run test:browser *)",
+      "Bash(npm run test:contract *)",
+      "Bash(npm run test:contract:ref *)",
+      "Bash(npm run test:harness *)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run lint)",
+      "Bash(npm run build)",
+      "Bash(npm run build:contract)",
+      "Bash(npm run build-storybook)"
+    ],
+    "deny": [
+      "Edit(/src/intl/messages/**)",
+      "Edit(/.ref-worktree/**)",
+      "Bash(npm publish *)",
+      "Bash(npm unpublish *)",
+      "Bash(npm deprecate *)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * --force*)",
+      "Bash(git push * -f*)",
+      "Bash(npm run translations:download *)",
+      "Bash(npm run translations:upload *)",
+      "Bash(crowdin *)",
+      "Bash(npx crowdin *)",
+      "Bash(npx @crowdin/cli *)"
+    ],
+    "ask": [
+      "Edit(/tests/integration/contract/**)",
+      "Bash(npm test * -u*)",
+      "Bash(npm test * --update*)",
+      "Bash(npm run test:* -u*)",
+      "Bash(npm run test:* --update*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/lint-edited-file.mjs\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
