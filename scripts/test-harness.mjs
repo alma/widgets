@@ -6,8 +6,12 @@
 //   // expect: nothing                           no ban, zone or layer ban may fire
 //
 // A CSS fixture uses /* expect: <stylelint rule> */. Every expected rule must fire with a message
-// that contains its text, and nothing else from these rules may fire. The harness writes no file.
-import { readdirSync, readFileSync } from 'node:fs'
+// that contains its text, and nothing else from these rules may fire.
+//
+// Then it runs the Claude Code lint hook on a few files, as Claude Code does after an edit. The
+// hook skips the fixtures, so a case copies its fixture where the hook lints it, then removes it.
+import { execFileSync, spawnSync } from 'node:child_process'
+import { readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { join, relative, resolve } from 'node:path'
 
@@ -32,6 +36,34 @@ const STYLELINT_RULES = new Set([
   'selector-pseudo-class-disallowed-list',
   'selector-pseudo-element-disallowed-list',
 ])
+const HOOK = '.claude/hooks/lint-edited-file.mjs'
+const HOOK_TIMEOUT_MS = 10_000
+// A case with a fixture copies it to `file`, then removes it. The hook runs in `cwd`, the root by
+// default, as Claude Code runs it in the session's current directory.
+const HOOK_CASES = [
+  {
+    name: 'ban',
+    fixture: 'static-styles.ts',
+    file: 'src/widgets/common/fixture.ts',
+    expect: 'No static styles',
+  },
+  {
+    name: 'zone',
+    fixture: 'layers/zone-domain.ts',
+    file: 'src/domain/plans/fixture.ts',
+    expect: 'domain/ imports only shared/lib/ and shared/config/',
+  },
+  {
+    name: 'css',
+    fixture: 'layer.css',
+    file: 'src/styles/fixture.css',
+    expect: 'at-rule-disallowed-list',
+  },
+  { name: 'not linted', file: 'README.md' },
+  { name: 'fixture skipped', file: 'src/__lint-fixtures__/static-styles.ts' },
+  { name: 'clean', file: 'src/shared/lib/price.ts' },
+  { name: 'clean from src/', file: 'src/shared/lib/price.ts', cwd: 'src' },
+]
 
 // The bans need no type information, and import/no-cycle can't follow a file that isn't on disk.
 const eslint = new ESLint({
@@ -137,6 +169,72 @@ report(
   browserTests.length === 0
     ? `no *.browser.test.ts file but ${ONLY_BROWSER_TEST}`
     : `only ${ONLY_BROWSER_TEST} may run in Chromium, found ${browserTests.join(', ')}`,
+)
+
+const runHook = (file, cwd = '.') => {
+  const started = Date.now()
+  const result = spawnSync(process.execPath, [join(root, HOOK)], {
+    cwd: join(root, cwd),
+    encoding: 'utf8',
+    input: JSON.stringify({
+      hook_event_name: 'PostToolUse',
+      tool_name: 'Write',
+      tool_input: { file_path: resolve(root, file) },
+    }),
+    timeout: HOOK_TIMEOUT_MS,
+  })
+  return { ...result, seconds: ((Date.now() - started) / 1000).toFixed(1) }
+}
+
+const checkHookCase = ({ fixture, file, cwd, expect }) => {
+  if (fixture) {
+    // wx fails if the file exists, so the finally never removes a file of the repo.
+    writeFileSync(join(root, file), readFileSync(join(root, FIXTURES, fixture)), { flag: 'wx' })
+  }
+  try {
+    const { status, stderr, error, seconds } = runHook(file, cwd)
+    if (error) {
+      const reason =
+        error.code === 'ETIMEDOUT' ? `took over ${HOOK_TIMEOUT_MS / 1000}s` : error.message
+      return { ok: false, detail: `${file}: ${reason}` }
+    }
+    if (expect) {
+      const ok = status === 2 && stderr.includes(expect)
+      return {
+        ok,
+        detail: ok
+          ? `${file}: exit 2 in ${seconds}s with "${expect}"`
+          : `${file}: exit ${status}, expected 2 with "${expect}": ${stderr.trim()}`,
+      }
+    }
+    const ok = status === 0 && stderr === ''
+    return {
+      ok,
+      detail: ok ? `${file}: silent in ${seconds}s` : `${file}: exit ${status}: ${stderr.trim()}`,
+    }
+  } finally {
+    if (fixture) {
+      rmSync(join(root, file), { force: true })
+    }
+  }
+}
+
+const gitStatus = () =>
+  execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' })
+const statusBefore = gitStatus()
+for (const hookCase of HOOK_CASES) {
+  try {
+    const { ok, detail } = checkHookCase(hookCase)
+    report(ok, `hook ${hookCase.name}`, detail)
+  } catch (error) {
+    report(false, `hook ${hookCase.name}`, error.message)
+  }
+}
+const statusChanged = gitStatus() !== statusBefore
+report(
+  !statusChanged,
+  'hook copies',
+  statusChanged ? 'git status changed: a copy was left behind' : 'git status is as before',
 )
 
 console.log(failures === 0 ? '\nEvery check fired.' : `\n${failures} check(s) failed.`)
