@@ -47,4 +47,5 @@ jobs:
           TRIVY_RUN_AS_PLUGIN: aqua
           TRIVY_DB_REPOSITORY: europe-docker.pkg.dev/lyrical-carver-335213/remote-cache-aquasec/trivy-db:2
         with:
-          args: trivy fs --sast --reachability --scanners misconfig,vuln,secret .
+          # examples/ isn't published, and its build loader needs document.write.
+          args: trivy fs --sast --reachability --scanners misconfig,vuln,secret --skip-dirs examples .
