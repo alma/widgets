@@ -133,5 +133,10 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "msw": {
+    "workerDirectory": [
+      ".storybook/public"
+    ]
   }
 }

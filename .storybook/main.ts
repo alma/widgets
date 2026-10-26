@@ -2,6 +2,8 @@ import type { StorybookConfig } from '@storybook/web-components-vite'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.ts'],
+  // msw's worker. A root public/ folder would end up in dist/.
+  staticDirs: ['./public'],
   addons: ['@storybook/addon-docs', '@storybook/addon-a11y'],
   framework: '@storybook/web-components-vite',
   core: { disableTelemetry: true },
