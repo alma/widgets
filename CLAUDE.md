@@ -40,6 +40,10 @@ Husky `pre-commit` already runs the typecheck, the tests of the changed files an
 - `src/test/setup-jsdom.ts` runs in the `unit` project only. It puts the time zone back to UTC after
   each test and mocks `matchMedia` (no query matches), `no-scroll` and the canvas context axe needs.
   In unit tests, a CSS module class name equals its key (`styles.planButton === 'planButton'`).
+- `setup-jsdom.ts` also starts the msw server of `src/test/msw-server.ts`. A test adds the handlers
+  of `src/test/eligibilityHandlers.ts`, the ones the stories use, with `server.use()`, and they go
+  away after it. A request that no handler of the test answers fails the test, even when the code
+  catches the error, and never reaches the network.
 - A custom element definition can't be removed, so a tag stays defined until its test file ends.
   Each test file gets a fresh page.
 - Coverage leaves out the files whose tests aren't ported yet (the list in `vitest.config.ts`).

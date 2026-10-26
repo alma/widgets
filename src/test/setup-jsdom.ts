@@ -1,4 +1,5 @@
 // What jsdom lacks. The browser project keeps the real implementations.
+import { server, startServer, unhandledRequests } from '@/test/msw-server'
 
 const useUtc = () => {
   process.env.TZ = 'UTC'
@@ -40,4 +41,13 @@ Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
     save: vi.fn(),
     restore: vi.fn(),
   })),
+})
+
+// Fails the test on a request that no handler answered, even one the code caught.
+startServer()
+afterAll(() => server.close())
+afterEach(() => {
+  server.resetHandlers()
+  const leaked = unhandledRequests.splice(0)
+  expect(leaked, 'requests with no msw handler').toEqual([])
 })
