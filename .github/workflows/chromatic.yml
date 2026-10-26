@@ -8,7 +8,7 @@ on:
 
 jobs:
   chromatic:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       # To comment the build result on the PR
