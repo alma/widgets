@@ -38,7 +38,7 @@
     "test:harness": "node scripts/test-harness.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "translations:extract": "echo 'translations:extract is disabled until the Lit message descriptors exist, because it would empty src/intl/messages.json.' >&2 && exit 1",
+    "translations:extract": "formatjs extract 'src/**/*.ts*' --out-file 'src/intl/messages.json' --format simple --ignore 'src/*.d.ts' && prettier ./src/intl --write",
     "translations:upload": "crowdin upload sources",
     "translations:download": "crowdin download && prettier ./src/intl --write",
     "prepare": "husky",
