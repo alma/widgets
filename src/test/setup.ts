@@ -1,9 +1,7 @@
 import * as axeMatchers from 'vitest-axe/matchers'
 
 import { resetWarnOnce } from '@/shared/lib/errors'
-
-// Master's "today": 1 December 2021, 09:26:02 UTC.
-const TODAY = 1638350762000
+import { TODAY } from '@/test/planBuilders'
 
 expect.extend(axeMatchers)
 

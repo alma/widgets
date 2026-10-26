@@ -1,5 +1,9 @@
 import type { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
-import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
+import { DEFAULT_DUE_DATE, eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
+
+it('should make the first installment due at the fixed Date.now()', () => {
+  expect(DEFAULT_DUE_DATE * 1000).toBe(Date.now())
+})
 
 describe('eligiblePlanBuilder', () => {
   afterEach(() => {
