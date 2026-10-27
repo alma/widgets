@@ -4,10 +4,12 @@ import { resolve } from 'node:path'
 import CleanCSS from 'clean-css'
 import { defineConfig, type Plugin } from 'vite'
 
+import { icuCatalogues, icuParserAlias } from './scripts/vite-plugin-icu'
+
 const src = (path = '') => resolve(__dirname, 'src', path)
 
 // alias and define are shared with vitest.config.ts.
-export const alias = { '@': src() }
+export const alias = [{ find: '@', replacement: src() }, icuParserAlias]
 
 // Only the keys the bundle reads. Defining the whole process.env would inline the build machine's env.
 export const define = {
@@ -75,5 +77,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [minCss(), wooCommerceCopy()],
+  plugins: [icuCatalogues(), minCss(), wooCommerceCopy()],
 })
