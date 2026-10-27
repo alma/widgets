@@ -1,10 +1,25 @@
 import type { Preview } from '@storybook/web-components-vite'
+import { setupWorker } from 'msw/browser'
+import { mswLoader } from 'msw-storybook-addon/csf3'
 
 import '@/styles/main.css'
 import { Locale } from '@/shared/i18n/i18n.const'
+import { blockAlmaApi } from '@/test/block-alma-api'
 
 import { withMerchantCss } from './decorators/merchant-css'
 import { withModalContainer } from './decorators/modal-container'
+
+// Stories mock requests with parameters.msw.handlers. Storybook's and Vite's requests go through.
+const startMsw = async () => {
+  // Survives the reset between stories. A story's handlers come first.
+  const worker = setupWorker(
+    ...blockAlmaApi((request) => {
+      console.error(`No MSW handler for ${request.method} ${request.url} in this story`)
+    }),
+  )
+  await worker.start({ quiet: true, onUnhandledRequest: 'bypass' })
+  return worker
+}
 
 // Undoes what the modal adds to <body>, so it doesn't show in the next story
 const keepBodyClean = () => {
@@ -27,6 +42,7 @@ const keepBodyClean = () => {
 }
 
 const preview: Preview = {
+  loaders: [mswLoader(startMsw)],
   decorators: [withModalContainer, withMerchantCss],
   globalTypes: {
     merchantCss: {

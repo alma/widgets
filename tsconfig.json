@@ -17,6 +17,6 @@
       "@/*": ["src/*"],
     }
   },
-  "include": ["src", "scripts", "tests", ".storybook", "vite.config.ts", "vitest.config.ts"],
+  "include": ["src", "scripts", "tests", ".storybook/**/*.ts", "vite.config.ts", "vitest.config.ts"],
   "exclude": ["node_modules", "dist", "dist-ref", ".ref-worktree", "src/__lint-fixtures__"],
 }

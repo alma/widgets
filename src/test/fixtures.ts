@@ -1,5 +1,7 @@
 import type { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
-import type { ConfigPlan } from '@/domain/plans/plans.types'
+import filterEligibility from '@/domain/plans/filter-plans'
+import type { ConfigPlan, EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { Card } from '@/shared/ui/icons/cards/cards.types'
 import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
 
 const baseEligiblePlan = eligiblePlanBuilder().withPurchaseAmount(45000)
@@ -13,6 +15,8 @@ export const mockPayLaterOneMonthEligiblePlan = baseEligiblePlan
 export const mockPayLater30DaysEligiblePlan = baseEligiblePlan
   .withInstallmentsCount(1)
   .withDeferredDays(30)
+
+export const mockPayLater30DaysEligiblePlanWithFees = mockPayLater30DaysEligiblePlan.withFees(135)
 
 export const mockP2XEligiblePlan = baseEligiblePlan.withInstallmentsCount(2)
 
@@ -107,3 +111,40 @@ export const configPlans: ConfigPlan[] = mockPlansAllEligible.map((plan) => ({
   minAmount: 90_00,
   maxAmount: 3350_00,
 }))
+
+// Countries with a WarningMessage sentence. UK uses GB's.
+export const warningMessageCountries = ['FR', 'LU', 'BE', 'NL', 'IT', 'DE', 'PT', 'ES', 'GB', 'UK']
+
+// No WarningMessage sentence.
+export const unmappedWarningMessageCountry = 'US'
+
+export const mockP10XEligiblePlanIn = (country: string) => mockP10XEligiblePlan.withCountry(country)
+
+// The plans as the templates receive them.
+const toDisplay = (plans: EligibilityPlan[]): EligibilityPlanToDisplay[] =>
+  filterEligibility(plans, configPlans)
+
+// API maximum 200 €, under the merchant's 3,350 €.
+export const [mockP4XAboveMaxDisplayPlan] = toDisplay([mockP4XIneligiblePlan])
+
+// API minimum 900 €, over the merchant's 90 €.
+export const [mockP10XBelowMinDisplayPlan] = toDisplay([mockP10XIneligiblePlan])
+
+export const mockDisplayPlansNoneEligible: EligibilityPlanToDisplay[] = [
+  mockP4XAboveMaxDisplayPlan,
+  mockP10XBelowMinDisplayPlan,
+]
+
+export const mockDisplayPlansSingle: EligibilityPlanToDisplay[] = toDisplay([
+  mockP3XEligiblePlanWithFees,
+])
+
+export const mockDisplayPlansOneEligible: EligibilityPlanToDisplay[] = [
+  ...mockDisplayPlansSingle,
+  ...mockDisplayPlansNoneEligible,
+]
+
+export const mockDisplayPlansAllEligible: EligibilityPlanToDisplay[] =
+  toDisplay(mockPlansAllEligible)
+
+export const mockCards: Card[] = ['cb', 'amex', 'mastercard', 'visa']

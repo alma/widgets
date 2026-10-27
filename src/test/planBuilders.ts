@@ -7,7 +7,10 @@ import type {
 } from '@/domain/plans/api/eligibility.types'
 import { addDays, addMonths, fromUnixTime, getUnixTime } from '@/shared/lib/date'
 
-const DEFAULT_DUE_DATE = 1638350762
+// Master's "today": 1 December 2021, 09:26:02 UTC. setup.ts fixes Date.now() to it.
+export const TODAY = 1638350762000
+// The first installment is due today. due_date is in Unix seconds.
+export const DEFAULT_DUE_DATE = TODAY / 1000
 const BPS_SCALE = 10000
 const NB_MONTH_BY_YEAR = 12
 
