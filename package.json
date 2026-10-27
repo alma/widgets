@@ -100,7 +100,9 @@
     "vitest-axe": "^0.1.0"
   },
   "dependencies": {
+    "@formatjs/fast-memoize": "2.2.3",
     "@lit/task": "^1.0.3",
+    "intl-messageformat": "10.7.7",
     "lit": "^3.3.3",
     "no-scroll": "^2.1.1"
   },
