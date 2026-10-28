@@ -2,10 +2,23 @@
 // local time, like date-fns, and the tests in date.test.ts pin its output.
 const MILLISECONDS_BY_SECOND = 1000
 
-export const fromUnixTime = (unixTime: number): Date => new Date(unixTime * MILLISECONDS_BY_SECOND)
+export const secondsToMilliseconds = (seconds: number): number => seconds * MILLISECONDS_BY_SECOND
+
+export const fromUnixTime = (unixTime: number): Date => new Date(secondsToMilliseconds(unixTime))
 
 export const getUnixTime = (date: Date): number =>
   Math.trunc(date.getTime() / MILLISECONDS_BY_SECOND)
+
+// Reads Date.now() at each call, like date-fns, so a mocked current time applies.
+export const isToday = (date: Date | number): boolean => {
+  const day = new Date(date)
+  const today = new Date(Date.now())
+  return (
+    day.getFullYear() === today.getFullYear() &&
+    day.getMonth() === today.getMonth() &&
+    day.getDate() === today.getDate()
+  )
+}
 
 // Like date-fns, a NaN offset gives an Invalid Date, so a wrong offset shows up as a NaN due date
 // instead of passing for a valid one.
