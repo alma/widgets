@@ -19,9 +19,12 @@ class PlaceholderHost extends LightDomElement {
 
   disconnections = 0
 
+  onDisconnect?: () => void
+
   override disconnectedCallback(): void {
     super.disconnectedCallback()
     this.disconnections += 1
+    this.onDisconnect?.()
   }
 
   protected override render() {
@@ -268,6 +271,19 @@ describe('WidgetsController', () => {
       expect(first.disconnections).toBe(0)
     })
 
+    it('should mount a new modal host on open() after the merchant empties the container', () => {
+      const handle = addModal()
+      handle.open()
+      const [first] = modalHostsIn(container)
+      container.replaceChildren()
+
+      handle.open()
+
+      const [second] = modalHostsIn(container)
+      expect(second).toBeDefined()
+      expect(second).not.toBe(first)
+    })
+
     it('should replace a PaymentPlans host that was added after add(Modal) on open()', () => {
       const handle = addModal()
       addPaymentPlans()
@@ -287,6 +303,18 @@ describe('WidgetsController', () => {
 
       expect(modalHost.disconnections).toBe(1)
       expect(modalHostsIn(container)).toHaveLength(0)
+      expect(hostsIn(container)).toHaveLength(1)
+    })
+
+    it('should still replace a host that was mounted while the modal host disconnected', () => {
+      const handle = addModal()
+      handle.open()
+      const [modalHost] = modalHostsIn(container)
+      modalHost.onDisconnect = () => addPaymentPlans()
+      handle.close(new MouseEvent('click'))
+
+      addPaymentPlans()
+
       expect(hostsIn(container)).toHaveLength(1)
     })
   })

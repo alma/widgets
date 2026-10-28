@@ -23,8 +23,9 @@ const hosts = new WeakMap<Element, HTMLElement>()
 const renderedContainers = new WeakSet<Element>()
 
 const removeHost = (container: Element): void => {
-  hosts.get(container)?.remove()
+  const host = hosts.get(container)
   hosts.delete(container)
+  host?.remove()
 }
 
 const mountHost = (container: Element, tagName: string, properties: HostProperties): void => {
@@ -42,7 +43,8 @@ const mountHost = (container: Element, tagName: string, properties: HostProperti
 // As Preact does, a second open() updates the open modal instead of mounting another one.
 const renderModalHost = (container: Element, properties: HostProperties): void => {
   const host = hosts.get(container)
-  if (host?.localName === ELIGIBILITY_MODAL_TAG) {
+  // Detached when the merchant emptied the container.
+  if (host?.localName === ELIGIBILITY_MODAL_TAG && host.parentNode === container) {
     Object.assign(host, properties)
     return
   }
