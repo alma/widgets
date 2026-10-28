@@ -1,8 +1,13 @@
 import { html } from 'lit'
+import type { MockInstance } from 'vitest'
 
 import { ApiMode, Widgets } from '@/index'
 import type { ModalHandle } from '@/public-api/modal-handle'
-import type { ModalOptions, PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
+import type {
+  ModalOptions,
+  PaymentPlanWidgetOptions,
+  WidgetOptions,
+} from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { Card } from '@/shared/ui/icons/cards/cards.types'
 import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
@@ -284,18 +289,6 @@ describe('WidgetsController', () => {
       expect(modalHostsIn(container)).toHaveLength(0)
       expect(hostsIn(container)).toHaveLength(1)
     })
-
-    it('should return a handle that does nothing without a container', () => {
-      container.remove()
-      const onClose = vi.fn()
-
-      const handle = addModal({ onClose })
-      handle.open()
-      handle.close(new MouseEvent('click'))
-
-      expect(document.querySelector('alma-eligibility-modal')).toBeNull()
-      expect(onClose).not.toHaveBeenCalled()
-    })
   })
 
   describe('close(event)', () => {
@@ -336,5 +329,66 @@ describe('WidgetsController', () => {
       expect(plansHost.disconnections).toBe(1)
       expect(container.children).toHaveLength(0)
     })
+  })
+
+  describe('a misconfigured add()', () => {
+    let warn: MockInstance<typeof console.warn>
+
+    beforeEach(() => {
+      warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    })
+
+    const misconfigurations = [
+      {
+        name: 'a missing container',
+        options: { container: '#missing' },
+        warning: ['[Alma widgets] add() found no container for "#missing".'],
+      },
+      {
+        name: 'an invalid selector',
+        options: { container: '#' },
+        warning: [
+          '[Alma widgets] add() got an invalid container selector "#".',
+          expect.objectContaining({ name: 'SyntaxError' }),
+        ],
+      },
+      {
+        name: 'missing options',
+        options: undefined,
+        warning: ['[Alma widgets] add() was called without options.'],
+      },
+    ]
+
+    it.each(misconfigurations)(
+      'should warn once for $name, throw nothing and return undefined for PaymentPlans',
+      ({ options, warning }) => {
+        const add = () => widgets().add(Widgets.PaymentPlans, options as WidgetOptions)
+
+        expect([add(), add()]).toEqual([undefined, undefined])
+
+        expect(warn).toHaveBeenCalledOnce()
+        expect(warn).toHaveBeenCalledWith(...warning)
+        expect(document.querySelector('alma-payment-plans')).toBeNull()
+      },
+    )
+
+    it.each(misconfigurations)(
+      'should warn once for $name, throw nothing and return a Modal handle that does nothing',
+      ({ options, warning }) => {
+        const onClose = vi.fn()
+        const modalOptions = (options && { ...options, onClose }) as unknown as WidgetOptions
+        const add = () => widgets().add(Widgets.Modal, modalOptions) as ModalHandle
+
+        const [handle] = [add(), add()]
+        handle.open()
+        handle.close(new MouseEvent('click'))
+
+        expect(handle).toEqual({ open: expect.any(Function), close: expect.any(Function) })
+        expect(document.querySelector('alma-eligibility-modal')).toBeNull()
+        expect(onClose).not.toHaveBeenCalled()
+        expect(warn).toHaveBeenCalledOnce()
+        expect(warn).toHaveBeenCalledWith(...warning)
+      },
+    )
   })
 })

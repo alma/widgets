@@ -11,26 +11,19 @@ type ModalHostActions = {
   removeHost: (container: Element) => void
 }
 
-// The container is the one that add() found, as on master. Without it, open() and close() do
-// nothing.
 export const createModalHandle = (
-  container: Element | null,
+  container: Element,
   onClose: ModalOptions['onClose'],
   { mountModal, removeHost }: ModalHostActions,
 ): ModalHandle => {
   // As on master, removes any widget in the container, not only the modal.
   const close: ModalHandle['close'] = (event) => {
-    if (!container) {
-      return
-    }
     removeHost(container)
     onClose?.(event)
   }
 
   const open = (): void => {
-    if (container) {
-      mountModal(container, close)
-    }
+    mountModal(container, close)
   }
 
   return { open, close }
