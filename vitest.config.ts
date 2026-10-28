@@ -1,14 +1,16 @@
 import { playwright } from '@vitest/browser-playwright'
 import { configDefaults, defineConfig } from 'vitest/config'
+import { icuCatalogues } from './scripts/vite-plugin-icu'
 import { alias, define } from './vite.config'
 
 // jsdom has no layout and no real Tab navigation, so only the modal's focus tests need a browser.
 const BROWSER_TESTS = ['src/**/*.browser.test.ts']
 
 export default defineConfig({
-  // Same alias and env values as the build.
+  // Same alias, env values and compiled catalogues as the build.
   resolve: { alias },
   define,
+  plugins: [icuCatalogues()],
   test: {
     globals: true,
     coverage: {
@@ -24,10 +26,7 @@ export default defineConfig({
         'src/__lint-fixtures__/**',
         // Their tests aren't ported yet. Each port removes its file from this list.
         'src/index.ts',
-        'src/domain/plans/index.ts',
-        'src/domain/plans/plans.const.ts',
         'src/shared/config/api-url.const.ts',
-        'src/shared/lib/http.ts',
         'src/widgets/eligibility-modal/eligibility-modal.const.ts',
         'src/widgets/payment-plans/payment-plans.const.ts',
       ],
@@ -41,11 +40,14 @@ export default defineConfig({
     projects: [
       {
         extends: true,
+        // intl-messageformat's CommonJS entry would require() the full parser, past the alias.
+        resolve: { mainFields: ['module', 'jsnext:main', 'jsnext', 'main'] },
         test: {
           name: 'unit',
           environment: 'jsdom',
-          include: ['src/**/*.test.ts'],
+          include: ['src/**/*.test.ts', 'scripts/**/*.test.ts'],
           exclude: [...configDefaults.exclude, ...BROWSER_TESTS],
+          server: { deps: { inline: ['intl-messageformat'] } },
           setupFiles: ['src/test/setup.ts', 'src/test/setup-jsdom.ts'],
           // Like identity-obj-proxy on master: styles.planButton is 'planButton'.
           css: { modules: { classNameStrategy: 'non-scoped' } },

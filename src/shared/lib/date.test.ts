@@ -1,4 +1,14 @@
-import { addDays, addMonths, fromUnixTime, getUnixTime } from '@/shared/lib/date'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+
+import {
+  addDays,
+  addMonths,
+  fromUnixTime,
+  getUnixTime,
+  isToday,
+  secondsToMilliseconds,
+} from '@/shared/lib/date'
 
 // The helpers work in local time, like date-fns. Every expected date below is the output of
 // date-fns 4.4.0 for the same input, in the same time zone.
@@ -9,6 +19,27 @@ const useTimeZone = (timeZone: string) => {
 }
 
 const iso = (date: Date) => date.toISOString()
+
+type DatesFixture = {
+  now: number
+  dueDates: number[]
+  zones: Record<string, Record<string, { isToday: boolean }>>
+}
+
+// What master's isToday returned for each zone and due date.
+const datesFixture: DatesFixture = JSON.parse(
+  readFileSync(
+    resolve(__dirname, '../../../tests/integration/contract/fixtures/dates.json'),
+    'utf8',
+  ),
+)
+
+// None of the fixture zones changes its clocks.
+const OFFSET_BY_ZONE: Record<string, number> = {
+  UTC: 0,
+  'Pacific/Kiritimati': -840,
+  'America/Guadeloupe': 240,
+}
 
 afterEach(() => {
   if (originalTimeZone === undefined) {
@@ -22,6 +53,12 @@ describe('in UTC', () => {
   beforeEach(() => {
     useTimeZone('UTC')
     expect(new Date(2022, 6, 1).getTimezoneOffset()).toBe(0)
+  })
+
+  describe('secondsToMilliseconds', () => {
+    it('should turn seconds into milliseconds', () => {
+      expect(secondsToMilliseconds(1638350762)).toBe(1638350762000)
+    })
   })
 
   describe('fromUnixTime', () => {
@@ -45,6 +82,30 @@ describe('in UTC', () => {
 
     it('should round trip with fromUnixTime', () => {
       expect(getUnixTime(fromUnixTime(1638350762))).toBe(1638350762)
+    })
+  })
+
+  describe('isToday', () => {
+    it('should accept a date as well as milliseconds', () => {
+      vi.spyOn(Date, 'now').mockReturnValue(Date.UTC(2021, 11, 1, 12))
+
+      expect(isToday(new Date('2021-12-01T00:00:00Z'))).toBe(true)
+      expect(isToday(Date.UTC(2021, 11, 1))).toBe(true)
+    })
+
+    it('should follow a current time that changes between two calls', () => {
+      const dueDate = Date.UTC(2021, 11, 1, 12)
+      const now = vi.spyOn(Date, 'now').mockReturnValue(dueDate)
+
+      expect(isToday(dueDate)).toBe(true)
+
+      now.mockReturnValue(Date.UTC(2021, 11, 2, 12))
+
+      expect(isToday(dueDate)).toBe(false)
+    })
+
+    it('should return false for an Invalid Date', () => {
+      expect(isToday(NaN)).toBe(false)
     })
   })
 
@@ -170,5 +231,25 @@ describe('in Europe/Paris, where the clocks change', () => {
 
   it('should clamp the day and keep the local time together', () => {
     expect(iso(addMonths(new Date('2022-01-31T11:00:00Z'), 2))).toBe('2022-03-31T10:00:00.000Z')
+  })
+})
+
+describe('isToday against the date fixture', () => {
+  it('should know the offset of every fixture zone', () => {
+    expect(Object.keys(datesFixture.zones).sort()).toEqual(Object.keys(OFFSET_BY_ZONE).sort())
+  })
+
+  describe.each(Object.keys(datesFixture.zones))('in %s', (timeZone) => {
+    beforeEach(() => {
+      useTimeZone(timeZone)
+      expect(new Date(datesFixture.now).getTimezoneOffset()).toBe(OFFSET_BY_ZONE[timeZone])
+      vi.spyOn(Date, 'now').mockReturnValue(datesFixture.now)
+    })
+
+    it.each(datesFixture.dueDates)("should give master's result for the due date %i", (dueDate) => {
+      expect(isToday(secondsToMilliseconds(dueDate))).toBe(
+        datesFixture.zones[timeZone][dueDate].isToday,
+      )
+    })
   })
 })
