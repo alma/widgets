@@ -26,8 +26,6 @@ export default defineConfig({
         'src/index.ts',
         'src/domain/plans/index.ts',
         'src/domain/plans/plans.const.ts',
-        'src/public-api/public-api.const.ts',
-        'src/public-api/widgets.ts',
         'src/shared/config/api-url.const.ts',
         'src/shared/lib/http.ts',
         'src/widgets/eligibility-modal/eligibility-modal.const.ts',

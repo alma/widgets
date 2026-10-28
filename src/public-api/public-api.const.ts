@@ -15,3 +15,6 @@ export enum WidgetTypes {
   PaymentPlans = 'PaymentPlans',
   Modal = 'Modal',
 }
+
+// The tag of the host that add() inserts in the merchant's container. Never change it in 4.x.
+export const PAYMENT_PLANS_TAG = 'alma-payment-plans'
