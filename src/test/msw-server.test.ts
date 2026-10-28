@@ -13,11 +13,11 @@ import { server, unhandledRequests } from '@/test/msw-server'
 
 const ELIGIBILITY_URL = `${ApiMode.TEST}/v2/payments/eligibility`
 const requestEligibility = () =>
-  fetchFromApi(
-    { purchase_amount: 45000 },
-    { Authorization: 'Alma-Merchant-Auth 11gKoO' },
-    ELIGIBILITY_URL,
-  )
+  fetchFromApi({
+    url: ELIGIBILITY_URL,
+    headers: { Authorization: 'Alma-Merchant-Auth 11gKoO' },
+    body: { purchase_amount: 45000 },
+  })
 
 describe('the eligibility handlers in unit tests', () => {
   it('should answer with a copy of the plans', async () => {

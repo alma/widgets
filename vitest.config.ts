@@ -29,7 +29,6 @@ export default defineConfig({
         'src/public-api/public-api.const.ts',
         'src/public-api/widgets.ts',
         'src/shared/config/api-url.const.ts',
-        'src/shared/lib/http.ts',
         'src/widgets/eligibility-modal/eligibility-modal.const.ts',
         'src/widgets/payment-plans/payment-plans.const.ts',
       ],
