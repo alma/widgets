@@ -18,38 +18,39 @@ export type AddReturnType = ModalHandle | undefined
 
 type HostProperties = Record<string, unknown>
 
-const hosts = new WeakMap<Element, HTMLElement>()
-// Preact empties a container on its first render only, so later mounts keep the merchant's nodes.
-const renderedContainers = new WeakSet<Element>()
+// null once removed: the entry stays, so the container is never emptied again.
+const hosts = new WeakMap<Element, HTMLElement | null>()
 
 const removeHost = (container: Element): void => {
   const host = hosts.get(container)
-  hosts.delete(container)
-  host?.remove()
+  if (host) {
+    hosts.set(container, null)
+    host.remove()
+  }
 }
 
 const mountHost = (container: Element, tagName: string, properties: HostProperties): void => {
   const host = document.createElement(tagName)
   // Before append(), so the first render has every option.
   Object.assign(host, properties)
-  if (!renderedContainers.has(container)) {
+  // Preact empties a container on its first render only.
+  if (!hosts.has(container)) {
     container.replaceChildren()
-    renderedContainers.add(container)
   }
   container.append(host)
   hosts.set(container, host)
 }
 
-// As Preact does, a second open() updates the open modal instead of mounting another one.
-const renderModalHost = (container: Element, properties: HostProperties): void => {
+// Like Preact, the same tag updates in place.
+const renderHost = (container: Element, tagName: string, properties: HostProperties): void => {
   const host = hosts.get(container)
   // Detached when the merchant emptied the container.
-  if (host?.localName === ELIGIBILITY_MODAL_TAG && host.parentNode === container) {
+  if (host?.localName === tagName && host.parentNode === container) {
     Object.assign(host, properties)
     return
   }
   removeHost(container)
-  mountHost(container, ELIGIBILITY_MODAL_TAG, properties)
+  mountHost(container, tagName, properties)
 }
 
 // Master's PaymentPlanWidget props and defaults.
@@ -93,7 +94,6 @@ const toPaymentPlansHostProperties = (
 const toEligibilityModalHostProperties = (
   apiData: ApiConfig,
   options: ModalOptions,
-  close: ModalHandle['close'],
 ): HostProperties => {
   const {
     purchaseAmount,
@@ -111,7 +111,6 @@ const toEligibilityModalHostProperties = (
     customerBillingCountry,
     customerShippingCountry,
     merchantCoversAllFees,
-    onClose: close,
     cards,
     locale,
   }
@@ -139,7 +138,7 @@ const findContainer = (options: WidgetOptions | undefined): Element | null => {
 export function WidgetsController(apiData: ApiConfig) {
   return {
     add(widget: WidgetNames, options: WidgetOptions): AddReturnType {
-      const container = findContainer(options as WidgetOptions | undefined)
+      const container = findContainer(options)
       // Before the name check: on master, even an unknown name removes the widget.
       if (container) {
         removeHost(container)
@@ -161,10 +160,12 @@ export function WidgetsController(apiData: ApiConfig) {
           return { open() {}, close() {} }
         }
         const modalOptions = options as ModalOptions
-        return createModalHandle(container, modalOptions.onClose, {
-          mountModal: (target, close) =>
-            renderModalHost(target, toEligibilityModalHostProperties(apiData, modalOptions, close)),
-          removeHost,
+        // Read now, not at open(), as master does.
+        const properties = toEligibilityModalHostProperties(apiData, modalOptions)
+        return createModalHandle(modalOptions.onClose, {
+          mount: (close) =>
+            renderHost(container, ELIGIBILITY_MODAL_TAG, { ...properties, onClose: close }),
+          remove: () => removeHost(container),
         })
       }
       return undefined

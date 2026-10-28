@@ -3,6 +3,7 @@ import type { MockInstance } from 'vitest'
 
 import { ApiMode, Widgets } from '@/index'
 import type { ModalHandle } from '@/public-api/modal-handle'
+import { ELIGIBILITY_MODAL_TAG, PAYMENT_PLANS_TAG } from '@/public-api/public-api.const'
 import type {
   ModalOptions,
   PaymentPlanWidgetOptions,
@@ -11,7 +12,7 @@ import type {
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { Card } from '@/shared/ui/icons/cards/cards.types'
 import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
-import { TEST_MERCHANT_ID } from '@/test/mount-widget'
+import { TEST_CONTAINER, TEST_MERCHANT_ID } from '@/test/mount-widget'
 
 // Stands in for the real elements, which don't exist yet.
 class PlaceholderHost extends LightDomElement {
@@ -32,21 +33,23 @@ class PlaceholderHost extends LightDomElement {
     return html`<div data-testid="placeholder"></div>`
   }
 }
-customElements.define('alma-payment-plans', class extends PlaceholderHost {})
-customElements.define('alma-eligibility-modal', class extends PlaceholderHost {})
-
-const CONTAINER = '#alma-widget'
+customElements.define(PAYMENT_PLANS_TAG, class extends PlaceholderHost {})
+customElements.define(ELIGIBILITY_MODAL_TAG, class extends PlaceholderHost {})
 
 const apiData = { domain: ApiMode.TEST, merchantId: TEST_MERCHANT_ID }
 
 const widgets = () => Widgets.initialize(TEST_MERCHANT_ID, ApiMode.TEST)
 
 const addPaymentPlans = (options: Partial<PaymentPlanWidgetOptions> = {}) =>
-  widgets().add(Widgets.PaymentPlans, { container: CONTAINER, purchaseAmount: 45000, ...options })
+  widgets().add(Widgets.PaymentPlans, {
+    container: TEST_CONTAINER,
+    purchaseAmount: 45000,
+    ...options,
+  })
 
 const addModal = (options: Partial<ModalOptions> = {}) =>
   widgets().add(Widgets.Modal, {
-    container: CONTAINER,
+    container: TEST_CONTAINER,
     clickableSelector: '#open-modal',
     purchaseAmount: 45000,
     ...options,
@@ -54,15 +57,22 @@ const addModal = (options: Partial<ModalOptions> = {}) =>
 
 const createContainer = (): HTMLElement => {
   const container = document.createElement('div')
-  container.id = CONTAINER.slice(1)
+  container.id = TEST_CONTAINER.slice(1)
   document.body.append(container)
   return container
 }
 
-const hostsIn = (container: Element, tagName = 'alma-payment-plans') =>
+const hostsIn = (container: Element, tagName = PAYMENT_PLANS_TAG) =>
   Array.from(container.querySelectorAll<PlaceholderHost>(tagName))
 
-const modalHostsIn = (container: Element) => hostsIn(container, 'alma-eligibility-modal')
+const modalHostsIn = (container: Element) => hostsIn(container, ELIGIBILITY_MODAL_TAG)
+
+const openModal = (options: Partial<ModalOptions> = {}) => {
+  const handle = addModal(options)
+  handle.open()
+  const [host] = modalHostsIn(document.body)
+  return { handle, host }
+}
 
 describe('WidgetsController', () => {
   let container: HTMLElement
@@ -93,12 +103,9 @@ describe('WidgetsController', () => {
     })
 
     it('should give the host every option that master passes, from its first render', () => {
-      const plans = [{ installmentsCount: 3, minAmount: 5000, maxAmount: 200000 }]
       const cards: Card[] = ['visa']
-      const onModalClose = vi.fn()
-
-      addPaymentPlans({
-        plans,
+      const options = {
+        plans: [{ installmentsCount: 3, minAmount: 5000, maxAmount: 200000 }],
         transitionDelay: 2000,
         hideIfNotEligible: true,
         hideBorder: true,
@@ -109,25 +116,18 @@ describe('WidgetsController', () => {
         merchantCoversAllFees: true,
         locale: Locale['fr-FR'],
         cards,
-        onModalClose,
-      })
+        onModalClose: vi.fn(),
+      }
+
+      addPaymentPlans(options)
 
       const [host] = hostsIn(container)
+      const { plans: configPlans, ...sameNames } = options
       expect(host.firstRender).toMatchObject({
         apiData,
         purchaseAmount: 45000,
-        configPlans: plans,
-        transitionDelay: 2000,
-        hideIfNotEligible: true,
-        hideBorder: true,
-        monochrome: false,
-        suggestedPaymentPlan: [3, 4],
-        customerBillingCountry: 'FR',
-        customerShippingCountry: 'DE',
-        merchantCoversAllFees: true,
-        locale: Locale['fr-FR'],
-        cards,
-        onModalClose,
+        configPlans,
+        ...sameNames,
       })
       expect(host.firstRender).not.toHaveProperty('plans')
     })
@@ -179,7 +179,7 @@ describe('WidgetsController', () => {
       addPaymentPlans()
       const newContainer = document.createElement('div')
       container.replaceWith(newContainer)
-      newContainer.id = CONTAINER.slice(1)
+      newContainer.id = TEST_CONTAINER.slice(1)
 
       addPaymentPlans()
 
@@ -191,7 +191,7 @@ describe('WidgetsController', () => {
       const [host] = hostsIn(container)
 
       const unknownName = 'Unknown' as typeof Widgets.PaymentPlans
-      const options = { container: CONTAINER } as PaymentPlanWidgetOptions
+      const options = { container: TEST_CONTAINER } as PaymentPlanWidgetOptions
       const result = widgets().add(unknownName, options)
 
       expect(result).toBeUndefined()
@@ -230,30 +230,25 @@ describe('WidgetsController', () => {
     })
 
     it('should give the modal host every option that master passes, from its first render', () => {
-      const plans = [{ installmentsCount: 3, minAmount: 5000, maxAmount: 200000 }]
       const cards: Card[] = ['cb', 'visa']
-      const handle = addModal({
-        plans,
+      // No onClose: the host gets handle.close instead.
+      const options = {
+        plans: [{ installmentsCount: 3, minAmount: 5000, maxAmount: 200000 }],
         customerBillingCountry: 'FR',
         customerShippingCountry: 'DE',
         merchantCoversAllFees: true,
         locale: Locale.de,
         cards,
-        onClose: vi.fn(),
-      })
+      }
 
-      handle.open()
+      const { handle, host } = openModal(options)
 
-      const [host] = modalHostsIn(container)
+      const { plans: configPlans, ...rest } = options
       expect(host.firstRender).toMatchObject({
         apiData,
         purchaseAmount: 45000,
-        configPlans: plans,
-        customerBillingCountry: 'FR',
-        customerShippingCountry: 'DE',
-        merchantCoversAllFees: true,
-        locale: Locale.de,
-        cards,
+        configPlans,
+        ...rest,
         onClose: handle.close,
       })
       expect(host.firstRender).not.toHaveProperty('plans')
@@ -261,9 +256,7 @@ describe('WidgetsController', () => {
     })
 
     it('should keep one modal host for a second open()', () => {
-      const handle = addModal()
-      handle.open()
-      const [first] = modalHostsIn(container)
+      const { handle, host: first } = openModal()
 
       handle.open()
 
@@ -271,10 +264,23 @@ describe('WidgetsController', () => {
       expect(first.disconnections).toBe(0)
     })
 
-    it('should mount a new modal host on open() after the merchant empties the container', () => {
-      const handle = addModal()
+    it('should give open() the options of add(), even if the merchant changes them later', () => {
+      const options = {
+        container: TEST_CONTAINER,
+        clickableSelector: '#open',
+        purchaseAmount: 45000,
+      }
+      const handle = widgets().add(Widgets.Modal, options) as ModalHandle
+      options.purchaseAmount = 90000
+
       handle.open()
-      const [first] = modalHostsIn(container)
+
+      const [host] = modalHostsIn(container)
+      expect(host.firstRender).toMatchObject({ purchaseAmount: 45000 })
+    })
+
+    it('should mount a new modal host on open() after the merchant empties the container', () => {
+      const { handle, host: first } = openModal()
       container.replaceChildren()
 
       handle.open()
@@ -296,8 +302,7 @@ describe('WidgetsController', () => {
     })
 
     it('should let a later add(PaymentPlans) replace the modal host', () => {
-      addModal().open()
-      const [modalHost] = modalHostsIn(container)
+      const { host: modalHost } = openModal()
 
       addPaymentPlans()
 
@@ -307,9 +312,7 @@ describe('WidgetsController', () => {
     })
 
     it('should still replace a host that was mounted while the modal host disconnected', () => {
-      const handle = addModal()
-      handle.open()
-      const [modalHost] = modalHostsIn(container)
+      const { handle, host: modalHost } = openModal()
       modalHost.onDisconnect = () => addPaymentPlans()
       handle.close(new MouseEvent('click'))
 
@@ -325,9 +328,7 @@ describe('WidgetsController', () => {
       const onClose = vi.fn((_event: MouseEvent | KeyboardEvent) => {
         hostsAtClose = container.children.length
       })
-      const handle = addModal({ onClose })
-      handle.open()
-      const [host] = modalHostsIn(container)
+      const { handle, host } = openModal({ onClose })
       const event = new MouseEvent('click')
 
       handle.close(event)
@@ -396,7 +397,7 @@ describe('WidgetsController', () => {
 
         expect(warn).toHaveBeenCalledOnce()
         expect(warn).toHaveBeenCalledWith(...warning)
-        expect(document.querySelector('alma-payment-plans')).toBeNull()
+        expect(document.querySelector(PAYMENT_PLANS_TAG)).toBeNull()
       },
     )
 
@@ -412,7 +413,7 @@ describe('WidgetsController', () => {
         handle.close(new MouseEvent('click'))
 
         expect(handle).toEqual({ open: expect.any(Function), close: expect.any(Function) })
-        expect(document.querySelector('alma-eligibility-modal')).toBeNull()
+        expect(document.querySelector(ELIGIBILITY_MODAL_TAG)).toBeNull()
         expect(onClose).not.toHaveBeenCalled()
         expect(warn).toHaveBeenCalledOnce()
         expect(warn).toHaveBeenCalledWith(...warning)
