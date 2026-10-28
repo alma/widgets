@@ -24,8 +24,6 @@ export default defineConfig({
         'src/__lint-fixtures__/**',
         // Their tests aren't ported yet. Each port removes its file from this list.
         'src/index.ts',
-        'src/domain/plans/index.ts',
-        'src/domain/plans/plans.const.ts',
         'src/public-api/public-api.const.ts',
         'src/public-api/widgets.ts',
         'src/shared/config/api-url.const.ts',
