@@ -16,5 +16,6 @@ export enum WidgetTypes {
   Modal = 'Modal',
 }
 
-// The tag of the host that add() inserts in the merchant's container. Never change it in 4.x.
+// Frozen for 4.x: another 4.x bundle on the page may have defined these tags.
 export const PAYMENT_PLANS_TAG = 'alma-payment-plans'
+export const ELIGIBILITY_MODAL_TAG = 'alma-eligibility-modal'

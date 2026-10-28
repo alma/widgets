@@ -1,14 +1,19 @@
-import { PAYMENT_PLANS_TAG, WidgetTypes } from '@/public-api/public-api.const'
+import { createModalHandle, type ModalHandle } from '@/public-api/modal-handle'
+import {
+  ELIGIBILITY_MODAL_TAG,
+  PAYMENT_PLANS_TAG,
+  WidgetTypes,
+} from '@/public-api/public-api.const'
 import type {
   ApiConfig,
+  ModalOptions,
   PaymentPlanWidgetOptions,
   WidgetNames,
   WidgetOptions,
 } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
 
-export type AddReturnType =
-  { open: () => void; close: (event: MouseEvent | KeyboardEvent) => void } | undefined
+export type AddReturnType = ModalHandle | undefined
 
 type HostProperties = Record<string, unknown>
 
@@ -31,6 +36,17 @@ const mountHost = (container: Element, tagName: string, properties: HostProperti
   }
   container.append(host)
   hosts.set(container, host)
+}
+
+// As Preact does, a second open() updates the open modal instead of mounting another one.
+const renderModalHost = (container: Element, properties: HostProperties): void => {
+  const host = hosts.get(container)
+  if (host?.localName === ELIGIBILITY_MODAL_TAG) {
+    Object.assign(host, properties)
+    return
+  }
+  removeHost(container)
+  mountHost(container, ELIGIBILITY_MODAL_TAG, properties)
 }
 
 // Master's PaymentPlanWidget props and defaults.
@@ -71,6 +87,33 @@ const toPaymentPlansHostProperties = (
   }
 }
 
+const toEligibilityModalHostProperties = (
+  apiData: ApiConfig,
+  options: ModalOptions,
+  close: ModalHandle['close'],
+): HostProperties => {
+  const {
+    purchaseAmount,
+    plans,
+    locale = Locale.en,
+    customerBillingCountry,
+    customerShippingCountry,
+    merchantCoversAllFees,
+    cards,
+  } = options
+  return {
+    purchaseAmount,
+    apiData,
+    configPlans: plans,
+    customerBillingCountry,
+    customerShippingCountry,
+    merchantCoversAllFees,
+    onClose: close,
+    cards,
+    locale,
+  }
+}
+
 export function WidgetsController(apiData: ApiConfig) {
   return {
     add(widget: WidgetNames, options: WidgetOptions): AddReturnType {
@@ -92,7 +135,12 @@ export function WidgetsController(apiData: ApiConfig) {
         return undefined
       }
       if (widget === WidgetTypes.Modal) {
-        return { open() {}, close() {} }
+        const modalOptions = options as ModalOptions
+        return createModalHandle(container, modalOptions.onClose, {
+          mountModal: (target, close) =>
+            renderModalHost(target, toEligibilityModalHostProperties(apiData, modalOptions, close)),
+          removeHost,
+        })
       }
       return undefined
     },
