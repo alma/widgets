@@ -1,6 +1,12 @@
 # Tests
 
-Sections: Where tests go · What every port checks · Template · Controller · Element
+## Contents
+
+- [Where tests go](#where-tests-go)
+- [What every port checks](#what-every-port-checks)
+- [Template](#template)
+- [Controller](#controller)
+- [Element](#element)
 
 Port master's tests of the original into the files that the file map gives, with
 [jest-to-vitest.md](jest-to-vitest.md). Every test runs in jsdom, apart from the modal's focus
@@ -32,9 +38,6 @@ tests in `src/modal.browser.test.ts` (A11Y-07).
   from that list.
 
 ## Template
-
-The first line of each skeleton names where `npm run test:harness` pastes it. Leave that line out
-of the port.
 
 ```ts
 // path: src/widgets/payment-plans/templates/skeleton-example.template.test.ts

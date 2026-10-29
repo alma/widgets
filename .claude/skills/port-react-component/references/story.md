@@ -28,8 +28,6 @@ Storybook builds the title from the path: the `Default` story of
 
 ## Skeleton
 
-The first line names where `npm run test:harness` pastes it. Leave that line out of the port.
-
 ```ts
 // path: src/widgets/payment-plans/templates/skeleton-example.stories.ts
 import type { Meta, StoryObj } from '@storybook/web-components-vite'

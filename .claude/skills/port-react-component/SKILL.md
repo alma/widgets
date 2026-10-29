@@ -1,6 +1,6 @@
 ---
 name: port-react-component
-description: Ports a React component, hook or SVG asset of master to Lit in light DOM, with its stories, its tests and its element when the file map gives one. Use it whenever someone asks to port, migrate or convert master's React code to Lit, such as "migrate SkipLinks to Lit" or a folder or a file under src/components/, src/Widgets/, src/hooks/ or src/assets/, even when the React code is named without its path.
+description: Ports a React component, hook or SVG asset of master to Lit in light DOM, with its stories, its tests and its element when the file map gives one. Use it whenever someone asks to port or migrate master's React code to Lit, such as "migrate SkipLinks to Lit" or a folder or a file under src/components/, src/Widgets/, src/hooks/ or src/assets/, even when the React code is named without its path.
 ---
 
 # Port a React original to Lit
@@ -8,6 +8,9 @@ description: Ports a React component, hook or SVG asset of master to Lit in ligh
 A port reproduces master's behaviour and DOM at the reference commit, quirks included (ARCH-01).
 The contract tests compare the Lit build with master's build, so a port that "improves" master
 fails them. Work through the steps in order, and don't skip the pause in step 4.
+
+Each code example in the reference files below opens with a path comment that
+`npm run test:harness` pastes in; leave it out of the port.
 
 ## 1. Read before the first Write
 
@@ -33,8 +36,7 @@ after the first Write. Read these files yourself before you write anything:
    its messages, and the code that passes it props.
 5. What the branch already has for it: master's CSS module, already moved next to the destination
    (STYLE-02, never edit it), the `*.messages.ts` descriptors, already ported (ARCH-04: reuse them,
-   and declare no message), and the fixtures and builders of `src/test/` that master's tests of
-   the original use.
+   and declare no message), and the fixtures and builders of `src/test/` that master's tests use.
 
 When a template, story, controller or element file that the file map gives already exists, stop
 and ask the developer whether the port was started. The CSS module and the `*.messages.ts` file
@@ -58,8 +60,7 @@ A React component becomes a template function in a `.template.ts` file (ARCH-11)
 becomes one too. For each template that the file map gives:
 
 1. Write the template from [references/template.md](references/template.md).
-2. Write its `.stories.ts` file next to it from [references/story.md](references/story.md): one
-   story per variant that master renders.
+2. Write its `.stories.ts` file next to it from [references/story.md](references/story.md).
 
 A React hook becomes a reactive controller: see [references/controller.md](references/controller.md).
 Don't write any test yet.
@@ -70,11 +71,10 @@ List what the original exposes, from master's code, then check that the template
 even one that looks like a bug. Merchant CSS, plugin e2e suites and screen readers depend on them
 (ARCH-08, STYLE-09, A11Y-01). `tests/integration/contract/inventory.json` lists the contract names.
 
-The draft is `pr-description.local.md` at the root of the repo, which Git ignores: create it when
-it's missing. Write a `## Contract surface` section, or replace it when it's there, with one line
-per item and master's values. Write "none" for an empty item, so the reviewer sees that you
-checked it. Name each timer and listener with where it starts and stops, and each option with its
-default.
+The draft is `pr-description.local.md` at the repo root, which Git ignores: create it if missing.
+Write a `## Contract surface` section, or replace it, with one line per item and master's values.
+Write "none" for an empty item, so the reviewer sees that you checked it. Name each timer and
+listener with where it starts and stops, and each option with its default.
 
 ```markdown
 ## Contract surface
@@ -119,25 +119,26 @@ Only when the file map gives a `.element.ts` file, from [references/element.md](
 
 ## 7. Run the checks
 
-Run each command, fix what fails, and run it again until everything passes:
+Run each command, fix what fails, and run it again until everything passes. Pipe the longer ones
+through `tail` so only the decisive lines reach the conversation, with `set -o pipefail` so the
+exit code stays the command's own, not `tail`'s:
 
 ```bash
 npm run lint
 npm run typecheck
 npm run test:no-coverage -- <the port's test files>
-npm test
-npm run build-storybook
+set -o pipefail && npm test 2>&1 | tail -n 40
+set -o pipefail && npm run build-storybook 2>&1 | tail -n 40
 npm run build:contract
-npm run test:contract
+set -o pipefail && npm run test:contract 2>&1 | tail -n 60
 ```
 
 These scripts run without a permission prompt, unlike `npx eslint` or `npx vitest`. In the
-contract run, a test that fails with
+contract run, this failure means that the port made a test pass:
 `"<test>" passes on dist/. Remove it from tests/integration/contract/expected-failures.json.`
-means the port made it pass: remove that entry, and change nothing else under
-`tests/integration/contract/`. The other entries keep failing until their own port lands, and
-their file snapshots show as `Snapshots N failed`: the exit code is what counts. Run
-`npm run test:contract` again after removing entries.
+Remove that entry, and change nothing else under `tests/integration/contract/`. The other entries
+keep failing until their own port lands, and their file snapshots show as `Snapshots N failed`:
+the exit code is what counts. Run `npm run test:contract` again after removing entries.
 
 Add `## Expected failures removed` and `## Dropped test cases` sections to the PR description
 draft, each with its entries or "none".

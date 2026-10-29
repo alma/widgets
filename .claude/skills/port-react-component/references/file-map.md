@@ -1,6 +1,26 @@
 # File map: master React files to Lit files
 
-Sections by master folder: root · `assets` · `components/Installments/*` · `components/Loader`, `LoadingIndicator`, `Modal`, `SkipLinks`, `WarningMessage` · `hooks` · `intl` · `stories` · `test` · `utils` · `Widgets/EligibilityModal` and its folders · `Widgets/PaymentPlans`
+## Contents
+
+- [Root files (`src/`)](#root-files-src)
+- [`src/assets/`](#srcassets)
+- [`src/components/Installments/Installment/`](#srccomponentsinstallmentsinstallment)
+- [`src/components/Installments/LegalMentions/`](#srccomponentsinstallmentslegalmentions)
+- [`src/components/Installments/TotalBlock/`](#srccomponentsinstallmentstotalblock)
+- [`src/components/Loader/`](#srccomponentsloader)
+- [`src/components/LoadingIndicator/`](#srccomponentsloadingindicator)
+- [`src/components/Modal/`](#srccomponentsmodal)
+- [`src/components/SkipLinks/`](#srccomponentsskiplinks)
+- [`src/components/WarningMessage/`](#srccomponentswarningmessage)
+- [`src/hooks/`](#srchooks)
+- [`src/intl/`](#srcintl)
+- [`src/stories/`](#srcstories)
+- [`src/test/`](#srctest)
+- [`src/utils/`](#srcutils)
+- [`src/Widgets/EligibilityModal/`](#srcwidgetseligibilitymodal)
+- [`src/Widgets/EligibilityModal/DesktopModal/` and `MobileModal/`](#srcwidgetseligibilitymodaldesktopmodal-and-mobilemodal)
+- [`src/Widgets/EligibilityModal/components/`](#srcwidgetseligibilitymodalcomponents)
+- [`src/Widgets/PaymentPlans/`](#srcwidgetspaymentplans)
 
 For each file under `src/` at the reference commit (`scripts/ref-sha.txt`), the Lit file(s) it becomes and the Lit test file(s) that hold its ported tests. The Crowdin catalogues in `src/intl/messages/` don't change and aren't listed.
 

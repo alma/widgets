@@ -43,8 +43,6 @@ nesting, classes, IDs, `data-testid` values, roles and ARIA attributes, no more 
 
 ## Skeleton
 
-The first line names where `npm run test:harness` pastes it. Leave that line out of the port.
-
 ```ts
 // path: src/widgets/payment-plans/templates/skeleton-example.template.ts
 import { html, nothing, type TemplateResult } from 'lit'

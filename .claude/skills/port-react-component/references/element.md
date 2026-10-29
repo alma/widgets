@@ -29,8 +29,6 @@ and holds no markup of its own beyond what master's component renders around the
 
 ## Skeleton
 
-The first line names where `npm run test:harness` pastes it. Leave that line out of the port.
-
 ```ts
 // path: src/widgets/payment-plans/skeleton-example.element.ts
 import { property } from 'lit/decorators.js'
