@@ -95,7 +95,7 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`, `__tests__/`) put t
 
 - **ARCH-01** The port reproduces master's behaviour at the reference commit, quirks included. Why: the contract tests compare the Lit build with master's build. Check: contract tests.
 
-The React code is deleted on this branch. Read it at the reference commit in `scripts/ref-sha.txt`, which `npm run build:ref` builds into `dist-ref/`: `git ls-tree -r --name-only "$(cat scripts/ref-sha.txt)" -- src/components/Loader` lists a folder, and `git show "$(cat scripts/ref-sha.txt)":src/components/Loader/index.tsx` prints a file.
+The React code is deleted on this branch. Read it at the reference commit in `scripts/ref-sha.txt`, which `npm run build:ref` builds into `dist-ref/`. Read the SHA from that file and write it in the command, because Claude Code asks before it runs one that holds `$(...)`: `git ls-tree -r --name-only <sha> -- src/components/Loader` lists a folder, and `git show <sha>:src/components/Loader/index.tsx` prints a file.
 
 ## Tests
 

@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom/vitest'
 import * as axeMatchers from 'vitest-axe/matchers'
 
 import { resetWarnOnce } from '@/shared/lib/errors'

@@ -1,3 +1,4 @@
+import { screen } from '@testing-library/dom'
 import noScroll from 'no-scroll'
 import type { MockInstance } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -73,5 +74,11 @@ describe('the test setup', () => {
     document.body.innerHTML = '<main><button type="button">Pay in 3 installments</button></main>'
 
     expect(await axe(document.body)).toHaveNoViolations()
+  })
+
+  it("should find elements with testing-library's queries and jest-dom's matchers", () => {
+    document.body.innerHTML = '<button type="button" aria-label="Open">?</button>'
+
+    expect(screen.getByRole('button', { name: 'Open' })).toBeInTheDocument()
   })
 })

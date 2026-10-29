@@ -8,6 +8,9 @@
 // A CSS fixture uses /* expect: <stylelint rule> */. Every expected rule must fire with a message
 // that contains its text, and nothing else from these rules may fire.
 //
+// Then it pastes each code skeleton of the port-react-component skill at the path that its first
+// line names, runs the full lint and the typecheck on it, as on a port, and removes it.
+//
 // Then it runs the Claude Code lint hook on a few files, as Claude Code does after an edit. The
 // hook skips the fixtures, so a case copies its fixture where the hook lints it, then removes it.
 import { execFileSync, spawnSync } from 'node:child_process'
@@ -36,6 +39,7 @@ const STYLELINT_RULES = new Set([
   'selector-pseudo-class-disallowed-list',
   'selector-pseudo-element-disallowed-list',
 ])
+const SKELETONS = '.claude/skills/port-react-component/references'
 const HOOK = '.claude/hooks/lint-edited-file.mjs'
 const HOOK_TIMEOUT_MS = 10_000
 // A case with a fixture copies it to `file`, then removes it. The hook runs in `cwd`, the root by
@@ -171,6 +175,72 @@ report(
     : `only ${ONLY_BROWSER_TEST} may run in Chromium, found ${browserTests.join(', ')}`,
 )
 
+const gitStatus = () =>
+  execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' })
+const statusBefore = gitStatus()
+
+// A skeleton is a fenced block whose first line is `// path: <file>`.
+const readSkeletons = () =>
+  listFiles(SKELETONS)
+    .filter((file) => file.endsWith('.md'))
+    .flatMap((file) =>
+      [...readFileSync(join(root, file), 'utf8').matchAll(/^```\w*\n([\s\S]*?)^```$/gm)].map(
+        ([, code]) => ({ file, code, path: code.match(/^\/\/ path: (\S+)\n/)?.[1] }),
+      ),
+    )
+    .filter(({ path }) => path !== undefined)
+
+// Type information on, as in npm run lint. Warnings fail too, since ports copy the skeletons.
+const fullEslint = new ESLint({ cwd: root })
+
+const lintSkeleton = async ({ path }) => {
+  const [result] = await fullEslint.lintFiles([path])
+  const problems = result.messages.map(
+    (message) => `${message.line}:${message.column} ${message.ruleId}: ${message.message}`,
+  )
+  return { ok: problems.length === 0, detail: problems.join(' | ') || 'clean' }
+}
+
+const typecheck = () => {
+  const { status, stdout } = spawnSync(
+    process.execPath,
+    [require.resolve('typescript/bin/tsc'), '--noEmit'],
+    { cwd: root, encoding: 'utf8' },
+  )
+  const errors = stdout.split('\n').filter((line) => line.includes('error TS'))
+  return { ok: status === 0, detail: errors.join(' | ') || 'no error' }
+}
+
+const checkSkeletons = async (skeletons) => {
+  const pasted = []
+  try {
+    for (const { path, code } of skeletons) {
+      // wx fails if the file exists, so the finally never removes a file of the repo.
+      writeFileSync(join(root, path), code, { flag: 'wx' })
+      pasted.push(path)
+    }
+    for (const skeleton of skeletons) {
+      const { ok, detail } = await lintSkeleton(skeleton)
+      report(ok, `skeleton ${skeleton.path}`, `${relative(SKELETONS, skeleton.file)}: ${detail}`)
+    }
+    const { ok, detail } = typecheck()
+    report(ok, 'skeletons typecheck', detail)
+  } finally {
+    pasted.forEach((path) => rmSync(join(root, path), { force: true }))
+  }
+}
+
+const skeletons = readSkeletons()
+if (skeletons.length === 0) {
+  report(false, 'skeletons', `no skeleton in ${SKELETONS}`)
+} else {
+  try {
+    await checkSkeletons(skeletons)
+  } catch (error) {
+    report(false, 'skeletons', error.message)
+  }
+}
+
 const runHook = (file, cwd = '.') => {
   const started = Date.now()
   const result = spawnSync(process.execPath, [join(root, HOOK)], {
@@ -219,9 +289,6 @@ const checkHookCase = ({ fixture, file, cwd, expect }) => {
   }
 }
 
-const gitStatus = () =>
-  execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' })
-const statusBefore = gitStatus()
 for (const hookCase of HOOK_CASES) {
   try {
     const { ok, detail } = checkHookCase(hookCase)
@@ -233,7 +300,7 @@ for (const hookCase of HOOK_CASES) {
 const statusChanged = gitStatus() !== statusBefore
 report(
   !statusChanged,
-  'hook copies',
+  'copies',
   statusChanged ? 'git status changed: a copy was left behind' : 'git status is as before',
 )
 
