@@ -76,14 +76,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 
 === standalone modal, pending, mobile
 aria-label: Fenster schließen
@@ -94,14 +94,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 
 === standalone modal, success, desktop
 aria-label: Fenster schließen
@@ -112,14 +112,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -174,14 +174,14 @@ text: almapay.com
 text: support@almapay.com
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 
 === standalone modal, no eligibility, desktop
 aria-label: Fenster schließen
@@ -192,14 +192,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Ups, die Prüfung hat anscheinend nicht funktioniert.
 
 === standalone modal, no eligibility, mobile
@@ -212,14 +212,14 @@ text: Zahlen Sie mit Alma in mehreren Raten.
 text: Ups, die Prüfung hat anscheinend nicht funktioniert.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 
 === standalone modal, failed, desktop
 aria-label: Fenster schließen
@@ -230,14 +230,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 
 === standalone modal, failed, mobile
 aria-label: Fenster schließen
@@ -248,14 +248,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 
 === plan kinds, widget and modal with each plan selected in turn, desktop
 -- widget
@@ -541,14 +541,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in Raten oder später.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
 text: Jetzt bezahlen
@@ -607,14 +607,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in Raten oder später.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
 text: Jetzt bezahlen
@@ -673,14 +673,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in Raten oder später.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
 text: Jetzt bezahlen
@@ -739,14 +739,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in Raten oder später.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
 text: Jetzt bezahlen
@@ -807,14 +807,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in Raten oder später.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
 text: Jetzt bezahlen
@@ -877,14 +877,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in Raten oder später.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
 text: Jetzt bezahlen
@@ -949,14 +949,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in Raten oder später.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan Jetzt bezahlen
 text: Jetzt bezahlen
@@ -1316,14 +1316,14 @@ text: almapay.com
 text: support@almapay.com
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 -- modal, plan 3 selected
 text: Verfügbare Zahlungsoptionen
 aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
@@ -1382,14 +1382,14 @@ text: almapay.com
 text: support@almapay.com
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 -- modal, plan 4 selected
 text: Verfügbare Zahlungsoptionen
 aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
@@ -1448,14 +1448,14 @@ text: almapay.com
 text: support@almapay.com
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 -- modal, plan 5 selected
 text: Verfügbare Zahlungsoptionen
 aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
@@ -1516,14 +1516,14 @@ text: almapay.com
 text: support@almapay.com
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 -- modal, plan 6 selected
 text: Verfügbare Zahlungsoptionen
 aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
@@ -1586,14 +1586,14 @@ text: almapay.com
 text: support@almapay.com
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 -- modal, plan 7 selected
 text: Verfügbare Zahlungsoptionen
 aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
@@ -1658,14 +1658,14 @@ text: almapay.com
 text: support@almapay.com
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 -- modal, plan 8 selected
 text: Verfügbare Zahlungsoptionen
 aria-label: Öffne Almas Zahlungsoptionen, um mehr zu erfahren
@@ -1742,14 +1742,14 @@ text: almapay.com
 text: support@almapay.com
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 
 === warning, FR, without customer_fee
 aria-label: Fenster schließen
@@ -1760,14 +1760,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -1798,14 +1798,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -1836,14 +1836,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -1874,14 +1874,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -1912,14 +1912,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -1950,14 +1950,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -1988,14 +1988,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -2026,14 +2026,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -2064,14 +2064,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -2102,14 +2102,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -2140,14 +2140,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 2x
 text: 2x
@@ -2177,14 +2177,14 @@ text: Zum Zahlungskalender gehen
 text: Zahlen Sie mit Alma in mehreren Raten.
 text: Wie erfolgt die Bezahlung
 text: 1
-text: Wählen Sie beim Check-out.
+text: Wählen Sie beim Checkout.
 text: Alma
 text: 2
-text: Lassen Sie sich führen und bestätigen Sie Ihre Zahlung in
+text: Folgen Sie den Anweisungen und bestätigen Sie die Zahlung innerhalb von
 text: 2 Minuten.
 text: 3
-text: , indem Sie Ihre Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen.
-text: Behalten Sie die Kontrolle
+text: Sie können die Fälligkeitstermine in Ihrem eigenen Tempo vor- oder zurückverlegen und somit .
+text: die Kontrolle behalten
 text: Verfügbare Zahlungsoptionen
 aria-label: Wählen Sie den Zahlungsplan 3x
 text: 3x

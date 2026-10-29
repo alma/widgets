@@ -35,7 +35,7 @@
             <div aria-level="1" class="alma-eligibility-modal-title title" data-testid="modal-title-element" id="modal-title" role="heading">
             <div aria-describedby="payment-info-description" aria-labelledby="payment-info-title" class="alma-eligibility-modal-info list" data-testid="modal-info-element" id="payment-info" role="region" tabindex="-1">
               <div aria-level="2" class="sr-only" id="payment-info-title" role="heading">
-              <ol id="payment-info-description">
+              <ol class="listContainer" id="payment-info-description">
                 <li class="listItem">
                   <div class="alma-eligibility-modal-bullet bullet">
                   <div class="alma-eligibility-modal-info-message">
