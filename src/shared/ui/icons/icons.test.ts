@@ -4,10 +4,10 @@ import { axe } from 'vitest-axe'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { almaLogoTemplate } from '@/shared/ui/icons/alma-logo.template'
-import { amexCardTemplate } from '@/shared/ui/icons/cards/amex.template'
-import { cbCardTemplate } from '@/shared/ui/icons/cards/cb.template'
+import { amexTemplate } from '@/shared/ui/icons/cards/amex.template'
+import { cbTemplate } from '@/shared/ui/icons/cards/cb.template'
 import { mastercardTemplate } from '@/shared/ui/icons/cards/mastercard.template'
-import { visaCardTemplate } from '@/shared/ui/icons/cards/visa.template'
+import { visaTemplate } from '@/shared/ui/icons/cards/visa.template'
 import { crossTemplate } from '@/shared/ui/icons/cross.template'
 
 const renderToBody = (template: TemplateResult) => {
@@ -169,13 +169,13 @@ describe('Accessibility - SVG & Logos', () => {
     describe.each([
       {
         name: 'AmexCard',
-        template: amexCardTemplate,
+        template: amexTemplate,
         label: 'Carte American Express acceptée',
         englishLabel: 'American Express card accepted',
       },
       {
         name: 'CbCard',
-        template: cbCardTemplate,
+        template: cbTemplate,
         label: 'Carte Bancaire CB acceptée',
         englishLabel: 'CB credit card accepted',
       },
@@ -187,7 +187,7 @@ describe('Accessibility - SVG & Logos', () => {
       },
       {
         name: 'VisaCard',
-        template: visaCardTemplate,
+        template: visaTemplate,
         label: 'Carte Visa acceptée',
         englishLabel: 'Visa card accepted',
       },
@@ -232,8 +232,7 @@ describe('Accessibility - SVG & Logos', () => {
       it('should all cards be accessible when rendered together', async () => {
         const container = renderToBody(
           html`<div>
-            ${amexCardTemplate(fr)} ${cbCardTemplate(fr)} ${mastercardTemplate(fr)}
-            ${visaCardTemplate(fr)}
+            ${amexTemplate(fr)} ${cbTemplate(fr)} ${mastercardTemplate(fr)} ${visaTemplate(fr)}
           </div>`,
         )
 
@@ -254,8 +253,7 @@ describe('Accessibility - SVG & Logos', () => {
         const container = renderToBody(
           html`<div>
             <p>Cartes acceptées :</p>
-            ${amexCardTemplate(fr)} ${cbCardTemplate(fr)} ${mastercardTemplate(fr)}
-            ${visaCardTemplate(fr)}
+            ${amexTemplate(fr)} ${cbTemplate(fr)} ${mastercardTemplate(fr)} ${visaTemplate(fr)}
           </div>`,
         )
 
@@ -268,12 +266,11 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     describe('SVG IDs', () => {
-      const gradientTemplates = { amex: amexCardTemplate, cb: cbCardTemplate }
+      const gradientTemplates = { amex: amexTemplate, cb: cbTemplate }
 
       it('should give each Amex and CB logo its own gradient ID', () => {
         const container = renderToBody(
-          html`${amexCardTemplate(fr)} ${amexCardTemplate(fr)} ${cbCardTemplate(fr)}
-          ${cbCardTemplate(fr)}`,
+          html`${amexTemplate(fr)} ${amexTemplate(fr)} ${cbTemplate(fr)} ${cbTemplate(fr)}`,
         )
 
         const ids = Array.from(container.querySelectorAll('[id]'), (element) => element.id)
@@ -283,8 +280,7 @@ describe('Accessibility - SVG & Logos', () => {
 
       it('should point each gradient reference inside its own <svg>', () => {
         const container = renderToBody(
-          html`${amexCardTemplate(fr)} ${amexCardTemplate(fr)} ${cbCardTemplate(fr)}
-          ${cbCardTemplate(fr)}`,
+          html`${amexTemplate(fr)} ${amexTemplate(fr)} ${cbTemplate(fr)} ${cbTemplate(fr)}`,
         )
 
         container.querySelectorAll('svg').forEach((card) => {

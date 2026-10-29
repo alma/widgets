@@ -3,7 +3,7 @@ import { html, type TemplateResult } from 'lit'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { cardMessages } from '@/shared/ui/icons/cards/cards.messages'
 
-export const visaCardTemplate = (intl: IntlShape): TemplateResult =>
+export const visaTemplate = (intl: IntlShape): TemplateResult =>
   html`<svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
