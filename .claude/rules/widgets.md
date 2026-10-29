@@ -29,3 +29,16 @@ Generic advice that doesn't apply here: Shadow DOM and `attachShadow`, the `@cus
 
 - **ARCH-04** A message is declared with an `id` and a `defaultMessage` in a `*.messages.ts` file next to the code that formats it. Tests and stories reuse the descriptors and never declare a message. Why: `npm run translations:extract` reads every file under `src/` and must give master's `messages.json`. Check: review.
 - **ARCH-14** No `unsafeHTML`, `unsafeSVG` or other unsafe directive, no `static-html`, and no `innerHTML` assignment. Rich text becomes Lit templates. Why: they skip Lit's escaping of translated text and options. Check: lint.
+
+## Names
+
+Lit sets no naming rule for templates, so these follow lit.dev's examples and the code already in `src/`. No lint rule checks them.
+
+- **NAME-01** An element class takes the PascalCase form of its full tag, so `alma-payment-plans` becomes `AlmaPaymentPlans`. Its file adds the tag to `HTMLElementTagNameMap`. Why: the class name matches the tag, and `document.createElement` and `querySelector` return the element's type. The map is types only, so it adds nothing to the bundle. Check: review.
+- **NAME-02** The type of an element's properties is `interface <Element>Properties`, such as `AlmaPaymentPlansProperties`. Why: it is the frozen list of ARCH-10, and the name keeps it apart from template parameters. Check: review.
+- **NAME-03** A template function has a camelCase name that ends in `Template`, such as `loaderTemplate` in `loader.template.ts`. Never PascalCase. Why: PascalCase marks a class or a React component, and a template is a function with no state or lifecycle. Check: review.
+- **NAME-04** A template takes its parameters as one object, typed with an exported `interface <Name>Params` in the template file, such as `LoaderParams`. No `I` prefix and no `Template` in the name. Why: an object keeps optional values readable at the call site, and `Params` keeps template inputs apart from an element's reactive properties of NAME-02. Check: review.
+- **NAME-05** A part of an element's template that stays inside the element is a `private render<Part>()` method, such as `renderPlans()`. A part that has its own stories is a template function instead (ARCH-11). Why: lit.dev uses this form, and the name tells it apart from the exported templates. Check: review.
+- **NAME-06** A controller class is `<Name>Controller` in `<name>.controller.ts`, and the host type it needs is `<Name>Host`, such as `EligibilityController` and `EligibilityHost`. Why: Lit names controllers this way, and `src/` already does. Check: review.
+- **NAME-07** Internal reactive state is a `@state() private` field without the underscore of lit.dev's examples, such as `@state() private activeIndex`. Why: the rest of `src/` writes private members as `private` or `private readonly`, with no underscore. Check: review.
+- **NAME-08** A template imports its own CSS module as `styles`. A `.messages.ts` file exports `<part>Messages` objects built with `defineMessages`, such as `legalMentionsMessages`. Why: `src/` already uses these names. Check: review.

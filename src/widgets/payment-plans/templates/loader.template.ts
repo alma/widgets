@@ -4,7 +4,11 @@ import { classMap } from 'lit/directives/class-map.js'
 import { withClassName } from '@/shared/ui/class-name'
 import styles from '@/widgets/payment-plans/templates/loader.module.css'
 
-export const loaderTemplate = ({ className }: { className?: string } = {}): TemplateResult =>
+export interface LoaderParams {
+  className?: string
+}
+
+export const loaderTemplate = ({ className }: LoaderParams = {}): TemplateResult =>
   html`<div
     class=${classMap(withClassName(styles.loadingIndicator, className))}
     data-testid="loader"

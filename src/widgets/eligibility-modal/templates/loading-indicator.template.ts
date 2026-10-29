@@ -4,9 +4,13 @@ import { classMap } from 'lit/directives/class-map.js'
 import { withClassName } from '@/shared/ui/class-name'
 import styles from '@/widgets/eligibility-modal/templates/loading-indicator.module.css'
 
+export interface LoadingIndicatorParams {
+  className?: string
+}
+
 export const loadingIndicatorTemplate = ({
   className,
-}: { className?: string } = {}): TemplateResult =>
+}: LoadingIndicatorParams = {}): TemplateResult =>
   html`<div
     class=${classMap(withClassName(styles.loadingIndicator, className))}
     data-testid="loader"

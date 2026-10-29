@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 
-import { loaderTemplate } from '@/widgets/payment-plans/templates/loader.template'
+import {
+  loaderTemplate,
+  type LoaderParams,
+} from '@/widgets/payment-plans/templates/loader.template'
 
-type Args = NonNullable<Parameters<typeof loaderTemplate>[0]>
-
-const meta: Meta<Args> = {
+const meta: Meta<LoaderParams> = {
   render: (args) => loaderTemplate(args),
 }
 
 export default meta
 
-export const Default: StoryObj<Args> = {}
+export const Default: StoryObj<LoaderParams> = {}
