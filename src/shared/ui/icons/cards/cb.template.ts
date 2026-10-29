@@ -4,7 +4,11 @@ import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { cardMessages } from '@/shared/ui/icons/cards/cards.messages'
 import { withSvgId } from '@/shared/ui/icons/svg-id'
 
-export const cbTemplate = (intl: IntlShape): TemplateResult =>
+export interface CbParams {
+  intl: IntlShape
+}
+
+export const cbTemplate = ({ intl }: CbParams): TemplateResult =>
   html`${withSvgId(
     'alma-cardcb',
     (gradientId) =>

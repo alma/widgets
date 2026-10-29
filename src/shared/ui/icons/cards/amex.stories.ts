@@ -4,7 +4,7 @@ import { createIntl } from '@/shared/i18n/create-intl'
 import { amexTemplate } from '@/shared/ui/icons/cards/amex.template'
 
 const meta: Meta = {
-  render: (_args, { globals }) => amexTemplate(createIntl(globals.locale)),
+  render: (_args, { globals }) => amexTemplate({ intl: createIntl(globals.locale) }),
 }
 
 export default meta

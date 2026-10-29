@@ -4,7 +4,7 @@ import { createIntl } from '@/shared/i18n/create-intl'
 import { cbTemplate } from '@/shared/ui/icons/cards/cb.template'
 
 const meta: Meta = {
-  render: (_args, { globals }) => cbTemplate(createIntl(globals.locale)),
+  render: (_args, { globals }) => cbTemplate({ intl: createIntl(globals.locale) }),
 }
 
 export default meta

@@ -193,7 +193,7 @@ describe('Accessibility - SVG & Logos', () => {
       },
     ])('$name', ({ template, label, englishLabel }) => {
       it('should have proper accessibility attributes for informative icon', async () => {
-        const container = renderToBody(template(fr))
+        const container = renderToBody(template({ intl: fr }))
 
         const card = container.querySelector('svg')
         expect(card?.getAttribute('aria-label')).toBe(label)
@@ -205,13 +205,13 @@ describe('Accessibility - SVG & Logos', () => {
       })
 
       it('should be findable by screen readers with correct label', () => {
-        const container = renderToBody(template(fr))
+        const container = renderToBody(template({ intl: fr }))
 
         expect(container.querySelector(`[aria-label="${label}"]`)).not.toBeNull()
       })
 
       it('should have correct dimensions and structure', () => {
-        const container = renderToBody(template(fr))
+        const container = renderToBody(template({ intl: fr }))
 
         const card = container.querySelector('svg')
         expect(card?.getAttribute('width')).toBe('24')
@@ -222,7 +222,7 @@ describe('Accessibility - SVG & Logos', () => {
       })
 
       it("should take its aria-label from the locale's catalogue", () => {
-        const container = renderToBody(template(createIntl('en')))
+        const container = renderToBody(template({ intl: createIntl('en') }))
 
         expect(container.querySelector('svg')?.getAttribute('aria-label')).toBe(englishLabel)
       })
@@ -232,7 +232,8 @@ describe('Accessibility - SVG & Logos', () => {
       it('should all cards be accessible when rendered together', async () => {
         const container = renderToBody(
           html`<div>
-            ${amexTemplate(fr)} ${cbTemplate(fr)} ${mastercardTemplate(fr)} ${visaTemplate(fr)}
+            ${amexTemplate({ intl: fr })} ${cbTemplate({ intl: fr })}
+            ${mastercardTemplate({ intl: fr })} ${visaTemplate({ intl: fr })}
           </div>`,
         )
 
@@ -253,7 +254,8 @@ describe('Accessibility - SVG & Logos', () => {
         const container = renderToBody(
           html`<div>
             <p>Cartes acceptées :</p>
-            ${amexTemplate(fr)} ${cbTemplate(fr)} ${mastercardTemplate(fr)} ${visaTemplate(fr)}
+            ${amexTemplate({ intl: fr })} ${cbTemplate({ intl: fr })}
+            ${mastercardTemplate({ intl: fr })} ${visaTemplate({ intl: fr })}
           </div>`,
         )
 
@@ -270,7 +272,8 @@ describe('Accessibility - SVG & Logos', () => {
 
       it('should give each Amex and CB logo its own gradient ID', () => {
         const container = renderToBody(
-          html`${amexTemplate(fr)} ${amexTemplate(fr)} ${cbTemplate(fr)} ${cbTemplate(fr)}`,
+          html`${amexTemplate({ intl: fr })} ${amexTemplate({ intl: fr })}
+          ${cbTemplate({ intl: fr })} ${cbTemplate({ intl: fr })}`,
         )
 
         const ids = Array.from(container.querySelectorAll('[id]'), (element) => element.id)
@@ -280,7 +283,8 @@ describe('Accessibility - SVG & Logos', () => {
 
       it('should point each gradient reference inside its own <svg>', () => {
         const container = renderToBody(
-          html`${amexTemplate(fr)} ${amexTemplate(fr)} ${cbTemplate(fr)} ${cbTemplate(fr)}`,
+          html`${amexTemplate({ intl: fr })} ${amexTemplate({ intl: fr })}
+          ${cbTemplate({ intl: fr })} ${cbTemplate({ intl: fr })}`,
         )
 
         container.querySelectorAll('svg').forEach((card) => {
@@ -298,11 +302,11 @@ describe('Accessibility - SVG & Logos', () => {
 
       it.each(Object.entries(gradientTemplates))(
         'should keep the %s gradient ID across re-renders',
-        (_card, template: (intl: IntlShape) => TemplateResult) => {
-          const container = renderToBody(template(fr))
+        (_card, template: (params: { intl: IntlShape }) => TemplateResult) => {
+          const container = renderToBody(template({ intl: fr }))
           const id = container.querySelector('linearGradient')?.id
 
-          render(template(createIntl('en')), container)
+          render(template({ intl: createIntl('en') }), container)
 
           expect(container.querySelectorAll('svg')).toHaveLength(1)
           expect(container.querySelector('linearGradient')?.id).toBe(id)
@@ -310,7 +314,9 @@ describe('Accessibility - SVG & Logos', () => {
       )
 
       it('should render the Mastercard logo without IDs', () => {
-        const container = renderToBody(html`${mastercardTemplate(fr)} ${mastercardTemplate(fr)}`)
+        const container = renderToBody(
+          html`${mastercardTemplate({ intl: fr })} ${mastercardTemplate({ intl: fr })}`,
+        )
 
         expect(container.querySelectorAll('[id]')).toHaveLength(0)
       })

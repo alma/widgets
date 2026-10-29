@@ -4,7 +4,11 @@ import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { cardMessages } from '@/shared/ui/icons/cards/cards.messages'
 import { withSvgId } from '@/shared/ui/icons/svg-id'
 
-export const amexTemplate = (intl: IntlShape): TemplateResult =>
+export interface AmexParams {
+  intl: IntlShape
+}
+
+export const amexTemplate = ({ intl }: AmexParams): TemplateResult =>
   html`${withSvgId(
     'alma-cardamex',
     (gradientId) =>
