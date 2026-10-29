@@ -1,7 +1,7 @@
 import { html, type TemplateResult } from 'lit'
 import { ifDefined } from 'lit/directives/if-defined.js'
 
-export type AlmaLogoOptions = {
+export interface AlmaLogoParams {
   className?: string
   color?: string
   width?: string
@@ -16,7 +16,7 @@ export const almaLogoTemplate = ({
   width = '42',
   height = '24',
   testId,
-}: AlmaLogoOptions = {}): TemplateResult =>
+}: AlmaLogoParams = {}): TemplateResult =>
   html`<svg
     width=${width}
     height=${height}

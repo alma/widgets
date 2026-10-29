@@ -1,13 +1,13 @@
 import { html, type TemplateResult } from 'lit'
 import { ifDefined } from 'lit/directives/if-defined.js'
 
-export type CrossOptions = {
+export interface CrossParams {
   color?: string
   className?: string
 }
 
 // Decorative: the parent button gives the accessible name.
-export const crossTemplate = ({ color = '#fff', className }: CrossOptions = {}): TemplateResult =>
+export const crossTemplate = ({ color = '#fff', className }: CrossParams = {}): TemplateResult =>
   html`<svg
     class=${ifDefined(className)}
     width="16"

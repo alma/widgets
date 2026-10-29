@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 
-import { crossTemplate, type CrossOptions } from '@/shared/ui/icons/cross.template'
+import { crossTemplate, type CrossParams } from '@/shared/ui/icons/cross.template'
 
-const meta: Meta<CrossOptions> = {
+const meta: Meta<CrossParams> = {
   render: (args) => crossTemplate(args),
 }
 
 export default meta
 
-type Story = StoryObj<CrossOptions>
+type Story = StoryObj<CrossParams>
 
 export const Dark: Story = {
   parameters: {
