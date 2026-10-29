@@ -2,6 +2,7 @@ import { html, render } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
 import { withClassName } from '@/shared/ui/class-name'
+import { renderTemplate } from '@/test/render-template'
 
 describe('withClassName', () => {
   it('should keep only the base class without a className', () => {
@@ -15,12 +16,11 @@ describe('withClassName', () => {
   })
 
   it('should let classMap change a className that holds several classes', () => {
-    const container = document.createElement('div')
-    const draw = (className: string) =>
-      render(html`<p class=${classMap(withClassName('base', className))}></p>`, container)
+    const template = (className: string) =>
+      html`<p class=${classMap(withClassName('base', className))}></p>`
 
-    draw('one two')
-    expect(() => draw('one four')).not.toThrow()
+    const container = renderTemplate(template('one two'))
+    expect(() => render(template('one four'), container)).not.toThrow()
     expect([...container.querySelector('p')!.classList]).toEqual(['base', 'one', 'four'])
   })
 })

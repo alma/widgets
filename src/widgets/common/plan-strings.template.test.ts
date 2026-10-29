@@ -1,7 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { render } from 'lit'
 import { axe } from 'vitest-axe'
 
 import type { EligiblePlan } from '@/domain/plans/api/eligibility.types'
@@ -14,6 +13,7 @@ import {
 } from '@/test/fixtures'
 import { injectStyle } from '@/test/inject-style'
 import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
+import { renderTemplate } from '@/test/render-template'
 import { paymentPlanInfoTextTemplate } from '@/widgets/common/plan-strings.template'
 
 type MessageFixture = {
@@ -37,12 +37,8 @@ const merchantCss = readFileSync(resolve(__dirname, '../../../examples/style.css
 // Whether Intl puts U+202F, U+00A0 or a space depends on the ICU version.
 const normalize = (text: string) => text.replace(/[\u202f\u00a0]/g, ' ')
 
-const renderInfoText = (plan: EligibilityPlanToDisplay, locale = 'fr') => {
-  const container = document.createElement('div')
-  document.body.append(container)
-  render(paymentPlanInfoTextTemplate({ plan, intl: createIntl(locale) }), container)
-  return container
-}
+const renderInfoText = (plan: EligibilityPlanToDisplay, locale = 'fr') =>
+  renderTemplate(paymentPlanInfoTextTemplate({ plan, intl: createIntl(locale) }))
 
 const linesOf = (container: HTMLElement) =>
   [...container.querySelectorAll('p')].map((line) => normalize(line.textContent ?? ''))

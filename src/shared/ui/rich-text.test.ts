@@ -1,7 +1,8 @@
-import { html, render } from 'lit'
+import { html } from 'lit'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { formatRichText, type RichText } from '@/shared/ui/rich-text'
+import { renderTemplate } from '@/test/render-template'
 import {
   legalMentionsMessages,
   infoMessages,
@@ -13,15 +14,11 @@ const link = (chunks: RichText) =>
   html`<a href="https://almapay.com" target="_blank" rel="noopener noreferrer">${chunks}</a>`
 const mail = (chunks: RichText) => html`<a href="mailto:support@almapay.com">${chunks}</a>`
 
-const renderToDiv = (content: RichText) => {
-  const container = document.createElement('div')
-  render(html`${content}`, container)
-  return container
-}
+const renderRichText = (content: RichText) => renderTemplate(html`${content}`)
 
 describe('formatRichText', () => {
   it('renders a <strong> tag as a <strong> element', () => {
-    const container = renderToDiv(
+    const container = renderRichText(
       formatRichText(createIntl('fr'), infoMessages.bullet1, { strong }),
     )
 
@@ -30,7 +27,7 @@ describe('formatRichText', () => {
   })
 
   it("renders the disclaimer's links with master's attributes", () => {
-    const container = renderToDiv(
+    const container = renderRichText(
       formatRichText(createIntl('en'), legalMentionsMessages.disclaimer, { link, mail }),
     )
     const [almapay, support] = container.querySelectorAll('a')
@@ -47,7 +44,7 @@ describe('formatRichText', () => {
     const intl = createIntl('en')
     const disclaimer = formatRichText(intl, legalMentionsMessages.disclaimer, { link, mail })
 
-    const container = renderToDiv(
+    const container = renderRichText(
       formatRichText(intl, legalMentionsMessages.creditOrPnxWithoutFees, {
         financedAmount: '€100.00',
         customerLendingRate: '5%',
@@ -63,7 +60,7 @@ describe('formatRichText', () => {
   })
 
   it('escapes the text of a value instead of parsing it as HTML', () => {
-    const container = renderToDiv(
+    const container = renderRichText(
       formatRichText(createIntl('en'), legalMentionsMessages.creditOrPnxWithoutFees, {
         financedAmount: '<img src=x>',
         customerLendingRate: '5%',
