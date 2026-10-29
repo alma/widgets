@@ -55,6 +55,12 @@ describe('the test setup', () => {
     it('should name CSS module classes after their keys', () => {
       expect(styles.planButton).toBe('planButton')
     })
+
+    it('should add the jest-dom matchers', () => {
+      document.body.innerHTML = '<p class="target"></p>'
+
+      expect(document.querySelector('p')).toHaveClass('target')
+    })
   })
 
   describe('time zone', () => {
