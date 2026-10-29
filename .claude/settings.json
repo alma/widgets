@@ -13,7 +13,8 @@
       "Bash(npm run lint)",
       "Bash(npm run build)",
       "Bash(npm run build:contract)",
-      "Bash(npm run build-storybook)"
+      "Bash(npm run build-storybook)",
+      "Bash(set -o pipefail)"
     ],
     "deny": [
       "Edit(/src/intl/messages/**)",

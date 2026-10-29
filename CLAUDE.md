@@ -34,9 +34,9 @@ Husky `pre-commit` already runs the typecheck, the tests of the changed files an
   Only `src/modal.browser.test.ts` needs a browser. `npm run test:browser:install` must have run
   once, or `npm test` and the `pre-push` hook fail.
 - `src/test/setup.ts` runs before every unit and browser test file, but not the contract tests. It
-  fixes `Date.now()` to master's "today" (`1638350762000`), adds the `vitest-axe` matchers, and
-  after each test restores the spies, clears the mock calls, and empties `<body>`, its
-  `ReactModal__Body--open` class, `sessionStorage` and the `warnOnce` memory.
+  fixes `Date.now()` to master's "today" (`1638350762000`), adds the `vitest-axe` and jest-dom
+  matchers, and after each test restores the spies, clears the mock calls, and empties `<body>`,
+  its `ReactModal__Body--open` class, `sessionStorage` and the `warnOnce` memory.
 - `src/test/setup-jsdom.ts` runs in the `unit` project only. It puts the time zone back to UTC after
   each test and mocks `matchMedia` (no query matches), `no-scroll` and the canvas context axe needs.
   In unit tests, a CSS module class name equals its key (`styles.planButton === 'planButton'`).
