@@ -34,6 +34,7 @@
   "legal-mentions.disclaimer": "Subject to approval by Alma SAS (<link>almapay.com</link>), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
   "legal-mentions.pay-later-with-fees": "A loan of {financedAmount} at a fixed borrowing rate of {customerLendingRate} on {deferredDuration}. Financing, which includes fees of {fees}, a purchase of {purchaseAmount}. Total amount due: {totalDue}, debited on {dueDate}. {disclaimer}",
   "legal-mentions.pay-later-without-fees": "Loan from {financedAmount} at a fixed borrowing rate of {customerLendingRate} on {deferredDuration}. Financing a purchase of {purchaseAmount}. Total amount due: {totalDue}, debited on {dueDate}. {disclaimer}",
+  "legal-mentions.payment-institution-disclaimer": "Subject to approval by Alma SAS (<link>almapay.com</link>), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
   "legal-mentions.pnx-with-fees": "A loan of {financedAmount} at a fixed borrowing rate of {customerLendingRate} over {creditDurationInMonths} months. Financing, in addition to a {initialDeposit} down payment which includes fees of {fees}, a purchase of {purchaseAmount}. {disclaimer}",
   "payment-plan-strings.credit": "Click to find out more",
   "payment-plan-strings.day-abbreviation": "D{deferredDays}",

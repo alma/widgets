@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 
 import { secondsToMilliseconds } from 'date-fns'
-import { FormatNumberOptions, FormattedMessage, useIntl } from 'react-intl'
+import { defineMessages, FormatNumberOptions, FormattedMessage, useIntl } from 'react-intl'
 
 import { EligibilityPlanToDisplay } from '@/types'
 import { priceFromCents } from '@/utils'
@@ -17,6 +17,20 @@ import {
 } from '@/utils/regulatoryFigures'
 import s from 'components/Installments/LegalMentions/LegalMentions.module.css'
 
+// Alma is a financing company in France and a payment institution everywhere else.
+const disclaimers = defineMessages({
+  financingCompany: {
+    id: 'legal-mentions.disclaimer',
+    defaultMessage:
+      "Sous réserve d'acceptation par Alma SAS (<link>almapay.com</link>), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+  },
+  paymentInstitution: {
+    id: 'legal-mentions.payment-institution-disclaimer',
+    defaultMessage:
+      "Sous réserve d'acceptation par Alma SAS (<link>almapay.com</link>), établissement de paiement agréé par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+  },
+})
+
 export interface LegalMentionsProps {
   currentPlan: EligibilityPlanToDisplay
 }
@@ -24,12 +38,10 @@ export interface LegalMentionsProps {
 const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
   const { formatNumber, formatDate, formatMessage } = useIntl()
 
+  const isFrenchTransaction = currentPlan.transaction_country?.toUpperCase() === 'FR'
+
   const disclaimer = formatMessage(
-    {
-      id: 'legal-mentions.disclaimer',
-      defaultMessage:
-        "Sous réserve d'acceptation par Alma SAS (<link>almapay.com</link>), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
-    },
+    isFrenchTransaction ? disclaimers.financingCompany : disclaimers.paymentInstitution,
     {
       link: (chunks: ReactNode) => (
         <a

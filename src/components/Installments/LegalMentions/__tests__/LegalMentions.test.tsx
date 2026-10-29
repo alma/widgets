@@ -14,6 +14,11 @@ import LegalMentions from 'components/Installments/LegalMentions'
 
 const DISCLAIMER =
   "Sous réserve d'acceptation par Alma SAS (almapay.com), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: support@almapay.com"
+const PAYMENT_INSTITUTION_DISCLAIMER =
+  "Sous réserve d'acceptation par Alma SAS (almapay.com), établissement de paiement agréé par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: support@almapay.com"
+
+const FRENCH_COUNTRIES = ['FR', 'fr']
+const OTHER_COUNTRIES = ['LU', 'BE', 'NL', 'IT', 'DE', 'PT', 'ES', 'GB', 'UK', 'US']
 
 describe('standard PNX/Credit variant', () => {
   it('renders the without-fee-sharing wording for a plan with no customer cost', () => {
@@ -59,18 +64,23 @@ describe('standard PNX/Credit variant', () => {
     expect(legalMentions).not.toHaveTextContent('Montant total dû')
   })
 
-  it('does not depend on transaction_country', () => {
-    const { unmount } = render(
-      <LegalMentions currentPlan={mockP2XEligiblePlan.withCountry('FR')} />,
-    )
-    const frText = screen.getByTestId('legal-mentions').textContent
-    unmount()
+  it.each(FRENCH_COUNTRIES)(
+    'uses the financing company disclaimer for a %s transaction',
+    (country) => {
+      render(<LegalMentions currentPlan={mockP2XEligiblePlan.withCountry(country)} />)
 
-    render(<LegalMentions currentPlan={mockP2XEligiblePlan.withCountry('US')} />)
-    const usText = screen.getByTestId('legal-mentions').textContent
+      expect(screen.getByTestId('legal-mentions')).toHaveTextContent(DISCLAIMER)
+    },
+  )
 
-    expect(usText).toBe(frText)
-  })
+  it.each(OTHER_COUNTRIES)(
+    'uses the payment institution disclaimer for a %s transaction',
+    (country) => {
+      render(<LegalMentions currentPlan={mockP2XEligiblePlan.withCountry(country)} />)
+
+      expect(screen.getByTestId('legal-mentions')).toHaveTextContent(PAYMENT_INSTITUTION_DISCLAIMER)
+    },
+  )
 })
 
 describe('P1X Pay Later variant', () => {
@@ -123,16 +133,21 @@ describe('P1X Pay Later variant', () => {
     )
   })
 
-  it('does not depend on transaction_country', () => {
-    const { unmount } = render(
-      <LegalMentions currentPlan={mockPayLater30DaysEligiblePlan.withCountry('FR')} />,
-    )
-    const frText = screen.getByTestId('legal-mentions').textContent
-    unmount()
+  it.each(FRENCH_COUNTRIES)(
+    'uses the financing company disclaimer for a %s transaction',
+    (country) => {
+      render(<LegalMentions currentPlan={mockPayLater30DaysEligiblePlan.withCountry(country)} />)
 
-    render(<LegalMentions currentPlan={mockPayLater30DaysEligiblePlan.withCountry('US')} />)
-    const usText = screen.getByTestId('legal-mentions').textContent
+      expect(screen.getByTestId('legal-mentions')).toHaveTextContent(DISCLAIMER)
+    },
+  )
 
-    expect(usText).toBe(frText)
-  })
+  it.each(OTHER_COUNTRIES)(
+    'uses the payment institution disclaimer for a %s transaction',
+    (country) => {
+      render(<LegalMentions currentPlan={mockPayLater30DaysEligiblePlan.withCountry(country)} />)
+
+      expect(screen.getByTestId('legal-mentions')).toHaveTextContent(PAYMENT_INSTITUTION_DISCLAIMER)
+    },
+  )
 })
