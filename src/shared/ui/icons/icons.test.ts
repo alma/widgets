@@ -4,18 +4,12 @@ import { axe } from 'vitest-axe'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { almaLogoTemplate } from '@/shared/ui/icons/alma-logo.template'
-import { amexCardTemplate } from '@/shared/ui/icons/cards/amex.template'
-import { cbCardTemplate } from '@/shared/ui/icons/cards/cb.template'
+import { amexTemplate } from '@/shared/ui/icons/cards/amex.template'
+import { cbTemplate } from '@/shared/ui/icons/cards/cb.template'
 import { mastercardTemplate } from '@/shared/ui/icons/cards/mastercard.template'
-import { visaCardTemplate } from '@/shared/ui/icons/cards/visa.template'
+import { visaTemplate } from '@/shared/ui/icons/cards/visa.template'
 import { crossTemplate } from '@/shared/ui/icons/cross.template'
-
-const renderToBody = (template: TemplateResult) => {
-  const container = document.createElement('div')
-  document.body.append(container)
-  render(template, container)
-  return container
-}
+import { renderTemplate } from '@/test/render-template'
 
 const attributesHoldingUndefined = (root: Element) =>
   [root, ...root.querySelectorAll('*')].flatMap((element) =>
@@ -25,7 +19,7 @@ const attributesHoldingUndefined = (root: Element) =>
 describe('Accessibility - SVG & Logos', () => {
   describe('AlmaLogo Accessibility Tests', () => {
     it('should always be decorative with proper aria-hidden', async () => {
-      const container = renderToBody(almaLogoTemplate())
+      const container = renderTemplate(almaLogoTemplate())
 
       const logo = container.querySelector('svg')
       expect(logo).not.toBeNull()
@@ -38,7 +32,9 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should maintain visual styling with custom props', () => {
-      const container = renderToBody(almaLogoTemplate({ color: '#ff0000', className: 'test-logo' }))
+      const container = renderTemplate(
+        almaLogoTemplate({ color: '#ff0000', className: 'test-logo' }),
+      )
 
       const logo = container.querySelector('svg')
       expect(logo?.classList.contains('test-logo')).toBe(true)
@@ -47,7 +43,7 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should support additional SVG attributes', async () => {
-      const container = renderToBody(
+      const container = renderTemplate(
         almaLogoTemplate({ testId: 'alma-logo', width: '100', height: '50' }),
       )
 
@@ -60,7 +56,7 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should properly handle focus management', () => {
-      const container = renderToBody(almaLogoTemplate())
+      const container = renderTemplate(almaLogoTemplate())
 
       const logo = container.querySelector('svg')
       expect(logo?.getAttribute('focusable')).toBe('false')
@@ -70,7 +66,7 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should have correct default dimensions and viewBox', () => {
-      const container = renderToBody(almaLogoTemplate())
+      const container = renderTemplate(almaLogoTemplate())
 
       const logo = container.querySelector('svg')
       expect(logo?.getAttribute('width')).toBe('42')
@@ -81,7 +77,7 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should not contains any RGAA violation (contradictory aria attributes)', async () => {
-      const container = renderToBody(almaLogoTemplate())
+      const container = renderTemplate(almaLogoTemplate())
 
       const logo = container.querySelector('svg')
       expect(logo?.getAttribute('aria-hidden')).toBe('true')
@@ -92,7 +88,7 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should render no class or data-testid attribute when none is given', () => {
-      const container = renderToBody(almaLogoTemplate({ className: undefined }))
+      const container = renderTemplate(almaLogoTemplate({ className: undefined }))
 
       const logo = container.querySelector('svg')
       expect(logo?.hasAttribute('class')).toBe(false)
@@ -101,7 +97,7 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should render the modal logo as the desktop and mobile layouts pass it', () => {
-      const container = renderToBody(almaLogoTemplate({ className: 'logo', width: '75' }))
+      const container = renderTemplate(almaLogoTemplate({ className: 'logo', width: '75' }))
 
       const logo = container.querySelector('svg')
       expect(logo?.getAttribute('class')).toBe('logo')
@@ -112,7 +108,7 @@ describe('Accessibility - SVG & Logos', () => {
 
   describe('CrossIcon Accessibility Tests', () => {
     it('should always be decorative with proper aria-hidden', async () => {
-      const container = renderToBody(crossTemplate())
+      const container = renderTemplate(crossTemplate())
 
       const icon = container.querySelector('svg')
       expect(icon).not.toBeNull()
@@ -125,7 +121,7 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should maintain visual appearance with custom props', () => {
-      const container = renderToBody(crossTemplate({ color: '#ff0000', className: 'test-class' }))
+      const container = renderTemplate(crossTemplate({ color: '#ff0000', className: 'test-class' }))
 
       const icon = container.querySelector('svg')
       expect(icon?.classList.contains('test-class')).toBe(true)
@@ -134,7 +130,7 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should work correctly in button context (standard usage)', async () => {
-      const container = renderToBody(
+      const container = renderTemplate(
         html`<button type="button" aria-label="Close window">${crossTemplate()}</button>`,
       )
 
@@ -145,7 +141,7 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should have correct dimensions and namespace', () => {
-      const container = renderToBody(crossTemplate())
+      const container = renderTemplate(crossTemplate())
 
       const icon = container.querySelector('svg')
       expect(icon?.getAttribute('width')).toBe('16')
@@ -156,7 +152,7 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     it('should render no class attribute when none is given', () => {
-      const container = renderToBody(crossTemplate())
+      const container = renderTemplate(crossTemplate())
 
       expect(container.querySelector('svg')?.hasAttribute('class')).toBe(false)
       expect(attributesHoldingUndefined(container)).toEqual([])
@@ -169,13 +165,13 @@ describe('Accessibility - SVG & Logos', () => {
     describe.each([
       {
         name: 'AmexCard',
-        template: amexCardTemplate,
+        template: amexTemplate,
         label: 'Carte American Express acceptée',
         englishLabel: 'American Express card accepted',
       },
       {
         name: 'CbCard',
-        template: cbCardTemplate,
+        template: cbTemplate,
         label: 'Carte Bancaire CB acceptée',
         englishLabel: 'CB credit card accepted',
       },
@@ -187,13 +183,13 @@ describe('Accessibility - SVG & Logos', () => {
       },
       {
         name: 'VisaCard',
-        template: visaCardTemplate,
+        template: visaTemplate,
         label: 'Carte Visa acceptée',
         englishLabel: 'Visa card accepted',
       },
     ])('$name', ({ template, label, englishLabel }) => {
       it('should have proper accessibility attributes for informative icon', async () => {
-        const container = renderToBody(template(fr))
+        const container = renderTemplate(template({ intl: fr }))
 
         const card = container.querySelector('svg')
         expect(card?.getAttribute('aria-label')).toBe(label)
@@ -205,13 +201,13 @@ describe('Accessibility - SVG & Logos', () => {
       })
 
       it('should be findable by screen readers with correct label', () => {
-        const container = renderToBody(template(fr))
+        const container = renderTemplate(template({ intl: fr }))
 
         expect(container.querySelector(`[aria-label="${label}"]`)).not.toBeNull()
       })
 
       it('should have correct dimensions and structure', () => {
-        const container = renderToBody(template(fr))
+        const container = renderTemplate(template({ intl: fr }))
 
         const card = container.querySelector('svg')
         expect(card?.getAttribute('width')).toBe('24')
@@ -222,7 +218,7 @@ describe('Accessibility - SVG & Logos', () => {
       })
 
       it("should take its aria-label from the locale's catalogue", () => {
-        const container = renderToBody(template(createIntl('en')))
+        const container = renderTemplate(template({ intl: createIntl('en') }))
 
         expect(container.querySelector('svg')?.getAttribute('aria-label')).toBe(englishLabel)
       })
@@ -230,10 +226,10 @@ describe('Accessibility - SVG & Logos', () => {
 
     describe('Payment Cards Integration Tests', () => {
       it('should all cards be accessible when rendered together', async () => {
-        const container = renderToBody(
+        const container = renderTemplate(
           html`<div>
-            ${amexCardTemplate(fr)} ${cbCardTemplate(fr)} ${mastercardTemplate(fr)}
-            ${visaCardTemplate(fr)}
+            ${amexTemplate({ intl: fr })} ${cbTemplate({ intl: fr })}
+            ${mastercardTemplate({ intl: fr })} ${visaTemplate({ intl: fr })}
           </div>`,
         )
 
@@ -251,11 +247,11 @@ describe('Accessibility - SVG & Logos', () => {
       })
 
       it('should provide meaningful information to screen reader users', () => {
-        const container = renderToBody(
+        const container = renderTemplate(
           html`<div>
             <p>Cartes acceptées :</p>
-            ${amexCardTemplate(fr)} ${cbCardTemplate(fr)} ${mastercardTemplate(fr)}
-            ${visaCardTemplate(fr)}
+            ${amexTemplate({ intl: fr })} ${cbTemplate({ intl: fr })}
+            ${mastercardTemplate({ intl: fr })} ${visaTemplate({ intl: fr })}
           </div>`,
         )
 
@@ -268,12 +264,12 @@ describe('Accessibility - SVG & Logos', () => {
     })
 
     describe('SVG IDs', () => {
-      const gradientTemplates = { amex: amexCardTemplate, cb: cbCardTemplate }
+      const gradientTemplates = { amex: amexTemplate, cb: cbTemplate }
 
       it('should give each Amex and CB logo its own gradient ID', () => {
-        const container = renderToBody(
-          html`${amexCardTemplate(fr)} ${amexCardTemplate(fr)} ${cbCardTemplate(fr)}
-          ${cbCardTemplate(fr)}`,
+        const container = renderTemplate(
+          html`${amexTemplate({ intl: fr })} ${amexTemplate({ intl: fr })}
+          ${cbTemplate({ intl: fr })} ${cbTemplate({ intl: fr })}`,
         )
 
         const ids = Array.from(container.querySelectorAll('[id]'), (element) => element.id)
@@ -282,9 +278,9 @@ describe('Accessibility - SVG & Logos', () => {
       })
 
       it('should point each gradient reference inside its own <svg>', () => {
-        const container = renderToBody(
-          html`${amexCardTemplate(fr)} ${amexCardTemplate(fr)} ${cbCardTemplate(fr)}
-          ${cbCardTemplate(fr)}`,
+        const container = renderTemplate(
+          html`${amexTemplate({ intl: fr })} ${amexTemplate({ intl: fr })}
+          ${cbTemplate({ intl: fr })} ${cbTemplate({ intl: fr })}`,
         )
 
         container.querySelectorAll('svg').forEach((card) => {
@@ -302,11 +298,11 @@ describe('Accessibility - SVG & Logos', () => {
 
       it.each(Object.entries(gradientTemplates))(
         'should keep the %s gradient ID across re-renders',
-        (_card, template: (intl: IntlShape) => TemplateResult) => {
-          const container = renderToBody(template(fr))
+        (_card, template: (params: { intl: IntlShape }) => TemplateResult) => {
+          const container = renderTemplate(template({ intl: fr }))
           const id = container.querySelector('linearGradient')?.id
 
-          render(template(createIntl('en')), container)
+          render(template({ intl: createIntl('en') }), container)
 
           expect(container.querySelectorAll('svg')).toHaveLength(1)
           expect(container.querySelector('linearGradient')?.id).toBe(id)
@@ -314,7 +310,9 @@ describe('Accessibility - SVG & Logos', () => {
       )
 
       it('should render the Mastercard logo without IDs', () => {
-        const container = renderToBody(html`${mastercardTemplate(fr)} ${mastercardTemplate(fr)}`)
+        const container = renderTemplate(
+          html`${mastercardTemplate({ intl: fr })} ${mastercardTemplate({ intl: fr })}`,
+        )
 
         expect(container.querySelectorAll('[id]')).toHaveLength(0)
       })

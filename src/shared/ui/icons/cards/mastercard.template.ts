@@ -3,8 +3,12 @@ import { html, type TemplateResult } from 'lit'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { cardMessages } from '@/shared/ui/icons/cards/cards.messages'
 
+export interface MastercardParams {
+  intl: IntlShape
+}
+
 // Master's markup minus nine unused IDs that two logos on one page would duplicate.
-export const mastercardTemplate = (intl: IntlShape): TemplateResult =>
+export const mastercardTemplate = ({ intl }: MastercardParams): TemplateResult =>
   html`<svg
     width="24"
     height="16"

@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 
-import { almaLogoTemplate, type AlmaLogoOptions } from '@/shared/ui/icons/alma-logo.template'
+import { almaLogoTemplate, type AlmaLogoParams } from '@/shared/ui/icons/alma-logo.template'
 
-const meta: Meta<AlmaLogoOptions> = {
+const meta: Meta<AlmaLogoParams> = {
   render: (args) => almaLogoTemplate(args),
 }
 
 export default meta
 
-type Story = StoryObj<AlmaLogoOptions>
+type Story = StoryObj<AlmaLogoParams>
 
 export const Colored: Story = {}
 
