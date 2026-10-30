@@ -13,6 +13,14 @@
   outline-offset: 2px;
 }
 
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
 .listItem {
   display: flex;
   align-items: center;

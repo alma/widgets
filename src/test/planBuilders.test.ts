@@ -150,6 +150,15 @@ describe('eligiblePlanBuilder', () => {
       expect(plan.customer_total_cost_bps).toBe(30)
       expect(plan.customer_total_cost_amount).toBe(135)
     })
+
+    it('should annualize the fee into annual_interest_rate over installments_count - 1 months', () => {
+      const plan = eligiblePlanBuilder()
+        .withPurchaseAmount(45000)
+        .withInstallmentsCount(3)
+        .withFees(135)
+
+      expect(plan.annual_interest_rate).toBe(180)
+    })
   })
 
   describe('withDeferredMonths', () => {
