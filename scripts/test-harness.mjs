@@ -41,6 +41,8 @@ const STYLELINT_RULES = new Set([
 ])
 const SKELETONS = '.claude/skills/port-react-component/references'
 const HOOK = '.claude/hooks/lint-edited-file.mjs'
+const PR_TEMPLATE = '.github/pull_request_template.md'
+const PR_CHECKLIST = '.claude/skills/lit-review/references/pr-checklist.md'
 const HOOK_TIMEOUT_MS = 10_000
 // A case with a fixture copies it to `file`, then removes it. The hook runs in `cwd`, the root by
 // default, as Claude Code runs it in the session's current directory.
@@ -173,6 +175,17 @@ report(
   browserTests.length === 0
     ? `no *.browser.test.ts file but ${ONLY_BROWSER_TEST}`
     : `only ${ONLY_BROWSER_TEST} may run in Chromium, found ${browserTests.join(', ')}`,
+)
+
+// GitHub reads the template from the default branch only, so the skill keeps its own copy.
+const samePrChecklist =
+  readFileSync(join(root, PR_TEMPLATE), 'utf8') === readFileSync(join(root, PR_CHECKLIST), 'utf8')
+report(
+  samePrChecklist,
+  'PR checklist',
+  samePrChecklist
+    ? `${PR_TEMPLATE} matches ${PR_CHECKLIST}`
+    : `${PR_TEMPLATE} differs from ${PR_CHECKLIST}: change both together`,
 )
 
 const gitStatus = () =>
