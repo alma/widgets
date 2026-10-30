@@ -143,7 +143,14 @@ the exit code is what counts. Run `npm run test:contract` again after removing e
 Add `## Expected failures removed` and `## Dropped test cases` sections to the PR description
 draft, each with its entries or "none".
 
-## 8. Report
+## 8. Review
+
+Invoke the lit-review skill. Once the developer has decided on each finding, fix the accepted
+ones in this session, because lit-review doesn't fix. When a fix adds or changes a story, ask the
+developer to check it as in step 4. When you changed any file, run the checks of step 7 again.
+With no PR, add the section that lit-review prints to the PR description draft.
+
+## 9. Report
 
 Tell the developer which files you created and changed, the result of each check, the expected
-failures removed, and anything left to them. Don't commit.
+failures removed, the review findings and their decisions, and anything left to them. Don't commit.
