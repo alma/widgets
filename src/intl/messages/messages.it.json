@@ -30,6 +30,7 @@
   "installments.today": "Oggi",
   "installments.total-amount": "Totale",
   "installments.total-fees": "Di cui commissioni",
+  "legal-mentions.credit-cost-borne-by-merchant": "Il costo del credito è a carico del marchio.",
   "legal-mentions.credit-or-pnx-without-fees": "Prestito di {financedAmount} con tasso fisso dello {customerLendingRate} per {creditDurationInMonths} mesi. Con un acconto di {initialDeposit}, Alma finanzia un acquisto di {purchaseAmount}. {disclaimer}",
   "legal-mentions.disclaimer": "Previa accettazione da parte di Alma SAS (<link>almapay.com</link>), {status} (codice CIB: 17408). RCS Nanterre 839100575. Contatto: <mail>support@almapay.com</mail>",
   "legal-mentions.disclaimer.financing-company": "società di finanziamento autorizzata dall'ACPR",
