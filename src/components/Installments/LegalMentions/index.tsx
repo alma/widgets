@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 
 import { secondsToMilliseconds } from 'date-fns'
-import { FormatNumberOptions, FormattedMessage, useIntl } from 'react-intl'
+import { defineMessages, FormatNumberOptions, FormattedMessage, useIntl } from 'react-intl'
 
 import { EligibilityPlanToDisplay } from '@/types'
 import { priceFromCents } from '@/utils'
@@ -17,6 +17,22 @@ import {
 } from '@/utils/regulatoryFigures'
 import s from 'components/Installments/LegalMentions/LegalMentions.module.css'
 
+const messages = defineMessages({
+  disclaimer: {
+    id: 'legal-mentions.disclaimer',
+    defaultMessage:
+      "Sous réserve d'acceptation par Alma SAS (<link>almapay.com</link>), {status} (code CIB : 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+  },
+  financingCompany: {
+    id: 'legal-mentions.disclaimer.financing-company',
+    defaultMessage: "société de financement agréée par l'ACPR",
+  },
+  paymentInstitution: {
+    id: 'legal-mentions.disclaimer.payment-institution',
+    defaultMessage: "établissement de paiement agréé par l'ACPR",
+  },
+})
+
 export interface LegalMentionsProps {
   currentPlan: EligibilityPlanToDisplay
 }
@@ -24,30 +40,29 @@ export interface LegalMentionsProps {
 const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
   const { formatNumber, formatDate, formatMessage } = useIntl()
 
-  const disclaimer = formatMessage(
-    {
-      id: 'legal-mentions.disclaimer',
-      defaultMessage:
-        "Sous réserve d'acceptation par Alma SAS (<link>almapay.com</link>), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
-    },
-    {
-      link: (chunks: ReactNode) => (
-        <a
-          href="https://almapay.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={s.disclaimerLink}
-        >
-          {chunks}
-        </a>
-      ),
-      mail: (chunks: ReactNode) => (
-        <a href="mailto:support@almapay.com" className={s.disclaimerLink}>
-          {chunks}
-        </a>
-      ),
-    },
-  )
+  const isFrenchTransaction = currentPlan.transaction_country?.toUpperCase() === 'FR'
+
+  const disclaimer = formatMessage(messages.disclaimer, {
+    // Alma is a financing company in France and a payment institution everywhere else.
+    status: formatMessage(
+      isFrenchTransaction ? messages.financingCompany : messages.paymentInstitution,
+    ),
+    link: (chunks: ReactNode) => (
+      <a
+        href="https://almapay.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={s.disclaimerLink}
+      >
+        {chunks}
+      </a>
+    ),
+    mail: (chunks: ReactNode) => (
+      <a href="mailto:support@almapay.com" className={s.disclaimerLink}>
+        {chunks}
+      </a>
+    ),
+  })
 
   const formatPrice = (cents: number, options?: FormatNumberOptions) =>
     formatNumber(priceFromCents(cents), { ...(options || {}), style: 'currency', currency: 'EUR' })
