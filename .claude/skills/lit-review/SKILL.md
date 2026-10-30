@@ -88,7 +88,7 @@ A finding the developer doesn't reject is accepted. Don't change any code in thi
 ## 5. Write the checklist and the findings
 
 Build the section from [references/pr-checklist.md](references/pr-checklist.md), with its two
-`lit-review` markers. `.github/pull_request_template.md` must stay identical to that file, and
+`lit-review` markers. `.github/pull_request_template.md` must hold that block as it is, and
 `npm run test:harness` checks it.
 
 1. Copy the checklist. When a checklist item covers the rule of an accepted finding, add
@@ -96,7 +96,8 @@ Build the section from [references/pr-checklist.md](references/pr-checklist.md),
    the PR description doesn't have the item yet, because the developer ticks them. Match an item
    by its text without a trailing `(findings …)`, and replace that suffix rather than adding a
    second one. A finding whose rule no item lists stays in the table only.
-2. After the checklist, add this, before the end marker:
+2. The checklist sits in a collapsed `<details>` block, because it mostly serves the agents. After
+   `</details>`, add this, before the end marker, so the findings stay visible:
 
    ```markdown
    ## Review findings

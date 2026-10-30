@@ -177,15 +177,15 @@ report(
     : `only ${ONLY_BROWSER_TEST} may run in Chromium, found ${browserTests.join(', ')}`,
 )
 
-// GitHub reads the template from the default branch only, so the skill keeps its own copy.
-const samePrChecklist =
-  readFileSync(join(root, PR_TEMPLATE), 'utf8') === readFileSync(join(root, PR_CHECKLIST), 'utf8')
+// GitHub reads the template from the default branch only, so the skill keeps its own checklist.
+const prChecklist = readFileSync(join(root, PR_CHECKLIST), 'utf8').trim()
+const holdsPrChecklist = readFileSync(join(root, PR_TEMPLATE), 'utf8').includes(prChecklist)
 report(
-  samePrChecklist,
+  holdsPrChecklist,
   'PR checklist',
-  samePrChecklist
-    ? `${PR_TEMPLATE} matches ${PR_CHECKLIST}`
-    : `${PR_TEMPLATE} differs from ${PR_CHECKLIST}: change both together`,
+  holdsPrChecklist
+    ? `${PR_TEMPLATE} holds ${PR_CHECKLIST}`
+    : `${PR_TEMPLATE} lacks the block of ${PR_CHECKLIST}: change both together`,
 )
 
 const gitStatus = () =>

@@ -1,5 +1,6 @@
 <!-- lit-review:start -->
-## PR checklist
+<details>
+<summary>PR checklist</summary>
 
 - [ ] The port reproduces master at the reference commit, quirks included. (ARCH-01)
 - [ ] Each file sits in its layer and folder, and its suffix says what it holds. (LAYER-04, LAYER-11)
@@ -14,4 +15,6 @@
 - [ ] The modal keeps react-modal's markup, with no `<dialog>`, no `inert` and no `aria-hidden` on the page behind it, and no DOM change made for axe. (A11Y-02, A11Y-03, A11Y-04, A11Y-05)
 - [ ] Each story was checked in Storybook with Merchant CSS off and on, and with the Accessibility panel.
 - [ ] `/lit-review` ran, and each finding is fixed or rejected with a reason.
+
+</details>
 <!-- lit-review:end -->

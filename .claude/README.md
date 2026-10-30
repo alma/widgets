@@ -123,5 +123,5 @@ instructions for every repo go in `~/.claude/CLAUDE.md`.
 Changes to `.claude/` and to the root `CLAUDE.md` go through a PR, because they change every
 teammate's sessions. Keep a rule's ID once it is merged, and keep the same wording wherever the
 rule appears. The rules name no ticket and no planning document, because neither is in the repo.
-`.github/pull_request_template.md` must stay identical to
-`skills/lit-review/references/pr-checklist.md`, and `npm run test:harness` checks it.
+`.github/pull_request_template.md` must hold the checklist block of
+`skills/lit-review/references/pr-checklist.md` as it is, and `npm run test:harness` checks it.

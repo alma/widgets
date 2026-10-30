@@ -24,8 +24,8 @@ tests in `src/modal.browser.test.ts` (A11Y-07).
 ## What every port checks
 
 - Each case of master passes, under master's name. Drop only a case that tests a React detail,
-  such as a function reference or a `formatMessage` error, and list it under
-  `## Dropped test cases` in the PR description draft.
+  such as a function reference or a `formatMessage` error, and list it under the
+  `Dropped test cases` bullet of the PR description draft.
 - A case that needs a part that isn't ported yet stays as `it.todo('<master's name>')`.
 - axe runs through `vitest-axe` on each state that master's tests render. When a rule fails on
   master's DOM, disable that rule in that test, with a comment that says what master renders there.
