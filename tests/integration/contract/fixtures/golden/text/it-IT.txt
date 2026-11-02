@@ -139,7 +139,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 
@@ -169,7 +169,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 text: Come pagare
@@ -574,7 +574,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 450,00 € con tasso fisso dello 0% su 15 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 16 dicembre 2021. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 450,00 € con tasso fisso dello 0% su 15 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 16 dicembre 2021. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 3 selected
@@ -640,7 +640,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 450,00 € con tasso fisso dello 0% su 30 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 31 dicembre 2021. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 450,00 € con tasso fisso dello 0% su 30 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 31 dicembre 2021. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 4 selected
@@ -706,7 +706,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 450,00 € con tasso fisso dello 0% su 1 mesi. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 1 gennaio 2022. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 450,00 € con tasso fisso dello 0% su 1 mesi. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 1 gennaio 2022. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 5 selected
@@ -774,7 +774,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 6 selected
@@ -1311,7 +1311,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 450,00 € con tasso fisso dello 0% su 15 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 16 dicembre 2021. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 450,00 € con tasso fisso dello 0% su 15 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 16 dicembre 2021. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 text: Come pagare
@@ -1377,7 +1377,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 450,00 € con tasso fisso dello 0% su 30 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 31 dicembre 2021. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 450,00 € con tasso fisso dello 0% su 30 giorni. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 31 dicembre 2021. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 text: Come pagare
@@ -1443,7 +1443,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 450,00 € con tasso fisso dello 0% su 1 mesi. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 1 gennaio 2022. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 450,00 € con tasso fisso dello 0% su 1 mesi. Alma finanzia un acquisto di 450,00 €. Importo totale dovuto: 450,00 €, addebitato il 1 gennaio 2022. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 text: Come pagare
@@ -1511,7 +1511,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 text: Come pagare
@@ -1785,7 +1785,7 @@ text: 450,00 €
 text: Totale
 text: Di cui costo del credito (IVA inclusa)
 text: 0,00 € (TAEG 0,00%)
-text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
+text: Prestito di 225,00 € con tasso fisso dello 0% per 1 mesi. Con un acconto di 225,00 €, Alma finanzia un acquisto di 450,00 €. Il costo del credito è a carico del marchio. Previa accettazione da parte di Alma SAS ( ), società di finanziamento autorizzata dall'ACPR (codice CIB: 17408). RCS Nanterre 839100575. Contatto:
 text: almapay.com
 text: support@almapay.com
 

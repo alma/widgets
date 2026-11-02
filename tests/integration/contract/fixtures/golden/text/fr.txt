@@ -139,7 +139,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 
@@ -169,7 +169,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: Comment procéder au paiement
@@ -574,7 +574,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 15 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 16 décembre 2021. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 15 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 16 décembre 2021. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 3 selected
@@ -640,7 +640,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 30 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 31 décembre 2021. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 30 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 31 décembre 2021. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 4 selected
@@ -706,7 +706,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 1 janvier 2022. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 1 janvier 2022. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 5 selected
@@ -774,7 +774,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 6 selected
@@ -1311,7 +1311,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 15 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 16 décembre 2021. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 15 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 16 décembre 2021. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: Comment procéder au paiement
@@ -1377,7 +1377,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 30 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 31 décembre 2021. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 30 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 31 décembre 2021. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: Comment procéder au paiement
@@ -1443,7 +1443,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 1 janvier 2022. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 450,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 1 janvier 2022. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: Comment procéder au paiement
@@ -1511,7 +1511,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: Comment procéder au paiement
@@ -1785,7 +1785,7 @@ text: 450,00 €
 text: Total
 text: Dont coût du crédit (TTC)
 text: 0,00 € (TAEG 0,00 %)
-text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
+text: Crédit de 225,00 € au taux débiteur fixe de 0 % sur 1 mois. Permettant, avec un acompte de 225,00 €, de financer un achat de 450,00 €. Le coût du crédit est porté par l'enseigne. Sous réserve d'acceptation par Alma SAS ( ), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 

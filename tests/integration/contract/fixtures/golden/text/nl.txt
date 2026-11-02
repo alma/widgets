@@ -139,7 +139,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 
@@ -169,7 +169,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: Hoe betalen?
@@ -574,7 +574,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 15 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 16 december 2021. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 15 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 16 december 2021. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 3 selected
@@ -640,7 +640,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 30 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 31 december 2021. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 30 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 31 december 2021. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 4 selected
@@ -706,7 +706,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 1 maanden. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 1 januari 2022. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 1 maanden. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 1 januari 2022. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 5 selected
@@ -774,7 +774,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 6 selected
@@ -1311,7 +1311,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 15 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 16 december 2021. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 15 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 16 december 2021. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: Hoe betalen?
@@ -1377,7 +1377,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 30 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 31 december 2021. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 30 dagen. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 31 december 2021. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: Hoe betalen?
@@ -1443,7 +1443,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 1 maanden. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 1 januari 2022. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 450,00 tegen een vaste debetrentevoet van 0% op 1 maanden. Hiermee kan een aankoop worden gefinancierd via € 450,00. Totaal verschuldigd bedrag: € 450,00, afgeschreven op 1 januari 2022. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: Hoe betalen?
@@ -1511,7 +1511,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: Hoe betalen?
@@ -1785,7 +1785,7 @@ text: € 450,00
 text: Totaal
 text: Waarvan kredietkosten (incl. BTW)
 text: € 0,00 (JKP 0,00%)
-text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
+text: Krediet van € 225,00 tegen een vaste debetrente van 0% over een looptijd van 1 maanden. Hiermee kunt u, met een aanbetaling van € 225,00, een aankoop van € 450,00 financieren. De kosten van de lening komen voor rekening van de winkelketen. Onder voorbehoud van goedkeuring door Alma SAS ( ), een door de ACPR erkende financieringsmaatschappij (CIB-code: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 

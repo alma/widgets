@@ -54,6 +54,10 @@ export const legalMentionsMessages = defineMessages({
     id: 'legal-mentions.disclaimer.payment-institution',
     defaultMessage: "établissement de paiement agréé par l'ACPR",
   },
+  creditCostBorneByMerchant: {
+    id: 'legal-mentions.credit-cost-borne-by-merchant',
+    defaultMessage: "Le coût du crédit est porté par l'enseigne.",
+  },
   creditOrPnxWithoutFees: {
     id: 'legal-mentions.credit-or-pnx-without-fees',
     defaultMessage:

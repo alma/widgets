@@ -30,6 +30,7 @@
   "installments.today": "Vandaag",
   "installments.total-amount": "Totaal",
   "installments.total-fees": "Waarvan kosten (incl. BTW)",
+  "legal-mentions.credit-cost-borne-by-merchant": "De kosten van de lening komen voor rekening van de winkelketen.",
   "legal-mentions.credit-or-pnx-without-fees": "Krediet van {financedAmount} tegen een vaste debetrente van {customerLendingRate} over een looptijd van {creditDurationInMonths} maanden. Hiermee kunt u, met een aanbetaling van {initialDeposit}, een aankoop van {purchaseAmount} financieren. {disclaimer}",
   "legal-mentions.disclaimer": "Onder voorbehoud van goedkeuring door Alma SAS (<link>almapay.com</link>), {status} (CIB-code: 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
   "legal-mentions.disclaimer.financing-company": "een door de ACPR erkende financieringsmaatschappij",
