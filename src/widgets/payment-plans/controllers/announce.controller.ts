@@ -1,14 +1,16 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
+export type AnnounceHost = ReactiveControllerHost
+
 // Holds a text for screen readers and empties it after a delay.
 export class AnnounceController implements ReactiveController {
-  private readonly host: ReactiveControllerHost
+  private readonly host: AnnounceHost
 
   private timer: ReturnType<typeof setTimeout> | undefined
 
   private value = ''
 
-  constructor(host: ReactiveControllerHost) {
+  constructor(host: AnnounceHost) {
     this.host = host
     host.addController(this)
   }

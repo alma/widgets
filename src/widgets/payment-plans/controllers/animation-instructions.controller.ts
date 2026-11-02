@@ -5,6 +5,8 @@ import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { animationInstructionsMessages } from '@/widgets/payment-plans/controllers/animation-instructions.messages'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
 
+export type AnimationInstructionsHost = ReactiveControllerHost
+
 export type AnimationInstructionsInputs = {
   status: statusResponse
   hasUserInteracted: boolean
@@ -33,7 +35,7 @@ const shouldAnnounce = (inputs: AnimationInstructionsInputs): boolean =>
 
 // Tells screen readers how to stop the plan cycling, 1500 ms after the plans show.
 export class AnimationInstructionsController implements ReactiveController {
-  private readonly host: ReactiveControllerHost
+  private readonly host: AnimationInstructionsHost
 
   private readonly getInputs: () => AnimationInstructionsInputs
 
@@ -46,7 +48,7 @@ export class AnimationInstructionsController implements ReactiveController {
 
   private timer: ReturnType<typeof setTimeout> | undefined
 
-  constructor(host: ReactiveControllerHost, getInputs: () => AnimationInstructionsInputs) {
+  constructor(host: AnimationInstructionsHost, getInputs: () => AnimationInstructionsInputs) {
     this.host = host
     this.getInputs = getInputs
     host.addController(this)
