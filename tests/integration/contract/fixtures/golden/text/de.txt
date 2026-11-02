@@ -1823,7 +1823,7 @@ text: 450,00 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 0,00 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com
 
@@ -1861,7 +1861,7 @@ text: 450,00 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 0,00 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com
 
@@ -1899,7 +1899,7 @@ text: 450,00 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 0,00 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com
 
@@ -1937,7 +1937,7 @@ text: 450,00 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 0,00 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com
 
@@ -1975,7 +1975,7 @@ text: 450,00 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 0,00 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com
 
@@ -2013,7 +2013,7 @@ text: 450,00 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 0,00 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com
 
@@ -2051,7 +2051,7 @@ text: 450,00 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 0,00 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com
 
@@ -2089,7 +2089,7 @@ text: 450,00 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 0,00 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com
 
@@ -2127,7 +2127,7 @@ text: 450,00 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 0,00 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com
 
@@ -2164,7 +2164,7 @@ text: 450,00 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 0,00 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 225,00 €. Der Kreditbetrag beläuft sich auf 225,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 1 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com
 
@@ -2200,6 +2200,6 @@ text: 451,35 €
 text: Gesamtsumme
 text: Davon Kreditkosten
 text: 1,35 € (effektiver Jahreszins 0,00 %)
-text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 151,35 € einschließlich Gebühren in Höhe von 1,35 €. Der Kreditbetrag beläuft sich auf 300,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 2 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Finanzierungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
+text: Für einen Einkauf im Wert von 450,00 € beträgt die Anzahlung 151,35 € einschließlich Gebühren in Höhe von 1,35 €. Der Kreditbetrag beläuft sich auf 300,00 € bei einem festen Sollzinssatz von 0 % p. a. und einer Laufzeit von 2 Monaten. Vorbehaltlich der Genehmigung durch Alma SAS ( ), ein von der ACPR zugelassenes Zahlungsinstitut (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt:
 text: almapay.com
 text: support@almapay.com

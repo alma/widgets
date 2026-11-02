@@ -270,7 +270,11 @@ describe('createIntl', () => {
     const intl = createIntl('en')
     const link = (chunks: unknown[]) => ({ tag: 'link', chunks })
     const mail = (chunks: unknown[]) => ({ tag: 'mail', chunks })
-    const disclaimer = intl.formatMessage<object>(legalMentionsMessages.disclaimer, { link, mail })
+    const disclaimer = intl.formatMessage<object>(legalMentionsMessages.disclaimer, {
+      status: intl.formatMessage(legalMentionsMessages.paymentInstitution),
+      link,
+      mail,
+    })
 
     const output = intl.formatMessage<object>(legalMentionsMessages.creditOrPnxWithoutFees, {
       financedAmount: '€100.00',
