@@ -17,6 +17,8 @@ const DISCLAIMER =
 const PAYMENT_INSTITUTION_DISCLAIMER =
   "Sous réserve d'acceptation par Alma SAS (almapay.com), établissement de paiement agréé par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: support@almapay.com"
 
+const CREDIT_COST_BORNE_BY_MERCHANT = "Le coût du crédit est porté par l'enseigne."
+
 const FRENCH_COUNTRIES = ['FR', 'fr']
 const OTHER_COUNTRIES = ['LU', 'BE', 'NL', 'IT', 'DE', 'PT', 'ES', 'GB', 'UK', 'US']
 
@@ -150,4 +152,51 @@ describe('P1X Pay Later variant', () => {
       expect(screen.getByTestId('legal-mentions')).toHaveTextContent(PAYMENT_INSTITUTION_DISCLAIMER)
     },
   )
+})
+
+describe('credit cost borne by the merchant', () => {
+  it('adds the sentence between the plan wording and the disclaimer', () => {
+    render(<LegalMentions currentPlan={mockP2XEligiblePlan} />)
+
+    expect(screen.getByTestId('legal-mentions')).toHaveTextContent(
+      `de financer un achat de 450,00 €. ${CREDIT_COST_BORNE_BY_MERCHANT} ${DISCLAIMER}`,
+    )
+  })
+
+  it.each([
+    ['PNX', mockP2XEligiblePlan],
+    ['deferred PNX', mockDeferredMultiInstallmentPlanWithoutFees],
+    ['Pay Later', mockPayLater30DaysEligiblePlan],
+    ['0% Credit', mockP2XEligiblePlan.withInstallmentsCount(10)],
+  ])('shows it for a French %s plan that costs the customer nothing', (_, plan) => {
+    render(<LegalMentions currentPlan={plan} />)
+
+    expect(screen.getByTestId('legal-mentions')).toHaveTextContent(CREDIT_COST_BORNE_BY_MERCHANT)
+  })
+
+  it.each([
+    ['PNX with fees', mockP3XEligiblePlanWithFees],
+    ['Pay Later with fees', mockPayLater30DaysEligiblePlan.withFees(540)],
+    ['Credit with interest', mockP10XEligiblePlan],
+  ])('hides it for a French %s plan', (_, plan) => {
+    render(<LegalMentions currentPlan={plan} />)
+
+    expect(screen.getByTestId('legal-mentions')).not.toHaveTextContent(
+      CREDIT_COST_BORNE_BY_MERCHANT,
+    )
+  })
+
+  it('shows it whatever the case of the transaction country', () => {
+    render(<LegalMentions currentPlan={mockP2XEligiblePlan.withCountry('fr')} />)
+
+    expect(screen.getByTestId('legal-mentions')).toHaveTextContent(CREDIT_COST_BORNE_BY_MERCHANT)
+  })
+
+  it.each(OTHER_COUNTRIES)('hides it for a %s transaction', (country) => {
+    render(<LegalMentions currentPlan={mockP2XEligiblePlan.withCountry(country)} />)
+
+    expect(screen.getByTestId('legal-mentions')).not.toHaveTextContent(
+      CREDIT_COST_BORNE_BY_MERCHANT,
+    )
+  })
 })

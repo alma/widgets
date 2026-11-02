@@ -30,6 +30,7 @@
   "installments.today": "Heute",
   "installments.total-amount": "Gesamtsumme",
   "installments.total-fees": "Davon Kosten",
+  "legal-mentions.credit-cost-borne-by-merchant": "Die Kreditkosten werden vom Unternehmen getragen.",
   "legal-mentions.credit-or-pnx-without-fees": "Für einen Einkauf im Wert von {purchaseAmount} beträgt die Anzahlung {initialDeposit}. Der Kreditbetrag beläuft sich auf {financedAmount} bei einem festen Sollzinssatz von {customerLendingRate} p. a. und einer Laufzeit von {creditDurationInMonths} Monaten. {disclaimer}",
   "legal-mentions.disclaimer": "Vorbehaltlich der Genehmigung durch Alma SAS (<link>almapay.com</link>), {status} (CIB-Code: 17408), eingetragen im Handels- und Gesellschaftsregister Nanterre unter der Nummer 839100575. Kontakt: <mail>support@almapay.com</mail>",
   "legal-mentions.disclaimer.financing-company": "ein von der ACPR zugelassenes Finanzierungsinstitut",

@@ -30,6 +30,7 @@
   "installments.today": "Hoy",
   "installments.total-amount": "Total",
   "installments.total-fees": "De los cuales, costes administativos (IVA incluido)",
+  "legal-mentions.credit-cost-borne-by-merchant": "El coste del crédito corre a cargo de la marca.",
   "legal-mentions.credit-or-pnx-without-fees": "Crédito de {financedAmount} a un tipo de interés fijo del {customerLendingRate} durante {creditDurationInMonths} meses. Permite, con un pago inicial de {initialDeposit}, financiar una compra de {purchaseAmount}. {disclaimer}",
   "legal-mentions.disclaimer": "Sujeto a la aceptación por parte de Alma SAS (<link>almapay.com</link>), {status} (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto: <mail>support@almapay.com</mail>",
   "legal-mentions.disclaimer.financing-company": "entidad de financiación autorizada por la ACPR",

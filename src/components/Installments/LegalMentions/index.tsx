@@ -11,6 +11,7 @@ import {
   getCustomerLendingRate,
   getFinancedAmount,
   getInitialDeposit,
+  getTotalCreditCost,
   getTotalPurchaseAmount,
   isCredit,
   isPayLater,
@@ -31,6 +32,10 @@ const messages = defineMessages({
     id: 'legal-mentions.disclaimer.payment-institution',
     defaultMessage: "établissement de paiement agréé par l'ACPR",
   },
+  creditCostBorneByMerchant: {
+    id: 'legal-mentions.credit-cost-borne-by-merchant',
+    defaultMessage: "Le coût du crédit est porté par l'enseigne.",
+  },
 })
 
 export interface LegalMentionsProps {
@@ -42,7 +47,7 @@ const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
 
   const isFrenchTransaction = currentPlan.transaction_country?.toUpperCase() === 'FR'
 
-  const disclaimer = formatMessage(messages.disclaimer, {
+  const almaDisclaimer = formatMessage(messages.disclaimer, {
     // Alma is a financing company in France and a payment institution everywhere else.
     status: formatMessage(
       isFrenchTransaction ? messages.financingCompany : messages.paymentInstitution,
@@ -63,6 +68,16 @@ const LegalMentions = ({ currentPlan }: LegalMentionsProps) => {
       </a>
     ),
   })
+
+  // In France, a plan that costs the customer nothing must say the merchant pays for the credit.
+  const disclaimer =
+    isFrenchTransaction && getTotalCreditCost(currentPlan) === 0 ? (
+      <>
+        {formatMessage(messages.creditCostBorneByMerchant)} {almaDisclaimer}
+      </>
+    ) : (
+      almaDisclaimer
+    )
 
   const formatPrice = (cents: number, options?: FormatNumberOptions) =>
     formatNumber(priceFromCents(cents), { ...(options || {}), style: 'currency', currency: 'EUR' })
