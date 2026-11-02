@@ -29,6 +29,8 @@ Tested with Claude Code 2.1.304.
 | `settings.json` | The shared permissions and the lint hook |
 | `hooks/` | The scripts that the hooks of `settings.json` run |
 | `rules/` | The rule files. Each one starts with `paths:` and loads only for those files. |
+| `skills/` | `port-react-component` ports one React original, and `lit-review` reviews a branch |
+| `agents/` | The three read-only review agents that `lit-review` runs |
 
 | Rule file | Loads for | Covers |
 | --- | --- | --- |
@@ -86,6 +88,15 @@ Claude Code has no switch for one hook. To turn hooks off:
 once that script exists. A test script run with vitest's `-u` or `--update` asks first, because it
 can rewrite the snapshots under `tests/integration/contract/`.
 
+It also lets every session run `git status`, `diff`, `log`, `show`, `ls-files`, `ls-tree`,
+`merge-base`, `rev-parse` and `gh pr view` without a prompt, which `/lit-review` and its agents
+need. `git ls-remote` is allowed only as `git ls-remote --exit-code --heads origin <branch>`,
+because its `--upload-pack` option runs any command. `git diff`, `git log` and `git show` still ask
+with `--output`, which writes a file. `git diff` also asks with `--no-index` or with a path that
+starts with `/`, `~` or `../`, or climbs out with `/../`, because git then reads that path even
+outside the repo. A quoted absolute path still gets through, and the agents never need one. `gh pr
+edit` isn't allowed, so Claude Code asks before the skill writes the PR description.
+
 It denies edits to `src/intl/messages/`, which Crowdin writes, and to `.ref-worktree/`, where
 `npm run build:ref` checks out master. It also denies `npm publish`, `unpublish` and `deprecate`,
 force pushes and the Crowdin sync commands, and asks before an edit under
@@ -112,3 +123,5 @@ instructions for every repo go in `~/.claude/CLAUDE.md`.
 Changes to `.claude/` and to the root `CLAUDE.md` go through a PR, because they change every
 teammate's sessions. Keep a rule's ID once it is merged, and keep the same wording wherever the
 rule appears. The rules name no ticket and no planning document, because neither is in the repo.
+`.github/pull_request_template.md` must hold the checklist block of
+`skills/lit-review/references/pr-checklist.md` as it is, and `npm run test:harness` checks it.
