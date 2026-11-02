@@ -1,8 +1,10 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
+export type MediaQueryHost = ReactiveControllerHost
+
 // Tells whether a media query matches, and updates the host when that changes.
 export class MediaQueryController implements ReactiveController {
-  private readonly host: ReactiveControllerHost
+  private readonly host: MediaQueryHost
 
   private readonly query: string
 
@@ -10,7 +12,7 @@ export class MediaQueryController implements ReactiveController {
 
   private value = false
 
-  constructor(host: ReactiveControllerHost, query: string) {
+  constructor(host: MediaQueryHost, query: string) {
     this.host = host
     this.query = query
     host.addController(this)
