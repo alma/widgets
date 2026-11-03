@@ -2,13 +2,23 @@ import { html, render } from 'lit'
 import { userEvent } from 'vitest/browser'
 
 import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
-import { ModalPortalController } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
+import {
+  ModalPortalController,
+  type RequestClose,
+} from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import styles from '@/widgets/eligibility-modal/templates/modal-shell.module.css'
 
 class ModalPortalHost extends LightDomElement {
   readonly modal = new ModalPortalController(this)
 }
 customElements.define('test-modal-portal-host', ModalPortalHost)
+
+class ModalCloseHost extends LightDomElement {
+  readonly onRequestClose = vi.fn<RequestClose>()
+
+  readonly modal = new ModalPortalController(this, this.onRequestClose)
+}
+customElements.define('test-modal-close-host', ModalCloseHost)
 
 // Resolves after the frames that are already requested.
 const nextFrame = (): Promise<number> =>
@@ -288,6 +298,14 @@ describe('the focus trap', () => {
     expect(document.activeElement).toBe(first)
   })
 
+  it('should focus the content on an overlay click when no callback closes the modal', async () => {
+    appendButton('First').focus()
+
+    await userEvent.click(host.modal.overlay, { position: { x: 5, y: 5 } })
+
+    expect(document.activeElement).toBe(host.modal.content)
+  })
+
   describe('with the focus on the content', () => {
     it('should focus the first tabbable element on Tab', async () => {
       const first = appendButton('First')
@@ -311,6 +329,109 @@ describe('the focus trap', () => {
       appendButton('Disabled', { disabled: '' })
 
       await userEvent.tab()
+
+      expect(document.activeElement).toBe(host.modal.content)
+    })
+  })
+})
+
+describe('closing the modal', () => {
+  const OVERLAY_POSITION = { x: 5, y: 5 }
+  let host: ModalCloseHost
+
+  beforeEach(() => {
+    host = document.createElement('test-modal-close-host') as ModalCloseHost
+    document.body.append(host)
+    host.modal.open()
+  })
+
+  afterEach(() => {
+    host.modal.close()
+  })
+
+  it('should request the close on Escape and stop the event', async () => {
+    const documentListener = vi.fn()
+    document.addEventListener('keydown', documentListener)
+    onTestFinished(() => document.removeEventListener('keydown', documentListener))
+
+    await userEvent.keyboard('{Escape}')
+
+    expect(host.onRequestClose).toHaveBeenCalledTimes(1)
+    const [event] = host.onRequestClose.mock.calls[0]
+    expect(event).toBeInstanceOf(KeyboardEvent)
+    expect((event as KeyboardEvent).key).toBe('Escape')
+    expect(documentListener).not.toHaveBeenCalled()
+  })
+
+  it('should read the keyCode when the event has no code', () => {
+    host.modal.content.dispatchEvent(new KeyboardEvent('keydown', { keyCode: 27, bubbles: true }))
+
+    expect(host.onRequestClose).toHaveBeenCalledTimes(1)
+  })
+
+  it('should request the close on a click on the overlay', async () => {
+    await userEvent.click(host.modal.overlay, { position: OVERLAY_POSITION })
+
+    expect(host.onRequestClose).toHaveBeenCalledTimes(1)
+    expect(host.onRequestClose.mock.calls[0][0]).toBeInstanceOf(MouseEvent)
+  })
+
+  it('should not request the close on a click in the content', async () => {
+    await userEvent.click(host.modal.content)
+
+    expect(host.onRequestClose).not.toHaveBeenCalled()
+  })
+
+  it('should forget a press in the content when the modal opens again', async () => {
+    host.modal.content.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
+    host.modal.close()
+    host.modal.open()
+
+    await userEvent.click(host.modal.overlay, { position: OVERLAY_POSITION })
+
+    expect(host.onRequestClose).toHaveBeenCalledTimes(1)
+  })
+
+  describe('when the press and the release are not both on the overlay', () => {
+    // Proves that the browser fired the click on the overlay.
+    let overlayClicks: number
+
+    beforeEach(() => {
+      overlayClicks = 0
+      host.modal.overlay.addEventListener('click', (event) => {
+        if (event.target === host.modal.overlay) overlayClicks += 1
+      })
+    })
+
+    it('should not request the close for a press in the content', async () => {
+      await userEvent.dragAndDrop(host.modal.content, host.modal.overlay, {
+        targetPosition: OVERLAY_POSITION,
+      })
+
+      expect(overlayClicks).toBe(1)
+      expect(host.onRequestClose).not.toHaveBeenCalled()
+    })
+
+    it('should not request the close for a release in the content', async () => {
+      await userEvent.dragAndDrop(host.modal.overlay, host.modal.content, {
+        sourcePosition: OVERLAY_POSITION,
+      })
+
+      expect(overlayClicks).toBe(1)
+      expect(host.onRequestClose).not.toHaveBeenCalled()
+    })
+  })
+
+  it('should send the focus from either sentinel to the content', () => {
+    const outside = document.createElement('button')
+    document.body.insertBefore(outside, host)
+    const sentinels = document.querySelectorAll<HTMLElement>('[data-react-modal-body-trap]')
+
+    expect(sentinels).toHaveLength(2)
+    sentinels.forEach((sentinel) => {
+      outside.focus()
+
+      sentinel.focus()
 
       expect(document.activeElement).toBe(host.modal.content)
     })
