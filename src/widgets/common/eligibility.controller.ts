@@ -3,6 +3,7 @@ import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 import {
   type ConfigPlan,
+  type EligibilityPlan,
   type EligibilityPlanToDisplay,
   filterEligibility,
   getEligibility,
@@ -11,7 +12,7 @@ import {
 } from '@/domain/plans'
 import { warnOnce } from '@/shared/lib/errors'
 
-type ApiData = { domain: string; merchantId: string }
+export type ApiData = { domain: string; merchantId: string }
 
 // The element properties the controller reads.
 export type EligibilityHost = ReactiveControllerHost & {
@@ -33,9 +34,29 @@ type TaskArgs = [
   merchantCoversAllFees: boolean | undefined,
 ]
 
+// The response as the API sent it, filtered only when read.
+type EligibilityResponse = { status: statusResponse; plans: EligibilityPlan[] }
+
 type EligibilityState = { status: statusResponse; plans: EligibilityPlanToDisplay[] }
 
 const FAILED: EligibilityState = { status: statusResponse.FAILED, plans: [] }
+
+const PENDING: EligibilityState = { status: statusResponse.PENDING, plans: [] }
+
+const filterPlans = (
+  plans: EligibilityPlan[],
+  configPlans: ConfigPlan[] | null | undefined,
+): EligibilityState => {
+  try {
+    return {
+      status: statusResponse.SUCCESS,
+      plans: sortEligibility(filterEligibility(plans, configPlans ?? undefined)),
+    }
+  } catch (error) {
+    warnOnce('The eligible plans could not be read.', error)
+    return FAILED
+  }
+}
 
 const loadPlans = async ([
   purchaseAmount,
@@ -44,10 +65,10 @@ const loadPlans = async ([
   customerBillingCountry,
   customerShippingCountry,
   merchantCoversAllFees,
-]: TaskArgs): Promise<EligibilityState> => {
+]: TaskArgs): Promise<EligibilityResponse> => {
   if (!apiData) {
     warnOnce('The widget has no API configuration.')
-    return FAILED
+    return { status: statusResponse.FAILED, plans: [] }
   }
   const { status, plans } = await getEligibility({
     purchaseAmount,
@@ -58,29 +79,27 @@ const loadPlans = async ([
     customerShippingCountry,
     merchantCoversAllFees,
   })
-  if (status !== statusResponse.SUCCESS) {
-    return { status, plans: [] }
-  }
-  try {
-    return {
-      status,
-      plans: sortEligibility(filterEligibility(plans, configPlans ?? undefined)),
-    }
-  } catch (error) {
-    warnOnce('The eligible plans could not be read.', error)
-    return FAILED
-  }
+  return { status, plans: status === statusResponse.SUCCESS ? plans : [] }
 }
 
 // Loads the widget's plans, cache first, once per controller, as master's hook does once per
 // mount. The request is never aborted: a removed host still writes the cache, and shows the plans
 // once put back.
 export class EligibilityController implements ReactiveController {
-  private readonly task: Task<TaskArgs, EligibilityState>
+  private readonly task: Task<TaskArgs, EligibilityResponse>
+
+  private readonly host: EligibilityHost
+
+  private filtered?: {
+    plans: EligibilityPlan[]
+    configPlans: ConfigPlan[] | null | undefined
+    state: EligibilityState
+  }
 
   private started = false
 
   constructor(host: EligibilityHost) {
+    this.host = host
     // No autoRun: master sends no new request when an option changes.
     this.task = new Task(host, {
       autoRun: false,
@@ -113,13 +132,28 @@ export class EligibilityController implements ReactiveController {
 
   // Pending until the task completes. A task that throws counts as failed.
   get status(): statusResponse {
-    return this.task.status === TaskStatus.ERROR
-      ? statusResponse.FAILED
-      : (this.task.value?.status ?? statusResponse.PENDING)
+    return this.state.status
   }
 
   // Empty until success.
   get plans(): EligibilityPlanToDisplay[] {
-    return this.task.value?.plans ?? []
+    return this.state.plans
+  }
+
+  // Master filters and sorts the response on each render, with the plans the host has then.
+  private get state(): EligibilityState {
+    if (this.task.status === TaskStatus.ERROR) return FAILED
+    const response = this.task.value
+    if (!response) return PENDING
+    if (response.status !== statusResponse.SUCCESS) return { status: response.status, plans: [] }
+    const { configPlans } = this.host
+    if (this.filtered?.plans !== response.plans || this.filtered.configPlans !== configPlans) {
+      this.filtered = {
+        plans: response.plans,
+        configPlans,
+        state: filterPlans(response.plans, configPlans),
+      }
+    }
+    return this.filtered.state
   }
 }
