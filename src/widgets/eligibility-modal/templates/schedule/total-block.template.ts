@@ -67,8 +67,10 @@ export const totalBlockTemplate = ({ currentPlan, intl }: TotalBlockParams): Tem
     [STATIC_CUSTOMISATION_CLASSES.scheduleCredit]: true,
   })
   const totalLabel = intl.formatMessage(totalBlockMessages.totalAmount)
-  return html`<div class=${containerClasses} data-testid="modal-summary">
-    <p class=${totalClasses}><span>${totalLabel}</span>${intl.formatNumber(total || 0, EUR)}</p>
-    <p class=${feesClasses}>${fees}</p>
-  </div>`
+  const totalAmount = intl.formatNumber(total || 0, EUR)
+  const totalLine = html`<p class=${totalClasses}><span>${totalLabel}</span>${totalAmount}</p>`
+  const feesLine = html`<p class=${feesClasses}>${fees}</p>`
+  // No whitespace between the lines, which Prettier would add: master's textContent has none.
+  // prettier-ignore
+  return html`<div class=${containerClasses} data-testid="modal-summary">${totalLine}${feesLine}</div>`
 }
