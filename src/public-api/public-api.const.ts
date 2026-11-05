@@ -16,6 +16,5 @@ export enum WidgetTypes {
   Modal = 'Modal',
 }
 
-// Frozen for 4.x: another 4.x bundle on the page may have defined these tags.
+// Frozen for 4.x: another 4.x bundle on the page may have defined it.
 export const PAYMENT_PLANS_TAG = 'alma-payment-plans'
-export const ELIGIBILITY_MODAL_TAG = 'alma-eligibility-modal'

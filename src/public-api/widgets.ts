@@ -1,9 +1,5 @@
-import { createModalHandle, type ModalHandle } from '@/public-api/modal-handle'
-import {
-  ELIGIBILITY_MODAL_TAG,
-  PAYMENT_PLANS_TAG,
-  WidgetTypes,
-} from '@/public-api/public-api.const'
+import { createModalHandle, type ModalHandle, openOnClick } from '@/public-api/modal-handle'
+import { PAYMENT_PLANS_TAG, WidgetTypes } from '@/public-api/public-api.const'
 import type {
   ApiConfig,
   ModalOptions,
@@ -13,12 +9,14 @@ import type {
 } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { warnOnce } from '@/shared/lib/errors'
+import { ELIGIBILITY_MODAL_TAG } from '@/widgets/eligibility-modal/eligibility-modal.const'
+import { closeModalOf } from '@/widgets/eligibility-modal/index'
 
 export type AddReturnType = ModalHandle | undefined
 
 type HostProperties = Record<string, unknown>
 
-// null once removed: the entry stays, so the container is never emptied again.
+// null once removed: the entry stays, so add(PaymentPlans) never empties the container again.
 const hosts = new WeakMap<Element, HTMLElement | null>()
 
 const removeHost = (container: Element): void => {
@@ -26,31 +24,31 @@ const removeHost = (container: Element): void => {
   if (host) {
     hosts.set(container, null)
     host.remove()
+    closeModalOf(host)
   }
 }
 
-const mountHost = (container: Element, tagName: string, properties: HostProperties): void => {
+// Preact empties a container on its first render only.
+const mountHost = (
+  container: Element,
+  tagName: string,
+  properties: HostProperties,
+  empty = !hosts.has(container),
+): void => {
   const host = document.createElement(tagName)
   // Before append(), so the first render has every option.
   Object.assign(host, properties)
-  // Preact empties a container on its first render only.
-  if (!hosts.has(container)) {
+  if (empty) {
     container.replaceChildren()
   }
   container.append(host)
   hosts.set(container, host)
 }
 
-// Like Preact, the same tag updates in place.
-const renderHost = (container: Element, tagName: string, properties: HostProperties): void => {
+// False once the merchant has emptied the container.
+const hasHost = (container: Element, tagName: string): boolean => {
   const host = hosts.get(container)
-  // Detached when the merchant emptied the container.
-  if (host?.localName === tagName && host.parentNode === container) {
-    Object.assign(host, properties)
-    return
-  }
-  removeHost(container)
-  mountHost(container, tagName, properties)
+  return host?.localName === tagName && host.parentNode === container
 }
 
 // Master's PaymentPlanWidget props and defaults.
@@ -162,11 +160,24 @@ export function WidgetsController(apiData: ApiConfig) {
         const modalOptions = options as ModalOptions
         // Read now, not at open(), as master does.
         const properties = toEligibilityModalHostProperties(apiData, modalOptions)
-        return createModalHandle(modalOptions.onClose, {
-          mount: (close) =>
-            renderHost(container, ELIGIBILITY_MODAL_TAG, { ...properties, onClose: close }),
+        const handle = createModalHandle(modalOptions.onClose, {
+          render: (close) => {
+            const hostProperties = { ...properties, onClose: close }
+            const host = hosts.get(container)
+            // Master's render updates the modal in place, with no new request once it has plans.
+            if (host && hasHost(container, ELIGIBILITY_MODAL_TAG)) {
+              Object.assign(host, hostProperties)
+              return
+            }
+            removeHost(container)
+            mountHost(container, ELIGIBILITY_MODAL_TAG, hostProperties, true)
+          },
           remove: () => removeHost(container),
         })
+        if (modalOptions.clickableSelector) {
+          openOnClick(modalOptions.clickableSelector, handle.open)
+        }
+        return handle
       }
       return undefined
     },

@@ -39,9 +39,6 @@ export const closeModalOf = (host: Element): void => {
   portals.get(host)?.close()
 }
 
-// An invalid locale leaves the host without a modal.
-export const hasOpenModal = (host: Element): boolean => portals.get(host)?.isOpen ?? false
-
 // The standalone modal of add(Modal). It renders nothing in its container and the modal at the end
 // of <body>.
 @safeCustomElement(ELIGIBILITY_MODAL_TAG)
@@ -63,7 +60,19 @@ export class AlmaEligibilityModal
 
   @property({ attribute: false }) cards?: Card[]
 
-  @property({ attribute: false }) locale: string = Locale.en
+  // Master's next render shows the modal once the locale is valid, so a host that couldn't open
+  // opens when one arrives.
+  @property({ attribute: false })
+  get locale(): string {
+    return this.currentLocale
+  }
+
+  set locale(locale: string) {
+    this.currentLocale = locale
+    if (this.isConnected && !this.portal.isOpen) {
+      this.open()
+    }
+  }
 
   @property({ attribute: false }) onClose?: (event: MouseEvent | KeyboardEvent) => void
 
@@ -77,14 +86,24 @@ export class AlmaEligibilityModal
 
   private readonly portal = new ModalPortalController(this, (event) => this.requestClose(event))
 
+  private currentLocale: string = Locale.en
+
+  constructor() {
+    super()
+    portals.set(this, this.portal)
+  }
+
   override connectedCallback(): void {
+    this.open()
+  }
+
+  private open(): void {
     // Master throws while it renders, before its request, and shows no modal.
     if (!isValidLocale(this.locale)) {
       warnOnce(`The modal doesn't open: "${this.locale}" is not a valid locale.`)
       return
     }
     super.connectedCallback()
-    portals.set(this, this.portal)
     this.portal.open()
   }
 

@@ -200,6 +200,18 @@ describe('AlmaEligibilityModal', () => {
       expect(warn.mock.calls[0][0]).toMatch(/^\[Alma widgets\] /)
     })
 
+    it('should open, and send its request, once a valid locale arrives', async () => {
+      const request = vi.fn(() => HttpResponse.json(mockButtonPlans))
+      server.use(http.post(ELIGIBILITY_ENDPOINT, request))
+      const host = appendModal({ locale: locale as string })
+
+      host.locale = 'fr'
+      await screen.findByText('M+1')
+
+      expect(portals()).toHaveLength(1)
+      expect(request).toHaveBeenCalledOnce()
+    })
+
     // Master throws before its request.
     it('should send no request', async () => {
       const fetch = vi.spyOn(window, 'fetch')
