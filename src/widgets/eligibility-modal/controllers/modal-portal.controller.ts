@@ -1,9 +1,12 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import noScroll from 'no-scroll'
 
+import { scopeTab } from '@/widgets/eligibility-modal/controllers/focus-trap'
 import styles from '@/widgets/eligibility-modal/templates/modal-shell.module.css'
 
 export type ModalPortalHost = ReactiveControllerHost & HTMLElement
+
+export type RequestClose = (event: KeyboardEvent | MouseEvent) => void
 
 // react-modal's class names, which merchant CSS targets.
 const PORTAL_CLASS = 'ReactModalPortal'
@@ -14,6 +17,10 @@ const BODY_OPEN_CLASS = 'ReactModal__Body--open'
 // Shared by every modal of this bundle, like react-modal's module state.
 const openPortals: ModalPortalController[] = []
 let sentinels: [HTMLDivElement, HTMLDivElement] | null = null
+
+// react-modal also reads the deprecated keyCode.
+const isTabKey = (event: KeyboardEvent): boolean => event.code === 'Tab' || event.keyCode === 9
+const isEscKey = (event: KeyboardEvent): boolean => event.code === 'Escape' || event.keyCode === 27
 
 const focusLastContent = (): void => {
   openPortals[openPortals.length - 1]?.focusContent()
@@ -61,14 +68,23 @@ export class ModalPortalController implements ReactiveController {
 
   private readonly host: ModalPortalHost
 
+  private readonly onRequestClose?: RequestClose
+
   private opened = false
 
   private returnFocusTo: HTMLElement | null = null
 
   private afterOpenFrame: number | null = null
 
-  constructor(host: ModalPortalHost) {
+  // react-modal's shouldClose: a press, a release or a click in the content sets it to false,
+  // and each overlay click resets it.
+  private shouldClose: boolean | null = null
+
+  // Kept for the controller's life: pass a function that reads the host's current state,
+  // because a host built in a field initializer gets its properties only after construction.
+  constructor(host: ModalPortalHost, onRequestClose?: RequestClose) {
     this.host = host
+    this.onRequestClose = onRequestClose
     this.portal = document.createElement('div')
     this.portal.className = PORTAL_CLASS
     this.overlay = document.createElement('div')
@@ -108,6 +124,8 @@ export class ModalPortalController implements ReactiveController {
     openPortals.push(this)
     syncSentinels()
     this.returnFocusTo = document.activeElement as HTMLElement | null
+    this.shouldClose = null
+    this.toggleListeners(true)
     document.body.append(this.portal)
     this.focusContent()
     this.afterOpenFrame = requestAnimationFrame(() => {
@@ -127,6 +145,7 @@ export class ModalPortalController implements ReactiveController {
       this.afterOpenFrame = null
     }
     this.portal.remove()
+    this.toggleListeners(false)
     this.setClasses(false)
     // Only the last open modal removes it.
     if (openPortals.length === 1) {
@@ -143,6 +162,51 @@ export class ModalPortalController implements ReactiveController {
     if (!this.content.contains(document.activeElement)) {
       this.content.focus({ preventScroll: true })
     }
+  }
+
+  private readonly handleKeyDown = (event: KeyboardEvent): void => {
+    if (isTabKey(event)) {
+      scopeTab(this.content, event)
+    }
+    if (isEscKey(event)) {
+      event.stopPropagation()
+      this.onRequestClose?.(event)
+    }
+  }
+
+  private readonly keepOpen = (): void => {
+    this.shouldClose = false
+  }
+
+  // A click whose press or release was in the content bubbles here as the overlay's, since the
+  // overlay is the closest common ancestor.
+  private readonly handleOverlayClick = (event: MouseEvent): void => {
+    const shouldClose = this.shouldClose ?? true
+    this.shouldClose = null
+    if (!shouldClose) return
+    if (this.onRequestClose) {
+      this.onRequestClose(event)
+      return
+    }
+    this.focusContent()
+  }
+
+  // One list for both directions, so a listener can't be added without being removed.
+  private toggleListeners(listen: boolean): void {
+    const listeners: [HTMLElement, string, EventListener][] = [
+      [this.content, 'keydown', this.handleKeyDown as EventListener],
+      [this.content, 'mousedown', this.keepOpen],
+      [this.content, 'mouseup', this.keepOpen],
+      [this.content, 'click', this.keepOpen],
+      [this.overlay, 'click', this.handleOverlayClick as EventListener],
+    ]
+    listeners.forEach(([target, type, listener]) => {
+      if (listen) {
+        target.addEventListener(type, listener)
+        return
+      }
+      target.removeEventListener(type, listener)
+    })
   }
 
   private setClasses(afterOpen: boolean): void {
