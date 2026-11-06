@@ -44,7 +44,19 @@ export const legalMentionsMessages = defineMessages({
   disclaimer: {
     id: 'legal-mentions.disclaimer',
     defaultMessage:
-      "Sous réserve d'acceptation par Alma SAS (<link>almapay.com</link>), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+      "Sous réserve d'acceptation par Alma SAS (<link>almapay.com</link>), {status} (code CIB : 17408). RCS Nanterre 839100575. Contact: <mail>support@almapay.com</mail>",
+  },
+  financingCompany: {
+    id: 'legal-mentions.disclaimer.financing-company',
+    defaultMessage: "société de financement agréée par l'ACPR",
+  },
+  paymentInstitution: {
+    id: 'legal-mentions.disclaimer.payment-institution',
+    defaultMessage: "établissement de paiement agréé par l'ACPR",
+  },
+  creditCostBorneByMerchant: {
+    id: 'legal-mentions.credit-cost-borne-by-merchant',
+    defaultMessage: "Le coût du crédit est porté par l'enseigne.",
   },
   creditOrPnxWithoutFees: {
     id: 'legal-mentions.credit-or-pnx-without-fees',

@@ -139,7 +139,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 
@@ -169,7 +169,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: How to pay
@@ -574,7 +574,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: Loan from €450.00 at a fixed borrowing rate of 0% on 15 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 16, 2021. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 15 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 16, 2021. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 3 selected
@@ -640,7 +640,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: Loan from €450.00 at a fixed borrowing rate of 0% on 30 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 31, 2021. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 30 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 31, 2021. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 4 selected
@@ -706,7 +706,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: Loan from €450.00 at a fixed borrowing rate of 0% on 1 months. Financing a purchase of €450.00. Total amount due: €450.00, debited on January 1, 2022. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 1 months. Financing a purchase of €450.00. Total amount due: €450.00, debited on January 1, 2022. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 5 selected
@@ -774,7 +774,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 6 selected
@@ -844,7 +844,7 @@ text: €451.35
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €1.35 (APR 0.00%)
-text: A loan of €300.00 at a fixed borrowing rate of 0% over 2 months. Financing, in addition to a €151.35 down payment which includes fees of €1.35, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €300.00 at a fixed borrowing rate of 0% over 2 months. Financing, in addition to a €151.35 down payment which includes fees of €1.35, a purchase of €450.00. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 7 selected
@@ -916,7 +916,7 @@ text: €460.62
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €10.62 (APR 0.00%)
-text: A loan of €337.50 at a fixed borrowing rate of 0% over 3 months. Financing, in addition to a €123.12 down payment which includes fees of €10.62, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €337.50 at a fixed borrowing rate of 0% over 3 months. Financing, in addition to a €123.12 down payment which includes fees of €10.62, a purchase of €450.00. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 8 selected
@@ -1000,7 +1000,7 @@ text: €477.25
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €27.25 (APR 17.20%)
-text: A loan of €429.48 at a fixed borrowing rate of 17.2% over 9 months. Financing, in addition to a €47.77 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €429.48 at a fixed borrowing rate of 17.2% over 9 months. Financing, in addition to a €47.77 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 
@@ -1311,7 +1311,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: Loan from €450.00 at a fixed borrowing rate of 0% on 15 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 16, 2021. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 15 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 16, 2021. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: How to pay
@@ -1377,7 +1377,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: Loan from €450.00 at a fixed borrowing rate of 0% on 30 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 31, 2021. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 30 days. Financing a purchase of €450.00. Total amount due: €450.00, debited on December 31, 2021. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: How to pay
@@ -1443,7 +1443,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: Loan from €450.00 at a fixed borrowing rate of 0% on 1 months. Financing a purchase of €450.00. Total amount due: €450.00, debited on January 1, 2022. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: Loan from €450.00 at a fixed borrowing rate of 0% on 1 months. Financing a purchase of €450.00. Total amount due: €450.00, debited on January 1, 2022. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: How to pay
@@ -1511,7 +1511,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: How to pay
@@ -1581,7 +1581,7 @@ text: €451.35
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €1.35 (APR 0.00%)
-text: A loan of €300.00 at a fixed borrowing rate of 0% over 2 months. Financing, in addition to a €151.35 down payment which includes fees of €1.35, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €300.00 at a fixed borrowing rate of 0% over 2 months. Financing, in addition to a €151.35 down payment which includes fees of €1.35, a purchase of €450.00. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: How to pay
@@ -1653,7 +1653,7 @@ text: €460.62
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €10.62 (APR 0.00%)
-text: A loan of €337.50 at a fixed borrowing rate of 0% over 3 months. Financing, in addition to a €123.12 down payment which includes fees of €10.62, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €337.50 at a fixed borrowing rate of 0% over 3 months. Financing, in addition to a €123.12 down payment which includes fees of €10.62, a purchase of €450.00. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: How to pay
@@ -1737,7 +1737,7 @@ text: €477.25
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €27.25 (APR 17.20%)
-text: A loan of €429.48 at a fixed borrowing rate of 17.2% over 9 months. Financing, in addition to a €47.77 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €429.48 at a fixed borrowing rate of 17.2% over 9 months. Financing, in addition to a €47.77 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 text: How to pay
@@ -1785,7 +1785,7 @@ text: €450.00
 text: Total
 text: Of which cost of credit (incl. VAT)
 text: €0.00 (APR 0.00%)
-text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. Subject to approval by Alma SAS ( ), payment institution authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
+text: A loan of €225.00 at a fixed borrowing rate of 0% over 1 months. Financing, in addition to a €225.00 down payment, a purchase of €450.00. The cost of the loan is borne by the retailer. Subject to approval by Alma SAS ( ), financing company authorised by the ACPR (CIB: 17408). RCS Nanterre 839100575. Contact:
 text: almapay.com
 text: support@almapay.com
 

@@ -139,7 +139,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -169,7 +169,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 text: Como pagar
@@ -574,7 +574,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Crédito de € 450,00 com taxa de juro fixa de 0% em 15 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 16 de dezembro de 2021. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 15 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 16 de dezembro de 2021. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 3 selected
@@ -640,7 +640,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Crédito de € 450,00 com taxa de juro fixa de 0% em 30 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 31 de dezembro de 2021. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 30 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 31 de dezembro de 2021. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 4 selected
@@ -706,7 +706,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Crédito de € 450,00 com taxa de juro fixa de 0% em 1 meses. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 1 de janeiro de 2022. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 1 meses. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 1 de janeiro de 2022. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 5 selected
@@ -774,7 +774,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 6 selected
@@ -1311,7 +1311,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Crédito de € 450,00 com taxa de juro fixa de 0% em 15 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 16 de dezembro de 2021. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 15 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 16 de dezembro de 2021. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 text: Como pagar
@@ -1377,7 +1377,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Crédito de € 450,00 com taxa de juro fixa de 0% em 30 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 31 de dezembro de 2021. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 30 dias. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 31 de dezembro de 2021. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 text: Como pagar
@@ -1443,7 +1443,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Crédito de € 450,00 com taxa de juro fixa de 0% em 1 meses. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 1 de janeiro de 2022. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Crédito de € 450,00 com taxa de juro fixa de 0% em 1 meses. Destinado a financiar uma compra de € 450,00. Montante total a pagar: € 450,00, a cobrar em 1 de janeiro de 2022. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 text: Como pagar
@@ -1511,7 +1511,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 text: Como pagar
@@ -1785,7 +1785,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. O custo do crédito é suportado pela marca. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -1823,7 +1823,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -1861,7 +1861,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -1899,7 +1899,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -1937,7 +1937,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -1975,7 +1975,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2013,7 +2013,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2051,7 +2051,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2089,7 +2089,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2127,7 +2127,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2164,7 +2164,7 @@ text: € 450,00
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 0,00 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 225,00. O valor restante financiado é de € 225,00, a taxa de juros fixa de 0% durante 1 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2200,6 +2200,6 @@ text: € 451,35
 text: Total
 text: Dos quais custo do crédito (incl. IVA)
 text: € 1,35 (TAEG 0,00%)
-text: Para uma compra de € 450,00: paga um valor inicial de € 151,35 que inclui € 1,35 de custos. O valor restante financiado é de € 300,00, a taxa de juros fixa de 0% durante 2 meses. Sujeito à aprovação da Alma SAS ( ), entidade financeira autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
+text: Para uma compra de € 450,00: paga um valor inicial de € 151,35 que inclui € 1,35 de custos. O valor restante financiado é de € 300,00, a taxa de juros fixa de 0% durante 2 meses. Sujeito à aprovação da Alma SAS ( ), entidade de pagamento autorizada pela ACPR (código CIB 17408). RCS Nanterre 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com

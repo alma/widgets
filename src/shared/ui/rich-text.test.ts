@@ -27,8 +27,13 @@ describe('formatRichText', () => {
   })
 
   it("renders the disclaimer's links with master's attributes", () => {
+    const intl = createIntl('en')
     const container = renderRichText(
-      formatRichText(createIntl('en'), legalMentionsMessages.disclaimer, { link, mail }),
+      formatRichText(intl, legalMentionsMessages.disclaimer, {
+        status: intl.formatMessage(legalMentionsMessages.paymentInstitution),
+        link,
+        mail,
+      }),
     )
     const [almapay, support] = container.querySelectorAll('a')
 
@@ -42,7 +47,11 @@ describe('formatRichText', () => {
 
   it('renders a formatted message as the value of another', () => {
     const intl = createIntl('en')
-    const disclaimer = formatRichText(intl, legalMentionsMessages.disclaimer, { link, mail })
+    const disclaimer = formatRichText(intl, legalMentionsMessages.disclaimer, {
+      status: intl.formatMessage(legalMentionsMessages.paymentInstitution),
+      link,
+      mail,
+    })
 
     const container = renderRichText(
       formatRichText(intl, legalMentionsMessages.creditOrPnxWithoutFees, {

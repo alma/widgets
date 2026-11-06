@@ -139,7 +139,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -169,7 +169,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 text: Cómo pagar
@@ -574,7 +574,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 15 días. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 16 de diciembre de 2021. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 15 días. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 16 de diciembre de 2021. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 3 selected
@@ -640,7 +640,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 30 días. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 31 de diciembre de 2021. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 30 días. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 31 de diciembre de 2021. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 4 selected
@@ -706,7 +706,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 1 meses. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 1 de enero de 2022. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 1 meses. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 1 de enero de 2022. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 5 selected
@@ -774,7 +774,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 -- modal, plan 6 selected
@@ -1311,7 +1311,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 15 días. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 16 de diciembre de 2021. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 15 días. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 16 de diciembre de 2021. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 text: Cómo pagar
@@ -1377,7 +1377,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 30 días. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 31 de diciembre de 2021. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 30 días. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 31 de diciembre de 2021. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 text: Cómo pagar
@@ -1443,7 +1443,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 1 meses. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 1 de enero de 2022. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 450,00 € con un tipo de interés deudor fijo de 0 % en 1 meses. Que permite financiar una compra de 450,00 €. Importe total adeudado: 450,00 €, que se deducirá el 1 de enero de 2022. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 text: Cómo pagar
@@ -1511,7 +1511,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 text: Cómo pagar
@@ -1785,7 +1785,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. El coste del crédito corre a cargo de la marca. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -1823,7 +1823,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -1861,7 +1861,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -1899,7 +1899,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -1937,7 +1937,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -1975,7 +1975,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2013,7 +2013,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2051,7 +2051,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2089,7 +2089,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2127,7 +2127,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2164,7 +2164,7 @@ text: 450,00 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 0,00 € (TAE 0,00 %)
-text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 225,00 € a un tipo de interés fijo del 0 % durante 1 meses. Permite, con un pago inicial de 225,00 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
 
@@ -2200,6 +2200,6 @@ text: 451,35 €
 text: Total
 text: Del cual, coste del crédito (IVA incluido)
 text: 1,35 € (TAE 0,00 %)
-text: Crédito de 300,00 € a un tipo de interés fijo del 0 % durante 2 meses. Permite, con un pago inicial de 151,35 € que incluye gastos de 1,35 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de financiación autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
+text: Crédito de 300,00 € a un tipo de interés fijo del 0 % durante 2 meses. Permite, con un pago inicial de 151,35 € que incluye gastos de 1,35 €, financiar una compra de 450,00 €. Sujeto a la aceptación por parte de Alma SAS ( ), entidad de pago autorizada por la ACPR (código CIB: 17408). Inscrita en el Registro Mercantil de Nanterre con el número 839100575. Contacto:
 text: almapay.com
 text: support@almapay.com
