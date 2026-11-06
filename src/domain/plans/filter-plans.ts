@@ -65,4 +65,8 @@ const filterEligibility = (
   })
 }
 
+export const filterEligiblePlans = (
+  plans: EligibilityPlanToDisplay[],
+): EligibilityPlanToDisplay[] => plans.filter((plan) => plan.eligible)
+
 export default filterEligibility

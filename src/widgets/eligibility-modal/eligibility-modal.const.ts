@@ -30,3 +30,6 @@ export default STATIC_CUSTOMISATION_CLASSES
 
 // Master's react-responsive `useMediaQuery({ minWidth: 800 })`.
 export const desktopMediaQuery = '(min-width: 800px)'
+
+// Frozen for 4.x: another 4.x bundle on the page may have defined it.
+export const ELIGIBILITY_MODAL_TAG = 'alma-eligibility-modal'

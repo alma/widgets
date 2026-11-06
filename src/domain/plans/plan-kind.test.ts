@@ -5,11 +5,25 @@ import {
   isP1X,
   isPayLater,
   isPNX,
+  isSomePlanDeferred,
   requiresLegalDisclosure,
 } from '@/domain/plans/plan-kind'
-import { mockP1XEligiblePlan } from '@/test/fixtures'
+import {
+  mockP1XEligiblePlan,
+  mockP4XIneligiblePlan,
+  mockPlansWithoutDeferred,
+} from '@/test/fixtures'
 
 describe('planKind', () => {
+  describe('isSomePlanDeferred', () => {
+    it('should return false when no plan is deferred', () => {
+      expect(isSomePlanDeferred(mockPlansWithoutDeferred)).toBe(false)
+    })
+    it('should count an ineligible deferred plan', () => {
+      const ineligibleDeferredPlan = { ...mockP4XIneligiblePlan, deferred_months: 1 }
+      expect(isSomePlanDeferred([...mockPlansWithoutDeferred, ineligibleDeferredPlan])).toBe(true)
+    })
+  })
   describe('isP1X', () => {
     it('should return true if plan is P1X', () => {
       const result = isP1X({
