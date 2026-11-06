@@ -6,7 +6,7 @@ import { PlanCyclingController } from '@/widgets/payment-plans/controllers/plan-
 
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
 
-class PlanCyclingHost extends LightDomElement {
+class TestPlanCyclingHost extends LightDomElement {
   iterateValues: number[] = []
 
   transitionDelay = 1000
@@ -20,10 +20,10 @@ class PlanCyclingHost extends LightDomElement {
     return html`${this.cycling.current}`
   }
 }
-customElements.define('test-plan-cycling-host', PlanCyclingHost)
+customElements.define('test-plan-cycling-host', TestPlanCyclingHost)
 
-const appendHost = (iterateValues: number[], transitionDelay: number): PlanCyclingHost => {
-  const host = document.createElement('test-plan-cycling-host') as PlanCyclingHost
+const appendHost = (iterateValues: number[], transitionDelay: number): TestPlanCyclingHost => {
+  const host = document.createElement('test-plan-cycling-host') as TestPlanCyclingHost
   host.iterateValues = iterateValues
   host.transitionDelay = transitionDelay
   document.body.append(host)

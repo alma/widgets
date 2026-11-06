@@ -2,6 +2,9 @@ import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 import { MediaQueryController } from '@/shared/ui/media-query.controller'
 
+// The controller reads nothing from its host yet: its inputs come through getInputs.
+export type PlanCyclingHost = ReactiveControllerHost
+
 // The values that the host computes on each update.
 export type PlanCyclingInputs = {
   iterateValues: number[]
@@ -10,7 +13,7 @@ export type PlanCyclingInputs = {
 
 // Master's useButtonAnimation: highlights each value in turn, for one full cycle.
 export class PlanCyclingController implements ReactiveController {
-  private readonly host: ReactiveControllerHost
+  private readonly host: PlanCyclingHost
 
   private readonly getInputs: () => PlanCyclingInputs
 
@@ -28,7 +31,7 @@ export class PlanCyclingController implements ReactiveController {
   // Never reset, as on master, so a hover doesn't make the cycle longer.
   private iterationCount = 1
 
-  constructor(host: ReactiveControllerHost, getInputs: () => PlanCyclingInputs) {
+  constructor(host: PlanCyclingHost, getInputs: () => PlanCyclingInputs) {
     this.host = host
     this.getInputs = getInputs
     // Added first, so its value is up to date when this controller connects.
