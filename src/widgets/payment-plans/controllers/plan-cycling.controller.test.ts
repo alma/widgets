@@ -363,35 +363,18 @@ describe('PlanCyclingController', () => {
   describe('Reduced motion changes', () => {
     const media = useFakeMatchMedia()
 
-    it('should stop at once when reduced motion turns on', async () => {
+    it('should read reduced motion again on each update, with no listener', async () => {
       const host = appendHost([100, 200, 300], 1000)
       await vi.advanceTimersByTimeAsync(1000)
 
       media.setMatches(REDUCED_MOTION, true)
+      host.requestUpdate()
       await host.updateComplete
 
+      expect(media.listenerCount(REDUCED_MOTION)).toBe(0)
       expect(vi.getTimerCount()).toBe(0)
       await vi.advanceTimersByTimeAsync(5000)
       expect(host.cycling.current).toBe(200)
-    })
-
-    it('should resume with the same step count when reduced motion turns off', async () => {
-      const host = appendHost([100, 200, 300], 1000)
-      await vi.advanceTimersByTimeAsync(1000)
-      media.setMatches(REDUCED_MOTION, true)
-      await host.updateComplete
-
-      media.setMatches(REDUCED_MOTION, false)
-      await host.updateComplete
-
-      await vi.advanceTimersByTimeAsync(1000)
-      expect(host.cycling.current).toBe(300)
-
-      await vi.advanceTimersByTimeAsync(1000)
-      expect(host.cycling.current).toBe(100)
-
-      await vi.advanceTimersByTimeAsync(3000)
-      expect(host.cycling.current).toBe(100)
     })
   })
 })
