@@ -27,3 +27,6 @@ const STATIC_CUSTOMISATION_CLASSES = {
 }
 
 export default STATIC_CUSTOMISATION_CLASSES
+
+// Master's react-responsive `useMediaQuery({ minWidth: 800 })`.
+export const desktopMediaQuery = '(min-width: 800px)'
