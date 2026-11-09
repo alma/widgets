@@ -60,6 +60,9 @@ export const planTabsTemplate = ({
     const classes = isActive
       ? classMap({ [styles.active]: true, [STATIC_CUSTOMISATION_CLASSES.activeOption]: true })
       : nothing
+    const label = html`<span class=${classMap({ [styles.textButton]: true })}>${name}</span>`
+    // No whitespace around the label, which Prettier would add: master's textContent is the name.
+    // prettier-ignore
     return html`<button
       type="button"
       class=${classes}
@@ -69,9 +72,7 @@ export const planTabsTemplate = ({
       aria-describedby="payment-info"
       aria-current=${ifDefined(isActive ? 'true' : undefined)}
       aria-label=${ariaLabel}
-    >
-      <span class=${classMap({ [styles.textButton]: true })}>${name}</span>
-    </button>`
+    >${label}</button>`
   }
 
   const groupClasses = classMap({

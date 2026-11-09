@@ -264,6 +264,19 @@ describe('EligibilityController', () => {
       expect(api.fetchMock).toHaveBeenCalledTimes(1)
     })
 
+    it('filters the response again with the plans the host has now, as master does on each render', async () => {
+      const api = stubApi()
+      const host = mountHost({ configPlans })
+      api.answer(mockPlansAllEligible)
+      await settled(host)
+      const [first] = configPlans
+
+      host.configPlans = [first]
+
+      expect(host.eligibility.plans).toEqual(filterEligibility(mockPlansAllEligible, [first]))
+      expect(api.fetchMock).toHaveBeenCalledTimes(1)
+    })
+
     it('lets each new host read the cache, and does not merge requests in flight', async () => {
       const api = stubApi()
       const first = mountHost()

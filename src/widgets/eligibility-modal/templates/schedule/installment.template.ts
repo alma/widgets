@@ -33,10 +33,11 @@ export const installmentTemplate = ({
   const dotClasses = classMap({ [styles.dot]: true, [styles.isCurrent]: index === 0 })
   // Master renders no class attribute at all on the other rows.
   const amountClass = index === 0 ? styles.bold : undefined
-  // Prettier would wrap the date in whitespace, which master's textContent lacks.
+  // No whitespace between the tags, which Prettier would add: master's textContent has none, such
+  // as "Aujourd'hui151,35 €".
   // prettier-ignore
-  return html`<div class=${installmentClasses} data-testid="installment-${index}">
-    <div class=${dateClasses}><div class=${dotClasses}></div>${date}</div>
-    <div class=${ifDefined(amountClass)}>${amount}</div>
-  </div>`
+  const dateBlock = html`<div class=${dateClasses}><div class=${dotClasses}></div>${date}</div>`
+  const amountBlock = html`<div class=${ifDefined(amountClass)}>${amount}</div>`
+  // prettier-ignore
+  return html`<div class=${installmentClasses} data-testid="installment-${index}">${dateBlock}${amountBlock}</div>`
 }

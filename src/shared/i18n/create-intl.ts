@@ -59,7 +59,7 @@ const formatters: Formatters = {
   ),
 }
 
-const isValidLocale = (locale: string) => {
+export const isValidLocale = (locale: string): boolean => {
   try {
     Intl.getCanonicalLocales(locale)
     return true

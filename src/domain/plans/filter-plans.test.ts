@@ -1,4 +1,4 @@
-import filterEligibility from '@/domain/plans/filter-plans'
+import filterEligibility, { filterEligiblePlans } from '@/domain/plans/filter-plans'
 import type { ConfigPlan, EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 import {
   configPlans,
@@ -252,5 +252,13 @@ describe('filterEligibility', () => {
         expect(findByInstallments(result, 4)).not.toHaveProperty('minAmount')
       })
     })
+  })
+})
+
+describe('filterEligiblePlans', () => {
+  it('should keep the eligible plans in their order', () => {
+    const plans = filterEligibility(mockEligibilityPaymentPlanWithIneligiblePlan, configPlans)
+
+    expect(filterEligiblePlans(plans)).toEqual([plans[0], plans[1]])
   })
 })
