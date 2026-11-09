@@ -15,6 +15,3 @@ export enum WidgetTypes {
   PaymentPlans = 'PaymentPlans',
   Modal = 'Modal',
 }
-
-// Frozen for 4.x: another 4.x bundle on the page may have defined it.
-export const PAYMENT_PLANS_TAG = 'alma-payment-plans'

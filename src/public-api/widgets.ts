@@ -1,5 +1,5 @@
 import { createModalHandle, type ModalHandle, openOnClick } from '@/public-api/modal-handle'
-import { PAYMENT_PLANS_TAG, WidgetTypes } from '@/public-api/public-api.const'
+import { WidgetTypes } from '@/public-api/public-api.const'
 import type {
   ApiConfig,
   ModalOptions,
@@ -11,6 +11,9 @@ import { Locale } from '@/shared/i18n/i18n.const'
 import { warnOnce } from '@/shared/lib/errors'
 import { ELIGIBILITY_MODAL_TAG } from '@/widgets/eligibility-modal/eligibility-modal.const'
 import { closeModalOf } from '@/widgets/eligibility-modal/index'
+// Registers <alma-payment-plans>, which add() creates by its tag.
+import '@/widgets/payment-plans'
+import { PAYMENT_PLANS_TAG } from '@/widgets/payment-plans/payment-plans.const'
 
 export type AddReturnType = ModalHandle | undefined
 
