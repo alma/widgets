@@ -10,6 +10,7 @@ import type {
 import { Locale } from '@/shared/i18n/i18n.const'
 import { warnOnce } from '@/shared/lib/errors'
 import { ELIGIBILITY_MODAL_TAG } from '@/widgets/eligibility-modal/eligibility-modal.const'
+// Also registers <alma-eligibility-modal>, which add() creates by its tag.
 import { closeModalOf } from '@/widgets/eligibility-modal/index'
 // Registers <alma-payment-plans>, which add() creates by its tag.
 import '@/widgets/payment-plans'
