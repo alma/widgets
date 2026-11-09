@@ -149,7 +149,7 @@ For each file under `src/` at the reference commit (`scripts/ref-sha.txt`), the 
 
 | Master file | Lit file(s) | Lit test file(s) |
 | --- | --- | --- |
-| `PaymentPlans.stories.ts` | `src/widgets/payment-plans/payment-plans.stories.ts` (element stories that need a request), plus the template stories in `src/widgets/payment-plans/templates/` for final states (?) | — |
+| `PaymentPlans.stories.ts` | `src/widgets/payment-plans/payment-plans.stories.ts`, the same title, story names and scenarios, so Chromatic compares both builds. The template stories in `src/widgets/payment-plans/templates/` cover only the states that it doesn't | — |
 
 ## `src/test/`
 
@@ -224,7 +224,7 @@ For each file under `src/` at the reference commit (`scripts/ref-sha.txt`), the 
 
 | Master file | Lit file(s) | Lit test file(s) |
 | --- | --- | --- |
-| `index.tsx` | `src/widgets/payment-plans/payment-plans.element.ts`, `src/widgets/payment-plans/index.ts`, `src/widgets/payment-plans/templates/payment-plans.template.ts`, `src/widgets/payment-plans/templates/plan-button.template.ts`, `paymentPlansMessages` in `src/widgets/payment-plans/payment-plans.messages.ts` (section title from `planSectionMessages`), `src/widgets/payment-plans/payment-plans.stories.ts` (element stories) | `src/widgets/payment-plans/payment-plans.element.test.ts`, `src/widgets/payment-plans/__tests__/*.test.ts` |
+| `index.tsx` | `src/widgets/payment-plans/payment-plans.element.ts`, `src/widgets/payment-plans/index.ts`, `src/widgets/payment-plans/templates/plans-content.template.ts` (named after the modal's `modal-content.template.ts`, with `payment-plans.module.css` as its styles), `src/widgets/payment-plans/templates/plan-button.template.ts`, `paymentPlansMessages` in `src/widgets/payment-plans/payment-plans.messages.ts` (section title from `planSectionMessages`), `src/widgets/payment-plans/payment-plans.stories.ts` (element stories) | `src/widgets/payment-plans/payment-plans.element.test.ts`, `src/widgets/payment-plans/__tests__/*.test.ts` |
 | `PaymentPlans.module.css` | `src/widgets/payment-plans/templates/payment-plans.module.css` | — |
 | `classNames.const.ts` | `src/widgets/payment-plans/payment-plans.const.ts` | — |
 | `__tests__/Accessibility.test.tsx` | `src/widgets/payment-plans/__tests__/Accessibility.test.ts` | — |
