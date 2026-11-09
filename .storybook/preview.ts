@@ -87,6 +87,12 @@ const preview: Preview = {
       // The panel informs. The blocking accessibility checks run in Vitest.
       test: 'todo',
     },
+    // Some stories add the modes of src/test/storybookModes.ts
+    chromatic: {
+      modes: {
+        desktop: { viewport: 'desktop', merchantCss: 'off' },
+      },
+    },
   },
   beforeEach: () => {
     // The widget caches the eligibility response for an hour

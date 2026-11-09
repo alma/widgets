@@ -22,6 +22,7 @@ import {
   mockPlansAllEligible,
   mockPlansWithoutDeferred,
 } from '@/test/fixtures'
+import { MERCHANT_CSS_MODES, MOBILE_MERCHANT_CSS_MODES, MOBILE_MODES } from '@/test/storybookModes'
 
 // Only the public API, as merchants use it.
 
@@ -78,6 +79,7 @@ const selectPlan = (label: string) => async () => {
 }
 
 const meta = {
+  title: 'Widgets/EligibilityModal',
   args: {
     purchaseAmount: 45000,
     locale: Locale.fr,
@@ -131,10 +133,12 @@ export const PayNow: Story = {
 }
 
 export const ThreeTimesWithFees: Story = {
+  parameters: { chromatic: { modes: { ...MERCHANT_CSS_MODES, ...MOBILE_MERCHANT_CSS_MODES } } },
   play: selectPlan('3x'),
 }
 
 export const Credit: Story = {
+  parameters: { chromatic: { modes: MOBILE_MODES } },
   play: selectPlan('10x'),
 }
 
@@ -149,6 +153,7 @@ export const DeferredInstallmentsWithFees: Story = {
 
 export const CardLogos: Story = {
   args: { cards: ['cb', 'visa', 'mastercard', 'amex'] },
+  parameters: { chromatic: { modes: MOBILE_MODES } },
 }
 
 export const SkipLinks: Story = {
@@ -160,6 +165,7 @@ export const SkipLinks: Story = {
   },
 }
 
+// Not snapshotted
 export const Playground: Story = {
   args: {
     plan: '3x deferred with fees',
@@ -190,6 +196,7 @@ export const Playground: Story = {
   },
   parameters: {
     controls: { include: ['plan', 'transactionCountry', 'locale', 'cards', 'purchaseAmount'] },
+    chromatic: { disableSnapshot: true },
   },
   beforeEach: ({ args, msw }) => {
     const plan = PLANS[args.plan ?? '3x deferred with fees']
