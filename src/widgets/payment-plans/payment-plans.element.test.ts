@@ -370,6 +370,188 @@ describe('AlmaPaymentPlans behaviour', () => {
     })
   })
 
+  describe('modal', () => {
+    const portals = () => document.querySelectorAll('.ReactModalPortal')
+    const modalPlan = () =>
+      document.querySelector('.alma-eligibility-modal-active-option')?.textContent
+    const knowMore = () =>
+      screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      })
+    const openModal = async () => {
+      knowMore().click()
+      await screen.findByTestId('modal-close-button')
+    }
+
+    it('should open with the plans of the widget, and send no request', async () => {
+      let requests = 0
+      server.use(
+        http.post(ELIGIBILITY_ENDPOINT, () => {
+          requests += 1
+          return HttpResponse.json(plansWithIneligibleLast)
+        }),
+      )
+      await mountWidget('PaymentPlans', { purchaseAmount: 45000, transitionDelay: -1 })
+      await screen.findByTestId('widget-container')
+
+      await openModal()
+
+      expect(requests).toBe(1)
+      expect(modalPlan()).toBe('2x')
+    })
+
+    it('should open on the first eligible plan when the current plan is not eligible', async () => {
+      await mount()
+      fireEvent.mouseEnter(screen.getAllByRole('option')[3])
+
+      await openModal()
+
+      expect(modalPlan()).toBe('2x')
+    })
+
+    it("should keep its plan when the widget's current plan changes", async () => {
+      const { host } = await mount()
+      await userEvent.click(screen.getAllByRole('option')[1])
+
+      fireEvent.mouseEnter(screen.getAllByRole('option')[2])
+      await (host as AlmaPaymentPlans).updateComplete
+
+      expect(modalPlan()).toBe('3x')
+    })
+
+    it('should not open without an eligible plan, and still prevent the default', async () => {
+      await mount([mockP4XIneligiblePlan, mockP10XIneligiblePlan])
+      const click = new MouseEvent('click', { bubbles: true, cancelable: true })
+
+      knowMore().dispatchEvent(click)
+      await Promise.resolve()
+
+      expect(click.defaultPrevented).toBe(true)
+      expect(portals()).toHaveLength(0)
+    })
+
+    it.each([
+      ['the close button', 'click', () => screen.getByTestId('modal-close-button').click()],
+      [
+        'Escape',
+        'keydown',
+        () =>
+          document
+            .querySelector('#alma-widget-modal-main-container')
+            ?.dispatchEvent(
+              new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', bubbles: true }),
+            ),
+      ],
+      [
+        'an overlay click',
+        'click',
+        () => {
+          const overlay = document.querySelector('.ReactModal__Overlay') as Element
+          ;['mousedown', 'mouseup', 'click'].forEach((type) =>
+            overlay.dispatchEvent(new MouseEvent(type, { bubbles: true })),
+          )
+        },
+      ],
+    ])(
+      'should call onModalClose once for %s, with the modal still open and the React members',
+      async (_name, type, close) => {
+        let portalsDuringCallback: number | undefined
+        const onModalClose = vi.fn(() => {
+          portalsDuringCallback = portals().length
+        })
+        const { host } = await mount(undefined, { onModalClose })
+        await openModal()
+
+        close()
+        await (host as AlmaPaymentPlans).updateComplete
+
+        expect(onModalClose).toHaveBeenCalledOnce()
+        expect(portalsDuringCallback).toBe(1)
+        expect(portals()).toHaveLength(0)
+        const event = (onModalClose.mock.calls[0] as unknown[])[0] as Record<string, unknown>
+        expect(event.type).toBe(type)
+        expect(event.persist).toBeInstanceOf(Function)
+        expect(event.isPropagationStopped).toBeInstanceOf(Function)
+        expect(event.isDefaultPrevented).toBeInstanceOf(Function)
+        expect(event.nativeEvent).toBe(event)
+      },
+    )
+
+    it('should close when onModalClose throws, and let the error reach the page', async () => {
+      const error = new Error('merchant callback')
+      const pageErrors: unknown[] = []
+      const onPageError = (event: ErrorEvent) => {
+        pageErrors.push(event.error)
+        event.preventDefault()
+      }
+      window.addEventListener('error', onPageError)
+      const { host } = await mount(undefined, {
+        onModalClose: () => {
+          throw error
+        },
+      })
+      await openModal()
+
+      screen.getByTestId('modal-close-button').click()
+      await (host as AlmaPaymentPlans).updateComplete
+      window.removeEventListener('error', onPageError)
+
+      expect(pageErrors).toEqual([error])
+      expect(portals()).toHaveLength(0)
+    })
+
+    it('should close at once, without onModalClose, when another add() replaces the widget', async () => {
+      const onModalClose = vi.fn()
+      await mount(undefined, { onModalClose })
+      await openModal()
+
+      const replaced = mountWidget('PaymentPlans', { purchaseAmount: 45000 })
+
+      expect(portals()).toHaveLength(0)
+      expect(document.body).not.toHaveClass('ReactModal__Body--open')
+      expect(onModalClose).not.toHaveBeenCalled()
+      await replaced
+    })
+
+    it('should close without onModalClose once the host leaves the page', async () => {
+      const onModalClose = vi.fn()
+      const { host } = await mount(undefined, { onModalClose })
+      await openModal()
+
+      host?.remove()
+      await Promise.resolve()
+
+      expect(portals()).toHaveLength(0)
+      expect(onModalClose).not.toHaveBeenCalled()
+    })
+
+    it('should stay closed when the host comes back in a later task', async () => {
+      const { host } = await mount()
+      const container = host?.parentElement as HTMLElement
+      await openModal()
+
+      host?.remove()
+      await Promise.resolve()
+      container.append(host as AlmaPaymentPlans)
+      ;(host as AlmaPaymentPlans).requestUpdate()
+      await (host as AlmaPaymentPlans).updateComplete
+
+      expect(portals()).toHaveLength(0)
+    })
+
+    it('should not update the widget when the shopper picks a plan in the modal', async () => {
+      const { host } = await mount()
+      await openModal()
+      const update = vi.spyOn(host as AlmaPaymentPlans, 'requestUpdate')
+
+      // Synchronous, so the announcement's clear timer can't update the host in between.
+      screen.getByRole('button', { name: /3x/ }).click()
+
+      expect(modalPlan()).toBe('3x')
+      expect(update).not.toHaveBeenCalled()
+    })
+  })
+
   describe('accessibility', () => {
     it('should not have any accessibility violations', async () => {
       const { host } = await mount()
