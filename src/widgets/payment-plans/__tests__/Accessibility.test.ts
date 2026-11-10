@@ -77,7 +77,18 @@ describe('PaymentPlan Accessibility Tests', () => {
     expect(await axe(getContainer())).toHaveNoViolations()
   })
 
-  it.todo('should not have accessibility violations when modal is open')
+  // Master checks the container only, which the modal's portal sits outside of. It also disables
+  // nested-interactive, though nothing in master's container nests one control in another.
+  it('should not have accessibility violations when modal is open', async () => {
+    await render()
+
+    screen.getByRole('button', { name: KNOW_MORE_NAME }).click()
+    await screen.findByTestId('modal-close-button')
+
+    expect(
+      await axe(getContainer(), { rules: { 'nested-interactive': { enabled: false } } }),
+    ).toHaveNoViolations()
+  })
 
   it('should not have nested-interactive violation', async () => {
     await render()

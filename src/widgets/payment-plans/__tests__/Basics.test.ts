@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/dom'
+import userEvent from '@testing-library/user-event'
 
 import { eligibilityPlans } from '@/test/eligibilityHandlers'
 import { mockButtonPlans } from '@/test/fixtures'
@@ -21,7 +22,18 @@ describe('Basic PaymentPlan test', () => {
     expect(screen.getByTestId('widget-container')).toBeInTheDocument()
   })
 
-  it.todo('opens the modal on click and close it')
+  it('opens the modal on click and close it', async () => {
+    await defaultRender()
+
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
+      }),
+    )
+    expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
+    await userEvent.click(screen.getByTestId('modal-close-button'))
+    expect(screen.queryByTestId('modal-close-button')).not.toBeInTheDocument()
+  })
 
   describe('PayNow handle', () => {
     it('should not display P1X button if not specifically asked for from widgets config', async () => {
