@@ -83,10 +83,9 @@ jobs:
         with:
           files: |
             ./dist/widgets.umd.js
-            ./dist/widgets.modern.js
-            ./dist/widgets.m.js
             ./dist/widgets.js
             ./dist/widgets.css
+            ./dist/widgets.min.css
             ./dist/widgets-wc.umd.js
 
   # Send changelog to Slack
