@@ -1,4 +1,1 @@
-{
-  "css-output.test.ts > widgets.css and widgets.min.css > fail the comparison when a rule is removed from a copy of widgets.css": "LIT-44",
-  "css-output.test.ts > widgets.css and widgets.min.css > match the golden lists of rules": "LIT-44"
-}
+{}

@@ -105,5 +105,5 @@ The React code is deleted on this branch. Read it at the reference commit in `sc
 ## Constraints from outside `src/`
 
 - **ARCH-22** `src/intl/` and `crowdin.yml` stay where they are. Crowdin reads `src/intl/messages.json` and writes the catalogues in `src/intl/messages/`, so never edit those catalogues by hand. Why: the next Crowdin download overwrites them. Check: review.
-- **STYLE-03** `src/styles/main.css` stays the first CSS import of `src/index.ts`. Why: `widgets.css` keeps master's rule order, which merchant overrides rely on. Check: contract tests.
+- **STYLE-03** `src/styles/main.css` stays the first CSS import of `src/index.ts`, so its rules open `widgets.css` in master's order. The CSS modules may follow in any order, because no element gets rules from two modules. Why: merchant overrides rely on the rules of `main.css`, and a module order that decided a tie would change what the page shows. Check: contract tests, `css-output` and `cascade-ties`.
 - **ARCH-23** `src/index.ts` and `src/modal.browser.test.ts` keep their paths. Why: the build uses `src/index.ts` as its entry, and A11Y-07 and `CLAUDE.md` name `src/modal.browser.test.ts` as the only browser test file. Check: review.

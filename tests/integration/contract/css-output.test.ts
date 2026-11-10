@@ -21,8 +21,21 @@ type CssRule = {
   declarations: string[]
 }
 
+// The hash of the CSS-module file a rule comes from, or undefined for main.css. The hash comes from
+// the file path, so it differs between the builds and never reaches the golden file.
+type BuiltRule = CssRule & { module?: string }
+
+// main.css in its order, then each CSS module with its rules in their order. The modules are
+// sorted by content: cascade-ties.test.ts shows that no element gets rules from two modules, so
+// their order in the file changes nothing on the page.
+type Layout = { main: CssRule[]; modules: CssRule[][] }
+
 // Vite names a CSS-module class and its keyframes `_<local name>_<5 or 6 character hash>_<line>`.
 const CSS_MODULE_NAME = /(?<![\w-])_([A-Za-z]\w*?)_[0-9a-z]{5,6}_\d+(?![\w-])/g
+const CSS_MODULE_HASH = /(?<![\w-])_[A-Za-z]\w*?_([0-9a-z]{5,6})_\d+(?![\w-])/
+
+const moduleOf = (...texts: string[]) =>
+  texts.map((text) => CSS_MODULE_HASH.exec(text)?.[1]).find(Boolean)
 
 const reduceHashes = (text: string) => text.replace(CSS_MODULE_NAME, '_$1')
 
@@ -41,9 +54,9 @@ const isDeclaration = (node: ChildNode): node is Declaration => node.type === 'd
  * The rules of a stylesheet in order: the at-rules around each one, its selector and its
  * declarations. A nested rule comes after the rule that holds it, with that rule in its context.
  */
-const rulesOf = (css: string): CssRule[] => {
-  const rules: CssRule[] = []
-  const walk = (nodes: ChildNode[], context: string[]) => {
+const rulesOf = (css: string): BuiltRule[] => {
+  const rules: BuiltRule[] = []
+  const walk = (nodes: ChildNode[], context: string[], rawContext: string[]) => {
     nodes.forEach((node) => {
       if (node.type === 'rule') {
         const rule = node as Rule
@@ -52,8 +65,9 @@ const rulesOf = (css: string): CssRule[] => {
           context,
           selector,
           declarations: rule.nodes.filter(isDeclaration).map(declarationOf),
+          module: moduleOf(rule.selector, ...rawContext),
         })
-        walk(rule.nodes, [...context, selector])
+        walk(rule.nodes, [...context, selector], [...rawContext, rule.selector])
       } else if (node.type === 'atrule') {
         const atRule = node as AtRule
         const label = atRuleLabel(atRule)
@@ -64,33 +78,63 @@ const rulesOf = (css: string): CssRule[] => {
             context,
             selector: label,
             declarations: children.filter(isDeclaration).map(declarationOf),
+            module: moduleOf(atRule.params, ...rawContext),
           })
         } else {
-          walk(children, [...context, label])
+          walk(children, [...context, label], [...rawContext, atRule.params])
         }
       }
     })
   }
-  walk(postcss.parse(css).nodes, [])
+  walk(postcss.parse(css).nodes, [], [])
   return rules
 }
 
+const withoutModule = ({ module, ...rule }: BuiltRule): CssRule => rule
+
+/**
+ * A rule with no hashed name, such as a keyframe step, belongs to the module of the rule before
+ * it. The rules before the first module are main.css.
+ */
+const layoutOf = (rules: BuiltRule[]): Layout => {
+  const groups = new Map<string, CssRule[]>()
+  let current = 'main'
+  rules.forEach((rule) => {
+    current = rule.module ?? current
+    groups.set(current, [...(groups.get(current) ?? []), withoutModule(rule)])
+  })
+  const { main = [], ...modules } = Object.fromEntries(groups)
+  return {
+    main,
+    modules: Object.values(modules).sort((a, b) =>
+      JSON.stringify(a) < JSON.stringify(b) ? -1 : Number(JSON.stringify(a) > JSON.stringify(b)),
+    ),
+  }
+}
+
+const ruleLines = (rules: CssRule[], indent: string) =>
+  rules.map((rule) => `${indent}${JSON.stringify(rule)}`).join(',\n')
+
 /** One rule per line, so that a change to one rule shows as one line in a diff. */
-const toGolden = (byFile: Record<string, CssRule[]>) => {
-  const files = Object.entries(byFile).map(
-    ([file, rules]) =>
-      `  ${JSON.stringify(file)}: [\n${rules.map((rule) => `    ${JSON.stringify(rule)}`).join(',\n')}\n  ]`,
-  )
+const toGolden = (byFile: Record<string, Layout>) => {
+  const files = Object.entries(byFile).map(([file, { main, modules }]) => {
+    const moduleBlocks = modules.map((rules) => `      [\n${ruleLines(rules, '        ')}\n      ]`)
+    return [
+      `  ${JSON.stringify(file)}: {`,
+      `    "main": [\n${ruleLines(main, '      ')}\n    ],`,
+      `    "modules": [\n${moduleBlocks.join(',\n')}\n    ]`,
+      '  }',
+    ].join('\n')
+  })
   return `{\n${files.join(',\n')}\n}\n`
 }
 
-const readGolden = (): Record<string, CssRule[]> => JSON.parse(readFileSync(GOLDEN_PATH, 'utf8'))
+const readGolden = (): Record<string, Layout> => JSON.parse(readFileSync(GOLDEN_PATH, 'utf8'))
 
 const current = () =>
-  Object.fromEntries(FILES.map((file) => [file, rulesOf(readBundleFile(file))])) as Record<
-    string,
-    CssRule[]
-  >
+  Object.fromEntries(
+    FILES.map((file) => [file, layoutOf(rulesOf(readBundleFile(file)))]),
+  ) as Record<string, Layout>
 
 describe('widgets.css and widgets.min.css', () => {
   it('match the golden lists of rules', async () => {
@@ -104,8 +148,8 @@ describe('widgets.css and widgets.min.css', () => {
     const firstRuleEnd = css.indexOf('}', css.indexOf('@font-face')) + 1
     expect(firstRuleEnd).toBeGreaterThan(0)
     const withoutRule = `${css.slice(0, css.indexOf('@font-face'))}${css.slice(firstRuleEnd)}`
-    expect(rulesOf(withoutRule)).not.toEqual(golden)
-    expect(rulesOf(css)).toEqual(golden)
+    expect(layoutOf(rulesOf(withoutRule))).not.toEqual(golden)
+    expect(layoutOf(rulesOf(css))).toEqual(golden)
   })
 
   describe.each(FILES)('%s', (file) => {
