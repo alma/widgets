@@ -71,6 +71,8 @@ export class ModalPortalController implements ReactiveController {
 
   private readonly onRequestClose?: RequestClose
 
+  private readonly onClose?: () => void
+
   private opened = false
 
   private returnFocusTo: HTMLElement | null = null
@@ -83,9 +85,10 @@ export class ModalPortalController implements ReactiveController {
 
   // Kept for the controller's life: pass a function that reads the host's current state,
   // because a host built in a field initializer gets its properties only after construction.
-  constructor(host: ModalPortalHost, onRequestClose?: RequestClose) {
+  constructor(host: ModalPortalHost, onRequestClose?: RequestClose, onClose?: () => void) {
     this.host = host
     this.onRequestClose = onRequestClose
+    this.onClose = onClose
     this.portal = document.createElement('div')
     this.portal.className = PORTAL_CLASS
     this.overlay = document.createElement('div')
@@ -158,6 +161,7 @@ export class ModalPortalController implements ReactiveController {
     noScroll.off()
     openPortals.splice(openPortals.indexOf(this), 1)
     syncSentinels()
+    this.onClose?.()
   }
 
   focusContent(): void {

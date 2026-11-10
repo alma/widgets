@@ -3,3 +3,7 @@
 import '@/widgets/eligibility-modal/eligibility-modal.element'
 
 export { closeModalOf } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
+export {
+  PlansModalController,
+  type PlansModalParams,
+} from '@/widgets/eligibility-modal/controllers/plans-modal.controller'
