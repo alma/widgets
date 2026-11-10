@@ -1,22 +1,7 @@
 {
   "css-output.test.ts > widgets.css and widgets.min.css > fail the comparison when a rule is removed from a copy of widgets.css": "LIT-44",
   "css-output.test.ts > widgets.css and widgets.min.css > match the golden lists of rules": "LIT-44",
-  "leaks.test.ts > leaks, no worse than master > leaves at most master's listeners and timers after a replacement": "LIT-36",
   "options.test.ts > PaymentPlans hideBorder > never puts it on the loading div": "LIT-36",
   "options.test.ts > null locale > throws a TypeError from add() for PaymentPlans": "LIT-36",
-  "options.test.ts > null locale > throws a TypeError from open() for Modal": "LIT-44",
-  "rendered-text.test.ts > rendered text of each locale > de matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > de-DE matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > en matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > es matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > es-ES matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > fr matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > fr-FR matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > it matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > it-IT matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > nl matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > nl-BE matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > nl-NL matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > pt matches the golden text": "LIT-45",
-  "rendered-text.test.ts > rendered text of each locale > pt-PT matches the golden text": "LIT-45"
+  "options.test.ts > null locale > throws a TypeError from open() for Modal": "LIT-44"
 }

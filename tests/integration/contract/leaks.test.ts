@@ -28,7 +28,11 @@ const MASTER_LISTENERS_AFTER_REPLACEMENT: Counts = {}
 // react-modal adds a capturing `focus` listener on `document` that master never removes. It is one
 // listener however many times the modal opens.
 const MASTER_LISTENERS_AFTER_THREE_CYCLES: Counts = { 'document:focus': 1 }
-const MASTER_TIMERS_AFTER_REPLACEMENT = 2
+const MASTER_TIMERS_AFTER_REPLACEMENT = 0
+// The live widget's timers (cycling, announcements, instructions) all end within this time, so only
+// timers that outlive a replaced widget are left. Counting earlier would measure when Preact and Lit
+// start the live widget's timers, a frame apart, rather than leaks.
+const SETTLE_MS = 60000
 const MASTER_TIMERS_AFTER_THREE_CYCLES = 1
 
 let Alma: ReturnType<typeof loadUmd>
@@ -113,6 +117,7 @@ describe('leaks, no worse than master', () => {
     await tick(500)
     addAgain(Alma, Alma.Widgets.PaymentPlans, {})
     await waitFor(() => planButtons().length > 0, 'the plan buttons')
+    await tick(SETTLE_MS)
 
     expectNoMoreThan(spies.attached(), MASTER_LISTENERS_AFTER_REPLACEMENT)
     expect(vi.getTimerCount()).toBeLessThanOrEqual(MASTER_TIMERS_AFTER_REPLACEMENT)

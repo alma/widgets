@@ -94,6 +94,7 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`, `__tests__/`) put t
 ## The React original
 
 - **ARCH-01** The port reproduces master's behaviour at the reference commit, quirks included. Why: the contract tests compare the Lit build with master's build. Check: contract tests.
+- **ARCH-24** When an effect runs is not part of the contract. Preact runs master's effects after paint, about a frame after the render, and Lit runs the same code in the update. Don't copy Preact's scheduling, and don't write a test that only passes at one of these frames. Why: no shopper, screen reader or merchant can see a one-frame difference, and copying the scheduling adds code that 5.0 drops. Check: review.
 
 The React code is deleted on this branch. Read it at the reference commit in `scripts/ref-sha.txt`, which `npm run build:ref` builds into `dist-ref/`. Read the SHA from that file and write it in the command, because Claude Code asks before it runs one that holds `$(...)`: `git ls-tree -r --name-only <sha> -- src/components/Loader` lists a folder, and `git show <sha>:src/components/Loader/index.tsx` prints a file.
 
