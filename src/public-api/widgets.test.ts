@@ -3,7 +3,6 @@ import type { MockInstance } from 'vitest'
 
 import { ApiMode, Widgets } from '@/index'
 import type { ModalHandle } from '@/public-api/modal-handle'
-import { PAYMENT_PLANS_TAG } from '@/public-api/public-api.const'
 import type {
   ModalOptions,
   PaymentPlanWidgetOptions,
@@ -14,9 +13,11 @@ import type { Card } from '@/shared/ui/icons/cards/cards.types'
 import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
 import { TEST_CONTAINER, TEST_MERCHANT_ID } from '@/test/mount-widget'
 import { ELIGIBILITY_MODAL_TAG } from '@/widgets/eligibility-modal/eligibility-modal.const'
+import { PAYMENT_PLANS_TAG } from '@/widgets/payment-plans/payment-plans.const'
 
-// The real modal element would take its tag before the placeholder below.
+// The real elements would take their tags before the placeholders below.
 vi.mock('@/widgets/eligibility-modal/index', () => ({ closeModalOf: () => {} }))
+vi.mock('@/widgets/payment-plans', () => ({}))
 
 // Stands in for the real elements, which the facade tests leave out.
 class PlaceholderHost extends LightDomElement {
