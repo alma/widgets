@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/dom'
+import userEvent from '@testing-library/user-event'
 import { axe } from 'vitest-axe'
 
 import { eligibilityPlans } from '@/test/eligibilityHandlers'
@@ -27,9 +28,29 @@ describe('Payment info line (know more link)', () => {
     expect(infoText?.textContent).toMatch(/en savoir plus/i)
   })
 
-  it.todo('opens the modal when the info line is clicked')
+  it('opens the modal when the info line is clicked', async () => {
+    const user = userEvent.setup()
+    await renderWithKnowMoreHint()
 
-  it.todo('opens the modal when the info line is activated with the keyboard')
+    expect(screen.queryByTestId('modal-container')).not.toBeInTheDocument()
+
+    await user.click(document.getElementById('payment-info-text')!)
+
+    expect(await screen.findByTestId('modal-container')).toBeInTheDocument()
+  })
+
+  it('opens the modal when the info line is activated with the keyboard', async () => {
+    const user = userEvent.setup()
+    await renderWithKnowMoreHint()
+
+    const infoText = document.getElementById('payment-info-text')!
+    infoText.focus()
+    expect(infoText).toHaveFocus()
+
+    await user.keyboard('{Enter}')
+
+    expect(await screen.findByTestId('modal-container')).toBeInTheDocument()
+  })
 
   it('has no accessibility violations with the clickable info line', async () => {
     await renderWithKnowMoreHint()

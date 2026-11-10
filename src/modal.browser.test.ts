@@ -2,6 +2,8 @@ import { html, render } from 'lit'
 import { userEvent } from 'vitest/browser'
 
 import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
+import { mockButtonPlans } from '@/test/fixtures'
+import { mountWidget } from '@/test/mount-widget'
 import {
   ModalPortalController,
   type RequestClose,
@@ -435,5 +437,34 @@ describe('closing the modal', () => {
 
       expect(document.activeElement).toBe(host.modal.content)
     })
+  })
+})
+
+describe('the modal opened from the PaymentPlans widget', () => {
+  const knowMore = () =>
+    document.querySelector<HTMLButtonElement>(
+      '[aria-label="Ouvrir les options de paiement Alma pour en savoir plus"]',
+    )!
+
+  beforeEach(async () => {
+    // The browser project has no msw server, so nothing must reach the network.
+    vi.spyOn(window, 'fetch').mockResolvedValue(Response.json(mockButtonPlans))
+    await mountWidget('PaymentPlans', { purchaseAmount: 40000 })
+    await vi.waitFor(() => expect(knowMore()).not.toBeNull())
+    await userEvent.click(knowMore())
+    await vi.waitFor(() => expect(document.querySelector('.ReactModalPortal')).not.toBeNull())
+  })
+
+  it.each([
+    ['Escape', () => userEvent.keyboard('{Escape}')],
+    [
+      'the close button',
+      () => userEvent.click(document.querySelector('[data-testid="modal-close-button"]')!),
+    ],
+  ])('should give the focus back to the know-more button after %s', async (_name, close) => {
+    await close()
+
+    await vi.waitFor(() => expect(document.querySelector('.ReactModalPortal')).toBeNull())
+    expect(document.activeElement).toBe(knowMore())
   })
 })

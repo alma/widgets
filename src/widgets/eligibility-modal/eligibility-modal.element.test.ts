@@ -10,11 +10,11 @@ import { mockButtonPlans } from '@/test/fixtures'
 import { useFakeMatchMedia } from '@/test/match-media'
 import { TEST_MERCHANT_ID } from '@/test/mount-widget'
 import { server } from '@/test/msw-server'
+import { closeModalOf } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import { desktopMediaQuery } from '@/widgets/eligibility-modal/eligibility-modal.const'
 import {
   AlmaEligibilityModal,
   type AlmaEligibilityModalProperties,
-  closeModalOf,
 } from '@/widgets/eligibility-modal/eligibility-modal.element'
 
 const FROZEN = 'The element properties are frozen for 4.x: never add, remove, rename or retype one.'

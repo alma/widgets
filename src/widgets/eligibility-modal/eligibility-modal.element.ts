@@ -31,14 +31,6 @@ export interface AlmaEligibilityModalProperties {
   onClose?: (event: MouseEvent | KeyboardEvent) => void
 }
 
-const portals = new WeakMap<Element, ModalPortalController>()
-
-// Master unmounts the modal at once when the facade replaces or closes it. A host removed any other
-// way closes its modal a microtask later, so a host put back in the same task keeps it, as on master.
-export const closeModalOf = (host: Element): void => {
-  portals.get(host)?.close()
-}
-
 // The standalone modal of add(Modal). It renders nothing in its container and the modal at the end
 // of <body>.
 @safeCustomElement(ELIGIBILITY_MODAL_TAG)
@@ -87,11 +79,6 @@ export class AlmaEligibilityModal
   private readonly portal = new ModalPortalController(this, (event) => this.requestClose(event))
 
   private currentLocale: string = Locale.en
-
-  constructor() {
-    super()
-    portals.set(this, this.portal)
-  }
 
   override connectedCallback(): void {
     this.open()

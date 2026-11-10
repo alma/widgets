@@ -16,6 +16,7 @@ const BODY_OPEN_CLASS = 'ReactModal__Body--open'
 
 // Shared by every modal of this bundle, like react-modal's module state.
 const openPortals: ModalPortalController[] = []
+const portalsByHost = new WeakMap<Element, ModalPortalController>()
 let sentinels: [HTMLDivElement, HTMLDivElement] | null = null
 
 // react-modal also reads the deprecated keyCode.
@@ -70,6 +71,8 @@ export class ModalPortalController implements ReactiveController {
 
   private readonly onRequestClose?: RequestClose
 
+  private readonly onClose?: () => void
+
   private opened = false
 
   private returnFocusTo: HTMLElement | null = null
@@ -82,9 +85,10 @@ export class ModalPortalController implements ReactiveController {
 
   // Kept for the controller's life: pass a function that reads the host's current state,
   // because a host built in a field initializer gets its properties only after construction.
-  constructor(host: ModalPortalHost, onRequestClose?: RequestClose) {
+  constructor(host: ModalPortalHost, onRequestClose?: RequestClose, onClose?: () => void) {
     this.host = host
     this.onRequestClose = onRequestClose
+    this.onClose = onClose
     this.portal = document.createElement('div')
     this.portal.className = PORTAL_CLASS
     this.overlay = document.createElement('div')
@@ -100,6 +104,7 @@ export class ModalPortalController implements ReactiveController {
     this.content.setAttribute('aria-describedby', 'modal-info-element')
     this.overlay.append(this.content)
     this.portal.append(this.overlay)
+    portalsByHost.set(host, this)
     host.addController(this)
   }
 
@@ -156,6 +161,7 @@ export class ModalPortalController implements ReactiveController {
     noScroll.off()
     openPortals.splice(openPortals.indexOf(this), 1)
     syncSentinels()
+    this.onClose?.()
   }
 
   focusContent(): void {
@@ -213,4 +219,10 @@ export class ModalPortalController implements ReactiveController {
     this.overlay.className = buildClassName(OVERLAY_CLASS, afterOpen, styles.overlay)
     this.content.className = buildClassName(CONTENT_CLASS, afterOpen, styles.modal)
   }
+}
+
+// Master unmounts the modal at once when the facade replaces or closes it. A host removed any other
+// way closes its modal a microtask later, so a host put back in the same task keeps it, as on master.
+export const closeModalOf = (host: Element): void => {
+  portalsByHost.get(host)?.close()
 }

@@ -12,12 +12,14 @@ import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { warnOnce } from '@/shared/lib/errors'
+import { withReactEventMembers } from '@/shared/lib/react-event'
 import type { Card } from '@/shared/ui/icons/cards/cards.types'
 import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
 import { safeCustomElement } from '@/shared/ui/lit/safe-custom-element'
 import { type ApiData, EligibilityController } from '@/widgets/common/eligibility.controller'
 import { paymentPlanInfoTextTemplate } from '@/widgets/common/plan-strings.template'
 import { getPlanDescription } from '@/widgets/common/plan-text'
+import { PlansModalController } from '@/widgets/eligibility-modal/index'
 import { getIndexOfActivePlan } from '@/widgets/payment-plans/active-plan'
 import { AnimationInstructionsController } from '@/widgets/payment-plans/controllers/animation-instructions.controller'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
@@ -91,7 +93,6 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
   // Stops the cycle for good, unlike a hover that the cycle resumes after.
   @state() private hasUserInteracted = false
 
-  // The modal itself isn't rendered yet.
   @state() private isOpen = false
 
   private readonly eligibility = new EligibilityController(this)
@@ -102,6 +103,15 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
   }))
 
   private readonly announcer = new AnnounceController(this)
+
+  // A modal closed by a disconnect stays closed when the host comes back.
+  private readonly modal = new PlansModalController(
+    this,
+    (event) => this.closeModal(event),
+    () => {
+      this.isOpen = false
+    },
+  )
 
   private readonly animationInstructions = new AnimationInstructionsController(this, () => ({
     status: this.eligibility.status,
@@ -117,6 +127,9 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
 
   // The current plan, status and locale of the last announcement.
   private announced: string | undefined
+
+  // Master renders its modal next to the plans, so a render without them unmounts it.
+  private rendersPlans = false
 
   // Master throws on a locale that Intl rejects, such as `fr_FR` or null.
   private get hasValidLocale(): boolean {
@@ -177,6 +190,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     if (!this.isConnected) return
     this.announceCurrentPlan()
     this.applySuggestedPlan()
+    this.syncModal()
   }
 
   // Master's effect on the current plan, the locale and the status.
@@ -214,7 +228,22 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     this.cycling.onLeave()
   }
 
+  private syncModal(): void {
+    if (!this.isOpen || !this.rendersPlans) {
+      this.modal.sync()
+      return
+    }
+    this.modal.sync({
+      eligiblePlans: this.eligiblePlans,
+      status: this.eligibility.status,
+      initialPlanIndex: () => Math.max(this.eligiblePlanKeys.indexOf(this.cycling.current), 0),
+      cards: this.cards,
+      intl: this.intl,
+    })
+  }
+
   protected override render(): TemplateResult | typeof nothing {
+    this.rendersPlans = false
     if (!this.hasValidLocale) {
       warnOnce(`The widget shows nothing: "${this.locale}" is not a valid locale.`)
       return nothing
@@ -232,6 +261,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     ) {
       return nothing
     }
+    this.rendersPlans = true
     const { current } = this.cycling
     const currentPlan: EligibilityPlanToDisplay | undefined = plansToDisplay[current]
     const isInfoClickable =
@@ -271,6 +301,12 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
 
   private openModal(): void {
     this.isOpen = true
+  }
+
+  // State first, as on master: the modal closes even if the callback throws.
+  private closeModal(event: OpenEvent): void {
+    this.isOpen = false
+    this.onModalClose?.(withReactEventMembers(event))
   }
 
   private readonly handleOpenModal = (event: OpenEvent): void => {

@@ -1,5 +1,7 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
+import { type MediaQueryWatch, watchMediaQuery } from '@/shared/ui/watch-media-query'
+
 export type MediaQueryHost = ReactiveControllerHost
 
 // Tells whether a media query matches, and updates the host when that changes.
@@ -8,7 +10,7 @@ export class MediaQueryController implements ReactiveController {
 
   private readonly query: string
 
-  private list: MediaQueryList | null = null
+  private watch: MediaQueryWatch | null = null
 
   private value = false
 
@@ -23,23 +25,17 @@ export class MediaQueryController implements ReactiveController {
   }
 
   hostConnected(): void {
-    // Firefox returns null in a hidden iframe.
-    this.list = window.matchMedia?.(this.query) ?? null
-    this.list?.addEventListener('change', this.onChange)
+    this.watch = watchMediaQuery(this.query, this.setValue)
     // The value may have changed while the host was out of the page.
-    this.setValue(this.list?.matches ?? false)
+    this.setValue(this.watch.matches)
   }
 
   hostDisconnected(): void {
-    this.list?.removeEventListener('change', this.onChange)
-    this.list = null
+    this.watch?.stop()
+    this.watch = null
   }
 
-  private readonly onChange = (event: MediaQueryListEvent): void => {
-    this.setValue(event.matches)
-  }
-
-  private setValue(matches: boolean): void {
+  private readonly setValue = (matches: boolean): void => {
     if (matches !== this.value) {
       this.value = matches
       this.host.requestUpdate()
