@@ -1,7 +1,6 @@
 {
   "css-output.test.ts > widgets.css and widgets.min.css > fail the comparison when a rule is removed from a copy of widgets.css": "LIT-44",
   "css-output.test.ts > widgets.css and widgets.min.css > match the golden lists of rules": "LIT-44",
-  "options.test.ts > PaymentPlans hideBorder > never puts it on the loading div": "LIT-36",
   "options.test.ts > null locale > throws a TypeError from add() for PaymentPlans": "LIT-36",
   "options.test.ts > null locale > throws a TypeError from open() for Modal": "LIT-44"
 }

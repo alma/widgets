@@ -273,8 +273,8 @@ describe('PaymentPlans hideBorder', () => {
     mockEligibilityApi({ pending: true })
     add(Alma.Widgets.PaymentPlans, { hideBorder: true })
     await tick(500)
-    const loading = container().firstElementChild
-    expect(loading).not.toBeNull()
+    const [loading] = containerChildren(container())
+    expect(loading).toBeDefined()
     expect(container().querySelector('[role="option"]')).toBeNull()
     expect(hasModuleClass(loading, 'widgetContainer')).toBe(true)
     expect(anyModuleClass('hideBorder')).toBe(false)
