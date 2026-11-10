@@ -37,10 +37,13 @@ jobs:
           BUILD_VERSION: ${{ github.event.release.tag_name }}
 
       - name: Publish library
+        env:
+          # A prerelease version must not move `latest`, even when the release's pre-release box is unticked.
+          NPM_TAG: ${{ contains(github.event.release.tag_name, '-') && 'beta' || 'latest' }}
         run: |
           # Clean up some fields in package.json, then publish
           npm pkg delete scripts devDependencies eslintConfig lint-staged commitlint config prettier
-          npm publish --provenance
+          npm publish --provenance --tag "$NPM_TAG"
 
       - name: Publish build assets to release
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
@@ -56,6 +59,7 @@ jobs:
   # Send changelog to Slack
   slack-notification:
     name: Publish changelog to Slack
+    if: ${{ !contains(github.event.release.tag_name, '-') }}
     runs-on: ubuntu-26.04
 
     steps:
