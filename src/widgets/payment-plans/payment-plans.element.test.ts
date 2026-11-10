@@ -340,6 +340,34 @@ describe('AlmaPaymentPlans behaviour', () => {
         expect(screen.getByRole('alert')).toHaveTextContent('Plan sélectionné'),
       )
     })
+
+    // Each render restarts master's default 5500 ms countdown. The animation instructions clear at
+    // 3500 ms, then each plan's announcement clears 1000 ms after its move.
+    it("should move the highlight with master's default delay and its restarts", async () => {
+      const step = 100
+      vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
+      // findByTestId in mount() doesn't advance the fake timers, unlike vi.waitFor.
+      const { host } = await mount(plansWithIneligibleLast, { transitionDelay: undefined })
+      const selectedIndex = () =>
+        screen
+          .getAllByRole('option')
+          .findIndex((plan) => plan.getAttribute('aria-selected') === 'true')
+      const moves: number[] = []
+      let selected = selectedIndex()
+
+      for (let time = step; time <= 22000; time += step) {
+        vi.advanceTimersByTime(step)
+        // Each step needs the render of the one before.
+        // eslint-disable-next-line no-await-in-loop
+        await (host as AlmaPaymentPlans).updateComplete
+        if (selectedIndex() !== selected) {
+          selected = selectedIndex()
+          moves.push(time)
+        }
+      }
+
+      expect(moves).toEqual([3500 + 5500, 9000 + 1000 + 5500, 15500 + 1000 + 5500])
+    })
   })
 
   describe('accessibility', () => {
