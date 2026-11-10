@@ -18,6 +18,18 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      # Semver ranges like 4.x skip a version only when it has a '-', so the box alone protects nobody.
+      - name: Check that the version and the pre-release box agree
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+          IS_PRERELEASE_VERSION: ${{ contains(github.event.release.tag_name, '-') }}
+          PRERELEASE: ${{ github.event.release.prerelease }}
+        run: |
+          if [ "$IS_PRERELEASE_VERSION" != "$PRERELEASE" ]; then
+            echo "::error::$TAG needs 'Set as a pre-release' ticked when the version has a '-', and unticked otherwise."
+            exit 1
+          fi
+
       - name: Set up Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
@@ -36,11 +48,35 @@ jobs:
         env:
           BUILD_VERSION: ${{ github.event.release.tag_name }}
 
+      - name: Determine npm dist-tag
+        id: npm-tag
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          # A prerelease version must not move `latest`, which `npm install` and the CDN's bare URL resolve to.
+          if [[ "$TAG" == *-* ]]; then
+            echo "tag=beta" >> "$GITHUB_OUTPUT"
+          else
+            # A stable release from an older support branch (e.g. 4.x after 5.0.0 shipped) must not
+            # move `latest` backwards either, so compare against what `latest` currently points to.
+            # Git tags carry a `v`, npm versions don't.
+            VERSION="${TAG#v}"
+            CURRENT_LATEST=$(npm view @alma/widgets dist-tags.latest 2>/dev/null || echo "0.0.0")
+            HIGHEST=$(printf '%s\n%s\n' "$CURRENT_LATEST" "$VERSION" | sort -V | tail -n1)
+            if [ "$HIGHEST" = "$VERSION" ] && [ "$CURRENT_LATEST" != "$VERSION" ]; then
+              echo "tag=latest" >> "$GITHUB_OUTPUT"
+            else
+              echo "tag=v${VERSION%%.*}-lts" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
       - name: Publish library
+        env:
+          NPM_TAG: ${{ steps.npm-tag.outputs.tag }}
         run: |
           # Clean up some fields in package.json, then publish
           npm pkg delete scripts devDependencies eslintConfig lint-staged commitlint config prettier
-          npm publish --provenance
+          npm publish --provenance --tag "$NPM_TAG"
 
       - name: Publish build assets to release
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
@@ -56,6 +92,8 @@ jobs:
   # Send changelog to Slack
   slack-notification:
     name: Publish changelog to Slack
+    needs: publish-package
+    if: ${{ !contains(github.event.release.tag_name, '-') }}
     runs-on: ubuntu-26.04
 
     steps:
