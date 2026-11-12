@@ -61,7 +61,8 @@ jobs:
             # move `latest` backwards either, so compare against what `latest` currently points to.
             # Git tags carry a `v`, npm versions don't.
             VERSION="${TAG#v}"
-            CURRENT_LATEST=$(npm view @alma/widgets dist-tags.latest 2>/dev/null || echo "0.0.0")
+            # No fallback: if the registry can't be read, fail rather than risk moving `latest` backwards.
+            CURRENT_LATEST=$(npm view @alma/widgets dist-tags.latest)
             HIGHEST=$(printf '%s\n%s\n' "$CURRENT_LATEST" "$VERSION" | sort -V | tail -n1)
             if [ "$HIGHEST" = "$VERSION" ] && [ "$CURRENT_LATEST" != "$VERSION" ]; then
               echo "tag=latest" >> "$GITHUB_OUTPUT"
