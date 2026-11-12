@@ -5,7 +5,7 @@
   "keywords": [],
   "main": "dist/widgets.js",
   "umd:main": "dist/widgets.umd.js",
-  "module": "dist/widgets.m.js",
+  "module": "dist/widgets.js",
   "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
