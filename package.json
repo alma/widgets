@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "vite build --watch",
-    "build": "tsc --noEmit && vite build",
+    "build": "npm run typecheck && vite build",
     "build:contract": "BUILD_VERSION=contract-test vite build",
     "check:es2021": "es-check es2021 dist/widgets.umd.js --checkFeatures && es-check es2021 dist/widgets.js --module --checkFeatures",
     "test": "vitest run --project unit --project browser --coverage",
@@ -32,7 +32,7 @@
     "test:unit": "vitest run --project unit",
     "test:browser": "vitest run --project browser",
     "test:browser:install": "playwright install --only-shell chromium",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
     "lint": "eslint --ext .ts ./src/ ./tests/ && stylelint 'src/**/*.css'",
     "lint:fix": "eslint --fix --ext .ts ./src/ ./tests/ && stylelint 'src/**/*.css' --fix",
     "storybook": "storybook dev -p 6006",
