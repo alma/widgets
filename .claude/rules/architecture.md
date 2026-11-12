@@ -94,6 +94,7 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`, `__tests__/`) put t
 ## The React original
 
 - **ARCH-01** The port reproduces master's behaviour at the reference commit, quirks included. Why: the contract tests compare the Lit build with master's build. Check: contract tests.
+- **ARCH-24** When an effect runs is not part of the contract. Preact runs master's effects after paint, about a frame after the render, and Lit runs the same code in the update. Don't copy Preact's scheduling, and don't write a test that only passes at one of these frames. Why: no shopper, screen reader or merchant can see a one-frame difference, and copying the scheduling adds code that 5.0 drops. Check: review.
 
 The React code is deleted on this branch. Read it at the reference commit in `scripts/ref-sha.txt`, which `npm run build:ref` builds into `dist-ref/`. Read the SHA from that file and write it in the command, because Claude Code asks before it runs one that holds `$(...)`: `git ls-tree -r --name-only <sha> -- src/components/Loader` lists a folder, and `git show <sha>:src/components/Loader/index.tsx` prints a file.
 
@@ -104,5 +105,5 @@ The React code is deleted on this branch. Read it at the reference commit in `sc
 ## Constraints from outside `src/`
 
 - **ARCH-22** `src/intl/` and `crowdin.yml` stay where they are. Crowdin reads `src/intl/messages.json` and writes the catalogues in `src/intl/messages/`, so never edit those catalogues by hand. Why: the next Crowdin download overwrites them. Check: review.
-- **STYLE-03** `src/styles/main.css` stays the first CSS import of `src/index.ts`. Why: `widgets.css` keeps master's rule order, which merchant overrides rely on. Check: contract tests.
+- **STYLE-03** `src/styles/main.css` stays the first CSS import of `src/index.ts`, so its rules open `widgets.css` in master's order. The CSS modules may follow in any order, because no element gets rules from two modules. Why: merchant overrides rely on the rules of `main.css`, and a module order that decided a tie would change what the page shows. Check: contract tests, `css-output` and `cascade-ties`.
 - **ARCH-23** `src/index.ts` and `src/modal.browser.test.ts` keep their paths. Why: the build uses `src/index.ts` as its entry, and A11Y-07 and `CLAUDE.md` name `src/modal.browser.test.ts` as the only browser test file. Check: review.

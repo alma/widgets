@@ -222,7 +222,9 @@ const planKindCases = (size: string, width: number): Case => ({
       captures.push(`-- widget, plan ${index + 1} hovered\n${renderedText()}`)
     }
     planButtons()[0].dispatchEvent(new MouseEvent('mouseenter'))
-    await tick(CAPTURE_DELAY)
+    // Half the delay, so the capture below comes before the hover's announcement clears at 1000 ms.
+    // Preact starts that timer a frame after Lit does, so a capture at 1000 ms would differ.
+    await tick(CAPTURE_DELAY / 2)
 
     planButtons()[0].click()
     await tick(CAPTURE_DELAY)

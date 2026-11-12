@@ -1,4 +1,4 @@
-// First import, so widgets.css keeps master's rule order.
+// First import: main.css must open widgets.css, as on master.
 import '@/styles/main.css'
 import { ApiMode, WidgetTypes } from '@/public-api/public-api.const'
 import * as utils from '@/public-api/utils'

@@ -6,6 +6,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect } from 'vi
 import { mockEligibilityApi } from './support/api-mock'
 import { it } from './support/contract-test'
 import { containerChildren } from './support/dom'
+import { collectEscapes, expectNoMoreEscaped } from './support/escaped-errors'
 import { loadUmd } from './support/load-bundle'
 
 // Options tested elsewhere:
@@ -273,8 +274,8 @@ describe('PaymentPlans hideBorder', () => {
     mockEligibilityApi({ pending: true })
     add(Alma.Widgets.PaymentPlans, { hideBorder: true })
     await tick(500)
-    const loading = container().firstElementChild
-    expect(loading).not.toBeNull()
+    const [loading] = containerChildren(container())
+    expect(loading).toBeDefined()
     expect(container().querySelector('[role="option"]')).toBeNull()
     expect(hasModuleClass(loading, 'widgetContainer')).toBe(true)
     expect(anyModuleClass('hideBorder')).toBe(false)
@@ -593,17 +594,36 @@ describe('Modal plans', () => {
 
 // These two come last. Master throws in the middle of a render for a null locale, and a render that
 // stops half way can leave the Preact queue of a later test in a bad state.
+//
+// Master applies the default `en` only to undefined, so null reaches the catalogue lookup and
+// throws a TypeError. The Lit build warns instead (ARCH-13), so only what both share is pinned: no
+// more escaped errors than master, and at most one `[Alma widgets]` warning.
 describe('null locale', () => {
-  it('throws a TypeError from add() for PaymentPlans', () => {
-    // Master applies the default `en` only to undefined, and null reaches the catalogue lookup.
-    // This records it as it is.
+  const expectNoMoreThanMaster = async (run: () => void) => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const escapes = collectEscapes()
+    try {
+      run()
+    } catch (error) {
+      escapes.record(error)
+    }
+    await tick(500)
+    expectNoMoreEscaped(await escapes.stop(), ['TypeError'])
+    expect(warn.mock.calls.length).toBeLessThanOrEqual(1)
+    warn.mock.calls.forEach(([message]) => {
+      expect(String(message).startsWith('[Alma widgets]')).toBe(true)
+    })
+    warn.mockRestore()
+  }
+
+  it('throws no more than a TypeError from add() for PaymentPlans', async () => {
     mockEligibilityApi({ json: threePlans })
-    expect(() => add(Alma.Widgets.PaymentPlans, { locale: null })).toThrow(TypeError)
+    await expectNoMoreThanMaster(() => add(Alma.Widgets.PaymentPlans, { locale: null }))
   })
 
-  it('throws a TypeError from open() for Modal', () => {
+  it('throws no more than a TypeError from open() for Modal', async () => {
     mockEligibilityApi({ json: threePlans })
     const handle = add(Alma.Widgets.Modal, { locale: null }) as { open: () => void }
-    expect(() => handle.open()).toThrow(TypeError)
+    await expectNoMoreThanMaster(() => handle.open())
   })
 })
