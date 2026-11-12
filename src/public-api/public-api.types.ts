@@ -38,3 +38,14 @@ export type ModalOptions = {
 export type WidgetNames = keyof typeof WidgetTypes
 
 export type WidgetOptions = PaymentPlanWidgetOptions | ModalOptions
+
+export type ModalHandle = {
+  open: () => void
+  close: (event: MouseEvent | KeyboardEvent) => void
+}
+
+export type AddReturnType = ModalHandle | undefined
+
+export type WidgetsHandle = {
+  add: (widget: WidgetNames, options: WidgetOptions) => AddReturnType
+}

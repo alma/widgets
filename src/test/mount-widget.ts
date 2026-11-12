@@ -2,12 +2,12 @@ import type { ReactiveElement } from 'lit'
 
 import { ApiMode, Widgets } from '@/index'
 import type {
+  AddReturnType,
   ModalOptions,
   PaymentPlanWidgetOptions,
   WidgetNames,
   WidgetOptions,
 } from '@/public-api/public-api.types'
-import type { AddReturnType } from '@/public-api/widgets'
 import { Locale } from '@/shared/i18n/i18n.const'
 
 // Master's test merchant.
