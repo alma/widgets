@@ -83,7 +83,7 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`, `__tests__/`) put t
 | Suffix | Holds |
 | --- | --- |
 | `.element.ts` | a custom element |
-| `.template.ts` | a template function, with its `.stories.ts` file next to it |
+| `.template.ts` | a template function |
 | `.controller.ts` | a reactive controller |
 | `.types.ts` | types only |
 | `.const.ts` | runtime constants and enums |
