@@ -14,6 +14,7 @@ export const safeCustomElement =
     const existing: VersionedElement | undefined = customElements.get(tagName)
     if (existing === undefined) {
       Object.defineProperty(elementClass, ELEMENT_VERSION, { value: BUILD_VERSION })
+      // eslint-disable-next-line no-restricted-syntax -- the one place that defines a tag
       customElements.define(tagName, elementClass)
       return
     }

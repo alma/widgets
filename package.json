@@ -71,7 +71,6 @@
     "cz-conventional-changelog": "^3.3.0",
     "es-check": "^9.8.1",
     "eslint": "^8.57.1",
-    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-import": "^2.31.0",
@@ -118,7 +117,6 @@
   },
   "lint-staged": {
     "src/**/*.ts": [
-      "prettier --write",
       "eslint --fix"
     ],
     "src/**/*.css": [
