@@ -55,7 +55,24 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run check:es2021
-      # Never fails the job.
+      # attw passes even when index.d.ts imports an unresolved @/ path, so only this step catches it.
+      - name: Check the declaration files
+        run: |
+          test -f dist/types/index.d.ts
+          # Leftover files mean the roll-up failed, and they would ship in the tarball.
+          extra=$(find dist/types -type f ! -path dist/types/index.d.ts)
+          if [ -n "$extra" ]; then
+            echo "dist/types must hold index.d.ts only:"
+            echo "$extra"
+            exit 1
+          fi
+          # The package has no dependencies, so any import would leave consumers with an unresolved type.
+          if grep -nE "^\s*import\b|\bimport\(|^\s*export\b[^;]*\bfrom\b|<reference" dist/types/index.d.ts; then
+            echo "dist/types/index.d.ts must not import or reference another file."
+            exit 1
+          fi
+      # lint:package skips attw's unexpected-module-syntax rule. Without "type": "module" or an
+      # exports field, node16 reads widgets.js, the ESM build, as CommonJS. Both wait for 5.0.
       - run: npm run lint:package
 
   storybook:
