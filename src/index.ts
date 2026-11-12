@@ -8,8 +8,9 @@ export namespace Widgets {
   export function initialize(merchantId: string, mode: ApiMode) {
     return WidgetsController({ domain: mode, merchantId })
   }
-  export const PaymentPlans = WidgetTypes.PaymentPlans
-  export const Modal = WidgetTypes.Modal
+  // Typed, or index.d.ts gets an initializer that a .d.ts can't hold (TS1254).
+  export const PaymentPlans: WidgetTypes.PaymentPlans = WidgetTypes.PaymentPlans
+  export const Modal: WidgetTypes.Modal = WidgetTypes.Modal
 }
 
 export namespace Utils {

@@ -8,7 +8,8 @@ export type ApiConfig = { domain: ApiMode; merchantId: string }
 export type PaymentPlanWidgetOptions = {
   container: string
   hideIfNotEligible?: boolean
-  locale?: Locale
+  // The enum isn't exported, so merchants pass its values.
+  locale?: `${Locale}`
   cards?: Card[]
   monochrome?: boolean
   plans?: ConfigPlan[]
@@ -30,7 +31,7 @@ export type ModalOptions = {
   customerShippingCountry?: string
   merchantCoversAllFees?: boolean
   plans?: ConfigPlan[]
-  locale?: Locale
+  locale?: `${Locale}`
   cards?: Card[]
   onClose?: (event: MouseEvent | KeyboardEvent) => void
 }

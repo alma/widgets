@@ -1,8 +1,9 @@
 import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { dirname, relative, resolve } from 'node:path'
 
 import CleanCSS from 'clean-css'
 import { defineConfig, type Plugin } from 'vite'
+import dts from 'vite-plugin-dts'
 
 import { icuCatalogues } from './scripts/vite-plugin-icu'
 import { alias, define, src } from './scripts/vite-config-utils'
@@ -43,6 +44,33 @@ const wooCommerceCopy = (): Plugin => ({
   },
 })
 
+const typesDir = resolve(__dirname, 'dist/types')
+
+// Rolls every declaration into the one file that `typings` names. Only a one-off library build
+// needs it: not watch mode, and not Storybook, which turns lib off.
+const declarations = (): Plugin => ({
+  ...dts({
+    include: ['src'],
+    exclude: ['src/**/*.test.ts', 'src/**/*.stories.ts', 'src/test/**', 'src/__lint-fixtures__/**'],
+    entryRoot: 'src',
+    outDir: typesDir,
+    rollupTypes: true,
+    // vite-plugin-dts resolves @/ in named imports only, not in `import * as` or `import()` types.
+    beforeWriteFile: (filePath, content) => ({
+      filePath,
+      content: content.replace(
+        /(\bfrom\s*|\bimport\s*\(?\s*)(['"])@\/([^'"]+)\2/g,
+        (_, keyword: string, quote: string, path: string) => {
+          const target = relative(dirname(filePath), resolve(typesDir, path))
+          return `${keyword}${quote}${target.startsWith('.') ? target : `./${target}`}${quote}`
+        },
+      ),
+    }),
+  }),
+  apply: (config, { command }) =>
+    command === 'build' && !config.build?.watch && !!config.build?.lib,
+})
+
 export default defineConfig({
   // dist/ lands next to this file, whatever the current directory.
   root: __dirname,
@@ -67,5 +95,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [icuCatalogues(), minCss(), wooCommerceCopy()],
+  plugins: [icuCatalogues(), minCss(), wooCommerceCopy(), declarations()],
 })
