@@ -22,8 +22,6 @@ export default defineConfig({
         'src/**/*.d.ts',
         'src/**/*.types.ts',
         'src/test/**',
-        // Only npm run test:harness reads the lint fixtures.
-        'src/__lint-fixtures__/**',
         // Their tests aren't ported yet. Each port removes its file from this list.
         'src/index.ts',
         'src/shared/config/api-url.const.ts',
