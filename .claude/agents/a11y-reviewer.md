@@ -38,8 +38,6 @@ Read these files whole before you look at the diff:
 
 - `.claude/rules/lit-accessibility.md`
 - `.claude/rules/architecture.md`, for A11Y-07
-- `.claude/skills/port-react-component/references/file-map.md`, which maps each master file to its
-  Lit files
 
 Your rules are the `A11Y-*` rules.
 
@@ -48,7 +46,8 @@ Your rules are the `A11Y-*` rules.
 For each changed file under `src/`:
 
 1. Read the change: `git diff <merge base> -- ':/<path>'`. Read a new or untracked file whole.
-2. Find its React original in the file map, then read it at the reference commit:
+2. Find its React original, named in the PR description or listed by
+   `git ls-tree -r --name-only <reference SHA> -- src/`, then read it at the reference commit:
    `git show <reference SHA>:<master path>`. For the modal, also read how master configures
    react-modal: its props, its class names and its callbacks.
 

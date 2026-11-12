@@ -88,8 +88,8 @@ A finding the developer doesn't reject is accepted. Don't change any code in thi
 ## 5. Write the checklist and the findings
 
 Build the section from [references/pr-checklist.md](references/pr-checklist.md), with its two
-`lit-review` markers. `.github/pull_request_template.md` must hold that block as it is, and
-`npm run test:harness` checks it.
+`lit-review` markers. `.github/pull_request_template.md` must hold that block as it is, so change
+both together.
 
 1. Copy the checklist. When a checklist item covers the rule of an accepted finding, add
    `(findings 2, 5)` at its end. Leave every box as it is in the PR description, and unticked when

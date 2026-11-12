@@ -39,8 +39,6 @@ Read these files whole before you look at the diff:
 - `.claude/rules/lit-styling.md`
 - `.claude/rules/architecture.md`, for STYLE-03
 - `tests/integration/contract/inventory.json`, the contract names
-- `.claude/skills/port-react-component/references/file-map.md`, which maps each master file to its
-  Lit files
 
 Your rules are the `STYLE-*` rules, STYLE-03 included, and the contract folder below.
 
@@ -49,7 +47,8 @@ Your rules are the `STYLE-*` rules, STYLE-03 included, and the contract folder b
 For each changed file under `src/`:
 
 1. Read the change: `git diff <merge base> -- ':/<path>'`. Read a new or untracked file whole.
-2. Find its React original in the file map, then read it at the reference commit:
+2. Find its React original, named in the PR description or listed by
+   `git ls-tree -r --name-only <reference SHA> -- src/`, then read it at the reference commit:
    `git show <reference SHA>:<master path>`. For a `*.module.css` file, read master's copy at its
    master path and compare the two.
 
@@ -79,8 +78,7 @@ Report every rule violation that the diff adds. Look hardest at these:
 STYLE-06 and STYLE-07 have a lint check, and STYLE-08 has `src/styles/css-limits.test.ts`. A
 violation of one of them that you still find is also a gap in that check: report it and name, in
 the fix, the rule of `.stylelintrc.cjs` or the case of `css-limits.test.ts` that should have caught
-it, and for a lint gap the fixture to add under `src/__lint-fixtures__/`. A `stylelint-disable`
-comment that silences one of them is a finding too.
+it. A `stylelint-disable` comment that silences one of them is a finding too.
 
 ### The contract tests
 
