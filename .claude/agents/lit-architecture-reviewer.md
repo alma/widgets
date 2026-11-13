@@ -55,9 +55,10 @@ own these attributes, so leave them:
 Run these nine Grep searches first, because a review that reads files at random skips some. Run each
 one only on the changed files under `src/`, untracked ones included, by passing their paths as a
 Grep `glob` such as `{path1,path2}`. Skip `*.test.ts`, `*.stories.ts`, `__tests__/` and
-`src/test/`, which use timers, `throw` and banned code on purpose. Search 3 is the
-exception: it also covers the changed tests, stories and `src/test/` files, and skips
-`*.messages.ts`. Searches 7 to 9 also catch the lint bans on lines that lint hasn't checked yet.
+`src/test/`, which use timers, `throw` and banned code on purpose. Search 3 is the exception: it
+also covers the changed tests, stories and `src/test/` files, and skips `*.messages.ts`. Searches 7
+to 9 cover the rules that only review checks, and the lint bans on lines that lint hasn't checked
+yet.
 
 1. `setTimeout|setInterval|addEventListener|addListener\(|matchMedia|requestAnimationFrame|Observer\(`,
    for ARCH-12
@@ -69,11 +70,11 @@ exception: it also covers the changed tests, stories and `src/test/` files, and 
 5. `export (const|function) [A-Z]` in the changed `*.template.ts` files, for NAME-03: a template
    exported in PascalCase
 6. `function |=>` in the changed `*.const.ts` files and `^\s*(export\s+)?function ` in the changed
-   `*.types.ts` files, for LAYER-10 and LAYER-11: a function in a file that holds constants or
+   `*.types.ts` files, for LAYER-11: a function in a file that holds constants or
    types only
 7. `fetch|sessionStorage`, for LAYER-07: a hit outside `domain/plans/api/` and `shared/lib/http.ts`
 8. `new CustomEvent|reflect: true|unsafe[A-Z]|static-html|innerHTML|import\(|from '\.|attachShadow|extends LitElement|@customElement\(|customElements\.define|timeZone|\bprocess\.|\bBuffer\b|\bglobal\.|\brequire\(|__dirname|__filename|from '(react|react-dom|preact|react-intl|react-modal|react-responsive|classnames|date-fns)'`,
-   for ARCH-03, ARCH-05 to ARCH-07, ARCH-09, ARCH-14, ARCH-15, LAYER-08, LAYER-09 and LAYER-12
+   for ARCH-03, ARCH-05 to ARCH-07, ARCH-09, ARCH-14, ARCH-15, LAYER-08 and LAYER-09
 9. `from '@/(public-api|widgets|domain|shared)`, and in the changed `domain/` files also
    `from '(lit|@lit)|window\.|document\.`, for LAYER-01, LAYER-02, LAYER-03 and LAYER-05. Check
    each import against the layer table of `architecture.md`

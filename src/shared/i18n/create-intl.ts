@@ -1,7 +1,7 @@
 import { memoize, strategies } from '@formatjs/fast-memoize'
 import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser'
 import { printAST } from '@formatjs/icu-messageformat-parser/lib/printer.js'
-import IntlMessageFormat, { type Formatters } from 'intl-messageformat'
+import { IntlMessageFormat, type Formatters } from 'intl-messageformat'
 
 import messagesDE from '@/intl/messages/messages.de.json'
 import messagesEN from '@/intl/messages/messages.en.json'
