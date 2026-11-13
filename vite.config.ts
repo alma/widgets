@@ -4,8 +4,18 @@ import { resolve } from 'node:path'
 import CleanCSS from 'clean-css'
 import { defineConfig, type Plugin } from 'vite'
 
-import { icuCatalogues } from './scripts/vite-plugin-icu'
-import { alias, define, src } from './scripts/vite-config-utils'
+import { icuCatalogues, icuParserAlias } from './scripts/vite-plugin-icu'
+
+const src = (path = '') => resolve(__dirname, 'src', path)
+
+// alias and define are shared with vitest.config.ts.
+export const alias = [{ find: '@', replacement: src() }, icuParserAlias]
+
+// Only the keys the bundle reads. Defining the whole process.env would inline the build machine's env.
+export const define = {
+  'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ?? 'production'),
+  'process.env.BUILD_VERSION': JSON.stringify(process.env.BUILD_VERSION ?? 'dev'),
+}
 
 // Runs once per build, like master. Skips when widgets.css is missing (failed watch rebuild, Storybook).
 const minCss = (): Plugin => {

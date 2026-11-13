@@ -1,7 +1,7 @@
 import { playwright } from '@vitest/browser-playwright'
 import { configDefaults, defineConfig } from 'vitest/config'
 import { icuCatalogues } from './scripts/vite-plugin-icu'
-import { alias, define } from './scripts/vite-config-utils'
+import { alias, define } from './vite.config'
 
 // jsdom has no layout and no real Tab navigation, so only the modal's focus tests need a browser.
 const BROWSER_TESTS = ['src/**/*.browser.test.ts']
