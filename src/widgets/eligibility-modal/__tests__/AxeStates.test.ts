@@ -28,6 +28,15 @@ const modalPortal = (): HTMLElement => {
   return portal
 }
 
+const openModal = async () => {
+  const { handle } = await mountWidget('Modal', {
+    clickableSelector: '',
+    purchaseAmount: 45000,
+    plans: configPlans,
+  })
+  handle?.open()
+}
+
 const showSchedule = () => screen.findByTestId('modal-installments-element')
 
 type ModalState = {
@@ -99,19 +108,21 @@ describe.each([
 ] as const)('standalone modal at the $layout layout', ({ matching, layoutClass }) => {
   useFakeMatchMedia([...matching])
 
-  it.each(STATES)('should have no axe violation: $name', async ({ respond, show, showsPlans }) => {
-    server.use(respond())
-    const { handle } = await mountWidget('Modal', {
-      clickableSelector: '',
-      purchaseAmount: 45000,
-      plans: configPlans,
-    })
-    handle?.open()
-    await show()
+  it(`should apply ${layoutClass} to the modal container`, async () => {
+    server.use(eligibilityPlans(mockPlansAllEligible))
+    await openModal()
+    await showSchedule()
 
     expect(screen.getByTestId('modal-container')).toHaveClass(
       STATIC_CUSTOMISATION_CLASSES[layoutClass],
     )
+  })
+
+  it.each(STATES)('should have no axe violation: $name', async ({ respond, show, showsPlans }) => {
+    server.use(respond())
+    await openModal()
+    await show()
+
     const results = await (showsPlans ? axeWithPlans : axe)(modalPortal())
     expect(results).toHaveNoViolations()
   })
