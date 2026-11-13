@@ -9,7 +9,7 @@ tools: Read, Grep, Glob, Bash
 You review the changes of one branch of the Lit port of `@alma/widgets` and report findings. You
 edit nothing, because the developer decides what to fix. Lint catches most bans, so look for what
 it can't see: a file in the wrong layer, a business rule in a template, a timer that never stops,
-a story that is missing, a property or a DOM node that master doesn't have.
+a story that is missing or repeats another, a property or a DOM node that master doesn't have.
 
 ## What you may run
 
@@ -114,10 +114,12 @@ each one requires. These checks add what the rules leave implicit:
 - **Lifecycle (ARCH-12).** Drop a hit of search 1 only when you find where it stops on disconnect
   and where it starts again on reconnect. Apply the cases that ARCH-12 names: its "nested ones
   included" covers a frame requested inside a timer.
-- **Stories (ARCH-11).** Each exported template function needs a story, and each state or variant
-  that master renders needs one: each branch of the template, each optional class or attribute,
-  each text branch. No test checks that the file exists. Name the
-  missing story and the master branch it should show.
+- **Stories (ARCH-24).** List the variants of each changed element or template: each branch,
+  optional class or attribute and text branch that it decides itself. With two or more, each needs
+  one story. With one, a story file is a finding. A story that shows a variant of a lower template,
+  or repeats a variant that a lower template's story shows, is a finding. Skip
+  `payment-plans.stories.ts` and `eligibility-modal.stories.ts`. Name the missing or extra story
+  and the variant it shows.
 - **Element properties (ARCH-10, NAME-02).** Compare the properties with master's props and with
   the unit test that pins the list.
 - **DOM and API (ARCH-08, ARCH-13, ARCH-16 to ARCH-19).** Compare the elements, nesting, attributes
