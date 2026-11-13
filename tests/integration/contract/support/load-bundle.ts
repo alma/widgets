@@ -11,6 +11,9 @@ export const isReferenceBuild = distDir.endsWith('dist-ref')
 
 const BUILD_COMMAND = isReferenceBuild ? 'npm run build:ref' : 'npm run build:contract'
 
+// The BUILD_VERSION of both builds, which the X-Alma-Agent header carries.
+export const CONTRACT_VERSION = 'contract-test'
+
 export const bundlePath = (file: string): string => {
   const path = resolve(distDir, file)
   if (!existsSync(path)) {
@@ -38,10 +41,16 @@ type AlmaBundle = {
  * Runs widgets.umd.js like a classic <script>. An indirect eval runs the code in the global scope
  * of the test, so the bundle sees the same fetch mock and sessionStorage as the test. A <script>
  * element would run in jsdom's own window object, where the test globals don't exist.
+ *
+ * With a `version`, it runs the bundle as if built with that BUILD_VERSION.
  */
-export const loadUmd = (): AlmaBundle => {
+export const loadUmd = ({ version }: { version?: string } = {}): AlmaBundle => {
+  const source = readBundleFile('widgets.umd.js')
+  if (version !== undefined && !source.includes(CONTRACT_VERSION)) {
+    throw new Error(`widgets.umd.js has no "${CONTRACT_VERSION}" version. Run "${BUILD_COMMAND}".`)
+  }
   // eslint-disable-next-line no-eval
-  ;(0, eval)(readBundleFile('widgets.umd.js'))
+  ;(0, eval)(version === undefined ? source : source.replaceAll(CONTRACT_VERSION, () => version))
   return (window as unknown as { Alma: AlmaBundle }).Alma
 }
 

@@ -79,3 +79,21 @@ export const expectNoMoreEscaped = (actual: string[], master: string[]) => {
     )
   })
 }
+
+/**
+ * Runs a scenario while collecting the escaped errors. The listeners go back to Vitest even when
+ * the scenario throws, so assert on the result after it returns.
+ */
+export const withEscapes = async <T>(
+  scenario: () => T | Promise<T>,
+): Promise<{ result: T; escaped: string[] }> => {
+  const escapes = collectEscapes()
+  let result: T
+  try {
+    result = await scenario()
+  } catch (error) {
+    await escapes.stop()
+    throw error
+  }
+  return { result, escaped: await escapes.stop() }
+}
