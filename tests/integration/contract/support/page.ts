@@ -63,9 +63,11 @@ export const addWidget = (
   {
     merchantId = MERCHANT_ID,
     mode = Alma.ApiMode.TEST,
-  }: { merchantId?: string; mode?: string } = {},
+    doc = document,
+  }: { merchantId?: string; mode?: string; doc?: Document } = {},
 ) => {
-  document.body.innerHTML = '<div id="alma-widget"></div>'
+  const { body } = doc
+  body.innerHTML = '<div id="alma-widget"></div>'
   return Alma.Widgets.initialize(merchantId, mode).add(widget, {
     container: '#alma-widget',
     purchaseAmount: 45000,

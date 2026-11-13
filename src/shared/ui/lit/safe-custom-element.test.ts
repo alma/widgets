@@ -62,9 +62,24 @@ describe('safeCustomElement', () => {
       expect(warn).toHaveBeenCalledTimes(1)
       const [message] = warn.mock.calls[0]
       expect(message).toMatch(/^\[Alma widgets\] /)
-      expect(message).toContain(`<${tagName}>`)
       expect(message).toContain(existingDefinition)
       expect(message).toContain(`version ${BUILD_VERSION}`)
     },
   )
+
+  it('should warn once for several tags that another version defined', () => {
+    const tagNames = ['test-safe-first-foreign', 'test-safe-second-foreign']
+    tagNames.forEach((tagName) => {
+      class ForeignElement extends HTMLElement {}
+      Object.defineProperty(ForeignElement, ELEMENT_VERSION, { value: '4.6.0' })
+      customElements.define(tagName, ForeignElement)
+    })
+
+    tagNames.forEach((tagName) => {
+      class OwnElement extends HTMLElement {}
+      safeCustomElement(tagName)(OwnElement)
+    })
+
+    expect(warn).toHaveBeenCalledTimes(1)
+  })
 })

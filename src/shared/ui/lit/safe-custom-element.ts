@@ -21,8 +21,9 @@ export const safeCustomElement =
     if (existingVersion !== BUILD_VERSION) {
       const existingDefinition =
         existingVersion === undefined ? 'without a version' : `with version ${existingVersion}`
+      // No tag in the message, so warnOnce logs one warning per bundle, not one per element.
       warnOnce(
-        `<${tagName}> is already defined ${existingDefinition}. This bundle, version ${BUILD_VERSION}, uses that definition.`,
+        `Another bundle already defined the widget elements ${existingDefinition}. This bundle, version ${BUILD_VERSION}, uses those definitions.`,
       )
     }
   }
