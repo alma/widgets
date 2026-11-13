@@ -18,13 +18,23 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      # Semver ranges like 4.x skip a version only when it has a '-', so the box alone protects nobody.
-      - name: Check that the version and the pre-release box agree
+      - name: Check the release tag
         env:
           TAG: ${{ github.event.release.tag_name }}
           IS_PRERELEASE_VERSION: ${{ contains(github.event.release.tag_name, '-') }}
           PRERELEASE: ${{ github.event.release.prerelease }}
         run: |
+          # semver.org's regex without build metadata: npm drops a `+build` part,
+          # so `v4.8.0+build-1` would publish 4.8.0, a stable version, under the beta tag.
+          N='(0|[1-9][0-9]*)'
+          ID='(0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)'
+          TAG_PATTERN="^v$N\.$N\.$N(-$ID(\.$ID)*)?\$"
+          if [[ ! "$TAG" =~ $TAG_PATTERN ]]; then
+            echo "::error::$TAG isn't a version tag such as v4.8.0 or v4.8.0-beta.0."
+            exit 1
+          fi
+
+          # Semver ranges like 4.x skip a version only when it has a '-', so the box alone protects nobody.
           if [ "$IS_PRERELEASE_VERSION" != "$PRERELEASE" ]; then
             echo "::error::$TAG needs 'Set as a pre-release' ticked when the version has a '-', and unticked otherwise."
             exit 1
@@ -86,6 +96,7 @@ jobs:
       - name: Publish build assets to release
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         with:
+          fail_on_unmatched_files: true
           files: |
             ./dist/widgets.umd.js
             ./dist/widgets.js
