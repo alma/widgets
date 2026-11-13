@@ -1,13 +1,11 @@
-import { createModalHandle, openOnClick } from '@/public-api/modal-handle'
+import { createModalHandle, type ModalHandle, openOnClick } from '@/public-api/modal-handle'
 import { WidgetTypes } from '@/public-api/public-api.const'
 import type {
-  AddReturnType,
   ApiConfig,
   ModalOptions,
   PaymentPlanWidgetOptions,
   WidgetNames,
   WidgetOptions,
-  WidgetsHandle,
 } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { warnOnce } from '@/shared/lib/errors'
@@ -17,6 +15,8 @@ import { closeModalOf } from '@/widgets/eligibility-modal/index'
 // Registers <alma-payment-plans>, which add() creates by its tag.
 import '@/widgets/payment-plans'
 import { PAYMENT_PLANS_TAG } from '@/widgets/payment-plans/payment-plans.const'
+
+export type AddReturnType = ModalHandle | undefined
 
 type HostProperties = Record<string, unknown>
 
@@ -137,7 +137,7 @@ const findContainer = (options: WidgetOptions | undefined): Element | null => {
   }
 }
 
-export function WidgetsController(apiData: ApiConfig): WidgetsHandle {
+export function WidgetsController(apiData: ApiConfig) {
   return {
     add(widget: WidgetNames, options: WidgetOptions): AddReturnType {
       const container = findContainer(options)

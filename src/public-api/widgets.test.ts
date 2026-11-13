@@ -2,8 +2,8 @@ import { html } from 'lit'
 import type { MockInstance } from 'vitest'
 
 import { ApiMode, Widgets } from '@/index'
+import type { ModalHandle } from '@/public-api/modal-handle'
 import type {
-  ModalHandle,
   ModalOptions,
   PaymentPlanWidgetOptions,
   WidgetOptions,

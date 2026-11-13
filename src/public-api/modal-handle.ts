@@ -1,5 +1,10 @@
-import type { ModalHandle, ModalOptions } from '@/public-api/public-api.types'
+import type { ModalOptions } from '@/public-api/public-api.types'
 import { warnOnce } from '@/shared/lib/errors'
+
+export type ModalHandle = {
+  open: () => void
+  close: (event: MouseEvent | KeyboardEvent) => void
+}
 
 // Passed in by widgets.ts, which owns the hosts, to avoid an import cycle.
 type ModalHostActions = {

@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 
 import { ApiMode, Widgets } from '@/index'
-import type { AddReturnType } from '@/public-api/public-api.types'
+import type { AddReturnType } from '@/public-api/widgets'
 import { eligibilityPlans } from '@/test/eligibilityHandlers'
 import { mockButtonPlans } from '@/test/fixtures'
 import { server } from '@/test/msw-server'
