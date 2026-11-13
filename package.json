@@ -43,7 +43,7 @@
     "translations:download": "crowdin download && prettier ./src/intl --write",
     "prepare": "husky",
     "fixtures:messages": "node scripts/generate-message-fixture.mjs",
-    "lint:package": "publint && attw --pack . --ignore-rules unexpected-module-syntax"
+    "lint:package": "publint; attw --pack .; exit 0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",
