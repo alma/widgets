@@ -18,5 +18,5 @@
     }
   },
   "include": ["src", "scripts", "tests", ".storybook/**/*.ts", "vite.config.ts", "vitest.config.ts"],
-  "exclude": ["node_modules", "dist", "dist-ref", ".ref-worktree", "src/__lint-fixtures__"],
+  "exclude": ["node_modules", "dist", "dist-ref", ".ref-worktree"],
 }

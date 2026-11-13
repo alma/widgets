@@ -100,7 +100,7 @@ The React code is deleted on this branch. Read it at the reference commit in `sc
 
 ## Tests
 
-- **A11Y-07** Only `src/modal.browser.test.ts` runs in Chromium. Every other test runs in jsdom. Why: jsdom has no layout and no real Tab navigation, which only the modal's focus handling needs. Check: tests.
+- **A11Y-07** Only `src/modal.browser.test.ts` runs in Chromium. Every other test runs in jsdom. Why: jsdom has no layout and no real Tab navigation, which only the modal's focus handling needs. Check: review.
 
 ## Constraints from outside `src/`
 

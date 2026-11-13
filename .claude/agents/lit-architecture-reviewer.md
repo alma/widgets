@@ -41,9 +41,6 @@ Read these files whole before you look at the diff:
 - `.claude/rules/widgets.md`
 - `.claude/rules/domain.md`
 - `.claude/rules/public-api.md`
-- `.claude/skills/port-react-component/references/file-map.md`, which maps each master file to its
-  Lit files
-- `.claude/skills/port-react-component/references/story.md`, for what a story file holds
 
 Your rules are the `ARCH-*`, `LAYER-*` and `NAME-*` rules of these files. The other two reviewers
 own these attributes, so leave them:
@@ -57,8 +54,8 @@ own these attributes, so leave them:
 
 Run these nine Grep searches first, because a review that reads files at random skips some. Run each
 one only on the changed files under `src/`, untracked ones included, by passing their paths as a
-Grep `glob` such as `{path1,path2}`. Skip `*.test.ts`, `*.stories.ts`, `__tests__/`, `src/test/` and
-`src/__lint-fixtures__/`, which use timers, `throw` and banned code on purpose. Search 3 is the
+Grep `glob` such as `{path1,path2}`. Skip `*.test.ts`, `*.stories.ts`, `__tests__/` and
+`src/test/`, which use timers, `throw` and banned code on purpose. Search 3 is the
 exception: it also covers the changed tests, stories and `src/test/` files, and skips
 `*.messages.ts`. Searches 7 to 9 also catch the lint bans on lines that lint hasn't checked yet.
 
@@ -87,12 +84,13 @@ Go through the changed files under `src/` one by one, in the order you were give
 
 1. Read the change: `git diff <merge base> -- ':/<path>'`. Read a new or untracked file whole. Mark
    which hits of step 2 sit on the lines that the diff adds: only those are yours.
-2. Find its React original in the file map, then read it at the reference commit:
+2. Find its React original, named in the PR description or listed by
+   `git ls-tree -r --name-only <reference SHA> -- src/`, then read it at the reference commit:
    `git show <reference SHA>:<master path>`. Also read the master code that renders it or passes
    its props when the change depends on them.
 3. Read the Lit files that the change imports or that import it, when a finding depends on them.
 
-A change with no React original, such as a lint fixture or a test helper, gets the rules only.
+A change with no React original, such as a test helper, gets the rules only.
 
 Also read the changes outside `src/` that your rules cover:
 
@@ -117,7 +115,7 @@ each one requires. These checks add what the rules leave implicit:
   included" covers a frame requested inside a timer.
 - **Stories (ARCH-11).** Each exported template function needs a story, and each state or variant
   that master renders needs one: each branch of the template, each optional class or attribute,
-  each text branch. `src/stories-coverage.test.ts` only checks that the file exists. Name the
+  each text branch. No test checks that the file exists. Name the
   missing story and the master branch it should show.
 - **Element properties (ARCH-10, NAME-02).** Compare the properties with master's props and with
   the unit test that pins the list.
@@ -140,8 +138,7 @@ reading the whole file.
 - **Uncommitted or untracked line:** lint may not have run yet. Give a plain fix.
 - **Committed line that `.eslintrc.cjs` already catches:** add to the fix that the pre-commit hook
   was skipped.
-- **Committed line that no rule catches:** a gap in lint. Name the `.eslintrc.cjs` override to add
-  and the fixture to add under `src/__lint-fixtures__/`.
+- **Committed line that no rule catches:** a gap in lint. Name the `.eslintrc.cjs` override to add.
 
 An `eslint-disable` comment that silences one of these bans is a finding when the diff adds it,
 committed or not.

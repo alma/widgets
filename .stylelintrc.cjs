@@ -38,7 +38,5 @@ module.exports = {
     'node_modules/**',
     'build/**',
     'dist/**',
-    // The lint fixtures break the rules on purpose. npm run test:harness lints them.
-    'src/__lint-fixtures__/**',
   ],
 }

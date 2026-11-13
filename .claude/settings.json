@@ -8,7 +8,6 @@
       "Bash(npm run test:browser *)",
       "Bash(npm run test:contract *)",
       "Bash(npm run test:contract:ref *)",
-      "Bash(npm run test:harness *)",
       "Bash(npm run typecheck)",
       "Bash(npm run lint)",
       "Bash(npm run build)",
