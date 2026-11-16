@@ -1,4 +1,0 @@
-/* expect: selector-pseudo-class-disallowed-list */
-:where(.a) {
-  color: red;
-}

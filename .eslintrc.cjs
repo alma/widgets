@@ -315,8 +315,7 @@ module.exports = {
     sourceType: 'module',
     project: ['./tsconfig.json'],
   },
-  // The lint fixtures break the rules on purpose. npm run test:harness lints them.
-  ignorePatterns: ['/*.*', 'src/__lint-fixtures__/'],
+  ignorePatterns: ['/*.*'],
   rules: {
     ...AIRBNB_OPT_OUTS,
     'prettier/prettier': ['error'],

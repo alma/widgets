@@ -35,7 +35,6 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint --ext .ts ./src/ ./tests/ && stylelint 'src/**/*.css'",
     "lint:fix": "eslint --fix --ext .ts ./src/ ./tests/ && stylelint 'src/**/*.css' --fix",
-    "test:harness": "node scripts/test-harness.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "translations:extract": "formatjs extract 'src/**/*.ts*' --out-file 'src/intl/messages.json' --format simple --ignore 'src/*.d.ts' && prettier ./src/intl --write",
@@ -118,11 +117,11 @@
     }
   },
   "lint-staged": {
-    "src/{*.ts,!(__lint-fixtures__)/**/*.ts}": [
+    "src/**/*.ts": [
       "prettier --write",
       "eslint --fix"
     ],
-    "src/{*.css,!(__lint-fixtures__)/**/*.css}": [
+    "src/**/*.css": [
       "stylelint --fix"
     ],
     "{tests,scripts}/**/*.{ts,mjs}": [

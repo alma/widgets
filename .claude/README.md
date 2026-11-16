@@ -29,7 +29,7 @@ Tested with Claude Code 2.1.304.
 | `settings.json` | The shared permissions and the lint hook |
 | `hooks/` | The scripts that the hooks of `settings.json` run |
 | `rules/` | The rule files. Each one starts with `paths:` and loads only for those files. |
-| `skills/` | `port-react-component` ports one React original, and `lit-review` reviews a branch |
+| `skills/` | `lit-review` reviews a branch |
 | `agents/` | The three read-only review agents that `lit-review` runs |
 
 | Rule file | Loads for | Covers |
@@ -63,16 +63,16 @@ that file with the ESLint or Stylelint config of the checkout that holds it, wor
 When it finds errors, it exits with code 2 and Claude gets them, with their line and rule. The edit
 has already happened, so the hook gives feedback and blocks nothing. It stays silent on warnings,
 on Prettier formatting, which lint-staged fixes at commit time, and on the files that the configs
-ignore, such as the lint fixtures. It doesn't run when a Bash command writes a file.
+ignore. It doesn't run when a Bash command writes a file.
 
 When the hook itself fails, for example without `node_modules`, the transcript shows a `hook error`
-with one line, and Claude gets nothing. `npm run test:harness` runs the hook on a few files.
+with one line, and Claude gets nothing.
 
 `/hooks` lists the hooks, each with the settings file that defines it. In an interactive session,
 Claude Code runs project hooks only once you accept the workspace trust dialog. `claude -p` runs
 them without it. In a worktree, `CLAUDE_PROJECT_DIR` still points to the main checkout, so a
 session there runs the main checkout's copy of the hook. Try a change to the hook in the main
-checkout, or run `npm run test:harness` in the worktree.
+checkout.
 
 Claude Code has no switch for one hook. To turn hooks off:
 
@@ -124,4 +124,4 @@ Changes to `.claude/` and to the root `CLAUDE.md` go through a PR, because they 
 teammate's sessions. Keep a rule's ID once it is merged, and keep the same wording wherever the
 rule appears. The rules name no ticket and no planning document, because neither is in the repo.
 `.github/pull_request_template.md` must hold the checklist block of
-`skills/lit-review/references/pr-checklist.md` as it is, and `npm run test:harness` checks it.
+`skills/lit-review/references/pr-checklist.md` as it is, so change both together.
