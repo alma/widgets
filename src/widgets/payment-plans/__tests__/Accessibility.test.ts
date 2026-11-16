@@ -279,7 +279,6 @@ describe('PaymentPlan Accessibility Tests', () => {
         expect(screen.getByRole('button', { name: KNOW_MORE_NAME })).toHaveFocus()
         for (const plan of eligiblePlans) {
           // Each Tab moves on from the focus of the one before.
-          // eslint-disable-next-line no-await-in-loop
           await user.tab()
           expect(plan).toHaveFocus()
         }

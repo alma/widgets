@@ -8,7 +8,6 @@ export const ApiMode = {
 } as const
 
 // The value and its type share a name, like the enum they replace.
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 export type ApiMode = (typeof ApiMode)[keyof typeof ApiMode]
 
 export enum WidgetTypes {

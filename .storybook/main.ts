@@ -7,7 +7,7 @@ const config: StorybookConfig = {
   addons: ['@storybook/addon-docs', '@storybook/addon-a11y'],
   framework: '@storybook/web-components-vite',
   core: { disableTelemetry: true },
-  // Storybook reuses vite.config.ts, so the @/ alias, the process.env values and every plugin apply
+  // Storybook reuses vite.config.ts, so the @/ alias, the build-time values and every plugin apply
   // to stories too. It builds an app, though, not the library.
   viteFinal: (viteConfig) => ({ ...viteConfig, build: { ...viteConfig.build, lib: false } }),
 }

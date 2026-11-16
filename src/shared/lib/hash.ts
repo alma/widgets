@@ -9,7 +9,6 @@ export const hashStringForStorage = (str: string): string =>
       (a, b) =>
         // The accumulator (a) is shifted left by 5 bits (multiplied by 32), then subtracted by itself and added to the ASCII value of the current character (b).
         // The bitwise OR operation with 0 is used to ensure the result is a 32-bit integer.
-        // eslint-disable-next-line no-bitwise
         ((a << 5) - a + b.charCodeAt(0)) | 0,
       0,
     ) // The initial value of the accumulator is 0.

@@ -1,5 +1,3 @@
-/* Identifiers mirror the snake_case API field names being built */
-/* eslint-disable camelcase */
 import type {
   EligiblePlan,
   IneligiblePlan,
@@ -236,8 +234,6 @@ const attachBuilderMethods = <P extends object, M extends object>(
   return Object.freeze(builder)
 }
 
-/* Circular by design: these methods return EligiblePlanBuilder, which is declared from this interface. */
-/* eslint-disable no-use-before-define */
 interface EligiblePlanBuilderMethods {
   withPurchaseAmount(amount: number): EligiblePlanBuilder
   withInstallmentsCount(count: number): EligiblePlanBuilder
@@ -247,7 +243,6 @@ interface EligiblePlanBuilderMethods {
   withCountry(countryCode: string): EligiblePlanBuilder
   withInterest(annualInterestRate: number): EligiblePlanBuilder
 }
-/* eslint-enable no-use-before-define */
 
 export type EligiblePlanBuilder = EligiblePlan & EligiblePlanBuilderMethods
 
@@ -281,8 +276,6 @@ const EMPTY_ELIGIBLE_PLAN: EligiblePlan = {
 
 export const eligiblePlanBuilder = (): EligiblePlanBuilder => buildEligiblePlan(EMPTY_ELIGIBLE_PLAN)
 
-/* Circular by design: these methods return IneligiblePlanBuilder, which is declared from this interface. */
-/* eslint-disable no-use-before-define */
 interface IneligiblePlanBuilderMethods {
   withPurchaseAmount(amount: number): IneligiblePlanBuilder
   withInstallmentsCount(count: number): IneligiblePlanBuilder
@@ -290,8 +283,6 @@ interface IneligiblePlanBuilderMethods {
   withConstraints(constraints: IneligiblePlan['constraints']): IneligiblePlanBuilder
   withReasons(reasons: IneligiblePlan['reasons']): IneligiblePlanBuilder
 }
-
-/* eslint-enable no-use-before-define */
 
 export type IneligiblePlanBuilder = IneligiblePlan & IneligiblePlanBuilderMethods
 

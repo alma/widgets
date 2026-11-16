@@ -358,7 +358,6 @@ describe('AlmaPaymentPlans behaviour', () => {
       for (let time = step; time <= 22000; time += step) {
         vi.advanceTimersByTime(step)
         // Each step needs the render of the one before.
-        // eslint-disable-next-line no-await-in-loop
         await (host as AlmaPaymentPlans).updateComplete
         if (selectedIndex() !== selected) {
           selected = selectedIndex()

@@ -62,24 +62,22 @@ Git keeps no empty folder, so a folder appears with its first file.
 - **LAYER-03** Only `src/index.ts` imports `public-api/`. Each widget declares the types of its own element properties. Why: the merchant contract sits on top, and nothing below it depends on it. Check: lint.
 - **LAYER-04** A business rule goes in `domain/`. A file that one widget uses goes in that widget's folder. Code that both widgets use and that isn't a business rule goes in `widgets/common/`, and nothing else goes there. Code with no business meaning goes in `shared/`. Why: a file's folder says what it is and who uses it. Check: review.
 
-Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`, `__tests__/`) put the layers together, so they may import any layer, `@/index` and `public-api/` included. The import rule and the `fetch`/`sessionStorage` rule skip them. Tests in `domain/` still cannot import Lit.
+Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`, `__tests__/`) put the layers together, so they may import any layer, `@/index` and `public-api/` included. The import rule skips them. Tests in `domain/` still cannot import Lit.
 
 ## Bans
 
-- **LAYER-05** `domain/` is plain TypeScript. It imports no `lit`, `lit-html`, `lit-element`, `@lit/*` or `@lit-labs/*` package, and it uses none of the globals `window`, `document`, `customElements`, `HTMLElement`, `Element`, `Node` and `ShadowRoot`. Its tests may use the DOM globals, because they run in jsdom, but not Lit. Why: the 5.0 UI rewrite leaves `domain/` unchanged. Check: lint.
+- **LAYER-05** `domain/` is plain TypeScript. It imports no `lit`, `lit-html`, `lit-element`, `@lit/*` or `@lit-labs/*` package, and it uses none of the globals `window`, `document`, `customElements`, `HTMLElement`, `Element`, `Node` and `ShadowRoot`. Its tests may use the DOM globals, because they run in jsdom, but not Lit. Why: the 5.0 UI rewrite leaves `domain/` unchanged. Check: lint for the Lit imports, review for the globals.
 - **LAYER-06** Lit code lives only in `widgets/` and `shared/ui/`. Why: the other layers stay plain TypeScript, which the 5.0 UI rewrite keeps. Check: lint in `domain/`, review elsewhere.
-- **LAYER-07** `fetch` and `sessionStorage` appear only in `domain/plans/api/` and `shared/lib/http.ts`, `window.fetch`, `globalThis.sessionStorage` and `self.fetch` included. Why: the widget sends one request and caches it in one place. Check: lint.
-- **LAYER-08** Node globals (`Buffer`, `require`, `__dirname`, `__filename`, `global`, `process`) appear only in tests and `src/test/`, apart from LAYER-12. Why: the widget runs in a browser, where they throw, but tsc accepts them because `@types/node` loads next to the DOM types. Check: lint.
-- **LAYER-12** Only `src/shared/config/` reads `process.env.BUILD_VERSION`. Why: Vite replaces that one value at build time, and any other use of `process` throws in the browser. Check: lint.
-- **LAYER-13** A timer id has the type `ReturnType<typeof setTimeout>`, or comes from `window.setTimeout`. Why: with `@types/node` loaded, a bare `setTimeout` returns `NodeJS.Timeout`. Check: typecheck.
+- **LAYER-07** `fetch` and `sessionStorage` appear only in `domain/plans/api/` and `shared/lib/http.ts`, `window.fetch`, `globalThis.sessionStorage` and `self.fetch` included. Why: the widget sends one request and caches it in one place. Check: review.
+- **LAYER-08** Node globals (`Buffer`, `require`, `__dirname`, `__filename`, `global`, `process`) appear only in tests and `src/test/`. Read build-time values from `import.meta.env`. Why: the widget runs in a browser, where they throw. `tsconfig.json` checks the production code without Node types. `tsconfig.test.json` checks the tests, stories and tooling with them, because Storybook's types load them anyway. Check: typecheck.
+- **LAYER-13** A timer id has the type `ReturnType<typeof setTimeout>`, or comes from `window.setTimeout`. Why: `tsconfig.test.json` also checks the production files that tests import, and with `@types/node` loaded, a bare `setTimeout` returns `NodeJS.Timeout`. Check: typecheck.
 - **LAYER-09** No relative imports. Write `@/domain/plans/plan-kind`, never `./plan-kind` or `../plans/plan-kind`. `@/` is the only alias and it maps to `src/`. Why: an import reads the same in every file. Check: lint.
-- **ARCH-03** No import of `react`, `react-dom`, `preact`, `react-intl`, `classnames`, `date-fns`, `react-modal`, `react-responsive`, `@testing-library/react` or `jest-axe`. Use `classMap`, `shared/lib/date.ts`, `shared/i18n/` and `vitest-axe` instead. Why: the bundle drops React and its libraries. Check: lint.
+- **ARCH-03** No import of `react`, `react-dom`, `preact`, `react-intl`, `classnames`, `date-fns`, `react-modal`, `react-responsive`, `@testing-library/react` or `jest-axe`. Use `classMap`, `shared/lib/date.ts`, `shared/i18n/` and `vitest-axe` instead. Why: the bundle drops React and its libraries. Check: review.
 - **ARCH-05** Dates go through `shared/lib/date.ts`, which works in local time like master. Never pass a `timeZone` option to `Intl`. Why: a `timeZone` would change the due dates that shoppers see. Check: lint.
 - **ARCH-15** No dynamic `import()`. Everything ships in the one bundle. Why: merchants load the five published files by name, and the UMD file is one classic script. Check: lint.
 
 ## File suffixes
 
-- **LAYER-10** A `.types.ts` file holds types only, imported with `import type`. Enums and other runtime values go in a `.const.ts` file. Why: a types file adds no code to the bundle. Check: lint.
 - **LAYER-11** A file's suffix says what it holds, as the table below says. Tests and stories sit next to the file they cover, and the tests of a whole widget sit in its `__tests__/` folder. Why: the name of a file tells what it holds and where its tests are. Check: review.
 
 | Suffix | Holds |

@@ -172,7 +172,7 @@ describe('WidgetsController', () => {
 
     it('should mount a host after the merchant empties the container', () => {
       addPaymentPlans()
-      // eslint-disable-next-line no-restricted-syntax -- what a merchant page does
+      // What a merchant page does.
       container.innerHTML = ''
 
       expect(() => addPaymentPlans()).not.toThrow()
