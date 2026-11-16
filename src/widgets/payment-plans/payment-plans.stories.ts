@@ -1,6 +1,7 @@
 import type { Meta, StoryContext, StoryObj } from '@storybook/web-components-vite'
 import { userEvent, waitFor } from 'storybook/test'
 
+import type { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
 import { ApiMode, Widgets } from '@/index'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
@@ -21,15 +22,20 @@ type Options = Omit<PaymentPlanWidgetOptions, 'container'>
 // Both out of the purchase amount range
 const NO_ELIGIBLE_PLAN = [mockP4XIneligiblePlan, mockP10XIneligiblePlan]
 
+const inCountry = (plans: EligibilityPlan[], transactionCountry: string) =>
+  plans.map((plan) => ({ ...plan, transaction_country: transactionCountry }))
+
 const API_RESPONSES = {
-  'All plans eligible': () => eligibilityPlans(mockPlansAllEligible),
-  'Some plans not eligible': () => eligibilityPlans(mockEligibilityWithGrayedOutPlan),
-  'No plan eligible': () => eligibilityPlans(NO_ELIGIBLE_PLAN),
+  'All plans eligible': (country: string) =>
+    eligibilityPlans(inCountry(mockPlansAllEligible, country)),
+  'Some plans not eligible': (country: string) =>
+    eligibilityPlans(inCountry(mockEligibilityWithGrayedOutPlan, country)),
+  'No plan eligible': (country: string) => eligibilityPlans(inCountry(NO_ELIGIBLE_PLAN, country)),
   'Request fails': () => eligibilityError(),
   'Request never answers': () => eligibilityPending(),
 }
 
-type Args = Options & { apiResponse?: keyof typeof API_RESPONSES }
+type Args = Options & { apiResponse?: keyof typeof API_RESPONSES; transactionCountry?: string }
 
 const CONTAINER_ID = 'alma-widget'
 
@@ -47,7 +53,7 @@ const meta = {
     transitionDelay: -1,
   },
   parameters: { msw: { handlers: [eligibilityPlans(mockPlansAllEligible)] } },
-  render: ({ apiResponse, ...options }) => {
+  render: ({ apiResponse, transactionCountry, ...options }) => {
     const container = document.createElement('div')
     container.id = CONTAINER_ID
     // add() needs the container in the page, and Storybook inserts it right after render returns
@@ -127,6 +133,7 @@ export const KeyboardFocusOnPlan: Story = {
 export const Playground: Story = {
   args: {
     apiResponse: 'All plans eligible',
+    transactionCountry: 'FR',
     plans: configPlans,
     transitionDelay: 5500,
     monochrome: true,
@@ -141,6 +148,11 @@ export const Playground: Story = {
       control: 'select',
       options: Object.keys(API_RESPONSES),
     },
+    transactionCountry: {
+      description: 'Country the transaction is booked in (`transaction_country`)',
+      control: 'select',
+      options: ['FR', 'BE', 'LU', 'NL', 'IT', 'DE', 'PT', 'ES', 'GB'],
+    },
     locale: { control: 'select', options: Object.values(Locale) },
     cards: {
       description: 'Card logos shown in the modal',
@@ -150,6 +162,8 @@ export const Playground: Story = {
   },
   parameters: { chromatic: { disableSnapshot: true } },
   beforeEach: ({ args, msw }) => {
-    msw.use(API_RESPONSES[args.apiResponse ?? 'All plans eligible']())
+    msw.use(
+      API_RESPONSES[args.apiResponse ?? 'All plans eligible'](args.transactionCountry ?? 'FR'),
+    )
   },
 }
