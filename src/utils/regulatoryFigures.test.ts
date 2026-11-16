@@ -12,8 +12,16 @@ import {
   isPayLater,
   isPNX,
   requiresLegalDisclosure,
+  shouldNotifyCustomerOfNoFees,
 } from '@/utils/regulatoryFigures'
-import { mockPlansAllEligible } from 'test/fixtures'
+import {
+  mockP10XEligiblePlan,
+  mockP1XEligiblePlan,
+  mockP2XEligiblePlan,
+  mockP3XEligiblePlanWithFees,
+  mockPayLaterOneMonthEligiblePlan,
+  mockPlansAllEligible,
+} from 'test/fixtures'
 
 describe('regulatoryFigures', () => {
   describe('isDeferred', () => {
@@ -286,6 +294,49 @@ describe('regulatoryFigures', () => {
     it('should return true for a plan with more than 4 installments', () => {
       const creditPlan = { ...mockPlansAllEligible[0], installments_count: 5 }
       expect(isCredit(creditPlan)).toBe(true)
+    })
+  })
+
+  describe('shouldNotifyCustomerOfNoFees', () => {
+    it.each([
+      ['p1x', mockP1XEligiblePlan],
+      ['pay later', mockPayLaterOneMonthEligiblePlan],
+      ['PNX', mockP2XEligiblePlan],
+    ])('should return true for a %s plan without fees', (_, plan) => {
+      expect(shouldNotifyCustomerOfNoFees(plan)).toBe(true)
+    })
+    it.each([
+      ['p1x', mockP1XEligiblePlan],
+      ['pay later', mockPayLaterOneMonthEligiblePlan],
+      ['PNX', mockP2XEligiblePlan],
+    ])('should return false for a %s plan without fees booked in Belgium', (_, plan) => {
+      expect(shouldNotifyCustomerOfNoFees(plan.withCountry('BE'))).toBe(false)
+    })
+    it('should return false for a PNX plan with fees', () => {
+      expect(shouldNotifyCustomerOfNoFees(mockP3XEligiblePlanWithFees)).toBe(false)
+    })
+    it('should return false when one installment carries interest', () => {
+      const [first, ...rest] = mockP2XEligiblePlan.payment_plan
+      const planWithInterest = {
+        ...mockP2XEligiblePlan,
+        payment_plan: [{ ...first, customer_interest: 100 }, ...rest],
+      }
+      expect(shouldNotifyCustomerOfNoFees(planWithInterest)).toBe(false)
+    })
+    it('should return false for a credit plan, even without fees or interest', () => {
+      const creditPlanWithoutFees = mockP2XEligiblePlan.withInstallmentsCount(10)
+      expect(shouldNotifyCustomerOfNoFees(creditPlanWithoutFees)).toBe(false)
+    })
+    it('should return false for a credit plan with interest', () => {
+      expect(shouldNotifyCustomerOfNoFees(mockP10XEligiblePlan)).toBe(false)
+    })
+    it('should return false for an ineligible plan that has a payment plan without fees', () => {
+      const ineligiblePlan = { ...mockP2XEligiblePlan, eligible: false }
+      expect(shouldNotifyCustomerOfNoFees(ineligiblePlan)).toBe(false)
+    })
+    it('should return false when there is no payment plan', () => {
+      const planWithoutPaymentPlan = { ...mockP2XEligiblePlan, payment_plan: undefined }
+      expect(shouldNotifyCustomerOfNoFees(planWithoutPaymentPlan)).toBe(false)
     })
   })
 })

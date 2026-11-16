@@ -1,4 +1,5 @@
 import { EligibilityPlanToDisplay } from '@/types'
+import { isP1X } from '@/utils'
 
 export const isDeferred = (plan: EligibilityPlanToDisplay): boolean =>
   plan.deferred_days > 0 || plan.deferred_months > 0
@@ -40,4 +41,13 @@ export const getCustomerLendingRate = (plan: EligibilityPlanToDisplay): number =
     return getAnnualPercentageRate(plan)
   }
   return 0
+}
+
+export const shouldNotifyCustomerOfNoFees = (plan: EligibilityPlanToDisplay): boolean => {
+  const isBelgiumTransaction = plan.transaction_country === 'BE'
+  const hasNoFees = !!plan.payment_plan?.every(
+    (installment) => installment.customer_fee === 0 && installment.customer_interest === 0,
+  )
+  const isPlanAffectedByNoFeesMention = isP1X(plan) || isPayLater(plan) || isPNX(plan)
+  return !isBelgiumTransaction && hasNoFees && plan.eligible && isPlanAffectedByNoFeesMention
 }

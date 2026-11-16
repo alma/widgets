@@ -7,6 +7,7 @@ import {
   mockP10XEligiblePlan,
   mockP10XIneligiblePlan,
   mockP1XEligiblePlan,
+  mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockPayLaterOneMonthEligiblePlan,
 } from '@/test/fixtures'
@@ -94,3 +95,6 @@ export const InfoLineKnowMoreKeyboardFocus: Story = {
     await userEvent.tab()
   },
 }
+
+// Belgian regulation forbids the "sans frais" mention, even on a plan without fees
+export const NoFeesMentionHiddenInBelgium: Story = onlyPlan(mockP2XEligiblePlan.withCountry('BE'))
