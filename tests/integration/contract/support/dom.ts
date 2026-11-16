@@ -58,7 +58,7 @@ export const outlineToText = (outline: OutlineEntry[]): string =>
     .join('\n')
 
 /** The outline of a container and of the modal portal, which react-modal appends to <body>. */
-export const widgetOutline = (container: Element | null): OutlineEntry[] => {
-  const portal = document.querySelector('.ReactModalPortal')
+export const widgetOutline = (container: Element | null, doc = document): OutlineEntry[] => {
+  const portal = doc.querySelector('.ReactModalPortal')
   return [...(container ? domOutline(container) : []), ...(portal ? domOutline(portal) : [])]
 }
