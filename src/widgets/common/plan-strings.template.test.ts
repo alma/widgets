@@ -257,6 +257,16 @@ describe('paymentPlanInfoTextTemplate', () => {
     )
   })
 
+  it.each([
+    ['Pay Later', payLater],
+    ['P1X', payNow],
+    ['PNX', sameAmounts],
+  ])('should not show the no-fee mention for a %s plan booked in Belgium', (_kind, plan) => {
+    const { noFee } = fixtureFor('fr')
+    const lines = linesOf(renderInfoText({ ...plan, transaction_country: 'BE' }))
+    expect(lines[0]).not.toContain(noFee.trim())
+  })
+
   describe.each([
     ['without merchant CSS', false],
     ['with merchant CSS', true],

@@ -1,8 +1,8 @@
 import { html, nothing, type TemplateResult } from 'lit'
 
-import type { PaymentPlan } from '@/domain/plans/api/eligibility.types'
 import { isCredit, isP1X, requiresLegalDisclosure } from '@/domain/plans/plan-kind'
 import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import { shouldNotifyCustomerOfNoFees } from '@/domain/plans/regulatory-figures'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { secondsToMilliseconds } from '@/shared/lib/date'
 import { priceFromCents } from '@/shared/lib/price'
@@ -23,10 +23,8 @@ const dueDateTemplate = (intl: IntlShape, dueDate: number) =>
   })}`
 
 // Master's {' '} and <FormattedMessage>: two text nodes.
-const noFeeTemplate = (paymentPlan: PaymentPlan[], intl: IntlShape) =>
-  paymentPlan.every(
-    (installment) => installment.customer_fee === 0 && installment.customer_interest === 0,
-  )
+const noFeeTemplate = (plan: EligibilityPlanToDisplay, intl: IntlShape) =>
+  shouldNotifyCustomerOfNoFees(plan)
     ? html`${' '}${intl.formatMessage(planStringsMessages.noFee)}`
     : nothing
 
@@ -85,7 +83,7 @@ export const paymentPlanInfoTextTemplate = ({
     )
   }
 
-  const noFee = noFeeTemplate(paymentPlan, intl)
+  const noFee = noFeeTemplate(plan, intl)
 
   if (deferredDaysCount !== 0 && installmentsCount === 1) {
     const text = formatRichText(intl, planStringsMessages.deferred, {
