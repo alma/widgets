@@ -5,8 +5,7 @@ import { fn } from 'storybook/test'
 import { requiresLegalDisclosure } from '@/domain/plans/plan-kind'
 import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
-import { mockDisplayPlansAllEligible, mockDisplayPlansSingle } from '@/test/fixtures'
-import { stubDateNow } from '@/test/story-stubs'
+import { mockDisplayPlansAllEligible } from '@/test/fixtures'
 import { paymentPlanInfoTextTemplate } from '@/widgets/common/plan-strings.template'
 import {
   plansLoadingTemplate,
@@ -17,7 +16,6 @@ import {
 // The info line and its clickable state come from the current plan, as in the element.
 type Args = Omit<PlansContentParams, 'info' | 'isInfoClickable'>
 
-const PAY_LATER_INDEX = 1
 const P2X_INDEX = 2
 
 const isClickable = (plan: EligibilityPlanToDisplay | undefined) =>
@@ -48,8 +46,6 @@ const meta: Meta<Args> = {
     onPlanKeyDown: fn(),
     onPlanClick: fn(),
   },
-  // The pay later info line shows a due date.
-  beforeEach: () => stubDateNow(),
 }
 
 export default meta
@@ -62,11 +58,3 @@ export const Pending: Story = {
 }
 
 export const SeveralPlans: Story = {}
-
-export const OnePlan: Story = {
-  args: { plans: mockDisplayPlansSingle, current: 0 },
-}
-
-export const PayLaterInfo: Story = {
-  args: { current: PAY_LATER_INDEX },
-}

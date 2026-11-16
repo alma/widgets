@@ -7,7 +7,7 @@ import { fn } from 'storybook/test'
 import { statusResponse } from '@/domain/plans/api/eligibility.const'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { mockCards, mockDisplayPlansAllEligible, mockDisplayPlansSingle } from '@/test/fixtures'
+import { mockCards, mockDisplayPlansAllEligible } from '@/test/fixtures'
 import { stubDateNow } from '@/test/story-stubs'
 import {
   type ModalContentParams,
@@ -63,27 +63,10 @@ export const Pending: Story = {
 
 export const SeveralPlans: Story = {}
 
-export const OnePlan: Story = {
-  args: { eligiblePlans: mockDisplayPlansSingle, isSomePlanDeferred: false },
-}
-
-export const P1XSelected: Story = {
-  args: { eligiblePlans: mockDisplayPlansAllEligible, currentPlanIndex: 0 },
-}
-
-export const CreditSelected: Story = {
-  args: { eligiblePlans: mockDisplayPlansAllEligible, currentPlanIndex: 5 },
-}
-
 export const NoEligiblePlan: Story = {
   args: { eligiblePlans: [], isSomePlanDeferred: false },
 }
 
 export const Failed: Story = {
   args: { eligiblePlans: [], isSomePlanDeferred: false, status: statusResponse.FAILED },
-}
-
-export const SeveralPlansMobile: Story = {
-  args: { isBigScreen: false },
-  globals: { viewport: { value: 'mobile' } },
 }

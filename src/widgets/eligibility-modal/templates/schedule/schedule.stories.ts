@@ -25,8 +25,3 @@ export const Pnx: Story = { args: { currentPlan: mockP2XEligiblePlan } }
 
 // No warning and no legal mentions.
 export const PayNow: Story = { args: { currentPlan: mockP1XEligiblePlan } }
-
-// Master keeps the warning container, empty.
-export const UnmappedCountry: Story = {
-  args: { currentPlan: mockP2XEligiblePlan.withCountry('ZZ') },
-}

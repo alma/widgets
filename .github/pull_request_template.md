@@ -43,7 +43,7 @@ npm run test:no-coverage -- <test files>
 - [ ] The port reproduces master at the reference commit, quirks included. (ARCH-01)
 - [ ] Each file sits in its layer and folder, and its suffix says what it holds. (LAYER-04, LAYER-11)
 - [ ] Each timer, listener, observer, `matchMedia` query and animation frame stops on disconnect and starts again on reconnect. (ARCH-12)
-- [ ] Each exported template has a story for each state and variant that master renders. (ARCH-11)
+- [ ] An element or a template has stories only when it renders two or more variants, one per variant, and no story repeats a variant of a lower template. (ARCH-24)
 - [ ] No option, event, attribute, tag or element property is added, removed or renamed, the DOM matches master, and no exception reaches the page. (ARCH-08, ARCH-10, ARCH-13, ARCH-16 to ARCH-20)
 - [ ] Messages reuse the descriptors of the `*.messages.ts` files. (ARCH-04)
 - [ ] The contract classes, IDs, `data-testid` values and custom properties keep their names and their elements, and templates bind classes with `classMap` and add no inline style. (STYLE-01, STYLE-04, STYLE-05, STYLE-09)
