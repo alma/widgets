@@ -20,6 +20,23 @@ const ORIGIN = 'http://consumer.test'
 const SELECTOR = '#alma-widget-payment-plans-main-container [role="option"]'
 const CONTENT_TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css' }
 
+// The module identifier lists its loaders. Production mode nests concatenated modules.
+const assertBabelCompiledWidgets = (stats) => {
+  const identifiers = []
+  const collect = (modules = []) =>
+    modules.forEach((module) => {
+      identifiers.push(module.identifier)
+      collect(module.modules)
+    })
+  collect(stats.modules)
+  const widgets = identifiers.filter((id) => id.includes('/node_modules/@alma/widgets/'))
+  if (widgets.length === 0) throw new Error('The bundle holds no module of @alma/widgets.')
+  const skipped = widgets.filter((id) => !id.includes('/babel-loader/'))
+  if (skipped.length > 0) {
+    throw new Error(`Babel didn't compile:\n${skipped.join('\n')}`)
+  }
+}
+
 const run = (command, args, cwd) =>
   execFileSync(command, args, { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'] })
 
@@ -45,7 +62,8 @@ try {
   if (lstatSync(join(work, 'node_modules/@alma/widgets')).isSymbolicLink()) {
     throw new Error('@alma/widgets is a link, not the installed tarball.')
   }
-  run('npm', ['run', 'build'], work)
+  run('npm', ['run', 'build', '--', '--json', 'stats.json'], work)
+  assertBabelCompiledWidgets(JSON.parse(readFileSync(join(work, 'stats.json'), 'utf8')))
 
   const errors = []
   const browser = await chromium.launch()
