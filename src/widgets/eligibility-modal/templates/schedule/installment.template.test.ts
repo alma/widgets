@@ -24,7 +24,7 @@ const { locales }: MessageFixture = JSON.parse(
 // Whether Intl puts U+202F, U+00A0 or a space depends on the ICU version.
 const normalize = (text: string) => text.replace(/[\u202f\u00a0]/g, ' ')
 
-const renderInstallment = (installment: PaymentPlan, index: number, locale = Locale.fr) =>
+const renderInstallment = (installment: PaymentPlan, index: number, locale: Locale = Locale.fr) =>
   renderTemplate(installmentTemplate({ installment, index, intl: createIntl(locale) }))
 
 describe('Installment Accessibility Tests', () => {
