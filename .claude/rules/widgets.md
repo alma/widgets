@@ -28,7 +28,7 @@ Generic advice that doesn't apply here: Shadow DOM and `attachShadow`, the `@cus
 
 ## Code
 
-- **ARCH-04** A message is declared with an `id` and a `defaultMessage` in a `*.messages.ts` file next to the code that formats it. Tests and stories reuse the descriptors and never declare a message. Why: `npm run translations:extract` reads every file under `src/` and must give master's `messages.json`. Check: review.
+- **ARCH-04** A message is declared with an `id` and a `defaultMessage` in a `*.messages.ts` file next to the code that formats it. When several files format the same message, each file declares its own copy, with the same `id` and `defaultMessage`, as master does. Tests and stories reuse the descriptors and never declare a message. Why: `npm run translations:extract` reads every file under `src/` and must give master's `messages.json`. It fails when two copies of an id differ. Check: `define-messages.test.ts` and review.
 - **ARCH-14** No `unsafeHTML`, `unsafeSVG` or other unsafe directive, no `static-html`, and no `innerHTML` assignment. Rich text becomes Lit templates. Why: they skip Lit's escaping of translated text and options. Check: lint.
 
 ## Names
