@@ -7,8 +7,8 @@ import type { ConfigPlan, EligibilityPlan } from '@/domain/plans.types'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { Locale } from '@/shared/i18n/i18n.const'
+import { getPlanDescription } from '@/shared/plan-text/plan-text'
 import type { Card } from '@/shared/templates/card-logos/cards.types'
-import { getPlanDescription } from '@/shared/templates/plan-strings/plan-text'
 import {
   ELIGIBILITY_ENDPOINT,
   eligibilityError,

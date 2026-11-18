@@ -13,9 +13,8 @@ import { safeCustomElement } from '@/shared/custom-elements/safe-custom-element'
 import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
+import { getPlanDescription } from '@/shared/plan-text/plan-text'
 import type { Card } from '@/shared/templates/card-logos/cards.types'
-import { paymentPlanInfoTextTemplate } from '@/shared/templates/plan-strings/plan-strings.template'
-import { getPlanDescription } from '@/shared/templates/plan-strings/plan-text'
 import { PlansModalController } from '@/widgets/eligibility-modal/controllers/plans-modal.controller'
 import { getIndexOfActivePlan } from '@/widgets/payment-plans/active-plan'
 import { AnimationInstructionsController } from '@/widgets/payment-plans/controllers/animation-instructions.controller'
@@ -23,6 +22,7 @@ import { AnnounceController } from '@/widgets/payment-plans/controllers/announce
 import { PlanCyclingController } from '@/widgets/payment-plans/controllers/plan-cycling.controller'
 import { PAYMENT_PLANS_TAG } from '@/widgets/payment-plans/payment-plans.const'
 import { paymentPlansMessages } from '@/widgets/payment-plans/payment-plans.messages'
+import { paymentPlanInfoTextTemplate } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.template'
 import {
   plansLoadingTemplate,
   plansContentTemplate,

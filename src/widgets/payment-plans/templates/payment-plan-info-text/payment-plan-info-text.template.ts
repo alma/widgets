@@ -7,8 +7,8 @@ import { secondsToMilliseconds } from '@/lib/date'
 import { priceFromCents } from '@/lib/price'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { formatRichText, type RichText } from '@/shared/i18n/rich-text'
-import { planStringsMessages } from '@/shared/templates/plan-strings/plan-strings.messages'
-import styles from '@/shared/templates/plan-strings/plan-strings.module.css'
+import { paymentPlanInfoTextMessages } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.messages'
+import styles from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.module.css'
 
 // Euros whatever the locale, as on master. A template, so the amount gets its own text node, like
 // master's <FormattedNumber>.
@@ -25,17 +25,19 @@ const dueDateTemplate = (intl: IntlShape, dueDate: number) =>
 // Master's {' '} and <FormattedMessage>: two text nodes.
 const noFeeTemplate = (plan: EligibilityPlanToDisplay, intl: IntlShape) =>
   shouldNotifyCustomerOfNoFees(plan)
-    ? html`${' '}${intl.formatMessage(planStringsMessages.noFee)}`
+    ? html`${' '}${intl.formatMessage(paymentPlanInfoTextMessages.noFee)}`
     : nothing
 
 const lineTemplate = (text: RichText, noFee: TemplateResult | typeof nothing = nothing) =>
   html`<p>${text}${noFee}</p>`
 
 // Master also checks `eligible`, which always holds here: ineligible plans return before.
-const knowMoreTemplate = (plan: EligibilityPlanToDisplay, intl: IntlShape) =>
-  requiresLegalDisclosure(plan)
-    ? html`<p class=${styles.openModalInfo}>${intl.formatMessage(planStringsMessages.credit)}</p>`
-    : nothing
+const knowMoreTemplate = (plan: EligibilityPlanToDisplay, intl: IntlShape) => {
+  if (!requiresLegalDisclosure(plan)) return nothing
+
+  const text = intl.formatMessage(paymentPlanInfoTextMessages.credit)
+  return html`<p class=${styles.openModalInfo}>${text}</p>`
+}
 
 // Not one literal with both <p>: Prettier would put a newline between them, which master lacks.
 const withKnowMoreTemplate = (
@@ -68,10 +70,10 @@ export const paymentPlanInfoTextTemplate = ({
   if (!eligible) {
     const text =
       purchaseAmount > maxAmount
-        ? formatRichText(intl, planStringsMessages.ineligibleGreaterThanMax, {
+        ? formatRichText(intl, paymentPlanInfoTextMessages.ineligibleGreaterThanMax, {
             maxAmount: eurosTemplate(intl, maxAmount),
           })
-        : formatRichText(intl, planStringsMessages.ineligibleLowerThanMin, {
+        : formatRichText(intl, paymentPlanInfoTextMessages.ineligibleLowerThanMin, {
             minAmount: eurosTemplate(intl, minAmount),
           })
     return lineTemplate(text)
@@ -86,7 +88,7 @@ export const paymentPlanInfoTextTemplate = ({
   const noFee = noFeeTemplate(plan, intl)
 
   if (deferredDaysCount !== 0 && installmentsCount === 1) {
-    const text = formatRichText(intl, planStringsMessages.deferred, {
+    const text = formatRichText(intl, paymentPlanInfoTextMessages.deferred, {
       totalAmount: eurosTemplate(intl, paymentPlan[0].total_amount),
       dueDate: dueDateTemplate(intl, paymentPlan[0].due_date),
     })
@@ -94,7 +96,7 @@ export const paymentPlanInfoTextTemplate = ({
   }
 
   if (isP1X(plan)) {
-    const text = formatRichText(intl, planStringsMessages.payNow, {
+    const text = formatRichText(intl, paymentPlanInfoTextMessages.payNow, {
       totalAmount: eurosTemplate(intl, paymentPlan[0].total_amount),
     })
     return lineTemplate(text, noFee)
@@ -109,11 +111,11 @@ export const paymentPlanInfoTextTemplate = ({
   )
 
   const text = areInstallmentsOfSameAmount
-    ? formatRichText(intl, planStringsMessages.multipleInstallmentsSameAmount, {
+    ? formatRichText(intl, paymentPlanInfoTextMessages.multipleInstallmentsSameAmount, {
         totalAmount: eurosTemplate(intl, paymentPlan[0].total_amount),
         installmentsCount,
       })
-    : formatRichText(intl, planStringsMessages.multipleInstallments, {
+    : formatRichText(intl, paymentPlanInfoTextMessages.multipleInstallments, {
         firstInstallmentAmount: eurosTemplate(intl, paymentPlan[0].total_amount),
         numberOfRemainingInstallments: installmentsCount - 1,
         othersInstallmentAmount: eurosTemplate(intl, paymentPlan[1].total_amount),

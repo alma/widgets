@@ -5,7 +5,6 @@ import { axe } from 'vitest-axe'
 
 import type { EligibilityPlanToDisplay, EligiblePlan } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
-import { paymentPlanInfoTextTemplate } from '@/shared/templates/plan-strings/plan-strings.template'
 import {
   mockP4XAboveMaxDisplayPlan,
   mockP10XBelowMinDisplayPlan,
@@ -14,6 +13,7 @@ import {
 import { injectStyle } from '@/test/inject-style'
 import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
 import { renderTemplate } from '@/test/render-template'
+import { paymentPlanInfoTextTemplate } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.template'
 
 type MessageFixture = {
   locales: Record<
@@ -27,11 +27,11 @@ type MessageFixture = {
 
 const { locales }: MessageFixture = JSON.parse(
   readFileSync(
-    resolve(__dirname, '../../../../tests/integration/contract/fixtures/messages.output.json'),
+    resolve(__dirname, '../../../../../tests/integration/contract/fixtures/messages.output.json'),
     'utf8',
   ),
 )
-const merchantCss = readFileSync(resolve(__dirname, '../../../../examples/style.css'), 'utf8')
+const merchantCss = readFileSync(resolve(__dirname, '../../../../../examples/style.css'), 'utf8')
 
 // Whether Intl puts U+202F, U+00A0 or a space depends on the ICU version.
 const normalize = (text: string) => text.replace(/[\u202f\u00a0]/g, ' ')

@@ -1,7 +1,7 @@
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { isP1X, isPayLater } from '@/domain/utils/plan-kind'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { planStringsMessages } from '@/shared/templates/plan-strings/plan-strings.messages'
+import { planTextMessages } from '@/shared/plan-text/plan-text.messages'
 
 // Also replaces master's paymentPlanShorthandText, which gives the same text.
 export const paymentPlanShorthandName = (
@@ -15,15 +15,15 @@ export const paymentPlanShorthandName = (
   } = plan
 
   if (isP1X(plan)) {
-    return intl.formatMessage(planStringsMessages.payNowButton)
+    return intl.formatMessage(planTextMessages.payNowButton)
   }
   if (installmentsCount === 1 && deferredDays) {
-    return intl.formatMessage(planStringsMessages.dayAbbreviation, {
+    return intl.formatMessage(planTextMessages.dayAbbreviation, {
       deferredDays: `+${deferredDays}`,
     })
   }
   if (installmentsCount === 1 && deferredMonths) {
-    return intl.formatMessage(planStringsMessages.monthAbbreviation, {
+    return intl.formatMessage(planTextMessages.monthAbbreviation, {
       deferredMonths: `+${deferredMonths}`,
     })
   }
@@ -32,16 +32,16 @@ export const paymentPlanShorthandName = (
 
 export const getPlanDescription = (plan: EligibilityPlanToDisplay, intl: IntlShape): string => {
   if (isP1X(plan)) {
-    return intl.formatMessage(planStringsMessages.payNowButton)
+    return intl.formatMessage(planTextMessages.payNowButton)
   }
   if (isPayLater(plan)) {
-    return intl.formatMessage(planStringsMessages.payDeferredButton, {
+    return intl.formatMessage(planTextMessages.payDeferredButton, {
       deferredTime:
         plan.deferred_months > 0
-          ? intl.formatMessage(planStringsMessages.deferredMonths, {
+          ? intl.formatMessage(planTextMessages.deferredMonths, {
               months: plan.deferred_months,
             })
-          : intl.formatMessage(planStringsMessages.deferredDays, { days: plan.deferred_days }),
+          : intl.formatMessage(planTextMessages.deferredDays, { days: plan.deferred_days }),
     })
   }
 

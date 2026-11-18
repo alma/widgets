@@ -16,7 +16,7 @@ import { secondsToMilliseconds } from '@/lib/date'
 import { priceFromCents } from '@/lib/price'
 import type { IntlShape, MessageDescriptor } from '@/shared/i18n/i18n.types'
 import { formatRichText, type RichText } from '@/shared/i18n/rich-text'
-import { planStringsMessages } from '@/shared/templates/plan-strings/plan-strings.messages'
+import { planTextMessages } from '@/shared/plan-text/plan-text.messages'
 import { legalMentionsMessages } from '@/widgets/eligibility-modal/templates/schedule/legal-mentions.messages'
 import styles from '@/widgets/eligibility-modal/templates/schedule/legal-mentions.module.css'
 
@@ -94,8 +94,8 @@ const legalMention = (currentPlan: EligibilityPlanToDisplay, intl: IntlShape): L
     const { deferred_days: deferredDays, deferred_months: deferredMonths } = currentPlan
     const deferredDuration =
       deferredMonths > 0
-        ? intl.formatMessage(planStringsMessages.deferredMonths, { months: deferredMonths })
-        : intl.formatMessage(planStringsMessages.deferredDays, { days: deferredDays })
+        ? intl.formatMessage(planTextMessages.deferredMonths, { months: deferredMonths })
+        : intl.formatMessage(planTextMessages.deferredDays, { days: deferredDays })
     const payLaterValues = {
       ...values,
       deferredDuration,

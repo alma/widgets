@@ -3,10 +3,7 @@ import { resolve } from 'node:path'
 
 import type { EligibilityPlan } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
-import {
-  getPlanDescription,
-  paymentPlanShorthandName,
-} from '@/shared/templates/plan-strings/plan-text'
+import { getPlanDescription, paymentPlanShorthandName } from '@/shared/plan-text/plan-text'
 import {
   mockP1XEligiblePlan,
   mockP3XEligiblePlanWithFees,
@@ -21,7 +18,7 @@ type MessageFixture = {
 
 const { locales }: MessageFixture = JSON.parse(
   readFileSync(
-    resolve(__dirname, '../../../../tests/integration/contract/fixtures/messages.output.json'),
+    resolve(__dirname, '../../../tests/integration/contract/fixtures/messages.output.json'),
     'utf8',
   ),
 )

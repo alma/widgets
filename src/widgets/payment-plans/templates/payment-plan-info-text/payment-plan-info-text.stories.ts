@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
-import { paymentPlanInfoTextTemplate } from '@/shared/templates/plan-strings/plan-strings.template'
 import {
   mockP1XEligiblePlan,
   mockP2XEligiblePlan,
@@ -13,6 +12,7 @@ import {
   mockPayLater30DaysEligiblePlan,
   mockPayLater30DaysEligiblePlanWithFees,
 } from '@/test/fixtures'
+import { paymentPlanInfoTextTemplate } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.template'
 
 type InfoTextArgs = { plan: EligibilityPlanToDisplay }
 
