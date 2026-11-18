@@ -1,8 +1,8 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import noScroll from 'no-scroll'
 
-import { scopeTab } from '@/widgets/eligibility-modal/controllers/focus-trap'
-import styles from '@/widgets/eligibility-modal/templates/modal-shell.module.css'
+import styles from '@/widgets/eligibility-modal/templates/modal-shell/modal-shell.module.css'
+import { scopeTab } from '@/widgets/eligibility-modal/utils/focus-trap'
 
 export type ModalPortalHost = ReactiveControllerHost & HTMLElement
 

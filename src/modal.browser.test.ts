@@ -8,7 +8,7 @@ import {
   ModalPortalController,
   type RequestClose,
 } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
-import styles from '@/widgets/eligibility-modal/templates/modal-shell.module.css'
+import styles from '@/widgets/eligibility-modal/templates/modal-shell/modal-shell.module.css'
 
 class ModalPortalHost extends LightDomElement {
   readonly modal = new ModalPortalController(this)

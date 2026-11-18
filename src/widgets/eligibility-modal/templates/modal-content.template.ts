@@ -6,20 +6,20 @@ import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { isP1X } from '@/domain/utils/plan-kind'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import type { Card } from '@/shared/templates/card-logos/cards.types'
-import { loadingIndicatorTemplate } from '@/widgets/eligibility-modal/templates/loading-indicator.template'
+import { loadingIndicatorTemplate } from '@/widgets/eligibility-modal/templates/loading-indicator/loading-indicator.template'
 import { modalContentMessages } from '@/widgets/eligibility-modal/templates/modal-content.messages'
 import styles from '@/widgets/eligibility-modal/templates/modal-content.module.css'
-import { modalLayoutTemplate } from '@/widgets/eligibility-modal/templates/modal-layout.template'
-import { modalShellTemplate } from '@/widgets/eligibility-modal/templates/modal-shell.template'
+import { modalLayoutTemplate } from '@/widgets/eligibility-modal/templates/modal-layout/modal-layout.template'
+import { modalShellTemplate } from '@/widgets/eligibility-modal/templates/modal-shell/modal-shell.template'
 import {
   type PlanTabsParams,
   planTabsTemplate,
-} from '@/widgets/eligibility-modal/templates/plan-tabs.template'
+} from '@/widgets/eligibility-modal/templates/plan-tabs/plan-tabs.template'
 import { scheduleTemplate } from '@/widgets/eligibility-modal/templates/schedule/schedule.template'
 import {
   type SkipLink,
   skipLinksTemplate,
-} from '@/widgets/eligibility-modal/templates/skip-links.template'
+} from '@/widgets/eligibility-modal/templates/skip-links/skip-links.template'
 
 export interface ModalContentParams {
   eligiblePlans: EligibilityPlanToDisplay[]
