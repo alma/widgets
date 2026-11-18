@@ -8,10 +8,10 @@ import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { almaLogoTemplate } from '@/shared/ui/icons/alma-logo.template'
 import { planSectionMessages } from '@/widgets/common/plan.messages'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/payment-plans/payment-plans.const'
-import { paymentPlansMessages } from '@/widgets/payment-plans/payment-plans.messages'
 import { loaderTemplate } from '@/widgets/payment-plans/templates/loader.template'
 import styles from '@/widgets/payment-plans/templates/payment-plans.module.css'
 import { planButtonTemplate } from '@/widgets/payment-plans/templates/plan-button.template'
+import { plansContentMessages } from '@/widgets/payment-plans/templates/plans-content.messages'
 
 type OpenEvent = MouseEvent | KeyboardEvent
 
@@ -59,7 +59,7 @@ const knowMoreTemplate = (
   return html`<button
     type="button"
     class=${classes}
-    aria-label=${intl.formatMessage(paymentPlansMessages.openButtonAriaLabel)}
+    aria-label=${intl.formatMessage(plansContentMessages.openButtonAriaLabel)}
     aria-haspopup="dialog"
     aria-describedby="payment-info-text"
     @click=${onOpenModal}
@@ -84,7 +84,7 @@ const plansTemplate = (params: PlansContentParams, intl: IntlShape): TemplateRes
   return html`<div
     class=${classes}
     role="listbox"
-    aria-label=${intl.formatMessage(paymentPlansMessages.listboxAriaLabel)}
+    aria-label=${intl.formatMessage(plansContentMessages.listboxAriaLabel)}
   >
     ${repeat(
       plans,
@@ -123,7 +123,7 @@ const infoTemplate = (
       onOpenModal(event)
     }
   }
-  const title = intl.formatMessage(paymentPlansMessages.paymentInfoSectionTitle)
+  const title = intl.formatMessage(plansContentMessages.paymentInfoSectionTitle)
   // No whitespace around the info, which Prettier would add: master's textContent has none.
   // prettier-ignore
   const infoLine = html`<div
