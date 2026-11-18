@@ -1,7 +1,7 @@
 import type { ConfigPlan } from '@/domain/plans.types'
 import type { ApiMode, WidgetTypes } from '@/public-api/public-api.const'
 import type { Locale } from '@/shared/i18n/i18n.const'
-import type { Card } from '@/shared/templates/card-logos/cards.types'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
 export type ApiConfig = { domain: ApiMode; merchantId: string }
 

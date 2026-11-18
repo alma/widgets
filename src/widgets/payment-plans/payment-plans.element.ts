@@ -14,8 +14,10 @@ import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { getPlanDescription } from '@/shared/plan-text/plan-text'
-import type { Card } from '@/shared/templates/card-logos/cards.types'
-import { PlansModalController } from '@/widgets/eligibility-modal/controllers/plans-modal.controller'
+import {
+  PlansModalController,
+  type PlansModalParams,
+} from '@/widgets/eligibility-modal/controllers/plans-modal.controller'
 import { getIndexOfActivePlan } from '@/widgets/payment-plans/active-plan'
 import { AnimationInstructionsController } from '@/widgets/payment-plans/controllers/animation-instructions.controller'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
@@ -51,7 +53,7 @@ export interface AlmaPaymentPlansProperties {
   hideIfNotEligible?: boolean
   monochrome?: boolean
   suggestedPaymentPlan?: number | number[]
-  cards?: Card[]
+  cards?: PlansModalParams['cards']
   hideBorder: boolean
   onModalClose?: (event: MouseEvent | KeyboardEvent) => void
   locale: string
@@ -79,7 +81,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
 
   @property({ attribute: false }) suggestedPaymentPlan?: number | number[]
 
-  @property({ attribute: false }) cards?: Card[]
+  @property({ attribute: false }) cards?: PlansModalParams['cards']
 
   @property({ attribute: false }) hideBorder = false
 

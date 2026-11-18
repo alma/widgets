@@ -4,12 +4,12 @@ import { ifDefined } from 'lit/directives/if-defined.js'
 
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { amexTemplate } from '@/shared/templates/card-logos/amex.template'
-import type { Card } from '@/shared/templates/card-logos/cards.types'
 import { cbTemplate } from '@/shared/templates/card-logos/cb.template'
 import { mastercardTemplate } from '@/shared/templates/card-logos/mastercard.template'
 import { visaTemplate } from '@/shared/templates/card-logos/visa.template'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/eligibility-modal/eligibility-modal.const'
 import styles from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.module.css'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
 export interface CardsParams {
   cards: Card[]

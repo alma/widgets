@@ -4,7 +4,6 @@ import type { MockInstance } from 'vitest'
 
 import type { ConfigPlan } from '@/domain/plans.types'
 import { ApiMode } from '@/public-api/public-api.const'
-import type { Card } from '@/shared/templates/card-logos/cards.types'
 import { ELIGIBILITY_ENDPOINT } from '@/test/eligibilityHandlers'
 import { mockButtonPlans } from '@/test/fixtures'
 import { useFakeMatchMedia } from '@/test/match-media'
@@ -16,6 +15,7 @@ import {
   AlmaEligibilityModal,
   type AlmaEligibilityModalProperties,
 } from '@/widgets/eligibility-modal/eligibility-modal.element'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
 const FROZEN = 'The element properties are frozen for 4.x: never add, remove, rename or retype one.'
 

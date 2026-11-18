@@ -12,13 +12,13 @@ import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { safeCustomElement } from '@/shared/custom-elements/safe-custom-element'
 import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import type { Card } from '@/shared/templates/card-logos/cards.types'
 import { ModalPortalController } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import {
   desktopMediaQuery,
   ELIGIBILITY_MODAL_TAG,
 } from '@/widgets/eligibility-modal/eligibility-modal.const'
 import { modalContentTemplate } from '@/widgets/eligibility-modal/templates/modal-content.template'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
 // Master's ModalContainer props, and the locale of its IntlProvider. Frozen for 4.x.
 export interface AlmaEligibilityModalProperties {

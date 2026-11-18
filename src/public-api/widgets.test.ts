@@ -10,9 +10,9 @@ import type {
 } from '@/public-api/public-api.types'
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { Locale } from '@/shared/i18n/i18n.const'
-import type { Card } from '@/shared/templates/card-logos/cards.types'
 import { TEST_CONTAINER, TEST_MERCHANT_ID } from '@/test/mount-widget'
 import { ELIGIBILITY_MODAL_TAG } from '@/widgets/eligibility-modal/eligibility-modal.const'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 import { PAYMENT_PLANS_TAG } from '@/widgets/payment-plans/payment-plans.const'
 
 // The real elements would take their tags before the placeholders below.

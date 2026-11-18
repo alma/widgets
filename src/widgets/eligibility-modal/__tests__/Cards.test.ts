@@ -2,8 +2,8 @@ import { screen } from '@testing-library/dom'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import type { Card } from '@/shared/templates/card-logos/cards.types'
 import { renderTemplate } from '@/test/render-template'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 import { modalLayoutTemplate } from '@/widgets/eligibility-modal/templates/modal-layout/modal-layout.template'
 
 const intl = createIntl(Locale.fr)
