@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 
 import postcss from 'postcss'
 
-const SRC_DIR = resolve(__dirname, '..')
+const SRC_DIR = __dirname
 
 // master's !important declarations. No new ones.
 const MASTER_IMPORTANT: Record<string, number> = {
@@ -23,7 +23,7 @@ describe('CSS limits', () => {
   const files = globSync('**/*.css', { cwd: SRC_DIR })
 
   it('finds the CSS files of src/', () => {
-    expect(files).toContain('styles/main.css')
+    expect(files).toContain('main.css')
   })
 
   it.each(files)('adds no !important to %s', (file) => {

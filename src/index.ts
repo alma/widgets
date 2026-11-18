@@ -1,5 +1,5 @@
 // First import: main.css must open widgets.css, as on master.
-import '@/styles/main.css'
+import '@/main.css'
 import { ApiMode, WidgetTypes } from '@/public-api/public-api.const'
 import * as utils from '@/public-api/utils'
 import { WidgetsController } from '@/public-api/widgets'

@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/web-components-vite'
 import { setupWorker } from 'msw/browser'
 import { mswLoader } from 'msw-storybook-addon/csf3'
 
-import '@/styles/main.css'
+import '@/main.css'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { blockAlmaApi } from '@/test/block-alma-api'
 
