@@ -1,5 +1,5 @@
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
-import { isP1X, isPayLater } from '@/domain/utils/plan-kind'
+import { isP1X } from '@/domain/utils/plan-kind'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { planTextMessages } from '@/shared/plan-text/plan-text.messages'
 
@@ -28,22 +28,4 @@ export const paymentPlanShorthandName = (
     })
   }
   return `${installmentsCount}x`
-}
-
-export const getPlanDescription = (plan: EligibilityPlanToDisplay, intl: IntlShape): string => {
-  if (isP1X(plan)) {
-    return intl.formatMessage(planTextMessages.payNowButton)
-  }
-  if (isPayLater(plan)) {
-    return intl.formatMessage(planTextMessages.payDeferredButton, {
-      deferredTime:
-        plan.deferred_months > 0
-          ? intl.formatMessage(planTextMessages.deferredMonths, {
-              months: plan.deferred_months,
-            })
-          : intl.formatMessage(planTextMessages.deferredDays, { days: plan.deferred_days }),
-    })
-  }
-
-  return `${plan.installments_count}x`
 }

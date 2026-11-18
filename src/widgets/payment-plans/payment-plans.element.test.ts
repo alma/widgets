@@ -7,7 +7,6 @@ import type { ConfigPlan, EligibilityPlan } from '@/domain/plans.types'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { Locale } from '@/shared/i18n/i18n.const'
-import { getPlanDescription } from '@/shared/plan-text/plan-text'
 import {
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
@@ -28,6 +27,7 @@ import {
   type AlmaPaymentPlansProperties,
 } from '@/widgets/payment-plans/payment-plans.element'
 import { paymentPlansMessages } from '@/widgets/payment-plans/payment-plans.messages'
+import { getPlanDescription } from '@/widgets/payment-plans/utils/plan-description'
 
 const FROZEN = 'The element properties are frozen for 4.x: never add, remove, rename or retype one.'
 

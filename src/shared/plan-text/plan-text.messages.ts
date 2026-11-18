@@ -5,10 +5,6 @@ export const planTextMessages = defineMessages({
     id: 'payment-plan-strings.pay.now.button',
     defaultMessage: 'Payer maintenant',
   },
-  payDeferredButton: {
-    id: 'payment-plan-strings.pay.deferred.button',
-    defaultMessage: 'Payer en différé : {deferredTime}',
-  },
   dayAbbreviation: {
     id: 'payment-plan-strings.day-abbreviation',
     defaultMessage: 'J{deferredDays}',
@@ -16,13 +12,5 @@ export const planTextMessages = defineMessages({
   monthAbbreviation: {
     id: 'payment-plan-strings.month-abbreviation',
     defaultMessage: 'M{deferredMonths}',
-  },
-  deferredDays: {
-    id: 'payment-plan-strings.deferred.days',
-    defaultMessage: '{days, number} {days, plural, one {jour} other {jours}}',
-  },
-  deferredMonths: {
-    id: 'payment-plan-strings.deferred.months',
-    defaultMessage: '{months, number} {months, plural, one {mois} other {mois}}',
   },
 })
