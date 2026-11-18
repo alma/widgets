@@ -3,7 +3,7 @@ import { classMap } from 'lit/directives/class-map.js'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 import type { IntlShape, MessageDescriptor } from '@/shared/i18n/i18n.types'
-import { warningMessages } from '@/widgets/eligibility-modal/eligibility-modal.messages'
+import { warningMessages } from '@/widgets/eligibility-modal/templates/schedule/warning-message.messages'
 import styles from '@/widgets/eligibility-modal/templates/schedule/warning-message.module.css'
 
 export interface WarningMessageParams {

@@ -5,7 +5,7 @@ import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { withClassName } from '@/shared/ui/class-name'
 import { crossTemplate } from '@/shared/ui/icons/cross.template'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/eligibility-modal/eligibility-modal.const'
-import { modalShellMessages } from '@/widgets/eligibility-modal/eligibility-modal.messages'
+import { modalShellMessages } from '@/widgets/eligibility-modal/templates/modal-shell.messages'
 import styles from '@/widgets/eligibility-modal/templates/modal-shell.module.css'
 
 export interface ModalShellParams {

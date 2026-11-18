@@ -3,7 +3,7 @@ import { classMap } from 'lit/directives/class-map.js'
 
 import type { IntlShape, MessageDescriptor } from '@/shared/i18n/i18n.types'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/eligibility-modal/eligibility-modal.const'
-import { titleMessages } from '@/widgets/eligibility-modal/eligibility-modal.messages'
+import { titleMessages } from '@/widgets/eligibility-modal/templates/title.messages'
 import styles from '@/widgets/eligibility-modal/templates/title.module.css'
 
 export interface TitleParams {

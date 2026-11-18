@@ -6,8 +6,8 @@ import { isP1X } from '@/domain/plans/plan-kind'
 import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import type { Card } from '@/shared/ui/icons/cards/cards.types'
-import { eligibilityModalMessages } from '@/widgets/eligibility-modal/eligibility-modal.messages'
 import { loadingIndicatorTemplate } from '@/widgets/eligibility-modal/templates/loading-indicator.template'
+import { modalContentMessages } from '@/widgets/eligibility-modal/templates/modal-content.messages'
 import styles from '@/widgets/eligibility-modal/templates/modal-content.module.css'
 import { modalLayoutTemplate } from '@/widgets/eligibility-modal/templates/modal-layout.template'
 import { modalShellTemplate } from '@/widgets/eligibility-modal/templates/modal-shell.template'
@@ -43,9 +43,9 @@ type StatusContentParams = Pick<
 
 const skipLinksOf = (intl: IntlShape): SkipLink[] =>
   [
-    { href: '#payment-plans', message: eligibilityModalMessages.skipToPaymentPlans },
-    { href: '#payment-info', message: eligibilityModalMessages.skipToPaymentInfo },
-    { href: '#payment-schedule', message: eligibilityModalMessages.skipToPaymentSchedule },
+    { href: '#payment-plans', message: modalContentMessages.skipToPaymentPlans },
+    { href: '#payment-info', message: modalContentMessages.skipToPaymentInfo },
+    { href: '#payment-schedule', message: modalContentMessages.skipToPaymentSchedule },
   ].map(({ href, message }) => ({
     href,
     labelId: message.id,
@@ -70,7 +70,7 @@ const statusContentTemplate = ({
   }
   if (eligiblePlans.length === 0) {
     const noEligibilityClasses = classMap({ [styles.noEligibility]: true })
-    const text = intl.formatMessage(eligibilityModalMessages.noEligibility)
+    const text = intl.formatMessage(modalContentMessages.noEligibility)
     return html`<div class=${noEligibilityClasses} role="alert">${text}</div>`
   }
   const scheduleAreaClasses = classMap({ [styles.scheduleArea]: true })
