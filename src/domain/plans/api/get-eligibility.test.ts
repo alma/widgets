@@ -1,14 +1,14 @@
 import type { MockInstance } from 'vitest'
 
+import { BUILD_VERSION } from '@/config/build-version.const'
 import { createKey, setCache } from '@/domain/plans/api/eligibility-cache'
 import { StatusResponse } from '@/domain/plans/api/eligibility.const'
 import type { EligibilityInput } from '@/domain/plans/api/eligibility.types'
 import { getEligibility } from '@/domain/plans/api/get-eligibility'
-import { BUILD_VERSION } from '@/shared/config/build-version.const'
-import { fetchFromApi } from '@/shared/lib/http'
+import { fetchFromApi } from '@/lib/http'
 import { configPlans, mockP2XEligiblePlan, mockPlansAllEligible } from '@/test/fixtures'
 
-vi.mock('@/shared/lib/http')
+vi.mock('@/lib/http')
 
 const HOUR = 3600000
 const SANDBOX = 'https://api.sandbox.getalma.eu'

@@ -12,9 +12,9 @@ import {
   getTotalCreditCost,
   getTotalPurchaseAmount,
 } from '@/domain/plans/regulatory-figures'
+import { secondsToMilliseconds } from '@/lib/date'
+import { priceFromCents } from '@/lib/price'
 import type { IntlShape, MessageDescriptor } from '@/shared/i18n/i18n.types'
-import { secondsToMilliseconds } from '@/shared/lib/date'
-import { priceFromCents } from '@/shared/lib/price'
 import { formatRichText, type RichText } from '@/shared/ui/rich-text'
 import { planStringsMessages } from '@/widgets/common/plan.messages'
 import { legalMentionsMessages } from '@/widgets/eligibility-modal/templates/schedule/legal-mentions.messages'

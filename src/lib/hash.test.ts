@@ -1,4 +1,4 @@
-import { hashStringForStorage } from '@/shared/lib/hash'
+import { hashStringForStorage } from '@/lib/hash'
 
 describe('hashStringForStorage', () => {
   it.each([

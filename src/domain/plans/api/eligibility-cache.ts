@@ -1,8 +1,8 @@
+import { BUILD_VERSION } from '@/config/build-version.const'
 import { CACHE_TTL_MS } from '@/domain/plans/api/eligibility.const'
 import type { EligibilityInput } from '@/domain/plans/api/eligibility.types'
 import type { EligibilityPlan } from '@/domain/plans/plans.types'
-import { BUILD_VERSION } from '@/shared/config/build-version.const'
-import { hashStringForStorage } from '@/shared/lib/hash'
+import { hashStringForStorage } from '@/lib/hash'
 
 export const isMoreThanOneHourAgo = (date: number): boolean => Date.now() - date >= CACHE_TTL_MS
 

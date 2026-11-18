@@ -3,9 +3,9 @@ import { classMap } from 'lit/directives/class-map.js'
 import { ifDefined } from 'lit/directives/if-defined.js'
 
 import type { PaymentPlan } from '@/domain/plans/plans.types'
+import { isToday, secondsToMilliseconds } from '@/lib/date'
+import { priceFromCents } from '@/lib/price'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { isToday, secondsToMilliseconds } from '@/shared/lib/date'
-import { priceFromCents } from '@/shared/lib/price'
 import { installmentMessages } from '@/widgets/eligibility-modal/templates/schedule/installment.messages'
 import styles from '@/widgets/eligibility-modal/templates/schedule/installment.module.css'
 

@@ -1,7 +1,7 @@
 import type { MockInstance } from 'vitest'
 
-import { BUILD_VERSION } from '@/shared/config/build-version.const'
-import { resetWarnOnce } from '@/shared/lib/errors'
+import { BUILD_VERSION } from '@/config/build-version.const'
+import { resetWarnOnce } from '@/lib/errors'
 import { ELEMENT_VERSION, safeCustomElement } from '@/shared/ui/lit/safe-custom-element'
 
 // The registry outlives each test, so each test uses its own tag.

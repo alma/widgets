@@ -1,4 +1,4 @@
-import type { ApiRequest } from '@/shared/lib/http.types'
+import type { ApiRequest } from '@/lib/http.types'
 
 export async function fetchFromApi<T>({ url, headers, body }: ApiRequest): Promise<T> {
   const response = await fetch(url, {

@@ -1,6 +1,6 @@
 import type { MockInstance } from 'vitest'
 
-import { resetWarnOnce, warnOnce } from '@/shared/lib/errors'
+import { resetWarnOnce, warnOnce } from '@/lib/errors'
 
 describe('warnOnce', () => {
   let warn: MockInstance<typeof console.warn>

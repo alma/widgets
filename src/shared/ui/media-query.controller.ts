@@ -1,6 +1,6 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
-import { type MediaQueryWatch, watchMediaQuery } from '@/shared/ui/watch-media-query'
+import { type MediaQueryWatch, watchMediaQuery } from '@/lib/watch-media-query'
 
 export type MediaQueryHost = ReactiveControllerHost
 

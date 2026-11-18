@@ -1,4 +1,4 @@
-import { formatCents, priceToCents } from '@/shared/lib/price'
+import { formatCents, priceToCents } from '@/lib/price'
 
 describe('price', () => {
   it('transform euros in cents', () => {

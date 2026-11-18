@@ -1,6 +1,6 @@
+import { BUILD_VERSION } from '@/config/build-version.const'
 import type { EligibilityInput } from '@/domain/plans/api/eligibility.types'
-import { BUILD_VERSION } from '@/shared/config/build-version.const'
-import type { ApiRequest } from '@/shared/lib/http.types'
+import type { ApiRequest } from '@/lib/http.types'
 
 const buildAddress = (country?: string) => (country ? { country } : null)
 

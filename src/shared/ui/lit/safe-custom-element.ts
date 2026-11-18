@@ -1,5 +1,5 @@
-import { BUILD_VERSION } from '@/shared/config/build-version.const'
-import { warnOnce } from '@/shared/lib/errors'
+import { BUILD_VERSION } from '@/config/build-version.const'
+import { warnOnce } from '@/lib/errors'
 
 // Symbol.for() shares the key across bundles. Never change it in 4.x.
 export const ELEMENT_VERSION: unique symbol = Symbol.for('@alma/widgets:version')

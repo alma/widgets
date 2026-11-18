@@ -8,7 +8,7 @@ import {
   getUnixTime,
   isToday,
   secondsToMilliseconds,
-} from '@/shared/lib/date'
+} from '@/lib/date'
 
 // The helpers work in local time, like date-fns. Every expected date below is the output of
 // date-fns 4.4.0 for the same input, in the same time zone.
@@ -28,10 +28,7 @@ type DatesFixture = {
 
 // What master's isToday returned for each zone and due date.
 const datesFixture: DatesFixture = JSON.parse(
-  readFileSync(
-    resolve(__dirname, '../../../tests/integration/contract/fixtures/dates.json'),
-    'utf8',
-  ),
+  readFileSync(resolve(__dirname, '../../tests/integration/contract/fixtures/dates.json'), 'utf8'),
 )
 
 // None of the fixture zones changes its clocks.

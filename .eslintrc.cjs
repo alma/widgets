@@ -3,17 +3,19 @@
 
 // Import layers of src/: each folder, the other folders it may import, and the message.
 const LAYERS = [
+  ['lib', [], 'lib/ imports nothing else from src/.'],
+  ['config', [], 'config/ imports nothing else from src/.'],
   [
     'shared',
-    ['intl'],
-    'shared/ imports nothing else from src/, apart from the catalogues in src/intl/.',
+    ['intl', 'lib', 'config'],
+    'shared/ imports only lib/, config/ and the catalogues in src/intl/.',
   ],
+  ['domain', ['lib', 'config'], 'domain/ imports only lib/ and config/.'],
   [
-    'domain',
-    ['shared/lib', 'shared/config'],
-    'domain/ imports only shared/lib/ and shared/config/.',
+    'widgets/common',
+    ['domain', 'shared', 'lib', 'config'],
+    'widgets/common/ imports only domain/, shared/, lib/ and config/.',
   ],
-  ['widgets/common', ['domain', 'shared'], 'widgets/common/ imports only domain/ and shared/.'],
   [
     'widgets/payment-plans',
     [
@@ -21,18 +23,20 @@ const LAYERS = [
       'widgets/eligibility-modal/controllers/plans-modal.controller.ts',
       'domain',
       'shared',
+      'lib',
+      'config',
     ],
-    'widgets/payment-plans/ imports widgets/common/, domain/ and shared/, and the modal only through widgets/eligibility-modal/controllers/plans-modal.controller.ts.',
+    'widgets/payment-plans/ imports widgets/common/, domain/, shared/, lib/ and config/, and the modal only through widgets/eligibility-modal/controllers/plans-modal.controller.ts.',
   ],
   [
     'widgets/eligibility-modal',
-    ['widgets/common', 'domain', 'shared'],
-    'widgets/eligibility-modal/ imports only widgets/common/, domain/ and shared/.',
+    ['widgets/common', 'domain', 'shared', 'lib', 'config'],
+    'widgets/eligibility-modal/ imports only widgets/common/, domain/, shared/, lib/ and config/.',
   ],
   [
     'public-api',
-    ['widgets', 'domain', 'shared'],
-    'public-api/ imports only widgets/, domain/ and shared/.',
+    ['widgets', 'domain', 'shared', 'lib', 'config'],
+    'public-api/ imports only widgets/, domain/, shared/, lib/ and config/.',
   ],
 ]
 
@@ -84,7 +88,7 @@ const SRC_BANS = [
   {
     selector: 'Property[key.name="timeZone"]',
     message:
-      "No timeZone option: dates stay in the shopper's local time, like master. Use the helpers in @/shared/lib/date.",
+      "No timeZone option: dates stay in the shopper's local time, like master. Use the helpers in @/lib/date.",
   },
   {
     selector: 'ImportExpression',

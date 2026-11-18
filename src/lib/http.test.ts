@@ -1,4 +1,4 @@
-import { fetchFromApi } from '@/shared/lib/http'
+import { fetchFromApi } from '@/lib/http'
 
 const REQUEST = { url: 'https://example.test', body: {} }
 

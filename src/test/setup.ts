@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/vitest'
 import * as axeMatchers from 'vitest-axe/matchers'
 
-import { resetWarnOnce } from '@/shared/lib/errors'
+import { resetWarnOnce } from '@/lib/errors'
 import { TODAY } from '@/test/planBuilders'
 
 expect.extend(axeMatchers)

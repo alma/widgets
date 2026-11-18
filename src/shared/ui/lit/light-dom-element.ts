@@ -1,6 +1,6 @@
 import { LitElement } from 'lit'
 
-import { warnOnce } from '@/shared/lib/errors'
+import { warnOnce } from '@/lib/errors'
 
 // Light DOM, so merchant CSS keeps styling the widget.
 // eslint-disable-next-line no-restricted-syntax -- the one subclass of LitElement

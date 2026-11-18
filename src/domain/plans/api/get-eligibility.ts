@@ -8,8 +8,8 @@ import {
 } from '@/domain/plans/api/eligibility-cache'
 import { StatusResponse } from '@/domain/plans/api/eligibility.const'
 import type { EligibilityInput, EligibilityResult } from '@/domain/plans/api/eligibility.types'
-import { warnOnce } from '@/shared/lib/errors'
-import { fetchFromApi } from '@/shared/lib/http'
+import { warnOnce } from '@/lib/errors'
+import { fetchFromApi } from '@/lib/http'
 
 const FAILED: EligibilityResult = { status: StatusResponse.FAILED, plans: [] }
 const PENDING: EligibilityResult = { status: StatusResponse.PENDING, plans: [] }

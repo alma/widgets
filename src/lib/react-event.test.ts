@@ -1,4 +1,4 @@
-import { withReactEventMembers } from '@/shared/lib/react-event'
+import { withReactEventMembers } from '@/lib/react-event'
 
 describe('withReactEventMembers', () => {
   it('should return the same event, as its own native event', () => {

@@ -10,7 +10,7 @@ import type {
   EligibilityPlanToDisplay,
 } from '@/domain/plans/plans.types'
 import sortEligibility from '@/domain/plans/sort-plans'
-import { warnOnce } from '@/shared/lib/errors'
+import { warnOnce } from '@/lib/errors'
 
 export type ApiData = { domain: string; merchantId: string }
 

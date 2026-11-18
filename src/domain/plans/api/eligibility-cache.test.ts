@@ -10,7 +10,7 @@ import type { EligibilityInput } from '@/domain/plans/api/eligibility.types'
 import { mockButtonPlans } from '@/test/fixtures'
 
 // The contract tests' build version, so the keys match theirs.
-vi.mock('@/shared/config/build-version.const', () => ({ BUILD_VERSION: 'contract-test' }))
+vi.mock('@/config/build-version.const', () => ({ BUILD_VERSION: 'contract-test' }))
 
 const SANDBOX = 'https://api.sandbox.getalma.eu'
 
