@@ -1,7 +1,7 @@
 import type { Meta, StoryContext, StoryObj } from '@storybook/web-components-vite'
 import { userEvent, waitFor } from 'storybook/test'
 
-import type { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
+import type { EligibilityPlan } from '@/domain/plans/plans.types'
 import { ApiMode, Widgets } from '@/index'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
