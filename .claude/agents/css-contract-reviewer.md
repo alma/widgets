@@ -52,7 +52,7 @@ For each changed file under `src/`:
    `git show <reference SHA>:<master path>`. For a `*.module.css` file, read master's copy at its
    master path and compare the two.
 
-Also read the changes to `.stylelintrc.cjs` and `src/styles/css-limits.test.ts`: a weakened rule is
+Also read the changes to `.stylelintrc.cjs` and `src/css-limits.test.ts`: a weakened rule is
 a finding.
 
 ## 3. Check
@@ -63,9 +63,9 @@ Report every rule violation that the diff adds. Look hardest at these:
   inventory that the original renders, check that the Lit template renders it with the same name,
   on the same element type, at the same place in the tree. A rename, a removal or a move to
   another element is CRITICAL. A change to `inventory.json` follows the contract test rules below.
-- **CSS content (STYLE-02).** `src/styles/main.css` and every `*.module.css` keep master's content.
+- **CSS content (STYLE-02).** `src/main.css` and every `*.module.css` keep master's content.
   Any change to a rule, a selector, a value or the order of rules is CRITICAL.
-- **CSS order (STYLE-03).** `src/styles/main.css` stays the first CSS import of `src/index.ts`. An
+- **CSS order (STYLE-03).** `src/main.css` stays the first CSS import of `src/index.ts`. An
   import that moves before it changes the order of `widgets.css`, which is CRITICAL.
 - **Where the CSS lives (STYLE-01, STYLE-05).** No `static styles`, `css` tag, `adoptedStyleSheets`,
   `styleMap`, `style=` binding or `element.style` write, apart from the host's `display: contents`
@@ -75,7 +75,7 @@ Report every rule violation that the diff adds. Look hardest at these:
   with the same conditions as master's `classnames` call. A class written as a string where master
   used the module, or a condition that differs from master's, is a finding.
 
-STYLE-06 and STYLE-07 have a lint check, and STYLE-08 has `src/styles/css-limits.test.ts`. A
+STYLE-06 and STYLE-07 have a lint check, and STYLE-08 has `src/css-limits.test.ts`. A
 violation of one of them that you still find is also a gap in that check: report it and name, in
 the fix, the rule of `.stylelintrc.cjs` or the case of `css-limits.test.ts` that should have caught
 it. A `stylelint-disable` comment that silences one of them is a finding too.
@@ -117,7 +117,7 @@ SEVERITY | RULE-ID | path:line | problem | fix
 For example:
 
 ```text
-CRITICAL | STYLE-09 | src/widgets/payment-plans/templates/plan-button.template.ts:28 | alma-payment-plans-active-option is on the inner span, master puts it on the button | move the class to the button
+CRITICAL | STYLE-09 | src/widgets/payment-plans/templates/plan-button/plan-button.template.ts:28 | alma-payment-plans-active-option is on the inner span, master puts it on the button | move the class to the button
 CRITICAL | CONTRACT | tests/integration/contract/expected-failures.json:12 | the PR adds an expected failure | remove the entry and make the test pass, or leave the test to the PR that owns it
 ```
 

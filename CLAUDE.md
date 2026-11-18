@@ -40,10 +40,10 @@ Husky `pre-commit` already runs the typecheck, the tests of the changed files an
 - `src/test/setup-jsdom.ts` runs in the `unit` project only. It puts the time zone back to UTC after
   each test and mocks `matchMedia` (no query matches), `no-scroll` and the canvas context axe needs.
   In unit tests, a CSS module class name equals its key (`styles.planButton === 'planButton'`).
-- `setup-jsdom.ts` also starts the msw server of `src/test/msw-server.ts`. A test adds the handlers
-  of `src/test/eligibilityHandlers.ts`, the ones the stories use, with `server.use()`, and they go
-  away after it. A request that no handler of the test answers fails the test, even when the code
-  catches the error, and never reaches the network.
+- `setup-jsdom.ts` also starts the msw server of `src/test/msw/msw-server.ts`. A test adds the
+  handlers of `src/test/msw/eligibility-handlers.ts`, the ones the stories use, with `server.use()`,
+  and they go away after it. A request that no handler of the test answers fails the test, even
+  when the code catches the error, and never reaches the network.
 - A custom element definition can't be removed, so a tag stays defined until its test file ends.
   Each test file gets a fresh page.
 - Coverage leaves out the files whose tests aren't ported yet (the list in `vitest.config.ts`).
@@ -54,9 +54,9 @@ Husky `pre-commit` already runs the typecheck, the tests of the changed files an
 - Before you create any file under `src/`, read `.claude/rules/architecture.md` and the rule files
   that its table lists for that folder. Claude Code loads a rule file only after a file under its
   paths is read or written, and for a new file that happens after the first Write.
-- The code in `src/` sits in four layers: `public-api/`, `widgets/`, `domain/` and `shared/`.
-  `.claude/rules/architecture.md` describes them and loads for `src/**`, and `.eslintrc.cjs`
-  enforces its import rules.
+- The code in `src/` sits in five layers, from top to bottom: `public-api/`, `widgets/`, `shared/`,
+  `domain/`, and `lib/` with `config/`. `.claude/rules/architecture.md` describes them and loads
+  for `src/**`. `.eslintrc.cjs` generates its import zones from the same ordered list.
 - `src/intl/` holds the Crowdin catalogues. Don't hand-edit `src/intl/messages/*.json`.
   `npm run translations:extract` exits with code 1 until the Lit message descriptors exist, so it
   can't empty `src/intl/messages.json`. `npm run translations:upload` and `translations:download`

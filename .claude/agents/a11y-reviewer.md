@@ -107,7 +107,7 @@ SEVERITY | RULE-ID | path:line | problem | fix
 For example:
 
 ```text
-HIGH | A11Y-01 | src/widgets/payment-plans/templates/plan-button.template.ts:34 | aria-describedby is gone, master points it at payment-info-text | bind aria-describedby="payment-info-text" as master does
+HIGH | A11Y-01 | src/widgets/payment-plans/templates/plan-button/plan-button.template.ts:34 | aria-describedby is gone, master points it at payment-info-text | bind aria-describedby="payment-info-text" as master does
 CRITICAL | A11Y-05 | src/widgets/eligibility-modal/controllers/modal-portal.controller.ts:52 | sets aria-hidden on the page behind the modal | remove it, master leaves the page as it is
 ```
 

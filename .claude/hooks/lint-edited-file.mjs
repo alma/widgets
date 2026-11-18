@@ -106,7 +106,7 @@ const main = async () => {
   if (!root || !relative(root, file).startsWith(`src${sep}`)) {
     return 0
   }
-  // typescript-eslint looks for tsconfig.json in the working directory.
+  // typescript-eslint resolves the tsconfig paths of .eslintrc.cjs from the working directory.
   process.chdir(root)
   const errors = await lint(root, file)
   if (errors.length === 0) {

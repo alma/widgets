@@ -54,7 +54,7 @@ own these attributes, so leave them:
 
 Run these nine Grep searches first, because a review that reads files at random skips some. Run each
 one only on the changed files under `src/`, untracked ones included, by passing their paths as a
-Grep `glob` such as `{path1,path2}`. Skip `*.test.ts`, `*.stories.ts`, `__tests__/` and
+Grep `glob` such as `{path1,path2}`. Skip `*.test.ts`, `*.stories.ts` and
 `src/test/`, which use timers, `throw` and banned code on purpose. Search 3 is the exception: it
 also covers the changed tests, stories and `src/test/` files, and skips `*.messages.ts`. Searches 7
 to 9 cover the rules that only review checks, and the lint bans on lines that lint hasn't checked
@@ -72,10 +72,10 @@ yet.
 6. `function |=>` in the changed `*.const.ts` files and `^\s*(export\s+)?function ` in the changed
    `*.types.ts` files, for LAYER-11: a function in a file that holds constants or
    types only
-7. `fetch|sessionStorage`, for LAYER-07: a hit outside `domain/plans/api/` and `shared/lib/http.ts`
+7. `fetch|sessionStorage`, for LAYER-07: a hit outside `domain/api/` and `lib/http.ts`
 8. `new CustomEvent|reflect: true|unsafe[A-Z]|static-html|innerHTML|import\(|from '\.|attachShadow|extends LitElement|@customElement\(|customElements\.define|timeZone|\bprocess\.|\bBuffer\b|\bglobal\.|\brequire\(|__dirname|__filename|from '(react|react-dom|preact|react-intl|react-modal|react-responsive|classnames|date-fns)'`,
    for ARCH-03, ARCH-05 to ARCH-07, ARCH-09, ARCH-14, ARCH-15, LAYER-08 and LAYER-09
-9. `from '@/(public-api|widgets|domain|shared)`, and in the changed `domain/` files also
+9. `from '@/(public-api|widgets|shared|domain|lib|config)`, and in the changed `domain/` files also
    `from '(lit|@lit)|window\.|document\.`, for LAYER-01, LAYER-02, LAYER-03 and LAYER-05. Check
    each import against the layer table of `architecture.md`
 
@@ -171,7 +171,7 @@ For example:
 
 ```text
 HIGH | ARCH-12 | src/widgets/payment-plans/controllers/plan-cycling.controller.ts:41 | setInterval keeps running after the host disconnects | clear it in hostDisconnected() and start it again in hostConnected()
-MEDIUM | LAYER-04 | src/widgets/common/format-installment.ts:1 | only payment-plans imports this helper | move it to src/widgets/payment-plans/
+MEDIUM | LAYER-04 | src/shared/utils/format-installment.ts:1 | only payment-plans imports this helper | move it to src/widgets/payment-plans/utils/
 ```
 
 `path:line` is the line in the working tree. Keep the problem and the fix to one sentence each,

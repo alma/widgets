@@ -1,7 +1,7 @@
 ---
 paths:
   - "src/widgets/**"
-  - "src/shared/ui/**"
+  - "src/shared/**"
   - "src/modal.browser.test.ts"
 ---
 
