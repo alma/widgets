@@ -1,7 +1,7 @@
 // First import: main.css must open widgets.css, as on master.
 import '@/main.css'
+import * as utils from '@/public-api/alma-utils'
 import { ApiMode, WidgetTypes } from '@/public-api/public-api.const'
-import * as utils from '@/public-api/utils'
 import { WidgetsController } from '@/public-api/widgets'
 
 // window.Alma.Widgets and window.Alma.Utils keep master's namespace shape.
