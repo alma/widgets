@@ -8,6 +8,7 @@ import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { Locale } from '@/shared/i18n/i18n.const'
 import type { Card } from '@/shared/templates/card-logos/cards.types'
+import { getPlanDescription } from '@/shared/templates/plan-strings/plan-text'
 import {
   ELIGIBILITY_ENDPOINT,
   eligibilityError,
@@ -22,7 +23,6 @@ import {
 } from '@/test/fixtures'
 import { mountWidget } from '@/test/mount-widget'
 import { server } from '@/test/msw-server'
-import { getPlanDescription } from '@/widgets/common/plan-text'
 import {
   AlmaPaymentPlans,
   type AlmaPaymentPlansProperties,

@@ -1,7 +1,7 @@
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { isP1X, isPayLater } from '@/domain/utils/plan-kind'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { planStringsMessages } from '@/widgets/common/plan.messages'
+import { planStringsMessages } from '@/shared/templates/plan-strings/plan-strings.messages'
 
 // Also replaces master's paymentPlanShorthandText, which gives the same text.
 export const paymentPlanShorthandName = (

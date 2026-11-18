@@ -4,13 +4,16 @@ import { resolve } from 'node:path'
 import type { EligibilityPlan } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import {
+  getPlanDescription,
+  paymentPlanShorthandName,
+} from '@/shared/templates/plan-strings/plan-text'
+import {
   mockP1XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockP10XEligiblePlan,
   mockPayLater30DaysEligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
 } from '@/test/fixtures'
-import { getPlanDescription, paymentPlanShorthandName } from '@/widgets/common/plan-text'
 
 type MessageFixture = {
   locales: Record<string, { messages: Record<string, string | Record<string, string>> }>
@@ -18,7 +21,7 @@ type MessageFixture = {
 
 const { locales }: MessageFixture = JSON.parse(
   readFileSync(
-    resolve(__dirname, '../../../tests/integration/contract/fixtures/messages.output.json'),
+    resolve(__dirname, '../../../../tests/integration/contract/fixtures/messages.output.json'),
     'utf8',
   ),
 )

@@ -3,7 +3,10 @@ import { classMap } from 'lit/directives/class-map.js'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { getPlanDescription, paymentPlanShorthandName } from '@/widgets/common/plan-text'
+import {
+  getPlanDescription,
+  paymentPlanShorthandName,
+} from '@/shared/templates/plan-strings/plan-text'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/payment-plans/payment-plans.const'
 import styles from '@/widgets/payment-plans/templates/payment-plans.module.css'
 import { planButtonMessages } from '@/widgets/payment-plans/templates/plan-button.messages'

@@ -7,8 +7,8 @@ import { secondsToMilliseconds } from '@/lib/date'
 import { priceFromCents } from '@/lib/price'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { formatRichText, type RichText } from '@/shared/i18n/rich-text'
-import styles from '@/widgets/common/plan-strings.module.css'
-import { planStringsMessages } from '@/widgets/common/plan.messages'
+import { planStringsMessages } from '@/shared/templates/plan-strings/plan-strings.messages'
+import styles from '@/shared/templates/plan-strings/plan-strings.module.css'
 
 // Euros whatever the locale, as on master. A template, so the amount gets its own text node, like
 // master's <FormattedNumber>.

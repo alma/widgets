@@ -5,6 +5,7 @@ import { createKey, setCache } from '@/domain/api/eligibility-cache'
 import { StatusResponse } from '@/domain/api/eligibility.const'
 import type { ConfigPlan, EligibilityPlan } from '@/domain/plans.types'
 import filterEligibility from '@/domain/utils/filter-plans'
+import { EligibilityController } from '@/shared/controllers/eligibility.controller'
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import {
   configPlans,
@@ -15,7 +16,6 @@ import {
   mockPayLaterOneMonthEligiblePlan,
   mockPlansAllEligible,
 } from '@/test/fixtures'
-import { EligibilityController } from '@/widgets/common/eligibility.controller'
 
 const SANDBOX = 'https://api.sandbox.getalma.eu'
 

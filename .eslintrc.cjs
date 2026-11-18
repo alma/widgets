@@ -5,33 +5,27 @@
 const LAYERS = [
   ['lib', [], 'lib/ imports nothing else from src/.'],
   ['config', [], 'config/ imports nothing else from src/.'],
-  [
-    'shared',
-    ['intl', 'lib', 'config'],
-    'shared/ imports only lib/, config/ and the catalogues in src/intl/.',
-  ],
   ['domain', ['lib', 'config'], 'domain/ imports only lib/ and config/.'],
   [
-    'widgets/common',
-    ['domain', 'shared', 'lib', 'config'],
-    'widgets/common/ imports only domain/, shared/, lib/ and config/.',
+    'shared',
+    ['domain', 'intl', 'lib', 'config'],
+    'shared/ imports only domain/, lib/, config/ and the catalogues in src/intl/.',
   ],
   [
     'widgets/payment-plans',
     [
-      'widgets/common',
       'widgets/eligibility-modal/controllers/plans-modal.controller.ts',
       'domain',
       'shared',
       'lib',
       'config',
     ],
-    'widgets/payment-plans/ imports widgets/common/, domain/, shared/, lib/ and config/, and the modal only through widgets/eligibility-modal/controllers/plans-modal.controller.ts.',
+    'widgets/payment-plans/ imports domain/, shared/, lib/ and config/, and the modal only through widgets/eligibility-modal/controllers/plans-modal.controller.ts.',
   ],
   [
     'widgets/eligibility-modal',
-    ['widgets/common', 'domain', 'shared', 'lib', 'config'],
-    'widgets/eligibility-modal/ imports only widgets/common/, domain/, shared/, lib/ and config/.',
+    ['domain', 'shared', 'lib', 'config'],
+    'widgets/eligibility-modal/ imports only domain/, shared/, lib/ and config/.',
   ],
   [
     'public-api',
