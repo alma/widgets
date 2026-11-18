@@ -118,7 +118,7 @@ const LIT_IN_DOMAIN = {
   message: 'domain/ is plain TypeScript. Lit code goes in widgets/ or shared/.',
 }
 
-const TESTS = ['src/**/*.test.ts', 'src/**/__tests__/**', 'src/test/**']
+const TESTS = ['src/**/*.test.ts', 'src/test/**']
 
 module.exports = {
   root: true,

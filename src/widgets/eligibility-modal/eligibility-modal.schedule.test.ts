@@ -22,7 +22,7 @@ type MessageFixture = {
 
 const { locales }: MessageFixture = JSON.parse(
   readFileSync(
-    resolve(__dirname, '../../../../tests/integration/contract/fixtures/messages.output.json'),
+    resolve(__dirname, '../../../tests/integration/contract/fixtures/messages.output.json'),
     'utf8',
   ),
 )
