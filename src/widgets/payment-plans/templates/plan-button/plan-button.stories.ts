@@ -7,7 +7,7 @@ import { mockDisplayPlansSingle, mockP10XBelowMinDisplayPlan } from '@/test/fixt
 import {
   type PlanButtonParams,
   planButtonTemplate,
-} from '@/widgets/payment-plans/templates/plan-button.template'
+} from '@/widgets/payment-plans/templates/plan-button/plan-button.template'
 
 const [p3x] = mockDisplayPlansSingle
 

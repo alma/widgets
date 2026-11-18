@@ -18,7 +18,6 @@ import {
   PlansModalController,
   type PlansModalParams,
 } from '@/widgets/eligibility-modal/controllers/plans-modal.controller'
-import { getIndexOfActivePlan } from '@/widgets/payment-plans/active-plan'
 import { AnimationInstructionsController } from '@/widgets/payment-plans/controllers/animation-instructions.controller'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
 import { PlanCyclingController } from '@/widgets/payment-plans/controllers/plan-cycling.controller'
@@ -29,6 +28,7 @@ import {
   plansLoadingTemplate,
   plansContentTemplate,
 } from '@/widgets/payment-plans/templates/plans-content.template'
+import { getIndexOfActivePlan } from '@/widgets/payment-plans/utils/active-plan'
 
 const DEFAULT_TRANSITION_TIME = 5500
 const ANNOUNCE_DURATION_MS = 1000

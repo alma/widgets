@@ -2,7 +2,7 @@ import { within } from '@testing-library/dom'
 import { axe } from 'vitest-axe'
 
 import { renderTemplate } from '@/test/render-template'
-import { loaderTemplate } from '@/widgets/payment-plans/templates/loader.template'
+import { loaderTemplate } from '@/widgets/payment-plans/templates/loader/loader.template'
 
 const renderLoader = (className?: string) => {
   const container = renderTemplate(loaderTemplate({ className }))
