@@ -1,7 +1,9 @@
 import { nothing, type PropertyValues, render } from 'lit'
 import { property, state } from 'lit/decorators.js'
 
-import { type ConfigPlan, filterEligiblePlans, isSomePlanDeferred } from '@/domain/plans'
+import { filterEligiblePlans } from '@/domain/plans/filter-plans'
+import { isSomePlanDeferred } from '@/domain/plans/plan-kind'
+import type { ConfigPlan } from '@/domain/plans/plans.types'
 import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { warnOnce } from '@/shared/lib/errors'

@@ -16,8 +16,13 @@ const LAYERS = [
   ['widgets/common', ['domain', 'shared'], 'widgets/common/ imports only domain/ and shared/.'],
   [
     'widgets/payment-plans',
-    ['widgets/common', 'widgets/eligibility-modal/index.ts', 'domain', 'shared'],
-    'widgets/payment-plans/ imports widgets/common/, domain/ and shared/, and the modal only through widgets/eligibility-modal/index.ts.',
+    [
+      'widgets/common',
+      'widgets/eligibility-modal/controllers/plans-modal.controller.ts',
+      'domain',
+      'shared',
+    ],
+    'widgets/payment-plans/ imports widgets/common/, domain/ and shared/, and the modal only through widgets/eligibility-modal/controllers/plans-modal.controller.ts.',
   ],
   [
     'widgets/eligibility-modal',

@@ -1,15 +1,15 @@
 import { Task, TaskStatus } from '@lit/task'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
-import {
-  type ConfigPlan,
-  type EligibilityPlan,
-  type EligibilityPlanToDisplay,
-  filterEligibility,
-  getEligibility,
-  sortEligibility,
-  StatusResponse,
-} from '@/domain/plans'
+import { StatusResponse } from '@/domain/plans/api/eligibility.const'
+import { getEligibility } from '@/domain/plans/api/get-eligibility'
+import filterEligibility from '@/domain/plans/filter-plans'
+import type {
+  ConfigPlan,
+  EligibilityPlan,
+  EligibilityPlanToDisplay,
+} from '@/domain/plans/plans.types'
+import sortEligibility from '@/domain/plans/sort-plans'
 import { warnOnce } from '@/shared/lib/errors'
 
 export type ApiData = { domain: string; merchantId: string }

@@ -1,13 +1,10 @@
 import { nothing, type TemplateResult } from 'lit'
 import { property, state } from 'lit/decorators.js'
 
-import {
-  type ConfigPlan,
-  type EligibilityPlanToDisplay,
-  filterEligiblePlans,
-  requiresLegalDisclosure,
-  StatusResponse,
-} from '@/domain/plans'
+import { StatusResponse } from '@/domain/plans/api/eligibility.const'
+import { filterEligiblePlans } from '@/domain/plans/filter-plans'
+import { requiresLegalDisclosure } from '@/domain/plans/plan-kind'
+import type { ConfigPlan, EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
@@ -19,7 +16,7 @@ import { safeCustomElement } from '@/shared/ui/lit/safe-custom-element'
 import { type ApiData, EligibilityController } from '@/widgets/common/eligibility.controller'
 import { paymentPlanInfoTextTemplate } from '@/widgets/common/plan-strings.template'
 import { getPlanDescription } from '@/widgets/common/plan-text'
-import { PlansModalController } from '@/widgets/eligibility-modal/index'
+import { PlansModalController } from '@/widgets/eligibility-modal/controllers/plans-modal.controller'
 import { getIndexOfActivePlan } from '@/widgets/payment-plans/active-plan'
 import { AnimationInstructionsController } from '@/widgets/payment-plans/controllers/animation-instructions.controller'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
