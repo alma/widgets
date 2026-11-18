@@ -1,6 +1,6 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
-import { StatusResponse } from '@/domain/plans/api/eligibility.const'
+import { StatusResponse } from '@/domain/api/eligibility.const'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { animationInstructionsMessages } from '@/widgets/payment-plans/controllers/animation-instructions.messages'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'

@@ -1,8 +1,8 @@
 import { html, nothing, type TemplateResult } from 'lit'
 
-import { isCredit, isP1X, requiresLegalDisclosure } from '@/domain/plans/plan-kind'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
-import { shouldNotifyCustomerOfNoFees } from '@/domain/plans/regulatory-figures'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { isCredit, isP1X, requiresLegalDisclosure } from '@/domain/utils/plan-kind'
+import { shouldNotifyCustomerOfNoFees } from '@/domain/utils/regulatory-figures'
 import { secondsToMilliseconds } from '@/lib/date'
 import { priceFromCents } from '@/lib/price'
 import type { IntlShape } from '@/shared/i18n/i18n.types'

@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import type { EligibilityPlan } from '@/domain/plans/plans.types'
+import type { EligibilityPlan } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import {
   mockP1XEligiblePlan,

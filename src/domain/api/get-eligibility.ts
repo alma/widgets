@@ -1,13 +1,13 @@
-import { buildEligibilityRequest } from '@/domain/plans/api/eligibility-api'
 import {
   clearCache,
   createKey,
   getCache,
   isMoreThanOneHourAgo,
   setCache,
-} from '@/domain/plans/api/eligibility-cache'
-import { StatusResponse } from '@/domain/plans/api/eligibility.const'
-import type { EligibilityInput, EligibilityResult } from '@/domain/plans/api/eligibility.types'
+} from '@/domain/api/eligibility-cache'
+import { buildEligibilityRequest } from '@/domain/api/eligibility-request-builder'
+import { StatusResponse } from '@/domain/api/eligibility.const'
+import type { EligibilityInput, EligibilityResult } from '@/domain/api/eligibility.types'
 import { warnOnce } from '@/lib/errors'
 import { fetchFromApi } from '@/lib/http'
 

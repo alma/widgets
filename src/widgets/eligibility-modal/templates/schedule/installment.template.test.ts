@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 
 import { axe } from 'vitest-axe'
 
-import type { PaymentPlan } from '@/domain/plans/plans.types'
+import type { PaymentPlan } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { DEFAULT_DUE_DATE } from '@/test/planBuilders'

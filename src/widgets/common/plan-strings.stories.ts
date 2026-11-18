@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import {
   mockP1XEligiblePlan,

@@ -1,9 +1,9 @@
 import { html, nothing, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
-import { StatusResponse } from '@/domain/plans/api/eligibility.const'
-import { isP1X } from '@/domain/plans/plan-kind'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import { StatusResponse } from '@/domain/api/eligibility.const'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { isP1X } from '@/domain/utils/plan-kind'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import type { Card } from '@/shared/ui/icons/cards/cards.types'
 import { loadingIndicatorTemplate } from '@/widgets/eligibility-modal/templates/loading-indicator.template'

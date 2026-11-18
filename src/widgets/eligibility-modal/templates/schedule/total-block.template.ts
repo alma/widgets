@@ -1,13 +1,13 @@
 import { html, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
-import { isP1X } from '@/domain/plans/plan-kind'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { isP1X } from '@/domain/utils/plan-kind'
 import {
   getAnnualPercentageRate,
   getTotalCreditCost,
   getTotalPurchaseAmount,
-} from '@/domain/plans/regulatory-figures'
+} from '@/domain/utils/regulatory-figures'
 import { priceFromCents } from '@/lib/price'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/eligibility-modal/eligibility-modal.const'

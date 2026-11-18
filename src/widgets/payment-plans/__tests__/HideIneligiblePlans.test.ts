@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 
-import type { EligibilityPlan } from '@/domain/plans/plans.types'
+import type { EligibilityPlan } from '@/domain/plans.types'
 import { eligibilityPlans } from '@/test/eligibilityHandlers'
 import {
   mockEligibilityPaymentPlanWithIneligiblePlan,

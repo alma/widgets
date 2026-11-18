@@ -8,7 +8,7 @@ import {
   getTotalCreditCost,
   getTotalPurchaseAmount,
   shouldNotifyCustomerOfNoFees,
-} from '@/domain/plans/regulatory-figures'
+} from '@/domain/utils/regulatory-figures'
 import {
   mockP10XEligiblePlan,
   mockP1XEligiblePlan,

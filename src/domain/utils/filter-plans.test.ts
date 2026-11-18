@@ -1,5 +1,5 @@
-import filterEligibility, { filterEligiblePlans } from '@/domain/plans/filter-plans'
-import type { ConfigPlan, EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { ConfigPlan, EligibilityPlanToDisplay } from '@/domain/plans.types'
+import filterEligibility, { filterEligiblePlans } from '@/domain/utils/filter-plans'
 import {
   configPlans,
   mockEligibilityPaymentPlanWithIneligiblePlan,

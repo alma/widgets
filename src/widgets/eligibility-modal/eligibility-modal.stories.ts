@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 import { userEvent, waitFor, within } from 'storybook/test'
 
-import type { ConfigPlan } from '@/domain/plans/plans.types'
+import type { ConfigPlan } from '@/domain/plans.types'
 import { ApiMode, Widgets } from '@/index'
 import type { ModalOptions } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'

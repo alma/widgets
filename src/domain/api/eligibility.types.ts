@@ -1,5 +1,5 @@
-import type { StatusResponse } from '@/domain/plans/api/eligibility.const'
-import type { ConfigPlan, EligibilityPlan } from '@/domain/plans/plans.types'
+import type { StatusResponse } from '@/domain/api/eligibility.const'
+import type { ConfigPlan, EligibilityPlan } from '@/domain/plans.types'
 
 // `configPlans` is the merchant's `plans` option as given: the cache key depends on its key order.
 export type EligibilityInput = {

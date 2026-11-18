@@ -1,4 +1,4 @@
-import type { ConfigPlan } from '@/domain/plans/plans.types'
+import type { ConfigPlan } from '@/domain/plans.types'
 import type { ApiMode, WidgetTypes } from '@/public-api/public-api.const'
 import type { Locale } from '@/shared/i18n/i18n.const'
 import type { Card } from '@/shared/ui/icons/cards/cards.types'

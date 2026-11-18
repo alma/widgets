@@ -1,5 +1,5 @@
-import { isCredit, isDeferred, isP1X, isPayLater, isPNX } from '@/domain/plans/plan-kind'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { isCredit, isDeferred, isP1X, isPayLater, isPNX } from '@/domain/utils/plan-kind'
 
 export const getTotalCreditCost = (plan: EligibilityPlanToDisplay): number =>
   plan.customer_total_cost_amount ?? 0

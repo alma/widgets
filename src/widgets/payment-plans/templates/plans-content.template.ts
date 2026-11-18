@@ -3,7 +3,7 @@ import { classMap } from 'lit/directives/class-map.js'
 import { ifDefined } from 'lit/directives/if-defined.js'
 import { repeat } from 'lit/directives/repeat.js'
 
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { almaLogoTemplate } from '@/shared/ui/icons/alma-logo.template'
 import { planSectionMessages } from '@/widgets/common/plan.messages'

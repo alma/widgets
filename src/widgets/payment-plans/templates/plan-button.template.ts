@@ -1,7 +1,7 @@
 import { html, nothing, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { getPlanDescription, paymentPlanShorthandName } from '@/widgets/common/plan-text'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/payment-plans/payment-plans.const'

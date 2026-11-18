@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 
 import { screen } from '@testing-library/dom'
 
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { mockP10XEligiblePlan, mockP1XEligiblePlan, mockP2XEligiblePlan } from '@/test/fixtures'

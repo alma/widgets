@@ -1,9 +1,9 @@
 import { nothing, type PropertyValues, render } from 'lit'
 import { property, state } from 'lit/decorators.js'
 
-import { filterEligiblePlans } from '@/domain/plans/filter-plans'
-import { isSomePlanDeferred } from '@/domain/plans/plan-kind'
-import type { ConfigPlan } from '@/domain/plans/plans.types'
+import type { ConfigPlan } from '@/domain/plans.types'
+import { filterEligiblePlans } from '@/domain/utils/filter-plans'
+import { isSomePlanDeferred } from '@/domain/utils/plan-kind'
 import { warnOnce } from '@/lib/errors'
 import { withReactEventMembers } from '@/lib/react-event'
 import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'

@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 
-import type { EligibilityPlan } from '@/domain/plans/plans.types'
+import type { EligibilityPlan } from '@/domain/plans.types'
 import { eligibilityPlans } from '@/test/eligibilityHandlers'
 import {
   configPlans,

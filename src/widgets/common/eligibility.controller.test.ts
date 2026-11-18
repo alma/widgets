@@ -1,10 +1,10 @@
 import { html } from 'lit'
 import type { MockInstance } from 'vitest'
 
-import { createKey, setCache } from '@/domain/plans/api/eligibility-cache'
-import { StatusResponse } from '@/domain/plans/api/eligibility.const'
-import filterEligibility from '@/domain/plans/filter-plans'
-import type { ConfigPlan, EligibilityPlan } from '@/domain/plans/plans.types'
+import { createKey, setCache } from '@/domain/api/eligibility-cache'
+import { StatusResponse } from '@/domain/api/eligibility.const'
+import type { ConfigPlan, EligibilityPlan } from '@/domain/plans.types'
+import filterEligibility from '@/domain/utils/filter-plans'
 import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
 import {
   configPlans,

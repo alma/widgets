@@ -1,10 +1,10 @@
 import type { MockInstance } from 'vitest'
 
 import { BUILD_VERSION } from '@/config/build-version.const'
-import { createKey, setCache } from '@/domain/plans/api/eligibility-cache'
-import { StatusResponse } from '@/domain/plans/api/eligibility.const'
-import type { EligibilityInput } from '@/domain/plans/api/eligibility.types'
-import { getEligibility } from '@/domain/plans/api/get-eligibility'
+import { createKey, setCache } from '@/domain/api/eligibility-cache'
+import { StatusResponse } from '@/domain/api/eligibility.const'
+import type { EligibilityInput } from '@/domain/api/eligibility.types'
+import { getEligibility } from '@/domain/api/get-eligibility'
 import { fetchFromApi } from '@/lib/http'
 import { configPlans, mockP2XEligiblePlan, mockPlansAllEligible } from '@/test/fixtures'
 

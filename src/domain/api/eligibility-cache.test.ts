@@ -5,8 +5,8 @@ import {
   getCache,
   isMoreThanOneHourAgo,
   setCache,
-} from '@/domain/plans/api/eligibility-cache'
-import type { EligibilityInput } from '@/domain/plans/api/eligibility.types'
+} from '@/domain/api/eligibility-cache'
+import type { EligibilityInput } from '@/domain/api/eligibility.types'
 import { mockButtonPlans } from '@/test/fixtures'
 
 // The contract tests' build version, so the keys match theirs.

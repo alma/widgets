@@ -1,5 +1,5 @@
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
-import sortEligibility from '@/domain/plans/sort-plans'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import sortEligibility from '@/domain/utils/sort-plans'
 
 const plan = (installmentsCount: number, deferredDays = 0, deferredMonths = 0) =>
   ({

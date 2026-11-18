@@ -1,4 +1,4 @@
-import type { EligiblePlan, IneligiblePlan, PaymentPlan } from '@/domain/plans/plans.types'
+import type { EligiblePlan, IneligiblePlan, PaymentPlan } from '@/domain/plans.types'
 import { addDays, addMonths, fromUnixTime, getUnixTime } from '@/lib/date'
 
 // Master's "today": 1 December 2021, 09:26:02 UTC. setup.ts fixes Date.now() to it.

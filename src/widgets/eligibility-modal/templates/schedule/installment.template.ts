@@ -2,7 +2,7 @@ import { html, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 import { ifDefined } from 'lit/directives/if-defined.js'
 
-import type { PaymentPlan } from '@/domain/plans/plans.types'
+import type { PaymentPlan } from '@/domain/plans.types'
 import { isToday, secondsToMilliseconds } from '@/lib/date'
 import { priceFromCents } from '@/lib/price'
 import type { IntlShape } from '@/shared/i18n/i18n.types'

@@ -1,5 +1,5 @@
 import { BUILD_VERSION } from '@/config/build-version.const'
-import type { EligibilityInput } from '@/domain/plans/api/eligibility.types'
+import type { EligibilityInput } from '@/domain/api/eligibility.types'
 import type { ApiRequest } from '@/lib/http.types'
 
 const buildAddress = (country?: string) => (country ? { country } : null)

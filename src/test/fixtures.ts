@@ -1,9 +1,5 @@
-import filterEligibility from '@/domain/plans/filter-plans'
-import type {
-  ConfigPlan,
-  EligibilityPlan,
-  EligibilityPlanToDisplay,
-} from '@/domain/plans/plans.types'
+import type { ConfigPlan, EligibilityPlan, EligibilityPlanToDisplay } from '@/domain/plans.types'
+import filterEligibility from '@/domain/utils/filter-plans'
 import type { Card } from '@/shared/ui/icons/cards/cards.types'
 import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
 

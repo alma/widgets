@@ -2,7 +2,7 @@ import { screen } from '@testing-library/dom'
 import { http, HttpResponse } from 'msw'
 import type { MockInstance } from 'vitest'
 
-import type { ConfigPlan } from '@/domain/plans/plans.types'
+import type { ConfigPlan } from '@/domain/plans.types'
 import { ApiMode } from '@/public-api/public-api.const'
 import type { Card } from '@/shared/ui/icons/cards/cards.types'
 import { ELIGIBILITY_ENDPOINT } from '@/test/eligibilityHandlers'

@@ -1,6 +1,6 @@
 import { BUILD_VERSION } from '@/config/build-version.const'
-import { buildEligibilityRequest } from '@/domain/plans/api/eligibility-api'
-import type { EligibilityInput } from '@/domain/plans/api/eligibility.types'
+import { buildEligibilityRequest } from '@/domain/api/eligibility-request-builder'
+import type { EligibilityInput } from '@/domain/api/eligibility.types'
 
 const input = (overrides: Partial<EligibilityInput> = {}): EligibilityInput => ({
   domain: 'https://api.sandbox.getalma.eu',

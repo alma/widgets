@@ -1,8 +1,8 @@
 import { html, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
-import { isCredit, isPayLater } from '@/domain/plans/plan-kind'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { isCredit, isPayLater } from '@/domain/utils/plan-kind'
 import {
   getCreditDurationInMonths,
   getCustomerFees,
@@ -11,7 +11,7 @@ import {
   getInitialDeposit,
   getTotalCreditCost,
   getTotalPurchaseAmount,
-} from '@/domain/plans/regulatory-figures'
+} from '@/domain/utils/regulatory-figures'
 import { secondsToMilliseconds } from '@/lib/date'
 import { priceFromCents } from '@/lib/price'
 import type { IntlShape, MessageDescriptor } from '@/shared/i18n/i18n.types'

@@ -1,6 +1,6 @@
 import { html, render } from 'lit'
 
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { mockP2XEligiblePlan, mockP3XEligiblePlanWithFees } from '@/test/fixtures'
 import { renderTemplate } from '@/test/render-template'

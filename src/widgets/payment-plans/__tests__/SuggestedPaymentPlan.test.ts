@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 
-import type { ConfigPlan } from '@/domain/plans/plans.types'
+import type { ConfigPlan } from '@/domain/plans.types'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { eligibilityPlans } from '@/test/eligibilityHandlers'
 import { configPlans, mockButtonPlans } from '@/test/fixtures'

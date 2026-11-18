@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 
 import { axe } from 'vitest-axe'
 
-import type { EligibilityPlanToDisplay, EligiblePlan } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay, EligiblePlan } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import {
   mockP4XAboveMaxDisplayPlan,

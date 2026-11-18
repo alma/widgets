@@ -1,5 +1,5 @@
-import { isP1X, isPayLater } from '@/domain/plans/plan-kind'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { isP1X, isPayLater } from '@/domain/utils/plan-kind'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { planStringsMessages } from '@/widgets/common/plan.messages'
 

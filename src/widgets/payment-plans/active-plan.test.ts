@@ -1,4 +1,4 @@
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import {
   mockP1XEligiblePlan,
   mockP2XEligiblePlan,
