@@ -15,7 +15,7 @@ import {
 import { secondsToMilliseconds } from '@/lib/date'
 import { priceFromCents } from '@/lib/price'
 import type { IntlShape, MessageDescriptor } from '@/shared/i18n/i18n.types'
-import { formatRichText, type RichText } from '@/shared/ui/rich-text'
+import { formatRichText, type RichText } from '@/shared/i18n/rich-text'
 import { planStringsMessages } from '@/widgets/common/plan.messages'
 import { legalMentionsMessages } from '@/widgets/eligibility-modal/templates/schedule/legal-mentions.messages'
 import styles from '@/widgets/eligibility-modal/templates/schedule/legal-mentions.module.css'

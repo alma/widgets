@@ -1,7 +1,7 @@
 import { html, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
-import { withClassName } from '@/shared/ui/class-name'
+import { withClassName } from '@/shared/utils/class-name'
 import styles from '@/widgets/eligibility-modal/templates/loading-indicator.module.css'
 
 export interface LoadingIndicatorParams {

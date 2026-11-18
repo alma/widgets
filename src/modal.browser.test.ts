@@ -1,7 +1,7 @@
 import { html, render } from 'lit'
 import { userEvent } from 'vitest/browser'
 
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { mockButtonPlans } from '@/test/fixtures'
 import { mountWidget } from '@/test/mount-widget'
 import {

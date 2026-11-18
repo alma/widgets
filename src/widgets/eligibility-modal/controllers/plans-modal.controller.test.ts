@@ -3,8 +3,8 @@ import userEvent from '@testing-library/user-event'
 
 import { StatusResponse } from '@/domain/api/eligibility.const'
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { createIntl } from '@/shared/i18n/create-intl'
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
 import {
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,

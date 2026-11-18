@@ -1,7 +1,7 @@
 import { html, type TemplateResult } from 'lit'
 
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { cardMessages } from '@/shared/ui/icons/cards/cards.messages'
+import { cardMessages } from '@/shared/templates/card-logos/cards.messages'
 
 export interface MastercardParams {
   intl: IntlShape

@@ -1,8 +1,8 @@
 import { html, type TemplateResult } from 'lit'
 
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { cardMessages } from '@/shared/ui/icons/cards/cards.messages'
-import { withSvgId } from '@/shared/ui/icons/svg-id'
+import { cardMessages } from '@/shared/templates/card-logos/cards.messages'
+import { withSvgId } from '@/shared/utils/svg-id'
 
 export interface CbParams {
   intl: IntlShape

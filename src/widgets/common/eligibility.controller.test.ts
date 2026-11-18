@@ -5,7 +5,7 @@ import { createKey, setCache } from '@/domain/api/eligibility-cache'
 import { StatusResponse } from '@/domain/api/eligibility.const'
 import type { ConfigPlan, EligibilityPlan } from '@/domain/plans.types'
 import filterEligibility from '@/domain/utils/filter-plans'
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import {
   configPlans,
   mockP1XEligiblePlan,

@@ -1,6 +1,6 @@
 import noScroll from 'no-scroll'
 
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { ModalPortalController } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 
 class ModalPortalHost extends LightDomElement {

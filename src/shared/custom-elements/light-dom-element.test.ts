@@ -3,7 +3,7 @@ import { property } from 'lit/decorators.js'
 import type { MockInstance } from 'vitest'
 
 import { resetWarnOnce } from '@/lib/errors'
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 
 class TestLightDomElement extends LightDomElement {
   @property() label = 'first'

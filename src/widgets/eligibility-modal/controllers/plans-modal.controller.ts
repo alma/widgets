@@ -5,7 +5,7 @@ import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { isSomePlanDeferred } from '@/domain/utils/plan-kind'
 import { type MediaQueryWatch, watchMediaQuery } from '@/lib/watch-media-query'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import type { Card } from '@/shared/ui/icons/cards/cards.types'
+import type { Card } from '@/shared/templates/card-logos/cards.types'
 import {
   ModalPortalController,
   type ModalPortalHost,

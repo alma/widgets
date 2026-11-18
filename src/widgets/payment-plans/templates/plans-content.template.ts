@@ -5,7 +5,7 @@ import { repeat } from 'lit/directives/repeat.js'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { almaLogoTemplate } from '@/shared/ui/icons/alma-logo.template'
+import { almaLogoTemplate } from '@/shared/templates/alma-logo/alma-logo.template'
 import { planSectionMessages } from '@/widgets/common/plan.messages'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/payment-plans/payment-plans.const'
 import { loaderTemplate } from '@/widgets/payment-plans/templates/loader.template'

@@ -6,7 +6,7 @@ import { shouldNotifyCustomerOfNoFees } from '@/domain/utils/regulatory-figures'
 import { secondsToMilliseconds } from '@/lib/date'
 import { priceFromCents } from '@/lib/price'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { formatRichText, type RichText } from '@/shared/ui/rich-text'
+import { formatRichText, type RichText } from '@/shared/i18n/rich-text'
 import styles from '@/widgets/common/plan-strings.module.css'
 import { planStringsMessages } from '@/widgets/common/plan.messages'
 

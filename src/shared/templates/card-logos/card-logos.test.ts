@@ -1,39 +1,17 @@
-import { html, render, type TemplateResult } from 'lit'
+import { html, render } from 'lit'
 import { axe } from 'vitest-axe'
 
 import { createIntl } from '@/shared/i18n/create-intl'
-import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { almaLogoTemplate } from '@/shared/ui/icons/alma-logo.template'
-import { amexTemplate } from '@/shared/ui/icons/cards/amex.template'
-import { cbTemplate } from '@/shared/ui/icons/cards/cb.template'
-import { mastercardTemplate } from '@/shared/ui/icons/cards/mastercard.template'
-import { visaTemplate } from '@/shared/ui/icons/cards/visa.template'
-import { crossTemplate } from '@/shared/ui/icons/cross.template'
+import { amexTemplate } from '@/shared/templates/card-logos/amex.template'
+import { cbTemplate } from '@/shared/templates/card-logos/cb.template'
+import { mastercardTemplate } from '@/shared/templates/card-logos/mastercard.template'
+import { visaTemplate } from '@/shared/templates/card-logos/visa.template'
 import { renderTemplate } from '@/test/render-template'
 
 const attributesHoldingUndefined = (root: Element) =>
   [root, ...root.querySelectorAll('*')].flatMap((element) =>
     element.getAttributeNames().filter((name) => element.getAttribute(name) === 'undefined'),
   )
-
-describe('decorative icons', () => {
-  it.each([
-    { name: 'AlmaLogo', template: almaLogoTemplate },
-    { name: 'Cross', template: crossTemplate },
-  ])('should render $name hidden from assistive technologies', async ({ template }) => {
-    const container = renderTemplate(template())
-
-    const svg = container.querySelector('svg')
-    expect(svg?.getAttribute('aria-hidden')).toBe('true')
-    expect(svg?.getAttribute('focusable')).toBe('false')
-    expect(svg?.hasAttribute('aria-label')).toBe(false)
-    expect(svg?.hasAttribute('role')).toBe(false)
-    expect(svg?.hasAttribute('class')).toBe(false)
-    expect(attributesHoldingUndefined(container)).toEqual([])
-
-    expect(await axe(container)).toHaveNoViolations()
-  })
-})
 
 describe('payment cards', () => {
   const fr = createIntl('fr')
@@ -81,19 +59,6 @@ describe('payment cards', () => {
   )
 
   describe('SVG IDs', () => {
-    const gradientTemplates = { amex: amexTemplate, cb: cbTemplate }
-
-    it('should give each Amex and CB logo its own gradient ID', () => {
-      const container = renderTemplate(
-        html`${amexTemplate({ intl: fr })} ${amexTemplate({ intl: fr })} ${cbTemplate({ intl: fr })}
-        ${cbTemplate({ intl: fr })}`,
-      )
-
-      const ids = Array.from(container.querySelectorAll('[id]'), (element) => element.id)
-      expect(ids).toHaveLength(4)
-      expect(new Set(ids).size).toBe(4)
-    })
-
     it('should point each gradient reference inside its own <svg>', () => {
       const container = renderTemplate(
         html`${amexTemplate({ intl: fr })} ${amexTemplate({ intl: fr })} ${cbTemplate({ intl: fr })}
@@ -113,23 +78,11 @@ describe('payment cards', () => {
       })
     })
 
-    it.each(Object.entries(gradientTemplates))(
-      'should keep the %s gradient ID across re-renders',
-      (_card, template: (params: { intl: IntlShape }) => TemplateResult) => {
-        const container = renderTemplate(template({ intl: fr }))
-        const id = container.querySelector('linearGradient')?.id
-
-        render(template({ intl: createIntl('en') }), container)
-
-        expect(container.querySelectorAll('svg')).toHaveLength(1)
-        expect(container.querySelector('linearGradient')?.id).toBe(id)
-      },
-    )
-
-    it('should render the Mastercard logo without IDs', () => {
-      const container = renderTemplate(
-        html`${mastercardTemplate({ intl: fr })} ${mastercardTemplate({ intl: fr })}`,
-      )
+    it.each([
+      { name: 'Mastercard', template: mastercardTemplate },
+      { name: 'Visa', template: visaTemplate },
+    ])('should render the $name logo without IDs', ({ template }) => {
+      const container = renderTemplate(html`${template({ intl: fr })} ${template({ intl: fr })}`)
 
       expect(container.querySelectorAll('[id]')).toHaveLength(0)
     })

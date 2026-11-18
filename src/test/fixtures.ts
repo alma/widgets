@@ -1,6 +1,6 @@
 import type { ConfigPlan, EligibilityPlan, EligibilityPlanToDisplay } from '@/domain/plans.types'
 import filterEligibility from '@/domain/utils/filter-plans'
-import type { Card } from '@/shared/ui/icons/cards/cards.types'
+import type { Card } from '@/shared/templates/card-logos/cards.types'
 import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
 
 const baseEligiblePlan = eligiblePlanBuilder().withPurchaseAmount(45000)

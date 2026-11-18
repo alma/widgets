@@ -1,7 +1,7 @@
 import { html, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
-import { withClassName } from '@/shared/ui/class-name'
+import { withClassName } from '@/shared/utils/class-name'
 import styles from '@/widgets/payment-plans/templates/loader.module.css'
 
 export interface LoaderParams {

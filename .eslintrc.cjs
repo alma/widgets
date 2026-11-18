@@ -51,7 +51,7 @@ const LAYER_ZONES = LAYERS.map(([folder, allowed, message]) => ({
 const LINKED_CSS =
   'CSS stays in the linked stylesheet, so merchant overrides keep winning. Import the CSS module and bind its classes with classMap.'
 const SAFE_CUSTOM_ELEMENT =
-  'Register the tag with safeCustomElement from @/shared/ui/lit/safe-custom-element, so the first bundle on the page wins.'
+  'Register the tag with safeCustomElement from @/shared/custom-elements/safe-custom-element, so the first bundle on the page wins.'
 const INNER_HTML_BAN = {
   selector: 'AssignmentExpression > MemberExpression.left[property.name="innerHTML"]',
   message: 'No innerHTML assignment: render with a Lit template, which escapes text.',
@@ -65,7 +65,7 @@ const SRC_BANS = [
   {
     selector: ':matches(ClassDeclaration, ClassExpression)[superClass.name="LitElement"]',
     message:
-      'No LitElement subclass: extend LightDomElement from @/shared/ui/lit/light-dom-element, which renders in light DOM so merchant CSS applies.',
+      'No LitElement subclass: extend LightDomElement from @/shared/custom-elements/light-dom-element, which renders in light DOM so merchant CSS applies.',
   },
   {
     selector: 'CallExpression[callee.property.name="attachShadow"]',
@@ -121,7 +121,7 @@ const LIT_IN_DOMAIN = {
     '@lit/*',
     '@lit-labs/*',
   ],
-  message: 'domain/ is plain TypeScript. Lit code goes in widgets/ or shared/ui/.',
+  message: 'domain/ is plain TypeScript. Lit code goes in widgets/ or shared/.',
 }
 
 const TESTS = ['src/**/*.test.ts', 'src/**/__tests__/**', 'src/test/**']

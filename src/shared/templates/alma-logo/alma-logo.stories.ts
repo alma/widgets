@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 
-import { almaLogoTemplate, type AlmaLogoParams } from '@/shared/ui/icons/alma-logo.template'
+import {
+  almaLogoTemplate,
+  type AlmaLogoParams,
+} from '@/shared/templates/alma-logo/alma-logo.template'
 
 const meta: Meta<AlmaLogoParams> = {
   render: (args) => almaLogoTemplate(args),

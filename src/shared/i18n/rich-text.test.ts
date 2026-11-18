@@ -1,7 +1,7 @@
 import { html } from 'lit'
 
 import { createIntl } from '@/shared/i18n/create-intl'
-import { formatRichText, type RichText } from '@/shared/ui/rich-text'
+import { formatRichText, type RichText } from '@/shared/i18n/rich-text'
 import { testMessages } from '@/test/message-descriptors'
 import { renderTemplate } from '@/test/render-template'
 

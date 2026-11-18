@@ -1,7 +1,7 @@
 import { html } from 'lit'
 
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
-import { MediaQueryController } from '@/shared/ui/media-query.controller'
+import { MediaQueryController } from '@/shared/controllers/media-query.controller'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { useFakeMatchMedia } from '@/test/match-media'
 
 const WIDE = '(min-width: 800px)'

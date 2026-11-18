@@ -2,7 +2,7 @@ import { screen } from '@testing-library/dom'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import type { Card } from '@/shared/ui/icons/cards/cards.types'
+import type { Card } from '@/shared/templates/card-logos/cards.types'
 import { renderTemplate } from '@/test/render-template'
 import { modalLayoutTemplate } from '@/widgets/eligibility-modal/templates/modal-layout.template'
 
