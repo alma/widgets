@@ -6,7 +6,7 @@ import {
   type EligibilityPlanToDisplay,
   filterEligiblePlans,
   requiresLegalDisclosure,
-  statusResponse,
+  StatusResponse,
 } from '@/domain/plans'
 import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
@@ -121,7 +121,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     intl: this.intl,
   }))
 
-  private previousStatus: statusResponse | undefined
+  private previousStatus: StatusResponse | undefined
 
   private planListsCache: { plans: EligibilityPlanToDisplay[]; lists: PlanLists } | undefined
 
@@ -202,7 +202,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     this.announced = key
     if (!this.hasValidLocale) return
     const plan = this.plansToDisplay[current]
-    if (!plan || status !== statusResponse.SUCCESS) return
+    if (!plan || status !== StatusResponse.SUCCESS) return
     const intl = this.intl
     this.announcer.announce(
       intl.formatMessage(paymentPlansMessages.planSelectionChanged, {
@@ -218,7 +218,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     const { status } = this.eligibility
     if (status === this.previousStatus) return
     this.previousStatus = status
-    if (status !== statusResponse.SUCCESS || this.suggestedPaymentPlan === undefined) return
+    if (status !== StatusResponse.SUCCESS || this.suggestedPaymentPlan === undefined) return
     this.cycling.onHover(
       getIndexOfActivePlan({
         eligibilityPlans: this.plansToDisplay,
@@ -250,14 +250,14 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     }
     const { intl } = this
     const { status } = this.eligibility
-    if (status === statusResponse.PENDING) {
+    if (status === StatusResponse.PENDING) {
       return plansLoadingTemplate()
     }
     const { eligiblePlans, plansToDisplay } = this
     if (
       (this.hideIfNotEligible && eligiblePlans.length === 0) ||
       plansToDisplay.length === 0 ||
-      status === statusResponse.FAILED
+      status === StatusResponse.FAILED
     ) {
       return nothing
     }

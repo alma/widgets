@@ -1,7 +1,7 @@
 import type { MockInstance } from 'vitest'
 
 import { createKey, setCache } from '@/domain/plans/api/eligibility-cache'
-import { statusResponse } from '@/domain/plans/api/eligibility.const'
+import { StatusResponse } from '@/domain/plans/api/eligibility.const'
 import type { EligibilityInput } from '@/domain/plans/api/eligibility.types'
 import { getEligibility } from '@/domain/plans/api/get-eligibility'
 import { BUILD_VERSION } from '@/shared/config/build-version.const'
@@ -22,7 +22,7 @@ const input = (overrides: Partial<EligibilityInput> = {}): EligibilityInput => (
   ...overrides,
 })
 
-const FAILED = { status: statusResponse.FAILED, plans: [] }
+const FAILED = { status: StatusResponse.FAILED, plans: [] }
 
 const seed = (entry: unknown, overrides: Partial<EligibilityInput> = {}) =>
   sessionStorage.setItem(createKey(input(overrides)), JSON.stringify(entry))
@@ -57,7 +57,7 @@ describe('getEligibility', () => {
         },
       })
       // Raw, not filtered.
-      expect(result).toEqual({ status: statusResponse.SUCCESS, plans: mockPlansAllEligible })
+      expect(result).toEqual({ status: StatusResponse.SUCCESS, plans: mockPlansAllEligible })
       expect(
         JSON.parse(sessionStorage.getItem(createKey(input({ merchantCoversAllFees: true })))!),
       ).toEqual({ value: mockPlansAllEligible, timestamp: Date.now() })
@@ -70,7 +70,7 @@ describe('getEligibility', () => {
 
       const result = await getEligibility(input())
 
-      expect(result).toEqual({ status: statusResponse.SUCCESS, plans: newMockedResult })
+      expect(result).toEqual({ status: StatusResponse.SUCCESS, plans: newMockedResult })
       expect(fetchFromApi).not.toHaveBeenCalled()
     })
 
@@ -105,7 +105,7 @@ describe('getEligibility', () => {
       seed({ value: mockPlansAllEligible, timestamp: Date.now() - (HOUR - 1) })
 
       expect(await getEligibility(input())).toEqual({
-        status: statusResponse.SUCCESS,
+        status: StatusResponse.SUCCESS,
         plans: mockPlansAllEligible,
       })
       expect(fetchFromApi).not.toHaveBeenCalled()
@@ -114,7 +114,7 @@ describe('getEligibility', () => {
     it('uses an entry without timestamp, which never expires', async () => {
       seed({ value: mockPlansAllEligible })
 
-      expect((await getEligibility(input())).status).toBe(statusResponse.SUCCESS)
+      expect((await getEligibility(input())).status).toBe(StatusResponse.SUCCESS)
       expect(fetchFromApi).not.toHaveBeenCalled()
     })
 
@@ -122,7 +122,7 @@ describe('getEligibility', () => {
       seed({ value: mockPlansAllEligible, timestamp: Date.now() - HOUR })
       sessionStorage.setItem('merchant-cart', 'keep me')
 
-      expect(await getEligibility(input())).toEqual({ status: statusResponse.PENDING, plans: [] })
+      expect(await getEligibility(input())).toEqual({ status: StatusResponse.PENDING, plans: [] })
       expect(sessionStorage.length).toBe(0)
       expect(fetchFromApi).not.toHaveBeenCalled()
     })
@@ -132,7 +132,7 @@ describe('getEligibility', () => {
       sessionStorage.setItem('merchant-cart', 'keep me')
       vi.mocked(fetchFromApi).mockResolvedValue(mockPlansAllEligible)
 
-      expect((await getEligibility(input())).status).toBe(statusResponse.SUCCESS)
+      expect((await getEligibility(input())).status).toBe(StatusResponse.SUCCESS)
       expect(fetchFromApi).toHaveBeenCalledTimes(1)
       expect(sessionStorage.length).toBe(1)
     })
@@ -141,7 +141,7 @@ describe('getEligibility', () => {
       seed(null)
       vi.mocked(fetchFromApi).mockResolvedValue([])
 
-      expect(await getEligibility(input())).toEqual({ status: statusResponse.SUCCESS, plans: [] })
+      expect(await getEligibility(input())).toEqual({ status: StatusResponse.SUCCESS, plans: [] })
       expect(fetchFromApi).toHaveBeenCalledTimes(1)
     })
   })
@@ -150,7 +150,7 @@ describe('getEligibility', () => {
     it('caches an empty array and returns success', async () => {
       vi.mocked(fetchFromApi).mockResolvedValue([])
 
-      expect(await getEligibility(input())).toEqual({ status: statusResponse.SUCCESS, plans: [] })
+      expect(await getEligibility(input())).toEqual({ status: StatusResponse.SUCCESS, plans: [] })
       expect(sessionStorage.length).toBe(1)
     })
 
@@ -272,7 +272,7 @@ describe('getEligibility', () => {
       vi.mocked(fetchFromApi).mockResolvedValue(mockPlansAllEligible)
 
       expect((await getEligibility(input({ configPlans: null }))).status).toBe(
-        statusResponse.SUCCESS,
+        StatusResponse.SUCCESS,
       )
       expect(vi.mocked(fetchFromApi).mock.calls[0][0].body.queries).toBeUndefined()
       expect(sessionStorage.getItem(createKey(input({ configPlans: null })))).not.toBeNull()
@@ -295,7 +295,7 @@ describe('getEligibility', () => {
     await Promise.all(pending)
 
     // Once the cache holds the response, the next call sends no request.
-    expect((await getEligibility(input())).status).toBe(statusResponse.SUCCESS)
+    expect((await getEligibility(input())).status).toBe(StatusResponse.SUCCESS)
     expect(fetchFromApi).toHaveBeenCalledTimes(2)
   })
 })

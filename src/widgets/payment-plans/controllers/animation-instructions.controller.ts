@@ -1,6 +1,6 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
-import { statusResponse } from '@/domain/plans'
+import { StatusResponse } from '@/domain/plans'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { animationInstructionsMessages } from '@/widgets/payment-plans/controllers/animation-instructions.messages'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
@@ -8,7 +8,7 @@ import { AnnounceController } from '@/widgets/payment-plans/controllers/announce
 export type AnimationInstructionsHost = ReactiveControllerHost
 
 export type AnimationInstructionsInputs = {
-  status: statusResponse
+  status: StatusResponse
   hasUserInteracted: boolean
   eligiblePlansCount: number
   // The merchant's raw option. Master checks it before a suggested plan or the default replaces it.
@@ -28,7 +28,7 @@ const sameInputs = (a: AnimationInstructionsInputs, b: AnimationInstructionsInpu
   a.intl === b.intl
 
 const shouldAnnounce = (inputs: AnimationInstructionsInputs): boolean =>
-  inputs.status === statusResponse.SUCCESS &&
+  inputs.status === StatusResponse.SUCCESS &&
   !inputs.hasUserInteracted &&
   inputs.eligiblePlansCount > 1 &&
   inputs.transitionDelay !== -1

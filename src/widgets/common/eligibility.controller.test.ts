@@ -7,7 +7,7 @@ import {
   type EligibilityPlan,
   filterEligibility,
   setCache,
-  statusResponse,
+  StatusResponse,
 } from '@/domain/plans'
 import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
 import {
@@ -85,7 +85,7 @@ const stubApi = () => {
 }
 
 const settled = (host: TestEligibilityHost) =>
-  vi.waitFor(() => expect(host.eligibility.status).not.toBe(statusResponse.PENDING))
+  vi.waitFor(() => expect(host.eligibility.status).not.toBe(StatusResponse.PENDING))
 
 describe('EligibilityController', () => {
   let warn: MockInstance<typeof console.warn>
@@ -103,14 +103,14 @@ describe('EligibilityController', () => {
       const api = stubApi()
       const host = mountHost({ merchantCoversAllFees: true })
 
-      expect(host.eligibility.status).toBe(statusResponse.PENDING)
+      expect(host.eligibility.status).toBe(StatusResponse.PENDING)
       expect(host.textContent).toBe('pending:0')
       await vi.waitFor(() => expect(api.fetchMock).toHaveBeenCalledTimes(1))
 
       api.answer(mockPlansAllEligible)
       await settled(host)
 
-      expect(host.eligibility.status).toBe(statusResponse.SUCCESS)
+      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
       expect(host.eligibility.plans).toEqual(filterEligibility(mockPlansAllEligible))
       await host.updateComplete
       expect(host.textContent).toBe(`success:${host.eligibility.plans.length}`)
@@ -126,7 +126,7 @@ describe('EligibilityController', () => {
       const host = mountHost()
       await settled(host)
 
-      expect(host.eligibility.status).toBe(statusResponse.SUCCESS)
+      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
       expect(host.eligibility.plans).toEqual(filterEligibility(newMockedResult))
       expect(api.fetchMock).not.toHaveBeenCalled()
     })
@@ -141,7 +141,7 @@ describe('EligibilityController', () => {
       api.answer(body)
       await settled(host)
 
-      expect(host.eligibility.status).toBe(statusResponse.FAILED)
+      expect(host.eligibility.status).toBe(StatusResponse.FAILED)
       expect(sessionStorage.length).toBe(0)
       expect(host.eligibility.plans).toEqual([])
     })
@@ -156,7 +156,7 @@ describe('EligibilityController', () => {
       api.answer([planInItaly])
       await settled(host)
 
-      expect(host.eligibility.status).toBe(statusResponse.SUCCESS)
+      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
       expect(host.eligibility.plans).toHaveLength(1)
       expect(host.eligibility.plans[0].transaction_country).toBe('IT')
     })
@@ -198,7 +198,7 @@ describe('EligibilityController', () => {
       document.body.append(host)
       await settled(host)
       await host.updateComplete
-      expect(host.eligibility.status).toBe(statusResponse.SUCCESS)
+      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
       expect(host.textContent).toBe(`success:${host.eligibility.plans.length}`)
       expect(api.fetchMock).toHaveBeenCalledTimes(1)
     })
@@ -212,7 +212,7 @@ describe('EligibilityController', () => {
       api.answer(mockPlansAllEligible)
       await settled(host)
 
-      expect(host.eligibility.status).toBe(statusResponse.SUCCESS)
+      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
       expect(api.fetchMock).toHaveBeenCalledTimes(1)
     })
 
@@ -227,7 +227,7 @@ describe('EligibilityController', () => {
       host.requestUpdate()
       await host.updateComplete
 
-      expect(host.eligibility.status).toBe(statusResponse.SUCCESS)
+      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
       expect(api.fetchMock).toHaveBeenCalledTimes(1)
     })
 
@@ -241,7 +241,7 @@ describe('EligibilityController', () => {
       api.answer(mockPlansAllEligible)
       await settled(host)
 
-      expect(host.eligibility.status).toBe(statusResponse.SUCCESS)
+      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
       expect(api.fetchMock).toHaveBeenCalledTimes(1)
       expect(JSON.parse(api.fetchMock.mock.calls[0][1].body as string)).toMatchObject({
         purchase_amount: 30000,
@@ -260,7 +260,7 @@ describe('EligibilityController', () => {
       host.requestUpdate()
       await host.updateComplete
 
-      expect(host.eligibility.status).toBe(statusResponse.SUCCESS)
+      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
       expect(api.fetchMock).toHaveBeenCalledTimes(1)
     })
 
@@ -289,7 +289,7 @@ describe('EligibilityController', () => {
 
       const third = mountHost()
       await settled(third)
-      expect(third.eligibility.status).toBe(statusResponse.SUCCESS)
+      expect(third.eligibility.status).toBe(StatusResponse.SUCCESS)
       expect(api.fetchMock).toHaveBeenCalledTimes(2)
     })
   })
@@ -304,7 +304,7 @@ describe('EligibilityController', () => {
       const host = mountHost()
       await settled(host)
 
-      expect(host.eligibility.status).toBe(statusResponse.FAILED)
+      expect(host.eligibility.status).toBe(StatusResponse.FAILED)
       expect(api.fetchMock).not.toHaveBeenCalled()
       expect(warn).toHaveBeenCalledTimes(1)
     })
@@ -319,7 +319,7 @@ describe('EligibilityController', () => {
       api.answer(mockPlansAllEligible)
       await settled(host)
 
-      expect(host.eligibility.status).toBe(statusResponse.FAILED)
+      expect(host.eligibility.status).toBe(StatusResponse.FAILED)
       expect(host.eligibility.plans).toEqual([])
       expect(warn).toHaveBeenCalledTimes(1)
     })
@@ -332,7 +332,7 @@ describe('EligibilityController', () => {
       api.answer([null])
       await settled(host)
 
-      expect(host.eligibility.status).toBe(statusResponse.FAILED)
+      expect(host.eligibility.status).toBe(StatusResponse.FAILED)
       expect(host.eligibility.plans).toEqual([])
       expect(warn).toHaveBeenCalledTimes(1)
     })
@@ -343,7 +343,7 @@ describe('EligibilityController', () => {
       await settled(host)
       await host.updateComplete
 
-      expect(host.eligibility.status).toBe(statusResponse.FAILED)
+      expect(host.eligibility.status).toBe(StatusResponse.FAILED)
       expect(host.textContent).toBe('failed:0')
       expect(api.fetchMock).not.toHaveBeenCalled()
       expect(warn).toHaveBeenCalledTimes(1)
@@ -361,7 +361,7 @@ describe('EligibilityController', () => {
       await host.updateComplete
       await vi.waitFor(() => expect(sessionStorage.length).toBe(0))
 
-      expect(host.eligibility.status).toBe(statusResponse.PENDING)
+      expect(host.eligibility.status).toBe(StatusResponse.PENDING)
       expect(api.fetchMock).not.toHaveBeenCalled()
     })
   })

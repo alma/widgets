@@ -1,6 +1,6 @@
 import { html } from 'lit'
 
-import { statusResponse } from '@/domain/plans'
+import { StatusResponse } from '@/domain/plans'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
@@ -18,7 +18,7 @@ const INSTRUCTIONS =
   "Animation automatique des plans de paiement active. Survolez ou naviguez avec les flèches pour arrêter l'animation."
 
 const defaultProps: AnimationInstructionsInputs = {
-  status: statusResponse.SUCCESS,
+  status: StatusResponse.SUCCESS,
   hasUserInteracted: false,
   eligiblePlansCount: 2,
   transitionDelay: 5000,
@@ -127,7 +127,7 @@ describe('AnimationInstructionsController', () => {
 
   describe('when conditions are not met', () => {
     it('should not announce when status is not SUCCESS', async () => {
-      await appendHost({ status: statusResponse.PENDING })
+      await appendHost({ status: StatusResponse.PENDING })
 
       vi.advanceTimersByTime(2000)
 
@@ -257,9 +257,9 @@ describe('AnimationInstructionsController', () => {
     })
 
     it('should check the inputs that changed while the host was removed', async () => {
-      const host = await appendHost({ status: statusResponse.PENDING })
+      const host = await appendHost({ status: StatusResponse.PENDING })
       host.remove()
-      host.props = { ...host.props, status: statusResponse.SUCCESS }
+      host.props = { ...host.props, status: StatusResponse.SUCCESS }
 
       document.body.append(host)
       await host.updateComplete

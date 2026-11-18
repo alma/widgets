@@ -1,7 +1,7 @@
 import { html, nothing, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
-import { statusResponse } from '@/domain/plans/api/eligibility.const'
+import { StatusResponse } from '@/domain/plans/api/eligibility.const'
 import { isP1X } from '@/domain/plans/plan-kind'
 import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
@@ -25,7 +25,7 @@ export interface ModalContentParams {
   eligiblePlans: EligibilityPlanToDisplay[]
   // Over every plan the modal received, eligible or not.
   isSomePlanDeferred: boolean
-  status: statusResponse
+  status: StatusResponse
   // Among the eligible plans.
   currentPlanIndex: number
   setCurrentPlanIndex: PlanTabsParams['setCurrentPlanIndex']
@@ -60,12 +60,12 @@ const statusContentTemplate = ({
   setCurrentPlanIndex,
   intl,
 }: StatusContentParams) => {
-  if (status === statusResponse.PENDING) {
+  if (status === StatusResponse.PENDING) {
     return html`<div class=${classMap({ [styles.loader]: true })} role="status" aria-live="polite">
       ${loadingIndicatorTemplate()}
     </div>`
   }
-  if (status !== statusResponse.SUCCESS) {
+  if (status !== StatusResponse.SUCCESS) {
     return nothing
   }
   if (eligiblePlans.length === 0) {
