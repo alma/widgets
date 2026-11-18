@@ -33,7 +33,7 @@
     "test:unit": "vitest run --project unit",
     "test:browser": "vitest run --project browser",
     "test:browser:install": "playwright install --only-shell chromium",
-    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.test.json",
     "lint": "eslint --ext .ts ./src/ ./tests/ && stylelint 'src/**/*.css'",
     "lint:fix": "eslint --fix --ext .ts ./src/ ./tests/ && stylelint 'src/**/*.css' --fix",
     "storybook": "storybook dev -p 6006",

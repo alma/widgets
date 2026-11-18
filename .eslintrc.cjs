@@ -136,7 +136,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.test.json'],
+    project: ['./tsconfig.app.json', './tsconfig.test.json'],
   },
   ignorePatterns: ['/*.*'],
   rules: {
