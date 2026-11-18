@@ -26,10 +26,3 @@ export const planTextMessages = defineMessages({
     defaultMessage: '{months, number} {months, plural, one {mois} other {mois}}',
   },
 })
-
-export const planSectionMessages = defineMessages({
-  sectionTitle: {
-    id: 'accessibility.payment-plans.section-title',
-    defaultMessage: 'Options de paiement disponibles',
-  },
-})

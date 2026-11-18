@@ -6,7 +6,6 @@ import { repeat } from 'lit/directives/repeat.js'
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { paymentPlanShorthandName } from '@/shared/plan-text/plan-text'
-import { planSectionMessages } from '@/shared/plan-text/plan-text.messages'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/eligibility-modal/eligibility-modal.const'
 import { planTabsMessages } from '@/widgets/eligibility-modal/templates/plan-tabs/plan-tabs.messages'
 import styles from '@/widgets/eligibility-modal/templates/plan-tabs/plan-tabs.module.css'
@@ -79,7 +78,7 @@ export const planTabsTemplate = ({
     [styles.buttons]: true,
     [STATIC_CUSTOMISATION_CLASSES.eligibilityOptions]: true,
   })
-  const title = intl.formatMessage(planSectionMessages.sectionTitle)
+  const title = intl.formatMessage(planTabsMessages.sectionTitle)
   return html`<div>
     <div id="payment-plans-title" class="sr-only" role="heading" aria-level="2">${title}</div>
     <div

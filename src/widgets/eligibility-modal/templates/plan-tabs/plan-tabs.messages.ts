@@ -5,4 +5,8 @@ export const planTabsMessages = defineMessages({
     id: 'accessibility.payment-plan-button.aria-label',
     defaultMessage: 'Sélectionner le plan de paiement {planName}',
   },
+  sectionTitle: {
+    id: 'accessibility.payment-plans.section-title',
+    defaultMessage: 'Options de paiement disponibles',
+  },
 })
