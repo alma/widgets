@@ -7,8 +7,8 @@ import { fn } from 'storybook/test'
 import { StatusResponse } from '@/domain/api/eligibility.const'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { mockCards, mockDisplayPlansAllEligible } from '@/test/fixtures'
-import { stubDateNow } from '@/test/story-stubs'
+import { mockCards, mockDisplayPlansAllEligible } from '@/test/fixtures/plans'
+import { stubDateNow } from '@/test/storybook/story-stubs'
 import {
   type ModalContentParams,
   modalContentTemplate,

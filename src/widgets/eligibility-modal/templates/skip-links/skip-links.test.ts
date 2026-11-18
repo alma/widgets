@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { renderTemplate } from '@/test/render-template'
+import { renderTemplate } from '@/test/utils/render-template'
 import { modalContentMessages } from '@/widgets/eligibility-modal/templates/modal-content.messages'
 import {
   type SkipLinksParams,

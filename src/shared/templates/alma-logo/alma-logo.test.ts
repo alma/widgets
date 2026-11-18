@@ -1,7 +1,7 @@
 import { axe } from 'vitest-axe'
 
 import { almaLogoTemplate } from '@/shared/templates/alma-logo/alma-logo.template'
-import { renderTemplate } from '@/test/render-template'
+import { renderTemplate } from '@/test/utils/render-template'
 
 const attributesHoldingUndefined = (root: Element) =>
   [root, ...root.querySelectorAll('*')].flatMap((element) =>

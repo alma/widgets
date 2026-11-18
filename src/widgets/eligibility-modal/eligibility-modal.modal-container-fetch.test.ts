@@ -2,11 +2,11 @@ import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 
 import type { ModalOptions } from '@/public-api/public-api.types'
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
-import { mockButtonPlans } from '@/test/fixtures'
-import { useFakeMatchMedia } from '@/test/match-media'
-import { mountWidget } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+import { mockButtonPlans } from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { useFakeMatchMedia } from '@/test/utils/match-media'
+import { mountWidget } from '@/test/utils/mount-widget'
 import { desktopMediaQuery } from '@/widgets/eligibility-modal/eligibility-modal.const'
 
 // Master renders ModalContainer with a mocked fetchFromApi. Here the modal opens through add(Modal),

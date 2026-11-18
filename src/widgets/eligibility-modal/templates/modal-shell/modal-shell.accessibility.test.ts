@@ -5,7 +5,7 @@ import { configureAxe } from 'vitest-axe'
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { renderTemplate } from '@/test/render-template'
+import { renderTemplate } from '@/test/utils/render-template'
 import {
   ModalPortalController,
   type RequestClose,

@@ -7,9 +7,9 @@ import { MediaQueryController } from '@/shared/controllers/media-query.controlle
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { mockCards } from '@/test/fixtures'
-import { useFakeMatchMedia } from '@/test/match-media'
-import { renderTemplate } from '@/test/render-template'
+import { mockCards } from '@/test/fixtures/plans'
+import { useFakeMatchMedia } from '@/test/utils/match-media'
+import { renderTemplate } from '@/test/utils/render-template'
 import { desktopMediaQuery } from '@/widgets/eligibility-modal/eligibility-modal.const'
 import {
   type ModalLayoutParams,

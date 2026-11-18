@@ -12,7 +12,7 @@ import {
   mockP1XEligiblePlan,
   mockP4XIneligiblePlan,
   mockPlansWithoutDeferred,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
 
 describe('planKind', () => {
   describe('isSomePlanDeferred', () => {

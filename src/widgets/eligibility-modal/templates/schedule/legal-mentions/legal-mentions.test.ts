@@ -10,8 +10,8 @@ import {
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockPayLater30DaysEligiblePlan,
-} from '@/test/fixtures'
-import { renderTemplate } from '@/test/render-template'
+} from '@/test/fixtures/plans'
+import { renderTemplate } from '@/test/utils/render-template'
 import { legalMentionsTemplate } from '@/widgets/eligibility-modal/templates/schedule/legal-mentions/legal-mentions.template'
 
 const intl = createIntl(Locale.fr)

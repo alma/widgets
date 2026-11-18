@@ -2,10 +2,10 @@ import { screen } from '@testing-library/dom'
 
 import type { ConfigPlan } from '@/domain/plans.types'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
-import { configPlans, mockButtonPlans } from '@/test/fixtures'
-import { mountWidget } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+import { configPlans, mockButtonPlans } from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget } from '@/test/utils/mount-widget'
 
 const animationDuration = 5600
 

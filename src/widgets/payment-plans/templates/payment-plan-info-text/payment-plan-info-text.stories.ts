@@ -11,7 +11,7 @@ import {
   mockP10XEligiblePlan,
   mockPayLater30DaysEligiblePlan,
   mockPayLater30DaysEligiblePlanWithFees,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
 import { paymentPlanInfoTextTemplate } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.template'
 
 type InfoTextArgs = { plan: EligibilityPlanToDisplay }

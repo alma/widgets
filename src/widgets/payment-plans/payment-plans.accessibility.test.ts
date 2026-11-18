@@ -5,7 +5,6 @@ import { axe } from 'vitest-axe'
 
 import type { EligibilityPlan } from '@/domain/plans.types'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
-import { eligibilityError, eligibilityPending, eligibilityPlans } from '@/test/eligibilityHandlers'
 import {
   mockButtonPlans,
   mockP10XEligiblePlan,
@@ -15,9 +14,14 @@ import {
   mockP4XEligiblePlanWithFees,
   mockP4XIneligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
-} from '@/test/fixtures'
-import { mountWidget, TEST_CONTAINER } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+} from '@/test/fixtures/plans'
+import {
+  eligibilityError,
+  eligibilityPending,
+  eligibilityPlans,
+} from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget, TEST_CONTAINER } from '@/test/utils/mount-widget'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
 import type { AlmaPaymentPlans } from '@/widgets/payment-plans/payment-plans.element'
 

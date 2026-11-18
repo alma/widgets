@@ -1,4 +1,4 @@
-import { stubDateNow } from '@/test/story-stubs'
+import { stubDateNow } from '@/test/storybook/story-stubs'
 
 describe('stubDateNow', () => {
   it('should fix Date.now() until its undo function runs', () => {

@@ -1,7 +1,7 @@
 import { within } from '@testing-library/dom'
 import { axe } from 'vitest-axe'
 
-import { renderTemplate } from '@/test/render-template'
+import { renderTemplate } from '@/test/utils/render-template'
 import { loadingIndicatorTemplate } from '@/widgets/eligibility-modal/templates/loading-indicator/loading-indicator.template'
 
 const renderIndicator = (className?: string) => {

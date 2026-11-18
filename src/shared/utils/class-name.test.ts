@@ -2,7 +2,7 @@ import { html, render } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
 import { withClassName } from '@/shared/utils/class-name'
-import { renderTemplate } from '@/test/render-template'
+import { renderTemplate } from '@/test/utils/render-template'
 
 describe('withClassName', () => {
   it('should keep only the base class without a className', () => {

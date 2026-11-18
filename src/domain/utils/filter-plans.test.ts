@@ -13,7 +13,7 @@ import {
   mockPayLater30DaysEligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
   mockPlansAllEligible,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
 
 const planConfig = (overrides: Partial<ConfigPlan> = {}): ConfigPlan => ({
   installmentsCount: 2,

@@ -15,7 +15,7 @@ import {
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockPayLaterOneMonthEligiblePlan,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
 
 describe('regulatoryFigures', () => {
   describe('getTotalCreditCost', () => {

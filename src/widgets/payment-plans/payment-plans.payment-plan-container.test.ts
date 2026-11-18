@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/dom'
 
-import { eligibilityPending } from '@/test/eligibilityHandlers'
-import { mountWidget } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+import { eligibilityPending } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget } from '@/test/utils/mount-widget'
 
 describe('PaymentPlanContainer', () => {
   const setup = async () => {

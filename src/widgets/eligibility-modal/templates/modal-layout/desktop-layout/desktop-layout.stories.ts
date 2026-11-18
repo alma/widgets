@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 
 import { createIntl } from '@/shared/i18n/create-intl'
-import { mockCards } from '@/test/fixtures'
+import { mockCards } from '@/test/fixtures/plans'
 import { loadingIndicatorTemplate } from '@/widgets/eligibility-modal/templates/loading-indicator/loading-indicator.template'
 import {
   type DesktopLayoutParams,

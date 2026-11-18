@@ -9,7 +9,7 @@ import {
   mockPayLater30DaysEligiblePlan,
   mockPayLater30DaysEligiblePlanWithFees,
   mockPayLaterOneMonthEligiblePlan,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
 import {
   type LegalMentionsParams,
   legalMentionsTemplate,

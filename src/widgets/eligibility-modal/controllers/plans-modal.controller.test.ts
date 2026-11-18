@@ -9,7 +9,7 @@ import {
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockPlansAllEligible,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
 import { closeModalOf } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import {
   PlansModalController,

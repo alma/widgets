@@ -1,5 +1,5 @@
 // Stories run without Vitest, so no Vitest import.
-import { TODAY } from '@/test/planBuilders'
+import { TODAY } from '@/test/fixtures/plan-builders'
 
 // Defaults to master's "today", which the due dates of the fixtures count from. Returns the undo
 // function.

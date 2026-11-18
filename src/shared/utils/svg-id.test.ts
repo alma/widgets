@@ -1,7 +1,7 @@
 import { html, render } from 'lit'
 
 import { withSvgId } from '@/shared/utils/svg-id'
-import { renderTemplate } from '@/test/render-template'
+import { renderTemplate } from '@/test/utils/render-template'
 
 const gradient = (id: string) => html`<svg><linearGradient id=${id}></linearGradient></svg>`
 

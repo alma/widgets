@@ -1,7 +1,7 @@
 import { axe } from 'vitest-axe'
 
 import { crossTemplate } from '@/shared/templates/icons/cross.template'
-import { renderTemplate } from '@/test/render-template'
+import { renderTemplate } from '@/test/utils/render-template'
 
 const attributesHoldingUndefined = (root: Element) =>
   [root, ...root.querySelectorAll('*')].flatMap((element) =>

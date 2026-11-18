@@ -2,15 +2,15 @@ import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 
 import type { EligibilityPlan } from '@/domain/plans.types'
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
 import {
   configPlans,
   mockP1XEligiblePlan,
   mockPlansAllEligible,
   mockPlansWithoutDeferred,
-} from '@/test/fixtures'
-import { mountWidget } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+} from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget } from '@/test/utils/mount-widget'
 
 // Master passes initialPlanIndex, which add(Modal) doesn't take: a click on that plan stands for it.
 // The merchant plans keep pay-now.

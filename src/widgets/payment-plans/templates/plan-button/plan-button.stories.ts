@@ -3,7 +3,7 @@ import { html } from 'lit'
 import { fn } from 'storybook/test'
 
 import { createIntl } from '@/shared/i18n/create-intl'
-import { mockDisplayPlansSingle, mockP10XBelowMinDisplayPlan } from '@/test/fixtures'
+import { mockDisplayPlansSingle, mockP10XBelowMinDisplayPlan } from '@/test/fixtures/plans'
 import {
   type PlanButtonParams,
   planButtonTemplate,

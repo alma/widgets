@@ -2,10 +2,10 @@ import { screen, waitFor } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { configureAxe } from 'vitest-axe'
 
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
-import { configPlans, mockPlansAllEligible } from '@/test/fixtures'
-import { mountWidget } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+import { configPlans, mockPlansAllEligible } from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget } from '@/test/utils/mount-widget'
 
 // Master labels two regions with payment-schedule-title: EligibilityModal's scheduleArea div and
 // the Schedule region inside it.

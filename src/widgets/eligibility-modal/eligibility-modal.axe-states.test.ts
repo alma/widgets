@@ -3,17 +3,21 @@ import userEvent from '@testing-library/user-event'
 import type { HttpHandler } from 'msw'
 import { axe, configureAxe } from 'vitest-axe'
 
-import { eligibilityError, eligibilityPending, eligibilityPlans } from '@/test/eligibilityHandlers'
 import {
   configPlans,
   mockP10XIneligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockP4XIneligiblePlan,
   mockPlansAllEligible,
-} from '@/test/fixtures'
-import { useFakeMatchMedia } from '@/test/match-media'
-import { mountWidget } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+} from '@/test/fixtures/plans'
+import {
+  eligibilityError,
+  eligibilityPending,
+  eligibilityPlans,
+} from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { useFakeMatchMedia } from '@/test/utils/match-media'
+import { mountWidget } from '@/test/utils/mount-widget'
 import STATIC_CUSTOMISATION_CLASSES, {
   desktopMediaQuery,
 } from '@/widgets/eligibility-modal/eligibility-modal.const'

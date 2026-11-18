@@ -2,8 +2,8 @@ import { html } from 'lit'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { formatRichText, type RichText } from '@/shared/i18n/rich-text'
-import { testMessages } from '@/test/message-descriptors'
-import { renderTemplate } from '@/test/render-template'
+import { testMessages } from '@/test/fixtures/message-descriptors'
+import { renderTemplate } from '@/test/utils/render-template'
 
 // Master's markup.
 const strong = (chunks: RichText) => html`<strong>${chunks}</strong>`

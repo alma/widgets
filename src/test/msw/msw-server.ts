@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 import { setupServer } from 'msw/node'
 
-import { blockAlmaApi } from '@/test/block-alma-api'
+import { blockAlmaApi } from '@/test/msw/block-alma-api'
 
 // setup-jsdom.ts fails the test on any entry, since the code under test may swallow the error.
 export const unhandledRequests: string[] = []

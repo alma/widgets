@@ -1,10 +1,10 @@
 import { screen, waitFor } from '@testing-library/dom'
 import { axe } from 'vitest-axe'
 
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
-import { mockButtonPlans } from '@/test/fixtures'
-import { mountWidget, TEST_CONTAINER } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+import { mockButtonPlans } from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget, TEST_CONTAINER } from '@/test/utils/mount-widget'
 
 const defaultRender = async () => {
   await mountWidget('PaymentPlans', { purchaseAmount: 40000 })

@@ -2,7 +2,7 @@ import { html } from 'lit'
 
 import { MediaQueryController } from '@/shared/controllers/media-query.controller'
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
-import { useFakeMatchMedia } from '@/test/match-media'
+import { useFakeMatchMedia } from '@/test/utils/match-media'
 
 const WIDE = '(min-width: 800px)'
 

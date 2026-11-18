@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite'
 import { html } from 'lit'
 
 import { createIntl } from '@/shared/i18n/create-intl'
-import { mockDeferredMultiInstallmentPlanWithFees } from '@/test/fixtures'
+import { mockDeferredMultiInstallmentPlanWithFees } from '@/test/fixtures/plans'
 import { warningMessageTemplate } from '@/widgets/eligibility-modal/templates/schedule/warning-message/warning-message.template'
 
 interface WarningMessageArgs {

@@ -4,10 +4,10 @@ import userEvent from '@testing-library/user-event'
 import { axe } from 'vitest-axe'
 
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
-import { mockButtonPlans } from '@/test/fixtures'
-import { mountWidget, TEST_CONTAINER } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+import { mockButtonPlans } from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget, TEST_CONTAINER } from '@/test/utils/mount-widget'
 
 const KNOW_MORE_NAME = 'Ouvrir les options de paiement Alma pour en savoir plus'
 

@@ -7,7 +7,7 @@ import {
   setCache,
 } from '@/domain/api/eligibility-cache'
 import type { EligibilityInput } from '@/domain/api/eligibility.types'
-import { mockButtonPlans } from '@/test/fixtures'
+import { mockButtonPlans } from '@/test/fixtures/plans'
 
 // The contract tests' build version, so the keys match theirs.
 vi.mock('@/config/build-version.const', () => ({ BUILD_VERSION: 'contract-test' }))

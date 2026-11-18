@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
-import { mockEligibilityPaymentPlanWithIneligiblePlan } from '@/test/fixtures'
-import { mountWidget } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+import { mockEligibilityPaymentPlanWithIneligiblePlan } from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget } from '@/test/utils/mount-widget'
 
 const animationDuration = 5600
 

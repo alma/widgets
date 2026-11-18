@@ -11,7 +11,7 @@ import messagesPT from '@/intl/messages/messages.pt.json'
 import { createIntl, getTranslationsByLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { MessageValues } from '@/shared/i18n/i18n.types'
-import { testMessages } from '@/test/message-descriptors'
+import { testMessages } from '@/test/fixtures/message-descriptors'
 
 type MessageSpec = {
   defaultMessage: string

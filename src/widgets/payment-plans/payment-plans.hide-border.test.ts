@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/dom'
 
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
-import { mockButtonPlans } from '@/test/fixtures'
-import { mountWidget } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+import { mockButtonPlans } from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget } from '@/test/utils/mount-widget'
 
 it.each([true, false])(
   'renders the widget without border when expected (hideBorder = %s)',

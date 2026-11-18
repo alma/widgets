@@ -1,5 +1,5 @@
 // What jsdom lacks. The browser project keeps the real implementations.
-import { server, startServer, unhandledRequests } from '@/test/msw-server'
+import { server, startServer, unhandledRequests } from '@/test/msw/msw-server'
 
 const useUtc = () => {
   process.env.TZ = 'UTC'

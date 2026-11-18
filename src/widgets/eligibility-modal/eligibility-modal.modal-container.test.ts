@@ -3,9 +3,9 @@ import userEvent from '@testing-library/user-event'
 
 import { ApiMode, Widgets } from '@/index'
 import type { AddReturnType } from '@/public-api/widgets'
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
-import { mockButtonPlans } from '@/test/fixtures'
-import { server } from '@/test/msw-server'
+import { mockButtonPlans } from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
 
 describe('ModalContainer', () => {
   let ModalWidget: AddReturnType

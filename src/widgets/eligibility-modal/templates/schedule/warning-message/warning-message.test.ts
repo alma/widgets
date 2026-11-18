@@ -7,8 +7,8 @@ import {
   mockDeferredMultiInstallmentPlanWithFees,
   mockDeferredMultiInstallmentPlanWithoutFees,
   mockPayLater30DaysEligiblePlan,
-} from '@/test/fixtures'
-import { renderTemplate } from '@/test/render-template'
+} from '@/test/fixtures/plans'
+import { renderTemplate } from '@/test/utils/render-template'
 import { warningMessageTemplate } from '@/widgets/eligibility-modal/templates/schedule/warning-message/warning-message.template'
 
 const intl = createIntl(Locale.fr)

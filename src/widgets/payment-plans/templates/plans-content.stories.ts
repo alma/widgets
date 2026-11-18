@@ -5,7 +5,7 @@ import { fn } from 'storybook/test'
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { requiresLegalDisclosure } from '@/domain/utils/plan-kind'
 import { createIntl } from '@/shared/i18n/create-intl'
-import { mockDisplayPlansAllEligible } from '@/test/fixtures'
+import { mockDisplayPlansAllEligible } from '@/test/fixtures/plans'
 import { paymentPlanInfoTextTemplate } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.template'
 import {
   plansLoadingTemplate,

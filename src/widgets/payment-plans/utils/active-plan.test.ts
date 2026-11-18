@@ -5,7 +5,7 @@ import {
   mockPayLater30DaysEligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
   mockPlansAllEligible,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
 import { getIndexOfActivePlan } from '@/widgets/payment-plans/utils/active-plan'
 
 // mockPlansAllEligible holds P1X, Pay Later (one month), 2x, 3x, 4x and 10x, in this order.

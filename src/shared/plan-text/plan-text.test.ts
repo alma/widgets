@@ -10,7 +10,7 @@ import {
   mockP10XEligiblePlan,
   mockPayLater30DaysEligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
 
 type MessageFixture = {
   locales: Record<string, { messages: Record<string, string | Record<string, string>> }>

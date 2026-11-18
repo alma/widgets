@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 
 import { createIntl } from '@/shared/i18n/create-intl'
-import { mockP1XEligiblePlan, mockP3XEligiblePlanWithFees } from '@/test/fixtures'
+import { mockP1XEligiblePlan, mockP3XEligiblePlanWithFees } from '@/test/fixtures/plans'
 import {
   type TotalBlockParams,
   totalBlockTemplate,

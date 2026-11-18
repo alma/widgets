@@ -9,19 +9,19 @@ import { createIntl } from '@/shared/i18n/create-intl'
 import type { Locale } from '@/shared/i18n/i18n.const'
 import { getPlanDescription } from '@/shared/plan-text/plan-text'
 import {
-  ELIGIBILITY_ENDPOINT,
-  eligibilityError,
-  eligibilityPlans,
-} from '@/test/eligibilityHandlers'
-import {
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockP4XEligiblePlanWithFees,
   mockP4XIneligiblePlan,
   mockP10XIneligiblePlan,
-} from '@/test/fixtures'
-import { mountWidget } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+} from '@/test/fixtures/plans'
+import {
+  ELIGIBILITY_ENDPOINT,
+  eligibilityError,
+  eligibilityPlans,
+} from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget } from '@/test/utils/mount-widget'
 import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 import {
   AlmaPaymentPlans,

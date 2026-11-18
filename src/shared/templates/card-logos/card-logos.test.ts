@@ -6,7 +6,7 @@ import { amexTemplate } from '@/shared/templates/card-logos/amex.template'
 import { cbTemplate } from '@/shared/templates/card-logos/cb.template'
 import { mastercardTemplate } from '@/shared/templates/card-logos/mastercard.template'
 import { visaTemplate } from '@/shared/templates/card-logos/visa.template'
-import { renderTemplate } from '@/test/render-template'
+import { renderTemplate } from '@/test/utils/render-template'
 
 const attributesHoldingUndefined = (root: Element) =>
   [root, ...root.querySelectorAll('*')].flatMap((element) =>

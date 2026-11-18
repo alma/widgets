@@ -15,7 +15,7 @@ import {
   mockPayLater30DaysEligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
   mockPlansAllEligible,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
 
 const SANDBOX = 'https://api.sandbox.getalma.eu'
 

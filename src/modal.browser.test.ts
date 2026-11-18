@@ -2,8 +2,8 @@ import { html, render } from 'lit'
 import { userEvent } from 'vitest/browser'
 
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
-import { mockButtonPlans } from '@/test/fixtures'
-import { mountWidget } from '@/test/mount-widget'
+import { mockButtonPlans } from '@/test/fixtures/plans'
+import { mountWidget } from '@/test/utils/mount-widget'
 import {
   ModalPortalController,
   type RequestClose,

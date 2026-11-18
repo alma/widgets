@@ -6,8 +6,8 @@ import { axe } from 'vitest-axe'
 import type { PaymentPlan } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { DEFAULT_DUE_DATE } from '@/test/planBuilders'
-import { renderTemplate } from '@/test/render-template'
+import { DEFAULT_DUE_DATE } from '@/test/fixtures/plan-builders'
+import { renderTemplate } from '@/test/utils/render-template'
 import { installmentTemplate } from '@/widgets/eligibility-modal/templates/schedule/installment/installment.template'
 
 type MessageFixture = {

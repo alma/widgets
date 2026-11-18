@@ -5,14 +5,14 @@ import { axe } from 'vitest-axe'
 
 import type { EligibilityPlanToDisplay, EligiblePlan } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
+import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/fixtures/plan-builders'
 import {
   mockP4XAboveMaxDisplayPlan,
   mockP10XBelowMinDisplayPlan,
   mockP10XEligiblePlan,
-} from '@/test/fixtures'
-import { injectStyle } from '@/test/inject-style'
-import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/planBuilders'
-import { renderTemplate } from '@/test/render-template'
+} from '@/test/fixtures/plans'
+import { injectStyle } from '@/test/utils/inject-style'
+import { renderTemplate } from '@/test/utils/render-template'
 import { paymentPlanInfoTextTemplate } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.template'
 
 type MessageFixture = {

@@ -1,5 +1,5 @@
 import { watchMediaQuery } from '@/lib/watch-media-query'
-import { useFakeMatchMedia } from '@/test/match-media'
+import { useFakeMatchMedia } from '@/test/utils/match-media'
 
 const WIDE = '(min-width: 800px)'
 

@@ -4,7 +4,7 @@ import { axe } from 'vitest-axe'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { mockDisplayPlansAllEligible } from '@/test/fixtures'
+import { mockDisplayPlansAllEligible } from '@/test/fixtures/plans'
 import {
   type PlanTabsParams,
   planTabsTemplate,
