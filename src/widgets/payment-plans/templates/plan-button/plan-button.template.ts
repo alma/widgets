@@ -2,8 +2,8 @@ import { html, nothing, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { isP1X } from '@/domain/utils/plan-kind'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { paymentPlanShorthandName } from '@/shared/plan-text/plan-text'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/payment-plans/payment-plans.const'
 import styles from '@/widgets/payment-plans/templates/payment-plans.module.css'
 import { planButtonMessages } from '@/widgets/payment-plans/templates/plan-button/plan-button.messages'
@@ -19,6 +19,30 @@ export interface PlanButtonParams {
   onLeave: () => void
   onKeyDown: (event: KeyboardEvent) => void
   onClick: (event: MouseEvent) => void
+}
+
+// Master checks the deferred days before the months.
+const getPlanShorthand = (plan: EligibilityPlanToDisplay, intl: IntlShape): string => {
+  const {
+    deferred_days: deferredDays,
+    deferred_months: deferredMonths,
+    installments_count: installmentsCount,
+  } = plan
+
+  if (isP1X(plan)) {
+    return intl.formatMessage(planButtonMessages.payNow)
+  }
+  if (installmentsCount === 1 && deferredDays) {
+    return intl.formatMessage(planButtonMessages.dayAbbreviation, {
+      deferredDays: `+${deferredDays}`,
+    })
+  }
+  if (installmentsCount === 1 && deferredMonths) {
+    return intl.formatMessage(planButtonMessages.monthAbbreviation, {
+      deferredMonths: `+${deferredMonths}`,
+    })
+  }
+  return `${installmentsCount}x`
 }
 
 export const planButtonTemplate = (
@@ -37,7 +61,7 @@ export const planButtonTemplate = (
   const label = intl.formatMessage(planButtonMessages.planOptionAriaLabel, {
     planDescription: getPlanDescription(plan, intl),
   })
-  const name = paymentPlanShorthandName(plan, intl)
+  const name = getPlanShorthand(plan, intl)
   // No whitespace around the name, which Prettier would add: master's textContent is the name.
   // prettier-ignore
   return html`<button

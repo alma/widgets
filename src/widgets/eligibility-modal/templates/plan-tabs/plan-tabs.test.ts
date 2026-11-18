@@ -1,16 +1,54 @@
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+
 import { fireEvent, screen } from '@testing-library/dom'
 import { render } from 'lit'
 import { axe } from 'vitest-axe'
 
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { mockDisplayPlansAllEligible } from '@/test/fixtures/plans'
+import {
+  mockDisplayPlansAllEligible,
+  mockP1XEligiblePlan,
+  mockPayLater30DaysEligiblePlan,
+  mockPayLaterOneMonthEligiblePlan,
+} from '@/test/fixtures/plans'
+import { renderTemplate } from '@/test/utils/render-template'
 import {
   type PlanTabsParams,
   planTabsTemplate,
 } from '@/widgets/eligibility-modal/templates/plan-tabs/plan-tabs.template'
 
 const intl = createIntl(Locale.fr)
+
+type MessageFixture = {
+  locales: Record<string, { messages: Record<string, string | Record<string, string>> }>
+}
+
+const { locales }: MessageFixture = JSON.parse(
+  readFileSync(
+    resolve(__dirname, '../../../../../tests/integration/contract/fixtures/messages.output.json'),
+    'utf8',
+  ),
+)
+
+// Master's text for a message, with each [placeholder] of the fixture replaced by its value.
+const fixtureText = (locale: string, id: string, values: Record<string, string> = {}) =>
+  Object.entries(values).reduce(
+    (result, [name, value]) => result.replace(`[${name}]`, value),
+    locales[locale].messages[id] as string,
+  )
+
+const renderPlan = (plan: EligibilityPlanToDisplay, locale: string) =>
+  renderTemplate(
+    planTabsTemplate({
+      eligibilityPlans: [plan],
+      currentPlanIndex: 0,
+      setCurrentPlanIndex: vi.fn(),
+      intl: createIntl(locale),
+    }),
+  )
 
 const LABELS = ['Payer maintenant', 'M+1', '2x', '3x', '4x', '10x']
 
@@ -190,5 +228,43 @@ describe('planTabsTemplate', () => {
     expect(planButtons()[0]).toHaveFocus()
     await vi.waitFor(() => expect(planButtons()[1]).toHaveFocus())
     expect(planButtons()[1]).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  describe('short name', () => {
+    it.each([
+      ['2x', { installments_count: 2, deferred_days: 0, deferred_months: 0 }],
+      ['12x', { installments_count: 12, deferred_days: 0, deferred_months: 0 }],
+      ['Payer maintenant', { installments_count: 1, deferred_days: 0, deferred_months: 0 }],
+      ['J+30', { installments_count: 1, deferred_days: 30, deferred_months: 0 }],
+      ['M+1', { installments_count: 1, deferred_days: 0, deferred_months: 1 }],
+      // Master checks the deferred days before the months.
+      ['J+30', { installments_count: 1, deferred_days: 30, deferred_months: 1 }],
+    ])('should name the plan %s', (shortName, plan) => {
+      renderPlan({ ...mockP1XEligiblePlan, ...plan }, 'fr')
+
+      expect(screen.getByRole('button').textContent).toBe(shortName)
+    })
+
+    describe.each(['fr', 'en'])('in %s', (locale) => {
+      it.each([
+        ['pay now', mockP1XEligiblePlan, 'payment-plan-strings.pay.now.button', {}],
+        [
+          'deferred days',
+          mockPayLater30DaysEligiblePlan,
+          'payment-plan-strings.day-abbreviation',
+          { deferredDays: '+30' },
+        ],
+        [
+          'deferred months',
+          mockPayLaterOneMonthEligiblePlan,
+          'payment-plan-strings.month-abbreviation',
+          { deferredMonths: '+1' },
+        ],
+      ])('should name a %s plan as the message fixture does', (_kind, plan, id, values) => {
+        renderPlan(plan, locale)
+
+        expect(screen.getByRole('button').textContent).toBe(fixtureText(locale, id, values))
+      })
+    })
   })
 })
