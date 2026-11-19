@@ -21,7 +21,7 @@ describe('message descriptors', () => {
     expect(Object.entries(JSON.parse(extracted))).toEqual(Object.entries(sourceCatalogue()))
   }, 30_000)
 
-  it('declares each id of src/intl/messages.json once, with its defaultMessage', () => {
+  it('declares each id of src/intl/messages.json with one defaultMessage', () => {
     const modules = import.meta.glob<Record<string, Record<string, MessageDescriptor>>>(
       '/src/**/*.messages.ts',
       { eager: true },
@@ -29,9 +29,13 @@ describe('message descriptors', () => {
     const descriptors = Object.values(modules)
       .flatMap((module) => Object.values(module))
       .flatMap((messages) => Object.values(messages))
-    const ids = descriptors.map(({ id }) => id)
+    const conflictingIds = descriptors
+      .filter(({ id, defaultMessage }) =>
+        descriptors.some((other) => other.id === id && other.defaultMessage !== defaultMessage),
+      )
+      .map(({ id }) => id)
 
-    expect(ids.filter((id, index) => ids.indexOf(id) !== index)).toEqual([])
+    expect([...new Set(conflictingIds)]).toEqual([])
     expect(
       Object.fromEntries(descriptors.map(({ id, defaultMessage }) => [id, defaultMessage])),
     ).toEqual(sourceCatalogue())

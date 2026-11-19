@@ -37,7 +37,6 @@ src/
     controllers/               eligibility and media query controllers
     custom-elements/           LightDomElement and safeCustomElement
     utils/                     Lit helpers: class names, SVG IDs
-    plan-text/                 plan names and the messages both widgets use
     templates/                 Alma logo, card logos, icons
   domain/                      plans: the model, the eligibility request, the plan rules
     plans.types.ts             the plan model

@@ -38,4 +38,12 @@ export const legalMentionsMessages = defineMessages({
     defaultMessage:
       'Crédit de {financedAmount} au taux débiteur fixe de {customerLendingRate} sur {creditDurationInMonths} mois. Permettant, avec un acompte de {initialDeposit}, incluant des frais de {fees}, de financer un achat de {purchaseAmount}. {disclaimer}',
   },
+  deferredDays: {
+    id: 'payment-plan-strings.deferred.days',
+    defaultMessage: '{days, number} {days, plural, one {jour} other {jours}}',
+  },
+  deferredMonths: {
+    id: 'payment-plan-strings.deferred.months',
+    defaultMessage: '{months, number} {months, plural, one {mois} other {mois}}',
+  },
 })

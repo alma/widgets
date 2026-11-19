@@ -13,4 +13,8 @@ export const plansContentMessages = defineMessages({
     id: 'accessibility.payment-info.section-title',
     defaultMessage: 'Informations sur le plan de paiement sélectionné',
   },
+  sectionTitle: {
+    id: 'accessibility.payment-plans.section-title',
+    defaultMessage: 'Options de paiement disponibles',
+  },
 })

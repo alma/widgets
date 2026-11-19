@@ -13,7 +13,6 @@ import { safeCustomElement } from '@/shared/custom-elements/safe-custom-element'
 import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { getPlanDescription } from '@/shared/plan-text/plan-text'
 import {
   PlansModalController,
   type PlansModalParams,
@@ -29,6 +28,7 @@ import {
   plansContentTemplate,
 } from '@/widgets/payment-plans/templates/plans-content.template'
 import { getIndexOfActivePlan } from '@/widgets/payment-plans/utils/active-plan'
+import { getPlanDescription } from '@/widgets/payment-plans/utils/plan-description'
 
 const DEFAULT_TRANSITION_TIME = 5500
 const ANNOUNCE_DURATION_MS = 1000

@@ -5,7 +5,6 @@ import { repeat } from 'lit/directives/repeat.js'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { planSectionMessages } from '@/shared/plan-text/plan-text.messages'
 import { almaLogoTemplate } from '@/shared/templates/alma-logo/alma-logo.template'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/payment-plans/payment-plans.const'
 import { loaderTemplate } from '@/widgets/payment-plans/templates/loader/loader.template'
@@ -161,7 +160,7 @@ export const plansContentTemplate = (
     [styles.primaryContainer]: true,
     [STATIC_CUSTOMISATION_CLASSES.eligibilityLine]: true,
   })
-  const title = intl.formatMessage(planSectionMessages.sectionTitle)
+  const title = intl.formatMessage(plansContentMessages.sectionTitle)
   const widget = html`<div
     id="alma-widget-payment-plans-main-container"
     class=${rootClasses}

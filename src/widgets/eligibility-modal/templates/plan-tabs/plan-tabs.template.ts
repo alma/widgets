@@ -4,9 +4,8 @@ import { ifDefined } from 'lit/directives/if-defined.js'
 import { repeat } from 'lit/directives/repeat.js'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { isP1X } from '@/domain/utils/plan-kind'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { paymentPlanShorthandName } from '@/shared/plan-text/plan-text'
-import { planSectionMessages } from '@/shared/plan-text/plan-text.messages'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/eligibility-modal/eligibility-modal.const'
 import { planTabsMessages } from '@/widgets/eligibility-modal/templates/plan-tabs/plan-tabs.messages'
 import styles from '@/widgets/eligibility-modal/templates/plan-tabs/plan-tabs.module.css'
@@ -25,6 +24,30 @@ const keyTargets: Record<string, (index: number, count: number) => number> = {
   ArrowRight: (index) => index + 1,
   Home: () => 0,
   End: (_index, count) => count - 1,
+}
+
+// Master checks the deferred days before the months.
+const getPlanShorthand = (plan: EligibilityPlanToDisplay, intl: IntlShape): string => {
+  const {
+    deferred_days: deferredDays,
+    deferred_months: deferredMonths,
+    installments_count: installmentsCount,
+  } = plan
+
+  if (isP1X(plan)) {
+    return intl.formatMessage(planTabsMessages.payNow)
+  }
+  if (installmentsCount === 1 && deferredDays) {
+    return intl.formatMessage(planTabsMessages.dayAbbreviation, {
+      deferredDays: `+${deferredDays}`,
+    })
+  }
+  if (installmentsCount === 1 && deferredMonths) {
+    return intl.formatMessage(planTabsMessages.monthAbbreviation, {
+      deferredMonths: `+${deferredMonths}`,
+    })
+  }
+  return `${installmentsCount}x`
 }
 
 export const planTabsTemplate = ({
@@ -54,7 +77,7 @@ export const planTabsTemplate = ({
 
   const planButtonTemplate = (plan: EligibilityPlanToDisplay, index: number) => {
     const isActive = index === currentPlanIndex
-    const name = paymentPlanShorthandName(plan, intl)
+    const name = getPlanShorthand(plan, intl)
     const ariaLabel = intl.formatMessage(planTabsMessages.planButtonAriaLabel, { planName: name })
     // Master renders no class attribute on an inactive button.
     const classes = isActive
@@ -79,7 +102,7 @@ export const planTabsTemplate = ({
     [styles.buttons]: true,
     [STATIC_CUSTOMISATION_CLASSES.eligibilityOptions]: true,
   })
-  const title = intl.formatMessage(planSectionMessages.sectionTitle)
+  const title = intl.formatMessage(planTabsMessages.sectionTitle)
   return html`<div>
     <div id="payment-plans-title" class="sr-only" role="heading" aria-level="2">${title}</div>
     <div
