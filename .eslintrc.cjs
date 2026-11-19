@@ -1,294 +1,245 @@
+// Lint bans only what protects merchants and shoppers. Review covers the other rules of
+// .claude/rules/.
+
+// The layers of src/, lowest first. A folder imports only itself and the layers below it, so the
+// folders of one layer don't import each other.
+const LAYERS = [['lib', 'config'], 'domain', 'shared', 'widgets', 'public-api']
+// The Crowdin catalogues, which only createIntl reads.
+const EXTRA_IMPORTS = { shared: ['intl'] }
+// Each widget stays private to its folder, except the controller that payment-plans opens the
+// modal with.
+const WIDGET_IMPORTS = {
+  'payment-plans': ['eligibility-modal/controllers/plans-modal.controller.ts'],
+  'eligibility-modal': [],
+}
+const PLAIN_TS_LAYERS = ['lib', 'config', 'domain']
+
+const RULES_DOC = 'See .claude/rules/architecture.md.'
+const listOf = (paths) => {
+  // Folders get a trailing slash, files don't.
+  const names = paths.map((path) => (path.includes('.') ? path : `${path}/`))
+  return names.length < 2 ? names.join('') : `${names.slice(0, -1).join(', ')} and ${names.at(-1)}`
+}
+
+// No zone allows src/index.ts or src/test/, so no layer imports them.
+const LAYER_ZONES = LAYERS.flatMap((layer, index) => {
+  const below = LAYERS.slice(0, index).flat()
+  return [layer].flat().map((folder) => {
+    const allowed = [...below, ...(EXTRA_IMPORTS[folder] ?? [])]
+    const rule = allowed.length
+      ? `${folder}/ imports only ${listOf(allowed)}.`
+      : `${folder}/ imports nothing else from src/.`
+    return {
+      target: `./src/${folder}`,
+      from: './src',
+      except: [folder, ...allowed].map((path) => `./${path}`),
+      message: `${rule} ${RULES_DOC}`,
+    }
+  })
+})
+const WIDGET_ZONES = Object.entries(WIDGET_IMPORTS).map(([widget, allowed]) => {
+  const rule = allowed.length
+    ? `widgets/${widget}/ imports another widget only through ${listOf(allowed.map((path) => `widgets/${path}`))}.`
+    : `widgets/${widget}/ imports no other widget.`
+  return {
+    target: `./src/widgets/${widget}`,
+    from: './src/widgets',
+    except: [widget, ...allowed].map((path) => `./${path}`),
+    message: `${rule} ${RULES_DOC}`,
+  }
+})
+const ENTRY_ZONE = {
+  target: './src/index.ts',
+  from: './src',
+  except: ['./main.css', './public-api'],
+  message: `src/index.ts imports only main.css and public-api/. ${RULES_DOC}`,
+}
+
+const LINKED_CSS =
+  'CSS stays in the linked stylesheet, so merchant overrides keep winning. Import the CSS module and bind its classes with classMap.'
+const SAFE_CUSTOM_ELEMENT =
+  'Register the tag with safeCustomElement from @/shared/custom-elements/safe-custom-element, so the first bundle on the page wins.'
+const INNER_HTML_BAN = {
+  selector: 'AssignmentExpression > MemberExpression.left[property.name="innerHTML"]',
+  message: 'No innerHTML assignment: render with a Lit template, which escapes text.',
+}
+const DEFINE_BAN = {
+  selector:
+    'CallExpression[callee.property.name="define"][callee.object.name="customElements"], CallExpression[callee.property.name="define"][callee.object.property.name="customElements"]',
+  message: `No customElements.define: ${SAFE_CUSTOM_ELEMENT}`,
+}
+const SRC_BANS = [
+  {
+    selector: ':matches(ClassDeclaration, ClassExpression)[superClass.name="LitElement"]',
+    message:
+      'No LitElement subclass: extend LightDomElement from @/shared/custom-elements/light-dom-element, which renders in light DOM so merchant CSS applies.',
+  },
+  {
+    selector: 'CallExpression[callee.property.name="attachShadow"]',
+    message: 'No attachShadow: a shadow root stops merchant CSS.',
+  },
+  {
+    selector: ':matches(PropertyDefinition, MethodDefinition)[static=true][key.name="styles"]',
+    message: `No static styles: ${LINKED_CSS}`,
+  },
+  {
+    selector: 'MemberExpression[property.name="adoptedStyleSheets"]',
+    message: `No adoptedStyleSheets: ${LINKED_CSS}`,
+  },
+  {
+    selector: 'Decorator > CallExpression.expression[callee.name="customElement"]',
+    message: `No @customElement: ${SAFE_CUSTOM_ELEMENT}`,
+  },
+  DEFINE_BAN,
+  INNER_HTML_BAN,
+  {
+    selector: 'Property[key.name="timeZone"]',
+    message:
+      "No timeZone option: dates stay in the shopper's local time, like master. Use the helpers in @/lib/date.",
+  },
+  {
+    selector: 'ImportExpression',
+    message: 'No dynamic import(): everything ships in the one UMD bundle. Use a static import.',
+  },
+]
+
+const RELATIVE_IMPORTS = {
+  group: ['.*'],
+  message: 'Use the @/ alias instead of a relative import.',
+}
+const UNSAFE_LIT = {
+  group: [
+    'lit/directives/unsafe-*',
+    'lit-html/directives/unsafe-*',
+    'lit/static-html.js',
+    'lit-html/static.js',
+  ],
+  message:
+    'No unsafe directive or static-html: render with a plain Lit template, which escapes text.',
+}
+const LIT_IMPORTS = {
+  group: [
+    'lit',
+    'lit/*',
+    'lit-html',
+    'lit-html/*',
+    'lit-element',
+    'lit-element/*',
+    '@lit/*',
+    '@lit-labs/*',
+  ],
+  message: `${listOf(PLAIN_TS_LAYERS)} are plain TypeScript. Lit code goes in widgets/ or shared/.`,
+}
+
+const TESTS = ['src/**/*.test.ts', 'src/test/**']
+
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  globals: {
-    React: true,
-    JSX: true,
-    NodeJS: true,
-  },
   root: true,
+  env: { browser: true, es2021: true },
   extends: [
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-    'plugin:jsx-a11y/strict', // use strict mode for jsx-a11y to enforce better accessibility
-    'plugin:import/recommended',
-    'react-app',
-    'react-app/jest',
-    'airbnb',
     'eslint:recommended',
-    'prettier',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'plugin:lit/recommended',
+    'plugin:lit-a11y/recommended',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['react', 'react-hooks', 'prettier', 'jsx-a11y', 'import'],
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: ['./tsconfig.json'],
+    project: ['./tsconfig.app.json', './tsconfig.test.json'],
   },
-  ignorePatterns: ['/*.*', 'src/utils/polyfills.js'],
+  ignorePatterns: ['/*.*'],
   rules: {
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
-    'prettier/prettier': ['error'],
-    'react/style-prop-object': [
+    // TypeScript reports undefined names, and the vitest globals have no ESLint environment.
+    'no-undef': 'off',
+    'no-console': 'error',
+    'no-param-reassign': ['error', { props: true }],
+    'no-void': ['error', { allowAsStatement: true }],
+    'no-restricted-imports': ['error', { patterns: [RELATIVE_IMPORTS] }],
+    'import/no-restricted-paths': [
       'error',
-      {
-        allow: ['FormattedNumber', 'FormattedDateParts', 'FormattedRelativeTime'],
-      },
+      { basePath: __dirname, zones: [...LAYER_ZONES, ...WIDGET_ZONES, ENTRY_ZONE] },
     ],
-    'testing-library/no-node-access': 'off',
-    'testing-library/no-container': 'off',
-    'no-restricted-imports': [
-      'error',
-      {
-        patterns: ['.*'],
-      },
-    ],
-    'eol-last': ['error', 'always'],
-    'no-underscore-dangle': [
-      'error',
-      {
-        allowFunctionParams: true,
-        allow: ['_md_env_', '_errors'],
-      },
-    ],
-    'no-param-reassign': [
-      'error',
-      {
-        props: true,
-      },
-    ],
-    '@typescript-eslint/no-floating-promises': 'error',
-    'no-void': [
-      'error',
-      {
-        allowAsStatement: true,
-      },
-    ],
-    '@typescript-eslint/no-explicit-any': 'error',
-    '@typescript-eslint/no-unused-vars': 'error',
-    '@typescript-eslint/no-unused-expressions': [
-      'error',
-      {
-        allowTernary: true,
-      },
-    ],
-    'react/jsx-props-no-spreading': [
-      'error',
-      {
-        exceptions: ['div', 'input', 'svg', 'Modal'],
-      },
-    ],
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
-    'react/jsx-no-useless-fragment': [
-      'error',
-      {
-        allowExpressions: true,
-      },
-    ],
-    'react/prop-types': 'off',
-    'react/require-default-props': 'off',
-    'react/jsx-uses-react': 'off',
-    'react/react-in-jsx-scope': 'off',
-    'react/function-component-definition': 'off',
-    'react/no-unstable-nested-components': [
-      'error',
-      {
-        allowAsProps: true,
-      },
-    ],
-    'import/prefer-default-export': 'off',
-    'prefer-destructuring': 'off',
     'import/no-cycle': 'error',
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: [
-          '**/*.test.tsx',
-          '**/*.test.ts',
-          '**/test/**',
-          '**/__tests__/**',
-          '**/*.stories.*',
-          '**/setupTests.ts',
-          'test-utils',
-        ],
-      },
-    ],
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
+    'import/no-duplicates': 'error',
+    // Vite bundles every import into dist/, so any file may import a devDependency.
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/extensions': ['error', 'ignorePackages', { js: 'never', ts: 'never' }],
     'import/order': [
       'warn',
       {
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
+        alphabetize: { order: 'asc', caseInsensitive: true },
         'newlines-between': 'always',
         groups: ['builtin', 'external', 'parent', 'internal', 'sibling', 'index'],
         pathGroups: [
-          {
-            pattern: 'react',
-            group: 'external',
-            position: 'before',
-          },
           { pattern: '@/**', group: 'internal' },
-          {
-            pattern: '^@/**/*.module.css',
-            group: 'sibling',
-            position: 'before',
-          },
+          { pattern: '^@/**/*.module.css', group: 'sibling', position: 'before' },
         ],
-
         pathGroupsExcludedImportTypes: ['builtin'],
       },
     ],
-    /* Accessibility rules */
-    'jsx-a11y/alt-text': [
-      'error',
-      {
-        elements: ['img', 'object', 'area', 'input[type="image"]'],
-        img: ['Image'],
-        object: ['Object'],
-        area: ['Area'],
-        'input[type="image"]': ['InputImage'],
-      },
-    ],
-    'jsx-a11y/anchor-has-content': ['error', { components: ['Link'] }],
-    'jsx-a11y/anchor-is-valid': [
-      'error',
-      {
-        components: ['Link'],
-        specialLink: ['hrefLeft', 'hrefRight'],
-        aspects: ['noHref', 'invalidHref', 'preferButton'],
-      },
-    ],
-    'jsx-a11y/aria-activedescendant-has-tabindex': 'error',
-    'jsx-a11y/aria-props': 'error',
-    'jsx-a11y/aria-proptypes': 'error',
-    'jsx-a11y/aria-role': ['error', { ignoreNonDOM: false }],
-    'jsx-a11y/aria-unsupported-elements': 'error',
-    'jsx-a11y/autocomplete-valid': ['error', { inputComponents: ['Input'] }],
-    'jsx-a11y/click-events-have-key-events': 'error',
-    'jsx-a11y/control-has-associated-label': [
-      'error',
-      {
-        labelAttributes: ['label'],
-        controlComponents: ['CustomComponent'],
-        ignoreElements: ['audio', 'canvas', 'embed', 'input', 'textarea', 'tr', 'video'],
-        ignoreRoles: [
-          'grid',
-          'listbox',
-          'menu',
-          'menubar',
-          'radiogroup',
-          'row',
-          'tablist',
-          'toolbar',
-          'tree',
-          'treegrid',
-        ],
-        depth: 5,
-      },
-    ],
-    'jsx-a11y/heading-has-content': ['error', { components: ['MyHeading'] }],
-    'jsx-a11y/html-has-lang': 'error',
-    'jsx-a11y/iframe-has-title': 'error',
-    'jsx-a11y/img-redundant-alt': 'error',
-    'jsx-a11y/interactive-supports-focus': 'error',
-    'jsx-a11y/label-has-associated-control': [
-      'error',
-      {
-        labelComponents: ['CustomInputLabel'],
-        labelAttributes: ['label'],
-        controlComponents: ['CustomInput'],
-        assert: 'both',
-        depth: 25,
-      },
-    ],
-    'jsx-a11y/lang': 'error',
-    'jsx-a11y/media-has-caption': [
-      'error',
-      {
-        audio: ['Audio'],
-        video: ['Video'],
-        track: ['Track'],
-      },
-    ],
-    'jsx-a11y/mouse-events-have-key-events': 'error',
-    'jsx-a11y/no-access-key': 'error',
-    'jsx-a11y/no-autofocus': ['error', { ignoreNonDOM: true }],
-    'jsx-a11y/no-distracting-elements': [
-      'error',
-      {
-        elements: ['marquee', 'blink'],
-      },
-    ],
-    'jsx-a11y/no-interactive-element-to-noninteractive-role': [
-      'error',
-      {
-        tr: ['none', 'presentation'],
-      },
-    ],
-    'jsx-a11y/no-noninteractive-element-interactions': [
-      'error',
-      {
-        handlers: ['onClick', 'onMouseDown', 'onMouseUp', 'onKeyPress', 'onKeyDown', 'onKeyUp'],
-      },
-    ],
-    'jsx-a11y/no-noninteractive-element-to-interactive-role': [
-      'error',
-      {
-        ul: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
-        ol: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
-        li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
-        table: ['grid'],
-        td: ['gridcell'],
-      },
-    ],
-    'jsx-a11y/no-noninteractive-tabindex': [
-      'error',
-      {
-        tags: [],
-        roles: ['tabpanel'],
-      },
-    ],
-    'jsx-a11y/no-redundant-roles': 'error',
-    'jsx-a11y/no-static-element-interactions': [
-      'error',
-      {
-        handlers: ['onClick', 'onMouseDown', 'onMouseUp', 'onKeyPress', 'onKeyDown', 'onKeyUp'],
-      },
-    ],
-    'jsx-a11y/role-has-required-aria-props': 'error',
-    'jsx-a11y/role-supports-aria-props': 'error',
-    'jsx-a11y/scope': 'error',
-    'jsx-a11y/tabindex-no-positive': 'error',
-    /* Disabling jsx-a11y/prefer-tag-over-role as using role in the context of the widget is required */
-    'jsx-a11y/prefer-tag-over-role': 'off',
-    'react/button-has-type': 'error',
-    'react/no-invalid-html-attribute': 'error',
+    '@typescript-eslint/consistent-type-imports': 'error',
+    '@typescript-eslint/no-floating-promises': 'error',
+    '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
+    '@typescript-eslint/no-unused-expressions': ['error', { allowTernary: true }],
   },
-  settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
+  overrides: [
+    {
+      files: ['src/**/*.ts'],
+      rules: {
+        'no-restricted-syntax': ['error', ...SRC_BANS],
+        'no-restricted-imports': ['error', { patterns: [RELATIVE_IMPORTS, UNSAFE_LIT] }],
       },
     },
+    {
+      // An override replaces the rule's options, so this repeats the src/ patterns.
+      files: PLAIN_TS_LAYERS.map((folder) => `src/${folder}/**/*.ts`),
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          { patterns: [RELATIVE_IMPORTS, UNSAFE_LIT, LIT_IMPORTS] },
+        ],
+      },
+    },
+    {
+      // Tests and stories put the layers together.
+      files: [...TESTS, 'src/**/*.stories.ts'],
+      rules: { 'import/no-restricted-paths': 'off' },
+    },
+    {
+      // Tests build their DOM by hand and define test tags.
+      files: TESTS,
+      rules: {
+        'no-restricted-syntax': [
+          'error',
+          ...SRC_BANS.filter((ban) => ban !== INNER_HTML_BAN && ban !== DEFINE_BAN),
+        ],
+      },
+    },
+    {
+      // Contract tests run on the built bundles. They import each other with relative paths.
+      files: ['tests/**/*.ts'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              {
+                group: ['@/*', 'src', 'src/*', '**/src', '**/src/*'],
+                message:
+                  'Contract tests run on the built bundles in dist-ref/ and dist/. They never import from src/.',
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+  settings: {
+    'import/parsers': { '@typescript-eslint/parser': ['.ts'] },
+    'import/resolver': { typescript: { alwaysTryTypes: true, project: ['./tsconfig.test.json'] } },
   },
 }

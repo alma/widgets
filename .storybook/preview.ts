@@ -1,43 +1,24 @@
-import type { Decorator, Preview } from '@storybook/web-components-vite'
-import { http, HttpResponse } from 'msw'
+import type { Preview } from '@storybook/web-components-vite'
 import { setupWorker } from 'msw/browser'
 import { mswLoader } from 'msw-storybook-addon/csf3'
 
-import { ApiMode } from '@/consts'
+import '@/main.css'
+import { Locale } from '@/shared/i18n/i18n.const'
+import { blockAlmaApi } from '@/test/msw/block-alma-api'
 
-import merchantPageCss from '../examples/style.css?inline'
-import merchantCustomizationCss from './merchant-customization.css?inline'
+import { withMerchantCss } from './decorators/merchant-css'
+import { withModalContainer } from './decorators/modal-container'
 
-const MERCHANT_CSS_ID = 'merchant-css'
-
-// Blocks the Alma API requests a story doesn't mock, so no story reaches the real API
-const blockAlmaApi = Object.values(ApiMode).map((origin) =>
-  http.all(`${origin}/*`, ({ request }) => {
-    console.error(`No MSW handler for ${request.method} ${request.url} in this story`)
-    return HttpResponse.error()
-  }),
-)
-
+// Stories mock requests with parameters.msw.handlers. Storybook's and Vite's requests go through.
 const startMsw = async () => {
-  // Handlers passed to setupWorker() are kept between stories
-  const worker = setupWorker(...blockAlmaApi)
+  // Survives the reset between stories. A story's handlers come first.
+  const worker = setupWorker(
+    ...blockAlmaApi((request) => {
+      console.error(`No MSW handler for ${request.method} ${request.url} in this story`)
+    }),
+  )
   await worker.start({ quiet: true, onUnhandledRequest: 'bypass' })
   return worker
-}
-
-// `on`: a merchant page theme. `customized`: the same, plus a widget customization
-const withMerchantCss: Decorator = (story, { globals }) => {
-  document.getElementById(MERCHANT_CSS_ID)?.remove()
-  if (globals.merchantCss === 'on' || globals.merchantCss === 'customized') {
-    const style = document.createElement('style')
-    style.id = MERCHANT_CSS_ID
-    style.textContent =
-      globals.merchantCss === 'customized'
-        ? `${merchantPageCss}\n${merchantCustomizationCss}`
-        : merchantPageCss
-    document.head.append(style)
-  }
-  return story()
 }
 
 // Undoes what the modal adds to <body>, so it doesn't show in the next story
@@ -62,10 +43,10 @@ const keepBodyClean = () => {
 
 const preview: Preview = {
   loaders: [mswLoader(startMsw)],
-  decorators: [withMerchantCss],
+  decorators: [withModalContainer, withMerchantCss],
   globalTypes: {
     merchantCss: {
-      description: 'Load merchant CSS around the widget',
+      description: 'Load merchant CSS after main.css',
       toolbar: {
         title: 'Merchant CSS',
         icon: 'paintbrush',
@@ -76,21 +57,37 @@ const preview: Preview = {
             value: 'customized',
             title: 'Merchant page CSS + widget customization (should restyle it)',
           },
+          {
+            value: 'fixtures',
+            title: 'Merchant page CSS + the merchant CSS of the contract tests',
+          },
         ],
         dynamicTitle: true,
       },
     },
+    locale: {
+      description: 'Locale of the stories that format text',
+      toolbar: { title: 'Locale', icon: 'globe', items: Object.values(Locale), dynamicTitle: true },
+    },
   },
-  initialGlobals: { merchantCss: 'off' },
+  initialGlobals: { merchantCss: 'off', locale: Locale.en },
   parameters: {
-    // The modal switches layouts at 800px
+    // One on each side of the modal's 800 px breakpoint.
     viewport: {
       options: {
         mobile: { name: 'Mobile', styles: { width: '375px', height: '812px' } },
         desktop: { name: 'Desktop', styles: { width: '1280px', height: '800px' } },
       },
     },
-    // Some stories add the modes of src/test/storybookModes.ts
+    a11y: {
+      // Each axe tag covers only the rules added at its level, so all five run.
+      options: {
+        runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] },
+      },
+      // The panel informs. The blocking accessibility checks run in Vitest.
+      test: 'todo',
+    },
+    // Some stories add the modes of src/test/storybook/storybook-modes.const.ts
     chromatic: {
       modes: {
         desktop: { viewport: 'desktop', merchantCss: 'off' },

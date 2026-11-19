@@ -1,0 +1,15 @@
+/*
+ * Source: third-party theme CSS found by GitHub code search for the alma-* class names. Only the rules on an alma-* class are kept.
+ * Container markup: <div class="almaPlacement"></div>
+ * Mount: .almaPlacement
+ */
+
+.almaPlacement .alma-payment-plans-container {
+    padding-left: 0
+}
+
+@media(max-width:479px) {
+    .almaPlacement .alma-payment-plans-container {
+        width: 100%
+    }
+}
