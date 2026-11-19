@@ -1,7 +1,7 @@
 import { html } from 'lit'
 
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
-import { useFakeMatchMedia } from '@/test/match-media'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
+import { useFakeMatchMedia } from '@/test/utils/match-media'
 import { PlanCyclingController } from '@/widgets/payment-plans/controllers/plan-cycling.controller'
 
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'

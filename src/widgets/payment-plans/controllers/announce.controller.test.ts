@@ -1,6 +1,6 @@
 import { html } from 'lit'
 
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
 
 class AnnounceHost extends LightDomElement {

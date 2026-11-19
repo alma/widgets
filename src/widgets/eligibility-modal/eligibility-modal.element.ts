@@ -1,24 +1,24 @@
 import { nothing, type PropertyValues, render } from 'lit'
 import { property, state } from 'lit/decorators.js'
 
-import { filterEligiblePlans } from '@/domain/plans/filter-plans'
-import { isSomePlanDeferred } from '@/domain/plans/plan-kind'
-import type { ConfigPlan } from '@/domain/plans/plans.types'
+import type { ConfigPlan } from '@/domain/plans.types'
+import { filterEligiblePlans } from '@/domain/utils/filter-plans'
+import { isSomePlanDeferred } from '@/domain/utils/plan-kind'
+import { warnOnce } from '@/lib/errors'
+import { withReactEventMembers } from '@/lib/react-event'
+import { type ApiData, EligibilityController } from '@/shared/controllers/eligibility.controller'
+import { MediaQueryController } from '@/shared/controllers/media-query.controller'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
+import { safeCustomElement } from '@/shared/custom-elements/safe-custom-element'
 import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { warnOnce } from '@/shared/lib/errors'
-import { withReactEventMembers } from '@/shared/lib/react-event'
-import type { Card } from '@/shared/ui/icons/cards/cards.types'
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
-import { safeCustomElement } from '@/shared/ui/lit/safe-custom-element'
-import { MediaQueryController } from '@/shared/ui/media-query.controller'
-import { type ApiData, EligibilityController } from '@/widgets/common/eligibility.controller'
 import { ModalPortalController } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import {
   desktopMediaQuery,
   ELIGIBILITY_MODAL_TAG,
 } from '@/widgets/eligibility-modal/eligibility-modal.const'
 import { modalContentTemplate } from '@/widgets/eligibility-modal/templates/modal-content.template'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
 // Master's ModalContainer props, and the locale of its IntlProvider. Frozen for 4.x.
 export interface AlmaEligibilityModalProperties {

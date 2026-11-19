@@ -2,20 +2,20 @@ import { screen } from '@testing-library/dom'
 import { http, HttpResponse } from 'msw'
 import type { MockInstance } from 'vitest'
 
-import type { ConfigPlan } from '@/domain/plans/plans.types'
+import type { ConfigPlan } from '@/domain/plans.types'
 import { ApiMode } from '@/public-api/public-api.const'
-import type { Card } from '@/shared/ui/icons/cards/cards.types'
-import { ELIGIBILITY_ENDPOINT } from '@/test/eligibilityHandlers'
-import { mockButtonPlans } from '@/test/fixtures'
-import { useFakeMatchMedia } from '@/test/match-media'
-import { TEST_MERCHANT_ID } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+import { mockButtonPlans } from '@/test/fixtures/plans'
+import { ELIGIBILITY_ENDPOINT } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { useFakeMatchMedia } from '@/test/utils/match-media'
+import { TEST_MERCHANT_ID } from '@/test/utils/mount-widget'
 import { closeModalOf } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import { desktopMediaQuery } from '@/widgets/eligibility-modal/eligibility-modal.const'
 import {
   AlmaEligibilityModal,
   type AlmaEligibilityModalProperties,
 } from '@/widgets/eligibility-modal/eligibility-modal.element'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
 const FROZEN = 'The element properties are frozen for 4.x: never add, remove, rename or retype one.'
 

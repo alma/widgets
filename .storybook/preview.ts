@@ -2,9 +2,9 @@ import type { Preview } from '@storybook/web-components-vite'
 import { setupWorker } from 'msw/browser'
 import { mswLoader } from 'msw-storybook-addon/csf3'
 
-import '@/styles/main.css'
+import '@/main.css'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { blockAlmaApi } from '@/test/block-alma-api'
+import { blockAlmaApi } from '@/test/msw/block-alma-api'
 
 import { withMerchantCss } from './decorators/merchant-css'
 import { withModalContainer } from './decorators/modal-container'
@@ -87,7 +87,7 @@ const preview: Preview = {
       // The panel informs. The blocking accessibility checks run in Vitest.
       test: 'todo',
     },
-    // Some stories add the modes of src/test/storybookModes.ts
+    // Some stories add the modes of src/test/storybook/storybook-modes.const.ts
     chromatic: {
       modes: {
         desktop: { viewport: 'desktop', merchantCss: 'off' },

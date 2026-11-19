@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 import { userEvent, waitFor, within } from 'storybook/test'
 
-import type { ConfigPlan } from '@/domain/plans/plans.types'
+import type { ConfigPlan } from '@/domain/plans.types'
 import { ApiMode, Widgets } from '@/index'
 import type { ModalOptions } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { eligibilityError, eligibilityPending, eligibilityPlans } from '@/test/eligibilityHandlers'
 import {
   configPlans,
   mockDeferredMultiInstallmentPlanWithFees,
@@ -21,8 +20,17 @@ import {
   mockPayLaterOneMonthEligiblePlan,
   mockPlansAllEligible,
   mockPlansWithoutDeferred,
-} from '@/test/fixtures'
-import { MERCHANT_CSS_MODES, MOBILE_MERCHANT_CSS_MODES, MOBILE_MODES } from '@/test/storybookModes'
+} from '@/test/fixtures/plans'
+import {
+  eligibilityError,
+  eligibilityPending,
+  eligibilityPlans,
+} from '@/test/msw/eligibility-handlers'
+import {
+  MERCHANT_CSS_MODES,
+  MOBILE_MERCHANT_CSS_MODES,
+  MOBILE_MODES,
+} from '@/test/storybook/storybook-modes.const'
 
 // Only the public API, as merchants use it.
 

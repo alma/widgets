@@ -1,19 +1,23 @@
 import type { Meta, StoryContext, StoryObj } from '@storybook/web-components-vite'
 import { userEvent, waitFor } from 'storybook/test'
 
-import type { EligibilityPlan } from '@/domain/plans/plans.types'
+import type { EligibilityPlan } from '@/domain/plans.types'
 import { ApiMode, Widgets } from '@/index'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { eligibilityError, eligibilityPending, eligibilityPlans } from '@/test/eligibilityHandlers'
 import {
   configPlans,
   mockEligibilityWithGrayedOutPlan,
   mockP10XIneligiblePlan,
   mockP4XIneligiblePlan,
   mockPlansAllEligible,
-} from '@/test/fixtures'
-import { MERCHANT_CSS_MODES, MOBILE_MODES } from '@/test/storybookModes'
+} from '@/test/fixtures/plans'
+import {
+  eligibilityError,
+  eligibilityPending,
+  eligibilityPlans,
+} from '@/test/msw/eligibility-handlers'
+import { MERCHANT_CSS_MODES, MOBILE_MODES } from '@/test/storybook/storybook-modes.const'
 
 // The stories only use the public API, so they render the same way after the Lit migration
 

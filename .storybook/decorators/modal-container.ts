@@ -3,8 +3,8 @@ import { html } from 'lit'
 import { action } from 'storybook/actions'
 
 import { createIntl } from '@/shared/i18n/create-intl'
-import styles from '@/widgets/eligibility-modal/templates/modal-shell.module.css'
-import { modalShellTemplate } from '@/widgets/eligibility-modal/templates/modal-shell.template'
+import styles from '@/widgets/eligibility-modal/templates/modal-shell/modal-shell.module.css'
+import { modalShellTemplate } from '@/widgets/eligibility-modal/templates/modal-shell/modal-shell.template'
 
 // main.css scopes some rules, .sr-only among them, to the open modal's container.
 // 'frame' adds react-modal's overlay and content classes, which place and size the shell and the

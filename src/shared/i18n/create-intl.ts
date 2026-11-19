@@ -11,9 +11,9 @@ import messagesIT from '@/intl/messages/messages.it.json'
 import messagesNL from '@/intl/messages/messages.nl.json'
 import messagesPT from '@/intl/messages/messages.pt.json'
 import defaultMessages from '@/intl/messages.json'
+import { warnOnce } from '@/lib/errors'
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { IntlShape, MessageDescriptor, MessageValues } from '@/shared/i18n/i18n.types'
-import { warnOnce } from '@/shared/lib/errors'
 
 type Catalogue = Record<string, MessageFormatElement[]>
 

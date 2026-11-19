@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite'
 import { nothing } from 'lit'
 import { fn } from 'storybook/test'
 
-import { requiresLegalDisclosure } from '@/domain/plans/plan-kind'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { requiresLegalDisclosure } from '@/domain/utils/plan-kind'
 import { createIntl } from '@/shared/i18n/create-intl'
-import { mockDisplayPlansAllEligible } from '@/test/fixtures'
-import { paymentPlanInfoTextTemplate } from '@/widgets/common/plan-strings.template'
+import { mockDisplayPlansAllEligible } from '@/test/fixtures/plans'
+import { paymentPlanInfoTextTemplate } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.template'
 import {
   plansLoadingTemplate,
   type PlansContentParams,

@@ -1,11 +1,10 @@
 import { render } from 'lit'
 
-import type { StatusResponse } from '@/domain/plans/api/eligibility.const'
-import { isSomePlanDeferred } from '@/domain/plans/plan-kind'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { StatusResponse } from '@/domain/api/eligibility.const'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { isSomePlanDeferred } from '@/domain/utils/plan-kind'
+import { type MediaQueryWatch, watchMediaQuery } from '@/lib/watch-media-query'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import type { Card } from '@/shared/ui/icons/cards/cards.types'
-import { type MediaQueryWatch, watchMediaQuery } from '@/shared/ui/watch-media-query'
 import {
   ModalPortalController,
   type ModalPortalHost,
@@ -13,6 +12,7 @@ import {
 } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import { desktopMediaQuery } from '@/widgets/eligibility-modal/eligibility-modal.const'
 import { modalContentTemplate } from '@/widgets/eligibility-modal/templates/modal-content.template'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
 export type PlansModalHost = ModalPortalHost
 

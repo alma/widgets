@@ -1,14 +1,14 @@
 import { html, render } from 'lit'
 import { userEvent } from 'vitest/browser'
 
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
-import { mockButtonPlans } from '@/test/fixtures'
-import { mountWidget } from '@/test/mount-widget'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
+import { mockButtonPlans } from '@/test/fixtures/plans'
+import { mountWidget } from '@/test/utils/mount-widget'
 import {
   ModalPortalController,
   type RequestClose,
 } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
-import styles from '@/widgets/eligibility-modal/templates/modal-shell.module.css'
+import styles from '@/widgets/eligibility-modal/templates/modal-shell/modal-shell.module.css'
 
 class ModalPortalHost extends LightDomElement {
   readonly modal = new ModalPortalController(this)

@@ -2,16 +2,16 @@ import { html, nothing, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 import { ifDefined } from 'lit/directives/if-defined.js'
 
-import { requiresLegalDisclosure } from '@/domain/plans/plan-kind'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { requiresLegalDisclosure } from '@/domain/utils/plan-kind'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/eligibility-modal/eligibility-modal.const'
-import { installmentTemplate } from '@/widgets/eligibility-modal/templates/schedule/installment.template'
-import { legalMentionsTemplate } from '@/widgets/eligibility-modal/templates/schedule/legal-mentions.template'
+import { installmentTemplate } from '@/widgets/eligibility-modal/templates/schedule/installment/installment.template'
+import { legalMentionsTemplate } from '@/widgets/eligibility-modal/templates/schedule/legal-mentions/legal-mentions.template'
 import { scheduleMessages } from '@/widgets/eligibility-modal/templates/schedule/schedule.messages'
 import styles from '@/widgets/eligibility-modal/templates/schedule/schedule.module.css'
-import { totalBlockTemplate } from '@/widgets/eligibility-modal/templates/schedule/total-block.template'
-import { warningMessageTemplate } from '@/widgets/eligibility-modal/templates/schedule/warning-message.template'
+import { totalBlockTemplate } from '@/widgets/eligibility-modal/templates/schedule/total-block/total-block.template'
+import { warningMessageTemplate } from '@/widgets/eligibility-modal/templates/schedule/warning-message/warning-message.template'
 
 export interface ScheduleParams {
   currentPlan: EligibilityPlanToDisplay

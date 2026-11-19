@@ -1,25 +1,25 @@
 import { html, nothing, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
-import { StatusResponse } from '@/domain/plans/api/eligibility.const'
-import { isP1X } from '@/domain/plans/plan-kind'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import { StatusResponse } from '@/domain/api/eligibility.const'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { isP1X } from '@/domain/utils/plan-kind'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import type { Card } from '@/shared/ui/icons/cards/cards.types'
-import { loadingIndicatorTemplate } from '@/widgets/eligibility-modal/templates/loading-indicator.template'
+import { loadingIndicatorTemplate } from '@/widgets/eligibility-modal/templates/loading-indicator/loading-indicator.template'
 import { modalContentMessages } from '@/widgets/eligibility-modal/templates/modal-content.messages'
 import styles from '@/widgets/eligibility-modal/templates/modal-content.module.css'
-import { modalLayoutTemplate } from '@/widgets/eligibility-modal/templates/modal-layout.template'
-import { modalShellTemplate } from '@/widgets/eligibility-modal/templates/modal-shell.template'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
+import { modalLayoutTemplate } from '@/widgets/eligibility-modal/templates/modal-layout/modal-layout.template'
+import { modalShellTemplate } from '@/widgets/eligibility-modal/templates/modal-shell/modal-shell.template'
 import {
   type PlanTabsParams,
   planTabsTemplate,
-} from '@/widgets/eligibility-modal/templates/plan-tabs.template'
+} from '@/widgets/eligibility-modal/templates/plan-tabs/plan-tabs.template'
 import { scheduleTemplate } from '@/widgets/eligibility-modal/templates/schedule/schedule.template'
 import {
   type SkipLink,
   skipLinksTemplate,
-} from '@/widgets/eligibility-modal/templates/skip-links.template'
+} from '@/widgets/eligibility-modal/templates/skip-links/skip-links.template'
 
 export interface ModalContentParams {
   eligiblePlans: EligibilityPlanToDisplay[]

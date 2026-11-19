@@ -1,32 +1,34 @@
 import { nothing, type TemplateResult } from 'lit'
 import { property, state } from 'lit/decorators.js'
 
-import { StatusResponse } from '@/domain/plans/api/eligibility.const'
-import { filterEligiblePlans } from '@/domain/plans/filter-plans'
-import { requiresLegalDisclosure } from '@/domain/plans/plan-kind'
-import type { ConfigPlan, EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import { StatusResponse } from '@/domain/api/eligibility.const'
+import type { ConfigPlan, EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { filterEligiblePlans } from '@/domain/utils/filter-plans'
+import { requiresLegalDisclosure } from '@/domain/utils/plan-kind'
+import { warnOnce } from '@/lib/errors'
+import { withReactEventMembers } from '@/lib/react-event'
+import { type ApiData, EligibilityController } from '@/shared/controllers/eligibility.controller'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
+import { safeCustomElement } from '@/shared/custom-elements/safe-custom-element'
 import { createIntl, isValidLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
-import { warnOnce } from '@/shared/lib/errors'
-import { withReactEventMembers } from '@/shared/lib/react-event'
-import type { Card } from '@/shared/ui/icons/cards/cards.types'
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
-import { safeCustomElement } from '@/shared/ui/lit/safe-custom-element'
-import { type ApiData, EligibilityController } from '@/widgets/common/eligibility.controller'
-import { paymentPlanInfoTextTemplate } from '@/widgets/common/plan-strings.template'
-import { getPlanDescription } from '@/widgets/common/plan-text'
-import { PlansModalController } from '@/widgets/eligibility-modal/controllers/plans-modal.controller'
-import { getIndexOfActivePlan } from '@/widgets/payment-plans/active-plan'
+import { getPlanDescription } from '@/shared/plan-text/plan-text'
+import {
+  PlansModalController,
+  type PlansModalParams,
+} from '@/widgets/eligibility-modal/controllers/plans-modal.controller'
 import { AnimationInstructionsController } from '@/widgets/payment-plans/controllers/animation-instructions.controller'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
 import { PlanCyclingController } from '@/widgets/payment-plans/controllers/plan-cycling.controller'
 import { PAYMENT_PLANS_TAG } from '@/widgets/payment-plans/payment-plans.const'
 import { paymentPlansMessages } from '@/widgets/payment-plans/payment-plans.messages'
+import { paymentPlanInfoTextTemplate } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.template'
 import {
   plansLoadingTemplate,
   plansContentTemplate,
 } from '@/widgets/payment-plans/templates/plans-content.template'
+import { getIndexOfActivePlan } from '@/widgets/payment-plans/utils/active-plan'
 
 const DEFAULT_TRANSITION_TIME = 5500
 const ANNOUNCE_DURATION_MS = 1000
@@ -51,7 +53,7 @@ export interface AlmaPaymentPlansProperties {
   hideIfNotEligible?: boolean
   monochrome?: boolean
   suggestedPaymentPlan?: number | number[]
-  cards?: Card[]
+  cards?: PlansModalParams['cards']
   hideBorder: boolean
   onModalClose?: (event: MouseEvent | KeyboardEvent) => void
   locale: string
@@ -79,7 +81,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
 
   @property({ attribute: false }) suggestedPaymentPlan?: number | number[]
 
-  @property({ attribute: false }) cards?: Card[]
+  @property({ attribute: false }) cards?: PlansModalParams['cards']
 
   @property({ attribute: false }) hideBorder = false
 

@@ -1,5 +1,5 @@
+import { warnOnce } from '@/lib/errors'
 import type { ModalOptions } from '@/public-api/public-api.types'
-import { warnOnce } from '@/shared/lib/errors'
 
 export type ModalHandle = {
   open: () => void

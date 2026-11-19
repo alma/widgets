@@ -1,11 +1,10 @@
 import type { Meta, StoryContext, StoryObj } from '@storybook/web-components-vite'
 import { userEvent, waitFor } from 'storybook/test'
 
-import type { EligibilityPlan } from '@/domain/plans/plans.types'
+import type { EligibilityPlan } from '@/domain/plans.types'
 import { ApiMode, Widgets } from '@/index'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
 import {
   mockP10XEligiblePlan,
   mockP10XIneligiblePlan,
@@ -13,7 +12,8 @@ import {
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockPayLaterOneMonthEligiblePlan,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
 
 // One story per DCC2 output of the widget: plans needing disclosure show the know-more line and
 // a clickable info line. The modal's DCC2 outputs are in the EligibilityModal-DCC2 stories.

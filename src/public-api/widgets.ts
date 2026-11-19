@@ -1,3 +1,4 @@
+import { warnOnce } from '@/lib/errors'
 import { createModalHandle, type ModalHandle, openOnClick } from '@/public-api/modal-handle'
 import { WidgetTypes } from '@/public-api/public-api.const'
 import type {
@@ -8,7 +9,6 @@ import type {
   WidgetOptions,
 } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { warnOnce } from '@/shared/lib/errors'
 // Registers <alma-eligibility-modal>, which add() creates by its tag.
 import '@/widgets/eligibility-modal/eligibility-modal.element'
 import { closeModalOf } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'

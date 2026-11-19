@@ -6,10 +6,10 @@ import { ApiMode, Widgets } from '@/index'
 import type { ModalHandle } from '@/public-api/modal-handle'
 import type { ModalOptions } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { ELIGIBILITY_ENDPOINT } from '@/test/eligibilityHandlers'
-import { mockButtonPlans } from '@/test/fixtures'
-import { TEST_CONTAINER, TEST_MERCHANT_ID } from '@/test/mount-widget'
-import { server } from '@/test/msw-server'
+import { mockButtonPlans } from '@/test/fixtures/plans'
+import { ELIGIBILITY_ENDPOINT } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { TEST_CONTAINER, TEST_MERCHANT_ID } from '@/test/utils/mount-widget'
 
 let requests: number
 

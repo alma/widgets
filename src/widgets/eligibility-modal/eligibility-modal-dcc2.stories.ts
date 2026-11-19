@@ -4,7 +4,8 @@ import { waitFor } from 'storybook/test'
 import { ApiMode, Widgets } from '@/index'
 import type { ModalOptions } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { eligibilityPlans } from '@/test/eligibilityHandlers'
+import type { EligiblePlanBuilder } from '@/test/fixtures/plan-builders'
+import { eligiblePlanBuilder } from '@/test/fixtures/plan-builders'
 import {
   mockDeferredMultiInstallmentPlanWithFees,
   mockP10XEligiblePlan,
@@ -13,9 +14,8 @@ import {
   mockP3XEligiblePlanWithFees,
   mockPayLater30DaysEligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
-} from '@/test/fixtures'
-import type { EligiblePlanBuilder } from '@/test/planBuilders'
-import { eligiblePlanBuilder } from '@/test/planBuilders'
+} from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
 
 // One story per DCC2 output of the modal (warning sentence and legal mentions), so Chromatic
 // catches any change to it. Plans default to a French transaction.

@@ -3,36 +3,34 @@
 
 // Import layers of src/: each folder, the other folders it may import, and the message.
 const LAYERS = [
+  ['lib', [], 'lib/ imports nothing else from src/.'],
+  ['config', [], 'config/ imports nothing else from src/.'],
+  ['domain', ['lib', 'config'], 'domain/ imports only lib/ and config/.'],
   [
     'shared',
-    ['intl'],
-    'shared/ imports nothing else from src/, apart from the catalogues in src/intl/.',
+    ['domain', 'intl', 'lib', 'config'],
+    'shared/ imports only domain/, lib/, config/ and the catalogues in src/intl/.',
   ],
-  [
-    'domain',
-    ['shared/lib', 'shared/config'],
-    'domain/ imports only shared/lib/ and shared/config/.',
-  ],
-  ['widgets/common', ['domain', 'shared'], 'widgets/common/ imports only domain/ and shared/.'],
   [
     'widgets/payment-plans',
     [
-      'widgets/common',
       'widgets/eligibility-modal/controllers/plans-modal.controller.ts',
       'domain',
       'shared',
+      'lib',
+      'config',
     ],
-    'widgets/payment-plans/ imports widgets/common/, domain/ and shared/, and the modal only through widgets/eligibility-modal/controllers/plans-modal.controller.ts.',
+    'widgets/payment-plans/ imports domain/, shared/, lib/ and config/, and the modal only through widgets/eligibility-modal/controllers/plans-modal.controller.ts.',
   ],
   [
     'widgets/eligibility-modal',
-    ['widgets/common', 'domain', 'shared'],
-    'widgets/eligibility-modal/ imports only widgets/common/, domain/ and shared/.',
+    ['domain', 'shared', 'lib', 'config'],
+    'widgets/eligibility-modal/ imports only domain/, shared/, lib/ and config/.',
   ],
   [
     'public-api',
-    ['widgets', 'domain', 'shared'],
-    'public-api/ imports only widgets/, domain/ and shared/.',
+    ['widgets', 'domain', 'shared', 'lib', 'config'],
+    'public-api/ imports only widgets/, domain/, shared/, lib/ and config/.',
   ],
 ]
 
@@ -47,7 +45,7 @@ const LAYER_ZONES = LAYERS.map(([folder, allowed, message]) => ({
 const LINKED_CSS =
   'CSS stays in the linked stylesheet, so merchant overrides keep winning. Import the CSS module and bind its classes with classMap.'
 const SAFE_CUSTOM_ELEMENT =
-  'Register the tag with safeCustomElement from @/shared/ui/lit/safe-custom-element, so the first bundle on the page wins.'
+  'Register the tag with safeCustomElement from @/shared/custom-elements/safe-custom-element, so the first bundle on the page wins.'
 const INNER_HTML_BAN = {
   selector: 'AssignmentExpression > MemberExpression.left[property.name="innerHTML"]',
   message: 'No innerHTML assignment: render with a Lit template, which escapes text.',
@@ -61,7 +59,7 @@ const SRC_BANS = [
   {
     selector: ':matches(ClassDeclaration, ClassExpression)[superClass.name="LitElement"]',
     message:
-      'No LitElement subclass: extend LightDomElement from @/shared/ui/lit/light-dom-element, which renders in light DOM so merchant CSS applies.',
+      'No LitElement subclass: extend LightDomElement from @/shared/custom-elements/light-dom-element, which renders in light DOM so merchant CSS applies.',
   },
   {
     selector: 'CallExpression[callee.property.name="attachShadow"]',
@@ -84,7 +82,7 @@ const SRC_BANS = [
   {
     selector: 'Property[key.name="timeZone"]',
     message:
-      "No timeZone option: dates stay in the shopper's local time, like master. Use the helpers in @/shared/lib/date.",
+      "No timeZone option: dates stay in the shopper's local time, like master. Use the helpers in @/lib/date.",
   },
   {
     selector: 'ImportExpression',
@@ -117,10 +115,10 @@ const LIT_IN_DOMAIN = {
     '@lit/*',
     '@lit-labs/*',
   ],
-  message: 'domain/ is plain TypeScript. Lit code goes in widgets/ or shared/ui/.',
+  message: 'domain/ is plain TypeScript. Lit code goes in widgets/ or shared/.',
 }
 
-const TESTS = ['src/**/*.test.ts', 'src/**/__tests__/**', 'src/test/**']
+const TESTS = ['src/**/*.test.ts', 'src/test/**']
 
 module.exports = {
   root: true,

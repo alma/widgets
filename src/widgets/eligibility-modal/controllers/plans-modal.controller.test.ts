@@ -1,15 +1,15 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 
-import { StatusResponse } from '@/domain/plans/api/eligibility.const'
-import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
+import { StatusResponse } from '@/domain/api/eligibility.const'
+import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
+import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { createIntl } from '@/shared/i18n/create-intl'
-import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
 import {
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockPlansAllEligible,
-} from '@/test/fixtures'
+} from '@/test/fixtures/plans'
 import { closeModalOf } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import {
   PlansModalController,
