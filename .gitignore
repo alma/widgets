@@ -20,3 +20,4 @@ __screenshots__/
 .claude/settings.local.json
 /pr-description.local.md
 .claude/worktrees/
+CLAUDE.local.md

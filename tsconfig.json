@@ -1,23 +1,6 @@
+// Editors only load tsconfig.json, and the app config excludes the tests, so this file points
+// them to both configs. Each file opens in the first config that includes it.
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "moduleResolution": "Bundler",
-    "target": "ES2021",
-    "module": "ESNext",
-    "lib": ["ES2021", "DOM", "DOM.Iterable"],
-    // No Node types, so tsc rejects Node globals in code that runs in the browser.
-    "types": [],
-    "strict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "include": ["src"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.stories.ts", "src/test/**"]
+  "files": [],
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.test.json" }]
 }

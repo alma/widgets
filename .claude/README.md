@@ -18,7 +18,7 @@ Tested with Claude Code 2.1.304.
    ```
 
 3. Start `claude` at the root of the repo and accept the workspace trust dialog.
-4. Ask Claude to read `src/domain/plans/plans.types.ts` with the Read tool. Under that call,
+4. Ask Claude to read `src/domain/plans.types.ts` with the Read tool. Under that call,
    Claude Code shows `Loaded .claude/rules/architecture.md` and `Loaded .claude/rules/domain.md`.
 5. Run `/hooks`. Under PostToolUse, it lists the lint hook from project settings.
 
@@ -35,11 +35,11 @@ Tested with Claude Code 2.1.304.
 | Rule file | Loads for | Covers |
 | --- | --- | --- |
 | `architecture.md` | `src/**` | Layers, imports, placement, bans across `src/`, suffixes, the React original, tests |
-| `domain.md` | `src/domain/`, `src/shared/lib/http.ts` | The eligibility request and its cache |
-| `widgets.md` | `src/widgets/`, `src/shared/ui/` | Lit in light DOM and the merchant contract of the elements |
+| `domain.md` | `src/domain/`, `src/lib/http.ts` | The eligibility request and its cache |
+| `widgets.md` | `src/widgets/`, `src/shared/` | Lit in light DOM and the merchant contract of the elements |
 | `public-api.md` | `src/public-api/`, `src/index.ts` | The merchant contract: API, options, files |
-| `lit-styling.md` | `src/widgets/`, `src/shared/ui/`, `src/styles/` | CSS that merchants can still override |
-| `lit-accessibility.md` | `src/widgets/`, `src/shared/ui/`, `src/modal.browser.test.ts` | Accessibility as master has it, and the modal |
+| `lit-styling.md` | `src/widgets/`, `src/shared/`, `src/main.css` | CSS that merchants can still override |
+| `lit-accessibility.md` | `src/widgets/`, `src/shared/`, `src/modal.browser.test.ts` | Accessibility as master has it, and the modal |
 
 Each rule has an ID, such as `ARCH-06`, with its reason and its check: lint, a test or review. A
 rule lives in the one file whose `paths:` cover every file it governs. When two files that never

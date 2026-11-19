@@ -1,8 +1,8 @@
 ---
 paths:
   - "src/widgets/**"
-  - "src/shared/ui/**"
-  - "src/styles/**"
+  - "src/shared/**"
+  - "src/main.css"
 ---
 
 # Styling in light DOM
@@ -14,7 +14,7 @@ Generic advice that doesn't apply here: `static styles` and the `css` tag, `adop
 ## Where the CSS lives
 
 - **STYLE-01** CSS stays in the linked stylesheet: no `static styles`, no `css` tag, no `adoptedStyleSheets` and no style rules in JavaScript, apart from the host's `display: contents` of STYLE-05. Why: merchant overrides must keep winning the cascade, and `widgets.css` must keep every rule. Check: lint and review.
-- **STYLE-02** `src/styles/main.css` and every `*.module.css` file keep master's content. Why: merchants override these rules today. Check: contract tests.
+- **STYLE-02** `src/main.css` and every `*.module.css` file keep master's content. Why: merchants override these rules today. Check: contract tests.
 - **STYLE-04** Templates import the CSS-module class maps and bind them with `classMap`. Why: `classMap` replaces `classnames`, which the bundle dropped. Check: review.
 - **STYLE-05** The host gets `display: contents` through the CSSOM, never by writing the `style` attribute. `LightDomElement` already does it. Why: the host adds no box to the merchant's layout, and a strict `style-src` policy blocks the `style` attribute. Check: unit test.
 
