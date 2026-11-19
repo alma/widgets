@@ -1,16 +1,14 @@
-import { LIVE_API_URL, SANDBOX_API_URL } from '@/shared/config/api-url.const'
-
-// An object, not an enum. esbuild cannot evaluate an imported constant, so an enum initialised
-// from the URLs would get reverse mappings, and Alma.ApiMode would gain one key per URL.
 export const ApiMode = {
-  LIVE: LIVE_API_URL,
-  TEST: SANDBOX_API_URL,
+  LIVE: 'https://api.getalma.eu',
+  TEST: 'https://api.sandbox.getalma.eu',
 } as const
 
 // The value and its type share a name, like the enum they replace.
 export type ApiMode = (typeof ApiMode)[keyof typeof ApiMode]
 
-export enum WidgetTypes {
-  PaymentPlans = 'PaymentPlans',
-  Modal = 'Modal',
-}
+export const WidgetTypes = {
+  PaymentPlans: 'PaymentPlans',
+  Modal: 'Modal',
+} as const
+
+export type WidgetTypes = (typeof WidgetTypes)[keyof typeof WidgetTypes]

@@ -11,8 +11,7 @@ import messagesPT from '@/intl/messages/messages.pt.json'
 import { createIntl, getTranslationsByLocale } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import type { MessageValues } from '@/shared/i18n/i18n.types'
-import { planStringsMessages } from '@/widgets/common/plan.messages'
-import { legalMentionsMessages } from '@/widgets/eligibility-modal/eligibility-modal.messages'
+import { testMessages } from '@/test/message-descriptors'
 
 type MessageSpec = {
   defaultMessage: string
@@ -205,7 +204,7 @@ describe('createIntl', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
 
     // Not a literal, or `formatjs extract` would add it to messages.json.
-    const unknown = { ...legalMentionsMessages.disclaimer, id: 'unknown.id' }
+    const unknown = { ...testMessages.disclaimer, id: 'unknown.id' }
 
     const output = createIntl('en').formatMessage(unknown)
 
@@ -217,14 +216,14 @@ describe('createIntl', () => {
 
   it('returns an id that is only an inherited property as missing', () => {
     vi.spyOn(console, 'warn').mockImplementation(() => {})
-    const inherited = { ...legalMentionsMessages.disclaimer, id: 'constructor' }
+    const inherited = { ...testMessages.disclaimer, id: 'constructor' }
 
     expect(createIntl('en').formatMessage(inherited)).toBe(inherited.defaultMessage)
   })
 
   it('returns the message verbatim when it and its default message fail, like react-intl', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
-    const descriptor = planStringsMessages.deferredDays
+    const descriptor = testMessages.deferredDays
     const { id } = descriptor
 
     // No plural value, so both messages throw.
@@ -270,13 +269,13 @@ describe('createIntl', () => {
     const intl = createIntl('en')
     const link = (chunks: unknown[]) => ({ tag: 'link', chunks })
     const mail = (chunks: unknown[]) => ({ tag: 'mail', chunks })
-    const disclaimer = intl.formatMessage<object>(legalMentionsMessages.disclaimer, {
-      status: intl.formatMessage(legalMentionsMessages.paymentInstitution),
+    const disclaimer = intl.formatMessage<object>(testMessages.disclaimer, {
+      status: intl.formatMessage(testMessages.paymentInstitution),
       link,
       mail,
     })
 
-    const output = intl.formatMessage<object>(legalMentionsMessages.creditOrPnxWithoutFees, {
+    const output = intl.formatMessage<object>(testMessages.creditOrPnxWithoutFees, {
       financedAmount: '€100.00',
       customerLendingRate: '5%',
       creditDurationInMonths: 10,

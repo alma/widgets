@@ -2,11 +2,8 @@ import { html } from 'lit'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { formatRichText, type RichText } from '@/shared/ui/rich-text'
+import { testMessages } from '@/test/message-descriptors'
 import { renderTemplate } from '@/test/render-template'
-import {
-  legalMentionsMessages,
-  infoMessages,
-} from '@/widgets/eligibility-modal/eligibility-modal.messages'
 
 // Master's markup.
 const strong = (chunks: RichText) => html`<strong>${chunks}</strong>`
@@ -19,7 +16,7 @@ const renderRichText = (content: RichText) => renderTemplate(html`${content}`)
 describe('formatRichText', () => {
   it('renders a <strong> tag as a <strong> element', () => {
     const container = renderRichText(
-      formatRichText(createIntl('fr'), infoMessages.bullet1, { strong }),
+      formatRichText(createIntl('fr'), testMessages.bullet1, { strong }),
     )
 
     expect(container.textContent).toBe('Choisissez Alma au moment du paiement.')
@@ -29,8 +26,8 @@ describe('formatRichText', () => {
   it("renders the disclaimer's links with master's attributes", () => {
     const intl = createIntl('en')
     const container = renderRichText(
-      formatRichText(intl, legalMentionsMessages.disclaimer, {
-        status: intl.formatMessage(legalMentionsMessages.paymentInstitution),
+      formatRichText(intl, testMessages.disclaimer, {
+        status: intl.formatMessage(testMessages.paymentInstitution),
         link,
         mail,
       }),
@@ -47,14 +44,14 @@ describe('formatRichText', () => {
 
   it('renders a formatted message as the value of another', () => {
     const intl = createIntl('en')
-    const disclaimer = formatRichText(intl, legalMentionsMessages.disclaimer, {
-      status: intl.formatMessage(legalMentionsMessages.paymentInstitution),
+    const disclaimer = formatRichText(intl, testMessages.disclaimer, {
+      status: intl.formatMessage(testMessages.paymentInstitution),
       link,
       mail,
     })
 
     const container = renderRichText(
-      formatRichText(intl, legalMentionsMessages.creditOrPnxWithoutFees, {
+      formatRichText(intl, testMessages.creditOrPnxWithoutFees, {
         financedAmount: '€100.00',
         customerLendingRate: '5%',
         creditDurationInMonths: 10,
@@ -70,7 +67,7 @@ describe('formatRichText', () => {
 
   it('escapes the text of a value instead of parsing it as HTML', () => {
     const container = renderRichText(
-      formatRichText(createIntl('en'), legalMentionsMessages.creditOrPnxWithoutFees, {
+      formatRichText(createIntl('en'), testMessages.creditOrPnxWithoutFees, {
         financedAmount: '<img src=x>',
         customerLendingRate: '5%',
         creditDurationInMonths: 10,
@@ -85,7 +82,7 @@ describe('formatRichText', () => {
   })
 
   it('returns a message without tags as one string', () => {
-    expect(formatRichText(createIntl('fr'), infoMessages.infoTitle, {})).toEqual([
+    expect(formatRichText(createIntl('fr'), testMessages.infoTitle, {})).toEqual([
       'Comment procéder au paiement',
     ])
   })

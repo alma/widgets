@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 
 import { axe } from 'vitest-axe'
 
-import type { PaymentPlan } from '@/domain/plans/api/eligibility.types'
+import type { PaymentPlan } from '@/domain/plans/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { DEFAULT_DUE_DATE } from '@/test/planBuilders'
@@ -24,7 +24,7 @@ const { locales }: MessageFixture = JSON.parse(
 // Whether Intl puts U+202F, U+00A0 or a space depends on the ICU version.
 const normalize = (text: string) => text.replace(/[\u202f\u00a0]/g, ' ')
 
-const renderInstallment = (installment: PaymentPlan, index: number, locale = Locale.fr) =>
+const renderInstallment = (installment: PaymentPlan, index: number, locale: Locale = Locale.fr) =>
   renderTemplate(installmentTemplate({ installment, index, intl: createIntl(locale) }))
 
 describe('Installment Accessibility Tests', () => {

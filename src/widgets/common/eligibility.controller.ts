@@ -1,15 +1,15 @@
 import { Task, TaskStatus } from '@lit/task'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
-import {
-  type ConfigPlan,
-  type EligibilityPlan,
-  type EligibilityPlanToDisplay,
-  filterEligibility,
-  getEligibility,
-  sortEligibility,
-  statusResponse,
-} from '@/domain/plans'
+import { StatusResponse } from '@/domain/plans/api/eligibility.const'
+import { getEligibility } from '@/domain/plans/api/get-eligibility'
+import filterEligibility from '@/domain/plans/filter-plans'
+import type {
+  ConfigPlan,
+  EligibilityPlan,
+  EligibilityPlanToDisplay,
+} from '@/domain/plans/plans.types'
+import sortEligibility from '@/domain/plans/sort-plans'
 import { warnOnce } from '@/shared/lib/errors'
 
 export type ApiData = { domain: string; merchantId: string }
@@ -35,13 +35,13 @@ type TaskArgs = [
 ]
 
 // The response as the API sent it, filtered only when read.
-type EligibilityResponse = { status: statusResponse; plans: EligibilityPlan[] }
+type EligibilityResponse = { status: StatusResponse; plans: EligibilityPlan[] }
 
-type EligibilityState = { status: statusResponse; plans: EligibilityPlanToDisplay[] }
+type EligibilityState = { status: StatusResponse; plans: EligibilityPlanToDisplay[] }
 
-const FAILED: EligibilityState = { status: statusResponse.FAILED, plans: [] }
+const FAILED: EligibilityState = { status: StatusResponse.FAILED, plans: [] }
 
-const PENDING: EligibilityState = { status: statusResponse.PENDING, plans: [] }
+const PENDING: EligibilityState = { status: StatusResponse.PENDING, plans: [] }
 
 const filterPlans = (
   plans: EligibilityPlan[],
@@ -49,7 +49,7 @@ const filterPlans = (
 ): EligibilityState => {
   try {
     return {
-      status: statusResponse.SUCCESS,
+      status: StatusResponse.SUCCESS,
       plans: sortEligibility(filterEligibility(plans, configPlans ?? undefined)),
     }
   } catch (error) {
@@ -68,7 +68,7 @@ const loadPlans = async ([
 ]: TaskArgs): Promise<EligibilityResponse> => {
   if (!apiData) {
     warnOnce('The widget has no API configuration.')
-    return { status: statusResponse.FAILED, plans: [] }
+    return { status: StatusResponse.FAILED, plans: [] }
   }
   const { status, plans } = await getEligibility({
     purchaseAmount,
@@ -79,7 +79,7 @@ const loadPlans = async ([
     customerShippingCountry,
     merchantCoversAllFees,
   })
-  return { status, plans: status === statusResponse.SUCCESS ? plans : [] }
+  return { status, plans: status === StatusResponse.SUCCESS ? plans : [] }
 }
 
 // Loads the widget's plans, cache first, once per controller, as master's hook does once per
@@ -131,7 +131,7 @@ export class EligibilityController implements ReactiveController {
   }
 
   // Pending until the task completes. A task that throws counts as failed.
-  get status(): statusResponse {
+  get status(): StatusResponse {
     return this.state.status
   }
 
@@ -145,7 +145,7 @@ export class EligibilityController implements ReactiveController {
     if (this.task.status === TaskStatus.ERROR) return FAILED
     const response = this.task.value
     if (!response) return PENDING
-    if (response.status !== statusResponse.SUCCESS) return { status: response.status, plans: [] }
+    if (response.status !== StatusResponse.SUCCESS) return { status: response.status, plans: [] }
     const { configPlans } = this.host
     if (this.filtered?.plans !== response.plans || this.filtered.configPlans !== configPlans) {
       this.filtered = {

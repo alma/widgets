@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 
-import { statusResponse } from '@/domain/plans/api/eligibility.const'
+import { StatusResponse } from '@/domain/plans/api/eligibility.const'
 import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { LightDomElement } from '@/shared/ui/lit/light-dom-element'
@@ -41,7 +41,7 @@ const PLANS = [mockP2XEligiblePlan, mockP3XEligiblePlanWithFees] as EligibilityP
 
 const paramsOf = (params: Partial<PlansModalParams> = {}): PlansModalParams => ({
   eligiblePlans: PLANS,
-  status: statusResponse.SUCCESS,
+  status: StatusResponse.SUCCESS,
   initialPlanIndex: () => 0,
   intl: createIntl('fr'),
   ...params,

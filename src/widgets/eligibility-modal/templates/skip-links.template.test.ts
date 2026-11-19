@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { renderTemplate } from '@/test/render-template'
-import { eligibilityModalMessages } from '@/widgets/eligibility-modal/eligibility-modal.messages'
+import { modalContentMessages } from '@/widgets/eligibility-modal/templates/modal-content.messages'
 import {
   type SkipLinksParams,
   skipLinksTemplate,
@@ -15,18 +15,18 @@ const intl = createIntl(Locale.fr)
 const mockSkipLinks = [
   {
     href: '#payment-plans',
-    labelId: eligibilityModalMessages.skipToPaymentPlans.id,
-    defaultMessage: eligibilityModalMessages.skipToPaymentPlans.defaultMessage,
+    labelId: modalContentMessages.skipToPaymentPlans.id,
+    defaultMessage: modalContentMessages.skipToPaymentPlans.defaultMessage,
   },
   {
     href: '#payment-info',
-    labelId: eligibilityModalMessages.skipToPaymentInfo.id,
-    defaultMessage: eligibilityModalMessages.skipToPaymentInfo.defaultMessage,
+    labelId: modalContentMessages.skipToPaymentInfo.id,
+    defaultMessage: modalContentMessages.skipToPaymentInfo.defaultMessage,
   },
   {
     href: '#payment-schedule',
-    labelId: eligibilityModalMessages.skipToPaymentSchedule.id,
-    defaultMessage: eligibilityModalMessages.skipToPaymentSchedule.defaultMessage,
+    labelId: modalContentMessages.skipToPaymentSchedule.id,
+    defaultMessage: modalContentMessages.skipToPaymentSchedule.defaultMessage,
   },
 ]
 

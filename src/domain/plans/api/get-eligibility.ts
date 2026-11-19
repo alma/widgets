@@ -6,13 +6,13 @@ import {
   isMoreThanOneHourAgo,
   setCache,
 } from '@/domain/plans/api/eligibility-cache'
-import { statusResponse } from '@/domain/plans/api/eligibility.const'
+import { StatusResponse } from '@/domain/plans/api/eligibility.const'
 import type { EligibilityInput, EligibilityResult } from '@/domain/plans/api/eligibility.types'
 import { warnOnce } from '@/shared/lib/errors'
 import { fetchFromApi } from '@/shared/lib/http'
 
-const FAILED: EligibilityResult = { status: statusResponse.FAILED, plans: [] }
-const PENDING: EligibilityResult = { status: statusResponse.PENDING, plans: [] }
+const FAILED: EligibilityResult = { status: StatusResponse.FAILED, plans: [] }
+const PENDING: EligibilityResult = { status: StatusResponse.PENDING, plans: [] }
 
 // Where master throws, the port warns once and fails.
 const fail = (message: string, error?: unknown): EligibilityResult => {
@@ -51,7 +51,7 @@ const requestEligibility = async (input: EligibilityInput): Promise<EligibilityR
   if (!Array.isArray(response)) {
     return fail('The eligibility API returned an unexpected response.')
   }
-  return { status: statusResponse.SUCCESS, plans: response }
+  return { status: StatusResponse.SUCCESS, plans: response }
 }
 
 // The cached result, or null when the request must go out.
@@ -82,7 +82,7 @@ const readCachedEligibility = (key: string): EligibilityResult | null => {
     if (!Array.isArray(cached)) {
       return fail('The eligibility cache entry is malformed.')
     }
-    return { status: statusResponse.SUCCESS, plans: cached }
+    return { status: StatusResponse.SUCCESS, plans: cached }
   }
 
   return null
@@ -112,7 +112,7 @@ export const getEligibility = async (input: EligibilityInput): Promise<Eligibili
   }
 
   const result = await requestEligibility(input)
-  if (result.status !== statusResponse.SUCCESS) {
+  if (result.status !== StatusResponse.SUCCESS) {
     return result
   }
 

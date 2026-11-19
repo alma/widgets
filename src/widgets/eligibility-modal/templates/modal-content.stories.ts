@@ -4,7 +4,7 @@ import { AsyncDirective } from 'lit/async-directive.js'
 import { directive } from 'lit/directive.js'
 import { fn } from 'storybook/test'
 
-import { statusResponse } from '@/domain/plans/api/eligibility.const'
+import { StatusResponse } from '@/domain/plans/api/eligibility.const'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { mockCards, mockDisplayPlansAllEligible } from '@/test/fixtures'
@@ -44,7 +44,7 @@ const meta: Meta<ModalContentArgs> = {
     // Without pay-now, so the first plan is deferred.
     eligiblePlans: mockDisplayPlansAllEligible.slice(1),
     isSomePlanDeferred: true,
-    status: statusResponse.SUCCESS,
+    status: StatusResponse.SUCCESS,
     currentPlanIndex: 0,
     setCurrentPlanIndex: fn(),
     isBigScreen: true,
@@ -58,7 +58,7 @@ export default meta
 type Story = StoryObj<ModalContentArgs>
 
 export const Pending: Story = {
-  args: { eligiblePlans: [], isSomePlanDeferred: false, status: statusResponse.PENDING },
+  args: { eligiblePlans: [], isSomePlanDeferred: false, status: StatusResponse.PENDING },
 }
 
 export const SeveralPlans: Story = {}
@@ -68,5 +68,5 @@ export const NoEligiblePlan: Story = {
 }
 
 export const Failed: Story = {
-  args: { eligiblePlans: [], isSomePlanDeferred: false, status: statusResponse.FAILED },
+  args: { eligiblePlans: [], isSomePlanDeferred: false, status: StatusResponse.FAILED },
 }

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import type { RequestHandler } from 'msw'
 import { axe } from 'vitest-axe'
 
-import type { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
+import type { EligibilityPlan } from '@/domain/plans/plans.types'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { eligibilityError, eligibilityPending, eligibilityPlans } from '@/test/eligibilityHandlers'
 import {

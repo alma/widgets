@@ -4,7 +4,6 @@ import { fn } from 'storybook/test'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { mockDisplayPlansSingle, mockP10XBelowMinDisplayPlan } from '@/test/fixtures'
-import { paymentPlansMessages } from '@/widgets/payment-plans/payment-plans.messages'
 import {
   type PlanButtonParams,
   planButtonTemplate,
@@ -13,11 +12,11 @@ import {
 const [p3x] = mockDisplayPlansSingle
 
 const meta: Meta<PlanButtonParams> = {
-  // An option needs its listbox, as in the widget.
+  // An option needs a named listbox, as in the widget. The label is only there for axe.
   render: (args, { globals }) => {
     const intl = createIntl(globals.locale)
-    const label = intl.formatMessage(paymentPlansMessages.listboxAriaLabel)
-    return html`<div role="listbox" aria-label=${label}>${planButtonTemplate(args, intl)}</div>`
+    const option = planButtonTemplate(args, intl)
+    return html`<div role="listbox" aria-label="Payment options">${option}</div>`
   },
   args: {
     plan: p3x,

@@ -2,7 +2,7 @@ import { html, type TemplateResult } from 'lit'
 import { classMap } from 'lit/directives/class-map.js'
 
 import type { IntlShape, MessageDescriptor } from '@/shared/i18n/i18n.types'
-import { skipLinksMessages } from '@/widgets/eligibility-modal/eligibility-modal.messages'
+import { skipLinksMessages } from '@/widgets/eligibility-modal/templates/skip-links.messages'
 import styles from '@/widgets/eligibility-modal/templates/skip-links.module.css'
 
 export interface SkipLink {

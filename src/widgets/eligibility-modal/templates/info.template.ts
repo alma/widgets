@@ -5,7 +5,7 @@ import { ifDefined } from 'lit/directives/if-defined.js'
 import type { IntlShape, MessageDescriptor } from '@/shared/i18n/i18n.types'
 import { formatRichText, type RichText } from '@/shared/ui/rich-text'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/eligibility-modal/eligibility-modal.const'
-import { infoMessages } from '@/widgets/eligibility-modal/eligibility-modal.messages'
+import { infoMessages } from '@/widgets/eligibility-modal/templates/info.messages'
 import styles from '@/widgets/eligibility-modal/templates/info.module.css'
 
 export interface InfoParams {

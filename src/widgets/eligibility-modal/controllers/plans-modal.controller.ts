@@ -1,6 +1,6 @@
 import { render } from 'lit'
 
-import type { statusResponse } from '@/domain/plans/api/eligibility.const'
+import type { StatusResponse } from '@/domain/plans/api/eligibility.const'
 import { isSomePlanDeferred } from '@/domain/plans/plan-kind'
 import type { EligibilityPlanToDisplay } from '@/domain/plans/plans.types'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
@@ -19,7 +19,7 @@ export type PlansModalHost = ModalPortalHost
 export interface PlansModalParams {
   // Master's PaymentPlans passes its eligible plans only, so isSomePlanDeferred skips the others.
   eligiblePlans: EligibilityPlanToDisplay[]
-  status: statusResponse
+  status: StatusResponse
   // Among the eligible plans. Called when the modal opens only, like master's useState.
   initialPlanIndex: () => number
   cards?: Card[]

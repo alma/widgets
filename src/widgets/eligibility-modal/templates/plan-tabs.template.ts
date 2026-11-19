@@ -8,7 +8,7 @@ import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { paymentPlanShorthandName } from '@/widgets/common/plan-text'
 import { planSectionMessages } from '@/widgets/common/plan.messages'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/eligibility-modal/eligibility-modal.const'
-import { planTabsMessages } from '@/widgets/eligibility-modal/eligibility-modal.messages'
+import { planTabsMessages } from '@/widgets/eligibility-modal/templates/plan-tabs.messages'
 import styles from '@/widgets/eligibility-modal/templates/plan-tabs.module.css'
 
 export interface PlanTabsParams {

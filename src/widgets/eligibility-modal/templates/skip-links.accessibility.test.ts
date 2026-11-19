@@ -3,10 +3,8 @@ import { axe } from 'vitest-axe'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { renderTemplate } from '@/test/render-template'
-import {
-  eligibilityModalMessages,
-  skipLinksMessages,
-} from '@/widgets/eligibility-modal/eligibility-modal.messages'
+import { modalContentMessages } from '@/widgets/eligibility-modal/templates/modal-content.messages'
+import { skipLinksMessages } from '@/widgets/eligibility-modal/templates/skip-links.messages'
 import {
   type SkipLinksParams,
   skipLinksTemplate,
@@ -21,8 +19,8 @@ describe('SkipLinks Accessibility Tests', () => {
   const skipLinksData = [
     {
       href: '#main-content',
-      labelId: eligibilityModalMessages.skipToPaymentInfo.id,
-      defaultMessage: eligibilityModalMessages.skipToPaymentInfo.defaultMessage,
+      labelId: modalContentMessages.skipToPaymentInfo.id,
+      defaultMessage: modalContentMessages.skipToPaymentInfo.defaultMessage,
     },
     {
       href: '#navigation',

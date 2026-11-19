@@ -1,4 +1,3 @@
-import type { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
 import {
   isCredit,
   isDeferred,
@@ -8,6 +7,7 @@ import {
   isSomePlanDeferred,
   requiresLegalDisclosure,
 } from '@/domain/plans/plan-kind'
+import type { EligibilityPlan } from '@/domain/plans/plans.types'
 import {
   mockP1XEligiblePlan,
   mockP4XIneligiblePlan,

@@ -16,8 +16,11 @@ import { ELIGIBILITY_MODAL_TAG } from '@/widgets/eligibility-modal/eligibility-m
 import { PAYMENT_PLANS_TAG } from '@/widgets/payment-plans/payment-plans.const'
 
 // The real elements would take their tags before the placeholders below.
-vi.mock('@/widgets/eligibility-modal/index', () => ({ closeModalOf: () => {} }))
-vi.mock('@/widgets/payment-plans', () => ({}))
+vi.mock('@/widgets/eligibility-modal/eligibility-modal.element', () => ({}))
+vi.mock('@/widgets/payment-plans/payment-plans.element', () => ({}))
+vi.mock('@/widgets/eligibility-modal/controllers/modal-portal.controller', () => ({
+  closeModalOf: () => {},
+}))
 
 // Stands in for the real elements, which the facade tests leave out.
 class PlaceholderHost extends LightDomElement {

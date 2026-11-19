@@ -24,7 +24,6 @@ export default defineConfig({
         'src/test/**',
         // Their tests aren't ported yet. Each port removes its file from this list.
         'src/index.ts',
-        'src/shared/config/api-url.const.ts',
       ],
       thresholds: {
         branches: 88,

@@ -1,6 +1,6 @@
 import { delay, http, HttpResponse } from 'msw'
 
-import type { EligibilityPlan } from '@/domain/plans/api/eligibility.types'
+import type { EligibilityPlan } from '@/domain/plans/plans.types'
 
 // MSW handlers for stories: `parameters: { msw: { handlers: [eligibilityPlans(plans)] } }`
 export const ELIGIBILITY_ENDPOINT = '*/v2/payments/eligibility'

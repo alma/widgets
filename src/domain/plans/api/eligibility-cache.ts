@@ -1,5 +1,6 @@
 import { CACHE_TTL_MS } from '@/domain/plans/api/eligibility.const'
-import type { EligibilityInput, EligibilityPlan } from '@/domain/plans/api/eligibility.types'
+import type { EligibilityInput } from '@/domain/plans/api/eligibility.types'
+import type { EligibilityPlan } from '@/domain/plans/plans.types'
 import { BUILD_VERSION } from '@/shared/config/build-version.const'
 import { hashStringForStorage } from '@/shared/lib/hash'
 

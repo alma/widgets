@@ -11,7 +11,7 @@ import {
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { priceFromCents } from '@/shared/lib/price'
 import STATIC_CUSTOMISATION_CLASSES from '@/widgets/eligibility-modal/eligibility-modal.const'
-import { totalBlockMessages } from '@/widgets/eligibility-modal/eligibility-modal.messages'
+import { totalBlockMessages } from '@/widgets/eligibility-modal/templates/schedule/total-block.messages'
 import styles from '@/widgets/eligibility-modal/templates/schedule/total-block.module.css'
 
 export interface TotalBlockParams {
