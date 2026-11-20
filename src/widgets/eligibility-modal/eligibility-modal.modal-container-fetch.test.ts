@@ -9,8 +9,7 @@ import { useFakeMatchMedia } from '@/test/utils/match-media'
 import { mountWidget } from '@/test/utils/mount-widget'
 import { desktopMediaQuery } from '@/widgets/eligibility-modal/eligibility-modal.const'
 
-// Master renders ModalContainer with a mocked fetchFromApi. Here the modal opens through add(Modal),
-// and the request, the cache, the filter and the sort run.
+// The modal opens through add(Modal), and the request, the cache, the filter and the sort run.
 const renderModalContainer = async (options: Partial<ModalOptions> = {}) => {
   server.use(eligibilityPlans(mockButtonPlans))
   const { handle } = await mountWidget('Modal', {
@@ -23,7 +22,7 @@ const renderModalContainer = async (options: Partial<ModalOptions> = {}) => {
     ...options,
   })
   handle?.open()
-  // Master's mocked fetch resolved before the first query.
+  // Waits for the response before the first query.
   await vi.waitFor(() => expect(screen.queryByRole('status')).not.toBeInTheDocument())
 }
 

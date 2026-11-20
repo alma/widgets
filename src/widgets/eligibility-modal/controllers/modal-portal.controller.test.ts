@@ -8,7 +8,7 @@ class ModalPortalHost extends LightDomElement {
 }
 customElements.define('test-modal-portal-host', ModalPortalHost)
 
-// What react-modal 3.16.3 renders on master, once the first frame has run.
+// The react-modal 3.16.3 markup we copy, once the first frame has run.
 const MASTER_PORTAL =
   '<div class="ReactModalPortal">' +
   '<div class="ReactModal__Overlay ReactModal__Overlay--after-open overlay">' +
@@ -81,7 +81,7 @@ describe('ModalPortalController', () => {
   })
 
   describe('open', () => {
-    it('should render master’s DOM after one animation frame', () => {
+    it("should render react-modal's DOM after one animation frame", () => {
       const button = appendButton()
       const host = openModal()
       runFrames()

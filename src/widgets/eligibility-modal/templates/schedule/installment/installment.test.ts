@@ -122,7 +122,7 @@ describe('installmentTemplate', () => {
   })
 
   it.each(Object.values(Locale))(
-    'should format the date and amount like master in %s',
+    'should format the date and amount like the fixtures in %s',
     (locale) => {
       const { callSites } = locales[locale]
       const container = renderInstallment(

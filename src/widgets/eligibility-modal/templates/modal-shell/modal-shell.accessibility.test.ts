@@ -12,8 +12,8 @@ import {
 } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import { modalShellTemplate } from '@/widgets/eligibility-modal/templates/modal-shell/modal-shell.template'
 
-// Master's Modal is react-modal around the shell. Here the portal controller renders react-modal's
-// markup and the shell template goes in its content div.
+// The portal controller renders the react-modal markup we copy, and the shell template goes in
+// its content div.
 class TestModal extends LightDomElement {
   onClose: RequestClose = () => {}
 
@@ -24,18 +24,18 @@ customElements.define('test-modal-shell', TestModal)
 const intl = createIntl(Locale.fr)
 
 // The dialog takes its name from EligibilityModal's title, through aria-labelledby="modal-title".
-// Master's test renders Modal without that title, so its dialog has no name either.
+// This test renders the shell without that title, so the dialog has no name.
 const axe = configureAxe({ rules: { 'aria-dialog-name': { enabled: false } } })
 
 type ModalProps = {
   isOpen: boolean
   onClose: RequestClose
   children: TemplateResult
-  // What master renders around the modal.
+  // The page content around the modal.
   page?: TemplateResult
 }
 
-// Master renders <Modal> in a container of <body>, and react-modal puts the modal at its end.
+// Copies react-modal, which puts the modal at the end of <body>, after the page.
 const renderModal = ({ isOpen, onClose, children, page }: ModalProps): HTMLElement => {
   const container = renderTemplate(html`${page ?? nothing}`)
   const modal = document.createElement('test-modal-shell') as TestModal
@@ -54,7 +54,7 @@ const modalPortal = (): HTMLElement => {
   return portal
 }
 
-// Master mocks requestAnimationFrame and waits a tick for react-modal's after-open classes.
+// The after-open classes, copied from react-modal, arrive one frame after the open.
 const waitForAfterOpen = () =>
   vi.waitFor(() =>
     expect(screen.getByRole('dialog', { hidden: true })).toHaveClass(
@@ -66,7 +66,7 @@ describe('Modal Accessibility Tests', () => {
   it('should not have any accessibility violations when closed', async () => {
     renderModal({ isOpen: false, onClose: () => {}, children: html`<div>Modal content</div>` })
 
-    // Master always mounts its modal open. A closed one adds nothing to the page here.
+    // A closed modal adds nothing to the page.
     expect(document.querySelector('.ReactModalPortal')).not.toBeInTheDocument()
 
     const results = await axe(document.body)
@@ -116,8 +116,7 @@ describe('Modal Accessibility Tests', () => {
     expect(closeButton).toHaveAttribute('aria-label')
     expect(closeButton).toHaveAttribute('type', 'button')
 
-    // CrossIcon should be decorative (aria-hidden) since button has aria-label. Master checks it
-    // only if the icon is there, and it always is.
+    // The icon is decorative, since the button has an aria-label.
     const icon = closeButton.querySelector('svg')
     expect(icon).toHaveAttribute('aria-hidden', 'true')
     expect(icon).toHaveAttribute('focusable', 'false')
