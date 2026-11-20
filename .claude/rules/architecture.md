@@ -5,7 +5,7 @@ paths:
 
 # Architecture of `src/`
 
-These rules cover 4.x only. The code in `src/` sits in five layers. Each rule gives its reason and its check: lint, a test or review. A lint violation fails `npm run lint` and the pre-commit hook.
+The code in `src/` sits in five layers. Each rule gives its reason and its check: lint, a test or review. A lint violation fails `npm run lint` and the pre-commit hook.
 
 ## Rule files
 

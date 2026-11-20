@@ -7,7 +7,7 @@ paths:
 
 # Styling in light DOM
 
-These rules cover 4.x only and override generic Lit advice, which assumes Shadow DOM. Merchants restyle the widget with their own CSS, so the rules stay in the linked `widgets.css`, where merchant CSS overrides them.
+These rules hold while the widget renders in light DOM, where merchants style it through its classes, IDs and custom properties. They override generic Lit advice, which assumes Shadow DOM. The CSS rules stay in the linked `widgets.css`, where merchant CSS overrides them.
 
 Generic advice that doesn't apply here: `static styles` and the `css` tag, `adoptedStyleSheets`, `:host`, `::part` and `::slotted`.
 
