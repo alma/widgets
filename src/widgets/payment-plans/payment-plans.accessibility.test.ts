@@ -81,8 +81,8 @@ describe('PaymentPlan Accessibility Tests', () => {
     expect(await axe(getContainer())).toHaveNoViolations()
   })
 
-  // Master checks the container only, which the modal's portal sits outside of. It also disables
-  // nested-interactive, though nothing in master's container nests one control in another.
+  // Checks the container only, which the modal's portal sits outside of.
+  // The next test turns nested-interactive back on.
   it('should not have accessibility violations when modal is open', async () => {
     await render()
 

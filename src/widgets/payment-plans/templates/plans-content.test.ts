@@ -23,7 +23,7 @@ const params = (plans: EligibilityPlanToDisplay[]): PlansContentParams => ({
 })
 
 describe('plansContentTemplate', () => {
-  it('should keep each plan button with its plan when the plans change, as master keys them', () => {
+  it('should keep each plan button with its plan when the plans change', () => {
     const intl = createIntl('fr')
     const p2x = mockP2XEligiblePlan as EligibilityPlanToDisplay
     const p3x = mockP3XEligiblePlanWithFees as EligibilityPlanToDisplay
