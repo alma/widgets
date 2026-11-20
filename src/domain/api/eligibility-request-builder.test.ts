@@ -9,7 +9,7 @@ const input = (overrides: Partial<EligibilityInput> = {}): EligibilityInput => (
   ...overrides,
 })
 
-// The strings that master sends, key order included.
+// The exact strings the API receives, key order included.
 const bodyOf = (overrides: Partial<EligibilityInput> = {}) =>
   JSON.stringify(buildEligibilityRequest(input(overrides)).body)
 

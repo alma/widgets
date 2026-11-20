@@ -13,7 +13,7 @@ describe('stubDateNow', () => {
     expect(Date.now).toBe(previousNow)
   })
 
-  it("should default to master's today", () => {
+  it("should default to the tests' today", () => {
     vi.restoreAllMocks()
 
     const undo = stubDateNow()

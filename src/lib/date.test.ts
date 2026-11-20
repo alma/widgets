@@ -26,7 +26,7 @@ type DatesFixture = {
   zones: Record<string, Record<string, { isToday: boolean }>>
 }
 
-// What master's isToday returned for each zone and due date.
+// The isToday result that the contract fixture expects for each zone and due date.
 const datesFixture: DatesFixture = JSON.parse(
   readFileSync(resolve(__dirname, '../../tests/integration/contract/fixtures/dates.json'), 'utf8'),
 )
@@ -243,10 +243,13 @@ describe('isToday against the date fixture', () => {
       vi.spyOn(Date, 'now').mockReturnValue(datesFixture.now)
     })
 
-    it.each(datesFixture.dueDates)("should give master's result for the due date %i", (dueDate) => {
-      expect(isToday(secondsToMilliseconds(dueDate))).toBe(
-        datesFixture.zones[timeZone][dueDate].isToday,
-      )
-    })
+    it.each(datesFixture.dueDates)(
+      "should give the fixture's result for the due date %i",
+      (dueDate) => {
+        expect(isToday(secondsToMilliseconds(dueDate))).toBe(
+          datesFixture.zones[timeZone][dueDate].isToday,
+        )
+      },
+    )
   })
 })

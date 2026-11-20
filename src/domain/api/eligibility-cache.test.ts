@@ -39,7 +39,7 @@ describe('createKey', () => {
     ...overrides,
   })
 
-  it('gives master hash for an amount and no other option', () => {
+  it('gives the known hash for an amount and no other option', () => {
     expect(createKey(input())).toBe('A969556424')
   })
 
@@ -91,7 +91,7 @@ describe('the cache functions', () => {
     expect(getCache('otherKey')).toEqual(null)
   })
 
-  it('stores the value and the write time as master does', () => {
+  it('stores the value and the write time', () => {
     setCache('key', [])
     expect(sessionStorage.getItem('key')).toBe('{"value":[],"timestamp":1638350762000}')
   })
