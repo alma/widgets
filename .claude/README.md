@@ -1,9 +1,9 @@
 # Claude Code setup
 
-This folder holds the Claude Code setup that the team shares for the Lit port of `@alma/widgets`.
-Generic Lit advice assumes Shadow DOM, `static styles` and `CustomEvent`s, and each of those breaks
-the 4.x contract with merchants. The rules here keep Claude on the 4.x path, and a hook lints each
-file that Claude edits.
+This folder holds the Claude Code setup that the team shares for `@alma/widgets`. Generic Lit
+advice assumes Shadow DOM, `static styles` and `CustomEvent`s, and each of those breaks the merchant
+contract: the options, callbacks, DOM, classes and IDs that merchants rely on. The rules here keep
+Claude within that contract, and a hook lints each file that Claude edits.
 
 Tested with Claude Code 2.1.304.
 
@@ -34,12 +34,12 @@ Tested with Claude Code 2.1.304.
 
 | Rule file | Loads for | Covers |
 | --- | --- | --- |
-| `architecture.md` | `src/**` | Layers, imports, placement, bans across `src/`, suffixes, the React original, tests |
+| `architecture.md` | `src/**` | Layers, imports, placement, bans across `src/`, suffixes, tests |
 | `domain.md` | `src/domain/`, `src/lib/http.ts` | The eligibility request and its cache |
 | `widgets.md` | `src/widgets/`, `src/shared/` | Lit in light DOM and the merchant contract of the elements |
 | `public-api.md` | `src/public-api/`, `src/index.ts` | The merchant contract: API, options, files |
 | `lit-styling.md` | `src/widgets/`, `src/shared/`, `src/main.css` | CSS that merchants can still override |
-| `lit-accessibility.md` | `src/widgets/`, `src/shared/`, `src/modal.browser.test.ts` | Accessibility as master has it, and the modal |
+| `lit-accessibility.md` | `src/widgets/`, `src/shared/`, `src/modal.browser.test.ts` | Accessibility that the merchant contract freezes, and the modal |
 
 Each rule has an ID, such as `ARCH-06`, with its reason and its check: lint, a test or review. A
 rule lives in the one file whose `paths:` cover every file it governs. When two files that never
@@ -97,9 +97,9 @@ starts with `/`, `~` or `../`, or climbs out with `/../`, because git then reads
 outside the repo. A quoted absolute path still gets through, and the agents never need one. `gh pr
 edit` isn't allowed, so Claude Code asks before the skill writes the PR description.
 
-It denies edits to `src/intl/messages/`, which Crowdin writes, and to `.ref-worktree/`, where
-`npm run build:ref` checks out master. It also denies `npm publish`, `unpublish` and `deprecate`,
-force pushes and the Crowdin sync commands, and asks before an edit under
+It denies edits to `src/intl/messages/`, which Crowdin writes, and to `.ref-worktree/`, the git
+worktree that `npm run build:ref` creates. It also denies `npm publish`, `unpublish` and
+`deprecate`, force pushes and the Crowdin sync commands, and asks before an edit under
 `tests/integration/contract/`.
 
 A deny wins over an allow from any other settings file, so `.claude/settings.local.json` can't lift
