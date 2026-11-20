@@ -10,7 +10,6 @@ import type {
 import type { AddReturnType } from '@/public-api/widgets'
 import { Locale } from '@/shared/i18n/i18n.const'
 
-// Master's test merchant.
 export const TEST_MERCHANT_ID = '11gKoO333vEXacMNMUMUSc4c4g68g2Les4'
 
 export const TEST_CONTAINER = '#alma-widget-test'

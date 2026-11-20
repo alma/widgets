@@ -90,7 +90,7 @@ describe('WidgetsController', () => {
   })
 
   describe('add(PaymentPlans)', () => {
-    it("should empty the container, append one host with master's defaults and return undefined", () => {
+    it('should empty the container, append one host with the default options and return undefined', () => {
       container.append(document.createElement('p'))
 
       const result = addPaymentPlans()
@@ -110,7 +110,7 @@ describe('WidgetsController', () => {
       expect(host.querySelector('[data-testid="placeholder"]')).not.toBeNull()
     })
 
-    it('should give the host every option that master passes, from its first render', () => {
+    it('should give the host every option from its first render', () => {
       const cards: Card[] = ['visa']
       const options = {
         plans: [{ installmentsCount: 3, minAmount: 5000, maxAmount: 200000 }],
@@ -140,7 +140,7 @@ describe('WidgetsController', () => {
       expect(host.firstRender).not.toHaveProperty('plans')
     })
 
-    it('should keep null, which master defaults only when an option is missing', () => {
+    it('should keep null, since only a missing option gets its default', () => {
       addPaymentPlans({ hideBorder: null, monochrome: null } as unknown as PaymentPlanWidgetOptions)
 
       const [host] = hostsIn(container)
@@ -220,7 +220,7 @@ describe('WidgetsController', () => {
       expect(container.children).toHaveLength(0)
     })
 
-    it("should mount a modal host on open(), with master's default locale", () => {
+    it('should mount a modal host on open(), with the default locale', () => {
       const handle = addModal()
 
       handle.open()
@@ -237,7 +237,7 @@ describe('WidgetsController', () => {
       expect(host.querySelector('[data-testid="placeholder"]')).not.toBeNull()
     })
 
-    it('should give the modal host every option that master passes, from its first render', () => {
+    it('should give the modal host every option from its first render', () => {
       const cards: Card[] = ['cb', 'visa']
       // No onClose: the host gets handle.close instead.
       const options = {
@@ -356,7 +356,7 @@ describe('WidgetsController', () => {
       expect(onClose).toHaveBeenCalledWith(event)
     })
 
-    it('should remove whatever widget the container holds, as master does', () => {
+    it('should remove whatever widget the container holds', () => {
       const handle = addModal()
       addPaymentPlans()
       const [plansHost] = hostsIn(container)
