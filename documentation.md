@@ -97,6 +97,8 @@ If you want to customize the look of the widget, you can edit all classes that s
 
 You can see the list by inspecting the element with your dev tools. Don't use the classes that have an unpronounceable name, they will change at each new version of the widget.
 
+Each widget renders inside a custom element that it adds to your container. PaymentPlans uses `alma-payment-plans` and Modal uses `alma-eligibility-modal`. That element has `display: contents`, so it draws no box and doesn't change the layout. It is still one more level in the DOM, so a child selector from your container, such as `#alma-widget > div`, no longer matches the widget. Use a descendant selector such as `#alma-widget div`, or an `alma-` class.
+
 ## Locale option
 
 The locales supported by the widgets are :
