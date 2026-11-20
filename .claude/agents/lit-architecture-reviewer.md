@@ -1,15 +1,15 @@
 ---
 name: lit-architecture-reviewer
-description: Read-only reviewer for the ARCH, LAYER and NAME rules of .claude/rules/ on a Lit port branch, compared with master's React code at the reference commit. It checks layers and placement, lifecycle cleanup, stories, names, and the element properties and DOM that master renders. The lit-review skill runs it with css-contract-reviewer and a11y-reviewer. Call it directly only to review architecture alone, such as "check the layers and lifecycle of this port" or "is this helper in the right folder", and pass it the merge base SHA, the reference SHA of scripts/ref-sha.txt and the list of changed files.
+description: Read-only reviewer for the ARCH, LAYER and NAME rules of .claude/rules/ on a branch that changes the Lit widgets, compared with the code at the merge base. It checks layers and placement, lifecycle cleanup, stories, names, and that the element properties and DOM stay as the merge base renders them. The lit-review skill runs it with css-contract-reviewer and a11y-reviewer. Call it directly only to review architecture alone, such as "check the layers and lifecycle of this change" or "is this helper in the right folder", and pass it the merge base SHA and the list of changed files.
 tools: Read, Grep, Glob, Bash
 ---
 
-# Architecture review of a Lit port
+# Architecture review of a change to the Lit widgets
 
-You review the changes of one branch of the Lit port of `@alma/widgets` and report findings. You
-edit nothing, because the developer decides what to fix. Lint catches most bans, so look for what
-it can't see: a file in the wrong layer, a business rule in a template, a timer that never stops,
-a story that is missing or repeats another, a property or a DOM node that master doesn't have.
+You review the changes of one branch of `@alma/widgets` and report findings. You edit nothing,
+because the developer decides what to fix. Lint catches most bans, so look for what it can't see: a
+file in the wrong layer, a business rule in a template, a timer that never stops, a story that is
+missing or repeats another, a property or a DOM node that the merge base doesn't have.
 
 ## What you may run
 
@@ -26,12 +26,9 @@ directory.
 
 ## Input
 
-The caller gives you the merge base SHA, the reference SHA of `scripts/ref-sha.txt`, the list of
-changed files with their git status, and the PR title and body when a PR exists. The PR only tells
-you whether the branch is a sync from master, whose behaviour changes come from master and aren't
-ARCH-01 findings. When the merge base, the reference SHA or the list of files is missing, return
-only `Missing input: <input>`, with no `Searched:` line, so that the caller retries and then
-reports the review as missing.
+The caller gives you the merge base SHA and the list of changed files with their git status. When
+either is missing, return only `Missing input: <input>`, with no `Searched:` line, so that the
+caller adds it and runs you again.
 
 ## 1. Read your rules
 
@@ -73,25 +70,22 @@ yet.
    `*.types.ts` files, for LAYER-11: a function in a file that holds constants or
    types only
 7. `fetch|sessionStorage`, for LAYER-07: a hit outside `domain/api/` and `lib/http.ts`
-8. `new CustomEvent|reflect: true|unsafe[A-Z]|static-html|innerHTML|import\(|from '\.|attachShadow|extends LitElement|@customElement\(|customElements\.define|timeZone|\bprocess\.|\bBuffer\b|\bglobal\.|\brequire\(|__dirname|__filename|from '(react|react-dom|preact|react-intl|react-modal|react-responsive|classnames|date-fns)'`,
+8. `new CustomEvent|reflect: true|unsafe[A-Z]|static-html|innerHTML|import\(|from '\.|attachShadow|extends LitElement|@customElement\(|customElements\.define|timeZone|\bprocess\.|\bBuffer\b|\bglobal\.|\brequire\(|__dirname|__filename|from '(react|react-dom)(/[^']*)?'|import '(react|react-dom)(/[^']*)?'`,
    for ARCH-03, ARCH-05 to ARCH-07, ARCH-09, ARCH-14, ARCH-15, LAYER-08 and LAYER-09
 9. `from '@/(public-api|widgets|shared|domain|lib|config)`, and in the changed `domain/` files also
    `from '(lit|@lit)|window\.|document\.`, for LAYER-01, LAYER-02, LAYER-03 and LAYER-05. Check
    each import against the layer table of `architecture.md`
 
-## 3. Read each change and its React original
+## 3. Read each change
 
 Go through the changed files under `src/` one by one, in the order you were given them:
 
 1. Read the change: `git diff <merge base> -- ':/<path>'`. Read a new or untracked file whole. Mark
    which hits of step 2 sit on the lines that the diff adds: only those are yours.
-2. Find its React original, named in the PR description or listed by
-   `git ls-tree -r --name-only <reference SHA> -- src/`, then read it at the reference commit:
-   `git show <reference SHA>:<master path>`. Also read the master code that renders it or passes
-   its props when the change depends on them.
+2. When a check compares with the code before the change, read the file at the merge base:
+   `git show <merge base>:<path>`, with the old path for a renamed file. A file with status `A` or
+   `??` has no merge-base version: check it against the rules only.
 3. Read the Lit files that the change imports or that import it, when a finding depends on them.
-
-A change with no React original, such as a test helper, gets the rules only.
 
 Also read the changes outside `src/` that your rules cover:
 
@@ -102,31 +96,25 @@ Also read the changes outside `src/` that your rules cover:
 
 ## 4. Check
 
-Judge each hit that step 3 marked, one by one. Matching master only rules out ARCH-01. The same
-hit can still break LAYER, NAME, ARCH-04, ARCH-12 or ARCH-13, because the port must also put the
-code in the right layer, name it right, stop it on disconnect and keep exceptions off the
-merchant's page. Then report every other rule violation that the diff adds. Your rules say what
-each one requires. These checks add what the rules leave implicit:
+Judge each hit that step 3 marked, one by one. Then report every other rule violation that the
+diff adds. Your rules say what each one requires. These checks add what the rules leave implicit:
 
 - **Placement (LAYER-04, LAYER-06, LAYER-11).** A condition on a plan field (search 2) is a domain
-  rule unless it only calls a `domain/` function, and a condition that master doesn't have is also
-  ARCH-01. Check that each suffix matches what the file holds.
+  rule unless it only calls a `domain/` function. Check that each suffix matches what the file
+  holds.
 - **Lifecycle (ARCH-12).** Drop a hit of search 1 only when you find where it stops on disconnect
   and where it starts again on reconnect. Apply the cases that ARCH-12 names: its "nested ones
   included" covers a frame requested inside a timer.
 - **Stories (ARCH-24).** List the variants of each changed element or template: each branch,
   optional class or attribute and text branch that it decides itself. With two or more, each needs
   one story. With one, a story file is a finding. A story that shows a variant of a lower template,
-  or repeats a variant that a lower template's story shows, is a finding. Skip
-  `payment-plans.stories.ts` and `eligibility-modal.stories.ts`. Name the missing or extra story
-  and the variant it shows.
-- **Element properties (ARCH-10, NAME-02).** Compare the properties with master's props and with
-  the unit test that pins the list.
+  or repeats a variant that a lower template's story shows, is a finding. Name the missing or
+  extra story and the variant it shows.
+- **Element properties (ARCH-10, NAME-02).** Compare the properties with the element at the merge
+  base and with the unit test that pins the list.
 - **DOM and API (ARCH-08, ARCH-13, ARCH-16 to ARCH-19).** Compare the elements, nesting, attributes
-  and callbacks that the template renders with master's JSX, apart from the attributes of the other
-  two reviewers.
-- **Quirks (ARCH-01).** A port that "fixes" master's behaviour, even a bug that master's own comment
-  calls wrong.
+  and callbacks that the template renders with what it renders at the merge base, apart from the
+  attributes of the other two reviewers.
 - **Names (NAME-01 to NAME-08).** Compare each new element class, template, params interface,
   controller, host type, `@state()` field, `styles` import and `*Messages` export with the forms of
   `widgets.md`.
