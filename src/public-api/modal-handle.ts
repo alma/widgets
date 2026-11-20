@@ -16,7 +16,7 @@ export const createModalHandle = (
   onClose: ModalOptions['onClose'],
   { render, remove }: ModalHostActions,
 ): ModalHandle => {
-  // As on master, removes any widget in the container, not only the modal, and calls onClose
+  // Removes any widget in the container, not only the modal, and calls onClose
   // even when no modal is open. remove() closes the portal first.
   const close: ModalHandle['close'] = (event) => {
     remove()
@@ -28,13 +28,12 @@ export const createModalHandle = (
   return { open, close }
 }
 
-// As on master: the first match only, never removed, default action kept.
+// The first match only, never removed, default action kept.
 export const openOnClick = (clickableSelector: string, open: () => void): void => {
   let clickable: Element | null
   try {
     clickable = document.querySelector(clickableSelector)
   } catch (error) {
-    // Master throws out of add().
     warnOnce(`add() got an invalid clickableSelector "${clickableSelector}".`, error)
     return
   }

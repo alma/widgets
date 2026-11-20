@@ -4,8 +4,7 @@ import type { ApiRequest } from '@/lib/http.types'
 
 const buildAddress = (country?: string) => (country ? { country } : null)
 
-// Master's request, byte for byte: the body keys keep its order, and JSON.stringify drops the
-// undefined ones. Expects `configPlans` to be an array or missing.
+// Expects `configPlans` to be an array or missing.
 export const buildEligibilityRequest = ({
   purchaseAmount,
   domain,
