@@ -181,31 +181,17 @@ The package's `dist` folder, also served by jsDelivr, holds these files:
 
 # To go further
 
-### WidgetsController
+### What `initialize()` returns
 
-The `WidgetsController` function is responsible for managing Alma widgets. It provides a method to dynamically add widgets to the DOM based on the provided configuration.
+`Alma.Widgets.initialize(merchantId, domain)` returns an object with one method, `add(widget, options)`. It adds the widget to the element that `options.container` selects.
 
-#### Parameters:  
+- With `Alma.Widgets.PaymentPlans`, `add()` returns nothing.
+- With `Alma.Widgets.Modal`, `add()` returns an object with an `open()` and a `close()` method. If no element matches `options.container`, both methods do nothing.
 
-| Parameter          |               Type               |     Required      | Description                                                                                                                                                                                                 |
-|:-------------------|:--------------------------------:|:-----------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| apiData            |            `ApiData`             |   **required**    | An object containing the following properties : domain,     merchantId                                                                                                                                      |
-| apiData.domain     | `ApiMode.TEST` OR `ApiMode.LIVE` | **required** | The domains LIVE & TEST are preconfigured when using the provided values from "Alma.ApiMode.[TEST or LIVE]. It represents the domain's url to be used for API calls (ex: "https://api.getalma.eu" for LIVE) |
-| apiData.merchantId |           `string`     |   **required**    | The merchant's unique identifier provided by Alma (starting with `merchant_`)                                                                                                                 |
-
-
-#### Returns:
-An object with the following method:
-- `add(widget: WidgetNames, options: WidgetOptions): AddReturnType`
-  - Adds a widget to the DOM based on the specified widget type and options.
-
-The `WidgetsController` is configured when implementing the method `initialize(merchantId: string, domain: Alma.ApiMode.TEST | Alma.ApiMode.LIVE)`
+A second `add()` on the same container replaces the previous widget, so a container holds one widget at a time.
 
 ### Known Limitation:
-The current implementation of the `addWidget` function does not automatically update the widget when the `purchaseAmount` changes dynamically. 
-Once a widget is rendered, any subsequent changes to the `purchaseAmount` will not be reflected unless the widget is manually re-rendered.
-This is also the case for any other parameters passed to the widget.
-The following approach can be used to handle other variables changes in the widget.
+A widget doesn't follow later changes to `purchaseAmount`, or to any other option you passed to `add()`. To show new values, call `add()` again, as the steps below describe.
 
 ### How to Implement the Widget for Variable `purchaseAmount`:
 To handle a variable `purchaseAmount`, you can follow these steps:
@@ -218,14 +204,7 @@ To handle a variable `purchaseAmount`, you can follow these steps:
 
 2. **Re-render the Widget**
 
-   Call the `add` method again with the updated `purchaseAmount` to re-render the widget.
-
-  Note that Calling the `add` method multiple times will **unmount the previous widget** before rendering a new one. This behavior is implemented in the `addWidget` function (lines 37–41). Specifically:
-  - It checks if a `Root` instance already exists for the specified container (`rootMap.get(containerDiv)`).
-  - If a `Root` exists, it calls `unmount()` to remove the previous widget and deletes the reference from the `rootMap`.  
-  - A new widget is then rendered in the same container.
-
-  This ensures that only one widget is active in the specified container at any given time
+   Call the `add` method again on the same container with the updated `purchaseAmount`. The new widget replaces the previous one.
 
 3. **Example Implementation**
 
