@@ -34,24 +34,24 @@ The Alma Payment Widgets are fully compliant with RGAA 2.1 AA standards and foll
 **Critical Principle**: Third-party widgets must never inject semantic HTML elements that could interfere with the host page's document structure.
 
 #### ✅ Widget-Safe Implementation
-```typescript
-// Neutral containers with ARIA roles - RGAA compliant for third-party widgets
+```html
+<!-- Neutral containers with ARIA roles, RGAA compliant for third-party widgets -->
 <div role="region" aria-labelledby="payment-plans-title">
-  <div id="payment-plans-title" role="heading" aria-level={2}>
-    Payment Options Available
+  <div id="payment-plans-title" class="sr-only" role="heading" aria-level="2">
+    Available payment options
   </div>
-  // ... widget content
+  <!-- widget content -->
 </div>
 ```
 
 #### ❌ Previously Problematic (Now Fixed)
-```typescript
-// These semantic tags were removed to prevent host page conflicts
-<section aria-labelledby="payment-plans-title">  // ❌ Removed
-  <h5 id="payment-plans-title">...</h5>         // ❌ Removed
+```html
+<!-- These semantic tags were removed to prevent host page conflicts -->
+<section aria-labelledby="payment-plans-title">  <!-- ❌ Removed -->
+  <h5 id="payment-plans-title">...</h5>          <!-- ❌ Removed -->
 </section>
-<aside>...</aside>                              // ❌ Removed
-<main>...</main>                                // ❌ Never used
+<aside>...</aside>                               <!-- ❌ Removed -->
+<main>...</main>                                 <!-- ❌ Never used -->
 ```
 
 ### 🎯 Widget Integration Benefits
@@ -67,25 +67,23 @@ The Alma Payment Widgets are fully compliant with RGAA 2.1 AA standards and foll
 ### 🎯 Core Accessibility Features
 
 #### Widget-Safe Semantic Design
-```typescript
-// ARIA-based semantic structure for third-party widgets
+```html
+<!-- ARIA-based semantic structure for third-party widgets, as rendered with the en locale -->
 <div role="region" aria-labelledby="payment-plans-title">
-  <div id="payment-plans-title" className="sr-only" role="heading" aria-level={2}>
-    {intl.formatMessage({
-      id: 'accessibility.payment-plans.section-title',
-      defaultMessage: 'Options de paiement disponibles',
-    })}
+  <div id="payment-plans-title" class="sr-only" role="heading" aria-level="2">
+    Available payment options
   </div>
-  
-  <div role="listbox" aria-label="Payment options available">
+
+  <div role="listbox" aria-label="Available payment options">
     <button
+      type="button"
       role="option"
-      aria-selected={isCurrent}
+      aria-selected="true"
       aria-describedby="payment-info-text"
-      aria-label="Payment option {planDescription}"
-    >
-      {planContent}
-    </button>
+      aria-label="Payment option {plan description}"
+      aria-disabled="false"
+      tabindex="0"
+    >3x</button>
   </div>
 </div>
 ```
@@ -110,17 +108,10 @@ if (prefersReducedMotion) {
 ```
 
 #### Dynamic Content Announcements
-```typescript
-// Custom hook for screen reader announcements
-const { announce } = useAnnounceText()
-
-// Plan changes announced to screen readers
-announce(`Plan sélectionné : ${planDescription}`, 1000)
-
-// Live region for real-time updates
-<div role="alert" aria-live="assertive">
-  {announceText}
-</div>
+```html
+<!-- Live region after the widget, empty until the selected plan changes -->
+<div role="alert" aria-live="assertive">Selected plan: {plan description}</div>
+<!-- The widget empties it again one second later -->
 ```
 
 #### Skip Navigation Implementation
@@ -182,14 +173,14 @@ const skipLinks = [
 - **Host page protection**: No interference with existing HTML hierarchy
 - **Flexible integration**: Works regardless of host page's heading structure
 
-```typescript
-// Widget-safe heading implementation
-<div role="heading" aria-level={2} className="sr-only">
-  Payment Options Available
+```html
+<!-- Widget-safe heading implementation -->
+<div id="payment-plans-title" class="sr-only" role="heading" aria-level="2">
+  Available payment options
 </div>
 
-// Instead of potentially conflicting:
-// <h2>Payment Options Available</h2> ❌
+<!-- Instead of potentially conflicting: -->
+<!-- <h2>Available payment options</h2> ❌ -->
 ```
 
 ### ✅ Presentation (RGAA 10)
@@ -282,21 +273,30 @@ const skipLinks = [
 
 ### 📊 Compliance Verification
 ```typescript
-// Example accessibility test ensuring widget safety
-describe('Widget HTML Safety', () => {
-  test('should not inject semantic HTML tags', () => {
-    render(<PaymentPlanWidget {...props} />)
-    
-    // Verify no problematic tags are injected
-    expect(screen.queryByRole('main')).not.toBeInTheDocument()
-    expect(screen.queryByRole('article')).not.toBeInTheDocument()
-    expect(document.querySelector('section')).not.toBeInTheDocument()
-    expect(document.querySelector('aside')).not.toBeInTheDocument()
-    expect(document.querySelector('h1, h2, h3, h4, h5, h6')).not.toBeInTheDocument()
-    
-    // Verify ARIA-based semantics work correctly
-    expect(screen.getByRole('region')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
+// Vitest test, shortened from src/widgets/payment-plans/payment-plans.aria-landmarks.test.ts
+import { screen } from '@testing-library/dom'
+
+import { mockButtonPlans } from '@/test/fixtures/plans'
+import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
+import { server } from '@/test/msw/msw-server'
+import { mountWidget, TEST_CONTAINER } from '@/test/utils/mount-widget'
+
+describe('Widget HTML safety', () => {
+  beforeEach(() => {
+    server.use(eligibilityPlans(mockButtonPlans))
+  })
+
+  it('does not inject semantic HTML tags', async () => {
+    await mountWidget('PaymentPlans', { purchaseAmount: 40000 })
+    await screen.findByTestId('widget-container')
+    const container = document.querySelector(TEST_CONTAINER)!
+
+    expect(container.querySelector('main, article, section, aside')).not.toBeInTheDocument()
+    expect(container.querySelector('h1, h2, h3, h4, h5, h6')).not.toBeInTheDocument()
+
+    // ARIA roles carry the structure instead
+    expect(screen.getAllByRole('region')).toHaveLength(2)
+    expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(2)
   })
 })
 ```
@@ -319,18 +319,16 @@ describe('Widget HTML Safety', () => {
 ### 🔧 Technical Architecture
 
 #### Widget Isolation Strategy
-```typescript
-// Widget wrapper ensures no semantic leakage
-<div 
-  id="alma-widget-payment-plans-main-container"
-  className={widgetClasses}
-  data-testid="widget-container"
->
-  {/* All content uses ARIA roles instead of semantic HTML */}
-  <div role="region" aria-labelledby="payment-plans-title">
-    {/* Widget content */}
+```html
+<!-- The custom element has display: contents, so it adds no box to the host page -->
+<alma-payment-plans>
+  <div id="alma-widget-payment-plans-main-container" data-testid="widget-container">
+    <!-- All content uses ARIA roles instead of semantic HTML -->
+    <div role="region" aria-labelledby="payment-plans-title">
+      <!-- Widget content -->
+    </div>
   </div>
-</div>
+</alma-payment-plans>
 ```
 
 #### ARIA Implementation Standards
