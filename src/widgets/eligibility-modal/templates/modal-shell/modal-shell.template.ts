@@ -16,7 +16,6 @@ export interface ModalShellParams {
   intl: IntlShape
 }
 
-// What master renders inside react-modal's content div. ModalPortalController renders that div.
 export const modalShellTemplate = ({
   children,
   onClose,

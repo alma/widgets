@@ -41,5 +41,5 @@ export const Spain: Story = { args: { country: 'ES' } }
 
 export const UnitedKingdomGb: Story = { args: { country: 'GB' } }
 
-// Master renders nothing for a country without an approved sentence.
+// Renders nothing for a country without an approved sentence.
 export const UnmappedCountry: Story = { args: { country: 'ZZ' } }
