@@ -1,6 +1,6 @@
 import type { ClassInfo } from 'lit/directives/class-map.js'
 
-// classMap takes one class per key, and master's className prop can hold several.
+// classMap takes one class per key, and className can hold several.
 export const withClassName = (baseClass: string, className = ''): ClassInfo => ({
   [baseClass]: true,
   ...Object.fromEntries(

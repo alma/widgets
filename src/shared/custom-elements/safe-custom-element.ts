@@ -1,7 +1,8 @@
 import { BUILD_VERSION } from '@/config/build-version.const'
 import { warnOnce } from '@/lib/errors'
 
-// Symbol.for() shares the key across bundles. Never change it in 4.x.
+// Frozen: Symbol.for() shares the key with any other bundle of the widget on the page,
+// and each bundle reads it to compare its version with the one that defined the elements.
 export const ELEMENT_VERSION: unique symbol = Symbol.for('@alma/widgets:version')
 
 type VersionedElement = CustomElementConstructor & { [ELEMENT_VERSION]?: string }

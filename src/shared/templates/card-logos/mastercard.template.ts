@@ -7,7 +7,7 @@ export interface MastercardParams {
   intl: IntlShape
 }
 
-// Master's markup minus nine unused IDs that two logos on one page would duplicate.
+// No IDs: two logos on one page would duplicate them.
 export const mastercardTemplate = ({ intl }: MastercardParams): TemplateResult =>
   html`<svg
     width="24"

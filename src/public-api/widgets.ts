@@ -33,7 +33,7 @@ const removeHost = (container: Element): void => {
   }
 }
 
-// Preact empties a container on its first render only.
+// Empties the container before its first widget only.
 const mountHost = (
   container: Element,
   tagName: string,
