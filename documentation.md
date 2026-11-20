@@ -32,7 +32,7 @@ Add a button with the eligibles payment plans for the given purchase amount
 |:-------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | container                |                                                                    `string`                                                                     |             **required**             | Your container's selector                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | purchaseAmount           |                                                                    `number`                                                                     |             **required**             | The purchase amount (in euro cents)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| merchant_covers_all_fees |                                                                    `boolean`                                                                    |               optional               | If set to true, the widget will display plans as if the merchant covers all fees. The value should be the same as the one used in the payment creation request. Default value is false.                                                                                                                                                                                                                                                                                                                                                                                   |
+| merchantCoversAllFees    |                                                                    `boolean`                                                                    |               optional               | If set to true, the widget will display plans as if the merchant covers all fees. The value should be the same as the one used in the payment creation request. Default value is false.                                                                                                                                                                                                                                                                                                                                                                                   |
 | plans                    |                                                 `Plan[]`   [more info below](#plan-option-plan)                                                 |               optional               | An array of the plans you want to display. If not provided, the widget returns all your available payment plans.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | transitionDelay          |                                                                    `number`                                                                     |  optional (default value is `5500`)  | The amount of time in between button animations in ms. If value is set to -1, then there is no loop.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | locale                   | `fr` or `es` or  `it` or `de` or `nl` or `pt`, or `en` or local-country format (e.g `fr-FR`, `de-DE`, `it-IT`)[more info below](#locale-option) | optional (default value is  `"en"`)  | Defines the language displayed on the widgets                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -66,7 +66,7 @@ Can be open with the `clickableSelector` option or by calling the `open` methods
 |:-------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | container                |                                                                     `string`                                                                     |            **required**             | Your container's selector                                                                                                                                                                                                                                                                                                                                                             |
 | purchaseAmount           |                                                                     `number`                                                                     |            **required**             | The purchase amount (in euro cents)                                                                                                                                                                                                                                                                                                                                                   |
-| merchant_covers_all_fees |                                                                    `boolean`                                                                     |              optional               | If set to true, the widget will display plans as if the merchant covers all fees. The value should be the same as the one used in the payment creation request. Default value is false.                                                                                                                                                                                               |
+| merchantCoversAllFees    |                                                                    `boolean`                                                                     |              optional               | If set to true, the widget will display plans as if the merchant covers all fees. The value should be the same as the one used in the payment creation request. Default value is false.                                                                                                                                                                                               |
 | plans                    |                                                 `Plan[]`   [more info below](#plan-option-plan)                                                  |              optional               | An array of the plans you want to display. If not provided, the widget returns all your available payment plans.                                                                                                                                                                                                                                                                      |
 | locale                   | `fr` or `es` or  `it` or `de` or `nl` or `pt`, or `en` or local-country format (e.g `fr-FR`, `de-DE`, `it-IT`) [more info below](#locale-option) | optional (default value is  `"en"`) | Defines the language displayed on the widgets                                                                                                                                                                                                                                                                                                                                         |
 | clickableSelector        |                                                                     `string`                                                                     | optional (default value is `null`)  | If provided, the modal will open when the element matching this query selector is clicked.                                                                                                                                                                                                                                                                                            |
@@ -97,6 +97,8 @@ If you want to customize the look of the widget, you can edit all classes that s
 
 You can see the list by inspecting the element with your dev tools. Don't use the classes that have an unpronounceable name, they will change at each new version of the widget.
 
+Each widget renders inside a custom element that it adds to your container. PaymentPlans uses `alma-payment-plans` and Modal uses `alma-eligibility-modal`. That element has `display: contents`, so it draws no box and doesn't change the layout. It is still one more level in the DOM, so a child selector from your container, such as `#alma-widget > div`, no longer matches the widget. Use a descendant selector such as `#alma-widget div`, or an `alma-` class.
+
 ## Locale option
 
 The locales supported by the widgets are :
@@ -122,33 +124,74 @@ The locale is used in the Widgets to display all wordings in the correct languag
 
 For example, for a pricing, the locale `pt` will format as `€ 100,00` while the locale `pt-PT` will format as `100,00 €`.
 
+## Browser support
+
+The widgets run in these browsers and their later versions:
+
+- Chrome 85
+- Firefox 79
+- Safari 14.1
+- Safari on iOS 14.5
+
+Older browsers can't run the script, so `window.Alma` stays undefined and an inline `Alma.Widgets.initialize(...)` call throws a `ReferenceError`. Check that `window.Alma` exists before you use it, so the rest of your page keeps working:
+
+```html
+<script>
+  ;(function () {
+    if (window.Alma) {
+      var widgets = Alma.Widgets.initialize('<YOUR MERCHANT ID>', Alma.ApiMode.LIVE)
+      widgets.add(Alma.Widgets.PaymentPlans, {
+        container: '#alma-widget',
+        purchaseAmount: 45000,
+      })
+    }
+  })()
+</script>
+```
+
+## Content Security Policy
+
+The widgets use Lit. When the script loads, Lit creates a [Trusted Types](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) policy named `lit-html`.
+
+If your page's Content Security Policy lists the allowed policy names in a `trusted-types` directive, add `lit-html` to it, or the script throws when it loads:
+
+```
+Content-Security-Policy: require-trusted-types-for 'script'; trusted-types lit-html
+```
+
+If your page also loads another copy of Lit, that copy creates a policy with the same name, so add `'allow-duplicates'` too:
+
+```
+Content-Security-Policy: require-trusted-types-for 'script'; trusted-types lit-html 'allow-duplicates'
+```
+
+The widgets add no `<style>` element to your page. Their styles come from `widgets.css`, so they need no style nonce, and you don't need to set `window.litNonce`.
+
+## Files
+
+The package's `dist` folder, also served by jsDelivr, holds these files:
+
+| File                | Use                                                                                       |
+|:--------------------|:------------------------------------------------------------------------------------------|
+| `widgets.umd.js`    | Load it with a `<script>` tag. It sets `window.Alma`.                                     |
+| `widgets.js`        | ES module, the package's `main` entry, for bundlers.                                      |
+| `widgets.css`       | The widgets' styles.                                                                      |
+| `widgets.min.css`   | The same styles, minified.                                                                |
+| `widgets-wc.umd.js` | Identical to `widgets.umd.js`. It stays in the package so existing integrations keep working. |
+
 # To go further
 
-### WidgetsController
+### What `initialize()` returns
 
-The `WidgetsController` function is responsible for managing Alma widgets. It provides a method to dynamically add widgets to the DOM based on the provided configuration.
+`Alma.Widgets.initialize(merchantId, domain)` returns an object with one method, `add(widget, options)`. It adds the widget to the element that `options.container` selects.
 
-#### Parameters:  
+- With `Alma.Widgets.PaymentPlans`, `add()` returns nothing.
+- With `Alma.Widgets.Modal`, `add()` returns an object with an `open()` and a `close()` method. If no element matches `options.container`, both methods do nothing.
 
-| Parameter          |               Type               |     Required      | Description                                                                                                                                                                                                 |
-|:-------------------|:--------------------------------:|:-----------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| apiData            |            `ApiData`             |   **required**    | An object containing the following properties : domain,     merchantId                                                                                                                                      |
-| apiData.domain     | `ApiMode.TEST` OR `ApiMode.LIVE` | **required** | The domains LIVE & TEST are preconfigured when using the provided values from "Alma.ApiMode.[TEST or LIVE]. It represents the domain's url to be used for API calls (ex: "https://api.getalma.eu" for LIVE) |
-| apiData.merchantId |           `string`     |   **required**    | The merchant's unique identifier provided by Alma (starting with `merchant_`)                                                                                                                 |
-
-
-#### Returns:
-An object with the following method:
-- `add(widget: WidgetNames, options: WidgetOptions): AddReturnType`
-  - Adds a widget to the DOM based on the specified widget type and options.
-
-The `WidgetsController` is configured when implementing the method `initialize(merchantId: string, domain: Alma.ApiMode.TEST | Alma.ApiMode.LIVE)`
+A second `add()` on the same container replaces the previous widget, so a container holds one widget at a time.
 
 ### Known Limitation:
-The current implementation of the `addWidget` function does not automatically update the widget when the `purchaseAmount` changes dynamically. 
-Once a widget is rendered, any subsequent changes to the `purchaseAmount` will not be reflected unless the widget is manually re-rendered.
-This is also the case for any other parameters passed to the widget.
-The following approach can be used to handle other variables changes in the widget.
+A widget doesn't follow later changes to `purchaseAmount`, or to any other option you passed to `add()`. To show new values, call `add()` again, as the steps below describe.
 
 ### How to Implement the Widget for Variable `purchaseAmount`:
 To handle a variable `purchaseAmount`, you can follow these steps:
@@ -161,14 +204,7 @@ To handle a variable `purchaseAmount`, you can follow these steps:
 
 2. **Re-render the Widget**
 
-   Call the `add` method again with the updated `purchaseAmount` to re-render the widget.
-
-  Note that Calling the `add` method multiple times will **unmount the previous widget** before rendering a new one. This behavior is implemented in the `addWidget` function (lines 37–41). Specifically:
-  - It checks if a `Root` instance already exists for the specified container (`rootMap.get(containerDiv)`).
-  - If a `Root` exists, it calls `unmount()` to remove the previous widget and deletes the reference from the `rootMap`.  
-  - A new widget is then rendered in the same container.
-
-  This ensures that only one widget is active in the specified container at any given time
+   Call the `add` method again on the same container with the updated `purchaseAmount`. The new widget replaces the previous one.
 
 3. **Example Implementation**
 
