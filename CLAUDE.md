@@ -41,8 +41,8 @@ npm run fixtures:messages -- --check                  # fail when the fixtures a
 Husky `pre-commit` already runs the typecheck, the tests of the changed files and lint-staged.
 `pre-push` runs `npm test` and `npm run lint`. No need to run those manually before committing.
 
-`npm test` fails when coverage drops below 88% of branches or 95% of functions, lines and
-statements, even when every test passes.
+`npm test` fails when coverage drops below the thresholds of `vitest.config.ts`, even when every
+test passes.
 
 Run `npm run fixtures:messages` after `npm run translations:download`, because new catalogues
 change the fixtures.
@@ -65,7 +65,7 @@ Read the file, not a description of it.
   Only `src/modal.browser.test.ts` needs a browser. `npm run test:browser:install` must have run
   once, or `npm test` and the `pre-push` hook fail.
 - `src/test/setup.ts` runs before every unit and browser test file, but not the contract tests. It
-  fixes `Date.now()` to a fixed today (`1638350762000`), adds the `vitest-axe` and Testing Library
+  sets `Date.now()` to a fixed date (`1638350762000`), adds the `vitest-axe` and Testing Library
   DOM matchers, and after each test restores the spies, clears the mock calls, and empties `<body>`,
   its `ReactModal__Body--open` class, `sessionStorage` and the `warnOnce` memory.
 - `src/test/setup-jsdom.ts` runs in the `unit` project only. It puts the time zone back to UTC after
@@ -77,8 +77,6 @@ Read the file, not a description of it.
   when the code catches the error, and never reaches the network.
 - A custom element definition can't be removed, so a tag stays defined until its test file ends.
   Each test file gets a fresh page.
-- Coverage leaves out the test, story, type and test helper files, and `src/index.ts` (the exclude
-  list in `vitest.config.ts`).
 
 ## Workflow
 
@@ -92,8 +90,8 @@ Read the file, not a description of it.
 
 1. English for everything: code, comments, commit messages, documentation, branch names.
 2. Conventional Commits for commit subjects, wherever the repository's history already uses them. Where it does not, follow the convention its history shows.
-3. Never commit directly to the default branch. Work on a topic branch named after the Linear issue id, and open a pull request. Ask for the Linear issue id when it was not given.
-4. Link the Linear issue in the pull request description.
+3. Never commit directly to the default branch. Work on a topic branch whose name starts with a prefix of `.github/pr-labeler.yml`, and open a pull request.
+4. Link the issue in the pull request description, when there is one.
 5. Never bypass hooks with `--no-verify`. Fix the failure instead.
 6. Never force-push without explicit human instruction.
 7. Add or update tests for any behaviour change, whether or not tests were requested.
