@@ -94,7 +94,7 @@ describe('EligibilityController', () => {
     vi.unstubAllGlobals()
   })
 
-  describe('the cases of master', () => {
+  describe('main cases', () => {
     it('should fetch eligibility data and update state', async () => {
       const api = stubApi()
       const host = mountHost({ merchantCoversAllFees: true })
@@ -246,7 +246,7 @@ describe('EligibilityController', () => {
       expect(warn).not.toHaveBeenCalled()
     })
 
-    it('sends no new request when a property changes after success, as master', async () => {
+    it('sends no new request when a property changes after success', async () => {
       const api = stubApi()
       const host = mountHost()
       api.answer(mockPlansAllEligible)
@@ -260,7 +260,7 @@ describe('EligibilityController', () => {
       expect(api.fetchMock).toHaveBeenCalledTimes(1)
     })
 
-    it('filters the response again with the plans the host has now, as master does on each render', async () => {
+    it('filters the response again with the plans the host has now, on each render', async () => {
       const api = stubApi()
       const host = mountHost({ configPlans })
       api.answer(mockPlansAllEligible)

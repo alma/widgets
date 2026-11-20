@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/dom'
+import { screen, waitFor, within } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { configureAxe } from 'vitest-axe'
 
@@ -7,18 +7,18 @@ import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
 import { server } from '@/test/msw/msw-server'
 import { mountWidget } from '@/test/utils/mount-widget'
 
-// Master labels two regions with payment-schedule-title: EligibilityModal's scheduleArea div and
-// the Schedule region inside it.
+// Two regions take their name from payment-schedule-title: the scheduleArea div and the Schedule
+// region inside it. Merchants select the modal's DOM, so the test turns the rule off instead.
 const axe = configureAxe({ rules: { 'landmark-unique': { enabled: false } } })
 
-// Master runs axe on its render container, which stays empty because react-modal renders in <body>.
+// The modal renders at the end of <body>, outside the container, so axe runs on the portal.
 const modalPortal = (): HTMLElement => {
   const portal = document.querySelector<HTMLElement>('.ReactModalPortal')
   if (!portal) throw new Error('The modal is not open')
   return portal
 }
 
-// Master passes initialPlanIndex, which add(Modal) doesn't take: a click on that plan stands for it.
+// add(Modal) takes no initial plan, so a click on that plan selects it.
 // The merchant plans keep pay-now.
 const renderEligibilityModal = async ({
   onClose = vi.fn(),
@@ -74,10 +74,11 @@ describe('EligibilityModal Accessibility Tests', () => {
 
     await screen.findByTestId('modal-close-button')
 
-    // Master's query, kept as it is: no plan button has a data-testid, so it matches nothing.
-    const planButtons = modalPortal().querySelectorAll('button[data-testid*="plan-button"]')
+    const group = screen.getByRole('group', { name: 'Options de paiement disponibles' })
+    const planButtons = within(group).getAllByRole('button')
+    expect(planButtons).toHaveLength(6)
     planButtons.forEach((button) => {
-      expect(button).toHaveAttribute('aria-label')
+      expect(button).toHaveAccessibleName(/^Sélectionner le plan de paiement /)
     })
 
     const results = await axe(modalPortal())
@@ -322,8 +323,7 @@ describe('EligibilityModal Accessibility Tests', () => {
           screen.getByRole('button', { name: /Sélectionner le plan de paiement M\+1/ }),
         )
         expect(installmentElement).toHaveTextContent('450,00 €')
-        // Master's /1 janvier 2022/. The matcher types here take no RegExp, and a string also
-        // matches a part of the text.
+        // The matcher types here take no RegExp, and a string also matches a part of the text.
         expect(installmentElement).toHaveTextContent('1 janvier 2022')
       })
 

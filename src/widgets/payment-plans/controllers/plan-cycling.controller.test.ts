@@ -320,7 +320,7 @@ describe('PlanCyclingController', () => {
       expect(host.cycling.current).toBe(200)
     })
 
-    // On master, a leave that changes no state renders nothing.
+    // A leave that changes no state renders nothing, so the countdown doesn't restart.
     it('should keep the countdown on a leave without a hover', async () => {
       const host = appendHost([100, 200, 300], 1000)
       await vi.advanceTimersByTimeAsync(600)
@@ -332,7 +332,7 @@ describe('PlanCyclingController', () => {
     })
   })
 
-  // Master's quirks, kept for the contract tests.
+  // Quirks that the contract tests pin.
   describe('Quirks', () => {
     it('should end after one cycle of steps in total, even after a hover', async () => {
       const host = appendHost([100, 200, 300], 1000)

@@ -143,7 +143,8 @@ describe('PaymentPlans ARIA Landmarks (RGAA 12.6) - Widget-Safe Structure', () =
     await waitFor(() => expect(screen.getAllByTestId('widget-container')).toHaveLength(2))
     const containers = screen.getAllByTestId('widget-container')
 
-    // Both share master's IDs, accepted until 5.x
+    // Known bug: both widgets get the same ID. Merchant CSS and scripts select it,
+    // so only a release that may break them can fix it.
     const widgetIds = containers.map((container) => container.id)
     expect(widgetIds[0]).toBe('alma-widget-payment-plans-main-container')
     expect(widgetIds[1]).toBe('alma-widget-payment-plans-main-container')

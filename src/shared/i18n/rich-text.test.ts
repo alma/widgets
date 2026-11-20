@@ -5,7 +5,6 @@ import { formatRichText, type RichText } from '@/shared/i18n/rich-text'
 import { testMessages } from '@/test/fixtures/message-descriptors'
 import { renderTemplate } from '@/test/utils/render-template'
 
-// Master's markup.
 const strong = (chunks: RichText) => html`<strong>${chunks}</strong>`
 const link = (chunks: RichText) =>
   html`<a href="https://almapay.com" target="_blank" rel="noopener noreferrer">${chunks}</a>`
@@ -23,7 +22,7 @@ describe('formatRichText', () => {
     expect(container.querySelector('strong')?.textContent).toBe('Alma')
   })
 
-  it("renders the disclaimer's links with master's attributes", () => {
+  it("renders the disclaimer's links with their href, target and rel", () => {
     const intl = createIntl('en')
     const container = renderRichText(
       formatRichText(intl, testMessages.disclaimer, {

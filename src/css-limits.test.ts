@@ -5,7 +5,7 @@ import postcss from 'postcss'
 
 const SRC_DIR = __dirname
 
-// master's !important declarations. No new ones.
+// Merchants can't override an !important rule, so no new ones.
 const MASTER_IMPORTANT: Record<string, number> = {
   'widgets/eligibility-modal/templates/modal-shell/modal-shell.module.css': 1,
   'widgets/payment-plans/templates/payment-plans.module.css': 3,
