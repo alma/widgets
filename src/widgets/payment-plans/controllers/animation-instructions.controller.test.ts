@@ -11,7 +11,6 @@ import {
 import { animationInstructionsMessages } from '@/widgets/payment-plans/controllers/animation-instructions.messages'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
 
-// Master's tests render in French.
 const intl = createIntl(Locale.fr)
 
 const INSTRUCTIONS =
