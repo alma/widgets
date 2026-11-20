@@ -31,10 +31,10 @@ export const installmentTemplate = ({
   const installmentClasses = classMap({ [styles.installment]: true })
   const dateClasses = classMap({ [styles.date]: true })
   const dotClasses = classMap({ [styles.dot]: true, [styles.isCurrent]: index === 0 })
-  // Master renders no class attribute at all on the other rows.
+  // No class attribute at all on the other rows.
   const amountClass = index === 0 ? styles.bold : undefined
-  // No whitespace between the tags, which Prettier would add: master's textContent has none, such
-  // as "Aujourd'hui151,35 €".
+  // No whitespace between the tags, which Prettier would add:
+  // the textContent has none, such as "Aujourd'hui151,35 €".
   // prettier-ignore
   const dateBlock = html`<div class=${dateClasses}><div class=${dotClasses}></div>${date}</div>`
   const amountBlock = html`<div class=${ifDefined(amountClass)}>${amount}</div>`

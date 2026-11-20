@@ -8,18 +8,18 @@ export type ModalPortalHost = ReactiveControllerHost & HTMLElement
 
 export type RequestClose = (event: KeyboardEvent | MouseEvent) => void
 
-// react-modal's class names, which merchant CSS targets.
+// Copies react-modal's class names, which merchant CSS targets.
 const PORTAL_CLASS = 'ReactModalPortal'
 const OVERLAY_CLASS = 'ReactModal__Overlay'
 const CONTENT_CLASS = 'ReactModal__Content'
 const BODY_OPEN_CLASS = 'ReactModal__Body--open'
 
-// Shared by every modal of this bundle, like react-modal's module state.
+// Shared by every modal of this bundle, copying react-modal's module state.
 const openPortals: ModalPortalController[] = []
 const portalsByHost = new WeakMap<Element, ModalPortalController>()
 let sentinels: [HTMLDivElement, HTMLDivElement] | null = null
 
-// react-modal also reads the deprecated keyCode.
+// Also reads the deprecated keyCode, copying react-modal.
 const isTabKey = (event: KeyboardEvent): boolean => event.code === 'Tab' || event.keyCode === 9
 const isEscKey = (event: KeyboardEvent): boolean => event.code === 'Escape' || event.keyCode === 27
 
@@ -38,7 +38,8 @@ const createSentinel = (): HTMLDivElement => {
   return sentinel
 }
 
-// react-modal's bodyTrap: one sentinel first in <body> and one last, while any modal is open.
+// Copies react-modal's bodyTrap: one sentinel first in <body> and one last, while any modal is
+// open.
 const syncSentinels = (): void => {
   sentinels ??= [createSentinel(), createSentinel()]
   const [before, after] = sentinels
@@ -59,7 +60,7 @@ const syncSentinels = (): void => {
 const buildClassName = (base: string, afterOpen: boolean, extra: string): string =>
   afterOpen ? `${base} ${base}--after-open ${extra}` : `${base} ${extra}`
 
-// Renders the markup of react-modal 3.16.3 at the end of <body>, as master's modal does.
+// Renders a copy of react-modal 3.16.3's markup at the end of <body>.
 export class ModalPortalController implements ReactiveController {
   readonly portal: HTMLDivElement
 
@@ -79,8 +80,8 @@ export class ModalPortalController implements ReactiveController {
 
   private afterOpenFrame: number | null = null
 
-  // react-modal's shouldClose: a press, a release or a click in the content sets it to false,
-  // and each overlay click resets it.
+  // Copies react-modal's shouldClose: a press, a release or a click in the content sets it to
+  // false, and each overlay click resets it.
   private shouldClose: boolean | null = null
 
   // Kept for the controller's life: pass a function that reads the host's current state,
@@ -93,14 +94,15 @@ export class ModalPortalController implements ReactiveController {
     this.portal.className = PORTAL_CLASS
     this.overlay = document.createElement('div')
     this.content = document.createElement('div')
-    // Master's attribute order.
+    // Copies react-modal's attribute order.
     this.content.id = 'alma-widget-modal-main-container'
     this.setClasses(false)
     this.content.setAttribute('tabindex', '-1')
     this.content.setAttribute('role', 'dialog')
     this.content.setAttribute('aria-modal', 'true')
     this.content.setAttribute('aria-labelledby', 'modal-title')
-    // No element has this ID on master either.
+    // Known bug: no element has this ID, so the dialog has no description. Merchant scripts may
+    // select the modal's DOM, so only a release that may break them can fix it.
     this.content.setAttribute('aria-describedby', 'modal-info-element')
     this.overlay.append(this.content)
     this.portal.append(this.overlay)
@@ -140,8 +142,7 @@ export class ModalPortalController implements ReactiveController {
     })
   }
 
-  // Master's order: Preact unmounts react-modal's Modal, which removes the portal, before its
-  // ModalPortal, which runs the rest.
+  // Copies react-modal's unmount order: the portal goes first, then the rest runs.
   close(): void {
     if (!this.opened) return
     this.opened = false
@@ -221,8 +222,8 @@ export class ModalPortalController implements ReactiveController {
   }
 }
 
-// Master unmounts the modal at once when the facade replaces or closes it. A host removed any other
-// way closes its modal a microtask later, so a host put back in the same task keeps it, as on master.
+// Closes the modal at once when add() replaces it or close() is called. A host removed any other
+// way closes its modal a microtask later, so a host put back in the same task keeps it.
 export const closeModalOf = (host: Element): void => {
   portalsByHost.get(host)?.close()
 }

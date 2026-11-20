@@ -129,7 +129,7 @@ export const Loading: Story = {
     }),
 }
 
-// Not in master. The request fails, so the modal shows no plan and no message.
+// The request fails, so the modal shows no plan and no message.
 export const Failed: Story = {
   parameters: { msw: { handlers: [eligibilityError()] } },
 }

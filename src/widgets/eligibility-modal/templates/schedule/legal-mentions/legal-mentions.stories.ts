@@ -52,7 +52,7 @@ export const PayLaterWithFees: Story = {
 
 export const PayLaterInMonths: Story = { args: { currentPlan: mockPayLaterOneMonthEligiblePlan } }
 
-// Master formats the epoch as the due date.
+// Shows the epoch as the due date.
 export const PayLaterWithoutDueDate: Story = {
   args: { currentPlan: { ...mockPayLater30DaysEligiblePlan, payment_plan: [] } },
 }

@@ -33,14 +33,15 @@ const cardLogoTemplate = (card: Card, intl: IntlShape) => {
 }
 
 export const cardsTemplate = ({ cards, intl }: CardsParams): TemplateResult => {
-  // Master's exact call, so a page where Prototype.js replaces Array.from renders what master does.
+  // Keep this exact call: pages that load Prototype.js replace Array.from,
+  // and their logos depend on it.
   const uniqueCards = Array.from(new Set(cards))
   const classes = classMap({
     [styles.cardContainer]: true,
     [STATIC_CUSTOMISATION_CLASSES.cardContainer]: true,
   })
-  // cards.module.css has no .card rule, so master renders no class there.
-  // Prettier would wrap the logo in whitespace, which master's div lacks.
+  // cards.module.css has no .card rule, so no class there.
+  // Prettier would wrap the logo in whitespace, which adds text nodes to the div.
   // prettier-ignore
   return html`<div data-testid="card-logos" class=${classes}>
     ${uniqueCards.map(

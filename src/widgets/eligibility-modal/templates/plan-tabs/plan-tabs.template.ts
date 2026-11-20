@@ -26,7 +26,7 @@ const keyTargets: Record<string, (index: number, count: number) => number> = {
   End: (_index, count) => count - 1,
 }
 
-// Master checks the deferred days before the months.
+// Checks the deferred days before the months.
 const getPlanShorthand = (plan: EligibilityPlanToDisplay, intl: IntlShape): string => {
   const {
     deferred_days: deferredDays,
@@ -69,7 +69,7 @@ export const planTabsTemplate = ({
     }
     const group = (event.currentTarget as HTMLElement).parentElement
     await setCurrentPlanIndex(newIndex)
-    // Master moves focus from an effect on the index, which doesn't run when the index stays.
+    // Moves the focus only when the index changes.
     if (newIndex !== currentPlanIndex) {
       group?.querySelectorAll('button')[newIndex]?.focus()
     }
@@ -79,12 +79,12 @@ export const planTabsTemplate = ({
     const isActive = index === currentPlanIndex
     const name = getPlanShorthand(plan, intl)
     const ariaLabel = intl.formatMessage(planTabsMessages.planButtonAriaLabel, { planName: name })
-    // Master renders no class attribute on an inactive button.
+    // No class attribute on an inactive button.
     const classes = isActive
       ? classMap({ [styles.active]: true, [STATIC_CUSTOMISATION_CLASSES.activeOption]: true })
       : nothing
     const label = html`<span class=${classMap({ [styles.textButton]: true })}>${name}</span>`
-    // No whitespace around the label, which Prettier would add: master's textContent is the name.
+    // No whitespace around the label, which Prettier would add: the textContent is the name.
     // prettier-ignore
     return html`<button
       type="button"
