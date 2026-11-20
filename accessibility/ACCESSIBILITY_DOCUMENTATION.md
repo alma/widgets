@@ -144,7 +144,7 @@ const skipLinks = [
 ### ✅ Frames (RGAA 2)  
 **Implementation**: Modal dialogs with complete semantic structure
 - `role="dialog"` and `aria-modal="true"` on all modals
-- react-modal library handles focus management automatically
+- Focus moves into the dialog when it opens, stays there while it is open, and returns to the opener when it closes
 - Proper modal labeling with `aria-labelledby`
 
 ### ✅ Colors (RGAA 3)
@@ -210,7 +210,7 @@ const skipLinks = [
 **Implementation**: **Third-party widget navigation excellence**
 - Full arrow key navigation between options
 - Logical tab order throughout interface
-- Modal focus management handled by react-modal
+- Modal focus trapped inside the dialog while it is open
 - Skip links for efficient navigation
 - Proper focus indicators on all interactive elements
 - **Widget isolation**: Navigation contained within widget boundaries
@@ -239,10 +239,12 @@ const skipLinks = [
 
 ### Modal Components
 **🏷️ Semantics**: Proper `role="dialog"` and `aria-modal="true"`  
-**🎯 Focus**: Automatic focus trap and restoration via react-modal  
+**🎯 Focus**: Focus moves to the dialog content when it opens, and back to the element that had it when it closes  
+**🔁 Focus trap**: Tab and Shift+Tab move only between the dialog's tabbable elements, the visible and enabled ones without a negative `tabindex`. Tab on the last one goes to the first, and Shift+Tab on the first goes to the last. While the dialog is open, two invisible focus sentinels sit first and last in `<body>` and send the focus back to the dialog if it leaves  
 **🔄 Management**: Accessible close button with internationalized labels  
-**📜 Scroll**: Body scroll prevention during modal display  
-**⌨️ Keyboard**: Escape key closing, comprehensive focus indicators  
+**📜 Scroll**: The page behind the dialog doesn't scroll while it is open  
+**⌨️ Keyboard**: Escape closes the dialog while the focus is inside it, comprehensive focus indicators  
+**🖱️ Overlay**: A click on the overlay closes the dialog only when the press and the release both happen on the overlay, so a drag that starts in the dialog doesn't close it  
 **📝 Headings**: Uses `role="heading"` for widget-safe title structure
 
 ### SkipLinks Component
@@ -259,8 +261,9 @@ const skipLinks = [
 ## Testing & Validation
 
 ### 🧪 Automated Testing
-- **Jest + React Testing Library**: Comprehensive accessibility assertions
-- **axe-core integration**: Automated WCAG/RGAA compliance checking
+- **Vitest + Testing Library on jsdom**: Roles, accessible names, ARIA states and keyboard handling of each widget
+- **`vitest-axe`**: axe-core checks on every state of the modal and on the PaymentPlans widget
+- **Browser tests in headless Chromium**: What jsdom can't do, such as real Tab navigation, the focus trap, focus return and the scroll lock
 - **Screen reader simulation**: Ensures proper ARIA announcements
 - **Keyboard navigation tests**: Validates complete keyboard accessibility
 
