@@ -14,7 +14,6 @@ import { fetchFromApi } from '@/lib/http'
 const FAILED: EligibilityResult = { status: StatusResponse.FAILED, plans: [] }
 const PENDING: EligibilityResult = { status: StatusResponse.PENDING, plans: [] }
 
-// Where master throws, the port warns once and fails.
 const fail = (message: string, error?: unknown): EligibilityResult => {
   warnOnce(message, error)
   return FAILED
@@ -36,10 +35,10 @@ const requestEligibility = async (input: EligibilityInput): Promise<EligibilityR
   try {
     response = await fetchFromApi<unknown>(request)
   } catch {
-    // Network error or non-JSON body: master fails quietly too.
+    // Network error or non-JSON body: fails quietly.
     return FAILED
   }
-  // Master fails quietly on these too: its `in` check throws on null and other primitives.
+  // An API error, null or another primitive fails quietly too.
   if (
     response === null ||
     typeof response !== 'object' ||
@@ -55,7 +54,7 @@ const requestEligibility = async (input: EligibilityInput): Promise<EligibilityR
 }
 
 // The cached result, or null when the request must go out.
-// For an expired entry, clears all of sessionStorage, as master does.
+// For an expired entry, clears all of sessionStorage.
 const readCachedEligibility = (key: string): EligibilityResult | null => {
   let cachedEntry: unknown
   try {
@@ -65,7 +64,7 @@ const readCachedEligibility = (key: string): EligibilityResult | null => {
   }
   const cached = readEntryField(cachedEntry, 'value')
   const timestamp = readEntryField(cachedEntry, 'timestamp')
-  // An entry without a timestamp never expires, as on master.
+  // An entry without a timestamp never expires.
   const expired = Boolean(timestamp) && isMoreThanOneHourAgo(timestamp as number)
 
   if (expired) {
@@ -74,7 +73,7 @@ const readCachedEligibility = (key: string): EligibilityResult | null => {
     } catch (error) {
       return fail('The eligibility cache could not be cleared.', error)
     }
-    // Master sends no request here and keeps loading until the next widget.
+    // Sends no request and keeps loading until the next widget.
     if (cached) {
       return PENDING
     }
@@ -88,7 +87,7 @@ const readCachedEligibility = (key: string): EligibilityResult | null => {
   return null
 }
 
-// Master's cache-first lookup. Never rejects. A sent request always finishes and writes the cache.
+// Cache first. Never rejects. A sent request always finishes and writes the cache.
 export const getEligibility = async (input: EligibilityInput): Promise<EligibilityResult> => {
   const { purchaseAmount, configPlans } = input
   // The merchant's options arrive unchecked.

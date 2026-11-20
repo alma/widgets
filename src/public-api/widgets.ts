@@ -56,7 +56,6 @@ const hasHost = (container: Element, tagName: string): boolean => {
   return host?.localName === tagName && host.parentNode === container
 }
 
-// Master's PaymentPlanWidget props and defaults.
 const toPaymentPlansHostProperties = (
   apiData: ApiConfig,
   options: PaymentPlanWidgetOptions,
@@ -119,8 +118,7 @@ const toEligibilityModalHostProperties = (
   }
 }
 
-// Master throws for missing options or an invalid selector.
-// The port warns and carries on without a container.
+// Warns and carries on without a container for missing options or an invalid selector.
 const findContainer = (options: WidgetOptions | undefined): Element | null => {
   if (!options) {
     warnOnce('add() was called without options.')
@@ -142,7 +140,7 @@ export function WidgetsController(apiData: ApiConfig) {
   return {
     add(widget: WidgetNames, options: WidgetOptions): AddReturnType {
       const container = findContainer(options)
-      // Before the name check: on master, even an unknown name removes the widget.
+      // Before the name check, even an unknown name removes the widget.
       if (container) {
         removeHost(container)
       }
@@ -163,13 +161,13 @@ export function WidgetsController(apiData: ApiConfig) {
           return { open() {}, close() {} }
         }
         const modalOptions = options as ModalOptions
-        // Read now, not at open(), as master does.
+        // Read now, not at open().
         const properties = toEligibilityModalHostProperties(apiData, modalOptions)
         const handle = createModalHandle(modalOptions.onClose, {
           render: (close) => {
             const hostProperties = { ...properties, onClose: close }
             const host = hosts.get(container)
-            // Master's render updates the modal in place, with no new request once it has plans.
+            // Updates the modal in place, with no new request once it has plans.
             if (host && hasHost(container, ELIGIBILITY_MODAL_TAG)) {
               Object.assign(host, hostProperties)
               return

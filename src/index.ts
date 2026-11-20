@@ -1,10 +1,11 @@
-// First import: main.css must open widgets.css, as on master.
+// First import: main.css must open widgets.css,
+// because merchant CSS overrides rely on that order.
 import '@/main.css'
 import * as utils from '@/public-api/alma-utils'
 import { ApiMode, WidgetTypes } from '@/public-api/public-api.const'
 import { WidgetsController } from '@/public-api/widgets'
 
-// window.Alma.Widgets and window.Alma.Utils keep master's namespace shape.
+// window.Alma.Widgets and window.Alma.Utils keep the shape that merchant pages call.
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Widgets {
   export function initialize(merchantId: string, mode: ApiMode) {
