@@ -122,6 +122,61 @@ The locale is used in the Widgets to display all wordings in the correct languag
 
 For example, for a pricing, the locale `pt` will format as `€ 100,00` while the locale `pt-PT` will format as `100,00 €`.
 
+## Browser support
+
+The widgets run in these browsers and their later versions:
+
+- Chrome 85
+- Firefox 79
+- Safari 14.1
+- Safari on iOS 14.5
+
+Older browsers can't run the script, so `window.Alma` stays undefined and an inline `Alma.Widgets.initialize(...)` call throws a `ReferenceError`. Check that `window.Alma` exists before you use it, so the rest of your page keeps working:
+
+```html
+<script>
+  ;(function () {
+    if (window.Alma) {
+      var widgets = Alma.Widgets.initialize('<YOUR MERCHANT ID>', Alma.ApiMode.LIVE)
+      widgets.add(Alma.Widgets.PaymentPlans, {
+        container: '#alma-widget',
+        purchaseAmount: 45000,
+      })
+    }
+  })()
+</script>
+```
+
+## Content Security Policy
+
+The widgets use Lit. When the script loads, Lit creates a [Trusted Types](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) policy named `lit-html`.
+
+If your page's Content Security Policy lists the allowed policy names in a `trusted-types` directive, add `lit-html` to it, or the script throws when it loads:
+
+```
+Content-Security-Policy: require-trusted-types-for 'script'; trusted-types lit-html
+```
+
+If your page also loads another copy of Lit, that copy creates a policy with the same name, so add `'allow-duplicates'` too:
+
+```
+Content-Security-Policy: require-trusted-types-for 'script'; trusted-types lit-html 'allow-duplicates'
+```
+
+The widgets add no `<style>` element to your page. Their styles come from `widgets.css`, so they need no style nonce, and you don't need to set `window.litNonce`.
+
+## Files
+
+The package's `dist` folder, also served by jsDelivr, holds these files:
+
+| File                | Use                                                                                       |
+|:--------------------|:------------------------------------------------------------------------------------------|
+| `widgets.umd.js`    | Load it with a `<script>` tag. It sets `window.Alma`.                                     |
+| `widgets.js`        | ES module, the package's `main` entry, for bundlers.                                      |
+| `widgets.css`       | The widgets' styles.                                                                      |
+| `widgets.min.css`   | The same styles, minified.                                                                |
+| `widgets-wc.umd.js` | Identical to `widgets.umd.js`. It stays in the package so existing integrations keep working. |
+
 # To go further
 
 ### WidgetsController
