@@ -41,7 +41,8 @@ interface PlanLists {
   eligiblePlanKeys: number[]
 }
 
-// Master's PaymentPlanWidget props, plus the locale of its IntlProvider. Frozen for 4.x.
+// Frozen: another bundle of the widget on the same page may have defined the element,
+// and this bundle sets these properties on it.
 export interface AlmaPaymentPlansProperties {
   purchaseAmount: number
   apiData?: ApiData
@@ -127,10 +128,10 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
   // The current plan, status and locale of the last announcement.
   private announced: string | undefined
 
-  // Master renders its modal next to the plans, so a render without them unmounts it.
+  // The modal renders next to the plans, so a render without them removes it.
   private rendersPlans = false
 
-  // Master throws on a locale that Intl rejects, such as `fr_FR` or null.
+  // A locale that Intl rejects, such as `fr_FR` or null, shows nothing.
   private get hasValidLocale(): boolean {
     return isValidLocale(this.locale)
   }
@@ -140,7 +141,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     return createIntl(this.hasValidLocale ? this.locale : Locale.en)
   }
 
-  // Master's useMemo: recomputed only when the eligibility controller gives new plans.
+  // Recomputed only when the eligibility controller gives new plans.
   private get planLists(): PlanLists {
     const { plans } = this.eligibility
     if (this.planListsCache?.plans !== plans) {
@@ -181,8 +182,8 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     return this.transitionDelay ?? DEFAULT_TRANSITION_TIME
   }
 
-  // Master's two effects, in master's order. Each runs after the render and causes another one, as
-  // on master, where the cycling countdown restarts on each render.
+  // Two effects, in this order. Each runs after the render and causes another one,
+  // which restarts the cycling countdown.
   protected override updated(): void {
     // Lit still updates a removed host, such as when the response comes after the merchant emptied
     // the container. The effects wait for the reconnect, which updates the host again.
@@ -192,7 +193,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     this.syncModal()
   }
 
-  // Master's effect on the current plan, the locale and the status.
+  // Runs when the current plan, the locale or the status changes.
   private announceCurrentPlan(): void {
     const { status } = this.eligibility
     const { current } = this.cycling
@@ -211,8 +212,8 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     )
   }
 
-  // Master's effect on the status. The first render of the plans shows, and announces, the plan
-  // that the cycle starts on, before the suggested plan replaces it.
+  // Runs when the status changes. The first render of the plans shows, and announces,
+  // the plan that the cycle starts on, before the suggested plan replaces it.
   private applySuggestedPlan(): void {
     const { status } = this.eligibility
     if (status === this.previousStatus) return
@@ -284,7 +285,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     )
   }
 
-  // Master throws, such as for an eligible plan without payment_plan. The error says why.
+  // The template throws, such as for an eligible plan without payment_plan. The error says why.
   private renderInfo(
     plan: EligibilityPlanToDisplay | undefined,
     intl: IntlShape,
@@ -302,7 +303,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
     this.isOpen = true
   }
 
-  // State first, as on master: the modal closes even if the callback throws.
+  // State first: the modal closes even if the callback throws.
   private closeModal(event: OpenEvent): void {
     this.isOpen = false
     this.onModalClose?.(withReactEventMembers(event))
@@ -356,7 +357,7 @@ export class AlmaPaymentPlans extends LightDomElement implements AlmaPaymentPlan
   }
 }
 
-// Dev builds only. The second render after an announcement is master's, on purpose.
+// Dev builds only. The second render after an announcement is on purpose: see updated().
 AlmaPaymentPlans.disableWarning?.('change-in-update')
 
 declare global {

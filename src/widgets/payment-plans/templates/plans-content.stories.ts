@@ -52,7 +52,7 @@ export default meta
 
 type Story = StoryObj<Args>
 
-// Master's stories in payment-plans.stories.ts cover the other states and options through add().
+// The stories in payment-plans.stories.ts cover the other states and options through add().
 export const Pending: Story = {
   render: () => plansLoadingTemplate(),
 }

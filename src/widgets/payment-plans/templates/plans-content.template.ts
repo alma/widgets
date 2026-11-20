@@ -16,7 +16,7 @@ type OpenEvent = MouseEvent | KeyboardEvent
 
 const isEnterOrSpace = (event: KeyboardEvent) => event.key === 'Enter' || event.key === ' '
 
-// No ID, no alma-* class, no hideBorder and no alert region, as on master.
+// No ID, no alma-* class, no hideBorder and no alert region.
 export const plansLoadingTemplate = (): TemplateResult => {
   const classes = classMap({ [styles.widgetContainer]: true, [styles.pending]: true })
   return html`<div class=${classes}>${loaderTemplate()}</div>`
@@ -79,7 +79,7 @@ const plansTemplate = (params: PlansContentParams, intl: IntlShape): TemplateRes
     [styles.paymentPlans]: true,
     [STATIC_CUSTOMISATION_CLASSES.eligibilityOptions]: true,
   })
-  // Keyed as on master, so a button follows its plan when the list changes.
+  // Keyed, so a button follows its plan when the list changes.
   return html`<div
     class=${classes}
     role="listbox"
@@ -123,7 +123,7 @@ const infoTemplate = (
     }
   }
   const title = intl.formatMessage(plansContentMessages.paymentInfoSectionTitle)
-  // No whitespace around the info, which Prettier would add: master's textContent has none.
+  // No whitespace around the info, which Prettier would add: its textContent has none.
   // prettier-ignore
   const infoLine = html`<div
     class=${classes}
@@ -144,7 +144,6 @@ const infoTemplate = (
 const announcementTemplate = (text: string) =>
   html`<div role="alert" aria-live="assertive" class=${styles.announceText}>${text}</div>`
 
-// What master's PaymentPlanWidget renders once the request succeeds with plans to show.
 export const plansContentTemplate = (
   params: PlansContentParams,
   intl: IntlShape,
@@ -172,6 +171,6 @@ export const plansContentTemplate = (
     </div>
     ${infoTemplate(params, intl)}
   </div>`
-  // One literal for both would put a text node between them, which master lacks.
+  // One literal for both would put a text node between them.
   return html`${widget}${announcementTemplate(announceText)}`
 }
