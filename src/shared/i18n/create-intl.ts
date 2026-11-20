@@ -154,8 +154,8 @@ const createValidIntl = (locale: string): IntlShape => {
 
 const intls = new Map<string, IntlShape>()
 
-// Replaces IntlProvider and useIntl(). As on master, `FR` gets English texts with French formats.
-// A locale that Intl rejects, such as `fr_FR`, throws on master and falls back here.
+// `FR` gets English texts with French formats. A locale that Intl rejects, such as `fr_FR`,
+// warns and falls back instead of throwing.
 export const createIntl = (locale: string): IntlShape => {
   const cached = intls.get(locale)
   if (cached) return cached

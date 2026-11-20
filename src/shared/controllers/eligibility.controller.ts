@@ -78,9 +78,8 @@ const loadPlans = async ([
   return { status, plans: status === StatusResponse.SUCCESS ? plans : [] }
 }
 
-// Loads the widget's plans, cache first, once per controller, as master's hook does once per
-// mount. The request is never aborted: a removed host still writes the cache, and shows the plans
-// once put back.
+// Loads the widget's plans, cache first, once per controller. The request is never aborted:
+// a removed host still writes the cache, and shows the plans once put back.
 export class EligibilityController implements ReactiveController {
   private readonly task: Task<TaskArgs, EligibilityResponse>
 
@@ -96,7 +95,7 @@ export class EligibilityController implements ReactiveController {
 
   constructor(host: EligibilityHost) {
     this.host = host
-    // No autoRun: master sends no new request when an option changes.
+    // No autoRun: changing an option sends no new request.
     this.task = new Task(host, {
       autoRun: false,
       task: (args) => loadPlans(args),
@@ -117,8 +116,8 @@ export class EligibilityController implements ReactiveController {
       return
     }
     this.started = true
-    // LightDomElement renders while connecting, so wait for the properties that the caller sets
-    // right after it appends the host. Master's effect also ran after the first render.
+    // LightDomElement renders while connecting, so wait for the properties
+    // that the caller sets right after it appends the host.
     queueMicrotask(() => {
       this.task.run().catch((error: unknown) => {
         warnOnce('The eligible plans could not be loaded.', error)
@@ -136,7 +135,7 @@ export class EligibilityController implements ReactiveController {
     return this.state.plans
   }
 
-  // Master filters and sorts the response on each render, with the plans the host has then.
+  // Filters and sorts the response on each read, with the plans the host has then.
   private get state(): EligibilityState {
     if (this.task.status === TaskStatus.ERROR) return FAILED
     const response = this.task.value
