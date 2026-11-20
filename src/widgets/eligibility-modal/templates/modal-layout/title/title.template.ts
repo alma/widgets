@@ -32,7 +32,7 @@ export const titleTemplate = ({
 }: TitleParams): TemplateResult => {
   const classes = classMap({ [styles.title]: true, [STATIC_CUSTOMISATION_CLASSES.title]: true })
   const title = intl.formatMessage(titleMessage(isSomePlanDeferred, isCurrentPlanP1X))
-  // Prettier would wrap the text in whitespace, which master's textContent lacks.
+  // Prettier would wrap the text in whitespace, which changes its textContent.
   // prettier-ignore
   return html`<div
     id="modal-title"

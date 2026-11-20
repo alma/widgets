@@ -49,7 +49,6 @@ const skipLinksOf = (intl: IntlShape): SkipLink[] =>
   ].map(({ href, message }) => ({
     href,
     labelId: message.id,
-    // Master passes the formatted text as the default message.
     defaultMessage: intl.formatMessage(message),
   }))
 
@@ -89,7 +88,6 @@ const statusContentTemplate = ({
     </div>`
 }
 
-// What master's EligibilityModal renders inside react-modal's content div.
 export const modalContentTemplate = ({
   eligiblePlans,
   isSomePlanDeferred,
@@ -101,7 +99,7 @@ export const modalContentTemplate = ({
   onClose,
   intl,
 }: ModalContentParams): TemplateResult => {
-  // Master crashes on an index out of range, because the schedule reads a missing plan.
+  // An index out of range falls back to the first plan: the schedule would read a missing plan.
   const planIndex = currentPlanIndex < eligiblePlans.length ? currentPlanIndex : 0
   const currentPlan = eligiblePlans[planIndex] as EligibilityPlanToDisplay | undefined
   const layout = modalLayoutTemplate({

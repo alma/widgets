@@ -1,15 +1,15 @@
-// A port of react-modal 3.16.3's tabbable.js and scopeTab.js, quirks included.
+// Copies react-modal 3.16.3's tabbable.js and scopeTab.js, quirks included.
 
 const TABBABLE_NODE = /^(input|select|textarea|button|object|iframe)$/
 
-// react-modal counts SVG elements with a tabindex too.
+// Counts SVG elements with a tabindex too, copying react-modal.
 type Focusable = HTMLElement | SVGElement
 
 const isNotOverflowing = (element: Element, style: CSSStyleDeclaration): boolean =>
   style.getPropertyValue('overflow') !== 'visible' ||
   (element.scrollWidth <= 0 && element.scrollHeight <= 0)
 
-// What react-modal's `!element.innerHTML` tests, without serializing the subtree.
+// Copies react-modal's `!element.innerHTML` test, without serializing the subtree.
 const hasNoMarkup = (element: Element): boolean =>
   [...element.childNodes].every((child) => child instanceof Text && child.data === '')
 
@@ -40,7 +40,7 @@ const isVisible = (element: Focusable, cache: HiddenCache): boolean => {
   let node: Node | null = element
   while (node) {
     if (node === document.body) break
-    // Like react-modal, this skips the shadow host itself.
+    // Skips the shadow host itself, copying react-modal.
     if (node === rootNode && rootNode instanceof ShadowRoot) node = rootNode.host.parentNode
     if (node instanceof Element && isHidden(node, cache)) return false
     node = node?.parentNode ?? null
@@ -50,7 +50,7 @@ const isVisible = (element: Focusable, cache: HiddenCache): boolean => {
 
 const isFocusable = (element: Focusable, hasTabIndex: boolean, cache: HiddenCache): boolean => {
   const nodeName = element.nodeName.toLowerCase()
-  // A disabled control with a tabindex counts, as in react-modal.
+  // A disabled control with a tabindex counts, copying react-modal.
   const focusable =
     (TABBABLE_NODE.test(nodeName) && !(element as HTMLButtonElement).disabled) ||
     (nodeName === 'a' ? Boolean((element as HTMLAnchorElement).href) || hasTabIndex : hasTabIndex)
@@ -75,8 +75,8 @@ const getActiveElement = (root: Document | ShadowRoot = document): Element | nul
   return active?.shadowRoot ? getActiveElement(active.shadowRoot) : active
 }
 
-// react-modal's guess at desktop Safari, which doesn't move the focus to radio buttons. Chrome's
-// user agent names Chrome before Safari.
+// Copies react-modal's guess at desktop Safari, which doesn't move the focus to radio buttons.
+// Chrome's user agent names Chrome before Safari.
 const isDesktopSafari = (): boolean => {
   const browser = /(\bChrome\b|\bSafari\b)\//.exec(navigator.userAgent)
   return (

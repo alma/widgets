@@ -20,7 +20,8 @@ import {
 import { modalContentTemplate } from '@/widgets/eligibility-modal/templates/modal-content.template'
 import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
-// Master's ModalContainer props, and the locale of its IntlProvider. Frozen for 4.x.
+// Frozen: another bundle of the widget on the same page may have defined the element, and this
+// bundle sets these properties on it.
 export interface AlmaEligibilityModalProperties {
   purchaseAmount: number
   apiData?: ApiData
@@ -54,8 +55,7 @@ export class AlmaEligibilityModal
 
   @property({ attribute: false }) cards?: Card[]
 
-  // Master's next render shows the modal once the locale is valid, so a host that couldn't open
-  // opens when one arrives.
+  // A host that couldn't open for an invalid locale opens when a valid one arrives.
   @property({ attribute: false })
   get locale(): string {
     return this.currentLocale
@@ -87,7 +87,7 @@ export class AlmaEligibilityModal
   }
 
   private open(): void {
-    // Master throws while it renders, before its request, and shows no modal.
+    // An invalid locale shows no modal and sends no request.
     if (!isValidLocale(this.locale)) {
       warnOnce(`The modal doesn't open: "${this.locale}" is not a valid locale.`)
       return

@@ -26,7 +26,7 @@ type ClassInfo = ReturnType<typeof classMap>
 const p1xFeesTemplate = (label: string, cost: string, costClasses: ClassInfo) =>
   html`<span>${label}</span><span class=${costClasses}>${cost}</span>`
 
-// Unlike the P1X label, master renders the credit label as a bare text node, with no <span>.
+// Unlike the P1X label, the credit label is a bare text node, with no <span>.
 const creditFeesTemplate = (label: string, cost: string, costClasses: ClassInfo) =>
   html`${label}<span class=${costClasses}>${cost}</span>`
 
@@ -70,7 +70,7 @@ export const totalBlockTemplate = ({ currentPlan, intl }: TotalBlockParams): Tem
   const totalAmount = intl.formatNumber(total || 0, EUR)
   const totalLine = html`<p class=${totalClasses}><span>${totalLabel}</span>${totalAmount}</p>`
   const feesLine = html`<p class=${feesClasses}>${fees}</p>`
-  // No whitespace between the lines, which Prettier would add: master's textContent has none.
+  // No whitespace between the lines, which Prettier would add: the textContent has none.
   // prettier-ignore
   return html`<div class=${containerClasses} data-testid="modal-summary">${totalLine}${feesLine}</div>`
 }
