@@ -83,8 +83,8 @@ Read the file, not a description of it.
 - Before you create any file under `src/`, read `.claude/rules/architecture.md` and the rule files
   that its table lists for that folder. Claude Code loads a rule file only after a file under its
   paths is read or written, and for a new file that happens after the first Write.
-- A Lit port PR fills the pull request template's "Lit port" section (contract surface, expected
-  failures removed, dropped test cases), copied from `pr-description.local.md`.
+- Only a major release that is allowed to break the merchant contract fills the pull request
+  template's "Merchant contract" section.
 
 ## Non-negotiables
 

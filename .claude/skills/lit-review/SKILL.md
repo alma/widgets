@@ -1,14 +1,14 @@
 ---
 name: lit-review
-description: Reviews the current branch of the Lit port with three read-only agents, for architecture, CSS and the merchant contract, and accessibility, then merges their findings, lets the developer accept or reject each one and writes the PR checklist and a findings table into the PR description. It checks the port against the ARCH, LAYER, NAME, STYLE and A11Y rules and master's React code, not generic bugs. Use it whenever someone asks to review a Lit port, a branch, a diff or a PR of this repo before it merges, such as "review my changes", "run the review agents" or "is this port ready", and at the end of a port.
+description: Reviews the current branch with three read-only agents, for architecture, CSS and the merchant contract, and accessibility, then merges their findings, lets the developer accept or reject each one and writes the PR checklist and a findings table into the PR description. It checks the changes against the ARCH, LAYER, NAME, STYLE and A11Y rules and the code at the merge base, not generic bugs. Use it whenever someone asks to review a branch, a diff or a PR of this repo before it merges, such as "review my changes", "run the review agents" or "is this ready to merge".
 ---
 
-# Review a branch of the Lit port
+# Review a branch of the Lit widgets
 
 Lint and the tests can't see a timer that never stops, a lost ARIA state, a renamed contract class,
 a business rule written in a template or a helper in the wrong folder. Three agents of
-`.claude/agents/` look for these, each with its own rules, and compare the changes with the React
-original at the reference commit:
+`.claude/agents/` look for these, each with its own rules, and compare the changes with the code at
+the merge base:
 
 | Agent | Rules |
 | --- | --- |
@@ -26,9 +26,8 @@ Claude Code asks before it runs a command that holds `$`.
 
 1. Look for the PR of the branch: `gh pr view --json number,url,title,body,baseRefName`. When it
    fails, there is no PR, or `gh` isn't logged in: go on without a PR, and say so in step 5.
-2. The base is the PR's `baseRefName`. With no PR, it is `feature/lit-migration` when
-   `git rev-parse --verify --quiet refs/remotes/origin/feature/lit-migration` prints a SHA, and
-   `master` otherwise.
+2. The base is the PR's `baseRefName`. With no PR, ask the developer which branch this one will
+   merge into, and stop until they answer.
 3. Check that `origin/<base>` is current: compare `git rev-parse origin/<base>` with the SHA that
    `git ls-remote --exit-code --heads origin <base>` prints. A stale `origin/<base>` widens the
    diff with commits that aren't the branch's, so when `git rev-parse` fails or the two differ,
@@ -36,7 +35,6 @@ Claude Code asks before it runs a command that holds `$`.
 4. The merge base: `git merge-base HEAD origin/<base>`.
 5. The changes, uncommitted ones included: `git diff --name-status <merge base>` for the tracked
    files, and `git ls-files --others --exclude-standard` for the new files that aren't staged yet.
-6. The reference SHA: read `scripts/ref-sha.txt`.
 
 When nothing changed, say so and stop.
 
@@ -50,7 +48,6 @@ Review the changes of this branch against your rules.
 
 - Base branch: <base>
 - Merge base: <merge base SHA>
-- Reference SHA: <reference SHA>
 - Changed files, uncommitted changes included:
   <one line per file: status and path, a rename as "R <old> -> <new>", untracked files as "??">
 - PR: <number, title and body, or "none">
@@ -102,7 +99,7 @@ both together.
    ```markdown
    ## Review findings
 
-   `<merge base, first 7 characters>`..`<HEAD, first 7 characters>` and uncommitted changes, against master at `<reference SHA, first 7 characters>`.
+   `<merge base, first 7 characters>`..`<HEAD, first 7 characters>` and uncommitted changes, against the merge base with `<base>`.
 
    | # | Severity | Rule | Location | Problem | Fix | Decision |
    | --- | --- | --- | --- | --- | --- | --- |
