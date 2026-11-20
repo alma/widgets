@@ -11,7 +11,7 @@ export type AnimationInstructionsInputs = {
   status: StatusResponse
   hasUserInteracted: boolean
   eligiblePlansCount: number
-  // The merchant's raw option. Master checks it before a suggested plan or the default replaces it.
+  // The merchant's raw option, checked before a suggested plan or the default replaces it.
   transitionDelay?: number
   intl: IntlShape
 }
@@ -39,7 +39,7 @@ export class AnimationInstructionsController implements ReactiveController {
 
   private readonly getInputs: () => AnimationInstructionsInputs
 
-  // As on master, the instructions have their own announcer, which no element renders.
+  // The instructions have their own announcer, which no element renders.
   private readonly announcer: AnnounceController
 
   private inputs: AnimationInstructionsInputs | undefined
