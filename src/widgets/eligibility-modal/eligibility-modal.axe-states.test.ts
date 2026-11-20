@@ -22,8 +22,8 @@ import STATIC_CUSTOMISATION_CLASSES, {
   desktopMediaQuery,
 } from '@/widgets/eligibility-modal/eligibility-modal.const'
 
-// Master labels two regions with payment-schedule-title: EligibilityModal's scheduleArea div and
-// the Schedule region inside it.
+// Two regions take their name from payment-schedule-title: the scheduleArea div and the Schedule
+// region inside it. Merchants select the modal's DOM, so the test turns the rule off instead.
 const axeWithPlans = configureAxe({ rules: { 'landmark-unique': { enabled: false } } })
 
 const modalPortal = (): HTMLElement => {

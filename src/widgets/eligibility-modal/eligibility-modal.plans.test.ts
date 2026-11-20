@@ -12,7 +12,7 @@ import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
 import { server } from '@/test/msw/msw-server'
 import { mountWidget } from '@/test/utils/mount-widget'
 
-// Master passes initialPlanIndex, which add(Modal) doesn't take: a click on that plan stands for it.
+// add(Modal) takes no initial plan, so a click on that plan selects it.
 // The merchant plans keep pay-now.
 const renderEligibilityModal = async (plans: EligibilityPlan[], initialPlanIndex = 0) => {
   server.use(eligibilityPlans(plans))
@@ -67,8 +67,7 @@ describe('plans provided', () => {
       expect(installmentElement).toHaveTextContent('0,00 €')
       // We set the initial index into the 2nd plan which is deferred_months: 1
       // So the installment will be paid in 1 month
-      // Master's /1 janvier 2022/. The matcher types here take no RegExp, and a string also
-      // matches a part of the text.
+      // The matcher types here take no RegExp, and a string also matches a part of the text.
       expect(installmentElement).toHaveTextContent('1 janvier 2022')
       const totalElement = screen.getByTestId('modal-summary')
       expect(totalElement).toHaveTextContent('Total')

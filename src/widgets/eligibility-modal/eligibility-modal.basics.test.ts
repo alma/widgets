@@ -10,8 +10,7 @@ import { desktopMediaQuery } from '@/widgets/eligibility-modal/eligibility-modal
 
 const onClose = vi.fn()
 
-// Master renders EligibilityModal with the plans and a success status. Here the modal opens through
-// add(Modal), with the request answered by those plans.
+// The modal opens through add(Modal), with the request answered by the plans.
 const renderEligibilityModal = async () => {
   server.use(eligibilityPlans(mockButtonPlans))
   const { handle } = await mountWidget('Modal', {
@@ -23,7 +22,6 @@ const renderEligibilityModal = async () => {
   await vi.waitFor(() => expect(screen.queryByRole('status')).not.toBeInTheDocument())
 }
 
-// Master's ResponsiveContext width of 801 px.
 useFakeMatchMedia([desktopMediaQuery])
 
 describe('Test responsiveness', () => {

@@ -10,7 +10,7 @@ const renderIndicator = (className?: string) => {
 }
 
 describe('loadingIndicatorTemplate', () => {
-  it("should render master's Alma logo", () => {
+  it('should render the Alma logo', () => {
     const { indicator } = renderIndicator()
     const svg = indicator.querySelector('svg')
 

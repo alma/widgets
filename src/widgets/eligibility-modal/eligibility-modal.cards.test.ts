@@ -8,14 +8,14 @@ import { modalLayoutTemplate } from '@/widgets/eligibility-modal/templates/modal
 
 const intl = createIntl(Locale.fr)
 
-// Master renders the whole modal, whose layout is mobile unless the test gives a desktop width.
+// The layout is mobile unless the test gives a desktop width.
 const renderModal = (cards?: Card[] | null, isBigScreen = false) =>
   renderTemplate(
     modalLayoutTemplate({
       isBigScreen,
       isCurrentPlanP1X: false,
       isSomePlanDeferred: false,
-      // Merchants can pass null, which master treats as no cards.
+      // Merchants can pass null, which means no cards.
       cards: cards as Card[] | undefined,
       intl,
     }),

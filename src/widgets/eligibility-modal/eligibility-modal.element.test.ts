@@ -17,7 +17,8 @@ import {
 } from '@/widgets/eligibility-modal/eligibility-modal.element'
 import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
-const FROZEN = 'The element properties are frozen for 4.x: never add, remove, rename or retype one.'
+const FROZEN =
+  'Frozen: another bundle of the widget on the same page may have defined the element, and this bundle sets these properties on it. Never add, remove, rename or retype one.'
 
 const portals = () => document.querySelectorAll('.ReactModalPortal')
 
@@ -41,7 +42,7 @@ describe('AlmaEligibilityModal', () => {
   })
 
   describe('properties', () => {
-    it("should keep master's properties", () => {
+    it('should keep the frozen properties', () => {
       const names = [...AlmaEligibilityModal.elementProperties]
         .filter(([, options]) => !options.state)
         .map(([name]) => name)
@@ -61,7 +62,7 @@ describe('AlmaEligibilityModal', () => {
     })
 
     // npm run typecheck fails on a retyped property.
-    it("should keep master's property types", () => {
+    it('should keep the frozen property types', () => {
       expectTypeOf<AlmaEligibilityModalProperties>().toEqualTypeOf<{
         purchaseAmount: number
         apiData?: { domain: string; merchantId: string }
@@ -170,7 +171,7 @@ describe('AlmaEligibilityModal', () => {
       expect(portals()).toHaveLength(1)
     })
 
-    it('should call onClose once with the React members added to the event', async () => {
+    it('should call onClose once with the added event members', async () => {
       const onClose = vi.fn()
       appendModal({ onClose })
       const button = await screen.findByTestId('modal-close-button')
@@ -212,7 +213,6 @@ describe('AlmaEligibilityModal', () => {
       expect(request).toHaveBeenCalledOnce()
     })
 
-    // Master throws before its request.
     it('should send no request', async () => {
       const fetch = vi.spyOn(window, 'fetch')
 
