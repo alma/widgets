@@ -26,7 +26,7 @@ src/
   index.ts                     Vite library entry, builds window.Alma
   main.css                     the first rules of widgets.css
   env.d.ts                     Vite client types and the CSS module declaration
-  css-limits.test.ts           caps !important at master's count
+  css-limits.test.ts           caps !important at the four of STYLE-08
   modal.browser.test.ts        the only browser test file
   public-api/                  merchant contract: initialize(), add(), modal handle, Alma.Utils, public types
   widgets/
@@ -85,8 +85,8 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`) put the layers toge
 - **LAYER-08** Node globals (`Buffer`, `require`, `__dirname`, `__filename`, `global`, `process`) appear only in tests and `src/test/`. Read build-time values from `import.meta.env`. Why: the widget runs in a browser, where they throw. `tsconfig.app.json` checks the production code without Node types. `tsconfig.test.json` checks the tests, stories and tooling with them, because Storybook's types load them anyway. Check: typecheck.
 - **LAYER-13** A timer id has the type `ReturnType<typeof setTimeout>`, or comes from `window.setTimeout`. Why: `tsconfig.test.json` also checks the production files that tests import, and with `@types/node` loaded, a bare `setTimeout` returns `NodeJS.Timeout`. Check: typecheck.
 - **LAYER-09** No relative imports. Write `@/domain/utils/plan-kind`, never `./plan-kind` or `../utils/plan-kind`. `@/` is the only alias and it maps to `src/`. Why: an import reads the same in every file. Check: lint.
-- **ARCH-03** No import of `react`, `react-dom`, `preact`, `react-intl`, `classnames`, `date-fns`, `react-modal`, `react-responsive`, `@testing-library/react` or `jest-axe`. Use `classMap`, `lib/date.ts`, `shared/i18n/` and `vitest-axe` instead. Why: the bundle drops React and its libraries. Check: review.
-- **ARCH-05** Dates go through `lib/date.ts`, which works in local time like master. Never pass a `timeZone` option to `Intl`. Why: a `timeZone` would change the due dates that shoppers see. Check: lint.
+- **ARCH-03** No import of `react` or `react-dom`. Why: Storybook installs them, so the import resolves and the build would bundle React into the widget. Check: review.
+- **ARCH-05** Dates go through `lib/date.ts`, which works in local time. Never pass a `timeZone` option to `Intl`. Why: a `timeZone` would change the due dates that shoppers see. Check: lint.
 - **ARCH-15** No dynamic `import()`. Everything ships in the one bundle. Why: merchants load the five published files by name, and the UMD file is one classic script. Check: lint.
 
 ## File suffixes
@@ -102,13 +102,6 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`) put the layers toge
 | `.const.ts` | runtime constants |
 | `.messages.ts` | message descriptors, next to the code that formats them |
 
-## The React original
-
-- **ARCH-01** The port reproduces master's behaviour at the reference commit, quirks included. Why: the contract tests compare the Lit build with master's build. Check: contract tests.
-- **ARCH-24** When an effect runs is not part of the contract. Preact runs master's effects after paint, about a frame after the render, and Lit runs the same code in the update. Don't copy Preact's scheduling, and don't write a test that only passes at one of these frames. Why: no shopper, screen reader or merchant can see a one-frame difference, and copying the scheduling adds code that 5.0 drops. Check: review.
-
-The React code is deleted on this branch. Read it at the reference commit in `scripts/ref-sha.txt`, which `npm run build:ref` builds into `dist-ref/`. Read the SHA from that file and write it in the command, because Claude Code asks before it runs one that holds `$(...)`: `git ls-tree -r --name-only <sha> -- src/components/Loader` lists a folder, and `git show <sha>:src/components/Loader/index.tsx` prints a file.
-
 ## Tests
 
 - **A11Y-07** Only `src/modal.browser.test.ts` runs in Chromium. Every other test runs in jsdom. Why: jsdom has no layout and no real Tab navigation, which only the modal's focus handling needs. Check: review.
@@ -116,5 +109,5 @@ The React code is deleted on this branch. Read it at the reference commit in `sc
 ## Constraints from outside `src/`
 
 - **ARCH-22** `src/intl/` and `crowdin.yml` stay where they are. Crowdin reads `src/intl/messages.json` and writes the catalogues in `src/intl/messages/`, so never edit those catalogues by hand. Why: the next Crowdin download overwrites them. Check: review.
-- **STYLE-03** `src/main.css` stays the first CSS import of `src/index.ts`, so its rules open `widgets.css` in master's order. The CSS modules may follow in any order, because no element gets rules from two modules. Why: merchant overrides rely on the rules of `main.css`, and a module order that decided a tie would change what the page shows. Check: contract tests, `css-output` and `cascade-ties`.
+- **STYLE-03** `src/main.css` stays the first CSS import of `src/index.ts`, so its rules open `widgets.css`. The CSS modules may follow in any order, because no element gets rules from two modules. Why: merchant overrides rely on the rules of `main.css`, and a module order that decided a tie would change what the page shows. Check: contract tests, `css-output` and `cascade-ties`.
 - **ARCH-23** `src/index.ts` and `src/modal.browser.test.ts` keep their paths. Why: the build uses `src/index.ts` as its entry, and A11Y-07 and `CLAUDE.md` name `src/modal.browser.test.ts` as the only browser test file. Check: review.
