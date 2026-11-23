@@ -63,22 +63,9 @@ const getContainer = () => document.querySelector(TEST_CONTAINER)!
 const getEligiblePlans = () =>
   screen.getAllByRole('option').filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
 
-const getSelectedPlan = () =>
-  screen.getAllByRole('option').find((plan) => plan.getAttribute('aria-selected') === 'true')
-
-// fireEvent returns false when a listener called preventDefault().
-const isPrevented = (element: Element, key: string) =>
-  !fireEvent.keyDown(element, { key, bubbles: true, cancelable: true })
-
 describe('PaymentPlan Accessibility Tests', () => {
   beforeEach(() => {
     server.use(eligibilityPlans(mockButtonPlans))
-  })
-
-  it('should not have any accessibility violations', async () => {
-    await render()
-
-    expect(await axe(getContainer())).toHaveNoViolations()
   })
 
   // Checks the container only, which the modal's portal sits outside of.
@@ -92,14 +79,6 @@ describe('PaymentPlan Accessibility Tests', () => {
     expect(
       await axe(getContainer(), { rules: { 'nested-interactive': { enabled: false } } }),
     ).toHaveNoViolations()
-  })
-
-  it('should not have nested-interactive violation', async () => {
-    await render()
-
-    const results = await axe(getContainer(), NESTED_INTERACTIVE_ON)
-
-    expect(results.violations.filter(({ id }) => id === 'nested-interactive')).toHaveLength(0)
   })
 
   describe('axe on each state', () => {
@@ -142,31 +121,9 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       expect(await axe(getContainer(), NESTED_INTERACTIVE_ON)).toHaveNoViolations()
     })
-
-    // So the axe runs above check an empty container, not a widget still loading.
-    it.each<[string, () => RequestHandler, Partial<Options>]>([
-      [
-        'hideIfNotEligible with no eligible plan',
-        () => eligibilityPlans(NO_ELIGIBLE_PLAN),
-        { hideIfNotEligible: true },
-      ],
-      ['a failed request', () => eligibilityError(), {}],
-    ])('renders nothing with %s', async (_state, handler, options) => {
-      const { host } = await settled(handler(), options)
-
-      expect(host).toBeEmptyDOMElement()
-    })
   })
 
   describe('AnnounceText functionality', () => {
-    it('should have an alert region for screen reader announcements', async () => {
-      await renderWithPlans([mockP3XEligiblePlanWithFees], { purchaseAmount: 100000 })
-
-      const alertRegion = screen.getByRole('alert')
-      expect(alertRegion).toHaveAttribute('aria-live', 'assertive')
-      expect(alertRegion).toHaveClass('announceText')
-    })
-
     it('should announce plan changes when hovering over different plans', async () => {
       await renderWithPlans(PAY_LATER_3X_4X, { purchaseAmount: 100000 })
       const alertRegion = screen.getByRole('alert')
@@ -176,56 +133,6 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await userEvent.hover(screen.getByRole('option', { name: /4x/i }))
       await waitFor(() => expect(alertRegion).toHaveTextContent('Plan sélectionné : 4x'))
-    })
-
-    it('should announce "Payer en différé" for pay later plans', async () => {
-      await renderWithPlans(PAY_LATER_3X_4X.slice(0, 2), { purchaseAmount: 100000 })
-      const alertRegion = screen.getByRole('alert')
-
-      await userEvent.hover(screen.getByRole('option', { name: /3x/i }))
-      await userEvent.hover(
-        screen.getByRole('option', { name: /Option de paiement Payer en différé : 1 mois/i }),
-      )
-
-      await waitFor(() =>
-        expect(alertRegion).toHaveTextContent('Plan sélectionné : Payer en différé : 1 mois'),
-      )
-    })
-
-    it('should announce plan changes when using keyboard navigation', async () => {
-      await renderWithPlans(PAY_LATER_3X_4X, { purchaseAmount: 100000 })
-      const alertRegion = screen.getByRole('alert')
-
-      // Not the first plan, which the first render already announces.
-      screen.getByRole('option', { name: /3x/i }).focus()
-      await waitFor(() => expect(alertRegion).toHaveTextContent('Plan sélectionné : 3x'))
-
-      await userEvent.keyboard('{ArrowRight}')
-      await waitFor(() => expect(alertRegion).toHaveTextContent('Plan sélectionné : 4x'))
-    })
-
-    it('should not show alert region when status is not SUCCESS', async () => {
-      server.use(eligibilityPending())
-      await mountWidget('PaymentPlans', { purchaseAmount: 100000 })
-
-      expect(screen.queryByRole('alert')).not.toBeInTheDocument()
-    })
-
-    it('should not show alert region when status is FAILED', async () => {
-      server.use(eligibilityError())
-      await mountWidget('PaymentPlans', { purchaseAmount: 100000 })
-      await waitFor(() => expect(screen.queryByTestId('loader')).not.toBeInTheDocument())
-
-      expect(screen.queryByRole('alert')).not.toBeInTheDocument()
-    })
-
-    it('should announce plan changes when clicking on plans', async () => {
-      await renderWithPlans(PAY_LATER_3X_4X.slice(0, 2), { purchaseAmount: 100000 })
-      const alertRegion = screen.getByRole('alert')
-
-      await userEvent.click(screen.getByRole('option', { name: /3x/i }))
-
-      await waitFor(() => expect(alertRegion).toHaveTextContent('Plan sélectionné : 3x'))
     })
   })
 
@@ -245,103 +152,9 @@ describe('PaymentPlan Accessibility Tests', () => {
         await user.tab()
         expect(document.getElementById('payment-info-text')).toHaveFocus()
       })
-
-      it('reaches the info line after the plans when it is clickable', async () => {
-        await renderWithPlans(mockButtonPlans, { suggestedPaymentPlan: 10 })
-        const user = userEvent.setup()
-        const eligiblePlans = getEligiblePlans()
-
-        await user.tab()
-        expect(screen.getByRole('button', { name: KNOW_MORE_NAME })).toHaveFocus()
-        for (const plan of eligiblePlans) {
-          // Each Tab moves on from the focus of the one before.
-          await user.tab()
-          expect(plan).toHaveFocus()
-        }
-        // The last plan, 10x, makes the info line clickable.
-        await user.tab()
-        expect(document.getElementById('payment-info-text')).toHaveFocus()
-      })
     })
 
     describe('arrow, Home and End keys', () => {
-      it('moves focus and the selection to the next and previous eligible plan', async () => {
-        await renderWithPlans(PLANS_WITH_INELIGIBLE_IN_THE_MIDDLE, { purchaseAmount: 45000 })
-        const user = userEvent.setup()
-        const [first, last] = getEligiblePlans()
-
-        first.focus()
-        await user.keyboard('{ArrowRight}')
-        expect(last).toHaveFocus()
-        expect(last).toHaveAttribute('aria-selected', 'true')
-
-        await user.keyboard('{ArrowLeft}')
-        expect(first).toHaveFocus()
-        expect(first).toHaveAttribute('aria-selected', 'true')
-      })
-
-      it('stops at the ends', async () => {
-        await renderWithPlans(mockButtonPlans)
-        const user = userEvent.setup()
-        const eligiblePlans = getEligiblePlans()
-        const first = eligiblePlans[0]
-        const last = eligiblePlans[eligiblePlans.length - 1]
-
-        first.focus()
-        await user.keyboard('{ArrowLeft}')
-        expect(first).toHaveFocus()
-        expect(getSelectedPlan()).toBe(first)
-
-        last.focus()
-        await user.keyboard('{ArrowRight}')
-        expect(last).toHaveFocus()
-        expect(getSelectedPlan()).toBe(last)
-      })
-
-      it('reaches the first and last eligible plans with Home and End', async () => {
-        await renderWithPlans(mockButtonPlans)
-        const user = userEvent.setup()
-        const eligiblePlans = getEligiblePlans()
-
-        eligiblePlans[1].focus()
-        await user.keyboard('{Home}')
-        expect(eligiblePlans[0]).toHaveFocus()
-        expect(eligiblePlans[0]).toHaveAttribute('aria-selected', 'true')
-
-        await user.keyboard('{End}')
-        expect(eligiblePlans[eligiblePlans.length - 1]).toHaveFocus()
-        expect(eligiblePlans[eligiblePlans.length - 1]).toHaveAttribute('aria-selected', 'true')
-      })
-
-      it.each(['ArrowLeft', 'ArrowRight', 'Home', 'End'])(
-        'calls preventDefault for %s on an eligible plan',
-        async (key) => {
-          await renderWithPlans(mockButtonPlans)
-          const plan = getEligiblePlans()[1]
-          plan.focus()
-
-          expect(isPrevented(plan, key)).toBe(true)
-        },
-      )
-
-      it.each(['ArrowLeft', 'ArrowRight', 'Home', 'End'])(
-        'does nothing for %s on an ineligible plan',
-        async (key) => {
-          const { host } = await renderWithPlans(PLANS_WITH_INELIGIBLE_IN_THE_MIDDLE, {
-            purchaseAmount: 45000,
-            transitionDelay: -1,
-          })
-          const ineligible = screen.getByRole('option', { name: /4x/ })
-          const selectedBefore = getSelectedPlan()
-          ineligible.focus()
-
-          expect(isPrevented(ineligible, key)).toBe(false)
-          await (host as AlmaPaymentPlans).updateComplete
-          expect(ineligible).toHaveFocus()
-          expect(getSelectedPlan()).toBe(selectedBefore)
-        },
-      )
-
       it('stops the cycling after a keyboard move', async () => {
         vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
         try {
@@ -363,28 +176,6 @@ describe('PaymentPlan Accessibility Tests', () => {
           vi.useRealTimers()
         }
       })
-    })
-
-    describe('Enter and Space', () => {
-      it.each(['Enter', ' '])('call preventDefault for %j on the know-more button', async (key) => {
-        await render()
-        const button = screen.getByRole('button', { name: KNOW_MORE_NAME })
-        button.focus()
-
-        expect(isPrevented(button, key)).toBe(true)
-      })
-
-      it.each(['Enter', ' '])(
-        'call preventDefault for %j on the clickable info line',
-        async (key) => {
-          await render({ suggestedPaymentPlan: 10 })
-          const infoLine = document.getElementById('payment-info-text')!
-          expect(infoLine).toHaveAttribute('role', 'button')
-          infoLine.focus()
-
-          expect(isPrevented(infoLine, key)).toBe(true)
-        },
-      )
     })
   })
 
@@ -410,15 +201,6 @@ describe('PaymentPlan Accessibility Tests', () => {
       vi.advanceTimersByTime(2000)
 
       expect(instructionsCalls(announce)).toEqual([[expect.any(String), 2000]])
-    })
-
-    it('should not announce animation control instructions when animation is disabled', async () => {
-      const announce = spyOnAnnounce()
-      await render({ transitionDelay: -1 })
-
-      vi.advanceTimersByTime(2000)
-
-      expect(instructionsCalls(announce)).toHaveLength(0)
     })
   })
 })

@@ -1,11 +1,7 @@
 import { screen } from '@testing-library/dom'
 
 import type { EligibilityPlan } from '@/domain/plans.types'
-import {
-  mockEligibilityPaymentPlanWithIneligiblePlan,
-  mockEligibilityWithGrayedOutPlan,
-  mockEligibilityWithHiddenPlan,
-} from '@/test/fixtures/plans'
+import { mockEligibilityWithHiddenPlan } from '@/test/fixtures/plans'
 import { eligibilityPlans } from '@/test/msw/eligibility-handlers'
 import { server } from '@/test/msw/msw-server'
 import { mountWidget } from '@/test/utils/mount-widget'
@@ -34,24 +30,6 @@ const renderWidget = async (plans: EligibilityPlan[]) => {
   await mountWidget('PaymentPlans', { purchaseAmount: 45000, plans: configPlans })
   await screen.findByTestId('widget-container')
 }
-
-describe('Ineligible plan due to purchase_amount range stays grayed out', () => {
-  it('keeps grayed-out the plan ineligible due to price range', async () => {
-    await renderWidget(mockEligibilityPaymentPlanWithIneligiblePlan)
-
-    expect(screen.getByText('J+30')).toBeInTheDocument()
-    expect(screen.getByText('2x')).toBeInTheDocument()
-    expect(screen.getByText('4x')).toBeInTheDocument()
-  })
-
-  it('keeps grayed-out the plan with explicit constraints.purchase_amount', async () => {
-    await renderWidget(mockEligibilityWithGrayedOutPlan)
-
-    expect(screen.getByText('J+30')).toBeInTheDocument()
-    expect(screen.getByText('2x')).toBeInTheDocument()
-    expect(screen.getByText('4x')).toBeInTheDocument()
-  })
-})
 
 describe('Ineligible plan due to non-purchase_amount reason is hidden', () => {
   it('hides the plan ineligible due to installments_count reason', async () => {

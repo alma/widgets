@@ -31,6 +31,9 @@ const { locales }: MessageFixture = JSON.parse(
     'utf8',
   ),
 )
+
+// fr_FR holds only a RangeError.
+const LOCALES = Object.keys(locales).filter((locale) => locale !== 'fr_FR')
 const merchantCss = readFileSync(resolve(__dirname, '../../../../../examples/style.css'), 'utf8')
 
 // Whether Intl puts U+202F, U+00A0 or a space depends on the ICU version.
@@ -90,7 +93,7 @@ const fixtureFor = (locale: string) => {
 }
 
 describe('paymentPlanInfoTextTemplate', () => {
-  describe.each(['fr', 'en'])('in %s, like the message fixtures', (locale) => {
+  describe.each(LOCALES)('in %s, like the message fixtures', (locale) => {
     const { message, callSite, noFee, knowMore } = fixtureFor(locale)
 
     it.each<[string, EligibilityPlanToDisplay, () => string[]]>([
