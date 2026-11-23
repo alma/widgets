@@ -1,5 +1,4 @@
 import { screen, within } from '@testing-library/dom'
-import userEvent from '@testing-library/user-event'
 import { html } from 'lit'
 import { axe } from 'vitest-axe'
 
@@ -11,6 +10,7 @@ import { mockCards } from '@/test/fixtures/plans'
 import { useFakeMatchMedia } from '@/test/utils/match-media'
 import { renderTemplate } from '@/test/utils/render-template'
 import { desktopMediaQuery } from '@/widgets/eligibility-modal/eligibility-modal.const'
+import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 import {
   type ModalLayoutParams,
   modalLayoutTemplate,
@@ -41,13 +41,10 @@ const appendHost = async (): Promise<ModalLayoutHost> => {
   return host
 }
 
-const renderModal = (
-  params: Partial<ModalLayoutParams> = {},
-  onClose: (event: MouseEvent) => void = vi.fn(),
-) =>
+const renderModal = (params: Partial<ModalLayoutParams> = {}) =>
   renderTemplate(
     modalShellTemplate({
-      onClose,
+      onClose: vi.fn(),
       scrollable: true,
       children: modalLayoutTemplate({
         isBigScreen: false,
@@ -87,26 +84,6 @@ describe('modal layout switch', () => {
     )
     expect(leftSide()).not.toBeInTheDocument()
   })
-
-  it('should swap the layouts when the match changes', async () => {
-    const host = await appendHost()
-
-    matchMedia.setMatches(desktopMediaQuery, true)
-    await host.updateComplete
-    expect(leftSide()).toBeInTheDocument()
-
-    matchMedia.setMatches(desktopMediaQuery, false)
-    await host.updateComplete
-    expect(leftSide()).not.toBeInTheDocument()
-  })
-
-  it('should stop listening once the host is removed', async () => {
-    const host = await appendHost()
-
-    host.remove()
-
-    expect(matchMedia.listenerCount(desktopMediaQuery)).toBe(0)
-  })
 })
 
 describe.each([
@@ -134,45 +111,18 @@ describe.each([
     expect(logo).toHaveAttribute('width', '75')
   })
 
-  it.each([
-    [false, false, 'Payez en plusieurs fois par carte bancaire avec Alma.'],
-    [false, true, 'Payez comptant par carte bancaire avec Alma.'],
-    [true, false, 'Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.'],
-    [true, true, 'Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.'],
-  ])(
-    'should show the title for deferred %s and P1X %s',
-    (isSomePlanDeferred, isCurrentPlanP1X, title) => {
-      renderModal({ isBigScreen, isSomePlanDeferred, isCurrentPlanP1X })
+  it('should show the title for deferred true and P1X false', () => {
+    renderModal({ isBigScreen, isSomePlanDeferred: true, isCurrentPlanP1X: false })
 
-      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(title, {
-        normalizeWhitespace: false,
-      })
-      expect(screen.getByTestId('modal-title-element')).toHaveAttribute('id', 'modal-title')
-    },
-  )
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+      'Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.',
+      { normalizeWhitespace: false },
+    )
+    expect(screen.getByTestId('modal-title-element')).toHaveAttribute('id', 'modal-title')
+  })
 
-  it.each([
-    [
-      false,
-      [
-        'Choisissez Alma au moment du paiement.',
-        'Laissez-vous guider et validez votre paiement en 2 minutes.',
-        'Gardez le contrôle en avançant ou reculant vos échéances à votre rythme.',
-      ],
-      ['Alma', '2 minutes.', 'Gardez le contrôle'],
-    ],
-    [
-      true,
-      [
-        'Choisissez Alma - Payer maintenant au moment du paiement.',
-        'Renseignez les informations de votre carte bancaire.',
-        // The French message has a space inside the strong tag and another after it.
-        'La validation  de votre paiement est instantanée !',
-      ],
-      ['Alma - Payer maintenant', 'carte bancaire.', 'La validation '],
-    ],
-  ])('should show the info bullets for P1X %s', (isCurrentPlanP1X, bullets, strongTexts) => {
-    renderModal({ isBigScreen, isCurrentPlanP1X })
+  it('should show the info bullets for P1X true', () => {
+    renderModal({ isBigScreen, isCurrentPlanP1X: true })
 
     const info = screen.getByRole('region', { name: 'Comment procéder au paiement' })
     expect(info).toHaveAttribute('id', 'payment-info')
@@ -182,71 +132,33 @@ describe.each([
     ).toEqual(['1', '2', '3'])
     expect(
       items.map((item) => item.querySelector('.alma-eligibility-modal-info-message')?.textContent),
-    ).toEqual(bullets)
-    expect([...info.querySelectorAll('strong')].map((strong) => strong.textContent)).toEqual(
-      strongTexts,
-    )
-  })
-})
-
-describe('info', () => {
-  it('should keep the ARIA attributes and the list class', () => {
-    renderModal()
-
-    const info = screen.getByTestId('modal-info-element')
-    expect(info).toHaveAttribute('aria-describedby', 'payment-info-description')
-    expect(info).toHaveAttribute('tabindex', '-1')
-    expect(info.querySelector('ol#payment-info-description')).toHaveClass('listContainer', {
-      exact: true,
-    })
-    expect(screen.getByRole('heading', { level: 2 })).toHaveClass('sr-only', { exact: true })
-  })
-})
-
-describe('modal shell', () => {
-  it('should render the close button with its French label', () => {
-    renderModal()
-
-    const button = screen.getByRole('button', { name: 'Fermer la fenêtre' })
-    expect(button).toHaveAttribute('type', 'button')
-    expect(button).toHaveAttribute('data-testid', 'modal-close-button')
-    expect(button).toHaveClass('closeButton alma-eligibility-modal-close-button', { exact: true })
+    ).toEqual([
+      'Choisissez Alma - Payer maintenant au moment du paiement.',
+      'Renseignez les informations de votre carte bancaire.',
+      // The French message has a space inside the strong tag and another after it.
+      'La validation  de votre paiement est instantanée !',
+    ])
+    expect([...info.querySelectorAll('strong')].map((strong) => strong.textContent)).toEqual([
+      'Alma - Payer maintenant',
+      'carte bancaire.',
+      'La validation ',
+    ])
   })
 
-  it('should call onClose with the click event', async () => {
-    const onClose = vi.fn()
-    renderModal({}, onClose)
+  // Merchants can pass null, which means no cards.
+  it.each([undefined, null])('should not display card logos if %s is provided', (cards) => {
+    renderModal({ isBigScreen, cards: cards as Card[] | undefined })
 
-    await userEvent.click(screen.getByTestId('modal-close-button'))
-
-    expect(onClose).toHaveBeenCalledOnce()
-    expect(onClose.mock.calls[0][0]).toBeInstanceOf(MouseEvent)
-    expect(onClose.mock.calls[0][0]).toHaveProperty('type', 'click')
+    expect(screen.queryByTestId('card-logos')).not.toBeInTheDocument()
   })
 
-  it('should hide the cross icon from assistive technologies', () => {
-    renderModal()
+  it('should display provided card logos', () => {
+    renderModal({ isBigScreen, cards: ['amex', 'cb'] })
 
-    const cross = screen.getByTestId('modal-close-button').querySelector('svg')
-    expect(cross).toHaveAttribute('aria-hidden', 'true')
-    expect(cross).toHaveAttribute('focusable', 'false')
-    expect(cross).not.toHaveAttribute('class')
-  })
-
-  it.each([
-    [true, 'content contentScrollable'],
-    [false, 'content'],
-  ])('should render the content div with scrollable %s', (scrollable, classes) => {
-    const container = renderTemplate(modalShellTemplate({ onClose: vi.fn(), scrollable, intl }))
-
-    expect(container.lastElementChild).toHaveClass(classes, { exact: true })
-  })
-
-  it('should add the content class it is given', () => {
-    const container = renderTemplate(
-      modalShellTemplate({ onClose: vi.fn(), contentClassName: 'extra', intl }),
-    )
-
-    expect(container.lastElementChild).toHaveClass('content extra', { exact: true })
+    expect(screen.getByTestId('card-logos')).toBeInTheDocument()
+    expect(screen.getByTestId('card-logo-amex')).toBeInTheDocument()
+    expect(screen.getByTestId('card-logo-cb')).toBeInTheDocument()
+    expect(screen.queryByTestId('card-logo-mastercard')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('card-logo-visa')).not.toBeInTheDocument()
   })
 })

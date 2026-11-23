@@ -1,7 +1,10 @@
 import noScroll from 'no-scroll'
 
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
-import { ModalPortalController } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
+import {
+  closeModalOf,
+  ModalPortalController,
+} from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 
 class ModalPortalHost extends LightDomElement {
   readonly modal = new ModalPortalController(this)
@@ -247,6 +250,16 @@ describe('ModalPortalController', () => {
       expect(host.modal.isOpen).toBe(false)
       expect(host.modal.portal.isConnected).toBe(false)
       expect(sentinels()).toEqual([])
+    })
+
+    it('should close the modal at once through closeModalOf()', () => {
+      const host = openModal()
+
+      host.remove()
+      closeModalOf(host)
+
+      expect(host.modal.isOpen).toBe(false)
+      expect(host.modal.portal.isConnected).toBe(false)
     })
 
     it('should keep the modal open when the host comes back in the same task', async () => {

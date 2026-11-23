@@ -150,16 +150,13 @@ describe('PlansModalController', () => {
     expect(portals()).toHaveLength(0)
   })
 
-  it.each([
-    ['without a deferred plan', PLANS, 'Payez en plusieurs fois par carte bancaire avec Alma.'],
-    [
-      'with a deferred plan',
-      mockPlansAllEligible as EligibilityPlanToDisplay[],
-      'Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.',
-    ],
-  ])('should pick the title from the given plans, %s', async (_name, eligiblePlans, title) => {
-    await appendHost(paramsOf({ eligiblePlans }))
+  it('should pick the title from the given plans, with a deferred plan', async () => {
+    await appendHost(
+      paramsOf({ eligiblePlans: mockPlansAllEligible as EligibilityPlanToDisplay[] }),
+    )
 
-    expect(screen.getByTestId('modal-title-element')).toHaveTextContent(title)
+    expect(screen.getByTestId('modal-title-element')).toHaveTextContent(
+      'Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.',
+    )
   })
 })

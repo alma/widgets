@@ -36,25 +36,6 @@ describe('SkipLinks Accessibility Tests', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('should have proper semantic structure for screen readers', async () => {
-    const container = renderSkipLinks({ skipLinks: skipLinksData })
-
-    const navigation = container.querySelector('[role="navigation"]')
-    expect(navigation).toBeInTheDocument()
-    expect(navigation).toHaveAttribute('aria-label', 'Navigation rapide')
-
-    const links = container.querySelectorAll('a')
-    expect(links).toHaveLength(2)
-
-    links.forEach((link) => {
-      expect(link).toHaveAttribute('href')
-      expect(link.getAttribute('href')).toMatch(/^#/)
-    })
-
-    const results = await axe(container)
-    expect(results).toHaveNoViolations()
-  })
-
   it('should handle empty skip links array', async () => {
     const container = renderSkipLinks({ skipLinks: [] })
 

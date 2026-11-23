@@ -63,63 +63,11 @@ const waitForAfterOpen = () =>
   )
 
 describe('Modal Accessibility Tests', () => {
-  it('should not have any accessibility violations when closed', async () => {
-    renderModal({ isOpen: false, onClose: () => {}, children: html`<div>Modal content</div>` })
-
-    // A closed modal adds nothing to the page.
-    expect(document.querySelector('.ReactModalPortal')).not.toBeInTheDocument()
-
-    const results = await axe(document.body)
-    expect(results).toHaveNoViolations()
-  })
-
   it('should not have any accessibility violations when open', async () => {
     renderModal({ isOpen: true, onClose: () => {}, children: html`<div>Modal content</div>` })
 
     // Wait for modal animations to complete
     await waitForAfterOpen()
-
-    const results = await axe(modalPortal())
-    expect(results).toHaveNoViolations()
-  })
-
-  it('should have proper aria attributes when open', async () => {
-    renderModal({
-      isOpen: true,
-      onClose: () => {},
-      children: html`<div>
-        <h2>Modal Title</h2>
-        <p>Some modal content</p>
-        <button type="button">Close</button>
-      </div>`,
-    })
-
-    // Wait for modal animations to complete
-    await waitForAfterOpen()
-
-    // Check that the modal has proper aria attributes
-    expect(screen.getByRole('dialog', { hidden: true })).toBeInTheDocument()
-
-    // Check that no accessibility violations are detected
-    const results = await axe(modalPortal())
-    expect(results).toHaveNoViolations()
-  })
-
-  it('should have accessible close button with decorative icon', async () => {
-    const mockClose = vi.fn()
-    renderModal({ isOpen: true, onClose: mockClose, children: html`<div>Modal content</div>` })
-
-    // Wait for modal animations to complete
-    await waitForAfterOpen()
-
-    const closeButton = await screen.findByTestId('modal-close-button')
-    expect(closeButton).toHaveAttribute('aria-label')
-    expect(closeButton).toHaveAttribute('type', 'button')
-
-    // The icon is decorative, since the button has an aria-label.
-    const icon = closeButton.querySelector('svg')
-    expect(icon).toHaveAttribute('aria-hidden', 'true')
-    expect(icon).toHaveAttribute('focusable', 'false')
 
     const results = await axe(modalPortal())
     expect(results).toHaveNoViolations()

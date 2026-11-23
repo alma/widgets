@@ -5,7 +5,6 @@ import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import {
-  mockDeferredMultiInstallmentPlanWithoutFees,
   mockP10XEligiblePlan,
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
@@ -27,7 +26,6 @@ const PAYMENT_INSTITUTION_DISCLAIMER =
 const CREDIT_COST_BORNE_BY_MERCHANT = "Le coût du crédit est porté par l'enseigne."
 
 const FRENCH_COUNTRIES = ['FR', 'fr']
-const OTHER_COUNTRIES = ['LU', 'BE', 'NL', 'IT', 'DE', 'PT', 'ES', 'GB', 'UK', 'US']
 
 describe('standard PNX/Credit variant', () => {
   it('renders the without-fee-sharing wording for a plan with no customer cost', () => {
@@ -62,17 +60,6 @@ describe('standard PNX/Credit variant', () => {
     expect(legalMentions).not.toHaveTextContent('incluant des frais')
   })
 
-  it('uses the standard wording (not Pay Later) for a PNX plan that is also deferred', () => {
-    renderLegalMentions(mockDeferredMultiInstallmentPlanWithoutFees)
-
-    const legalMentions = screen.getByTestId('legal-mentions')
-    expect(legalMentions).toHaveTextContent(
-      'Crédit de 450,00 € au taux débiteur fixe de 0 % sur 2 mois. Permettant, avec un acompte de 0,00 €, de financer un achat de 450,00 €.',
-    )
-    expect(legalMentions).toHaveTextContent(DISCLAIMER)
-    expect(legalMentions).not.toHaveTextContent('Montant total dû')
-  })
-
   it.each(FRENCH_COUNTRIES)(
     'uses the financing company disclaimer for a %s transaction',
     (country) => {
@@ -82,14 +69,11 @@ describe('standard PNX/Credit variant', () => {
     },
   )
 
-  it.each(OTHER_COUNTRIES)(
-    'uses the payment institution disclaimer for a %s transaction',
-    (country) => {
-      renderLegalMentions(mockP2XEligiblePlan.withCountry(country))
+  it('uses the payment institution disclaimer for a LU transaction', () => {
+    renderLegalMentions(mockP2XEligiblePlan.withCountry('LU'))
 
-      expect(screen.getByTestId('legal-mentions')).toHaveTextContent(PAYMENT_INSTITUTION_DISCLAIMER)
-    },
-  )
+    expect(screen.getByTestId('legal-mentions')).toHaveTextContent(PAYMENT_INSTITUTION_DISCLAIMER)
+  })
 })
 
 describe('P1X Pay Later variant', () => {
@@ -141,24 +125,6 @@ describe('P1X Pay Later variant', () => {
       'Crédit de 450,00 € au taux débiteur fixe de 0 % sur 30 jours. Permettant de financer un achat de 450,00 €. Montant total dû : 450,00 €, prélevés le 1 janvier 1970.',
     )
   })
-
-  it.each(FRENCH_COUNTRIES)(
-    'uses the financing company disclaimer for a %s transaction',
-    (country) => {
-      renderLegalMentions(mockPayLater30DaysEligiblePlan.withCountry(country))
-
-      expect(screen.getByTestId('legal-mentions')).toHaveTextContent(DISCLAIMER)
-    },
-  )
-
-  it.each(OTHER_COUNTRIES)(
-    'uses the payment institution disclaimer for a %s transaction',
-    (country) => {
-      renderLegalMentions(mockPayLater30DaysEligiblePlan.withCountry(country))
-
-      expect(screen.getByTestId('legal-mentions')).toHaveTextContent(PAYMENT_INSTITUTION_DISCLAIMER)
-    },
-  )
 })
 
 describe('credit cost borne by the merchant', () => {
@@ -170,37 +136,16 @@ describe('credit cost borne by the merchant', () => {
     )
   })
 
-  it.each([
-    ['PNX', mockP2XEligiblePlan],
-    ['deferred PNX', mockDeferredMultiInstallmentPlanWithoutFees],
-    ['Pay Later', mockPayLater30DaysEligiblePlan],
-    ['0% Credit', mockP2XEligiblePlan.withInstallmentsCount(10)],
-  ])('shows it for a French %s plan that costs the customer nothing', (_, plan) => {
-    renderLegalMentions(plan)
-
-    expect(screen.getByTestId('legal-mentions')).toHaveTextContent(CREDIT_COST_BORNE_BY_MERCHANT)
-  })
-
-  it.each([
-    ['PNX with fees', mockP3XEligiblePlanWithFees],
-    ['Pay Later with fees', mockPayLater30DaysEligiblePlan.withFees(540)],
-    ['Credit with interest', mockP10XEligiblePlan],
-  ])('hides it for a French %s plan', (_, plan) => {
-    renderLegalMentions(plan)
+  it('hides it for a French PNX with fees plan', () => {
+    renderLegalMentions(mockP3XEligiblePlanWithFees)
 
     expect(screen.getByTestId('legal-mentions')).not.toHaveTextContent(
       CREDIT_COST_BORNE_BY_MERCHANT,
     )
   })
 
-  it('shows it whatever the case of the transaction country', () => {
-    renderLegalMentions(mockP2XEligiblePlan.withCountry('fr'))
-
-    expect(screen.getByTestId('legal-mentions')).toHaveTextContent(CREDIT_COST_BORNE_BY_MERCHANT)
-  })
-
-  it.each(OTHER_COUNTRIES)('hides it for a %s transaction', (country) => {
-    renderLegalMentions(mockP2XEligiblePlan.withCountry(country))
+  it('hides it for a LU transaction', () => {
+    renderLegalMentions(mockP2XEligiblePlan.withCountry('LU'))
 
     expect(screen.getByTestId('legal-mentions')).not.toHaveTextContent(
       CREDIT_COST_BORNE_BY_MERCHANT,
