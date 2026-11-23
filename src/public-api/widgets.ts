@@ -44,7 +44,10 @@ const mountHost = (
   // Before append(), so the first render has every option.
   Object.assign(host, properties)
   if (empty) {
-    container.replaceChildren()
+    // Not replaceChildren(), which Safari only has from 14.
+    while (container.lastChild) {
+      container.lastChild.remove()
+    }
   }
   container.append(host)
   hosts.set(container, host)

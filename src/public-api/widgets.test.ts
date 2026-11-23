@@ -110,6 +110,21 @@ describe('WidgetsController', () => {
       expect(host.querySelector('[data-testid="placeholder"]')).not.toBeNull()
     })
 
+    it('should empty the container in a browser without replaceChildren', () => {
+      container.append(document.createElement('p'), 'text')
+      const { replaceChildren } = Element.prototype
+      Reflect.deleteProperty(Element.prototype, 'replaceChildren')
+
+      try {
+        addPaymentPlans()
+      } finally {
+        Element.prototype.replaceChildren = replaceChildren
+      }
+
+      expect(container.childNodes).toHaveLength(1)
+      expect(hostsIn(container)).toHaveLength(1)
+    })
+
     it('should give the host every option from its first render', () => {
       const cards: Card[] = ['visa']
       const options = {
