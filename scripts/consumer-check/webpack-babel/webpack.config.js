@@ -21,7 +21,7 @@ module.exports = {
             presets: [
               [
                 '@babel/preset-env',
-                { targets: 'chrome 85, firefox 79, safari 14.1, ios_saf 14.5' },
+                { targets: 'chrome 80, firefox 74, safari 13.1, ios_saf 13.4' },
               ],
             ],
           },
