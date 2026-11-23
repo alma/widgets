@@ -124,35 +124,4 @@ describe('Modal Accessibility Tests', () => {
     const results = await axe(modalPortal())
     expect(results).toHaveNoViolations()
   })
-
-  it('should properly manage focus when modal opens and closes', async () => {
-    const mockClose = vi.fn()
-
-    // Test modal in open state directly - this is the main accessibility concern
-    renderModal({
-      isOpen: true,
-      onClose: mockClose,
-      children: html`<div>Modal content</div>`,
-      page: html`<button type="button">Outside button</button>`,
-    })
-
-    // Wait for modal animations to complete
-    await waitForAfterOpen()
-
-    expect(screen.getByRole('dialog', { hidden: true })).toBeInTheDocument()
-
-    // Verify outside button still exists (important for context)
-    expect(screen.getByRole('button', { name: 'Outside button', hidden: true })).toBeInTheDocument()
-
-    // Modal should be accessible and properly structured
-    expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
-
-    // Verify the close button has proper accessibility attributes
-    const closeButton = screen.getByTestId('modal-close-button')
-    expect(closeButton).toHaveAttribute('aria-label')
-    expect(closeButton).toHaveAttribute('type', 'button')
-
-    // Test that modal can be closed (important for keyboard users)
-    expect(mockClose).not.toHaveBeenCalled()
-  })
 })

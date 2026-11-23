@@ -8,6 +8,7 @@ import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { Locale } from '@/shared/i18n/i18n.const'
 import {
+  mockButtonPlans,
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockP4XEligiblePlanWithFees,
@@ -178,6 +179,15 @@ describe('AlmaPaymentPlans behaviour', () => {
         purchaseAmount: 45000,
         hideIfNotEligible: true,
       })
+      await vi.waitFor(() => expect(screen.queryByTestId('loader')).toBeNull())
+
+      expect(host?.children).toHaveLength(0)
+    })
+
+    it('should render nothing when no plan is left to show', async () => {
+      server.use(eligibilityPlans(mockButtonPlans))
+
+      const { host } = await mountWidget('PaymentPlans', { purchaseAmount: 40000, plans: [] })
       await vi.waitFor(() => expect(screen.queryByTestId('loader')).toBeNull())
 
       expect(host?.children).toHaveLength(0)

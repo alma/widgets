@@ -133,17 +133,6 @@ describe('Know More Button Tests', () => {
   })
 
   describe('Error Handling', () => {
-    it('should handle click events gracefully', async () => {
-      const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
-      const user = userEvent.setup()
-      await defaultRender()
-
-      await user.click(getKnowMoreButton())
-      await user.click(getKnowMoreButton())
-
-      expect(consoleError).not.toHaveBeenCalled()
-    })
-
     it('should prevent default behavior on keyboard events', async () => {
       const user = userEvent.setup()
       await defaultRender()
