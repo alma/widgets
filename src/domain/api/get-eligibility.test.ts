@@ -34,7 +34,7 @@ describe('getEligibility', () => {
     warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
   })
 
-  describe('the cases of master', () => {
+  describe('main cases', () => {
     it('should fetch eligibility data and update state', async () => {
       vi.mocked(fetchFromApi).mockResolvedValue(mockPlansAllEligible)
 
@@ -45,7 +45,6 @@ describe('getEligibility', () => {
         url: `${SANDBOX}/v2/payments/eligibility`,
         headers: {
           Authorization: 'Alma-Merchant-Auth test_id',
-          // Master's jest run saw `undefined` here. The build defines the version.
           'X-Alma-Agent': `Alma Widget/${BUILD_VERSION}`,
         },
         body: {
@@ -137,7 +136,7 @@ describe('getEligibility', () => {
       expect(sessionStorage.length).toBe(1)
     })
 
-    it('sends the request for an entry with an empty value, as master', async () => {
+    it('sends the request for an entry with an empty value', async () => {
       seed(null)
       vi.mocked(fetchFromApi).mockResolvedValue([])
 
@@ -288,7 +287,7 @@ describe('getEligibility', () => {
         }),
     )
 
-    // Identical requests in flight aren't merged, as on master.
+    // Identical requests in flight aren't merged.
     const pending = [getEligibility(input()), getEligibility(input())]
     expect(fetchFromApi).toHaveBeenCalledTimes(2)
     answers.forEach((answer) => answer(mockPlansAllEligible))

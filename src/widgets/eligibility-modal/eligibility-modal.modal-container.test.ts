@@ -10,7 +10,7 @@ import { server } from '@/test/msw/msw-server'
 describe('ModalContainer', () => {
   let ModalWidget: AddReturnType
   const setup = () => {
-    // Master's test doesn't mock the request. Here an unanswered request fails the test.
+    // An unanswered request fails the test.
     server.use(eligibilityPlans(mockButtonPlans))
     document.body.innerHTML = `<div id="alma-widget-modal"></div>
       <a href="#" id="alma-open-modal-button">Open modal with clickableSelector</a>`

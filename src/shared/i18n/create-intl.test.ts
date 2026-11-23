@@ -131,7 +131,7 @@ describe('getTranslationsByLocale', () => {
     expect(getTranslationsByLocale('ja')).toBe(messagesEN)
   })
 
-  it('should match the language case-sensitively, like master', () => {
+  it('should match the language case-sensitively', () => {
     expect(getTranslationsByLocale('FR')).toBe(messagesEN)
   })
 })
@@ -140,7 +140,7 @@ describe('createIntl', () => {
   describe.each(formattingTags)('for the tag %s', (tag, entry) => {
     const skipped = tag === 'xx' && !defaultLocaleIsFixtures
 
-    it.skipIf(skipped)("formats every message like master's react-intl", () => {
+    it.skipIf(skipped)('formats every message', () => {
       const expected = entry.messages ?? {}
       const actual = Object.fromEntries(
         Object.entries(expected).map(([id, output]) => [id, formatLike(tag, id, output)]),
@@ -151,19 +151,16 @@ describe('createIntl', () => {
       )
     })
 
-    it.skipIf(skipped)(
-      "formats the numbers and dates of master's call sites like react-intl",
-      () => {
-        expect(callSitesOf(tag)).toEqual(expectedCallSites(entry))
-      },
-    )
+    it.skipIf(skipped)('formats the numbers and dates of each call site', () => {
+      expect(callSitesOf(tag)).toEqual(expectedCallSites(entry))
+    })
 
     it('keeps the full locale', () => {
       expect(createIntl(tag).locale).toBe(tag)
     })
   })
 
-  describe.each(throwingTags)('for the tag %s, which throws on master', (tag) => {
+  describe.each(throwingTags)('for the tag %s, which the fixture marks as throwing', (tag) => {
     const fallback = locales[tag.slice(0, 2)] ? tag.slice(0, 2) : 'en'
 
     it(`formats like ${fallback} and warns once`, () => {
@@ -221,7 +218,7 @@ describe('createIntl', () => {
     expect(createIntl('en').formatMessage(inherited)).toBe(inherited.defaultMessage)
   })
 
-  it('returns the message verbatim when it and its default message fail, like react-intl', () => {
+  it('returns the message verbatim when it and its default message fail', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const descriptor = testMessages.deferredDays
     const { id } = descriptor

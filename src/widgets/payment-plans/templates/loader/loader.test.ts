@@ -10,7 +10,7 @@ const renderLoader = (className?: string) => {
 }
 
 describe('loaderTemplate', () => {
-  it("should render master's two lines", () => {
+  it('should render two lines', () => {
     const { loader } = renderLoader()
 
     expect(loader.tagName).toBe('DIV')

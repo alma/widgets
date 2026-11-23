@@ -90,7 +90,7 @@ const fixtureFor = (locale: string) => {
 }
 
 describe('paymentPlanInfoTextTemplate', () => {
-  describe.each(['fr', 'en'])("in %s, like master's messages", (locale) => {
+  describe.each(['fr', 'en'])('in %s, like the message fixtures', (locale) => {
     const { message, callSite, noFee, knowMore } = fixtureFor(locale)
 
     it.each<[string, EligibilityPlanToDisplay, () => string[]]>([
@@ -215,7 +215,7 @@ describe('paymentPlanInfoTextTemplate', () => {
     )
   })
 
-  it("should give the know-more line master's class", () => {
+  it('should give the know-more line the openModalInfo class', () => {
     const [, knowMore] = renderInfoText(sameAmounts).querySelectorAll('p')
 
     expect(knowMore.className).toBe('openModalInfo')
@@ -225,7 +225,7 @@ describe('paymentPlanInfoTextTemplate', () => {
     expect(renderInfoText(payNow).querySelectorAll('p')).toHaveLength(1)
   })
 
-  // The API sends no such plan, but master checks for a legal disclosure before the line.
+  // The API sends no such plan, but the template checks for a legal disclosure before the line.
   it.each([
     ['a negative deferral', { ...payLater, deferred_days: -30, deferred_months: 0 }],
     ['no installments count', { ...payNow, installments_count: 0 }],

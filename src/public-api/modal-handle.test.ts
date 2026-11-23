@@ -82,7 +82,6 @@ describe('the add(Modal) handle', () => {
       expect(requests).toBe(1)
     })
 
-    // Master renders into the same Preact tree, which updates the open modal in place.
     it("should update the open modal with another handle's options, with no new host or request", async () => {
       const onClose = vi.fn()
       const first = addModal({ onClose })
@@ -192,17 +191,23 @@ describe('the add(Modal) handle', () => {
           )
         },
       ],
-    ])('should call onClose once for %s, with the React members', async (_name, type, act) => {
-      const onClose = vi.fn()
-      addModal({ onClose }).open()
-      await whenOpen()
+    ])(
+      'should call onClose once for %s, with the added event members',
+      async (_name, type, act) => {
+        const onClose = vi.fn()
+        addModal({ onClose }).open()
+        await whenOpen()
 
-      act()
+        act()
 
-      expect(portals()).toHaveLength(0)
-      expect(onClose).toHaveBeenCalledOnce()
-      expectReactLikeEvent((onClose.mock.calls[0] as unknown[])[0] as Record<string, unknown>, type)
-    })
+        expect(portals()).toHaveLength(0)
+        expect(onClose).toHaveBeenCalledOnce()
+        expectReactLikeEvent(
+          (onClose.mock.calls[0] as unknown[])[0] as Record<string, unknown>,
+          type,
+        )
+      },
+    )
   })
 
   describe('clickableSelector', () => {
@@ -217,7 +222,7 @@ describe('the add(Modal) handle', () => {
       expect(click.defaultPrevented).toBe(false)
     })
 
-    it('should keep every listener, as master does', () => {
+    it('should keep every listener', () => {
       const button = document.querySelector('#open-modal') as HTMLButtonElement
       const add = vi.spyOn(button, 'addEventListener')
       const remove = vi.spyOn(button, 'removeEventListener')
@@ -254,7 +259,7 @@ describe('the add(Modal) handle', () => {
       expect(onClose).toHaveBeenCalledOnce()
     })
 
-    it('should keep the listener after another widget replaces the modal, as master does', async () => {
+    it('should keep the listener after another widget replaces the modal', async () => {
       addModal()
       Widgets.initialize(TEST_MERCHANT_ID, ApiMode.TEST).add(Widgets.PaymentPlans, {
         container: TEST_CONTAINER,

@@ -29,7 +29,8 @@ import {
 import { paymentPlansMessages } from '@/widgets/payment-plans/payment-plans.messages'
 import { getPlanDescription } from '@/widgets/payment-plans/utils/plan-description'
 
-const FROZEN = 'The element properties are frozen for 4.x: never add, remove, rename or retype one.'
+const FROZEN =
+  'Frozen: another bundle of the widget on the same page may have defined the element, and this bundle sets these properties on it. Never add, remove, rename or retype one.'
 
 // Internal @state() fields are in elementProperties too.
 const publicProperties = () =>
@@ -54,7 +55,7 @@ type FrozenProperties = {
 }
 
 describe('AlmaPaymentPlans', () => {
-  it("should keep master's properties", () => {
+  it('should keep the frozen properties', () => {
     expect(
       publicProperties()
         .map(([name]) => name)
@@ -78,7 +79,7 @@ describe('AlmaPaymentPlans', () => {
     ])
   })
 
-  it("should keep master's property types", () => {
+  it('should keep the frozen property types', () => {
     expectTypeOf<AlmaPaymentPlansProperties>().toEqualTypeOf<FrozenProperties>()
     expectTypeOf<Pick<AlmaPaymentPlans, keyof FrozenProperties>>().toEqualTypeOf<FrozenProperties>()
   })
@@ -92,7 +93,7 @@ describe('AlmaPaymentPlans', () => {
     ).toBe(true)
   })
 
-  it("should keep master's defaults", () => {
+  it('should keep the defaults', () => {
     const element = new AlmaPaymentPlans()
 
     expect({ hideBorder: element.hideBorder, locale: element.locale }).toEqual({
@@ -269,7 +270,7 @@ describe('AlmaPaymentPlans behaviour', () => {
       })
     }
 
-    it('should announce the first plan, then the suggested one, as master', async () => {
+    it('should announce the first plan, then the suggested one', async () => {
       const texts: string[] = []
       const observer = new MutationObserver(() => {
         const text = document.querySelector('[role="alert"]')?.textContent ?? ''
@@ -340,9 +341,9 @@ describe('AlmaPaymentPlans behaviour', () => {
       )
     })
 
-    // Each render restarts master's default 5500 ms countdown. The animation instructions clear at
+    // Each render restarts the default 5500 ms countdown. The animation instructions clear at
     // 3500 ms, then each plan's announcement clears 1000 ms after its move.
-    it("should move the highlight with master's default delay and its restarts", async () => {
+    it('should move the highlight with the default delay and its restarts', async () => {
       const step = 100
       vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
       // findByTestId in mount() doesn't advance the fake timers, unlike vi.waitFor.
@@ -451,7 +452,7 @@ describe('AlmaPaymentPlans behaviour', () => {
         },
       ],
     ])(
-      'should call onModalClose once for %s, with the modal still open and the React members',
+      'should call onModalClose once for %s, with the modal still open and the added event members',
       async (_name, type, close) => {
         let portalsDuringCallback: number | undefined
         const onModalClose = vi.fn(() => {

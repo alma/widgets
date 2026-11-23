@@ -23,7 +23,7 @@ const { locales }: MessageFixture = JSON.parse(
   ),
 )
 
-// Master's text for a message, with each [placeholder] of the fixture replaced by its value.
+// The fixture's text for a message, with each [placeholder] replaced by its value.
 const fixtureText = (
   locale: string,
   id: string,

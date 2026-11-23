@@ -117,7 +117,7 @@ describe.each([
     expect(await axe(renderModal({ isBigScreen }))).toHaveNoViolations()
   })
 
-  it("should render master's dialog, labelled by the title", () => {
+  it('should render the dialog, labelled by the title', () => {
     renderModal({ isBigScreen })
 
     const dialog = screen.getByRole('dialog')
@@ -190,13 +190,12 @@ describe.each([
 })
 
 describe('info', () => {
-  it("should keep master's ARIA and list class", () => {
+  it('should keep the ARIA attributes and the list class', () => {
     renderModal()
 
     const info = screen.getByTestId('modal-info-element')
     expect(info).toHaveAttribute('aria-describedby', 'payment-info-description')
     expect(info).toHaveAttribute('tabindex', '-1')
-    // Master's golden DOM has the listContainer class on the list.
     expect(info.querySelector('ol#payment-info-description')).toHaveClass('listContainer', {
       exact: true,
     })

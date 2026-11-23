@@ -78,7 +78,7 @@ const credit = {
   annual_interest_rate: 1720,
 }
 
-describe.each(Object.values(Locale))("the total block in %s, like master's messages", (locale) => {
+describe.each(Object.values(Locale))('the total block in %s, like the fixtures', (locale) => {
   const { messages, callSites } = locales[locale]
   const total = `${messages['installments.total-amount']}${callSites['total-block.total']['1234.5']}`
 
