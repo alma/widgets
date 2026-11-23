@@ -128,17 +128,17 @@ For example, for a pricing, the locale `pt` will format as `€ 100,00` while th
 
 The widgets run in these browsers and their later versions:
 
-- Chrome 85
-- Firefox 79
-- Safari 14.1
-- Safari on iOS 14.5
+- Chrome 80
+- Firefox 74
+- Safari 13.1
+- Safari on iOS 13.4
 
-Older browsers can't run the script, so `window.Alma` stays undefined and an inline `Alma.Widgets.initialize(...)` call throws a `ReferenceError`. Check that `window.Alma` exists before you use it, so the rest of your page keeps working:
+The files use ES2019 syntax, so bundlers such as webpack 4 can build `widgets.js` without transpiling it. Older browsers don't display the widgets. To skip the call in those browsers, check `Alma.Widgets` first:
 
 ```html
 <script>
   ;(function () {
-    if (window.Alma) {
+    if (window.Alma && window.Alma.Widgets) {
       var widgets = Alma.Widgets.initialize('<YOUR MERCHANT ID>', Alma.ApiMode.LIVE)
       widgets.add(Alma.Widgets.PaymentPlans, {
         container: '#alma-widget',
