@@ -10,8 +10,7 @@ import { formatRichText, type RichText } from '@/shared/i18n/rich-text'
 import { paymentPlanInfoTextMessages } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.messages'
 import styles from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.module.css'
 
-// Euros whatever the locale, as on master. A template, so the amount gets its own text node, like
-// master's <FormattedNumber>.
+// Euros whatever the locale. A template, so the amount gets its own text node.
 const eurosTemplate = (intl: IntlShape, cents: number) =>
   html`${intl.formatNumber(priceFromCents(cents), { style: 'currency', currency: 'EUR' })}`
 
@@ -22,7 +21,7 @@ const dueDateTemplate = (intl: IntlShape, dueDate: number) =>
     year: 'numeric',
   })}`
 
-// Master's {' '} and <FormattedMessage>: two text nodes.
+// A space and the message: two text nodes.
 const noFeeTemplate = (plan: EligibilityPlanToDisplay, intl: IntlShape) =>
   shouldNotifyCustomerOfNoFees(plan)
     ? html`${' '}${intl.formatMessage(paymentPlanInfoTextMessages.noFee)}`
@@ -31,7 +30,7 @@ const noFeeTemplate = (plan: EligibilityPlanToDisplay, intl: IntlShape) =>
 const lineTemplate = (text: RichText, noFee: TemplateResult | typeof nothing = nothing) =>
   html`<p>${text}${noFee}</p>`
 
-// Master also checks `eligible`, which always holds here: ineligible plans return before.
+// No check of `eligible`, which always holds here: ineligible plans return before.
 const knowMoreTemplate = (plan: EligibilityPlanToDisplay, intl: IntlShape) => {
   if (!requiresLegalDisclosure(plan)) return nothing
 
@@ -39,7 +38,7 @@ const knowMoreTemplate = (plan: EligibilityPlanToDisplay, intl: IntlShape) => {
   return html`<p class=${styles.openModalInfo}>${text}</p>`
 }
 
-// Not one literal with both <p>: Prettier would put a newline between them, which master lacks.
+// Not one literal with both <p>: Prettier would put a newline between them, which adds a text node.
 const withKnowMoreTemplate = (
   line: TemplateResult,
   plan: EligibilityPlanToDisplay,

@@ -17,16 +17,16 @@ import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/ca
 export type PlansModalHost = ModalPortalHost
 
 export interface PlansModalParams {
-  // Master's PaymentPlans passes its eligible plans only, so isSomePlanDeferred skips the others.
+  // Eligible plans only, so isSomePlanDeferred skips the others.
   eligiblePlans: EligibilityPlanToDisplay[]
   status: StatusResponse
-  // Among the eligible plans. Called when the modal opens only, like master's useState.
+  // Among the eligible plans. Called when the modal opens only.
   initialPlanIndex: () => number
   cards?: Card[]
   intl: IntlShape
 }
 
-// Master's EligibilityModal on the host's plans, so no request.
+// The modal on the host's plans, so no request.
 // A tab change re-renders the portal, not the host.
 export class PlansModalController {
   private readonly onRequestClose: RequestClose
@@ -35,7 +35,7 @@ export class PlansModalController {
 
   private readonly portal: ModalPortalController
 
-  // Only while open, like master's useMediaQuery inside the modal.
+  // Only while open.
   // A disconnect closes the modal, which stops it (ARCH-12).
   private bigScreen: MediaQueryWatch | null = null
 

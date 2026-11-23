@@ -21,7 +21,7 @@ export interface PlanButtonParams {
   onClick: (event: MouseEvent) => void
 }
 
-// Master checks the deferred days before the months.
+// Checks the deferred days before the months.
 const getPlanShorthand = (plan: EligibilityPlanToDisplay, intl: IntlShape): string => {
   const {
     deferred_days: deferredDays,
@@ -62,7 +62,7 @@ export const planButtonTemplate = (
     planDescription: getPlanDescription(plan, intl),
   })
   const name = getPlanShorthand(plan, intl)
-  // No whitespace around the name, which Prettier would add: master's textContent is the name.
+  // No whitespace around the name, which Prettier would add: the button's textContent is the name.
   // prettier-ignore
   return html`<button
     type="button"

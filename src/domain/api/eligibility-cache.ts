@@ -6,8 +6,8 @@ import { hashStringForStorage } from '@/lib/hash'
 
 export const isMoreThanOneHourAgo = (date: number): boolean => Date.now() - date >= CACHE_TTL_MS
 
-// Master's key: a missing value prints as `undefined`, and the build version invalidates the
-// entries of older releases. Expects `purchaseAmount` to be set.
+// A missing value prints as `undefined`, and the build version invalidates the entries of older
+// releases. Expects `purchaseAmount` to be set.
 export const createKey = ({
   purchaseAmount,
   configPlans,
@@ -24,7 +24,7 @@ export const createKey = ({
   )
 }
 
-// These throw, like master's. getEligibility() catches every error.
+// These throw errors, and getEligibility() catches them.
 
 // Any JSON value, unchecked, or null when there is no entry.
 export const getCache = (key: string): unknown => {
@@ -40,7 +40,7 @@ export const deleteCache = (key: string): void => {
   sessionStorage.removeItem(key)
 }
 
-// Removes every key, the merchant's too, as master does.
+// Removes every key, the merchant's too.
 export const clearCache = (): void => {
   sessionStorage.clear()
 }

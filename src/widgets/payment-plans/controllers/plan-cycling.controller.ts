@@ -9,12 +9,11 @@ export type PlanCyclingInputs = {
   transitionDelay: number
 }
 
-// Read on each sync, as master reads it on each render. A change listener would outlive what
-// master leaves on the page.
+// Read on each sync rather than through a change listener, which would outlive the widget.
 const prefersReducedMotion = (): boolean =>
   window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false
 
-// Master's useButtonAnimation: highlights each value in turn, for one full cycle.
+// Highlights each value in turn, for one full cycle.
 export class PlanCyclingController implements ReactiveController {
   private readonly host: PlanCyclingHost
 
@@ -26,10 +25,10 @@ export class PlanCyclingController implements ReactiveController {
 
   private value = 0
 
-  // Master's `update`: false while a plan is hovered and once the cycle has ended.
+  // False while a plan is hovered and once the cycle has ended.
   private update = true
 
-  // Never reset, as on master, so a hover doesn't make the cycle longer.
+  // Never reset, so a hover doesn't make the cycle longer.
   private iterationCount = 1
 
   constructor(host: PlanCyclingHost, getInputs: () => PlanCyclingInputs) {
@@ -61,7 +60,7 @@ export class PlanCyclingController implements ReactiveController {
     this.sync()
   }
 
-  // Every update restarts the countdown, as each render did on master.
+  // Every update restarts the countdown.
   hostUpdate(): void {
     this.sync()
   }
@@ -71,7 +70,6 @@ export class PlanCyclingController implements ReactiveController {
     this.stop()
   }
 
-  // Master's effect.
   private sync(): void {
     this.stop()
     const { iterateValues, transitionDelay } = this.getInputs()

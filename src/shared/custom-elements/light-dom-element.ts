@@ -13,7 +13,8 @@ export class LightDomElement extends LitElement {
     super.connectedCallback()
     // Through the CSSOM: a strict style-src CSP blocks the style attribute.
     this.style.display = 'contents'
-    // Render before add() returns, as Preact did.
+    // Render before add() returns, so merchant code that reads the container
+    // right after it finds the widget.
     if (!this.hasUpdated) {
       this.performUpdate()
     }

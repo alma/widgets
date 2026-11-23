@@ -19,5 +19,6 @@ const STATIC_CUSTOMISATION_CLASSES = {
 
 export default STATIC_CUSTOMISATION_CLASSES
 
-// Frozen for 4.x: another 4.x bundle on the page may have defined it.
+// Frozen: another bundle of the widget on the same page may have defined it,
+// and the first definition wins.
 export const PAYMENT_PLANS_TAG = 'alma-payment-plans'
