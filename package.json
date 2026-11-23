@@ -23,7 +23,7 @@
     "start": "vite build --watch",
     "build": "npm run typecheck && vite build",
     "build:contract": "BUILD_VERSION=contract-test vite build",
-    "check:es2021": "es-check es2021 dist/widgets.umd.js --checkFeatures && es-check es2021 dist/widgets.js --module --checkFeatures",
+    "check:es2019": "es-check es2019 dist/widgets.umd.js --checkFeatures --ignore globalThis && es-check es2019 dist/widgets.js --module --checkFeatures --ignore globalThis",
     "test": "vitest run --project unit --project browser --coverage",
     "test:no-coverage": "vitest run --project unit --project browser",
     "build:ref": "node scripts/build-ref.mjs",
