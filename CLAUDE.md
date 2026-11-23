@@ -2,17 +2,17 @@
 
 `@alma/widgets` is an npm package, also served via jsDelivr, of embeddable payment-plan widgets
 that merchants embed on their own pages to call Alma's BNPL API. It ships only as a browser
-bundle: no server, and nothing here runs in Alma's own backend. The widgets are being migrated
-from React to Lit; the React code is deleted from this branch but stays readable at the reference
-commit `scripts/ref-sha.txt` names ("master"). Lit code arrives in steps, so a doc may name a file
-or a script that doesn't exist yet.
+bundle: no server, and nothing here runs in Alma's own backend. Each widget is one Lit 3 custom
+element that renders in light DOM (`alma-payment-plans`, `alma-eligibility-modal`). Template
+functions render the parts below each element. Reactive controllers in `*.controller.ts` files
+keep the shared state, such as the eligibility request.
 
 ## Tech stack
 
 | | |
 |---|---|
 | Language | TypeScript |
-| Framework | Lit (migrating off React) |
+| Framework | Lit 3, light DOM |
 | Package manager | npm |
 | Toolchain | nvm, via `.nvmrc` |
 
@@ -33,18 +33,19 @@ npm run test:browser:install                          # install Chromium, once p
 npm run typecheck                                     # tsc --noEmit
 npm run lint                                          # eslint on src/*.ts + stylelint
 npm run lint:fix                                      # eslint --fix + stylelint --fix
-npm run build:ref                                     # build master at scripts/ref-sha.txt into dist-ref/
-npm run test:contract:ref                             # contract tests on dist-ref/
 npm run test:contract                                 # contract tests on dist/
-npm run fixtures:messages                             # write the message and date fixtures from master's libraries
+npm run fixtures:messages                             # write the message and date fixtures from @formatjs/intl
 npm run fixtures:messages -- --check                  # fail when the fixtures are out of date
 ```
 
 Husky `pre-commit` already runs the typecheck, the tests of the changed files and lint-staged.
 `pre-push` runs `npm test` and `npm run lint`. No need to run those manually before committing.
 
-`npm run translations:extract` exits with code 1 until the Lit message descriptors exist, so it
-can't empty `src/intl/messages.json` early.
+`npm test` fails when coverage drops below the thresholds of `vitest.config.ts`, even when every
+test passes.
+
+Run `npm run fixtures:messages` after `npm run translations:download`, because new catalogues
+change the fixtures.
 
 ## Source of truth
 
@@ -52,11 +53,10 @@ Read the file, not a description of it.
 
 | For… | Read… |
 |---|---|
-| The React reference commit this Lit port reproduces | `scripts/ref-sha.txt` |
 | Layer order, folder placement and import rules | `.claude/rules/architecture.md` — loads for every file under `src/**` |
-| Which source files have no ported tests yet | `vitest.config.ts`'s coverage exclude list |
+| Which source files coverage leaves out | `vitest.config.ts`'s coverage exclude list |
 | Crowdin message catalogues | `src/intl/messages/*.json` — generated; never hand-edit |
-| Contract expectations the Lit port hasn't met yet | `tests/integration/contract/expected-failures.json` |
+| Contract expectations the bundles don't meet yet | `tests/integration/contract/expected-failures.json` |
 
 ## Testing
 
@@ -65,8 +65,8 @@ Read the file, not a description of it.
   Only `src/modal.browser.test.ts` needs a browser. `npm run test:browser:install` must have run
   once, or `npm test` and the `pre-push` hook fail.
 - `src/test/setup.ts` runs before every unit and browser test file, but not the contract tests. It
-  fixes `Date.now()` to master's "today" (`1638350762000`), adds the `vitest-axe` and jest-dom
-  matchers, and after each test restores the spies, clears the mock calls, and empties `<body>`,
+  sets `Date.now()` to a fixed date (`1638350762000`), adds the `vitest-axe` and Testing Library
+  DOM matchers, and after each test restores the spies, clears the mock calls, and empties `<body>`,
   its `ReactModal__Body--open` class, `sessionStorage` and the `warnOnce` memory.
 - `src/test/setup-jsdom.ts` runs in the `unit` project only. It puts the time zone back to UTC after
   each test and mocks `matchMedia` (no query matches), `no-scroll` and the canvas context axe needs.
@@ -77,8 +77,6 @@ Read the file, not a description of it.
   when the code catches the error, and never reaches the network.
 - A custom element definition can't be removed, so a tag stays defined until its test file ends.
   Each test file gets a fresh page.
-- Coverage leaves out the files whose tests aren't ported yet (the list in `vitest.config.ts`).
-  Porting a file's tests removes it from that list.
 
 ## Workflow
 
@@ -92,11 +90,11 @@ Read the file, not a description of it.
 
 1. English for everything: code, comments, commit messages, documentation, branch names.
 2. Conventional Commits for commit subjects, wherever the repository's history already uses them. Where it does not, follow the convention its history shows.
-3. Never commit directly to the default branch. Work on a topic branch named after the Linear issue id, and open a pull request. Ask for the Linear issue id when it was not given.
-4. Link the Linear issue in the pull request description.
+3. Never commit directly to the default branch. Work on a topic branch whose name starts with a prefix of `.github/pr-labeler.yml`, and open a pull request.
+4. Link the issue in the pull request description, when there is one.
 5. Never bypass hooks with `--no-verify`. Fix the failure instead.
 6. Never force-push without explicit human instruction.
 7. Add or update tests for any behaviour change, whether or not tests were requested.
 8. Comment the why, never the what. A comment that restates the code does not belong.
-9. Never create a script that doesn't already exist in `package.json`: it belongs to work that hasn't landed yet.
+9. Never name a script that isn't in `package.json`: it doesn't exist. Check `npm run` before naming one.
 10. A feature PR never edits `tests/integration/contract/`, the black-box tests on the built bundles; it only removes its own entries from `expected-failures.json` once those tests pass.
