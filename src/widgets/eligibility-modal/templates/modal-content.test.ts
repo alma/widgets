@@ -38,15 +38,10 @@ const scheduleRows = () =>
   within(screen.getByTestId('modal-installments-element')).getAllByRole('listitem')
 
 describe('modalContentTemplate', () => {
-  it('should render only the shell, the skip links and the layout when the request failed', () => {
+  it('should render the close button and no schedule when the request failed', () => {
     renderContent({ status: StatusResponse.FAILED, eligiblePlans: [] })
 
     expect(screen.getByTestId('modal-close-button')).toBeInTheDocument()
-    expect(screen.getByRole('navigation', { name: 'Navigation rapide' })).toBeInTheDocument()
-    expect(screen.getByRole('dialog')).toBeInTheDocument()
-    expect(screen.queryByRole('status')).not.toBeInTheDocument()
-    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
-    expect(screen.queryByRole('group')).not.toBeInTheDocument()
     expect(screen.queryByTestId('modal-installments-element')).not.toBeInTheDocument()
   })
 

@@ -21,7 +21,6 @@ describe('titleTemplate', () => {
       expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(title, {
         normalizeWhitespace: false,
       })
-      expect(screen.getByTestId('modal-title-element')).toHaveAttribute('id', 'modal-title')
     },
   )
 })

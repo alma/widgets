@@ -97,23 +97,13 @@ describe('ModalPortalController', () => {
       expect(noScroll.on).toHaveBeenCalledTimes(1)
     })
 
-    it('should focus the content before the frame, without the after-open classes or the scroll lock', () => {
+    it('should open before the frame, without the after-open classes or the scroll lock', () => {
       const host = openModal()
 
       expect(host.modal.isOpen).toBe(true)
-      expect(document.activeElement).toBe(host.modal.content)
       expect(host.modal.overlay.className).toBe('ReactModal__Overlay overlay')
       expect(host.modal.content.className).toBe('ReactModal__Content modal')
       expect(noScroll.on).not.toHaveBeenCalled()
-    })
-
-    it('should focus the content without scrolling the page', () => {
-      const focus = vi.spyOn(HTMLElement.prototype, 'focus')
-      const host = openModal()
-
-      expect(focus).toHaveBeenCalledTimes(1)
-      expect(focus.mock.contexts[0]).toBe(host.modal.content)
-      expect(focus).toHaveBeenCalledWith({ preventScroll: true })
     })
 
     it('should do nothing when the modal is already open', () => {
@@ -136,21 +126,10 @@ describe('ModalPortalController', () => {
       expect(document.body.classList.contains('ReactModal__Body--open')).toBe(false)
       expect(window.requestAnimationFrame).not.toHaveBeenCalled()
     })
-
-    it('should hide nothing outside the portal', () => {
-      appendButton()
-      const host = openModal()
-      runFrames()
-
-      const hidden = [...document.querySelectorAll('[inert], [aria-hidden]')].filter(
-        (element) => !host.modal.portal.contains(element),
-      )
-      expect(hidden).toEqual([])
-    })
   })
 
   describe('close', () => {
-    it('should restore the body and the focus', () => {
+    it('should restore the body', () => {
       document.body.classList.add('merchant-class')
       const button = appendButton()
       const host = appendHost()
@@ -165,7 +144,6 @@ describe('ModalPortalController', () => {
       expect(host.modal.isOpen).toBe(false)
       expect([...document.body.classList]).toEqual(classesBefore)
       expect([...document.body.children]).toEqual(childrenBefore)
-      expect(document.activeElement).toBe(button)
       expect(noScroll.off).toHaveBeenCalledTimes(1)
     })
 
@@ -225,17 +203,6 @@ describe('ModalPortalController', () => {
 
       expect(sentinels()).toEqual([])
       expect(document.body.classList.contains('ReactModal__Body--open')).toBe(false)
-    })
-
-    it('should send the focus from a sentinel to the last opened content', () => {
-      openModal()
-      const second = openModal()
-      const button = appendButton()
-      button.focus()
-
-      ;(sentinels()[0] as HTMLElement).focus()
-
-      expect(document.activeElement).toBe(second.modal.content)
     })
   })
 

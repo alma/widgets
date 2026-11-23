@@ -15,7 +15,7 @@ const renderShell = (params: Partial<ModalShellParams> = {}) =>
   renderTemplate(modalShellTemplate({ onClose: vi.fn(), intl, ...params }))
 
 describe('modalShellTemplate', () => {
-  it('should render the close button with its French label', () => {
+  it('should render the close button with its type, test ID and classes', () => {
     renderShell()
 
     const button = screen.getByRole('button', { name: 'Fermer la fenêtre' })
@@ -35,12 +35,10 @@ describe('modalShellTemplate', () => {
     expect(onClose.mock.calls[0][0]).toHaveProperty('type', 'click')
   })
 
-  it('should hide the cross icon from assistive technologies', () => {
+  it('should render the cross icon without a class', () => {
     renderShell()
 
     const cross = screen.getByTestId('modal-close-button').querySelector('svg')
-    expect(cross).toHaveAttribute('aria-hidden', 'true')
-    expect(cross).toHaveAttribute('focusable', 'false')
     expect(cross).not.toHaveAttribute('class')
   })
 

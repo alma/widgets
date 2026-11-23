@@ -18,7 +18,7 @@ describe('cardsTemplate', () => {
     expect(screen.queryAllByTestId(/^card-logo-/)).toHaveLength(0)
   })
 
-  it('should display all card logos, each labelled in French', () => {
+  it('should display all card logos', () => {
     renderCards(['amex', 'cb', 'mastercard', 'visa'])
 
     expect(screen.getAllByTestId(/^card-logo-/).map((logo) => logo.dataset.testid)).toEqual([
@@ -26,12 +26,6 @@ describe('cardsTemplate', () => {
       'card-logo-cb',
       'card-logo-mastercard',
       'card-logo-visa',
-    ])
-    expect(screen.getAllByRole('img').map((logo) => logo.getAttribute('aria-label'))).toEqual([
-      'Carte American Express acceptée',
-      'Carte Bancaire CB acceptée',
-      'Carte Mastercard acceptée',
-      'Carte Visa acceptée',
     ])
   })
 

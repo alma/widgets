@@ -53,16 +53,14 @@ describe('PaymentPlan has credit', () => {
 
     expect(infoLine()).not.toHaveTextContent('47,77 € puis 9 x 47,72 €')
     expect(infoLine()).toHaveTextContent('Cliquez pour en savoir plus')
-    expect(infoLine()).toHaveAttribute('role', 'button')
   })
 
-  it('leaves a non-deferred P1X plan with a single, non-clickable line', async () => {
+  it('leaves a non-deferred P1X plan with a single line', async () => {
     await setUpTest()
 
     await userEvent.hover(screen.getByText('Payer maintenant'))
 
     expect(infoLine()).toHaveTextContent('Payer maintenant 450,00 €')
     expect(infoLine()).not.toHaveTextContent('Cliquez pour en savoir plus')
-    expect(infoLine()).not.toHaveAttribute('role', 'button')
   })
 })

@@ -53,8 +53,8 @@ For the modal, also read
 `src/widgets/eligibility-modal/controllers/modal-portal.controller.ts` at the merge base: the class
 names, focus sentinels and callbacks of the react-modal markup it reproduces.
 
-Also read the changes to `.stylelintrc.cjs`, `.eslintrc.cjs` and `vitest.config.ts`, for A11Y-07
-and A11Y-08.
+Also read the changes to `.stylelintrc.cjs`, `.eslintrc.cjs` and `vitest.config.ts`, for A11Y-07,
+A11Y-08 and A11Y-09.
 
 ## 3. Check
 
@@ -82,10 +82,11 @@ dropping it is a finding.
   scroll lock. No `<dialog>`, `showModal()`, `inert`, or `aria-hidden` on the page behind the modal.
 - **No fix that changes the DOM (A11Y-03).** A `lang` attribute, a new role, a new label or a
   configurable heading level is a finding, even when it helps.
-- **Axe and tests (A11Y-02, A11Y-07, A11Y-08).** A DOM change made to please axe, an axe rule turned
-  off without a comment that says why the DOM stays, a widget test that no longer runs axe, an
-  `eslint-disable` of a `lit-a11y` rule or a `stylelint-disable` of an a11y rule, and a browser test
-  outside `src/modal.browser.test.ts`.
+- **Axe and tests (A11Y-02, A11Y-07, A11Y-08, A11Y-09).** A DOM change made to please axe, an axe
+  rule turned off without a comment that says why the DOM stays, a widget test that no longer runs
+  axe, an `eslint-disable` of a `lit-a11y` rule or a `stylelint-disable` of an a11y rule, a browser
+  test outside `src/modal.browser.test.ts`, and an accessibility case added outside a
+  `.accessibility.test.ts` file.
 
 Report only what the diff adds or changes. A violation in an unchanged line isn't yours, unless the
 change makes it worse.

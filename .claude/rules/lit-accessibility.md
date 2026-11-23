@@ -17,6 +17,7 @@ Generic advice that doesn't apply here: `<dialog>` and `showModal()`, `inert`, `
 - **A11Y-02** Never change the DOM to make axe pass. Keep the DOM, disable that axe rule in that test, and say in a comment why the DOM stays. Why: the DOM is part of the merchant contract. Check: review.
 - **A11Y-03** No accessibility change that alters the DOM or the API, such as a `lang` attribute, a status region present from the first render or a configurable heading level. Why: these change the merchant contract, so they wait for a major release that is allowed to break it. Check: contract tests.
 - **A11Y-08** Widget tests run axe through `vitest-axe`, and Stylelint's a11y rules stay on. Why: they catch regressions that the DOM outline doesn't show. Check: lint and tests.
+- **A11Y-09** Accessibility cases go in `<name>.accessibility.test.ts`, next to the code they cover: axe runs, roles, accessible names and descriptions, `aria-*` states and the IDs they point to, keyboard handling and focus. Text, classes and the structure that CSS targets stay in `<name>.test.ts`. At a widget's root, `<widget>.accessibility.test.ts` runs axe on the composed widget, with one row per state. Browser tests and the public API wiring stay where they are. Why: the suffix marks the cases that guard accessibility, so a cleanup can't drop one without noticing, and one pattern selects them all. Check: lint for axe runs, review for the rest.
 
 ## Modal
 

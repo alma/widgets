@@ -10,7 +10,10 @@ import {
   ModalPortalController,
   type RequestClose,
 } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
-import { modalShellTemplate } from '@/widgets/eligibility-modal/templates/modal-shell/modal-shell.template'
+import {
+  type ModalShellParams,
+  modalShellTemplate,
+} from '@/widgets/eligibility-modal/templates/modal-shell/modal-shell.template'
 
 // The portal controller renders the react-modal markup we copy, and the shell template goes in
 // its content div.
@@ -71,5 +74,24 @@ describe('Modal Accessibility Tests', () => {
 
     const results = await axe(modalPortal())
     expect(results).toHaveNoViolations()
+  })
+})
+
+describe('modalShellTemplate', () => {
+  const renderShell = (params: Partial<ModalShellParams> = {}) =>
+    renderTemplate(modalShellTemplate({ onClose: vi.fn(), intl, ...params }))
+
+  it('should name the close button in French', () => {
+    renderShell()
+
+    expect(screen.getByRole('button', { name: 'Fermer la fenêtre' })).toBeInTheDocument()
+  })
+
+  it('should hide the cross icon from assistive technologies', () => {
+    renderShell()
+
+    const cross = screen.getByTestId('modal-close-button').querySelector('svg')
+    expect(cross).toHaveAttribute('aria-hidden', 'true')
+    expect(cross).toHaveAttribute('focusable', 'false')
   })
 })

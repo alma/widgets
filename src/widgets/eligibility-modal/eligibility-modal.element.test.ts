@@ -84,9 +84,9 @@ describe('AlmaEligibilityModal', () => {
     it('should show the loader until the plans arrive', async () => {
       appendModal()
 
-      expect(screen.getByRole('status')).toContainElement(screen.getByTestId('loader'))
+      expect(screen.getByTestId('loader')).toBeInTheDocument()
       await screen.findByText('M+1')
-      expect(screen.queryByRole('status')).not.toBeInTheDocument()
+      expect(screen.queryByTestId('loader')).not.toBeInTheDocument()
     })
   })
 

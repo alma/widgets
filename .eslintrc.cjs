@@ -131,6 +131,12 @@ const LIT_IMPORTS = {
   message: `${listOf(PLAIN_TS_LAYERS)} are plain TypeScript. Lit code goes in widgets/ or shared/.`,
 }
 
+// paths matches the exact specifier, so src/test/setup.ts still imports vitest-axe/matchers.
+const VITEST_AXE = {
+  name: 'vitest-axe',
+  message: 'Axe runs go in a .accessibility.test.ts file. See A11Y-09.',
+}
+
 const TESTS = ['src/**/*.test.ts', 'src/test/**']
 
 module.exports = {
@@ -191,7 +197,10 @@ module.exports = {
       files: ['src/**/*.ts'],
       rules: {
         'no-restricted-syntax': ['error', ...SRC_BANS],
-        'no-restricted-imports': ['error', { patterns: [RELATIVE_IMPORTS, UNSAFE_LIT] }],
+        'no-restricted-imports': [
+          'error',
+          { paths: [VITEST_AXE], patterns: [RELATIVE_IMPORTS, UNSAFE_LIT] },
+        ],
       },
     },
     {
@@ -200,8 +209,16 @@ module.exports = {
       rules: {
         'no-restricted-imports': [
           'error',
-          { patterns: [RELATIVE_IMPORTS, UNSAFE_LIT, LIT_IMPORTS] },
+          { paths: [VITEST_AXE], patterns: [RELATIVE_IMPORTS, UNSAFE_LIT, LIT_IMPORTS] },
         ],
+      },
+    },
+    {
+      // Accessibility tests may import vitest-axe. The last matching override wins, so this one
+      // comes after the two above.
+      files: ['src/**/*.accessibility.test.ts'],
+      rules: {
+        'no-restricted-imports': ['error', { patterns: [RELATIVE_IMPORTS, UNSAFE_LIT] }],
       },
     },
     {

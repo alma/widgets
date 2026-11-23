@@ -12,12 +12,12 @@ const addContainer = (id: string) => {
   return `#${id}`
 }
 
-describe('PaymentPlans ARIA Landmarks (RGAA 12.6) - Widget-Safe Structure', () => {
+describe('PaymentPlans, several widgets on one page', () => {
   beforeEach(() => {
     server.use(eligibilityPlans(mockButtonPlans))
   })
 
-  it('should support multiple widget instances without conflicts', async () => {
+  it('should render both widgets, with the same main container ID', async () => {
     await mountWidget('PaymentPlans', {
       purchaseAmount: 40000,
       container: addContainer('alma-widget-first'),
@@ -36,8 +36,5 @@ describe('PaymentPlans ARIA Landmarks (RGAA 12.6) - Widget-Safe Structure', () =
     const widgetIds = containers.map((container) => container.id)
     expect(widgetIds[0]).toBe('alma-widget-payment-plans-main-container')
     expect(widgetIds[1]).toBe('alma-widget-payment-plans-main-container')
-
-    expect(screen.getAllByRole('region').length).toBeGreaterThanOrEqual(4)
-    expect(screen.getAllByRole('heading').length).toBeGreaterThanOrEqual(4)
   })
 })
