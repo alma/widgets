@@ -39,6 +39,10 @@ View all [Changelog](https://github.com/alma/widgets/releases)
 </script>
 ```
 
+## Browser support
+
+The widgets run in Chrome 85, Firefox 79, Safari 14.1, Safari on iOS 14.5 and their later versions. See [Browser support](./documentation.md#browser-support) for older browsers, [Content Security Policy](./documentation.md#content-security-policy) if your page enforces Trusted Types, and [Files](./documentation.md#files) for the files the package ships.
+
 ## Going further
 
 > read the full [documentation](./documentation.md)
