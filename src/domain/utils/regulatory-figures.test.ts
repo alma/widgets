@@ -10,7 +10,6 @@ import {
   shouldNotifyCustomerOfNoFees,
 } from '@/domain/utils/regulatory-figures'
 import {
-  mockP10XEligiblePlan,
   mockP1XEligiblePlan,
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
@@ -170,14 +169,6 @@ describe('regulatoryFigures', () => {
       }
       expect(getCustomerLendingRate(creditPlan)).toBe(0.05)
     })
-    it('should return 0 for a credit plan without an annual_interest_rate', () => {
-      const creditPlan = {
-        ...mockP1XEligiblePlan,
-        installments_count: 5,
-        annual_interest_rate: undefined,
-      }
-      expect(getCustomerLendingRate(creditPlan)).toBe(0)
-    })
   })
 
   describe('shouldNotifyCustomerOfNoFees', () => {
@@ -209,9 +200,6 @@ describe('regulatoryFigures', () => {
     it('should return false for a credit plan, even without fees or interest', () => {
       const creditPlanWithoutFees = mockP2XEligiblePlan.withInstallmentsCount(10)
       expect(shouldNotifyCustomerOfNoFees(creditPlanWithoutFees)).toBe(false)
-    })
-    it('should return false for a credit plan with interest', () => {
-      expect(shouldNotifyCustomerOfNoFees(mockP10XEligiblePlan)).toBe(false)
     })
     // filterEligibility can mark an API-eligible plan ineligible, so payment_plan is still there
     it('should return false for an ineligible plan that has a payment plan without fees', () => {

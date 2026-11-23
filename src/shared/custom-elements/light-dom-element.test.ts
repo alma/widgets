@@ -58,16 +58,10 @@ describe('LightDomElement', () => {
       warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     })
 
-    it('should warn with the error instead of throwing on the first render', () => {
-      const failure = new Error('broken template')
-      const element = createThrowingElement(failure)
-
-      expect(() => document.body.append(element)).not.toThrow()
-      expect(warn).toHaveBeenCalledWith(message, failure)
-    })
-
-    it('should not throw when the thrown value cannot become a string', () => {
-      const failure: unknown = Object.create(null)
+    it.each([
+      ['an error', new Error('broken template')],
+      ['a value that cannot become a string', Object.create(null) as unknown],
+    ])('should warn with %s instead of throwing on the first render', (_, failure) => {
       const element = createThrowingElement(failure)
 
       expect(() => document.body.append(element)).not.toThrow()

@@ -22,26 +22,7 @@ describe('formatRichText', () => {
     expect(container.querySelector('strong')?.textContent).toBe('Alma')
   })
 
-  it("renders the disclaimer's links with their href, target and rel", () => {
-    const intl = createIntl('en')
-    const container = renderRichText(
-      formatRichText(intl, testMessages.disclaimer, {
-        status: intl.formatMessage(testMessages.paymentInstitution),
-        link,
-        mail,
-      }),
-    )
-    const [almapay, support] = container.querySelectorAll('a')
-
-    expect(almapay.textContent).toBe('almapay.com')
-    expect(almapay.getAttribute('href')).toBe('https://almapay.com')
-    expect(almapay.getAttribute('target')).toBe('_blank')
-    expect(almapay.getAttribute('rel')).toBe('noopener noreferrer')
-    expect(support.textContent).toBe('support@almapay.com')
-    expect(support.getAttribute('href')).toBe('mailto:support@almapay.com')
-  })
-
-  it('renders a formatted message as the value of another', () => {
+  it("renders a formatted message as the value of another, with the disclaimer's links", () => {
     const intl = createIntl('en')
     const disclaimer = formatRichText(intl, testMessages.disclaimer, {
       status: intl.formatMessage(testMessages.paymentInstitution),
@@ -62,6 +43,13 @@ describe('formatRichText', () => {
 
     expect(container.textContent).toMatch(/of €110\.00\. Subject to approval by Alma SAS/)
     expect(container.querySelectorAll('a')).toHaveLength(2)
+    const [almapay, support] = container.querySelectorAll('a')
+    expect(almapay.textContent).toBe('almapay.com')
+    expect(almapay.getAttribute('href')).toBe('https://almapay.com')
+    expect(almapay.getAttribute('target')).toBe('_blank')
+    expect(almapay.getAttribute('rel')).toBe('noopener noreferrer')
+    expect(support.textContent).toBe('support@almapay.com')
+    expect(support.getAttribute('href')).toBe('mailto:support@almapay.com')
   })
 
   it('escapes the text of a value instead of parsing it as HTML', () => {

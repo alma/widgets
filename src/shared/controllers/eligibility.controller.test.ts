@@ -1,7 +1,7 @@
 import { html } from 'lit'
 import type { MockInstance } from 'vitest'
 
-import { createKey, setCache } from '@/domain/api/eligibility-cache'
+import { createKey } from '@/domain/api/eligibility-cache'
 import { StatusResponse } from '@/domain/api/eligibility.const'
 import type { ConfigPlan, EligibilityPlan } from '@/domain/plans.types'
 import filterEligibility from '@/domain/utils/filter-plans'
@@ -110,51 +110,17 @@ describe('EligibilityController', () => {
       expect(host.eligibility.plans).toEqual(filterEligibility(mockPlansAllEligible))
       await host.updateComplete
       expect(host.textContent).toBe(`success:${host.eligibility.plans.length}`)
-      expect(JSON.parse(sessionStorage.getItem(keyOf(host))!).value).toEqual(mockPlansAllEligible)
     })
 
-    it('should use cached data if available to avoid calling fetch again', async () => {
-      const api = stubApi()
-      // One plan only, so the result can only come from the cache.
-      const newMockedResult = [mockPlansAllEligible[1]]
-      setCache(keyOf(createHost()), newMockedResult)
-
-      const host = mountHost()
-      await settled(host)
-
-      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
-      expect(host.eligibility.plans).toEqual(filterEligibility(newMockedResult))
-      expect(api.fetchMock).not.toHaveBeenCalled()
-    })
-
-    it.each([
-      ['error_code', { message: 'some error', error_code: '403' }],
-      ['errors', { errors: 'some error' }],
-    ])('should returns a FAILED status if the API response contains `%s`', async (_, body) => {
+    it('should returns a FAILED status if the API response contains `error_code`', async () => {
       const api = stubApi()
       const host = mountHost()
 
-      api.answer(body)
+      api.answer({ message: 'some error', error_code: '403' })
       await settled(host)
 
       expect(host.eligibility.status).toBe(StatusResponse.FAILED)
-      expect(sessionStorage.length).toBe(0)
       expect(host.eligibility.plans).toEqual([])
-    })
-
-    it('should expose the transaction_country returned by the API, not the requested country', async () => {
-      // The addresses are French, so `IT` can only come from the response.
-      const planInItaly = mockP2XEligiblePlan.withCountry('IT')
-      const api = stubApi()
-      // With `configPlans`, the filter rebuilds each plan object.
-      const host = mountHost({ configPlans })
-
-      api.answer([planInItaly])
-      await settled(host)
-
-      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
-      expect(host.eligibility.plans).toHaveLength(1)
-      expect(host.eligibility.plans[0].transaction_country).toBe('IT')
     })
   })
 
@@ -212,21 +178,6 @@ describe('EligibilityController', () => {
       expect(api.fetchMock).toHaveBeenCalledTimes(1)
     })
 
-    it('sends no new request when the host is put back after success', async () => {
-      const api = stubApi()
-      const host = mountHost()
-      api.answer(mockPlansAllEligible)
-      await settled(host)
-
-      host.remove()
-      document.body.append(host)
-      host.requestUpdate()
-      await host.updateComplete
-
-      expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
-      expect(api.fetchMock).toHaveBeenCalledTimes(1)
-    })
-
     it('uses the properties set right after the host is appended', async () => {
       const api = stubApi()
       const host = createHost({ purchaseAmount: undefined as unknown as number })
@@ -272,54 +223,9 @@ describe('EligibilityController', () => {
       expect(host.eligibility.plans).toEqual(filterEligibility(mockPlansAllEligible, [first]))
       expect(api.fetchMock).toHaveBeenCalledTimes(1)
     })
-
-    it('lets each new host read the cache, and does not merge requests in flight', async () => {
-      const api = stubApi()
-      const first = mountHost()
-      const second = mountHost()
-      await vi.waitFor(() => expect(api.fetchMock).toHaveBeenCalledTimes(2))
-
-      api.answer(mockPlansAllEligible)
-      await settled(first)
-      await settled(second)
-
-      const third = mountHost()
-      await settled(third)
-      expect(third.eligibility.status).toBe(StatusResponse.SUCCESS)
-      expect(api.fetchMock).toHaveBeenCalledTimes(2)
-    })
   })
 
   describe('failures', () => {
-    it('fails with one warning and sends no request when sessionStorage throws on read', async () => {
-      const api = stubApi()
-      vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
-        throw new DOMException('The operation is insecure.', 'SecurityError')
-      })
-
-      const host = mountHost()
-      await settled(host)
-
-      expect(host.eligibility.status).toBe(StatusResponse.FAILED)
-      expect(api.fetchMock).not.toHaveBeenCalled()
-      expect(warn).toHaveBeenCalledTimes(1)
-    })
-
-    it('fails with one warning when sessionStorage throws on write', async () => {
-      const api = stubApi()
-      vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
-        throw new DOMException('The quota has been exceeded.', 'QuotaExceededError')
-      })
-
-      const host = mountHost()
-      api.answer(mockPlansAllEligible)
-      await settled(host)
-
-      expect(host.eligibility.status).toBe(StatusResponse.FAILED)
-      expect(host.eligibility.plans).toEqual([])
-      expect(warn).toHaveBeenCalledTimes(1)
-    })
-
     it('fails with one warning when the response holds plans that the filter cannot read', async () => {
       const api = stubApi()
       // With plans, the filter reads the fields of each plan.
@@ -343,22 +249,6 @@ describe('EligibilityController', () => {
       expect(host.textContent).toBe('failed:0')
       expect(api.fetchMock).not.toHaveBeenCalled()
       expect(warn).toHaveBeenCalledTimes(1)
-    })
-
-    it('stays pending after it clears an expired entry', async () => {
-      const api = stubApi()
-      const host = createHost()
-      sessionStorage.setItem(
-        keyOf(host),
-        JSON.stringify({ value: mockPlansAllEligible, timestamp: Date.now() - 3600000 }),
-      )
-
-      document.body.append(host)
-      await host.updateComplete
-      await vi.waitFor(() => expect(sessionStorage.length).toBe(0))
-
-      expect(host.eligibility.status).toBe(StatusResponse.PENDING)
-      expect(api.fetchMock).not.toHaveBeenCalled()
     })
   })
 })

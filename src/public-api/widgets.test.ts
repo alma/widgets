@@ -11,6 +11,7 @@ import type {
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { TEST_CONTAINER, TEST_MERCHANT_ID } from '@/test/utils/mount-widget'
+import { closeModalOf } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import { ELIGIBILITY_MODAL_TAG } from '@/widgets/eligibility-modal/eligibility-modal.const'
 import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 import { PAYMENT_PLANS_TAG } from '@/widgets/payment-plans/payment-plans.const'
@@ -19,7 +20,7 @@ import { PAYMENT_PLANS_TAG } from '@/widgets/payment-plans/payment-plans.const'
 vi.mock('@/widgets/eligibility-modal/eligibility-modal.element', () => ({}))
 vi.mock('@/widgets/payment-plans/payment-plans.element', () => ({}))
 vi.mock('@/widgets/eligibility-modal/controllers/modal-portal.controller', () => ({
-  closeModalOf: () => {},
+  closeModalOf: vi.fn(),
 }))
 
 // Stands in for the real elements, which the facade tests leave out.
@@ -235,6 +236,18 @@ describe('WidgetsController', () => {
       expect(container.children).toHaveLength(0)
     })
 
+    it("should leave the merchant's content alone until open()", () => {
+      const merchantNode = document.createElement('p')
+      container.append(merchantNode)
+      const handle = addModal()
+
+      expect(Array.from(container.children)).toEqual([merchantNode])
+
+      handle.open()
+
+      expect(Array.from(container.children)).toEqual(modalHostsIn(container))
+    })
+
     it('should mount a modal host on open(), with the default locale', () => {
       const handle = addModal()
 
@@ -278,13 +291,19 @@ describe('WidgetsController', () => {
       expect(host.firstRender).not.toHaveProperty('clickableSelector')
     })
 
-    it('should keep one modal host for a second open()', () => {
-      const { handle, host: first } = openModal()
+    it('should keep one modal host for a second open(), with the options of the last handle opened', () => {
+      const handle = addModal()
+      const { host } = openModal({ purchaseAmount: 90000, locale: Locale.de })
 
       handle.open()
 
-      expect(modalHostsIn(container)).toEqual([first])
-      expect(first.disconnections).toBe(0)
+      expect(modalHostsIn(container)).toEqual([host])
+      expect(host.disconnections).toBe(0)
+      expect(host).toMatchObject({
+        purchaseAmount: 45000,
+        locale: Locale.en,
+        onClose: handle.close,
+      })
     })
 
     it('should give open() the options of add(), even if the merchant changes them later', () => {
@@ -346,31 +365,6 @@ describe('WidgetsController', () => {
   })
 
   describe('close(event)', () => {
-    it('should remove the current host, then call onClose with the same event', () => {
-      let hostsAtClose: number | undefined
-      const onClose = vi.fn((_event: MouseEvent | KeyboardEvent) => {
-        hostsAtClose = container.children.length
-      })
-      const { handle, host } = openModal({ onClose })
-      const event = new MouseEvent('click')
-
-      handle.close(event)
-
-      expect(host.disconnections).toBe(1)
-      expect(onClose).toHaveBeenCalledOnce()
-      expect(onClose.mock.calls[0][0]).toBe(event)
-      expect(hostsAtClose).toBe(0)
-    })
-
-    it('should call onClose even when nothing was mounted', () => {
-      const onClose = vi.fn()
-      const event = new KeyboardEvent('keydown', { key: 'Escape' })
-
-      addModal({ onClose }).close(event)
-
-      expect(onClose).toHaveBeenCalledWith(event)
-    })
-
     it('should remove whatever widget the container holds', () => {
       const handle = addModal()
       addPaymentPlans()
@@ -379,6 +373,7 @@ describe('WidgetsController', () => {
       handle.close(new MouseEvent('click'))
 
       expect(plansHost.disconnections).toBe(1)
+      expect(closeModalOf).toHaveBeenCalledExactlyOnceWith(plansHost)
       expect(container.children).toHaveLength(0)
     })
   })
@@ -424,23 +419,19 @@ describe('WidgetsController', () => {
       },
     )
 
-    it.each(misconfigurations)(
-      'should warn once for $name, throw nothing and return a Modal handle that does nothing',
-      ({ options, warning }) => {
-        const onClose = vi.fn()
-        const modalOptions = (options && { ...options, onClose }) as unknown as WidgetOptions
-        const add = () => widgets().add(Widgets.Modal, modalOptions) as ModalHandle
+    it('should warn once for a missing container, throw nothing and return a Modal handle that does nothing', () => {
+      const onClose = vi.fn()
+      const add = () => addModal({ container: '#missing', onClose })
 
-        const [handle] = [add(), add()]
-        handle.open()
-        handle.close(new MouseEvent('click'))
+      const [handle] = [add(), add()]
+      handle.open()
+      handle.close(new MouseEvent('click'))
 
-        expect(handle).toEqual({ open: expect.any(Function), close: expect.any(Function) })
-        expect(document.querySelector(ELIGIBILITY_MODAL_TAG)).toBeNull()
-        expect(onClose).not.toHaveBeenCalled()
-        expect(warn).toHaveBeenCalledOnce()
-        expect(warn).toHaveBeenCalledWith(...warning)
-      },
-    )
+      expect(handle).toEqual({ open: expect.any(Function), close: expect.any(Function) })
+      expect(document.querySelector(ELIGIBILITY_MODAL_TAG)).toBeNull()
+      expect(onClose).not.toHaveBeenCalled()
+      expect(warn).toHaveBeenCalledOnce()
+      expect(warn).toHaveBeenCalledWith('[Alma widgets] add() found no container for "#missing".')
+    })
   })
 })

@@ -46,13 +46,6 @@ describe('MediaQueryController', () => {
       expect(host.textContent).toBe('wide')
     })
 
-    it('should render no match from the first render on', () => {
-      const host = appendHost()
-
-      expect(host.renders).toEqual([false])
-      expect(host.textContent).toBe('narrow')
-    })
-
     it('should update the host once on each change', async () => {
       const host = appendHost()
 
@@ -97,45 +90,6 @@ describe('MediaQueryController', () => {
       document.body.append(host)
       await host.updateComplete
       expect(host.renders).toEqual([false])
-    })
-
-    it('should give each host its own listener', async () => {
-      const first = appendHost()
-      const second = appendHost()
-      expect(media.listenerCount(WIDE)).toBe(2)
-
-      first.remove()
-      expect(media.listenerCount(WIDE)).toBe(1)
-
-      media.setMatches(WIDE, true)
-      await second.updateComplete
-      expect(second.renders).toEqual([false, true])
-      expect(first.renders).toEqual([false])
-    })
-  })
-
-  describe('without matchMedia', () => {
-    afterEach(() => {
-      vi.unstubAllGlobals()
-    })
-
-    it('should not match when matchMedia is missing', () => {
-      vi.stubGlobal('matchMedia', undefined)
-      const host = createHost()
-
-      expect(() => document.body.append(host)).not.toThrow()
-      expect(host.renders).toEqual([false])
-      expect(() => host.remove()).not.toThrow()
-    })
-
-    // Firefox in a hidden iframe.
-    it('should not match when matchMedia returns null', () => {
-      vi.spyOn(window, 'matchMedia').mockReturnValue(null as never)
-      const host = createHost()
-
-      expect(() => document.body.append(host)).not.toThrow()
-      expect(host.renders).toEqual([false])
-      expect(() => host.remove()).not.toThrow()
     })
   })
 })

@@ -1,4 +1,3 @@
-import type { EligibilityPlan } from '@/domain/plans.types'
 import {
   isCredit,
   isDeferred,
@@ -14,6 +13,15 @@ import {
   mockPlansWithoutDeferred,
 } from '@/test/fixtures/plans'
 
+const predicates = { isP1X, isDeferred, isPayLater, isPNX, isCredit, requiresLegalDisclosure }
+
+const buildPlan = (installmentsCount: number, deferredMonths = 0, deferredDays = 0) => ({
+  ...mockP1XEligiblePlan,
+  installments_count: installmentsCount,
+  deferred_months: deferredMonths,
+  deferred_days: deferredDays,
+})
+
 describe('planKind', () => {
   describe('isSomePlanDeferred', () => {
     it('should return false when no plan is deferred', () => {
@@ -24,155 +32,24 @@ describe('planKind', () => {
       expect(isSomePlanDeferred([...mockPlansWithoutDeferred, ineligibleDeferredPlan])).toBe(true)
     })
   })
-  describe('isP1X', () => {
-    it('should return true if plan is P1X', () => {
-      const result = isP1X({
-        installments_count: 1,
-        deferred_months: 0,
-        deferred_days: 0,
-      } as EligibilityPlan)
-      expect(result).toBe(true)
-    })
-    it('should return false if plan is not P1X', () => {
-      const result1 = isP1X({
-        installments_count: 2,
-        deferred_months: 0,
-        deferred_days: 0,
-      } as EligibilityPlan)
 
-      const result2 = isP1X({
-        installments_count: 1,
-        deferred_months: 1,
-        deferred_days: 0,
-      } as EligibilityPlan)
-
-      const result3 = isP1X({
-        installments_count: 1,
-        deferred_months: 0,
-        deferred_days: 1,
-      } as EligibilityPlan)
-
-      expect(result1).toBe(false)
-      expect(result2).toBe(false)
-      expect(result3).toBe(false)
-    })
-  })
-
-  describe('isDeferred', () => {
-    it('should return false for a non-deferred plan', () => {
-      const p1xPlan = mockP1XEligiblePlan
-      expect(isDeferred(p1xPlan)).toBe(false)
-    })
-    it('should return true when deferred_months is set', () => {
-      const payLaterPlan = { ...mockP1XEligiblePlan, deferred_months: 1 }
-      expect(isDeferred(payLaterPlan)).toBe(true)
-    })
-    it('should return true when deferred_days is set', () => {
-      const p1xPlanDeferredByDays = { ...mockP1XEligiblePlan, deferred_days: 30 }
-      expect(isDeferred(p1xPlanDeferredByDays)).toBe(true)
-    })
-  })
-
-  describe('requiresLegalDisclosure', () => {
-    it('should return false for a p1x plan', () => {
-      const p1xPlan = mockP1XEligiblePlan
-      expect(requiresLegalDisclosure(p1xPlan)).toBe(false)
-    })
-    it('should return true for a non-p1x plan', () => {
-      const pnxPlan = { ...mockP1XEligiblePlan, installments_count: 2 }
-      expect(requiresLegalDisclosure(pnxPlan)).toBe(true)
-    })
-    it('should return true for a deferred p1x plan (Pay Later)', () => {
-      const payLaterPlan = { ...mockP1XEligiblePlan, deferred_months: 1 }
-      expect(requiresLegalDisclosure(payLaterPlan)).toBe(true)
-    })
-    it('should return true for a deferred, multi-installment plan', () => {
-      const deferredPnxPlan = {
-        ...mockP1XEligiblePlan,
-        installments_count: 2,
-        deferred_months: 1,
-      }
-      expect(requiresLegalDisclosure(deferredPnxPlan)).toBe(true)
-    })
-    it('should return true for a credit plan', () => {
-      const creditPlan = { ...mockP1XEligiblePlan, installments_count: 5 }
-      expect(requiresLegalDisclosure(creditPlan)).toBe(true)
-    })
+  // The predicates that return true for each plan.
+  it.each([
+    ['P1X', buildPlan(1), 'isP1X'],
+    ['Pay Later by months', buildPlan(1, 1), 'isDeferred isPayLater requiresLegalDisclosure'],
+    ['Pay Later by days', buildPlan(1, 0, 30), 'isDeferred isPayLater requiresLegalDisclosure'],
+    ['2x', buildPlan(2), 'isPNX requiresLegalDisclosure'],
+    ['4x', buildPlan(4), 'isPNX requiresLegalDisclosure'],
+    ['deferred 2x', buildPlan(2, 1), 'isDeferred isPNX requiresLegalDisclosure'],
+    ['5x', buildPlan(5), 'isCredit requiresLegalDisclosure'],
     // The API sends no such plans. Neither gets a legal disclosure.
-    it.each([
-      ['a negative deferral', { ...mockP1XEligiblePlan, deferred_days: -30, deferred_months: 0 }],
-      ['no installments count', { ...mockP1XEligiblePlan, installments_count: 0 }],
-    ])('should return false for a plan with %s', (_case, plan) => {
-      expect(requiresLegalDisclosure(plan)).toBe(false)
-    })
-  })
+    ['a negative deferral', buildPlan(1, 0, -30), ''],
+    ['no installments count', buildPlan(0), ''],
+  ])('should classify the %s plan', (_, plan, kinds) => {
+    const matching = Object.entries(predicates)
+      .filter(([, predicate]) => predicate(plan))
+      .map(([name]) => name)
 
-  describe('isPayLater', () => {
-    it('should return false for a non-deferred p1x plan', () => {
-      const p1xPlan = mockP1XEligiblePlan
-      expect(isPayLater(p1xPlan)).toBe(false)
-    })
-    it('should return true for a deferred p1x plan', () => {
-      const payLaterPlan = { ...mockP1XEligiblePlan, deferred_months: 1 }
-      expect(isPayLater(payLaterPlan)).toBe(true)
-    })
-    it('should return false for a non-deferred, multi-installment plan', () => {
-      const pnxPlan = { ...mockP1XEligiblePlan, installments_count: 2 }
-      expect(isPayLater(pnxPlan)).toBe(false)
-    })
-    it('should return false for a deferred, multi-installment plan', () => {
-      const deferredPnxPlan = {
-        ...mockP1XEligiblePlan,
-        installments_count: 2,
-        deferred_months: 1,
-      }
-      expect(isPayLater(deferredPnxPlan)).toBe(false)
-    })
-  })
-
-  describe('isPNX', () => {
-    it('should return false for a single-installment plan', () => {
-      const p1xPlan = mockP1XEligiblePlan
-      expect(isPNX(p1xPlan)).toBe(false)
-    })
-    it('should return false for a deferred single-installment plan (Pay Later, not PNX)', () => {
-      const payLaterPlan = { ...mockP1XEligiblePlan, deferred_months: 1 }
-      expect(isPNX(payLaterPlan)).toBe(false)
-    })
-    it('should return true for a multi-installment plan', () => {
-      const pnxPlan = { ...mockP1XEligiblePlan, installments_count: 2 }
-      expect(isPNX(pnxPlan)).toBe(true)
-    })
-    it('should return true for a multi-installment plan regardless of deferred status', () => {
-      const deferredPnxPlan = {
-        ...mockP1XEligiblePlan,
-        installments_count: 2,
-        deferred_months: 1,
-      }
-      expect(isPNX(deferredPnxPlan)).toBe(true)
-    })
-    it('should return false for a credit plan (installments_count > 4)', () => {
-      const creditPlan = { ...mockP1XEligiblePlan, installments_count: 5 }
-      expect(isPNX(creditPlan)).toBe(false)
-    })
-    it('should return true for the upper bound of installments_count (4)', () => {
-      const pnxPlan = { ...mockP1XEligiblePlan, installments_count: 4 }
-      expect(isPNX(pnxPlan)).toBe(true)
-    })
-  })
-
-  describe('isCredit', () => {
-    it('should return false for a single-installment plan', () => {
-      const p1xPlan = mockP1XEligiblePlan
-      expect(isCredit(p1xPlan)).toBe(false)
-    })
-    it('should return false for a plan with 4 or fewer installments', () => {
-      const pnxPlan = { ...mockP1XEligiblePlan, installments_count: 4 }
-      expect(isCredit(pnxPlan)).toBe(false)
-    })
-    it('should return true for a plan with more than 4 installments', () => {
-      const creditPlan = { ...mockP1XEligiblePlan, installments_count: 5 }
-      expect(isCredit(creditPlan)).toBe(true)
-    })
+    expect(matching.join(' ')).toBe(kinds)
   })
 })

@@ -15,19 +15,13 @@ vi.mock('@/config/build-version.const', () => ({ BUILD_VERSION: 'contract-test' 
 const SANDBOX = 'https://api.sandbox.getalma.eu'
 
 describe('isMoreThanOneHourAgo', () => {
-  it('should return true if the timestamp is more than one hour ago', () => {
-    const date = Date.now() - 1000 * 60 * 60 - 1
-    const result = isMoreThanOneHourAgo(date)
-    expect(result).toBe(true)
-  })
-  it('should return false if the timestamp is less than one hour ago', () => {
-    const date = Date.now() - 1000
-    const result = isMoreThanOneHourAgo(date)
-    expect(result).toBe(false)
-  })
-  it('should return true for a timestamp exactly one hour ago', () => {
-    expect(isMoreThanOneHourAgo(Date.now() - 3600000)).toBe(true)
-    expect(isMoreThanOneHourAgo(Date.now() - 3599999)).toBe(false)
+  it.each([
+    { age: 3600001, expected: true },
+    { age: 3600000, expected: true },
+    { age: 3599999, expected: false },
+    { age: 1000, expected: false },
+  ])('should return $expected for a timestamp $age ms ago', ({ age, expected }) => {
+    expect(isMoreThanOneHourAgo(Date.now() - age)).toBe(expected)
   })
 })
 

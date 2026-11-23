@@ -82,6 +82,7 @@ describe('filterEligibility', () => {
         installments_count: 2,
         purchase_amount: 45000,
         payment_plan: mockP2XEligiblePlan.payment_plan,
+        transaction_country: 'FR',
       })
     })
 
