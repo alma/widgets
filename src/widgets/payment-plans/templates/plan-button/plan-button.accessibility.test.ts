@@ -41,18 +41,19 @@ describe('planButtonTemplate', () => {
     },
   )
 
-  it('should take the focus', () => {
-    renderPlan(mockP3XEligiblePlanWithFees, 'fr')
-
-    expect(screen.getByRole('option')).toHaveAttribute('tabindex', '0')
-  })
-
   it.each([
-    ['an eligible', mockP3XEligiblePlanWithFees, 'false'],
-    ['an ineligible', mockP4XAboveMaxDisplayPlan, 'true'],
-  ])('should set aria-disabled for %s plan', (_kind, plan, ariaDisabled) => {
-    renderPlan(plan, 'fr')
+    ['an eligible plan', mockP3XEligiblePlanWithFees, false, 'false', '0'],
+    ['an ineligible plan', mockP4XAboveMaxDisplayPlan, false, 'true', '-1'],
+    // When no plan is eligible, the current plan is an ineligible one.
+    ['an ineligible current plan', mockP4XAboveMaxDisplayPlan, true, 'true', '-1'],
+  ])(
+    'should set aria-disabled and tabindex for %s',
+    (_kind, plan, isCurrent, ariaDisabled, tabindex) => {
+      renderPlan(plan, 'fr', { isCurrent })
 
-    expect(screen.getByRole('option')).toHaveAttribute('aria-disabled', ariaDisabled)
-  })
+      const option = screen.getByRole('option')
+      expect(option).toHaveAttribute('aria-disabled', ariaDisabled)
+      expect(option).toHaveAttribute('tabindex', tabindex)
+    },
+  )
 })

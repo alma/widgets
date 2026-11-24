@@ -163,6 +163,25 @@ describe('AlmaPaymentPlans behaviour', () => {
         'Cliquez pour en savoir plus',
       )
     })
+
+    it('should render the plans with hideIfNotEligible when a plan is eligible', async () => {
+      await mount([mockP2XEligiblePlan, mockP3XEligiblePlanWithFees, mockP4XEligiblePlanWithFees], {
+        hideIfNotEligible: true,
+      })
+
+      expect(screen.getAllByRole('option')).toHaveLength(3)
+    })
+
+    it.each([false, null])(
+      'should render the plans that are not eligible with hideIfNotEligible: %s',
+      async (hideIfNotEligible) => {
+        await mount([mockP4XIneligiblePlan, mockP10XIneligiblePlan], {
+          hideIfNotEligible: hideIfNotEligible as boolean,
+        })
+
+        expect(screen.getAllByRole('option')).toHaveLength(2)
+      },
+    )
   })
 
   describe('hidden states', () => {
@@ -180,6 +199,18 @@ describe('AlmaPaymentPlans behaviour', () => {
       await waitForLoaderToFinish(host)
 
       expect(host?.children).toHaveLength(0)
+    })
+
+    it('should render nothing, cache the response and warn nothing for an empty response', async () => {
+      server.use(eligibilityPlans([]))
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+      const { host } = await mountWidget('PaymentPlans', { purchaseAmount: 45000 })
+      await vi.waitFor(() => expect(sessionStorage.length).toBe(1))
+      await (host as AlmaPaymentPlans).updateComplete
+
+      expect(host?.children).toHaveLength(0)
+      expect(warn).not.toHaveBeenCalled()
     })
 
     it('should render nothing with hideIfNotEligible and no eligible plan', async () => {
@@ -310,6 +341,17 @@ describe('AlmaPaymentPlans behaviour', () => {
       await host.updateComplete
     }
 
+    const activePlan = () =>
+      document.querySelector('.alma-payment-plans-active-option')?.textContent ?? null
+
+    // Checks every second, since a full cycle ends on the plan it started from.
+    const expectNoCycling = async (plan: string | null) => {
+      for (let elapsed = 0; elapsed < 30000; elapsed += 1000) {
+        await advance(1000)
+        expect(activePlan()).toBe(plan)
+      }
+    }
+
     beforeEach(() => {
       server.use(eligibilityPlans(mockButtonPlans))
       // msw answers through promises, so only the timers are fake.
@@ -347,6 +389,35 @@ describe('AlmaPaymentPlans behaviour', () => {
         expect(screen.getByText('2x').className).toContain('active')
         await advance(1000)
         expect(screen.getByText('3x').className).toContain('active')
+      })
+
+      it.each([0, null])(
+        'should keep the suggested plan and not cycle with a transitionDelay of %s',
+        async (transitionDelay) => {
+          await renderWidget({
+            purchaseAmount: 40000,
+            suggestedPaymentPlan: 4,
+            transitionDelay: transitionDelay as number,
+          })
+          await host.updateComplete
+
+          expect(activePlan()).toBe('4x')
+          await expectNoCycling('4x')
+        },
+      )
+    })
+
+    describe('as null', () => {
+      it('should keep the first plan and not cycle', async () => {
+        await renderWidget({
+          purchaseAmount: 40000,
+          suggestedPaymentPlan: null as unknown as number,
+        })
+        await host.updateComplete
+        const firstPlan = screen.getAllByRole('option')[0].textContent
+
+        expect(activePlan()).toBe(firstPlan)
+        await expectNoCycling(firstPlan)
       })
     })
   })
@@ -404,30 +475,35 @@ describe('AlmaPaymentPlans behaviour', () => {
 
     // Each render restarts the default 5500 ms countdown. The animation instructions clear at
     // 3500 ms, then each plan's announcement clears 1000 ms after its move.
-    it('should move the highlight with the default delay and its restarts', async () => {
-      const step = 100
-      vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
-      // findByTestId in mount() doesn't advance the fake timers, unlike vi.waitFor.
-      const { host } = await mount(plansWithIneligibleLast, { transitionDelay: undefined })
-      const selectedIndex = () =>
-        screen
-          .getAllByRole('option')
-          .findIndex((plan) => plan.getAttribute('aria-selected') === 'true')
-      const moves: number[] = []
-      let selected = selectedIndex()
+    it.each([undefined, null])(
+      'should move the highlight with the default delay and its restarts (transitionDelay = %s)',
+      async (transitionDelay) => {
+        const step = 100
+        vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
+        // findByTestId in mount() doesn't advance the fake timers, unlike vi.waitFor.
+        const { host } = await mount(plansWithIneligibleLast, {
+          transitionDelay: transitionDelay as unknown as number,
+        })
+        const selectedIndex = () =>
+          screen
+            .getAllByRole('option')
+            .findIndex((plan) => plan.getAttribute('aria-selected') === 'true')
+        const moves: number[] = []
+        let selected = selectedIndex()
 
-      for (let time = step; time <= 22000; time += step) {
-        vi.advanceTimersByTime(step)
-        // Each step needs the render of the one before.
-        await (host as AlmaPaymentPlans).updateComplete
-        if (selectedIndex() !== selected) {
-          selected = selectedIndex()
-          moves.push(time)
+        for (let time = step; time <= 22000; time += step) {
+          vi.advanceTimersByTime(step)
+          // Each step needs the render of the one before.
+          await (host as AlmaPaymentPlans).updateComplete
+          if (selectedIndex() !== selected) {
+            selected = selectedIndex()
+            moves.push(time)
+          }
         }
-      }
 
-      expect(moves).toEqual([3500 + 5500, 9000 + 1000 + 5500, 15500 + 1000 + 5500])
-    })
+        expect(moves).toEqual([3500 + 5500, 9000 + 1000 + 5500, 15500 + 1000 + 5500])
+      },
+    )
   })
 
   describe('modal', () => {
