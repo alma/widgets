@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { mockP3XEligiblePlanWithFees } from '@/test/fixtures/plans'
-import { stubDateNow } from '@/test/storybook/story-stubs'
 import {
   type InstallmentParams,
   installmentTemplate,
@@ -14,7 +13,6 @@ const [dueToday, dueNextMonth] = mockP3XEligiblePlanWithFees.payment_plan
 
 const meta: Meta<InstallmentArgs> = {
   render: (args, { globals }) => installmentTemplate({ ...args, intl: createIntl(globals.locale) }),
-  beforeEach: () => stubDateNow(),
   parameters: { modalContainer: true },
 }
 
