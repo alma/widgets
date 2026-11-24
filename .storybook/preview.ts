@@ -4,6 +4,7 @@ import { mswLoader } from 'msw-storybook-addon/csf3'
 
 import '@/main.css'
 import { Locale } from '@/shared/i18n/i18n.const'
+import { TODAY } from '@/test/fixtures/plan-builders'
 import { blockAlmaApi } from '@/test/msw/block-alma-api'
 
 import { withMerchantCss } from './decorators/merchant-css'
@@ -97,7 +98,14 @@ const preview: Preview = {
   beforeEach: () => {
     // The widget caches the eligibility response for an hour
     sessionStorage.clear()
-    return keepBodyClean()
+    // The due dates of the fixtures count from the tests' "today"
+    const realNow = Date.now
+    Date.now = () => TODAY
+    const cleanBody = keepBodyClean()
+    return () => {
+      Date.now = realNow
+      cleanBody()
+    }
   },
 }
 

@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { mockP1XEligiblePlan, mockP2XEligiblePlan } from '@/test/fixtures/plans'
-import { stubDateNow } from '@/test/storybook/story-stubs'
 import {
   type ScheduleParams,
   scheduleTemplate,
@@ -13,7 +12,6 @@ type ScheduleArgs = Omit<ScheduleParams, 'intl'>
 const meta: Meta<ScheduleArgs> = {
   render: (args, { globals }) => scheduleTemplate({ ...args, intl: createIntl(globals.locale) }),
   args: { id: 'payment-schedule' },
-  beforeEach: () => stubDateNow(),
   parameters: { modalContainer: true },
 }
 

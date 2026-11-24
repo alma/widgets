@@ -8,7 +8,6 @@ import { StatusResponse } from '@/domain/api/eligibility.const'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { IntlShape } from '@/shared/i18n/i18n.types'
 import { mockCards, mockDisplayPlansAllEligible } from '@/test/fixtures/plans'
-import { stubDateNow } from '@/test/storybook/story-stubs'
 import {
   type ModalContentParams,
   modalContentTemplate,
@@ -37,7 +36,6 @@ const interactiveModalContent = directive(InteractiveModalContent)
 
 const meta: Meta<ModalContentArgs> = {
   render: (args, { globals }) => html`${interactiveModalContent(args, createIntl(globals.locale))}`,
-  beforeEach: () => stubDateNow(),
   parameters: { modalContainer: 'frame' },
   globals: { viewport: { value: 'desktop' } },
   args: {
