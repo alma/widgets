@@ -91,7 +91,7 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`) put the layers toge
 
 ## File suffixes
 
-- **LAYER-11** A file's suffix says what it holds, as the table below says. Tests and stories sit next to the file they cover. A test that covers one feature of a whole widget sits next to its element as `<widget>.<feature>.test.ts`, such as `payment-plans.credit.test.ts`. The accessibility cases of a file sit next to it in `<name>.accessibility.test.ts`, as A11Y-09 says. Why: the name of a file tells what it holds and where its tests are. Check: review.
+- **LAYER-11** A file's suffix says what it holds, as the table below says. Tests and stories sit next to the file they cover. A widget has one test file next to its element, `<widget>.element.test.ts`, with a `describe` per feature, and one accessibility file, `<widget>.accessibility.test.ts`. The accessibility cases of any other file sit next to it in `<name>.accessibility.test.ts`, as A11Y-09 says. Why: the name of a file tells what it holds and where its tests are. Check: review.
 
 | Suffix | Holds |
 | --- | --- |
