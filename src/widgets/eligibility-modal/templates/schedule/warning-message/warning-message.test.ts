@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+
 import { html } from 'lit'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
@@ -6,19 +9,31 @@ import { Locale } from '@/shared/i18n/i18n.const'
 import {
   mockDeferredMultiInstallmentPlanWithFees,
   mockPayLater30DaysEligiblePlan,
+  warningMessageCountries,
 } from '@/test/fixtures/plans'
 import { renderTemplate } from '@/test/utils/render-template'
 import { warningMessageTemplate } from '@/widgets/eligibility-modal/templates/schedule/warning-message/warning-message.template'
 
-const intl = createIntl(Locale.fr)
+type MessageFixture = { locales: Record<string, { messages: Record<string, string> }> }
 
-const renderWarning = (plan: EligibilityPlanToDisplay) =>
+const { locales }: MessageFixture = JSON.parse(
+  readFileSync(
+    resolve(
+      __dirname,
+      '../../../../../../tests/integration/contract/fixtures/messages.output.json',
+    ),
+    'utf8',
+  ),
+)
+
+const renderWarning = (plan: EligibilityPlanToDisplay, locale: Locale = Locale.fr) =>
   // Wrapped because the template returns `nothing` for an unmapped country.
-  renderTemplate(html`${warningMessageTemplate({ currentPlan: plan, intl })}`)
+  renderTemplate(html`${warningMessageTemplate({ currentPlan: plan, intl: createIntl(locale) })}`)
 
 // The template renders the sentence and nothing else, so the container's text is exactly what a
 // customer reads.
-const warningFor = (plan: EligibilityPlanToDisplay) => renderWarning(plan).textContent
+const warningFor = (plan: EligibilityPlanToDisplay, locale?: Locale) =>
+  renderWarning(plan, locale).textContent
 
 describe('WarningMessage', () => {
   it.each([
@@ -47,4 +62,22 @@ describe('WarningMessage', () => {
 
     expect(container).toBeEmptyDOMElement()
   })
+
+  it.each([Locale.de, Locale.es, Locale.it, Locale.nl, Locale.pt])(
+    'should render the sentence of each country in %s, like the fixtures',
+    (locale) => {
+      const { messages } = locales[locale]
+      // The pt sentence of PT is a mistranslation, logged for Crowdin.
+      const countries = warningMessageCountries.filter(
+        (country) => locale !== Locale.pt || country !== 'PT',
+      )
+      const idOf = (country: string) => (country === 'UK' ? 'gb' : country.toLowerCase())
+
+      expect(
+        countries.map((country) =>
+          warningFor(mockDeferredMultiInstallmentPlanWithFees.withCountry(country), locale),
+        ),
+      ).toEqual(countries.map((country) => messages[`warning-message.${idOf(country)}`]))
+    },
+  )
 })
