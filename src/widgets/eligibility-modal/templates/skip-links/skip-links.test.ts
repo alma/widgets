@@ -57,13 +57,13 @@ describe('SkipLinks', () => {
     expect(navigation).toHaveClass('custom-class')
   })
 
-  it('should handle click on skip link when target element does not exist', async () => {
+  it('should leave the focus on the skip link when its target does not exist', async () => {
     const user = userEvent.setup()
-
     renderSkipLinks()
-
     const skipLink = screen.getByRole('link', { name: 'Aller aux options de paiement' })
 
-    await expect(user.click(skipLink)).resolves.not.toThrow()
+    await user.click(skipLink)
+
+    expect(skipLink).toHaveFocus()
   })
 })

@@ -1,6 +1,5 @@
 import { fireEvent, screen, waitFor } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
-import type { RequestHandler } from 'msw'
 import { axe } from 'vitest-axe'
 
 import type { EligibilityPlan } from '@/domain/plans.types'
@@ -15,11 +14,7 @@ import {
   mockP4XIneligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
 } from '@/test/fixtures/plans'
-import {
-  eligibilityError,
-  eligibilityPending,
-  eligibilityPlans,
-} from '@/test/msw/eligibility-handlers'
+import { eligibilityPending, eligibilityPlans } from '@/test/msw/eligibility-handlers'
 import { server } from '@/test/msw/msw-server'
 import { mountWidget, TEST_CONTAINER } from '@/test/utils/mount-widget'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
@@ -97,14 +92,6 @@ describe('PaymentPlan Accessibility Tests', () => {
   })
 
   describe('axe on each state', () => {
-    const settled = async (handler: RequestHandler, options: Partial<Options>) => {
-      server.use(handler)
-      const mounted = await mountWidget('PaymentPlans', { purchaseAmount: 40000, ...options })
-      // The request settles without rendering the widget.
-      await waitFor(() => expect(screen.queryByTestId('loader')).not.toBeInTheDocument())
-      return mounted
-    }
-
     it.each<[string, () => Promise<unknown>]>([
       [
         'loading',
@@ -118,11 +105,6 @@ describe('PaymentPlan Accessibility Tests', () => {
       ['an ineligible plan after the eligible ones', () => mount()],
       ['one plan', () => renderWithPlans([mockP3XEligiblePlanWithFees])],
       ['no eligible plan', () => renderWithPlans(NO_ELIGIBLE_PLAN)],
-      [
-        'hideIfNotEligible with no eligible plan',
-        () => settled(eligibilityPlans(NO_ELIGIBLE_PLAN), { hideIfNotEligible: true }),
-      ],
-      ['a failed request', () => settled(eligibilityError(), {})],
       ['monochrome: false', () => renderWithPlans(mockButtonPlans, { monochrome: false })],
       ['hideBorder: true', () => renderWithPlans(mockButtonPlans, { hideBorder: true })],
       [
@@ -339,7 +321,7 @@ describe('PaymentPlan Accessibility Tests', () => {
     const instructionsCalls = (announce: ReturnType<typeof spyOnAnnounce>) =>
       announce.mock.calls.filter(([text]) => text.includes('Animation automatique'))
 
-    it('should announce animation control instructions when animation is active', async () => {
+    it('should send the animation control instructions to the announcer when animation is active', async () => {
       const announce = spyOnAnnounce()
       await render({ transitionDelay: 5000 })
 

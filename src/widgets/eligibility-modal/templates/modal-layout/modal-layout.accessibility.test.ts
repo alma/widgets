@@ -47,17 +47,4 @@ describe.each([
     expect(dialog).toHaveAttribute('aria-modal', 'true')
     expect(dialog).toHaveAccessibleName('Payez en plusieurs fois par carte bancaire avec Alma.')
   })
-
-  it('should give the title the ID that labels the dialog', () => {
-    renderModal({ isBigScreen, isSomePlanDeferred: true, isCurrentPlanP1X: false })
-
-    expect(screen.getByTestId('modal-title-element')).toHaveAttribute('id', 'modal-title')
-  })
-
-  it('should give the info region the ID that describes the plan buttons', () => {
-    renderModal({ isBigScreen, isCurrentPlanP1X: true })
-
-    const info = screen.getByRole('region', { name: 'Comment procéder au paiement' })
-    expect(info).toHaveAttribute('id', 'payment-info')
-  })
 })

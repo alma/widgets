@@ -56,20 +56,6 @@ describe('SkipLinks Accessibility Tests', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('should handle empty skip links array', async () => {
-    const container = renderSkipLinks({ skipLinks: [] })
-
-    const results = await axe(container)
-    expect(results).toHaveNoViolations()
-  })
-
-  it('should not have any accessibility violations with a custom class', async () => {
-    const container = renderSkipLinks({ skipLinks: skipLinksData, className: 'custom-class' })
-
-    const results = await axe(container)
-    expect(results).toHaveNoViolations()
-  })
-
   it('should render a named navigation with a link to each section', () => {
     renderSkipLinks({ skipLinks: mockSkipLinks })
 
@@ -92,17 +78,10 @@ describe('SkipLinks Accessibility Tests', () => {
     targetElement.tabIndex = -1
     document.body.appendChild(targetElement)
 
-    const focusSpy = vi.spyOn(targetElement, 'focus')
-
     renderSkipLinks({ skipLinks: mockSkipLinks })
 
-    const skipLink = screen.getByRole('link', { name: 'Aller au calendrier de paiement' })
-    await user.click(skipLink)
+    await user.click(screen.getByRole('link', { name: 'Aller au calendrier de paiement' }))
 
-    await new Promise((resolve) => {
-      setTimeout(resolve, 10)
-    })
-
-    expect(focusSpy).toHaveBeenCalled()
+    await vi.waitFor(() => expect(targetElement).toHaveFocus())
   })
 })

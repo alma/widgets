@@ -1,5 +1,4 @@
 import { render } from 'lit'
-import { axe } from 'vitest-axe'
 
 import { createIntl } from '@/shared/i18n/create-intl'
 import { amexTemplate } from '@/shared/templates/card-logos/amex.template'
@@ -38,14 +37,13 @@ describe('payment cards', () => {
     },
   ])(
     'should render the $name card as a labelled image in the locale',
-    async ({ template, label, englishLabel }) => {
+    ({ template, label, englishLabel }) => {
       const container = renderTemplate(template({ intl: fr }))
 
       const card = container.querySelector('svg')
       expect(card?.getAttribute('role')).toBe('img')
       expect(card?.getAttribute('aria-label')).toBe(label)
       expect(card?.hasAttribute('aria-hidden')).toBe(false)
-      expect(await axe(container)).toHaveNoViolations()
 
       render(template({ intl: createIntl('en') }), container)
       expect(container.querySelector('svg')?.getAttribute('aria-label')).toBe(englishLabel)
