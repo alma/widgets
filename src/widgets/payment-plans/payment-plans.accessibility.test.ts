@@ -68,9 +68,9 @@ describe('PaymentPlan Accessibility Tests', () => {
     server.use(eligibilityPlans(mockButtonPlans))
   })
 
-  // Checks the container only, which the modal's portal sits outside of.
-  // The next test turns nested-interactive back on.
-  it('should not have accessibility violations when modal is open', async () => {
+  // The modal's own markup is checked in the eligibility-modal tests. This checks the widget
+  // that stays on the page, so axe scans the container only. The next test turns nested-interactive back on.
+  it('should not have accessibility violations in the widget while the modal is open', async () => {
     await render()
 
     screen.getByRole('button', { name: KNOW_MORE_NAME }).click()

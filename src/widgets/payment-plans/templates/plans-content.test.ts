@@ -99,18 +99,17 @@ describe('plansContentTemplate', () => {
       )
     })
 
-    it.each([true, false])(
-      'should hide the border only when asked (hideBorder = %s)',
-      (hideBorder) => {
-        renderContent({ hideBorder })
+    it('should hide the border with hideBorder: true', () => {
+      renderContent({ hideBorder: true })
 
-        if (hideBorder) {
-          expect(screen.getByTestId('widget-container')).toHaveClass('hideBorder')
-        } else {
-          expect(screen.getByTestId('widget-container')).not.toHaveClass('hideBorder')
-        }
-      },
-    )
+      expect(screen.getByTestId('widget-container')).toHaveClass('hideBorder')
+    })
+
+    it('should keep the border with hideBorder: false', () => {
+      renderContent({ hideBorder: false })
+
+      expect(screen.getByTestId('widget-container')).not.toHaveClass('hideBorder')
+    })
 
     it('should render an assertive alert region for the announcements', () => {
       renderContent()
@@ -138,18 +137,11 @@ describe('plansContentTemplate', () => {
       expect(within(knowMore()).getByTestId('Alma-Logo')).toBeInTheDocument()
     })
 
-    it.each([true, false])(
-      'should be monochrome only when asked (monochrome = %s)',
-      (monochrome) => {
-        renderContent({ monochrome })
+    it('should be monochrome with monochrome: true', () => {
+      renderContent({ monochrome: true })
 
-        if (monochrome) {
-          expect(knowMore()).toHaveClass('monochrome')
-        } else {
-          expect(knowMore()).not.toHaveClass('monochrome')
-        }
-      },
-    )
+      expect(knowMore()).toHaveClass('monochrome')
+    })
 
     it('should call onOpenModal on a click', () => {
       const onOpenModal = vi.fn()

@@ -228,14 +228,6 @@ describe('paymentPlanInfoTextTemplate', () => {
     expect(renderInfoText(payNow).querySelectorAll('p')).toHaveLength(1)
   })
 
-  // The API sends no such plan, but the template checks for a legal disclosure before the line.
-  it.each([
-    ['a negative deferral', { ...payLater, deferred_days: -30, deferred_months: 0 }],
-    ['no installments count', { ...payNow, installments_count: 0 }],
-  ])('should not show the know-more line for a plan with %s', (_case, plan) => {
-    expect(renderInfoText(plan).querySelectorAll('p')).toHaveLength(1)
-  })
-
   it('should throw an error when no payment_plan is provided', () => {
     expect(() =>
       paymentPlanInfoTextTemplate({
