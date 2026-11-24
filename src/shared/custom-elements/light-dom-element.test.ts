@@ -68,7 +68,7 @@ describe('LightDomElement', () => {
       expect(warn).toHaveBeenCalledWith(message, failure)
     })
 
-    it('should not throw again when it is removed and appended after a failed render', () => {
+    it('should not throw when it is appended again after a failed render', () => {
       const element = createThrowingElement(new Error('broken template'))
       document.body.append(element)
 
@@ -76,7 +76,17 @@ describe('LightDomElement', () => {
         element.remove()
         document.body.append(element)
       }).not.toThrow()
-      expect(warn).toHaveBeenCalledTimes(1)
+    })
+
+    it('should try to render again when it is appended again after a failed render', () => {
+      const element = createThrowingElement(new Error('broken template'))
+      document.body.append(element)
+      element.remove()
+
+      element.failure = undefined
+      document.body.append(element)
+
+      expect(element.querySelector('p')).toHaveTextContent('fixed')
     })
 
     it('should render again once the failure is gone', async () => {

@@ -120,8 +120,8 @@ describe('regulatoryFigures', () => {
       expect(getFinancedAmount(pnxPlan)).toBe(5000)
     })
     it('should return the total purchase amount for a deferred plan (no upfront deposit)', () => {
-      const payLaterPlan = { ...mockP1XEligiblePlan, deferred_months: 1 }
-      expect(getFinancedAmount(payLaterPlan)).toBe(getTotalPurchaseAmount(payLaterPlan))
+      const payLaterPlan = { ...mockP1XEligiblePlan, purchase_amount: 10000, deferred_months: 1 }
+      expect(getFinancedAmount(payLaterPlan)).toBe(10000)
     })
   })
 

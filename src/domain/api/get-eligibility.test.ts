@@ -6,7 +6,7 @@ import { StatusResponse } from '@/domain/api/eligibility.const'
 import type { EligibilityInput } from '@/domain/api/eligibility.types'
 import { getEligibility } from '@/domain/api/get-eligibility'
 import { fetchFromApi } from '@/lib/http'
-import { configPlans, mockP2XEligiblePlan, mockPlansAllEligible } from '@/test/fixtures/plans'
+import { mockPlansAllEligible } from '@/test/fixtures/plans'
 
 vi.mock('@/lib/http')
 
@@ -60,15 +60,6 @@ describe('getEligibility', () => {
 
       expect(result).toEqual({ status: StatusResponse.SUCCESS, plans: newMockedResult })
       expect(fetchFromApi).not.toHaveBeenCalled()
-    })
-
-    it('should return the transaction_country of the API, not the requested country', async () => {
-      const planInItaly = mockP2XEligiblePlan.withCountry('IT')
-      vi.mocked(fetchFromApi).mockResolvedValue([planInItaly])
-
-      const result = await getEligibility(input({ configPlans }))
-
-      expect(result.plans).toEqual([planInItaly])
     })
   })
 

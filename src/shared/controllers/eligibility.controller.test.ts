@@ -4,7 +4,6 @@ import type { MockInstance } from 'vitest'
 import { createKey } from '@/domain/api/eligibility-cache'
 import { StatusResponse } from '@/domain/api/eligibility.const'
 import type { ConfigPlan, EligibilityPlan } from '@/domain/plans.types'
-import filterEligibility from '@/domain/utils/filter-plans'
 import { EligibilityController } from '@/shared/controllers/eligibility.controller'
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import {
@@ -12,6 +11,8 @@ import {
   mockP1XEligiblePlan,
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
+  mockP4XEligiblePlanWithFees,
+  mockP10XEligiblePlan,
   mockPayLater30DaysEligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
   mockPlansAllEligible,
@@ -107,7 +108,14 @@ describe('EligibilityController', () => {
       await settled(host)
 
       expect(host.eligibility.status).toBe(StatusResponse.SUCCESS)
-      expect(host.eligibility.plans).toEqual(filterEligibility(mockPlansAllEligible))
+      // Without a plans option, the P1X plan is dropped.
+      expect(host.eligibility.plans).toEqual([
+        mockPayLaterOneMonthEligiblePlan,
+        mockP2XEligiblePlan,
+        mockP3XEligiblePlanWithFees,
+        mockP4XEligiblePlanWithFees,
+        mockP10XEligiblePlan,
+      ])
       await host.updateComplete
       expect(host.textContent).toBe(`success:${host.eligibility.plans.length}`)
     })
@@ -220,7 +228,15 @@ describe('EligibilityController', () => {
 
       host.configPlans = [first]
 
-      expect(host.eligibility.plans).toEqual(filterEligibility(mockPlansAllEligible, [first]))
+      // Only the P1X plan has a matching config plan, so only it stays shown.
+      expect(host.eligibility.plans.map(({ hidden }) => hidden)).toEqual([
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+      ])
       expect(api.fetchMock).toHaveBeenCalledTimes(1)
     })
   })
