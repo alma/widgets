@@ -326,8 +326,6 @@ describe('AlmaPaymentPlans behaviour', () => {
   })
 
   describe('PaymentPlan has suggestedPaymentPlan', () => {
-    const animationDuration = 5600
-
     let host: HTMLElement & { updateComplete?: Promise<boolean> }
 
     const renderWidget = async (options: Omit<PaymentPlanWidgetOptions, 'container'>) => {
@@ -366,14 +364,9 @@ describe('AlmaPaymentPlans behaviour', () => {
       it('should not rotate the active installment', async () => {
         await renderWidget({ purchaseAmount: 40000, suggestedPaymentPlan: [3, 2] })
 
-        expect(screen.getByText('3x').className).toContain('active')
+        expect(activePlan()).toBe('3x')
 
-        await advance(animationDuration)
-
-        const activeElements = screen
-          .getAllByRole('option')
-          .filter((el) => el.className.includes('active'))
-        expect(activeElements).toHaveLength(1)
+        await expectNoCycling('3x')
       })
     })
 
