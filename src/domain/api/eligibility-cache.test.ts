@@ -9,8 +9,16 @@ import {
 import type { EligibilityInput } from '@/domain/api/eligibility.types'
 import { mockButtonPlans } from '@/test/fixtures/plans'
 
-// The contract tests' build version, so the keys match theirs.
-vi.mock('@/config/build-version.const', () => ({ BUILD_VERSION: 'contract-test' }))
+// The contract tests' build version, so the keys match theirs. A test may switch to another one.
+const buildVersion = vi.hoisted(() => {
+  const contractTest = 'contract-test'
+  return { contractTest, current: contractTest }
+})
+vi.mock('@/config/build-version.const', () => ({
+  get BUILD_VERSION() {
+    return buildVersion.current
+  },
+}))
 
 const SANDBOX = 'https://api.sandbox.getalma.eu'
 
@@ -50,6 +58,19 @@ describe('createKey', () => {
       createKey(input({ merchantCoversAllFees: false })),
     ]
     expect(new Set(keys).size).toBe(keys.length)
+  })
+
+  it('misses an entry written by another build version', ({ onTestFinished }) => {
+    onTestFinished(() => {
+      buildVersion.current = buildVersion.contractTest
+    })
+    buildVersion.current = '3.1.0'
+    setCache(createKey(input()), mockButtonPlans)
+    expect(getCache(createKey(input()))).not.toBeNull()
+
+    buildVersion.current = '3.1.1'
+
+    expect(getCache(createKey(input()))).toBeNull()
   })
 
   it('keeps the key order of the plans as given', () => {

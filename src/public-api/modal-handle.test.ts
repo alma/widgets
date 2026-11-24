@@ -15,6 +15,17 @@ describe('createModalHandle', () => {
     expect(onClose.mock.calls[0][0]).toBe(event)
     expect(render).not.toHaveBeenCalled()
   })
+
+  it('should call onClose once with undefined for close() without an event', () => {
+    const onClose = vi.fn()
+    const { close } = createModalHandle(onClose, { render: vi.fn(), remove: vi.fn() })
+
+    // Merchants call close() from plain JS.
+    ;(close as () => void)()
+
+    expect(onClose).toHaveBeenCalledOnce()
+    expect(onClose.mock.calls[0]).toEqual([undefined])
+  })
 })
 
 describe('openOnClick', () => {
@@ -58,6 +69,10 @@ describe('openOnClick', () => {
 
     expect(first).toHaveBeenCalledTimes(2)
     expect(second).toHaveBeenCalledOnce()
+  })
+
+  it('should throw nothing for a selector that matches nothing', () => {
+    expect(() => openOnClick('#nothing', vi.fn())).not.toThrow()
   })
 
   it('should warn once and throw nothing for an invalid selector', () => {

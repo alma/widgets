@@ -7,6 +7,7 @@ import type { ModalOptions } from '@/public-api/public-api.types'
 import { mockButtonPlans } from '@/test/fixtures/plans'
 import { ELIGIBILITY_ENDPOINT } from '@/test/msw/eligibility-handlers'
 import { server } from '@/test/msw/msw-server'
+import { useListenerSpies } from '@/test/utils/listener-spies'
 import { TEST_CONTAINER, TEST_MERCHANT_ID } from '@/test/utils/mount-widget'
 
 const addModal = (options: Partial<ModalOptions> = {}) =>
@@ -96,6 +97,43 @@ describe('the add(Modal) handle', () => {
       await openAndClose('#other')
       expect(otherOnClose).toHaveBeenCalledOnce()
       expect(onClose).toHaveBeenCalledOnce()
+    })
+  })
+
+  describe('leaks', () => {
+    const spies = useListenerSpies()
+
+    afterEach(() => {
+      vi.useRealTimers()
+    })
+
+    it('should leave no listener and no timer after three open and close cycles', async () => {
+      vi.useFakeTimers({
+        toFake: [
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      })
+      const handle = addModal()
+      const openAndClose = async () => {
+        handle.open()
+        await vi.waitFor(() => expect(screen.getByText('M+1')).toBeInTheDocument())
+        await vi.advanceTimersByTimeAsync(500)
+        screen.getByTestId('modal-close-button').click()
+        expect(portals()).toHaveLength(0)
+      }
+
+      await openAndClose()
+      await openAndClose()
+      await openAndClose()
+      await vi.advanceTimersByTimeAsync(1000)
+
+      expect(spies.attached()).toEqual({})
+      expect(vi.getTimerCount()).toBe(0)
     })
   })
 })

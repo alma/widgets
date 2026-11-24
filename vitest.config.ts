@@ -22,8 +22,6 @@ export default defineConfig({
         'src/**/*.d.ts',
         'src/**/*.types.ts',
         'src/test/**',
-        // Their tests aren't ported yet. Each port removes its file from this list.
-        'src/index.ts',
       ],
       thresholds: {
         branches: 88,

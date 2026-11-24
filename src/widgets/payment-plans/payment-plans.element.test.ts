@@ -697,5 +697,51 @@ describe('AlmaPaymentPlans behaviour', () => {
       expect(widgetIds[0]).toBe('alma-widget-payment-plans-main-container')
       expect(widgetIds[1]).toBe('alma-widget-payment-plans-main-container')
     })
+
+    it('should keep the language and number format of each widget', async () => {
+      const french = addContainer('alma-widget-fr')
+      const english = addContainer('alma-widget-en')
+      await mountWidget('PaymentPlans', { purchaseAmount: 45000, locale: 'fr', container: french })
+      await mountWidget('PaymentPlans', { purchaseAmount: 45000, locale: 'en', container: english })
+      await waitFor(() => expect(screen.getAllByTestId('widget-container')).toHaveLength(2))
+
+      const frenchText = document.querySelector(french)?.textContent
+      const englishText = document.querySelector(english)?.textContent
+      expect(frenchText).toContain('Options de paiement disponibles')
+      expect(frenchText).toMatch(/450,00\s€ à payer le 1 janvier 2022/)
+      expect(frenchText).not.toContain('Available payment options')
+      expect(englishText).toContain('Available payment options')
+      expect(englishText).toContain('€450.00 to pay the January 1, 2022')
+      expect(englishText).not.toContain('Options de paiement')
+    })
+
+    describe('once the merchant empties one container', () => {
+      afterEach(() => {
+        vi.useRealTimers()
+      })
+
+      it('should keep cycling through the plans of the other widget', async () => {
+        vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
+        const emptied = addContainer('alma-widget-emptied')
+        const other = addContainer('alma-widget-other')
+        await mountWidget('PaymentPlans', { purchaseAmount: 45000, container: emptied })
+        await mountWidget('PaymentPlans', { purchaseAmount: 45000, container: other })
+        await vi.waitFor(() => expect(screen.getAllByTestId('widget-container')).toHaveLength(2))
+        const selectedIndex = () =>
+          Array.from(document.querySelectorAll(`${other} [role="option"]`)).findIndex(
+            (plan) => plan.getAttribute('aria-selected') === 'true',
+          )
+        expect(selectedIndex()).toBe(0)
+
+        document.querySelector(emptied)?.replaceChildren()
+        // The default delay restarts on each render, so the first move takes about 9 s.
+        for (let time = 0; time < 20000 && selectedIndex() === 0; time += 100) {
+          await vi.advanceTimersByTimeAsync(100)
+        }
+
+        expect(document.querySelector(emptied)?.children).toHaveLength(0)
+        expect(selectedIndex()).toBe(1)
+      })
+    })
   })
 })
