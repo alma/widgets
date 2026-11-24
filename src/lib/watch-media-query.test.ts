@@ -28,6 +28,26 @@ describe('watchMediaQuery', () => {
     })
   })
 
+  // Safari before 14 has no addEventListener on a MediaQueryList.
+  it('should listen with addListener when the list has no addEventListener', () => {
+    const addListener = vi.fn()
+    const removeListener = vi.fn()
+    vi.spyOn(window, 'matchMedia').mockReturnValue({
+      matches: false,
+      addListener,
+      removeListener,
+    } as unknown as MediaQueryList)
+    const onChange = vi.fn()
+
+    const watch = watchMediaQuery(WIDE, onChange)
+    const [[listener]] = addListener.mock.calls
+    listener({ matches: true })
+
+    expect(onChange).toHaveBeenCalledWith(true)
+    watch.stop()
+    expect(removeListener).toHaveBeenCalledWith(listener)
+  })
+
   // Firefox returns null in a hidden iframe.
   it('should not match when matchMedia returns null', () => {
     vi.spyOn(window, 'matchMedia').mockReturnValue(null as unknown as MediaQueryList)

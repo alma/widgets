@@ -57,8 +57,8 @@ export default defineConfig({
   resolve: { alias },
   define,
   build: {
-    // No polyfills: ES2021 browsers have everything master polyfilled.
-    target: 'es2021',
+    // ES2019 so webpack 4 parses widgets.js. No polyfills, and no check covers DOM methods.
+    target: 'es2019',
     outDir: 'dist',
     sourcemap: true,
     lib: {
