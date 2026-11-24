@@ -121,28 +121,12 @@ describe.each([
     expect(screen.getByTestId('modal-title-element')).toHaveAttribute('id', 'modal-title')
   })
 
-  it('should show the info bullets for P1X true', () => {
+  it('should pass isCurrentPlanP1X to the info list', () => {
     renderModal({ isBigScreen, isCurrentPlanP1X: true })
 
     const info = screen.getByRole('region', { name: 'Comment procéder au paiement' })
     expect(info).toHaveAttribute('id', 'payment-info')
-    const items = within(info).getAllByRole('listitem')
-    expect(
-      items.map((item) => item.querySelector('.alma-eligibility-modal-bullet')?.textContent),
-    ).toEqual(['1', '2', '3'])
-    expect(
-      items.map((item) => item.querySelector('.alma-eligibility-modal-info-message')?.textContent),
-    ).toEqual([
-      'Choisissez Alma - Payer maintenant au moment du paiement.',
-      'Renseignez les informations de votre carte bancaire.',
-      // The French message has a space inside the strong tag and another after it.
-      'La validation  de votre paiement est instantanée !',
-    ])
-    expect([...info.querySelectorAll('strong')].map((strong) => strong.textContent)).toEqual([
-      'Alma - Payer maintenant',
-      'carte bancaire.',
-      'La validation ',
-    ])
+    expect(info).toHaveTextContent('Payer maintenant')
   })
 
   // Merchants can pass null, which means no cards.

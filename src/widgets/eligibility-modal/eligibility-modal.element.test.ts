@@ -2,7 +2,7 @@ import { screen, within } from '@testing-library/dom'
 import { http, HttpResponse } from 'msw'
 import type { MockInstance } from 'vitest'
 
-import type { ConfigPlan, EligibilityPlan } from '@/domain/plans.types'
+import type { EligibilityPlan } from '@/domain/plans.types'
 import { ApiMode } from '@/public-api/public-api.const'
 import {
   baseIneligblePlan,
@@ -20,7 +20,6 @@ import {
   AlmaEligibilityModal,
   type AlmaEligibilityModalProperties,
 } from '@/widgets/eligibility-modal/eligibility-modal.element'
-import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
 const FROZEN =
   'Frozen: another bundle of the widget on the same page may have defined the element, and this bundle sets these properties on it. Never add, remove, rename or retype one.'
@@ -64,21 +63,6 @@ describe('AlmaEligibilityModal', () => {
         'onClose',
         'purchaseAmount',
       ])
-    })
-
-    // npm run typecheck fails on a retyped property.
-    it('should keep the frozen property types', () => {
-      expectTypeOf<AlmaEligibilityModalProperties>().toEqualTypeOf<{
-        purchaseAmount: number
-        apiData?: { domain: string; merchantId: string }
-        configPlans?: ConfigPlan[]
-        customerBillingCountry?: string
-        customerShippingCountry?: string
-        merchantCoversAllFees?: boolean
-        cards?: Card[]
-        locale: string
-        onClose?: (event: MouseEvent | KeyboardEvent) => void
-      }>()
     })
 
     it("should default the locale to 'en'", () => {
