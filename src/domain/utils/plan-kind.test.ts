@@ -98,6 +98,13 @@ describe('planKind', () => {
       const creditPlan = { ...mockP1XEligiblePlan, installments_count: 5 }
       expect(requiresLegalDisclosure(creditPlan)).toBe(true)
     })
+    // The API sends no such plans. Neither gets a legal disclosure.
+    it.each([
+      ['a negative deferral', { ...mockP1XEligiblePlan, deferred_days: -30, deferred_months: 0 }],
+      ['no installments count', { ...mockP1XEligiblePlan, installments_count: 0 }],
+    ])('should return false for a plan with %s', (_case, plan) => {
+      expect(requiresLegalDisclosure(plan)).toBe(false)
+    })
   })
 
   describe('isPayLater', () => {

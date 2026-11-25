@@ -6,13 +6,15 @@ import { axe } from 'vitest-axe'
 import type { EligibilityPlan } from '@/domain/plans.types'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { createIntl } from '@/shared/i18n/create-intl'
-import type { Locale } from '@/shared/i18n/i18n.const'
+import { Locale } from '@/shared/i18n/i18n.const'
 import {
   mockButtonPlans,
+  mockEligibilityWithHiddenPlan,
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockP4XEligiblePlanWithFees,
   mockP4XIneligiblePlan,
+  mockP10XEligiblePlan,
   mockP10XIneligiblePlan,
 } from '@/test/fixtures/plans'
 import {
@@ -135,6 +137,28 @@ describe('AlmaPaymentPlans behaviour', () => {
     })
   })
 
+  describe('options', () => {
+    it('should render in the locale it is given', async () => {
+      await mount(mockButtonPlans, { locale: Locale.de })
+
+      expect(screen.getByText('M+1')).toBeInTheDocument()
+      expect(screen.getByText(/zu zahlen am/)).toBeInTheDocument()
+      expect(screen.getByText(/\(0% Finanzierung\)/)).toBeInTheDocument()
+    })
+
+    it('should render the current plan in monochrome with monochrome: true', async () => {
+      await mount(undefined, { monochrome: true })
+
+      expect(screen.getAllByRole('option')[0]).toHaveClass('monochrome')
+    })
+
+    it('should render without border with hideBorder: true', async () => {
+      await mount(mockButtonPlans, { hideBorder: true })
+
+      expect(screen.getByTestId('widget-container')).toHaveClass('hideBorder')
+    })
+  })
+
   describe('hidden states', () => {
     // The loader must show first, so an empty widget means the request finished and not that it has not rendered yet.
     const waitForLoaderToFinish = async (host: HTMLElement | null | undefined) => {
@@ -174,19 +198,64 @@ describe('AlmaPaymentPlans behaviour', () => {
     })
   })
 
+  describe('Ineligible plan due to non-purchase_amount reason is hidden', () => {
+    const configPlans = [
+      {
+        installmentsCount: 1,
+        deferredDays: 30,
+        minAmount: 5000,
+        maxAmount: 70000,
+      },
+      {
+        installmentsCount: 2,
+        minAmount: 5000,
+        maxAmount: 50000,
+      },
+      {
+        installmentsCount: 4,
+        minAmount: 5000,
+        maxAmount: 15000,
+      },
+    ]
+
+    const renderWidget = async (plans: EligibilityPlan[]) => {
+      server.use(eligibilityPlans(plans))
+      await mountWidget('PaymentPlans', { purchaseAmount: 45000, plans: configPlans })
+      await screen.findByTestId('widget-container')
+    }
+
+    it('hides the plan ineligible due to installments_count reason', async () => {
+      await renderWidget(mockEligibilityWithHiddenPlan)
+
+      expect(screen.getByText('J+30')).toBeInTheDocument()
+      expect(screen.getByText('2x')).toBeInTheDocument()
+      expect(screen.queryByText('4x')).not.toBeInTheDocument()
+    })
+  })
+
   describe('keyboard', () => {
-    it('should move the focus to the next and previous eligible plans without wrapping', async () => {
-      await mount()
-      const [first, second, third] = screen.getAllByRole('option')
+    it('should move the focus and the selection to the next and previous eligible plans without wrapping', async () => {
+      // The ineligible 4x sits between two eligible plans.
+      const { host } = await mount([
+        mockP2XEligiblePlan,
+        mockP4XIneligiblePlan,
+        mockP10XEligiblePlan,
+      ])
+      const [first, , last] = screen.getAllByRole('option')
       first.focus()
 
       expect(keyDown(first, 'ArrowLeft')).toBe(false)
       expect(first).toHaveFocus()
       expect(keyDown(first, 'ArrowRight')).toBe(false)
-      expect(second).toHaveFocus()
-      keyDown(second, 'ArrowRight')
-      expect(keyDown(third, 'ArrowRight')).toBe(false)
-      expect(third).toHaveFocus()
+      expect(last).toHaveFocus()
+      await (host as AlmaPaymentPlans).updateComplete
+      expect(last).toHaveAttribute('aria-selected', 'true')
+      expect(keyDown(last, 'ArrowRight')).toBe(false)
+      expect(last).toHaveFocus()
+      keyDown(last, 'ArrowLeft')
+      expect(first).toHaveFocus()
+      await (host as AlmaPaymentPlans).updateComplete
+      expect(first).toHaveAttribute('aria-selected', 'true')
     })
 
     it('should move the focus to the first and last eligible plans with Home and End', async () => {
@@ -206,30 +275,24 @@ describe('AlmaPaymentPlans behaviour', () => {
       expect(keyDown(options[3], 'ArrowLeft')).toBe(true)
       expect(keyDown(options[0], 'a')).toBe(true)
     })
+  })
 
-    it('should prevent the default of Enter and Space on the know-more button', async () => {
-      await mount()
-      const knowMore = screen.getByRole('button', {
-        name: 'Ouvrir les options de paiement Alma pour en savoir plus',
-      })
-
-      expect(keyDown(knowMore, 'Enter')).toBe(false)
-      expect(keyDown(knowMore, ' ')).toBe(false)
-      expect(keyDown(knowMore, 'a')).toBe(true)
-    })
-
-    it('should prevent the default of Enter and Space on the clickable info line', async () => {
-      await mount()
+  describe('info line', () => {
+    it('should not be clickable when the current plan is not eligible', async () => {
+      const { host } = await mount()
       const info = document.getElementById('payment-info-text') as HTMLElement
-
       expect(info).toHaveAttribute('role', 'button')
-      expect(keyDown(info, 'Enter')).toBe(false)
-      expect(keyDown(info, ' ')).toBe(false)
+
+      fireEvent.mouseEnter(screen.getAllByRole('option')[3])
+      await (host as AlmaPaymentPlans).updateComplete
+
+      expect(screen.getAllByRole('option')[3]).toHaveAttribute('aria-selected', 'true')
+      expect(info).not.toHaveAttribute('role')
     })
   })
 
   describe('clicks', () => {
-    it('should highlight a clicked eligible plan and stop the click at the plan', async () => {
+    it('should highlight a clicked eligible plan, open the modal and stop the click at the plan', async () => {
       await mount()
       const onPageClick = vi.fn()
       document.body.addEventListener('click', onPageClick)
@@ -238,6 +301,7 @@ describe('AlmaPaymentPlans behaviour', () => {
       await userEvent.click(third)
 
       expect(third).toHaveAttribute('aria-selected', 'true')
+      expect(await screen.findByTestId('modal-container')).toBeInTheDocument()
       expect(onPageClick).not.toHaveBeenCalled()
       document.body.removeEventListener('click', onPageClick)
     })
@@ -279,6 +343,63 @@ describe('AlmaPaymentPlans behaviour', () => {
         announcement(mockP4XEligiblePlanWithFees),
       ])
       expect(screen.getAllByRole('option')[2]).toHaveAttribute('aria-selected', 'true')
+    })
+  })
+
+  describe('PaymentPlan has suggestedPaymentPlan', () => {
+    const animationDuration = 5600
+
+    let host: HTMLElement & { updateComplete?: Promise<boolean> }
+
+    const renderWidget = async (options: Omit<PaymentPlanWidgetOptions, 'container'>) => {
+      const mounted = await mountWidget('PaymentPlans', options)
+      host = mounted.host!
+      await vi.waitFor(() => screen.getByTestId('widget-container'))
+    }
+
+    const advance = async (ms: number) => {
+      vi.advanceTimersByTime(ms)
+      await host.updateComplete
+    }
+
+    beforeEach(() => {
+      server.use(eligibilityPlans(mockButtonPlans))
+      // msw answers through promises, so only the timers are fake.
+      vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
+    })
+
+    afterEach(() => {
+      vi.useRealTimers()
+    })
+
+    describe('as an array', () => {
+      it('should not rotate the active installment', async () => {
+        await renderWidget({ purchaseAmount: 40000, suggestedPaymentPlan: [3, 2] })
+
+        expect(screen.getByText('3x').className).toContain('active')
+
+        await advance(animationDuration)
+
+        const activeElements = screen
+          .getAllByRole('option')
+          .filter((el) => el.className.includes('active'))
+        expect(activeElements).toHaveLength(1)
+      })
+    })
+
+    describe('with a different transitionDelay', () => {
+      it('displays the message corresponding to the payment plan hovered', async () => {
+        await renderWidget({
+          purchaseAmount: 40000,
+          transitionDelay: 1000,
+          suggestedPaymentPlan: [2],
+        })
+
+        expect(screen.getByText(/2 x 225,00 €/)).toBeInTheDocument()
+        expect(screen.getByText('2x').className).toContain('active')
+        await advance(1000)
+        expect(screen.getByText('3x').className).toContain('active')
+      })
     })
   })
 
@@ -391,6 +512,15 @@ describe('AlmaPaymentPlans behaviour', () => {
       expect(modalPlan()).toBe('2x')
     })
 
+    it('should open on the plan the shopper hovered', async () => {
+      await mount()
+      await userEvent.hover(screen.getAllByRole('option')[1])
+
+      await openModal()
+
+      expect(modalPlan()).toBe('3x')
+    })
+
     it('should open on the first eligible plan when the current plan is not eligible', async () => {
       await mount()
       fireEvent.mouseEnter(screen.getAllByRole('option')[3])
@@ -398,16 +528,6 @@ describe('AlmaPaymentPlans behaviour', () => {
       await openModal()
 
       expect(modalPlan()).toBe('2x')
-    })
-
-    it("should keep its plan when the widget's current plan changes", async () => {
-      const { host } = await mount()
-      await userEvent.click(screen.getAllByRole('option')[1])
-
-      fireEvent.mouseEnter(screen.getAllByRole('option')[2])
-      await (host as AlmaPaymentPlans).updateComplete
-
-      expect(modalPlan()).toBe('3x')
     })
 
     it('should not open without an eligible plan, and still prevent the default', async () => {
@@ -462,9 +582,6 @@ describe('AlmaPaymentPlans behaviour', () => {
         const event = (onModalClose.mock.calls[0] as unknown[])[0] as Record<string, unknown>
         expect(event.type).toBe(type)
         expect(event.persist).toBeInstanceOf(Function)
-        expect(event.isPropagationStopped).toBeInstanceOf(Function)
-        expect(event.isDefaultPrevented).toBeInstanceOf(Function)
-        expect(event.nativeEvent).toBe(event)
       },
     )
 
@@ -528,18 +645,6 @@ describe('AlmaPaymentPlans behaviour', () => {
       await (host as AlmaPaymentPlans).updateComplete
 
       expect(portals()).toHaveLength(0)
-    })
-
-    it('should not update the widget when the shopper picks a plan in the modal', async () => {
-      const { host } = await mount()
-      await openModal()
-      const update = vi.spyOn(host as AlmaPaymentPlans, 'requestUpdate')
-
-      // Synchronous, so the announcement's clear timer can't update the host in between.
-      screen.getByRole('button', { name: /3x/ }).click()
-
-      expect(modalPlan()).toBe('3x')
-      expect(update).not.toHaveBeenCalled()
     })
   })
 

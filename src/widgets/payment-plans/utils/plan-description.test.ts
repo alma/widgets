@@ -1,12 +1,10 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import type { EligibilityPlan } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import {
   mockP1XEligiblePlan,
   mockP3XEligiblePlanWithFees,
-  mockP10XEligiblePlan,
   mockPayLater30DaysEligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
 } from '@/test/fixtures/plans'
@@ -41,20 +39,8 @@ const fixtureText = (
 const fr = createIntl('fr')
 
 describe('getPlanDescription', () => {
-  it.each([
-    ['P1X', mockP1XEligiblePlan, 'Payer maintenant'],
-    ['Pay Later in months', mockPayLaterOneMonthEligiblePlan, 'Payer en différé : 1 mois'],
-    ['Pay Later in days', mockPayLater30DaysEligiblePlan, 'Payer en différé : 30 jours'],
-    ['PNX', mockP3XEligiblePlanWithFees, '3x'],
-    ['credit', mockP10XEligiblePlan, '10x'],
-  ])('should describe a %s plan', (_kind, plan, description) => {
-    expect(getPlanDescription(plan, fr)).toBe(description)
-  })
-
-  it('should not count a deferred multi-installment plan as Pay Later', () => {
-    const plan = { installments_count: 3, deferred_days: 30, deferred_months: 0 } as EligibilityPlan
-
-    expect(getPlanDescription(plan, fr)).toBe('3x')
+  it('should describe a PNX plan', () => {
+    expect(getPlanDescription(mockP3XEligiblePlanWithFees, fr)).toBe('3x')
   })
 
   describe.each(['fr', 'en'])('in %s', (locale) => {

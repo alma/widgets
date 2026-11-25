@@ -31,6 +31,9 @@ const { locales }: MessageFixture = JSON.parse(
     'utf8',
   ),
 )
+
+// fr_FR holds only a RangeError.
+const LOCALES = Object.keys(locales).filter((locale) => locale !== 'fr_FR')
 const merchantCss = readFileSync(resolve(__dirname, '../../../../../examples/style.css'), 'utf8')
 
 // Whether Intl puts U+202F, U+00A0 or a space depends on the ICU version.
@@ -90,7 +93,7 @@ const fixtureFor = (locale: string) => {
 }
 
 describe('paymentPlanInfoTextTemplate', () => {
-  describe.each(['fr', 'en'])('in %s, like the message fixtures', (locale) => {
+  describe.each(LOCALES)('in %s, like the message fixtures', (locale) => {
     const { message, callSite, noFee, knowMore } = fixtureFor(locale)
 
     it.each<[string, EligibilityPlanToDisplay, () => string[]]>([
@@ -223,14 +226,6 @@ describe('paymentPlanInfoTextTemplate', () => {
 
   it('should not show the know-more line for a P1X plan', () => {
     expect(renderInfoText(payNow).querySelectorAll('p')).toHaveLength(1)
-  })
-
-  // The API sends no such plan, but the template checks for a legal disclosure before the line.
-  it.each([
-    ['a negative deferral', { ...payLater, deferred_days: -30, deferred_months: 0 }],
-    ['no installments count', { ...payNow, installments_count: 0 }],
-  ])('should not show the know-more line for a plan with %s', (_case, plan) => {
-    expect(renderInfoText(plan).querySelectorAll('p')).toHaveLength(1)
   })
 
   it('should throw an error when no payment_plan is provided', () => {
