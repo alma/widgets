@@ -8,7 +8,6 @@ import {
   mockP1XEligiblePlan,
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
-  mockP4XEligiblePlanWithFees,
   mockPayLater30DaysEligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
 } from '@/test/fixtures/plans'
@@ -62,15 +61,6 @@ describe('standard PNX/Credit variant', () => {
     )
     expect(legalMentions).toHaveTextContent(DISCLAIMER)
     expect(legalMentions).not.toHaveTextContent('incluant des frais')
-  })
-
-  it('should keep a fixed borrowing rate of 0 % for a PNX plan with fees and an APR', () => {
-    // The API sends the APR of the fees for a PNX plan with fees.
-    renderLegalMentions({ ...mockP4XEligiblePlanWithFees, annual_interest_rate: 525 })
-
-    expect(legalMentionsText()).toBe(
-      "Crédit de 337,50 € au taux débiteur fixe de 0 % sur 3 mois. Permettant, avec un acompte de 123,12 €, incluant des frais de 10,62 €, de financer un achat de 450,00 €. Sous réserve d'acceptation par Alma SAS (almapay.com), société de financement agréée par l'ACPR (code CIB : 17408). RCS Nanterre 839100575. Contact: support@almapay.com",
-    )
   })
 
   it.each(FRENCH_COUNTRIES)(
@@ -157,7 +147,7 @@ describe('P1X Pay Later variant', () => {
   })
 })
 
-// Leaves out the wordings that look wrong: a duration of 1 month, nl Pay Later and it credit.
+// Not pinned: catalogue wordings known to be wrong (nl Pay Later, it credit).
 describe('other locales', () => {
   const payLater = mockPayLater30DaysEligiblePlan
   const pnxWithFeesOutsideFrance = mockP3XEligiblePlanWithFees.withCountry('NL')

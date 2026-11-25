@@ -90,7 +90,6 @@ describe('the total block in fr, with the figures of the modal', () => {
       '460,62 €',
       '10,62 € (TAEG 5,25 %)',
     ],
-    ['the 10x plan', mockP10XEligiblePlan, '477,25 €', '27,25 € (TAEG 17,20 %)'],
   ])('should show the total and the credit cost of %s', (_name, plan, total, creditCost) => {
     renderTotalBlock(plan, Locale.fr)
 

@@ -67,17 +67,15 @@ describe('WarningMessage', () => {
     'should render the sentence of each country in %s, like the fixtures',
     (locale) => {
       const { messages } = locales[locale]
-      // The pt sentence of PT is a mistranslation, logged for Crowdin.
-      const countries = warningMessageCountries.filter(
-        (country) => locale !== Locale.pt || country !== 'PT',
-      )
       const idOf = (country: string) => (country === 'UK' ? 'gb' : country.toLowerCase())
 
       expect(
-        countries.map((country) =>
+        warningMessageCountries.map((country) =>
           warningFor(mockDeferredMultiInstallmentPlanWithFees.withCountry(country), locale),
         ),
-      ).toEqual(countries.map((country) => messages[`warning-message.${idOf(country)}`]))
+      ).toEqual(
+        warningMessageCountries.map((country) => messages[`warning-message.${idOf(country)}`]),
+      )
     },
   )
 })
