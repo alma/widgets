@@ -107,7 +107,7 @@ describe('the add(Modal) handle', () => {
       vi.useRealTimers()
     })
 
-    it('should leave no listener and no timer after three open and close cycles', async () => {
+    it('should leave no window, document, body or media query listener and no timer after three open and close cycles', () => {
       vi.useFakeTimers({
         toFake: [
           'setTimeout',
@@ -119,18 +119,16 @@ describe('the add(Modal) handle', () => {
         ],
       })
       const handle = addModal()
-      const openAndClose = async () => {
+      const openAndClose = () => {
         handle.open()
-        await vi.waitFor(() => expect(screen.getByText('M+1')).toBeInTheDocument())
-        await vi.advanceTimersByTimeAsync(500)
-        screen.getByTestId('modal-close-button').click()
+        expect(portals()).toHaveLength(1)
+        handle.close(new MouseEvent('click'))
         expect(portals()).toHaveLength(0)
       }
 
-      await openAndClose()
-      await openAndClose()
-      await openAndClose()
-      await vi.advanceTimersByTimeAsync(1000)
+      openAndClose()
+      openAndClose()
+      openAndClose()
 
       expect(spies.attached()).toEqual({})
       expect(vi.getTimerCount()).toBe(0)

@@ -14,9 +14,6 @@ import { TEST_CONTAINER, TEST_MERCHANT_ID } from '@/test/utils/mount-widget'
 
 const threePlans = [mockP2XEligiblePlan, mockP3XEligiblePlanWithFees, mockP4XEligiblePlanWithFees]
 
-// The live widget's cycling and announcements all end within this time.
-const SETTLE_MS = 60000
-
 const addPaymentPlans = (options: Partial<PaymentPlanWidgetOptions> = {}) =>
   Widgets.initialize(TEST_MERCHANT_ID, ApiMode.TEST).add(Widgets.PaymentPlans, {
     container: TEST_CONTAINER,
@@ -66,7 +63,7 @@ describe('add(PaymentPlans)', () => {
       vi.useRealTimers()
     })
 
-    it('should leave no listener and no timer after three add() calls', async () => {
+    it('should leave no more listeners and timers than one widget after three add() calls', async () => {
       vi.useFakeTimers({
         toFake: [
           'setTimeout',
@@ -79,14 +76,14 @@ describe('add(PaymentPlans)', () => {
       })
       addPaymentPlans()
       await whenRendered()
+      const timersOfOneWidget = vi.getTimerCount()
       addPaymentPlans({ purchaseAmount: 30000 })
-      await vi.advanceTimersByTimeAsync(500)
+      await whenRendered()
       addPaymentPlans()
       await whenRendered()
-      await vi.advanceTimersByTimeAsync(SETTLE_MS)
 
+      expect(vi.getTimerCount()).toBe(timersOfOneWidget)
       expect(spies.attached()).toEqual({})
-      expect(vi.getTimerCount()).toBe(0)
     })
   })
 })

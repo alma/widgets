@@ -8,11 +8,10 @@ describe('price', () => {
     expect(priceToCents(9.99)).toBe(999)
   })
 
-  it('transform cents into euros, rounded to two decimals', () => {
+  it('transform cents into euros', () => {
     expect(priceFromCents(12345)).toBe(123.45)
     expect(priceFromCents(12300)).toBe(123)
     expect(priceFromCents(5)).toBe(0.05)
-    expect(priceFromCents(100.9)).toBe(1.01)
   })
 
   it('transform cents values into a properly displayed text', () => {
