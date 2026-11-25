@@ -178,6 +178,11 @@ The package's `dist` folder, also served by jsDelivr, holds these files:
 | `widgets.css`       | The widgets' styles.                                                                      |
 | `widgets.min.css`   | The same styles, minified.                                                                |
 | `widgets-wc.umd.js` | Identical to `widgets.umd.js`. It stays in the package so existing integrations keep working. |
+| `types/index.d.ts`  | The TypeScript declarations of `widgets.js`. TypeScript finds them on its own.            |
+
+With a bundler, import the package itself. `import { ApiMode, Widgets } from '@alma/widgets'` loads `widgets.js` and its types. Import the styles as `@alma/widgets/dist/widgets.css` or `@alma/widgets/dist/widgets.min.css`.
+
+`widgets.umd.js` and `widgets-wc.umd.js` are for `<script>` tags only. The package doesn't export them, so a bundler that imports them by package path stops with an error.
 
 # To go further
 

@@ -39,6 +39,29 @@ View all [Changelog](https://github.com/alma/widgets/releases)
 </script>
 ```
 
+### With a bundler
+
+If you bundle your JavaScript, install the package instead of loading the script from jsDelivr:
+
+```bash
+npm install @alma/widgets
+```
+
+```ts
+import '@alma/widgets/dist/widgets.min.css'
+import { ApiMode, Widgets } from '@alma/widgets'
+
+const widgets = Widgets.initialize('<YOUR MERCHANT ID>', ApiMode.LIVE)
+widgets.add(Widgets.PaymentPlans, {
+  container: '#alma-widget',
+  purchaseAmount: 45000,
+})
+```
+
+The CSS import needs a CSS loader in your bundler. Without one, keep the `<link>` tag above.
+
+The package includes its TypeScript declarations. Import `@alma/widgets`, not `@alma/widgets/dist/widgets.umd.js`. The UMD file is for `<script>` tags only, and the package doesn't export it, so a bundler that imports it stops with an error.
+
 ## Browser support
 
 The widgets run in Chrome 80, Firefox 74, Safari 13.1, Safari on iOS 13.4 and their later versions. See [Browser support](./documentation.md#browser-support), [Content Security Policy](./documentation.md#content-security-policy) if your page enforces Trusted Types, and [Files](./documentation.md#files) for the files the package ships.

@@ -8,7 +8,7 @@ paths:
 
 These rules override generic Lit advice and hold until a major release that is allowed to break the merchant contract. Merchants and Alma's e-commerce plugins load the widget from jsDelivr or npm and call `Alma.Widgets.initialize(merchantId, mode).add(...)`. Their integrations must keep working without any change, and that goal overrides every other one.
 
-Generic advice that doesn't apply here: public custom element tags, attributes and events as the API, an `exports` field in `package.json`, and a custom elements manifest. All of them wait for a major release that is allowed to break the merchant contract.
+Generic advice that doesn't apply here: public custom element tags, attributes and events as the API, and a custom elements manifest. All of them wait for a major release that is allowed to break the merchant contract.
 
 ## API
 
