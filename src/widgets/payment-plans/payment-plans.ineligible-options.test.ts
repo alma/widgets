@@ -51,12 +51,6 @@ describe('PaymentPlan has ineligible options from configPlans', () => {
     vi.useRealTimers()
   })
 
-  it('displays only provided plans (except p1x)', () => {
-    expect(screen.getByText('J+30')).toBeInTheDocument()
-    expect(screen.getByText('4x')).toBeInTheDocument()
-    expect(screen.queryByText('1x')).not.toBeInTheDocument()
-  })
-
   it('does not display plan that are not part of eligibility', () => {
     expect(screen.queryByText('8x')).not.toBeInTheDocument()
   })

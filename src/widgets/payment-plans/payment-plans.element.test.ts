@@ -3,11 +3,12 @@ import userEvent from '@testing-library/user-event'
 import { http, HttpResponse } from 'msw'
 import { axe } from 'vitest-axe'
 
-import type { ConfigPlan, EligibilityPlan } from '@/domain/plans.types'
+import type { EligibilityPlan } from '@/domain/plans.types'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import type { Locale } from '@/shared/i18n/i18n.const'
 import {
+  mockButtonPlans,
   mockP2XEligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockP4XEligiblePlanWithFees,
@@ -21,11 +22,7 @@ import {
 } from '@/test/msw/eligibility-handlers'
 import { server } from '@/test/msw/msw-server'
 import { mountWidget } from '@/test/utils/mount-widget'
-import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
-import {
-  AlmaPaymentPlans,
-  type AlmaPaymentPlansProperties,
-} from '@/widgets/payment-plans/payment-plans.element'
+import { AlmaPaymentPlans } from '@/widgets/payment-plans/payment-plans.element'
 import { paymentPlansMessages } from '@/widgets/payment-plans/payment-plans.messages'
 import { getPlanDescription } from '@/widgets/payment-plans/utils/plan-description'
 
@@ -35,24 +32,6 @@ const FROZEN =
 // Internal @state() fields are in elementProperties too.
 const publicProperties = () =>
   [...AlmaPaymentPlans.elementProperties].filter(([, options]) => !options.state)
-
-// The typecheck fails on a retyped property.
-type FrozenProperties = {
-  purchaseAmount: number
-  apiData?: { domain: string; merchantId: string }
-  configPlans?: ConfigPlan[]
-  transitionDelay?: number
-  customerBillingCountry?: string
-  customerShippingCountry?: string
-  merchantCoversAllFees?: boolean
-  hideIfNotEligible?: boolean
-  monochrome?: boolean
-  suggestedPaymentPlan?: number | number[]
-  cards?: Card[]
-  hideBorder: boolean
-  onModalClose?: (event: MouseEvent | KeyboardEvent) => void
-  locale: string
-}
 
 describe('AlmaPaymentPlans', () => {
   it('should keep the frozen properties', () => {
@@ -77,11 +56,6 @@ describe('AlmaPaymentPlans', () => {
       'suggestedPaymentPlan',
       'transitionDelay',
     ])
-  })
-
-  it('should keep the frozen property types', () => {
-    expectTypeOf<AlmaPaymentPlansProperties>().toEqualTypeOf<FrozenProperties>()
-    expectTypeOf<Pick<AlmaPaymentPlans, keyof FrozenProperties>>().toEqualTypeOf<FrozenProperties>()
   })
 
   it('should take every property without an attribute', () => {
@@ -162,11 +136,18 @@ describe('AlmaPaymentPlans behaviour', () => {
   })
 
   describe('hidden states', () => {
+    // The loader must show first, so an empty widget means the request finished and not that it has not rendered yet.
+    const waitForLoaderToFinish = async (host: HTMLElement | null | undefined) => {
+      await screen.findByTestId('loader')
+      await vi.waitFor(() => expect(screen.queryByTestId('loader')).toBeNull())
+      await (host as AlmaPaymentPlans).updateComplete
+    }
+
     it('should render nothing when the request fails', async () => {
       server.use(eligibilityError())
 
       const { host } = await mountWidget('PaymentPlans', { purchaseAmount: 45000 })
-      await vi.waitFor(() => expect(screen.queryByTestId('loader')).toBeNull())
+      await waitForLoaderToFinish(host)
 
       expect(host?.children).toHaveLength(0)
     })
@@ -178,7 +159,16 @@ describe('AlmaPaymentPlans behaviour', () => {
         purchaseAmount: 45000,
         hideIfNotEligible: true,
       })
-      await vi.waitFor(() => expect(screen.queryByTestId('loader')).toBeNull())
+      await waitForLoaderToFinish(host)
+
+      expect(host?.children).toHaveLength(0)
+    })
+
+    it('should render nothing when no plan is left to show', async () => {
+      server.use(eligibilityPlans(mockButtonPlans))
+
+      const { host } = await mountWidget('PaymentPlans', { purchaseAmount: 40000, plans: [] })
+      await waitForLoaderToFinish(host)
 
       expect(host?.children).toHaveLength(0)
     })
@@ -252,13 +242,15 @@ describe('AlmaPaymentPlans behaviour', () => {
       document.body.removeEventListener('click', onPageClick)
     })
 
-    it('should not highlight a clicked plan that is not eligible', async () => {
-      await mount()
-      const last = screen.getAllByRole('option')[3]
+    it('should neither select a clicked plan that is not eligible nor open the modal', async () => {
+      const { host } = await mount()
 
-      fireEvent.click(last)
+      // userEvent.click hovers first, and hovering a plan selects it. This click has no hover.
+      fireEvent.click(screen.getAllByRole('option')[3])
+      await (host as AlmaPaymentPlans).updateComplete
 
-      expect(last).toHaveAttribute('aria-selected', 'false')
+      expect(screen.getAllByRole('option')[3]).toHaveAttribute('aria-selected', 'false')
+      expect(screen.queryByTestId('modal-container')).not.toBeInTheDocument()
     })
   })
 

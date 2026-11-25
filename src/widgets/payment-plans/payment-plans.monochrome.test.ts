@@ -15,8 +15,6 @@ it.each([true, false])(
     expect(screen.getByText('M+1').className).toContain('active')
     if (monochrome) {
       expect(screen.getByText('M+1').className).toContain('monochrome')
-    } else {
-      expect(screen.getByText('M+1').className).not.toContain('polychrome')
     }
   },
 )

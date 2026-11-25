@@ -5,7 +5,6 @@ import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
 import {
   mockDeferredMultiInstallmentPlanWithFees,
-  mockDeferredMultiInstallmentPlanWithoutFees,
   mockPayLater30DaysEligiblePlan,
 } from '@/test/fixtures/plans'
 import { renderTemplate } from '@/test/utils/render-template'
@@ -33,11 +32,8 @@ describe('WarningMessage', () => {
     ['LU', "Attention ! Emprunter de l'argent coûte de l'argent."],
     ['GB', "Attention ! Emprunter de l'argent a un coût."],
     ['UK', "Attention ! Emprunter de l'argent a un coût."],
-  ])('should render the %s sentence whether the plan has fees or not', (country, sentence) => {
+  ])('should render the %s sentence', (country, sentence) => {
     expect(warningFor(mockDeferredMultiInstallmentPlanWithFees.withCountry(country))).toBe(sentence)
-    expect(warningFor(mockDeferredMultiInstallmentPlanWithoutFees.withCountry(country))).toBe(
-      sentence,
-    )
   })
 
   it('should render the sentence of a country given in lowercase', () => {

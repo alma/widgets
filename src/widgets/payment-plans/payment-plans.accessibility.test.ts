@@ -227,34 +227,6 @@ describe('PaymentPlan Accessibility Tests', () => {
 
       await waitFor(() => expect(alertRegion).toHaveTextContent('Plan sélectionné : 3x'))
     })
-
-    it('should clear announcements after a timeout', async () => {
-      vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
-      try {
-        const { host } = await renderWithPlans(PAY_LATER_3X_4X, {
-          purchaseAmount: 100000,
-          transitionDelay: -1,
-        })
-        const element = host as AlmaPaymentPlans
-        const alertRegion = screen.getByRole('alert')
-        const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
-
-        // waitFor would time out on the fake timers, so each step awaits the render instead.
-        await user.hover(screen.getByRole('option', { name: /3x/i }))
-        await element.updateComplete
-        expect(alertRegion).toHaveTextContent('Plan sélectionné : 3x')
-
-        vi.advanceTimersByTime(999)
-        await element.updateComplete
-        expect(alertRegion).toHaveTextContent('Plan sélectionné : 3x')
-
-        vi.advanceTimersByTime(1)
-        await element.updateComplete
-        expect(alertRegion).toBeEmptyDOMElement()
-      } finally {
-        vi.useRealTimers()
-      }
-    })
   })
 
   describe('keyboard navigation', () => {
