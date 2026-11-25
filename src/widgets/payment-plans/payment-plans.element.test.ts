@@ -697,5 +697,33 @@ describe('AlmaPaymentPlans behaviour', () => {
       expect(widgetIds[0]).toBe('alma-widget-payment-plans-main-container')
       expect(widgetIds[1]).toBe('alma-widget-payment-plans-main-container')
     })
+
+    describe('once the merchant empties one container', () => {
+      afterEach(() => {
+        vi.useRealTimers()
+      })
+
+      it('should keep cycling through the plans of the other widget', async () => {
+        vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
+        const emptied = addContainer('alma-widget-emptied')
+        const other = addContainer('alma-widget-other')
+        await mountWidget('PaymentPlans', { purchaseAmount: 45000, container: emptied })
+        await mountWidget('PaymentPlans', { purchaseAmount: 45000, container: other })
+        await vi.waitFor(() => expect(screen.getAllByTestId('widget-container')).toHaveLength(2))
+        const selectedIndex = () =>
+          Array.from(document.querySelectorAll(`${other} [role="option"]`)).findIndex(
+            (plan) => plan.getAttribute('aria-selected') === 'true',
+          )
+        expect(selectedIndex()).toBe(0)
+
+        document.querySelector(emptied)?.replaceChildren()
+        // The first move waits for the default delay, which restarts on each render.
+        for (let time = 0; time < 20000 && selectedIndex() === 0; time += 100) {
+          await vi.advanceTimersByTimeAsync(100)
+        }
+
+        expect(selectedIndex()).toBe(1)
+      })
+    })
   })
 })

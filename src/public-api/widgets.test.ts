@@ -162,6 +162,20 @@ describe('WidgetsController', () => {
       const [host] = hostsIn(container)
       expect(host.firstRender).toMatchObject({ hideBorder: null, monochrome: null })
     })
+
+    it('should give each host the locale of its own add()', () => {
+      const other = document.createElement('div')
+      other.id = 'alma-widget-other'
+      document.body.append(other)
+
+      addPaymentPlans({ locale: Locale.fr })
+      addPaymentPlans({ container: '#alma-widget-other', locale: Locale.en })
+
+      expect([container, other].map((element) => hostsIn(element)[0].firstRender?.locale)).toEqual([
+        Locale.fr,
+        Locale.en,
+      ])
+    })
   })
 
   describe('a second add() on the same container', () => {

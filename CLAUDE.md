@@ -67,7 +67,9 @@ Read the file, not a description of it.
 - `src/test/setup.ts` runs before every unit and browser test file, but not the contract tests. It
   sets `Date.now()` to a fixed date (`1638350762000`), adds the `vitest-axe` and Testing Library
   DOM matchers, and after each test restores the spies, clears the mock calls, and empties `<body>`,
-  its `ReactModal__Body--open` class, `sessionStorage` and the `warnOnce` memory.
+  its `ReactModal__Body--open` class, `sessionStorage` and the `warnOnce` memory. A
+  `navigator.sendBeacon` call or an image `src` set fails the test, even when the code catches the
+  error, because the widget sends no tracking.
 - `src/test/setup-jsdom.ts` runs in the `unit` project only. It puts the time zone back to UTC after
   each test and mocks `matchMedia` (no query matches), `no-scroll` and the canvas context axe needs.
   In unit tests, a CSS module class name equals its key (`styles.planButton === 'planButton'`).
