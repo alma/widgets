@@ -4,16 +4,8 @@ import { resolve } from 'node:path'
 import CleanCSS from 'clean-css'
 import { defineConfig, type Plugin } from 'vite'
 
-import { icuCatalogues, icuParserAlias } from './scripts/vite-plugin-icu'
-
-const src = (path = '') => resolve(__dirname, 'src', path)
-
-// alias and define are shared with vitest.config.ts.
-export const alias = [{ find: '@', replacement: src() }, icuParserAlias]
-
-export const define = {
-  'import.meta.env.BUILD_VERSION': JSON.stringify(process.env.BUILD_VERSION ?? 'dev'),
-}
+import { alias, define, src } from './scripts/vite-config-utils'
+import { icuCatalogues } from './scripts/vite-plugin-icu'
 
 // Runs once per build, like master. Skips when widgets.css is missing (failed watch rebuild, Storybook).
 const minCss = (): Plugin => {
