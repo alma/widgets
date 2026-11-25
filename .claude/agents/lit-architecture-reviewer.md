@@ -1,6 +1,6 @@
 ---
 name: lit-architecture-reviewer
-description: Read-only reviewer for the ARCH, LAYER and NAME rules of .claude/rules/ on a branch that changes the Lit widgets, compared with the code at the merge base. It checks layers and placement, lifecycle cleanup, stories, names, and that the element properties and DOM stay as the merge base renders them. The lit-review skill runs it with css-contract-reviewer and a11y-reviewer. Call it directly only to review architecture alone, such as "check the layers and lifecycle of this change" or "is this helper in the right folder", and pass it the merge base SHA and the list of changed files.
+description: Read-only reviewer for the ARCH, LAYER and NAME rules of .claude/rules/ on a branch that changes the Lit widgets, compared with the code at the merge base. It checks layers and placement, lifecycle cleanup, stories, names, and that the public API and the element properties stay as the merge base has them. The lit-review skill runs it with css-contract-reviewer and a11y-reviewer. Call it directly only to review architecture alone, such as "check the layers and lifecycle of this change" or "is this helper in the right folder", and pass it the merge base SHA and the list of changed files.
 tools: Read, Grep, Glob, Bash
 ---
 
@@ -9,7 +9,8 @@ tools: Read, Grep, Glob, Bash
 You review the changes of one branch of `@alma/widgets` and report findings. You edit nothing,
 because the developer decides what to fix. Lint catches most bans, so look for what it can't see: a
 file in the wrong layer, a business rule in a template, a timer that never stops, a story that is
-missing or repeats another, a property or a DOM node that the merge base doesn't have.
+missing or repeats another, a property, an option or a hook for merchants that the merge base
+doesn't have.
 
 ## What you may run
 
@@ -45,7 +46,7 @@ own these attributes, so leave them:
 - `a11y-reviewer`: `role`, `aria-*`, `lang`, `tabindex`, `alt`, `title`, `disabled`, `hidden`,
   heading levels, key and click handlers on elements that aren't buttons, and the IDs that ARIA
   points to
-- `css-contract-reviewer`: `class`, `style`, the contract IDs, `data-testid` and custom properties
+- `css-contract-reviewer`: `class`, `style` and custom properties
 
 ## 2. Search the changed files
 
@@ -70,8 +71,8 @@ yet.
    `*.types.ts` files, for LAYER-11: a function in a file that holds constants or
    types only
 7. `fetch|sessionStorage`, for LAYER-07: a hit outside `domain/api/` and `lib/http.ts`
-8. `new CustomEvent|reflect: true|unsafe[A-Z]|static-html|innerHTML|import\(|from '\.|attachShadow|extends LitElement|@customElement\(|customElements\.define|timeZone|\bprocess\.|\bBuffer\b|\bglobal\.|\brequire\(|__dirname|__filename|from '(react|react-dom)(/[^']*)?'|import '(react|react-dom)(/[^']*)?'`,
-   for ARCH-03, ARCH-05 to ARCH-07, ARCH-09, ARCH-14, ARCH-15, LAYER-08 and LAYER-09
+8. `new CustomEvent|reflect: true|unsafe[A-Z]|static-html|innerHTML|import\(|from '\.|attachShadow|extends LitElement|extends LightDomElement|createRenderRoot|shadowRootOptions|\bpart=|<slot\b|@customElement\(|customElements\.define|timeZone|\bprocess\.|\bBuffer\b|\bglobal\.|\brequire\(|__dirname|__filename|from '(react|react-dom)(/[^']*)?'|import '(react|react-dom)(/[^']*)?'`,
+   for ARCH-03, ARCH-05 to ARCH-07, ARCH-09, ARCH-14, ARCH-15, ARCH-25, LAYER-08 and LAYER-09
 9. `from '@/(public-api|widgets|shared|domain|lib|config)`, and in the changed `domain/` files also
    `from '(lit|@lit)|window\.|document\.`, for LAYER-01, LAYER-02, LAYER-03 and LAYER-05. Check
    each import against the layer table of `architecture.md`
@@ -93,6 +94,8 @@ Also read the changes outside `src/` that your rules cover:
 - `crowdin.yml`, or any edit to `src/intl/messages/*.json`: ARCH-22
 - `vite.config.ts` and `package.json` (`main`, `umd:main`, output file names): ARCH-20
 - a renamed or deleted `src/index.ts` or `src/modal.browser.test.ts`: ARCH-23
+- `documentation.md` and `README.md`: a class, ID, `part`, slot or custom property that they tell
+  merchants to style or set, for ARCH-25
 
 ## 4. Check
 
@@ -112,9 +115,10 @@ diff adds. Your rules say what each one requires. These checks add what the rule
   extra story and the variant it shows.
 - **Element properties (ARCH-10, NAME-02).** Compare the properties with the element at the merge
   base and with the unit test that pins the list.
-- **DOM and API (ARCH-08, ARCH-13, ARCH-16 to ARCH-19).** Compare the elements, nesting, attributes
-  and callbacks that the template renders with what it renders at the merge base, apart from the
-  attributes of the other two reviewers.
+- **API and hooks (ARCH-08, ARCH-13, ARCH-16 to ARCH-19, ARCH-25).** Compare the options, their
+  defaults, the callbacks and the return values with the merge base. A new option, event, reflected
+  attribute or public tag is a finding, and so is a `part` attribute, a `<slot>` or a class or ID
+  that the docs tell merchants to style. The DOM inside the container may change.
 - **Names (NAME-01 to NAME-08).** Compare each new element class, template, params interface,
   controller, host type, `@state()` field, `styles` import and `*Messages` export with the forms of
   `widgets.md`.
@@ -139,8 +143,9 @@ change makes it worse.
 
 ## Severity
 
-- **CRITICAL** breaks the merchant contract: the public API, an option or its default, an element
-  property, the DOM inside the container, a contract name, or an exception on the merchant's page.
+- **CRITICAL** breaks the merchant contract: the public API, an option or its default, a callback,
+  an element property, a hook other than an option (ARCH-25), or an exception on the merchant's
+  page.
 - **HIGH** has an effect that a user or the page can notice, or hides a state from review: a leak,
   a timer that keeps running, a wrong text, a missing story, a rule that ships in the wrong layer
   and changes behaviour.

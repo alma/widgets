@@ -12,4 +12,4 @@ Generic advice that doesn't apply here: wrapping the request in a Lit `Task` or 
 
 ## Rules
 
-- **ARCH-21** The eligibility request stays `POST /v2/payments/eligibility` with the headers `Authorization: Alma-Merchant-Auth <merchantId>` and `X-Alma-Agent: Alma Widget/<version>`, cached for one hour in `sessionStorage`. The JavaScript sends no other request. Why: the API expects this request, and merchants expect no tracking. Check: contract tests.
+- **ARCH-21** The eligibility request stays `POST /v2/payments/eligibility` with the headers `Authorization: Alma-Merchant-Auth <merchantId>` and `X-Alma-Agent: Alma Widget/<version>`, cached for one hour in `sessionStorage`. The JavaScript sends no other request. Why: the API expects this request, and merchants expect no tracking. Check: unit tests.
