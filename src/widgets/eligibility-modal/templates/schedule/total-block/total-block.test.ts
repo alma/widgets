@@ -6,7 +6,12 @@ import { screen } from '@testing-library/dom'
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { Locale } from '@/shared/i18n/i18n.const'
-import { mockP10XEligiblePlan, mockP1XEligiblePlan } from '@/test/fixtures/plans'
+import {
+  mockP10XEligiblePlan,
+  mockP1XEligiblePlan,
+  mockP4XEligiblePlanWithFees,
+  mockPayLaterOneMonthEligiblePlan,
+} from '@/test/fixtures/plans'
 import { renderTemplate } from '@/test/utils/render-template'
 import { totalBlockTemplate } from '@/widgets/eligibility-modal/templates/schedule/total-block/total-block.template'
 
@@ -72,5 +77,24 @@ describe.each(Object.values(Locale))('the total block in %s, like the fixtures',
     expect(normalize(feesLine.textContent ?? '')).toBe(
       normalize(`${messages['credit-features.total-credit-cost']}${creditCostDisplay}`),
     )
+  })
+})
+
+describe('the total block in fr, with the figures of the modal', () => {
+  it.each([
+    ['a Pay Later plan', mockPayLaterOneMonthEligiblePlan, '450,00 €', '0,00 € (TAEG 0,00 %)'],
+    [
+      'a 4x plan with fees',
+      // The API sends the APR of the fees for a PNX plan with fees.
+      { ...mockP4XEligiblePlanWithFees, annual_interest_rate: 525 },
+      '460,62 €',
+      '10,62 € (TAEG 5,25 %)',
+    ],
+  ])('should show the total and the credit cost of %s', (_name, plan, total, creditCost) => {
+    renderTotalBlock(plan, Locale.fr)
+
+    const [totalLine, feesLine] = screen.getByTestId('modal-summary').children
+    expect(normalize(totalLine.textContent ?? '')).toBe(`Total${total}`)
+    expect(normalize(feesLine.textContent ?? '')).toBe(`Dont coût du crédit (TTC)${creditCost}`)
   })
 })

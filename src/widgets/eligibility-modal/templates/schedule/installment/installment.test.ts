@@ -52,6 +52,14 @@ describe('installmentTemplate', () => {
     expect(amount).toHaveClass('bold', { exact: true })
   })
 
+  it('should put the installment-{index} test ID on a div', () => {
+    const container = renderInstallment(dueToday, 3)
+
+    const row = container.firstElementChild
+    expect(row?.localName).toBe('div')
+    expect(row).toHaveAttribute('data-testid', 'installment-3')
+  })
+
   it('should leave the amount of the other rows without a class attribute', () => {
     const container = renderInstallment(dueToday, 1)
 
