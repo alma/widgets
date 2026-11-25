@@ -32,6 +32,13 @@ describe('getIndexOfActivePlan', () => {
     expect(getIndexOfActivePlan({ suggestedPaymentPlan: 3, eligibilityPlans: [] })).toBe(0)
   })
 
+  // Known quirk: a numeric string matches no plan, as the contract tests pin.
+  it('should return 0 for a numeric string', () => {
+    expect(
+      getIndexOfActivePlan({ suggestedPaymentPlan: '4' as unknown as number, eligibilityPlans }),
+    ).toBe(0)
+  })
+
   describe('with a list of suggested installments counts', () => {
     it('should follow the order of the suggestions, not the order of the plans', () => {
       expect(getIndexOfActivePlan({ suggestedPaymentPlan: [10, 3], eligibilityPlans })).toBe(

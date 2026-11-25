@@ -3,7 +3,11 @@ import { html, render } from 'lit'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
-import { mockP2XEligiblePlan, mockP3XEligiblePlanWithFees } from '@/test/fixtures/plans'
+import {
+  mockP2XEligiblePlan,
+  mockP3XEligiblePlanWithFees,
+  mockP4XAboveMaxDisplayPlan,
+} from '@/test/fixtures/plans'
 import { renderTemplate } from '@/test/utils/render-template'
 import {
   type PlansContentParams,
@@ -85,6 +89,16 @@ describe('plansContentTemplate', () => {
       expect(screen.getByTestId('widget-container')).not.toHaveClass('hideBorder')
     })
 
+    it('should put no monochrome class anywhere, and paint the logo orange, with monochrome: false', () => {
+      const container = renderContent({ monochrome: false })
+
+      expect(container.querySelector('.monochrome')).toBeNull()
+      expect(within(knowMore()).getByTestId('Alma-Logo').querySelector('path')).toHaveAttribute(
+        'fill',
+        '#fa5022',
+      )
+    })
+
     it('should give the announcement region its class', () => {
       renderContent()
 
@@ -119,6 +133,23 @@ describe('plansContentTemplate', () => {
       fireEvent.click(knowMore())
 
       expect(onOpenModal).toHaveBeenCalledOnce()
+    })
+  })
+
+  describe('info line of a plan that is not eligible', () => {
+    it('should give it the not-eligible class and open nothing on a click', () => {
+      const onOpenModal = vi.fn()
+      // The element makes the info line clickable only when the current plan is eligible.
+      renderTemplate(
+        plansContentTemplate(
+          params([mockP4XAboveMaxDisplayPlan, p2x], { isInfoClickable: false, onOpenModal }),
+          createIntl('fr'),
+        ),
+      )
+
+      expect(infoLine()).toHaveClass('alma-payment-plans-not-eligible-option')
+      fireEvent.click(infoLine())
+      expect(onOpenModal).not.toHaveBeenCalled()
     })
   })
 

@@ -8,6 +8,7 @@ import { createIntl } from '@/shared/i18n/create-intl'
 import {
   mockP1XEligiblePlan,
   mockP3XEligiblePlanWithFees,
+  mockP4XAboveMaxDisplayPlan,
   mockPayLater30DaysEligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
 } from '@/test/fixtures/plans'
@@ -97,6 +98,17 @@ describe('planButtonTemplate', () => {
     renderPlan(mockP3XEligiblePlanWithFees, 'fr')
 
     expect(screen.getByRole('option')).toHaveAttribute('type', 'button')
+  })
+
+  it.each([
+    ['an eligible', mockP3XEligiblePlanWithFees, false],
+    ['an ineligible', mockP4XAboveMaxDisplayPlan, true],
+  ])('should set the not-eligible class for %s plan', (_kind, plan, hasClass) => {
+    renderPlan(plan, 'fr')
+
+    expect(
+      screen.getByRole('option').classList.contains('alma-payment-plans-not-eligible-option'),
+    ).toBe(hasClass)
   })
 
   it.each([

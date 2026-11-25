@@ -3,7 +3,11 @@ import { html } from 'lit'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
-import { mockP2XEligiblePlan, mockP3XEligiblePlanWithFees } from '@/test/fixtures/plans'
+import {
+  mockP2XEligiblePlan,
+  mockP3XEligiblePlanWithFees,
+  mockP4XAboveMaxDisplayPlan,
+} from '@/test/fixtures/plans'
 import { renderTemplate } from '@/test/utils/render-template'
 import {
   type PlansContentParams,
@@ -111,6 +115,26 @@ describe('plansContentTemplate', () => {
       renderContent({ onOpenModal })
 
       expect(fireEvent.keyDown(knowMore(), { key: 'a' })).toBe(true)
+      expect(onOpenModal).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('info line of a plan that is not eligible', () => {
+    it('should be a plain element that no key opens', () => {
+      const onOpenModal = vi.fn()
+      // The element makes the info line clickable only when the current plan is eligible.
+      renderTemplate(
+        plansContentTemplate(
+          params([mockP4XAboveMaxDisplayPlan, p2x], { isInfoClickable: false, onOpenModal }),
+          createIntl('fr'),
+        ),
+      )
+
+      expect(infoLine()).not.toHaveAttribute('role')
+      expect(infoLine()).not.toHaveAttribute('tabindex')
+      expect(infoLine()).not.toHaveAttribute('aria-haspopup')
+      fireEvent.keyDown(infoLine(), { key: 'Enter' })
+      fireEvent.keyDown(infoLine(), { key: ' ' })
       expect(onOpenModal).not.toHaveBeenCalled()
     })
   })

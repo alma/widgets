@@ -122,6 +122,26 @@ describe('PlanCyclingController', () => {
       await vi.advanceTimersByTimeAsync(500)
       expect(host.cycling.current).toBe(200)
     })
+
+    // Plugins may pass the delay as a string.
+    it('should read a numeric string delay as a number', async () => {
+      const host = appendHost([100, 200], '2000' as unknown as number)
+
+      await vi.advanceTimersByTimeAsync(1999)
+      expect(host.cycling.current).toBe(100)
+
+      await vi.advanceTimersByTimeAsync(1)
+      expect(host.cycling.current).toBe(200)
+    })
+
+    it('should disable animation for a negative numeric string delay', async () => {
+      const host = appendHost([100, 200, 300], '-1' as unknown as number)
+      const initialValue = host.cycling.current
+
+      expect(vi.getTimerCount()).toBe(0)
+      await vi.advanceTimersByTimeAsync(1000)
+      expect(host.cycling.current).toBe(initialValue)
+    })
   })
 
   describe('Hover functionality', () => {
