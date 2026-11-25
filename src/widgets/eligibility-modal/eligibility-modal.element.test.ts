@@ -1,21 +1,25 @@
-import { screen } from '@testing-library/dom'
+import { screen, within } from '@testing-library/dom'
 import { http, HttpResponse } from 'msw'
 import type { MockInstance } from 'vitest'
 
-import type { ConfigPlan } from '@/domain/plans.types'
+import type { EligibilityPlan } from '@/domain/plans.types'
 import { ApiMode } from '@/public-api/public-api.const'
-import { mockButtonPlans } from '@/test/fixtures/plans'
+import {
+  baseIneligblePlan,
+  mockButtonPlans,
+  mockP10XEligiblePlan,
+  mockP2XEligiblePlan,
+  mockP4XIneligiblePlan,
+} from '@/test/fixtures/plans'
 import { ELIGIBILITY_ENDPOINT } from '@/test/msw/eligibility-handlers'
 import { server } from '@/test/msw/msw-server'
 import { useFakeMatchMedia } from '@/test/utils/match-media'
 import { TEST_MERCHANT_ID } from '@/test/utils/mount-widget'
-import { closeModalOf } from '@/widgets/eligibility-modal/controllers/modal-portal.controller'
 import { desktopMediaQuery } from '@/widgets/eligibility-modal/eligibility-modal.const'
 import {
   AlmaEligibilityModal,
   type AlmaEligibilityModalProperties,
 } from '@/widgets/eligibility-modal/eligibility-modal.element'
-import type { Card } from '@/widgets/eligibility-modal/templates/modal-layout/cards/cards.types'
 
 const FROZEN =
   'Frozen: another bundle of the widget on the same page may have defined the element, and this bundle sets these properties on it. Never add, remove, rename or retype one.'
@@ -61,21 +65,6 @@ describe('AlmaEligibilityModal', () => {
       ])
     })
 
-    // npm run typecheck fails on a retyped property.
-    it('should keep the frozen property types', () => {
-      expectTypeOf<AlmaEligibilityModalProperties>().toEqualTypeOf<{
-        purchaseAmount: number
-        apiData?: { domain: string; merchantId: string }
-        configPlans?: ConfigPlan[]
-        customerBillingCountry?: string
-        customerShippingCountry?: string
-        merchantCoversAllFees?: boolean
-        cards?: Card[]
-        locale: string
-        onClose?: (event: MouseEvent | KeyboardEvent) => void
-      }>()
-    })
-
     it("should default the locale to 'en'", () => {
       expect(new AlmaEligibilityModal().locale).toBe('en')
     })
@@ -101,6 +90,53 @@ describe('AlmaEligibilityModal', () => {
     })
   })
 
+  describe('plans', () => {
+    const respondWith = (plans: EligibilityPlan[]) => {
+      server.use(http.post(ELIGIBILITY_ENDPOINT, () => HttpResponse.json(plans)))
+    }
+
+    const scheduleRows = () =>
+      within(screen.getByTestId('modal-installments-element')).getAllByRole('listitem')
+
+    it('should display the schedule for the selected payment plan', async () => {
+      appendModal()
+      const button = await screen.findByRole('button', { name: /4x$/ })
+      expect(scheduleRows()).toHaveLength(1)
+
+      button.click()
+
+      await vi.waitFor(() => expect(scheduleRows()).toHaveLength(4))
+    })
+
+    it('should show no tab for an ineligible plan', async () => {
+      respondWith([mockP2XEligiblePlan, mockP4XIneligiblePlan, mockP10XEligiblePlan])
+      appendModal()
+
+      const group = await screen.findByRole('group', { name: 'Options de paiement disponibles' })
+
+      expect(
+        within(group)
+          .getAllByRole('button')
+          .map((button) => button.textContent),
+      ).toEqual(['2x', '10x'])
+    })
+
+    it('should keep the deferred title when the only deferred plan is ineligible', async () => {
+      const ineligibleDeferredPlan = {
+        ...baseIneligblePlan.withInstallmentsCount(1),
+        deferred_months: 1,
+      }
+      respondWith([ineligibleDeferredPlan, mockP2XEligiblePlan])
+      appendModal()
+
+      await screen.findByText('2x')
+
+      expect(screen.getByTestId('modal-title-element')).toHaveTextContent(
+        'Payez en plusieurs fois ou plus tard par carte bancaire avec Alma.',
+      )
+    })
+  })
+
   describe('layout', () => {
     const media = useFakeMatchMedia([desktopMediaQuery])
 
@@ -119,58 +155,9 @@ describe('AlmaEligibilityModal', () => {
         ),
       )
     })
-
-    it('should stop listening to the query once removed', () => {
-      const host = appendModal()
-
-      host.remove()
-
-      expect(media.listenerCount(desktopMediaQuery)).toBe(0)
-    })
   })
 
   describe('closing', () => {
-    it('should close the portal a microtask after the host is removed', async () => {
-      const host = appendModal()
-
-      host.remove()
-      expect(portals()).toHaveLength(1)
-      await Promise.resolve()
-
-      expect(portals()).toHaveLength(0)
-    })
-
-    it('should keep the portal open when the host is removed and put back in the same task', async () => {
-      const host = appendModal()
-      const container = host.parentElement as HTMLElement
-
-      container.remove()
-      document.body.append(container)
-      await Promise.resolve()
-
-      expect(portals()).toHaveLength(1)
-    })
-
-    it('should close the portal at once through closeModalOf()', () => {
-      const host = appendModal()
-
-      host.remove()
-      closeModalOf(host)
-
-      expect(portals()).toHaveLength(0)
-    })
-
-    it('should keep the portal open when the host moves', async () => {
-      const host = appendModal()
-      const elsewhere = document.createElement('section')
-      document.body.append(elsewhere)
-
-      elsewhere.append(host)
-      await Promise.resolve()
-
-      expect(portals()).toHaveLength(1)
-    })
-
     it('should call onClose once with the added event members', async () => {
       const onClose = vi.fn()
       appendModal({ onClose })

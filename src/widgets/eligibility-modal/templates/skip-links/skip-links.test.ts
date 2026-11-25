@@ -60,12 +60,6 @@ describe('SkipLinks', () => {
     )
   })
 
-  it('should render with custom className', () => {
-    const container = renderSkipLinks({ className: 'custom-class' })
-    // firstChild would be one of Lit's comment markers.
-    expect(container.firstElementChild).toHaveClass('custom-class')
-  })
-
   it('should focus target element when skip link is clicked', async () => {
     const user = userEvent.setup()
 

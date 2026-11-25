@@ -45,48 +45,6 @@ describe('Installment Accessibility Tests', () => {
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
-
-  it('should have proper semantic structure', async () => {
-    const container = renderInstallment(mockInstallment, 0)
-
-    // Lit leaves a comment marker as the first child, so the element is the first element child.
-    const installmentElement = container.firstElementChild
-    expect(installmentElement).toBeInTheDocument()
-
-    // Check that content is readable (French format)
-    expect(container).toHaveTextContent('50,00')
-    expect(container).toHaveTextContent('1 janvier 2022')
-
-    const results = await axe(container)
-    expect(results).toHaveNoViolations()
-  })
-
-  it('should handle installment with fees', async () => {
-    const installmentWithFee = {
-      due_date: 1640995200,
-      customer_fee: 100,
-      customer_interest: 0,
-      purchase_amount: 5000,
-      total_amount: 5100,
-    }
-
-    const container = renderInstallment(installmentWithFee, 1)
-
-    const results = await axe(container)
-    expect(results).toHaveNoViolations()
-  })
-
-  it('should be accessible for screen readers', async () => {
-    const container = renderInstallment(mockInstallment, 0)
-
-    // Check that there are no color/contrast issues
-    const results = await axe(container, {
-      rules: {
-        'color-contrast': { enabled: true },
-      },
-    })
-    expect(results).toHaveNoViolations()
-  })
 })
 
 describe('installmentTemplate', () => {

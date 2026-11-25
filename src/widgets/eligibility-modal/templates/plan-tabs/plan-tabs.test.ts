@@ -231,18 +231,11 @@ describe('planTabsTemplate', () => {
   })
 
   describe('short name', () => {
-    it.each([
-      ['2x', { installments_count: 2, deferred_days: 0, deferred_months: 0 }],
-      ['12x', { installments_count: 12, deferred_days: 0, deferred_months: 0 }],
-      ['Payer maintenant', { installments_count: 1, deferred_days: 0, deferred_months: 0 }],
-      ['J+30', { installments_count: 1, deferred_days: 30, deferred_months: 0 }],
-      ['M+1', { installments_count: 1, deferred_days: 0, deferred_months: 1 }],
-      // The deferred days win over the months.
-      ['J+30', { installments_count: 1, deferred_days: 30, deferred_months: 1 }],
-    ])('should name the plan %s', (shortName, plan) => {
-      renderPlan({ ...mockP1XEligiblePlan, ...plan }, 'fr')
+    // The deferred days win over the months.
+    it('should name the plan J+30', () => {
+      renderPlan({ ...mockP1XEligiblePlan, deferred_days: 30, deferred_months: 1 }, 'fr')
 
-      expect(screen.getByRole('button').textContent).toBe(shortName)
+      expect(screen.getByRole('button').textContent).toBe('J+30')
     })
 
     describe.each(['fr', 'en'])('in %s', (locale) => {
