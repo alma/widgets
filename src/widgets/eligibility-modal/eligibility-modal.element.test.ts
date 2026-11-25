@@ -171,6 +171,22 @@ describe('AlmaEligibilityModal', () => {
       expect(event.nativeEvent).toBe(event)
       expect(event.isDefaultPrevented()).toBe(false)
     })
+
+    it('should call onClose once for Escape, with the added event members', async () => {
+      const onClose = vi.fn()
+      appendModal({ onClose })
+      await screen.findByText('M+1')
+
+      const content = document.querySelector('#alma-widget-modal-main-container') as HTMLElement
+      content.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, bubbles: true }),
+      )
+
+      expect(onClose).toHaveBeenCalledOnce()
+      const [event] = onClose.mock.calls[0]
+      expect(event).toBeInstanceOf(KeyboardEvent)
+      expect(event.nativeEvent).toBe(event)
+    })
   })
 
   describe.each([['fr_FR'], [null]])('with the locale %s', (locale) => {

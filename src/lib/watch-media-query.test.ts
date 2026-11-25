@@ -4,6 +4,10 @@ import { useFakeMatchMedia } from '@/test/utils/match-media'
 const WIDE = '(min-width: 800px)'
 
 describe('watchMediaQuery', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
   describe('with matchMedia', () => {
     const media = useFakeMatchMedia()
 
@@ -46,6 +50,15 @@ describe('watchMediaQuery', () => {
     expect(onChange).toHaveBeenCalledWith(true)
     watch.stop()
     expect(removeListener).toHaveBeenCalledWith(listener)
+  })
+
+  it('should not match when matchMedia is missing', () => {
+    vi.stubGlobal('matchMedia', undefined)
+
+    const watch = watchMediaQuery(WIDE, vi.fn())
+
+    expect(watch.matches).toBe(false)
+    expect(() => watch.stop()).not.toThrow()
   })
 
   // Firefox returns null in a hidden iframe.

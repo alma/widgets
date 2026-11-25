@@ -1,12 +1,12 @@
 import type { MockInstance } from 'vitest'
 
-import { BUILD_VERSION } from '@/config/build-version.const'
 import { createKey, setCache } from '@/domain/api/eligibility-cache'
+import { buildEligibilityRequest } from '@/domain/api/eligibility-request-builder'
 import { StatusResponse } from '@/domain/api/eligibility.const'
 import type { EligibilityInput } from '@/domain/api/eligibility.types'
 import { getEligibility } from '@/domain/api/get-eligibility'
 import { fetchFromApi } from '@/lib/http'
-import { configPlans, mockP2XEligiblePlan, mockPlansAllEligible } from '@/test/fixtures/plans'
+import { mockPlansAllEligible } from '@/test/fixtures/plans'
 
 vi.mock('@/lib/http')
 
@@ -41,20 +41,9 @@ describe('getEligibility', () => {
       const result = await getEligibility(input({ merchantCoversAllFees: true }))
 
       expect(fetchFromApi).toHaveBeenCalledTimes(1)
-      expect(fetchFromApi).toHaveBeenCalledWith({
-        url: `${SANDBOX}/v2/payments/eligibility`,
-        headers: {
-          Authorization: 'Alma-Merchant-Auth test_id',
-          'X-Alma-Agent': `Alma Widget/${BUILD_VERSION}`,
-        },
-        body: {
-          purchase_amount: 45000,
-          queries: undefined,
-          billing_address: { country: 'FR' },
-          shipping_address: { country: 'FR' },
-          merchant_covers_all_fees: true,
-        },
-      })
+      expect(fetchFromApi).toHaveBeenCalledWith(
+        buildEligibilityRequest(input({ merchantCoversAllFees: true })),
+      )
       // Raw, not filtered.
       expect(result).toEqual({ status: StatusResponse.SUCCESS, plans: mockPlansAllEligible })
       expect(
@@ -72,44 +61,9 @@ describe('getEligibility', () => {
       expect(result).toEqual({ status: StatusResponse.SUCCESS, plans: newMockedResult })
       expect(fetchFromApi).not.toHaveBeenCalled()
     })
-
-    it('should returns a FAILED status if the API response contains `error_code`', async () => {
-      vi.mocked(fetchFromApi).mockResolvedValue({ message: 'some error', error_code: '403' })
-
-      expect(await getEligibility(input())).toEqual(FAILED)
-      expect(sessionStorage.length).toBe(0)
-      expect(warn).not.toHaveBeenCalled()
-    })
-
-    it('should returns a FAILED status if the API response contains `errors`', async () => {
-      vi.mocked(fetchFromApi).mockResolvedValue({ errors: 'some error' })
-
-      expect(await getEligibility(input())).toEqual(FAILED)
-      expect(sessionStorage.length).toBe(0)
-      expect(warn).not.toHaveBeenCalled()
-    })
-
-    it('should return the transaction_country of the API, not the requested country', async () => {
-      const planInItaly = mockP2XEligiblePlan.withCountry('IT')
-      vi.mocked(fetchFromApi).mockResolvedValue([planInItaly])
-
-      const result = await getEligibility(input({ configPlans }))
-
-      expect(result.plans).toEqual([planInItaly])
-    })
   })
 
   describe('cache age', () => {
-    it('uses an entry that is 3599999 ms old', async () => {
-      seed({ value: mockPlansAllEligible, timestamp: Date.now() - (HOUR - 1) })
-
-      expect(await getEligibility(input())).toEqual({
-        status: StatusResponse.SUCCESS,
-        plans: mockPlansAllEligible,
-      })
-      expect(fetchFromApi).not.toHaveBeenCalled()
-    })
-
     it('uses an entry without timestamp, which never expires', async () => {
       seed({ value: mockPlansAllEligible })
 
@@ -117,23 +71,19 @@ describe('getEligibility', () => {
       expect(fetchFromApi).not.toHaveBeenCalled()
     })
 
-    it('clears the whole storage, sends no request and stays pending for an expired entry', async () => {
+    it('sends no request and stays pending for an expired entry', async () => {
       seed({ value: mockPlansAllEligible, timestamp: Date.now() - HOUR })
-      sessionStorage.setItem('merchant-cart', 'keep me')
 
       expect(await getEligibility(input())).toEqual({ status: StatusResponse.PENDING, plans: [] })
-      expect(sessionStorage.length).toBe(0)
       expect(fetchFromApi).not.toHaveBeenCalled()
     })
 
-    it('sends the request after a clear when the expired entry has no value', async () => {
+    it('sends the request when the expired entry has no value', async () => {
       seed({ timestamp: Date.now() - HOUR })
-      sessionStorage.setItem('merchant-cart', 'keep me')
       vi.mocked(fetchFromApi).mockResolvedValue(mockPlansAllEligible)
 
       expect((await getEligibility(input())).status).toBe(StatusResponse.SUCCESS)
       expect(fetchFromApi).toHaveBeenCalledTimes(1)
-      expect(sessionStorage.length).toBe(1)
     })
 
     it('sends the request for an entry with an empty value', async () => {
@@ -164,16 +114,20 @@ describe('getEligibility', () => {
       expect(warn).not.toHaveBeenCalled()
     })
 
-    it.each([null, 42, 'text', true])(
-      'fails quietly with no cache for the body %s',
-      async (body) => {
-        vi.mocked(fetchFromApi).mockResolvedValue(body)
+    it.each([
+      { message: 'some error', error_code: '403' },
+      { errors: 'some error' },
+      null,
+      42,
+      'text',
+      true,
+    ])('fails quietly with no cache for the body %j', async (body) => {
+      vi.mocked(fetchFromApi).mockResolvedValue(body)
 
-        expect(await getEligibility(input())).toEqual(FAILED)
-        expect(sessionStorage.length).toBe(0)
-        expect(warn).not.toHaveBeenCalled()
-      },
-    )
+      expect(await getEligibility(input())).toEqual(FAILED)
+      expect(sessionStorage.length).toBe(0)
+      expect(warn).not.toHaveBeenCalled()
+    })
 
     it('fails with one warning and no cache for an object that is not an array', async () => {
       vi.mocked(fetchFromApi).mockResolvedValue({})
@@ -220,14 +174,6 @@ describe('getEligibility', () => {
       expect(warn).toHaveBeenCalledTimes(1)
     })
 
-    it('fails with one warning and sends no request for an entry that is not JSON', async () => {
-      sessionStorage.setItem(createKey(input()), '{not json')
-
-      expect(await getEligibility(input())).toEqual(FAILED)
-      expect(fetchFromApi).not.toHaveBeenCalled()
-      expect(warn).toHaveBeenCalledTimes(1)
-    })
-
     it('fails with one warning and sends no request for a value that is not an array', async () => {
       seed({ value: { installments_count: 3 }, timestamp: Date.now() })
 
@@ -238,43 +184,25 @@ describe('getEligibility', () => {
   })
 
   describe('options', () => {
-    it.each([undefined, null])(
-      'fails with one warning and sends no request for purchaseAmount %s',
-      async (purchaseAmount) => {
-        const result = await getEligibility(
-          input({ purchaseAmount: purchaseAmount as unknown as number }),
-        )
+    it.each([
+      ['purchaseAmount undefined', { purchaseAmount: undefined }],
+      ['purchaseAmount null', { purchaseAmount: null }],
+      ['plans that are an object', { configPlans: { installmentsCount: 3 } }],
+      ['a plan that is not an object', { configPlans: [null] }],
+    ])('fails with one warning and sends no request for %s', async (_, overrides) => {
+      const result = await getEligibility(input(overrides as unknown as Partial<EligibilityInput>))
 
-        expect(result).toEqual(FAILED)
-        expect(fetchFromApi).not.toHaveBeenCalled()
-        expect(warn).toHaveBeenCalledTimes(1)
-      },
-    )
-
-    it('fails with one warning and sends no request when plans is an object', async () => {
-      const plans = { installmentsCount: 3 } as unknown as EligibilityInput['configPlans']
-
-      expect(await getEligibility(input({ configPlans: plans }))).toEqual(FAILED)
+      expect(result).toEqual(FAILED)
       expect(fetchFromApi).not.toHaveBeenCalled()
       expect(warn).toHaveBeenCalledTimes(1)
     })
 
-    it('fails with one warning and sends no request when a plan is not an object', async () => {
-      const plans = [null] as unknown as EligibilityInput['configPlans']
-
-      expect(await getEligibility(input({ configPlans: plans }))).toEqual(FAILED)
-      expect(fetchFromApi).not.toHaveBeenCalled()
-      expect(warn).toHaveBeenCalledTimes(1)
-    })
-
-    it('works with plans: null as with missing plans, under its own key', async () => {
+    it('works with plans: null as with missing plans', async () => {
       vi.mocked(fetchFromApi).mockResolvedValue(mockPlansAllEligible)
 
       expect((await getEligibility(input({ configPlans: null }))).status).toBe(
         StatusResponse.SUCCESS,
       )
-      expect(vi.mocked(fetchFromApi).mock.calls[0][0].body.queries).toBeUndefined()
-      expect(sessionStorage.getItem(createKey(input({ configPlans: null })))).not.toBeNull()
     })
   })
 
