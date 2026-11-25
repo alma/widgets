@@ -2,12 +2,7 @@ import { html } from 'lit'
 import type { MockInstance } from 'vitest'
 
 import { ApiMode, Widgets } from '@/index'
-import type {
-  ModalHandle,
-  ModalOptions,
-  PaymentPlanWidgetOptions,
-  WidgetOptions,
-} from '@/public-api/public-api.types'
+import type { ModalOptions, PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { TEST_CONTAINER, TEST_MERCHANT_ID } from '@/test/utils/mount-widget'
@@ -62,7 +57,7 @@ const addModal = (options: Partial<ModalOptions> = {}) =>
     clickableSelector: '#open-modal',
     purchaseAmount: 45000,
     ...options,
-  }) as ModalHandle
+  })
 
 const createContainer = (): HTMLElement => {
   const container = document.createElement('div')
@@ -326,7 +321,7 @@ describe('WidgetsController', () => {
         clickableSelector: '#open',
         purchaseAmount: 45000,
       }
-      const handle = widgets().add(Widgets.Modal, options) as ModalHandle
+      const handle = widgets().add(Widgets.Modal, options)
       options.purchaseAmount = 90000
 
       handle.open()
@@ -423,7 +418,7 @@ describe('WidgetsController', () => {
     it.each(misconfigurations)(
       'should warn once for $name, throw nothing and return undefined for PaymentPlans',
       ({ options, warning }) => {
-        const add = () => widgets().add(Widgets.PaymentPlans, options as WidgetOptions)
+        const add = () => widgets().add(Widgets.PaymentPlans, options as PaymentPlanWidgetOptions)
 
         expect([add(), add()]).toEqual([undefined, undefined])
 

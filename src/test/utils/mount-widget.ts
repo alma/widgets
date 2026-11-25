@@ -44,7 +44,12 @@ export async function mountWidget(
   const selector = container ?? TEST_CONTAINER
   // The container may already hold merchant content.
   const childrenBefore = new Set(document.querySelector(selector)?.children)
-  const handle = Widgets.initialize(TEST_MERCHANT_ID, ApiMode.TEST).add(widget, {
+  // mountWidget's own overloads already pair each widget with its options.
+  const add = Widgets.initialize(TEST_MERCHANT_ID, ApiMode.TEST).add as (
+    widget: WidgetNames,
+    options: WidgetOptions,
+  ) => AddReturnType
+  const handle = add(widget, {
     locale: Locale.fr,
     ...options,
     container: selector,

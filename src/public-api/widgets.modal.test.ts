@@ -2,7 +2,7 @@ import { screen } from '@testing-library/dom'
 import { http, HttpResponse } from 'msw'
 
 import { ApiMode, Widgets } from '@/index'
-import type { ModalHandle, ModalOptions } from '@/public-api/public-api.types'
+import type { ModalOptions } from '@/public-api/public-api.types'
 import { mockButtonPlans } from '@/test/fixtures/plans'
 import { ELIGIBILITY_ENDPOINT } from '@/test/msw/eligibility-handlers'
 import { server } from '@/test/msw/msw-server'
@@ -16,7 +16,7 @@ const addModal = (options: Partial<ModalOptions> = {}) =>
     purchaseAmount: 45000,
     locale: 'fr',
     ...options,
-  } as ModalOptions) as ModalHandle
+  } as ModalOptions)
 
 const portals = () => document.querySelectorAll('.ReactModalPortal')
 const modalHosts = () => document.querySelectorAll('alma-eligibility-modal')

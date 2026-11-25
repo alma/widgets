@@ -15,7 +15,8 @@ export const createModalHandle = (
   // even when no modal is open. remove() closes the portal first.
   const close: ModalHandle['close'] = (event) => {
     remove()
-    onClose?.(event)
+    // Only a merchant's bare close() passes no event: the modal's own closes always send one.
+    onClose?.(event as MouseEvent | KeyboardEvent)
   }
 
   const open = (): void => render(close)

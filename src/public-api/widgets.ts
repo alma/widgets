@@ -4,6 +4,7 @@ import { WidgetTypes } from '@/public-api/public-api.const'
 import type {
   AddReturnType,
   ApiConfig,
+  ModalHandle,
   ModalOptions,
   PaymentPlanWidgetOptions,
   WidgetNames,
@@ -140,52 +141,54 @@ const findContainer = (options: WidgetOptions | undefined): Element | null => {
 }
 
 export function WidgetsController(apiData: ApiConfig): WidgetsHandle {
-  return {
-    add(widget: WidgetNames, options: WidgetOptions): AddReturnType {
-      const container = findContainer(options)
-      // Before the name check, even an unknown name removes the widget.
-      if (container) {
-        removeHost(container)
-      }
-      if (widget === WidgetTypes.PaymentPlans) {
-        if (!container) {
-          return undefined
-        }
-
-        const properties = toPaymentPlansHostProperties(
-          apiData,
-          options as PaymentPlanWidgetOptions,
-        )
-        mountHost(container, PAYMENT_PLANS_TAG, properties)
+  function add(
+    widget: typeof WidgetTypes.PaymentPlans,
+    options: PaymentPlanWidgetOptions,
+  ): undefined
+  function add(widget: typeof WidgetTypes.Modal, options: ModalOptions): ModalHandle
+  // Wider than the overloads: JavaScript callers can pass any name and any options.
+  function add(widget: WidgetNames, options: WidgetOptions): AddReturnType {
+    const container = findContainer(options)
+    // Before the name check, even an unknown name removes the widget.
+    if (container) {
+      removeHost(container)
+    }
+    if (widget === WidgetTypes.PaymentPlans) {
+      if (!container) {
         return undefined
       }
-      if (widget === WidgetTypes.Modal) {
-        if (!container) {
-          return { open() {}, close() {} }
-        }
-        const modalOptions = options as ModalOptions
-        // Read now, not at open().
-        const properties = toEligibilityModalHostProperties(apiData, modalOptions)
-        const handle = createModalHandle(modalOptions.onClose, {
-          render: (close) => {
-            const hostProperties = { ...properties, onClose: close }
-            const host = hosts.get(container)
-            // Updates the modal in place, with no new request once it has plans.
-            if (host && hasHost(container, ELIGIBILITY_MODAL_TAG)) {
-              Object.assign(host, hostProperties)
-              return
-            }
-            removeHost(container)
-            mountHost(container, ELIGIBILITY_MODAL_TAG, hostProperties, true)
-          },
-          remove: () => removeHost(container),
-        })
-        if (modalOptions.clickableSelector) {
-          openOnClick(modalOptions.clickableSelector, handle.open)
-        }
-        return handle
-      }
+
+      const properties = toPaymentPlansHostProperties(apiData, options as PaymentPlanWidgetOptions)
+      mountHost(container, PAYMENT_PLANS_TAG, properties)
       return undefined
-    },
+    }
+    if (widget === WidgetTypes.Modal) {
+      if (!container) {
+        return { open() {}, close() {} }
+      }
+      const modalOptions = options as ModalOptions
+      // Read now, not at open().
+      const properties = toEligibilityModalHostProperties(apiData, modalOptions)
+      const handle = createModalHandle(modalOptions.onClose, {
+        render: (close) => {
+          const hostProperties = { ...properties, onClose: close }
+          const host = hosts.get(container)
+          // Updates the modal in place, with no new request once it has plans.
+          if (host && hasHost(container, ELIGIBILITY_MODAL_TAG)) {
+            Object.assign(host, hostProperties)
+            return
+          }
+          removeHost(container)
+          mountHost(container, ELIGIBILITY_MODAL_TAG, hostProperties, true)
+        },
+        remove: () => removeHost(container),
+      })
+      if (modalOptions.clickableSelector) {
+        openOnClick(modalOptions.clickableSelector, handle.open)
+      }
+      return handle
+    }
+    return undefined
   }
+  return { add }
 }

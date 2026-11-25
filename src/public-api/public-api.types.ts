@@ -24,7 +24,7 @@ export type PaymentPlanWidgetOptions = {
 
 export type ModalOptions = {
   container: string
-  clickableSelector: string
+  clickableSelector?: string
   purchaseAmount: number
   customerBillingCountry?: string
   customerShippingCountry?: string
@@ -41,11 +41,12 @@ export type WidgetOptions = PaymentPlanWidgetOptions | ModalOptions
 
 export type ModalHandle = {
   open: () => void
-  close: (event: MouseEvent | KeyboardEvent) => void
+  close: (event?: MouseEvent | KeyboardEvent) => void
 }
 
 export type AddReturnType = ModalHandle | undefined
 
 export type WidgetsHandle = {
-  add: (widget: WidgetNames, options: WidgetOptions) => AddReturnType
+  add(widget: typeof WidgetTypes.PaymentPlans, options: PaymentPlanWidgetOptions): undefined
+  add(widget: typeof WidgetTypes.Modal, options: ModalOptions): ModalHandle
 }
