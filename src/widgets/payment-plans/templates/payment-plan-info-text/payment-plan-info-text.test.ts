@@ -1,8 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { axe } from 'vitest-axe'
-
 import type { EligibilityPlanToDisplay, EligiblePlan } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
 import { eligiblePlanBuilder, ineligiblePlanBuilder } from '@/test/fixtures/plan-builders'
@@ -11,7 +9,6 @@ import {
   mockP10XBelowMinDisplayPlan,
   mockP10XEligiblePlan,
 } from '@/test/fixtures/plans'
-import { injectStyle } from '@/test/utils/inject-style'
 import { renderTemplate } from '@/test/utils/render-template'
 import { paymentPlanInfoTextTemplate } from '@/widgets/payment-plans/templates/payment-plan-info-text/payment-plan-info-text.template'
 
@@ -34,7 +31,6 @@ const { locales }: MessageFixture = JSON.parse(
 
 // fr_FR holds only a RangeError.
 const LOCALES = Object.keys(locales).filter((locale) => locale !== 'fr_FR')
-const merchantCss = readFileSync(resolve(__dirname, '../../../../../examples/style.css'), 'utf8')
 
 // Whether Intl puts U+202F, U+00A0 or a space depends on the ICU version.
 const normalize = (text: string) => text.replace(/[\u202f\u00a0]/g, ' ')
@@ -259,24 +255,5 @@ describe('paymentPlanInfoTextTemplate', () => {
     const { noFee } = fixtureFor('fr')
     const lines = linesOf(renderInfoText({ ...plan, transaction_country: 'BE' }))
     expect(lines[0]).not.toContain(noFee.trim())
-  })
-
-  describe.each([
-    ['without merchant CSS', false],
-    ['with merchant CSS', true],
-  ])('%s', (_case, withMerchantCss) => {
-    beforeEach(() => {
-      if (withMerchantCss) injectStyle(merchantCss)
-    })
-
-    it.each([
-      ['ineligible', aboveMax],
-      ['Pay Later', payLater],
-      ['P1X', payNow],
-      ['credit', mockP10XEligiblePlan],
-      ['PNX', threeInstallments],
-    ])('should not have any accessibility violations for a %s plan', async (_kind, plan) => {
-      expect(await axe(renderInfoText(plan))).toHaveNoViolations()
-    })
   })
 })

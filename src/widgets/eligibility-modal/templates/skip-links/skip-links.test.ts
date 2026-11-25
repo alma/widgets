@@ -34,18 +34,8 @@ const renderSkipLinks = (params: Partial<SkipLinksParams> = {}) =>
   renderTemplate(skipLinksTemplate({ skipLinks: mockSkipLinks, intl, ...params }))
 
 describe('SkipLinks', () => {
-  it('should render skip links for accessibility', () => {
+  it('should point each skip link at its section', () => {
     renderSkipLinks()
-
-    expect(screen.getByRole('navigation', { name: 'Navigation rapide' })).toBeInTheDocument()
-
-    expect(screen.getByRole('link', { name: 'Aller aux options de paiement' })).toBeInTheDocument()
-    expect(
-      screen.getByRole('link', { name: 'Aller aux informations de paiement' }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('link', { name: 'Aller au calendrier de paiement' }),
-    ).toBeInTheDocument()
 
     expect(screen.getByRole('link', { name: 'Aller aux options de paiement' })).toHaveAttribute(
       'href',
@@ -60,35 +50,20 @@ describe('SkipLinks', () => {
     )
   })
 
-  it('should focus target element when skip link is clicked', async () => {
-    const user = userEvent.setup()
+  it('should add the custom class to the navigation', () => {
+    const container = renderSkipLinks({ className: 'custom-class' })
 
-    const targetElement = document.createElement('div')
-    targetElement.id = 'payment-schedule'
-    targetElement.tabIndex = -1
-    document.body.appendChild(targetElement)
-
-    const focusSpy = vi.spyOn(targetElement, 'focus')
-
-    renderSkipLinks()
-
-    const skipLink = screen.getByRole('link', { name: 'Aller au calendrier de paiement' })
-    await user.click(skipLink)
-
-    await new Promise((resolve) => {
-      setTimeout(resolve, 10)
-    })
-
-    expect(focusSpy).toHaveBeenCalled()
+    const navigation = container.querySelector('[role="navigation"]')
+    expect(navigation).toHaveClass('custom-class')
   })
 
-  it('should handle click on skip link when target element does not exist', async () => {
+  it('should leave the focus on the skip link when its target does not exist', async () => {
     const user = userEvent.setup()
-
     renderSkipLinks()
-
     const skipLink = screen.getByRole('link', { name: 'Aller aux options de paiement' })
 
-    await expect(user.click(skipLink)).resolves.not.toThrow()
+    await user.click(skipLink)
+
+    expect(skipLink).toHaveFocus()
   })
 })

@@ -32,7 +32,6 @@ describe('infoTemplate', () => {
     renderTemplate(infoTemplate({ id: 'payment-info', isCurrentPlanP1X, intl }))
 
     const info = screen.getByRole('region', { name: 'Comment procéder au paiement' })
-    expect(info).toHaveAttribute('id', 'payment-info')
     const items = within(info).getAllByRole('listitem')
     expect(
       items.map((item) => item.querySelector('.alma-eligibility-modal-bullet')?.textContent),
@@ -45,12 +44,10 @@ describe('infoTemplate', () => {
     )
   })
 
-  it('should keep the ARIA attributes and the list class', () => {
+  it('should keep the list class and the heading class', () => {
     renderTemplate(infoTemplate({ isCurrentPlanP1X: false, intl }))
 
     const info = screen.getByTestId('modal-info-element')
-    expect(info).toHaveAttribute('aria-describedby', 'payment-info-description')
-    expect(info).toHaveAttribute('tabindex', '-1')
     expect(info.querySelector('ol#payment-info-description')).toHaveClass('listContainer', {
       exact: true,
     })

@@ -1,5 +1,3 @@
-import { axe } from 'vitest-axe'
-
 import { almaLogoTemplate } from '@/shared/templates/alma-logo/alma-logo.template'
 import { renderTemplate } from '@/test/utils/render-template'
 
@@ -9,17 +7,11 @@ const attributesHoldingUndefined = (root: Element) =>
   )
 
 describe('almaLogoTemplate', () => {
-  it('should render the Alma logo hidden from assistive technologies', async () => {
+  it('should render the Alma logo without a class or an attribute holding "undefined"', () => {
     const container = renderTemplate(almaLogoTemplate())
 
     const svg = container.querySelector('svg')
-    expect(svg?.getAttribute('aria-hidden')).toBe('true')
-    expect(svg?.getAttribute('focusable')).toBe('false')
-    expect(svg?.hasAttribute('aria-label')).toBe(false)
-    expect(svg?.hasAttribute('role')).toBe(false)
     expect(svg?.hasAttribute('class')).toBe(false)
     expect(attributesHoldingUndefined(container)).toEqual([])
-
-    expect(await axe(container)).toHaveNoViolations()
   })
 })

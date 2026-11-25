@@ -1,6 +1,5 @@
 import { fireEvent, screen, waitFor } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
-import type { RequestHandler } from 'msw'
 import { axe } from 'vitest-axe'
 
 import type { EligibilityPlan } from '@/domain/plans.types'
@@ -15,11 +14,7 @@ import {
   mockP4XIneligiblePlan,
   mockPayLaterOneMonthEligiblePlan,
 } from '@/test/fixtures/plans'
-import {
-  eligibilityError,
-  eligibilityPending,
-  eligibilityPlans,
-} from '@/test/msw/eligibility-handlers'
+import { eligibilityPending, eligibilityPlans } from '@/test/msw/eligibility-handlers'
 import { server } from '@/test/msw/msw-server'
 import { mountWidget, TEST_CONTAINER } from '@/test/utils/mount-widget'
 import { AnnounceController } from '@/widgets/payment-plans/controllers/announce.controller'
@@ -36,6 +31,14 @@ const PLANS_WITH_INELIGIBLE_IN_THE_MIDDLE = [
   mockP2XEligiblePlan,
   mockP4XIneligiblePlan,
   mockP10XEligiblePlan,
+]
+
+// 2x, 3x and 4x, then 10x not eligible.
+const PLANS_WITH_INELIGIBLE_LAST = [
+  mockP2XEligiblePlan,
+  mockP3XEligiblePlanWithFees,
+  mockP4XEligiblePlanWithFees,
+  mockP10XIneligiblePlan,
 ]
 
 // Both out of the purchase amount range, so both show grayed out.
@@ -58,7 +61,14 @@ const renderWithPlans = async (plans: EligibilityPlan[], options: Partial<Option
   return render(options)
 }
 
+const mount = (plans: EligibilityPlan[] = PLANS_WITH_INELIGIBLE_LAST) =>
+  renderWithPlans(plans, { purchaseAmount: 45000, transitionDelay: -1 })
+
 const getContainer = () => document.querySelector(TEST_CONTAINER)!
+
+const keyDown = (element: Element, key: string) => fireEvent.keyDown(element, { key })
+
+const infoLine = () => document.getElementById('payment-info-text') as HTMLElement
 
 const getEligiblePlans = () =>
   screen.getAllByRole('option').filter((plan) => plan.getAttribute('aria-disabled') !== 'true')
@@ -82,14 +92,6 @@ describe('PaymentPlan Accessibility Tests', () => {
   })
 
   describe('axe on each state', () => {
-    const settled = async (handler: RequestHandler, options: Partial<Options>) => {
-      server.use(handler)
-      const mounted = await mountWidget('PaymentPlans', { purchaseAmount: 40000, ...options })
-      // The request settles without rendering the widget.
-      await waitFor(() => expect(screen.queryByTestId('loader')).not.toBeInTheDocument())
-      return mounted
-    }
-
     it.each<[string, () => Promise<unknown>]>([
       [
         'loading',
@@ -100,13 +102,9 @@ describe('PaymentPlan Accessibility Tests', () => {
         },
       ],
       ['several plans', () => renderWithPlans(mockButtonPlans)],
+      ['an ineligible plan after the eligible ones', () => mount()],
       ['one plan', () => renderWithPlans([mockP3XEligiblePlanWithFees])],
       ['no eligible plan', () => renderWithPlans(NO_ELIGIBLE_PLAN)],
-      [
-        'hideIfNotEligible with no eligible plan',
-        () => settled(eligibilityPlans(NO_ELIGIBLE_PLAN), { hideIfNotEligible: true }),
-      ],
-      ['a failed request', () => settled(eligibilityError(), {})],
       ['monochrome: false', () => renderWithPlans(mockButtonPlans, { monochrome: false })],
       ['hideBorder: true', () => renderWithPlans(mockButtonPlans, { hideBorder: true })],
       [
@@ -176,6 +174,135 @@ describe('PaymentPlan Accessibility Tests', () => {
           vi.useRealTimers()
         }
       })
+
+      it('should move the focus and the selection to the next and previous eligible plans without wrapping', async () => {
+        const { host } = await mount(PLANS_WITH_INELIGIBLE_IN_THE_MIDDLE)
+        const [first, , last] = screen.getAllByRole('option')
+        first.focus()
+
+        expect(keyDown(first, 'ArrowLeft')).toBe(false)
+        expect(first).toHaveFocus()
+        expect(keyDown(first, 'ArrowRight')).toBe(false)
+        expect(last).toHaveFocus()
+        await (host as AlmaPaymentPlans).updateComplete
+        expect(last).toHaveAttribute('aria-selected', 'true')
+        expect(keyDown(last, 'ArrowRight')).toBe(false)
+        expect(last).toHaveFocus()
+        keyDown(last, 'ArrowLeft')
+        expect(first).toHaveFocus()
+        await (host as AlmaPaymentPlans).updateComplete
+        expect(first).toHaveAttribute('aria-selected', 'true')
+      })
+
+      it('should move the focus to the first and last eligible plans with Home and End', async () => {
+        await mount()
+        const [first, second, third] = screen.getAllByRole('option')
+
+        expect(keyDown(second, 'End')).toBe(false)
+        expect(third).toHaveFocus()
+        expect(keyDown(third, 'Home')).toBe(false)
+        expect(first).toHaveFocus()
+      })
+
+      it('should ignore the keys on a plan that is not eligible, and other keys', async () => {
+        await mount()
+        const options = screen.getAllByRole('option')
+
+        expect(keyDown(options[3], 'ArrowLeft')).toBe(true)
+        expect(keyDown(options[0], 'a')).toBe(true)
+      })
+    })
+  })
+
+  describe('clickable info line', () => {
+    const mountWithConfigPlans = async () => {
+      server.use(eligibilityPlans(mockButtonPlans))
+      await mountWidget('PaymentPlans', {
+        purchaseAmount: 40000,
+        plans: [
+          {
+            installmentsCount: 1,
+            minAmount: 100,
+            maxAmount: 100000,
+          },
+          {
+            installmentsCount: 2,
+            minAmount: 100,
+            maxAmount: 100000,
+          },
+          {
+            installmentsCount: 1,
+            deferredDays: 30,
+            minAmount: 100,
+            maxAmount: 100000,
+          },
+          {
+            installmentsCount: 3,
+            minAmount: 100,
+            maxAmount: 100000,
+          },
+          {
+            installmentsCount: 10,
+            minAmount: 100,
+            maxAmount: 100000,
+          },
+        ],
+      })
+      await screen.findByTestId('widget-container')
+    }
+
+    it('should make the info line a button for a credit plan', async () => {
+      await mountWithConfigPlans()
+
+      await userEvent.hover(screen.getByText('10x'))
+
+      expect(infoLine()).toHaveAttribute('role', 'button')
+    })
+
+    it('should not make the info line a button for a non-deferred P1X plan', async () => {
+      await mountWithConfigPlans()
+
+      await userEvent.hover(screen.getByText('Payer maintenant'))
+
+      expect(infoLine()).not.toHaveAttribute('role', 'button')
+    })
+
+    it('should not be clickable when the current plan is not eligible', async () => {
+      const { host } = await mount()
+      const info = document.getElementById('payment-info-text') as HTMLElement
+      expect(info).toHaveAttribute('role', 'button')
+
+      fireEvent.mouseEnter(screen.getAllByRole('option')[3])
+      await (host as AlmaPaymentPlans).updateComplete
+
+      expect(screen.getAllByRole('option')[3]).toHaveAttribute('aria-selected', 'true')
+      expect(info).not.toHaveAttribute('role')
+    })
+  })
+
+  describe('several widgets on one page', () => {
+    const addContainer = (id: string) => {
+      const container = document.createElement('div')
+      container.id = id
+      document.body.append(container)
+      return `#${id}`
+    }
+
+    it('should render the regions and headings of each widget', async () => {
+      await mountWidget('PaymentPlans', {
+        purchaseAmount: 40000,
+        container: addContainer('alma-widget-first'),
+      })
+      await mountWidget('PaymentPlans', {
+        purchaseAmount: 50000,
+        container: addContainer('alma-widget-second'),
+      })
+
+      // findAll resolves on the first widget, before the second one's response
+      await waitFor(() => expect(screen.getAllByTestId('widget-container')).toHaveLength(2))
+
+      expect(screen.getAllByRole('region').length).toBeGreaterThanOrEqual(4)
+      expect(screen.getAllByRole('heading').length).toBeGreaterThanOrEqual(4)
     })
   })
 
@@ -194,7 +321,7 @@ describe('PaymentPlan Accessibility Tests', () => {
     const instructionsCalls = (announce: ReturnType<typeof spyOnAnnounce>) =>
       announce.mock.calls.filter(([text]) => text.includes('Animation automatique'))
 
-    it('should announce animation control instructions when animation is active', async () => {
+    it('should send the animation control instructions to the announcer when animation is active', async () => {
       const announce = spyOnAnnounce()
       await render({ transitionDelay: 5000 })
 

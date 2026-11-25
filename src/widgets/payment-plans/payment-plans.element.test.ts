@@ -1,7 +1,6 @@
-import { fireEvent, screen } from '@testing-library/dom'
+import { fireEvent, screen, waitFor } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { http, HttpResponse } from 'msw'
-import { axe } from 'vitest-axe'
 
 import type { EligibilityPlan } from '@/domain/plans.types'
 import type { PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
@@ -14,7 +13,6 @@ import {
   mockP3XEligiblePlanWithFees,
   mockP4XEligiblePlanWithFees,
   mockP4XIneligiblePlan,
-  mockP10XEligiblePlan,
   mockP10XIneligiblePlan,
 } from '@/test/fixtures/plans'
 import {
@@ -102,8 +100,6 @@ describe('AlmaPaymentPlans behaviour', () => {
     return mounted
   }
 
-  const keyDown = (element: Element, key: string) => fireEvent.keyDown(element, { key })
-
   describe('invalid options', () => {
     it.each(['fr_FR', null])(
       'should render nothing and warn once for the locale %s',
@@ -156,6 +152,16 @@ describe('AlmaPaymentPlans behaviour', () => {
       await mount(mockButtonPlans, { hideBorder: true })
 
       expect(screen.getByTestId('widget-container')).toHaveClass('hideBorder')
+    })
+
+    it('should show only the know-more line when a credit plan is hovered', async () => {
+      await mount(mockButtonPlans, { purchaseAmount: 40000 })
+
+      await userEvent.hover(screen.getByText('10x'))
+
+      expect(document.getElementById('payment-info-text')?.textContent?.trim()).toBe(
+        'Cliquez pour en savoir plus',
+      )
     })
   })
 
@@ -230,64 +236,6 @@ describe('AlmaPaymentPlans behaviour', () => {
       expect(screen.getByText('J+30')).toBeInTheDocument()
       expect(screen.getByText('2x')).toBeInTheDocument()
       expect(screen.queryByText('4x')).not.toBeInTheDocument()
-    })
-  })
-
-  describe('keyboard', () => {
-    it('should move the focus and the selection to the next and previous eligible plans without wrapping', async () => {
-      // The ineligible 4x sits between two eligible plans.
-      const { host } = await mount([
-        mockP2XEligiblePlan,
-        mockP4XIneligiblePlan,
-        mockP10XEligiblePlan,
-      ])
-      const [first, , last] = screen.getAllByRole('option')
-      first.focus()
-
-      expect(keyDown(first, 'ArrowLeft')).toBe(false)
-      expect(first).toHaveFocus()
-      expect(keyDown(first, 'ArrowRight')).toBe(false)
-      expect(last).toHaveFocus()
-      await (host as AlmaPaymentPlans).updateComplete
-      expect(last).toHaveAttribute('aria-selected', 'true')
-      expect(keyDown(last, 'ArrowRight')).toBe(false)
-      expect(last).toHaveFocus()
-      keyDown(last, 'ArrowLeft')
-      expect(first).toHaveFocus()
-      await (host as AlmaPaymentPlans).updateComplete
-      expect(first).toHaveAttribute('aria-selected', 'true')
-    })
-
-    it('should move the focus to the first and last eligible plans with Home and End', async () => {
-      await mount()
-      const [first, second, third] = screen.getAllByRole('option')
-
-      expect(keyDown(second, 'End')).toBe(false)
-      expect(third).toHaveFocus()
-      expect(keyDown(third, 'Home')).toBe(false)
-      expect(first).toHaveFocus()
-    })
-
-    it('should ignore the keys on a plan that is not eligible, and other keys', async () => {
-      await mount()
-      const options = screen.getAllByRole('option')
-
-      expect(keyDown(options[3], 'ArrowLeft')).toBe(true)
-      expect(keyDown(options[0], 'a')).toBe(true)
-    })
-  })
-
-  describe('info line', () => {
-    it('should not be clickable when the current plan is not eligible', async () => {
-      const { host } = await mount()
-      const info = document.getElementById('payment-info-text') as HTMLElement
-      expect(info).toHaveAttribute('role', 'button')
-
-      fireEvent.mouseEnter(screen.getAllByRole('option')[3])
-      await (host as AlmaPaymentPlans).updateComplete
-
-      expect(screen.getAllByRole('option')[3]).toHaveAttribute('aria-selected', 'true')
-      expect(info).not.toHaveAttribute('role')
     })
   })
 
@@ -648,11 +596,37 @@ describe('AlmaPaymentPlans behaviour', () => {
     })
   })
 
-  describe('accessibility', () => {
-    it('should not have any accessibility violations', async () => {
-      const { host } = await mount()
+  describe('PaymentPlans, several widgets on one page', () => {
+    const addContainer = (id: string) => {
+      const container = document.createElement('div')
+      container.id = id
+      document.body.append(container)
+      return `#${id}`
+    }
 
-      expect(await axe(host as HTMLElement)).toHaveNoViolations()
+    beforeEach(() => {
+      server.use(eligibilityPlans(mockButtonPlans))
+    })
+
+    it('should render both widgets, with the same main container ID', async () => {
+      await mountWidget('PaymentPlans', {
+        purchaseAmount: 40000,
+        container: addContainer('alma-widget-first'),
+      })
+      await mountWidget('PaymentPlans', {
+        purchaseAmount: 50000,
+        container: addContainer('alma-widget-second'),
+      })
+
+      // findAll resolves on the first widget, before the second one's response
+      await waitFor(() => expect(screen.getAllByTestId('widget-container')).toHaveLength(2))
+      const containers = screen.getAllByTestId('widget-container')
+
+      // Known bug: both widgets get the same ID. Merchant CSS and scripts select it,
+      // so only a release that may break them can fix it.
+      const widgetIds = containers.map((container) => container.id)
+      expect(widgetIds[0]).toBe('alma-widget-payment-plans-main-container')
+      expect(widgetIds[1]).toBe('alma-widget-payment-plans-main-container')
     })
   })
 })

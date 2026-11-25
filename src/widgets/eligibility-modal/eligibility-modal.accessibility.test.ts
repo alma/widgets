@@ -3,8 +3,10 @@ import userEvent from '@testing-library/user-event'
 import type { HttpHandler } from 'msw'
 import { axe, configureAxe } from 'vitest-axe'
 
+import { ApiMode } from '@/public-api/public-api.const'
 import {
   configPlans,
+  mockButtonPlans,
   mockP10XIneligiblePlan,
   mockP3XEligiblePlanWithFees,
   mockP4XIneligiblePlan,
@@ -17,8 +19,9 @@ import {
 } from '@/test/msw/eligibility-handlers'
 import { server } from '@/test/msw/msw-server'
 import { useFakeMatchMedia } from '@/test/utils/match-media'
-import { mountWidget } from '@/test/utils/mount-widget'
+import { mountWidget, TEST_MERCHANT_ID } from '@/test/utils/mount-widget'
 import { desktopMediaQuery } from '@/widgets/eligibility-modal/eligibility-modal.const'
+import type { AlmaEligibilityModalProperties } from '@/widgets/eligibility-modal/eligibility-modal.element'
 
 // Two regions take their name from payment-schedule-title: the scheduleArea div and the Schedule
 // region inside it. Merchants select the modal's DOM, so the test turns the rule off instead.
@@ -40,6 +43,20 @@ const openModal = async () => {
 }
 
 const showSchedule = () => screen.findByTestId('modal-installments-element')
+
+const appendModal = (properties: Partial<AlmaEligibilityModalProperties> = {}) => {
+  const host = document.createElement('alma-eligibility-modal')
+  Object.assign(host, {
+    purchaseAmount: 45000,
+    apiData: { domain: ApiMode.TEST, merchantId: TEST_MERCHANT_ID },
+    locale: 'fr',
+    ...properties,
+  })
+  const container = document.createElement('div')
+  document.body.append(container)
+  container.append(host)
+  return host
+}
 
 type ModalState = {
   name: string
@@ -117,5 +134,16 @@ describe.each([
 
     const results = await (showsPlans ? axeWithPlans : axe)(modalPortal())
     expect(results).toHaveNoViolations()
+  })
+})
+
+describe('AlmaEligibilityModal', () => {
+  it('should put the loader in a status region until the plans arrive', async () => {
+    server.use(eligibilityPlans(mockButtonPlans))
+    appendModal()
+
+    expect(screen.getByRole('status')).toContainElement(screen.getByTestId('loader'))
+    await screen.findByText('M+1')
+    expect(screen.queryByRole('status')).not.toBeInTheDocument()
   })
 })

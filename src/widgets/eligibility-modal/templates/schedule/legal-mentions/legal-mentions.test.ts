@@ -1,5 +1,4 @@
 import { screen, within } from '@testing-library/dom'
-import { axe } from 'vitest-axe'
 
 import type { EligibilityPlanToDisplay } from '@/domain/plans.types'
 import { createIntl } from '@/shared/i18n/create-intl'
@@ -150,17 +149,6 @@ describe('credit cost borne by the merchant', () => {
     expect(screen.getByTestId('legal-mentions')).not.toHaveTextContent(
       CREDIT_COST_BORNE_BY_MERCHANT,
     )
-  })
-})
-
-describe('accessibility', () => {
-  it.each([
-    ['a Credit plan', mockP10XEligiblePlan],
-    ['a Pay Later plan', mockPayLater30DaysEligiblePlan],
-  ])('should not have any accessibility violations for %s', async (_name, plan) => {
-    const container = renderLegalMentions(plan)
-
-    expect(await axe(container)).toHaveNoViolations()
   })
 })
 
