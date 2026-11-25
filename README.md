@@ -49,16 +49,17 @@ npm install @alma/widgets
 
 ```ts
 import '@alma/widgets/dist/widgets.min.css'
-import { ApiMode, Widgets } from '@alma/widgets'
+import * as Alma from '@alma/widgets'
 
-const widgets = Widgets.initialize('<YOUR MERCHANT ID>', ApiMode.LIVE)
-widgets.add(Widgets.PaymentPlans, {
+const widgets = Alma.Widgets.initialize('<YOUR MERCHANT ID>', Alma.ApiMode.LIVE)
+widgets.add(Alma.Widgets.PaymentPlans, {
   container: '#alma-widget',
   purchaseAmount: 45000,
 })
 ```
 
 The CSS import needs a CSS loader in your bundler. Without one, keep the `<link>` tag above.
+If your TypeScript config turns on `noUncheckedSideEffectImports`, add `declare module '*.css'` to a `.d.ts` file. Vite projects can reference `vite/client` instead.
 
 The package includes its TypeScript declarations. Import `@alma/widgets`, not `@alma/widgets/dist/widgets.umd.js`. The UMD file is for `<script>` tags only, and the package doesn't export it, so a bundler that imports it stops with an error.
 
