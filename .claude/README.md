@@ -1,9 +1,11 @@
 # Claude Code setup
 
-This folder holds the Claude Code setup that the team shares for `@alma/widgets`. Generic Lit
-advice assumes Shadow DOM, `static styles` and `CustomEvent`s, and each of those breaks the merchant
-contract: the options, callbacks, DOM, classes and IDs that merchants rely on. The rules here keep
-Claude within that contract, and a hook lints each file that Claude edits.
+This folder holds the Claude Code setup that the team shares for `@alma/widgets`. Each widget
+renders in an open shadow root, and merchants change it only through the options of `add()`.
+Generic Lit advice styles the host through `:host`, exposes parts and slots, offers custom
+properties as a theme and dispatches `CustomEvent`s, and each of those would hand merchants a hook
+beyond the options. The rules here keep Claude within these choices and within the merchant
+contract, the JavaScript API that merchants call, and a hook lints each file that Claude edits.
 
 Tested with Claude Code 2.1.304.
 
@@ -36,10 +38,10 @@ Tested with Claude Code 2.1.304.
 | --- | --- | --- |
 | `architecture.md` | `src/**` | Layers, imports, placement, bans across `src/`, suffixes, tests |
 | `domain.md` | `src/domain/`, `src/lib/http.ts` | The eligibility request and its cache |
-| `widgets.md` | `src/widgets/`, `src/shared/` | Lit in light DOM and the merchant contract of the elements |
+| `widgets.md` | `src/widgets/`, `src/shared/` | Lit in Shadow DOM and the merchant contract of the elements |
 | `public-api.md` | `src/public-api/`, `src/index.ts` | The merchant contract: API, options, files |
-| `lit-styling.md` | `src/widgets/`, `src/shared/`, `src/main.css` | CSS that merchants can still override |
-| `lit-accessibility.md` | `src/widgets/`, `src/shared/`, `src/modal.browser.test.ts` | Accessibility that the merchant contract freezes, and the modal |
+| `lit-styling.md` | `src/widgets/`, `src/shared/`, `src/main.css` | CSS inside the shadow roots, and the CSS still in light DOM |
+| `lit-accessibility.md` | `src/widgets/`, `src/shared/`, `src/modal.browser.test.ts` | Accessibility that must not regress, and the modal |
 
 Each rule has an ID, such as `ARCH-06`, with its reason and its check: lint, a test or review. A
 rule lives in the one file whose `paths:` cover every file it governs. When two files that never
