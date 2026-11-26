@@ -61,7 +61,7 @@ const seed = (key: string, age: number) =>
 
 describe('eligibility cache', () => {
   describe('key and value', () => {
-    it('writes one entry under the key that master computes', async () => {
+    it('writes one entry under the cache key', async () => {
       await renderPlans()
       expect(Object.keys(entries())).toEqual([keyOf()])
     })
@@ -136,7 +136,7 @@ describe('eligibility cache', () => {
       expect(api.calls).toHaveLength(0)
     })
 
-    // This records master as it is. An entry that is 3600000 ms old has expired, and master then
+    // This records it as it is. An entry that is 3600000 ms old has expired, and the widget then
     // calls sessionStorage.clear(), which also removes the merchant's own keys, and sends no
     // request. The widget stays on its loader until the next add().
     it('clears the whole storage and stays loading for an entry that is 3600000 ms old', async () => {

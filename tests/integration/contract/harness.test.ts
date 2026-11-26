@@ -66,7 +66,7 @@ describe('ES module bundle', () => {
 describe('inventory', () => {
   const { classes, ids, dataTestIds, rootCustomProperties, locales, catalogues } = inventory
 
-  it('has the counts of master', () => {
+  it('has the contract counts', () => {
     expect(classes.paymentPlans).toHaveLength(7)
     expect(classes.modal).toHaveLength(16)
     expect([...classes.paymentPlans, ...classes.modal]).toHaveLength(23)

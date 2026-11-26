@@ -76,7 +76,7 @@ describe('Utils', () => {
   it('formatCents drops trailing zeros and uses a comma', () => {
     expect(Alma.Utils.formatCents(12345)).toBe('123,45')
     expect(Alma.Utils.formatCents(12340)).toBe('123,4')
-    // Master gives '123', not '123,00'. This records it as it is.
+    // A whole amount drops its decimals: '123', not '123,00'. This records it as it is.
     expect(Alma.Utils.formatCents(12300)).toBe('123')
     expect(Alma.Utils.formatCents(5)).toBe('0,05')
   })
@@ -116,7 +116,7 @@ describe('add() return values', () => {
     const result = widgets.add('Unknown', { container: '#alma-widget' })
 
     expect(result).toBeUndefined()
-    // Master unmounts the existing widget even for a name it doesn't know. This records it as it is.
+    // An unknown widget name still unmounts the existing widget. This records it as it is.
     await vi.waitFor(() => expect(container().children).toHaveLength(0))
   })
 })

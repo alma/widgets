@@ -127,8 +127,8 @@ describe('three PaymentPlans and a modal on one page', () => {
     expect(sessionKeys()).toHaveLength(1)
   })
 
-  // The widgets share their IDs until 5.x gives each one a shadow root. This records the duplicates
-  // as they are. `payment-plans-title` and `payment-info-title` also appear in the open modal.
+  // Known bug: the widgets share their IDs. Merchant CSS targets the IDs, so only a release that may
+  // break merchant CSS can fix it. This records the duplicates as they are. `payment-plans-title` and `payment-info-title` also appear in the open modal.
   it('records the duplicate IDs of the page', async () => {
     await renderThreeWidgets()
     const before = idCounts()

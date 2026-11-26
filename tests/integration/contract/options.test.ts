@@ -11,10 +11,10 @@ import { loadUmd } from './support/load-bundle'
 // Options tested elsewhere:
 // - `container` and `purchaseAmount` are set by every test of the contract folder. The request body
 //   built from `purchaseAmount`, `customerBillingCountry`, `customerShippingCountry` and
-//   `merchantCoversAllFees` is LIT-06.
-// - `onModalClose`, `onClose` and `clickableSelector` are LIT-07. api-shape.test.ts also checks the
-//   event that the two callbacks get.
-// - Invalid values such as NaN or `fr_FR` are LIT-08.
+//   `merchantCoversAllFees` is in request.test.ts and cache.test.ts.
+// - `onModalClose`, `onClose` and `clickableSelector` are in lifecycle.test.ts and
+//   modal-lifecycle.test.ts. api-shape.test.ts also checks the event that the two callbacks get.
+// - Invalid values such as NaN or `fr_FR` are in failures.test.ts.
 
 const fixture = (name: string) =>
   JSON.parse(readFileSync(resolve(__dirname, `fixtures/eligibility/${name}.json`), 'utf8'))
@@ -44,9 +44,7 @@ beforeAll(() => {
   Alma = loadUmd()
 })
 
-// Preact runs its effects after an animation frame or a 100 ms timeout, so both are faked. The
-// fake timers stay installed for the whole file. Preact queues its effects in a module variable,
-// and a timer that the clock drops between two tests would block every later effect.
+// The fake timers stay installed for the whole file.
 const START = 1638350762000
 
 beforeAll(() => {
@@ -127,8 +125,8 @@ const watchActivePlan = async (duration: number, granularity: number) => {
 }
 
 /**
- * Master restarts the cycling timer on every re-render, and the announcement clears 1000 ms after
- * each plan change, which re-renders. So a step comes later than `transitionDelay`. The checks are
+ * The cycling timer may restart on a re-render, and the announcement clears 1000 ms after each
+ * plan change, which re-renders. So a step may come later than `transitionDelay`. The checks are
  * about order and bounds, not exact times.
  */
 const expectCycling = async (options: Options, transitionDelay: number) => {
@@ -243,7 +241,7 @@ describe('PaymentPlans monochrome', () => {
   })
 
   it('is off for null', async () => {
-    // Master applies the default only to undefined, so null turns monochrome off.
+    // The default applies only to undefined, so null turns monochrome off.
     await renderPlans({ monochrome: null })
     expect(anyModuleClass('monochrome')).toBe(false)
     expect(logoFill()).toBe('#fa5022')
@@ -269,7 +267,7 @@ describe('PaymentPlans hideBorder', () => {
   })
 
   it('never puts it on the loading div', async () => {
-    // Master ignores hideBorder while loading. This records it as it is.
+    // hideBorder has no effect while loading. This records it as it is.
     mockEligibilityApi({ pending: true })
     add(Alma.Widgets.PaymentPlans, { hideBorder: true })
     await tick(500)
@@ -317,7 +315,7 @@ describe('PaymentPlans transitionDelay', () => {
   })
 
   it('does not cycle for -1', async () => {
-    // Master turns cycling off for any negative value. This records it as it is.
+    // Any negative value turns cycling off. This records it as it is.
     await expectNoCycling({ transitionDelay: -1 })
   })
 
@@ -400,7 +398,7 @@ describe('PaymentPlans suggestedPaymentPlan', () => {
   })
 
   it('does not cycle with a transitionDelay of 0', async () => {
-    // Master treats 0 as "no delay given" when suggestedPaymentPlan is set, so it doesn't cycle.
+    // 0 counts as "no delay given" when suggestedPaymentPlan is set, so it doesn't cycle.
     // This records it as it is. Without suggestedPaymentPlan, 0 cycles with the 1000 ms floor.
     await renderPlans({ suggestedPaymentPlan: 4, transitionDelay: 0 })
     await tick(SETTLE)
@@ -409,13 +407,14 @@ describe('PaymentPlans suggestedPaymentPlan', () => {
   })
 
   it('counts null as set: first plan active, no cycling', async () => {
-    // Master tests `suggestedPaymentPlan !== undefined`, so null counts as a choice.
+    // Only undefined counts as no choice, so null counts as a choice.
     await expectNoCycling({ suggestedPaymentPlan: null })
     expect(activeLabel()).toBe(labels()[0])
   })
 
   it('does not match a numeric string, and counts it as set', async () => {
-    // Master compares installment counts with ===, so '4' matches nothing. This records it as it is.
+    // The widget compares installment counts with ===, so '4' matches nothing. This records it as
+    // it is.
     await expectNoCycling({ suggestedPaymentPlan: '4' })
     expect(activeLabel()).toBe(labels()[0])
   })
@@ -510,8 +509,8 @@ describe('PaymentPlans plans', () => {
 
 describe('PaymentPlans merchant_covers_all_fees', () => {
   it('adds nothing to the request body', async () => {
-    // The option is spelled merchantCoversAllFees. Master ignores the snake_case spelling of
-    // documentation.md. This records it as it is. LIT-06 covers merchantCoversAllFees.
+    // The option is spelled merchantCoversAllFees. The widget ignores the snake_case spelling of
+    // documentation.md. This records it as it is. request.test.ts covers merchantCoversAllFees.
     const api = await renderPlans({ merchant_covers_all_fees: true })
     expect(api.calls).toHaveLength(1)
     expect(api.calls[0].body).not.toHaveProperty('merchant_covers_all_fees')
@@ -591,14 +590,11 @@ describe('Modal plans', () => {
   })
 })
 
-// These two come last. Master throws in the middle of a render for a null locale, and a render that
-// stops half way can leave the Preact queue of a later test in a bad state.
-//
-// Master applies the default `en` only to undefined, so null reaches the catalogue lookup and
-// throws a TypeError. The Lit build warns instead (ARCH-13), so only what both share is pinned: no
-// more escaped errors than master, and at most one `[Alma widgets]` warning.
+// The default `en` applies only to undefined, so a null locale reaches the catalogue lookup. The
+// widget warns (ARCH-13). At most one TypeError may escape, with at most one `[Alma widgets]`
+// warning.
 describe('null locale', () => {
-  const expectNoMoreThanMaster = async (run: () => void) => {
+  const expectAtMostATypeError = async (run: () => void) => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const escapes = collectEscapes()
     try {
@@ -617,12 +613,12 @@ describe('null locale', () => {
 
   it('throws no more than a TypeError from add() for PaymentPlans', async () => {
     mockEligibilityApi({ json: threePlans })
-    await expectNoMoreThanMaster(() => add(Alma.Widgets.PaymentPlans, { locale: null }))
+    await expectAtMostATypeError(() => add(Alma.Widgets.PaymentPlans, { locale: null }))
   })
 
   it('throws no more than a TypeError from open() for Modal', async () => {
     mockEligibilityApi({ json: threePlans })
     const handle = add(Alma.Widgets.Modal, { locale: null }) as { open: () => void }
-    await expectNoMoreThanMaster(() => handle.open())
+    await expectAtMostATypeError(() => handle.open())
   })
 })

@@ -47,7 +47,7 @@ describe('widgets.umd.js', () => {
     expect(Object.keys(window.Alma as object).sort()).toEqual(MEMBERS)
   })
 
-  // In-page can set window.Alma.InPage before widgets loads (MP-138)
+  // In-page can set window.Alma.InPage before widgets loads.
   it('keeps what window.Alma already holds as a classic script', () => {
     const InPage = {}
     const Alma = { InPage }
@@ -90,7 +90,7 @@ describe('widgets-wc.umd.js', () => {
     expect(Object.keys(window.Alma as object).sort()).toEqual(MEMBERS)
   })
 
-  // In-page can set window.Alma.InPage before widgets loads (MP-138)
+  // In-page can set window.Alma.InPage before widgets loads.
   it('keeps what window.Alma already holds as a classic script', () => {
     const InPage = {}
     const Alma = { InPage }

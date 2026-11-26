@@ -68,14 +68,14 @@ const countByType = (types: string[]): Record<string, number> =>
   )
 
 /**
- * Accepts the same escaped errors as master, or fewer, and fails on one more or on a type that
- * master doesn't throw.
+ * Accepts the escaped errors of `allowed`, or fewer, and fails on one more or on a type that
+ * `allowed` doesn't list.
  */
-export const expectNoMoreEscaped = (actual: string[], master: string[]) => {
-  const allowed = countByType(master)
+export const expectNoMoreEscaped = (actual: string[], allowed: string[]) => {
+  const limits = countByType(allowed)
   Object.entries(countByType(actual)).forEach(([type, count]) => {
-    expect(count, `escaped ${type} errors, master has ${allowed[type] ?? 0}`).toBeLessThanOrEqual(
-      allowed[type] ?? 0,
+    expect(count, `escaped ${type} errors, at most ${limits[type] ?? 0}`).toBeLessThanOrEqual(
+      limits[type] ?? 0,
     )
   })
 }

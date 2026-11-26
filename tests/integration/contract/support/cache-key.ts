@@ -1,6 +1,5 @@
-// Copy of master's `hashStringForStorage` (src/utils/utilsForStorage.ts) and of the key built in
-// `createKey` (src/hooks/useSessionStorage.tsx). The cache tests compute the expected key with it,
-// so they never read the key back from sessionStorage.
+// Copy of `hashStringForStorage` and of the cache key format. The cache tests compute the expected
+// key with it, so they never read the key back from sessionStorage.
 /* eslint-disable no-bitwise */
 export const hashStringForStorage = (str: string): string =>
   str
@@ -20,7 +19,7 @@ export type CacheKeyParts = {
   buildVersion?: string
 }
 
-/** A missing value becomes the text `undefined`, as in master's template literal. */
+/** A missing value becomes the text `undefined`, as in a template literal. */
 export const cacheKey = ({
   domain,
   merchantId,

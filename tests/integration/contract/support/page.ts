@@ -9,10 +9,8 @@ type Bundle = ReturnType<typeof loadUmd>
 type Options = Record<string, unknown>
 
 /**
- * Fakes the timers that Preact's effects use (animation frame and 100 ms timeout). Call it once at
- * the top of a test file. The fake timers stay installed for the whole file, because Preact queues
- * its effects in a module variable, and a timer that the clock drops between two tests would block
- * every later effect.
+ * Fakes the timers, the animation frame and Date. Call it once at the top of a test file. The fake
+ * timers stay installed for the whole file.
  */
 export const useFakeClock = () => {
   beforeAll(() => {

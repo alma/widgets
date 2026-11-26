@@ -49,7 +49,7 @@ type Outcome = {
   /** The type of each escaped error. Messages differ between the builds, so they are never compared. */
   escaped: string[]
   warnings: unknown[][]
-  /** Whether the container holds anything. A host element of the Lit build doesn't count. */
+  /** Whether the container holds anything. A host element doesn't count. */
   rendered: boolean
   options: number
   text: string
@@ -140,7 +140,7 @@ const observe = async ({
   return outcome
 }
 
-/** The console rule: at most one warning per case, and it starts with `[Alma widgets]`. Master logs none. */
+/** The console rule: at most one warning per case, and it starts with `[Alma widgets]`. */
 const expectConsoleRule = ({ warnings }: Outcome) => {
   expect(warnings.length).toBeLessThanOrEqual(1)
   warnings.forEach(([message]) => {
@@ -148,7 +148,7 @@ const expectConsoleRule = ({ warnings }: Outcome) => {
   })
 }
 
-/** The case after 5 s on master: nothing in the container, one request, nothing escaped. */
+/** The case after 5 s: nothing in the container, one request, nothing escaped. */
 const expectFailedQuietly = (outcome: Outcome, keys: string[] = []) => {
   expect(outcome.rendered).toBe(false)
   expect(outcome.requests).toBe(1)
@@ -157,10 +157,10 @@ const expectFailedQuietly = (outcome: Outcome, keys: string[] = []) => {
   expectConsoleRule(outcome)
 }
 
-/** What both builds share when the Lit build differs on purpose. */
-const expectSharedBehaviour = (outcome: Outcome, masterEscaped: string[]) => {
+/** No plan, at most the escaped errors of `allowedEscaped`, and the console rule. */
+const expectNoPlan = (outcome: Outcome, allowedEscaped: string[]) => {
   expect(outcome.options).toBe(0)
-  expectNoMoreEscaped(outcome.escaped, masterEscaped)
+  expectNoMoreEscaped(outcome.escaped, allowedEscaped)
   expectConsoleRule(outcome)
 }
 
@@ -192,12 +192,9 @@ describe('API failures', () => {
     expectFailedQuietly(await observe({ reply: { json: fixture('empty') } }), [keyFor()])
   })
 
-  // Master leaves its loader on the page for a 200 `{}` and leaks a TypeError rejection. The Lit
-  // build shows nothing and warns, so only the shared behaviour is pinned.
+  // A 200 `{}` shows nothing and warns. At most one TypeError may escape.
   it('shows no plan for a 200 with an empty object', async () => {
-    expectSharedBehaviour(await observe({ reply: { json: fixture('empty-object') } }), [
-      'TypeError',
-    ])
+    expectNoPlan(await observe({ reply: { json: fixture('empty-object') } }), ['TypeError'])
   })
 })
 
@@ -211,10 +208,7 @@ describe('storage failures', () => {
     })
 
   it('shows no plan when the sessionStorage getter throws', async () => {
-    expectSharedBehaviour(await observe({ before: throwingGetter }), [
-      'SecurityError',
-      'SecurityError',
-    ])
+    expectNoPlan(await observe({ before: throwingGetter }), ['SecurityError', 'SecurityError'])
   })
 
   it('shows no plan when setItem hits the quota', async () => {
@@ -225,14 +219,14 @@ describe('storage failures', () => {
         })
       },
     })
-    expectSharedBehaviour(outcome, [])
+    expectNoPlan(outcome, [])
   })
 
   it('shows no plan for a cache entry that is not JSON', async () => {
     const outcome = await observe({
       before: () => sessionStorage.setItem(keyFor(), '{not json'),
     })
-    expectSharedBehaviour(outcome, ['SyntaxError', 'SyntaxError'])
+    expectNoPlan(outcome, ['SyntaxError', 'SyntaxError'])
   })
 })
 
@@ -251,7 +245,7 @@ describe('option failures', () => {
     expectConsoleRule(outcome)
   })
 
-  // On master `locale: 'FR'` is not a catalogue, so the text is English, but Intl formats the
+  // `locale: 'FR'` is not a catalogue, so the text is English, but Intl formats the
   // number for French: `225,00 €` where English gives `€225.00`.
   it('renders English text with a French price for the locale FR', async () => {
     const english = await baseline()
@@ -265,10 +259,10 @@ describe('option failures', () => {
     expectConsoleRule(outcome)
   })
 
-  // Master throws a RangeError, because Intl rejects the underscore. The Lit build warns.
+  // Intl rejects the underscore with a RangeError. The widget warns, and at most one may escape.
   it('shows no plan for the locale fr_FR', async () => {
     const outcome = await observe({ options: { locale: 'fr_FR' } })
-    expectSharedBehaviour(outcome, ['RangeError'])
+    expectNoPlan(outcome, ['RangeError'])
   })
 
   // JSON.stringify turns NaN into null, and the cache key spells it `NaN`.
@@ -283,16 +277,16 @@ describe('option failures', () => {
     expectConsoleRule(outcome)
   })
 
-  // Master throws a TypeError on `plans.map`, before it sends a request.
+  // At most one TypeError may escape, and no request goes out.
   it('shows no plan when plans is an object', async () => {
     const outcome = await observe({ options: { plans: { installmentsCount: 3 } } })
-    expectSharedBehaviour(outcome, ['TypeError'])
+    expectNoPlan(outcome, ['TypeError'])
   })
 
-  // `document.querySelector('#')` throws a SyntaxError DOMException out of add() on master.
+  // `document.querySelector('#')` throws a SyntaxError DOMException. At most one may escape.
   it('shows no plan when the container is #', async () => {
     const outcome = await observe({ options: { container: '#' } })
-    expectSharedBehaviour(outcome, ['SyntaxError'])
+    expectNoPlan(outcome, ['SyntaxError'])
   })
 
   it('shows no plan when the container is #nope', async () => {
@@ -326,26 +320,26 @@ describe('option failures', () => {
 
   it('shows no modal when the container of a Modal is #', async () => {
     const outcome = await observe({ widget: 'Modal', options: { container: '#' } })
-    expectSharedBehaviour(outcome, ['SyntaxError'])
+    expectNoPlan(outcome, ['SyntaxError'])
   })
 })
 
 describe('the exception check', () => {
-  it('accepts fewer escaped errors than master', () => {
+  it('accepts fewer escaped errors than allowed', () => {
     expect(() => expectNoMoreEscaped([], ['TypeError'])).not.toThrow()
     expect(() => expectNoMoreEscaped(['TypeError'], ['TypeError', 'TypeError'])).not.toThrow()
   })
 
-  it('accepts the same escaped errors as master', () => {
+  it('accepts the escaped errors that are allowed', () => {
     expect(() => expectNoMoreEscaped(['TypeError'], ['TypeError'])).not.toThrow()
   })
 
-  it('fails on more escaped errors than master', () => {
+  it('fails on more escaped errors than allowed', () => {
     expect(() => expectNoMoreEscaped(['TypeError'], [])).toThrow()
     expect(() => expectNoMoreEscaped(['TypeError', 'TypeError'], ['TypeError'])).toThrow()
   })
 
-  it('fails on an error type that master does not throw', () => {
+  it('fails on an error type that is not allowed', () => {
     expect(() => expectNoMoreEscaped(['RangeError'], ['TypeError'])).toThrow()
   })
 })

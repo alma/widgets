@@ -162,7 +162,7 @@ describe('widgets.css and widgets.min.css', () => {
       expect([...names].sort()).toEqual([...inventory.rootCustomProperties].sort())
     })
 
-    // The fonts stay linked from Alma's CDN and Adobe Fonts, as on master.
+    // The fonts stay linked from Alma's CDN and Adobe Fonts.
     it('keeps the @font-face URLs on cdn.almapay.com and use.typekit.net', () => {
       const urls = rulesOf(readBundleFile(file))
         .filter(({ selector }) => selector === '@font-face')

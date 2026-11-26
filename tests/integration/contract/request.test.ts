@@ -58,7 +58,7 @@ describe('eligibility request', () => {
       ])
     })
 
-    // Master uses the mode string as a prefix as it is, so a custom string works too.
+    // The widget uses the mode string as a prefix as it is, so a custom string works too.
     it('uses a custom mode string as the prefix', async () => {
       const api = await renderPlans(undefined, 'https://example.test')
       expect(api.calls.map(({ url }) => url)).toEqual([
@@ -84,7 +84,7 @@ describe('eligibility request', () => {
     })
   })
 
-  // Master sends the keys in a fixed order, so these tests compare the exact string.
+  // The widget sends the keys in a fixed order, so these tests compare the exact string.
   describe('body', () => {
     it('sends null addresses and no queries when only the amount is set', async () => {
       expect(await bodyOf({ purchaseAmount: 45000 })).toBe(
@@ -130,7 +130,7 @@ describe('eligibility request', () => {
       )
     })
 
-    // Master doesn't convert the amount, so a numeric string stays a string in the body.
+    // The widget doesn't convert the amount, so a numeric string stays a string in the body.
     it('sends a numeric string purchaseAmount as a string', async () => {
       expect(await bodyOf({ purchaseAmount: '45000' })).toBe(
         '{"purchase_amount":"45000","billing_address":null,"shipping_address":null}',

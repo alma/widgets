@@ -23,7 +23,7 @@ const golden = (name: string) =>
 
 useFakeClock()
 
-// jsdom doesn't implement window.scroll, which master calls on close through no-scroll.
+// jsdom doesn't implement window.scroll, which the modal calls on close through no-scroll.
 beforeEach(() => {
   vi.stubGlobal('scroll', () => {})
 })

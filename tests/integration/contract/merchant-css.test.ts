@@ -29,7 +29,7 @@ beforeAll(() => {
 
 useFakeClock()
 
-// jsdom doesn't implement window.scroll, which master calls on close through no-scroll.
+// jsdom doesn't implement window.scroll, which the modal calls on close through no-scroll.
 beforeEach(() => {
   vi.stubGlobal('scroll', () => {})
 })
@@ -362,7 +362,7 @@ describe('merchant CSS selectors', () => {
 
   // Each count is "<in the container>:<in the modal portal>". jsdom computes no style, so the
   // contract is which elements a selector reaches. A fixture count of 0 in every state needs a
-  // reason, and master's counts are the golden file.
+  // reason, and the golden file holds the counts.
   it(
     'matches the golden counts of each selector in each state',
     async () => {
