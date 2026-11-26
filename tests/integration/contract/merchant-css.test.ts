@@ -2,12 +2,11 @@ import { readFileSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import postcss from 'postcss'
-import { afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import inventory from './inventory.json'
 import { mockEligibilityApi } from './support/api-mock'
 import type { EligibilityReply } from './support/api-mock'
-import { it } from './support/contract-test'
 import { loadUmd } from './support/load-bundle'
 import { MERCHANT_ID, closeButton, tick, useFakeClock } from './support/page'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, setViewportWidth } from './support/viewport'

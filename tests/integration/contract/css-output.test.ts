@@ -3,10 +3,9 @@ import { resolve } from 'node:path'
 
 import postcss from 'postcss'
 import type { AtRule, ChildNode, Declaration, Rule } from 'postcss'
-import { describe, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import inventory from './inventory.json'
-import { it } from './support/contract-test'
 import { readBundleFile } from './support/load-bundle'
 
 const GOLDEN_PATH = resolve(__dirname, 'fixtures/css-output.json')

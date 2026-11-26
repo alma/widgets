@@ -1,11 +1,10 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
 import type { EligibilityReply } from './support/api-mock'
-import { it } from './support/contract-test'
 import { loadUmd } from './support/load-bundle'
 import { addWidget, closeButton, planButtons, tick, useFakeClock } from './support/page'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, setViewportWidth } from './support/viewport'

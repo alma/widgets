@@ -1,11 +1,10 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { beforeAll, describe, expect } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
 import { cacheKey } from './support/cache-key'
-import { it } from './support/contract-test'
 import { loadUmd } from './support/load-bundle'
 import {
   addAgain,

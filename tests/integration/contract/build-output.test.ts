@@ -1,9 +1,8 @@
 import { statSync } from 'node:fs'
 
 import { JSDOM } from 'jsdom'
-import { describe, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
-import { it } from './support/contract-test'
 import { bundlePath, importEsm, readBundleFile } from './support/load-bundle'
 
 const MEMBERS = ['ApiMode', 'Utils', 'Widgets']

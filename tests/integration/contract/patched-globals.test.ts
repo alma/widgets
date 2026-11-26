@@ -1,10 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
-import { it } from './support/contract-test'
 import { outlineToText, widgetOutline } from './support/dom'
 import { typeOf, withEscapes } from './support/escaped-errors'
 import { loadUmdInNewWindow } from './support/load-bundle'

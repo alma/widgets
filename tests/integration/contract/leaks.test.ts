@@ -1,10 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { afterAll, afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
-import { it } from './support/contract-test'
 import { type ListenerSpies, spyOnListeners } from './support/listener-spies'
 import { loadUmd } from './support/load-bundle'
 import {
