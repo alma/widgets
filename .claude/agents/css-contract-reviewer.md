@@ -1,6 +1,6 @@
 ---
 name: css-contract-reviewer
-description: Read-only reviewer of a branch that changes the Lit widgets, against the STYLE rules of .claude/rules/ and the contract names of tests/integration/contract/inventory.json. It checks that merchant CSS keeps working, that the CSS keeps the content and order it has at the merge base, and that the contract tests stay untouched. The lit-review skill runs it with lit-architecture-reviewer and a11y-reviewer. Call it directly only to review CSS and the contract alone, such as "did this change rename a contract class", and pass it the merge base SHA and the list of changed files.
+description: Read-only reviewer of a branch that changes the Lit widgets, against the STYLE rules of .claude/rules/ and the contract names of tests/integration/contract/inventory.json. It checks that merchant CSS keeps working, that the CSS keeps the content and order it has at the merge base, and that a change to the contract tests comes with the merchant-facing change it matches. The lit-review skill runs it with lit-architecture-reviewer and a11y-reviewer. Call it directly only to review CSS and the contract alone, such as "did this change rename a contract class", and pass it the merge base SHA and the list of changed files.
 tools: Read, Grep, Glob, Bash
 ---
 
@@ -81,13 +81,13 @@ it. A `stylelint-disable` comment that silences one of them is a finding too.
 
 ### The contract tests
 
-`tests/integration/contract/` holds the black-box tests of the merchant contract. A feature PR never
-edits them. Take the files under `tests/integration/contract/` from the list of changed files,
-untracked ones included, and read each with `git diff <merge base> -- ':/<path>'`, or whole when it
-is new. In `expected-failures.json`, a removed entry is fine, because the contract run fails when
-a listed test passes. Any other change under the folder is CRITICAL, unless the PR title or body
-says that the PR is a contract-test PR. With no PR, report it and say in the problem that a
-contract-test PR may make it fine.
+`tests/integration/contract/` holds the black-box tests of the merchant contract. A PR changes a
+case or a golden there only when it changes what merchants see, and its description says why. A fix
+for a bug that a case pins on purpose rewrites that case to assert the fix. Take the files under
+`tests/integration/contract/` from the list of changed files, untracked ones included, and read each
+with `git diff <merge base> -- ':/<path>'`, or whole when it is new. A change under the folder is
+CRITICAL unless the PR title or body says which merchant-facing change or bug fix it matches. With
+no PR, report it and say in the problem that a PR description naming that change may make it fine.
 
 Report only what the diff adds or changes. A violation in an unchanged line isn't yours, unless the
 change makes it worse.
