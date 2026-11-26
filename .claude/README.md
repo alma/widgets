@@ -97,10 +97,9 @@ starts with `/`, `~` or `../`, or climbs out with `/../`, because git then reads
 outside the repo. A quoted absolute path still gets through, and the agents never need one. `gh pr
 edit` isn't allowed, so Claude Code asks before the skill writes the PR description.
 
-It denies edits to `src/intl/messages/`, which Crowdin writes, and to `.ref-worktree/`, the git
-worktree that `npm run build:ref` creates. It also denies `npm publish`, `unpublish` and
-`deprecate`, force pushes and the Crowdin sync commands, and asks before an edit under
-`tests/integration/contract/`.
+It denies edits to `src/intl/messages/`, which Crowdin writes. It also denies `npm publish`,
+`unpublish` and `deprecate`, force pushes and the Crowdin sync commands, and asks before an edit
+under `tests/integration/contract/`.
 
 A deny wins over an allow from any other settings file, so `.claude/settings.local.json` can't lift
 it. The rules have two limits:

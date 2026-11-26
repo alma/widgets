@@ -6,7 +6,7 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { mockEligibilityApi } from './support/api-mock'
 import { outlineToText, widgetOutline } from './support/dom'
 import { withEscapes } from './support/escaped-errors'
-import { CONTRACT_VERSION, isReferenceBuild, loadUmd } from './support/load-bundle'
+import { CONTRACT_VERSION, loadUmd } from './support/load-bundle'
 import { addWidget, closeButton, container, tick, useFakeClock } from './support/page'
 
 const TAGS = ['alma-payment-plans', 'alma-eligibility-modal']
@@ -71,14 +71,11 @@ describe.each([
     expect(loaded.Alma).toBe(loaded.first)
     expect(loaded.Alma.Widgets).not.toBe(loaded.firstWidgets)
     expect(definitions()).toEqual(loaded.firstDefinitions)
-    // The React build defines no custom element.
-    if (isReferenceBuild) expect(loaded.firstDefinitions).toEqual([undefined, undefined])
-    else expect(loaded.firstDefinitions.every((definition) => definition !== undefined)).toBe(true)
+    expect(loaded.firstDefinitions.every((definition) => definition !== undefined)).toBe(true)
   })
 
   it('logs the warnings of its build', () => {
-    // The React build logs none, and the Lit build logs one for another version only.
-    expect(loaded.warnings).toHaveLength(isReferenceBuild ? 0 : warnings)
+    expect(loaded.warnings).toHaveLength(warnings)
     loaded.warnings.forEach((message) => {
       expect(message).toMatch(/^\[Alma widgets\] /)
       expect(message).toContain(`with version ${CONTRACT_VERSION}.`)
@@ -98,11 +95,9 @@ describe.each([
     expect(`${outlineToText(widgetOutline(container()))}\n`).toBe(
       golden('payment-plans-several-plans'),
     )
-    // React sends the request from the second bundle's code. In the Lit build, the element that
-    // the first bundle registered sends it, with the first bundle's version.
-    const agentVersion = isReferenceBuild ? (version ?? CONTRACT_VERSION) : CONTRACT_VERSION
+    // The element that the first bundle registered sends the request, with its own version.
     expect(api.calls.map(({ headers }) => headers['x-alma-agent'])).toEqual([
-      `Alma Widget/${agentVersion}`,
+      `Alma Widget/${CONTRACT_VERSION}`,
     ])
   })
 

@@ -1,6 +1,5 @@
 // Generates the message and date fixtures that the Lit intl runtime and the date helpers must match.
-// They record what master's react-intl and date-fns output, through @formatjs/intl, the core that
-// react-intl wraps. scripts/check-fixture-parity.mjs proves that both give the same output.
+// They record what @formatjs/intl and date-fns output.
 //
 //   npm run fixtures:messages            writes the two files in tests/integration/contract/fixtures/
 //   npm run fixtures:messages -- --check exits with code 1 when a fresh run differs from the files
