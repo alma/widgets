@@ -55,8 +55,6 @@ const ENTRY_ZONE = {
   message: `src/index.ts imports only main.css and public-api/. ${RULES_DOC}`,
 }
 
-const LINKED_CSS =
-  'CSS stays in the linked stylesheet, so merchant overrides keep winning. Import the CSS module and bind its classes with classMap.'
 const SAFE_CUSTOM_ELEMENT =
   'Register the tag with safeCustomElement from @/shared/custom-elements/safe-custom-element, so the first bundle on the page wins.'
 const INNER_HTML_BAN = {
@@ -72,19 +70,15 @@ const SRC_BANS = [
   {
     selector: ':matches(ClassDeclaration, ClassExpression)[superClass.name="LitElement"]',
     message:
-      'No LitElement subclass: extend LightDomElement from @/shared/custom-elements/light-dom-element, which renders in light DOM so merchant CSS applies.',
+      'No LitElement subclass: extend ShadowDomElement from @/shared/custom-elements/shadow-dom-element, or LightDomElement for an element that has not moved into its shadow root yet.',
   },
   {
     selector: 'CallExpression[callee.property.name="attachShadow"]',
-    message: 'No attachShadow: a shadow root stops merchant CSS.',
-  },
-  {
-    selector: ':matches(PropertyDefinition, MethodDefinition)[static=true][key.name="styles"]',
-    message: `No static styles: ${LINKED_CSS}`,
+    message: 'No attachShadow: extend ShadowDomElement, which Lit gives an open shadow root.',
   },
   {
     selector: 'MemberExpression[property.name="adoptedStyleSheets"]',
-    message: `No adoptedStyleSheets: ${LINKED_CSS}`,
+    message: 'No adoptedStyleSheets: put the CSS in static styles, which Lit adopts into the shadow root.',
   },
   {
     selector: 'Decorator > CallExpression.expression[callee.name="customElement"]',

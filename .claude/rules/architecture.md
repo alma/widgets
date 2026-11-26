@@ -35,7 +35,7 @@ src/
   shared/                      Lit code that both widgets use
     i18n/                      createIntl, message definitions, rich text, Locale
     controllers/               eligibility and media query controllers
-    custom-elements/           LightDomElement and safeCustomElement
+    custom-elements/           ShadowDomElement, LightDomElement and safeCustomElement
     utils/                     Lit helpers: class names, SVG IDs
     templates/                 Alma logo, card logos, icons
   domain/                      plans: the model, the eligibility request, the plan rules
