@@ -2,7 +2,11 @@ import { html } from 'lit'
 import type { MockInstance } from 'vitest'
 
 import { ApiMode, Widgets } from '@/index'
-import type { ModalOptions, PaymentPlanWidgetOptions } from '@/public-api/public-api.types'
+import type {
+  ModalHandle,
+  ModalOptions,
+  PaymentPlanWidgetOptions,
+} from '@/public-api/public-api.types'
 import { LightDomElement } from '@/shared/custom-elements/light-dom-element'
 import { Locale } from '@/shared/i18n/i18n.const'
 import { TEST_CONTAINER, TEST_MERCHANT_ID } from '@/test/utils/mount-widget'
@@ -441,6 +445,31 @@ describe('WidgetsController', () => {
       expect(onClose).not.toHaveBeenCalled()
       expect(warn).toHaveBeenCalledOnce()
       expect(warn).toHaveBeenCalledWith('[Alma widgets] add() found no container for "#missing".')
+    })
+  })
+
+  // The typecheck is the assertion: nothing here calls add().
+  describe('add() types', () => {
+    const widgets = Widgets.initialize(TEST_MERCHANT_ID, ApiMode.TEST)
+    const options = { container: TEST_CONTAINER, purchaseAmount: 45000 }
+
+    it('should return ModalHandle for Modal and undefined for PaymentPlans', () => {
+      expectTypeOf(() => widgets.add(Widgets.Modal, options)).returns.toEqualTypeOf<ModalHandle>()
+      expectTypeOf(() =>
+        widgets.add(Widgets.PaymentPlans, options),
+      ).returns.toEqualTypeOf<undefined>()
+      expectTypeOf<ModalHandle['close']>().toBeCallableWith()
+    })
+
+    it('should reject an option that the widget does not take', () => {
+      expectTypeOf(() => {
+        // @ts-expect-error: not an option
+        widgets.add(Widgets.PaymentPlans, { ...options, unknownOption: true })
+        // @ts-expect-error: not a locale
+        widgets.add(Widgets.Modal, { ...options, locale: 'xx' })
+        // @ts-expect-error: a Modal option only
+        widgets.add(Widgets.PaymentPlans, { ...options, clickableSelector: '#open-modal' })
+      }).toBeFunction()
     })
   })
 })
