@@ -13,6 +13,8 @@ module.exports = {
     'a11y/no-text-align-justify': true,
     'a11y/selector-pseudo-class-focus': true,
     'selector-class-pattern': null,
+    // An !important rule wins over every later rule of ours, so no state or variant can change it.
+    'declaration-no-important': true,
     // Keeps the widget easy to override. master's ID-scoped .sr-only rules are exempt.
     'selector-max-specificity': [
       '0,3,0',
