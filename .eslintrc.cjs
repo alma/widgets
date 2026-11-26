@@ -77,6 +77,12 @@ const SRC_BANS = [
     message: 'No attachShadow: extend ShadowDomElement, which Lit gives an open shadow root.',
   },
   {
+    selector:
+      ':matches(ClassDeclaration, ClassExpression)[superClass.name="LightDomElement"] > ClassBody > :matches(PropertyDefinition, MethodDefinition)[static=true][key.name="styles"]',
+    message:
+      'No static styles on a LightDomElement: Lit adopts them only into a shadow root, so they would never apply. Import the CSS module and bind its classes with classMap.',
+  },
+  {
     selector: 'MemberExpression[property.name="adoptedStyleSheets"]',
     message: 'No adoptedStyleSheets: put the CSS in static styles, which Lit adopts into the shadow root.',
   },
