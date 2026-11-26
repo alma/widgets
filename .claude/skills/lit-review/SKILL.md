@@ -1,12 +1,12 @@
 ---
 name: lit-review
-description: Reviews the current branch with three read-only agents, for architecture, CSS and the merchant contract, and accessibility, then merges their findings, lets the developer accept or reject each one and writes the PR checklist and a findings table into the PR description. It checks the changes against the ARCH, LAYER, NAME, STYLE and A11Y rules and the code at the merge base, not generic bugs. Use it whenever someone asks to review a branch, a diff or a PR of this repo before it merges, such as "review my changes", "run the review agents" or "is this ready to merge".
+description: Reviews the current branch with three read-only agents, for architecture and the merchant contract, CSS and the contract tests, and accessibility, then merges their findings, lets the developer accept or reject each one and writes the PR checklist and a findings table into the PR description. It checks the changes against the ARCH, LAYER, NAME, STYLE and A11Y rules and the code at the merge base, not generic bugs. Use it whenever someone asks to review a branch, a diff or a PR of this repo before it merges, such as "review my changes", "run the review agents" or "is this ready to merge".
 ---
 
 # Review a branch of the Lit widgets
 
-Lint and the tests can't see a timer that never stops, a lost ARIA state, a renamed contract class,
-a business rule written in a template or a helper in the wrong folder. Three agents of
+Lint and the tests can't see a timer that never stops, a lost ARIA state, CSS that leaks out of a
+shadow root, a business rule written in a template or a helper in the wrong folder. Three agents of
 `.claude/agents/` look for these, each with its own rules, and compare the changes with the code at
 the merge base:
 

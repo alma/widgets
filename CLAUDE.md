@@ -3,16 +3,18 @@
 `@alma/widgets` is an npm package, also served via jsDelivr, of embeddable payment-plan widgets
 that merchants embed on their own pages to call Alma's BNPL API. It ships only as a browser
 bundle: no server, and nothing here runs in Alma's own backend. Each widget is one Lit 3 custom
-element that renders in light DOM (`alma-payment-plans`, `alma-eligibility-modal`). Template
-functions render the parts below each element. Reactive controllers in `*.controller.ts` files
-keep the shared state, such as the eligibility request.
+element (`alma-payment-plans`, `alma-eligibility-modal`) that renders in an open shadow root, so
+merchant CSS rules don't apply to it, and merchants change it only through the options of
+`add()`. An element that hasn't moved into its shadow root yet still renders in light DOM.
+Template functions render the parts below each element. Reactive controllers in `*.controller.ts`
+files keep the shared state, such as the eligibility request.
 
 ## Tech stack
 
 | | |
 |---|---|
 | Language | TypeScript |
-| Framework | Lit 3, light DOM |
+| Framework | Lit 3, Shadow DOM |
 | Package manager | npm |
 | Toolchain | nvm, via `.nvmrc` |
 
@@ -85,8 +87,9 @@ Read the file, not a description of it.
 - Before you create any file under `src/`, read `.claude/rules/architecture.md` and the rule files
   that its table lists for that folder. Claude Code loads a rule file only after a file under its
   paths is read or written, and for a new file that happens after the first Write.
-- Only a major release that is allowed to break the merchant contract fills the pull request
-  template's "Merchant contract" section.
+- A pull request that adds, removes or changes a part of the merchant contract, the JavaScript API
+  that `.claude/rules/public-api.md` describes, fills the pull request template's "Merchant
+  contract" section.
 
 ## Non-negotiables
 
