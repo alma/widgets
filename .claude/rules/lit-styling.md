@@ -27,14 +27,12 @@ Generic advice that doesn't apply here: styling the host through `:host`, parts 
 
 - **STYLE-06** Selector specificity stays at most `0,3,0`, apart from the `.sr-only` rules scoped by ID. Why: low, even weights let a state or a variant override a rule of ours without extra selectors or `!important`. Check: lint.
 - **STYLE-07** No `:host`, `:host-context`, `::part` or `::slotted`, and no bare type selector, `@layer` or `:where()`. Selectors such as `.info p`, `.buttons > button` and `h2.title` stay allowed. Why: a page rule that targets the host element wins over `:host`, so the reset and the custom properties go on the first element inside the shadow root (STYLE-10). `::part` and `::slotted` serve parts and slots, which the widget doesn't offer (ARCH-25). Bare type selectors reach whatever a later template adds, and `@layer` and `:where()` change which of our rules wins. Check: lint.
-- **STYLE-08** No `!important`. Why: inside the shadow root, no page rule competes with ours, and an `!important` rule wins over every later rule of ours, so no state or variant can change it. Check: review.
+- **STYLE-08** No `!important`. Why: inside the shadow root, no page rule competes with ours, and an `!important` rule wins over every later rule of ours, so no state or variant can change it. Check: lint.
 
 ## Elements still in light DOM
 
 This section goes when the last element moves into its shadow root.
 
-An element that extends `LightDomElement` renders in light DOM, and so does the CSS of the templates it renders. That CSS stays in its CSS modules and in `src/main.css`, which the build ships as `widgets.css` and which declares the custom properties on `:root`. STYLE-03 of `architecture.md` and the rules below describe it, and STYLE-01, STYLE-08 and STYLE-10 to STYLE-13 don't apply to it yet. A change to it leaves it there: moving it is a change of its own.
+An element that extends `LightDomElement` renders in light DOM, and so does the CSS of the templates it renders. That CSS stays in its CSS modules and in `src/main.css`, which the build ships as `widgets.css` and which declares the custom properties on `:root`. STYLE-03 of `architecture.md` and the rules below describe it, and STYLE-01 and STYLE-10 to STYLE-13 don't apply to it yet. A change to it leaves it there: moving it is a change of its own.
 
 - **STYLE-04** Templates import the CSS-module class maps and bind them with `classMap`. Why: the build renames each CSS-module class, so a class written as a string matches no rule of `widgets.css`. Unit tests keep the class names as they are (`classNameStrategy: 'non-scoped'`), so only the build shows that mistake. Check: review.
-
-The CSS in light DOM keeps its current `!important` uses, which `src/css-limits.test.ts` caps, and adds none. Three keep merchant CSS from removing the focus outline of the logo button that opens the modal, and one works around Chrome before 69.
