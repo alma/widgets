@@ -36,6 +36,7 @@ src/
     i18n/                      createIntl, message definitions, rich text, Locale
     controllers/               eligibility and media query controllers
     custom-elements/           ShadowDomElement, LightDomElement and safeCustomElement
+    fonts/                     loadFonts, which adds Venn and Argent to document.fonts
     utils/                     Lit helpers: class names, SVG IDs
     templates/                 Alma logo, card logos, icons
   domain/                      plans: the model, the eligibility request, the plan rules
