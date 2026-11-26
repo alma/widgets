@@ -213,12 +213,12 @@
 .knowMore:focus,
 .knowMore:focus-visible {
   background-color: transparent;
-  border-radius: 4px !important;
-  outline: 1px solid var(--alma-orange) !important;
+  border-radius: 4px;
+  outline: 1px solid var(--alma-orange);
 }
 
 .knowMore.monochrome:focus,
 .knowMore.monochrome:focus-visible {
   background-color: transparent;
-  outline: 1px solid black !important;
+  outline: 1px solid black;
 }
