@@ -65,18 +65,18 @@ A changed markup that gives the same or better result is fine, such as an explic
 where it equals the implicit one.
 
 - **Roles and names (A11Y-01).** `role`, `aria-label`, `aria-labelledby`, `aria-describedby` and
-  the IDs they point to, `alt`, `title`, the text of `.sr-only` elements, and heading levels. An ID
-  reference resolves only inside its own shadow root: a reference whose target now sits in another
-  root, or on the page, is lost.
+  the IDs they point to, which stay in the same shadow root (A11Y-01), `alt`, `title`, the text of
+  `.sr-only` elements, and heading levels.
 - **States (A11Y-01).** `aria-expanded`, `aria-pressed`, `aria-selected`, `aria-current`,
   `aria-disabled`, `disabled` and `hidden`, with a value and a condition at least as accurate as at
   the merge base. A state that is lost, bound to a wrong condition, or rendered as the string
   `"false"` where the merge base leaves the attribute out, is a finding.
 - **Keyboard and focus (A11Y-01, A11Y-06).** Each `@keydown`, `@keyup` and `@click` on an element
   that isn't a button, and each `tabindex`, with the same keys and the same effect as at the merge
-  base. Focus moves and focus return. In the modal, Tab and Shift+Tab cycle and skip disabled,
-  hidden and `tabindex="-1"` elements, Escape closes it, and an overlay click closes it only when
-  the press and the release are both on the overlay.
+  base. Focus moves and focus return. In the modal, focus stays inside while it is open, apart from
+  the browser's own UI, Escape closes it, a click closes it only when the press and the release are
+  both outside its content, and on close focus returns to the element that had it, even inside a
+  shadow root.
 - **Live regions (A11Y-01).** `aria-live`, `aria-atomic` and `role="status"` or `"alert"`. An
   announcement that the merge base makes and the change loses, delays or empties is a finding.
 - **Axe and tests (A11Y-02, A11Y-07, A11Y-08, A11Y-09).** An axe rule turned off where the markup

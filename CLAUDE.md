@@ -87,7 +87,7 @@ Read the file, not a description of it.
 - Before you create any file under `src/`, read `.claude/rules/architecture.md` and the rule files
   that its table lists for that folder. Claude Code loads a rule file only after a file under its
   paths is read or written, and for a new file that happens after the first Write.
-- Only a pull request of a major release that changes the merchant contract, the JavaScript API
+- A pull request that adds, removes or changes a part of the merchant contract, the JavaScript API
   that `.claude/rules/public-api.md` describes, fills the pull request template's "Merchant
   contract" section.
 

@@ -30,9 +30,9 @@ npm run test:no-coverage -- <test files>
 
 ## Merchant contract
 
-<!-- Only in a major release that changes the merchant contract: list each function, option,
-default, callback, return value, published file or tag name that changes. A change to the DOM, a
-class or an ID doesn't go here. -->
+<!-- When this PR adds, removes or changes a part of the merchant contract: list each function,
+option, default, callback, return value, published file or tag name, and say whether it is added,
+removed or changed. A change to the DOM, a class or an ID doesn't go here. -->
 
 -
 
@@ -43,7 +43,7 @@ class or an ID doesn't go here. -->
 - [ ] Each file sits in its layer and folder, and its suffix says what it holds. (LAYER-04, LAYER-11)
 - [ ] Each timer, listener, observer, `matchMedia` query and animation frame stops on disconnect and starts again on reconnect. (ARCH-12)
 - [ ] An element or a template has stories only when it renders two or more variants, one per variant, and no story repeats a variant of a lower template. (ARCH-24)
-- [ ] No option, event, attribute, tag or element property is added, removed or renamed, merchants get no hook other than the options, and no exception reaches the page. (ARCH-08, ARCH-10, ARCH-13, ARCH-16 to ARCH-20, ARCH-25)
+- [ ] No element property is removed, renamed or retyped, nothing in the merchant contract is removed or renamed, an added option, callback, event member or tag is optional with a default that keeps the current behaviour, merchants get no hook other than the options, and no exception reaches the page. (ARCH-08, ARCH-10, ARCH-13, ARCH-16 to ARCH-20, ARCH-25)
 - [ ] Messages reuse the descriptors of the `*.messages.ts` files. (ARCH-04)
 - [ ] The CSS applies inside the shadow roots only, each custom property is an `--alma-*` declared inside the root, and templates add no inline style. (STYLE-01, STYLE-05, STYLE-10)
 - [ ] The CSS still in light DOM keeps `main.css` as the first import, and its templates bind classes with `classMap`. (STYLE-03, STYLE-04)

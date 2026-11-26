@@ -116,9 +116,11 @@ diff adds. Your rules say what each one requires. These checks add what the rule
 - **Element properties (ARCH-10, NAME-02).** Compare the properties with the element at the merge
   base and with the unit test that pins the list.
 - **API and hooks (ARCH-08, ARCH-13, ARCH-16 to ARCH-19, ARCH-25).** Compare the options, their
-  defaults, the callbacks and the return values with the merge base. A new option, event, reflected
-  attribute or public tag is a finding, and so is a `part` attribute, a `<slot>` or a class or ID
-  that the docs tell merchants to style. The DOM inside the container may change.
+  defaults, the callbacks, the events they receive and the return values with the merge base. A
+  removed or renamed option, callback, event member or tag, a changed type or default, or an added
+  one that is required or changes the current behaviour is a finding, and so is a `part`
+  attribute, a `<slot>` or a class or ID that the docs tell merchants to style. The DOM inside the
+  container may change.
 - **Names (NAME-01 to NAME-08).** Compare each new element class, template, params interface,
   controller, host type, `@state()` field, `styles` import and `*Messages` export with the forms of
   `widgets.md`.

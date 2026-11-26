@@ -40,9 +40,20 @@ Read these files whole before you look at the diff:
 
 Your rules are the `STYLE-*` rules, STYLE-03 included, and the contract folder below.
 
-An element that extends `LightDomElement` still renders in light DOM, and so does the CSS of the
-templates it renders. Check that CSS against STYLE-03 to STYLE-08, and the CSS of the other elements
-against STYLE-01, STYLE-05 to STYLE-08 and STYLE-10.
+### Elements still in light DOM
+
+This subsection goes when the last element moves into its shadow root.
+
+An element that extends `LightDomElement` renders in light DOM, and so does the CSS of the
+templates it renders. Check that CSS against STYLE-05 to STYLE-07 and the checks below, and the CSS
+of the other elements against STYLE-01, STYLE-05 to STYLE-08, STYLE-10 and STYLE-11.
+
+- **CSS order (STYLE-03).** `src/main.css` stays the first CSS import of `src/index.ts`. An
+  import that moves before it changes the order of `widgets.css`, and so the look of the elements
+  still in light DOM.
+- **Class binding (STYLE-04).** A template still in light DOM takes its classes from its CSS module
+  through `classMap`. A class written as a string instead of taken from the module matches no rule
+  of the build, and is a finding.
 
 ## 2. Read each change
 
@@ -61,27 +72,22 @@ a finding.
 Report every rule violation that the diff adds. Look hardest at these:
 
 - **Where the CSS lives (STYLE-01, STYLE-05).** CSS that reaches the page is CRITICAL: a `<style>`
-  or `<link>` added to the document, a write to `document.adoptedStyleSheets`, or a style set on an
-  element outside the shadow root, apart from the host's `display` of STYLE-05 and the scroll lock
-  of the open modal. A `styleMap`, `style=` binding or `element.style` write inside the widget is a
-  finding too. An inline style that the merge base already renders stays as it is, and nothing is
-  added to it.
+  or `<link>` added to the document for anything other than fonts, a write to
+  `document.adoptedStyleSheets`, or a style set on an element outside the shadow root, apart from
+  the host's `display` of STYLE-05 and the scroll lock of the open modal. A `styleMap`, `style=`
+  binding or `element.style` write inside the widget is a finding too. An inline style that the
+  merge base already renders stays as it is, and nothing is added to it.
 - **Custom and inherited properties (STYLE-10).** Each custom property that the diff declares or
   reads with `var()` in a shadow root's CSS is named `--alma-*` and is declared on the first element
   inside the root, which also resets the inherited properties. A declaration on `:root`, on the host
   or on the page, a property read but never declared inside the root, or a missing reset lets the
   page set the value, and is CRITICAL. A name without the prefix is a finding.
-- **CSS order (STYLE-03).** `src/main.css` stays the first CSS import of `src/index.ts`. An
-  import that moves before it changes the order of `widgets.css`, and so the look of the elements
-  still in light DOM.
-- **Class binding (STYLE-04).** A template still in light DOM takes its classes from its CSS module
-  through `classMap`. A class written as a string instead of taken from the module matches no rule
-  of the build, and is a finding.
 
-STYLE-06 and STYLE-07 have a lint check, and STYLE-08 has `src/css-limits.test.ts`. A
-violation of one of them that you still find is also a gap in that check: report it and name, in
-the fix, the rule of `.stylelintrc.cjs` or the case of `css-limits.test.ts` that should have caught
-it. A `stylelint-disable` comment that silences one of them is a finding too.
+STYLE-06 and STYLE-07 have a lint check, and the `!important` cap of the CSS in light DOM has
+`src/css-limits.test.ts`. A violation of one of them that you still find is also a gap in that
+check: report it and name, in the fix, the rule of `.stylelintrc.cjs` or the case of
+`css-limits.test.ts` that should have caught it. A `stylelint-disable` comment that silences one of
+them is a finding too.
 
 ### The contract tests
 

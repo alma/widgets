@@ -6,9 +6,9 @@ paths:
 
 # The merchant contract in `src/public-api/` and `src/index.ts`
 
-These rules override generic Lit advice. Merchants and Alma's e-commerce plugins load the widget from jsDelivr or npm and call `Alma.Widgets.initialize(merchantId, mode).add(...)`. That JavaScript API is the merchant contract: the functions, the options of `add()` and their defaults, the callbacks, the return values, the published files and the tag names. The DOM inside the tags, the classes, the IDs and the content of the CSS aren't part of it. An integration keeps working without any change across the releases of one major version, and that goal overrides every other one. Only a major release changes the contract.
+These rules override generic Lit advice. Merchants and Alma's e-commerce plugins load the widget from jsDelivr or npm and call `Alma.Widgets.initialize(merchantId, mode).add(...)`. That JavaScript API is the merchant contract: the functions, the options of `add()` and their defaults, the callbacks, the return values, the published files and the tag names. The DOM inside the tags, the classes, the IDs and the content of the CSS aren't part of it. An integration keeps working without any change across the releases of one major version, and that goal overrides every other one. Only a major release removes or changes a part of the contract. A minor release may add an optional one.
 
-Generic advice that doesn't apply here: public custom element tags, attributes and events as the API, an `exports` field in `package.json`, and a custom elements manifest. The contract stays the JavaScript API.
+Generic advice that doesn't apply here: configuring an element through its HTML attributes, listening to its DOM events, and a custom elements manifest. The tag names are part of the contract, but merchants configure the elements only through `add()`.
 
 ## API
 
@@ -18,7 +18,7 @@ Generic advice that doesn't apply here: public custom element tags, attributes a
 - **ARCH-19** `onClose` and `onModalClose` receive DOM events with the four members that preact/compat adds: `persist()`, `isPropagationStopped()`, `isDefaultPrevented()` and `nativeEvent`. Why: merchant callbacks may call them. Check: unit tests.
 - **ARCH-13** No exception reaches the merchant's page. A misconfiguration logs one console warning prefixed `[Alma widgets]`. Why: an error in the widget must never break the merchant's checkout. Check: unit tests and contract tests.
 - **ARCH-25** Merchants change the widget only through the options of `add()`. The widget offers them no other hook: no `part` attribute, no slot, no custom property they can set, and no class or ID that the docs tell them to style. Why: the shadow root keeps merchant CSS out, so the widget's look stays ours to change in any release, and an option is a hook that every release keeps working. Check: review.
-- **ARCH-08** No option, event, attribute or public tag is added. Why: anything added becomes part of the merchant contract that every later release has to keep. Check: review, and the unit test of ARCH-10 that pins each element's properties.
+- **ARCH-08** An option, a callback, the event that a callback receives, or a tag may be added when it is optional and its default keeps the current behaviour. `documentation.md` describes it, and the release is a minor one. Removing or renaming one, or changing its type or default, needs a major release. Why: an integration keeps working across the releases of one major version. Check: review, and the unit tests of ARCH-16 to ARCH-18.
 
 ## Files
 
