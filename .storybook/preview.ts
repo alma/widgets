@@ -9,6 +9,7 @@ import { blockAlmaApi } from '@/test/msw/block-alma-api'
 
 import { withMerchantCss } from './decorators/merchant-css'
 import { withModalContainer } from './decorators/modal-container'
+import { withShadowRoot } from './decorators/shadow-root'
 
 // Stories mock requests with parameters.msw.handlers. Storybook's and Vite's requests go through.
 const startMsw = async () => {
@@ -44,7 +45,7 @@ const keepBodyClean = () => {
 
 const preview: Preview = {
   loaders: [mswLoader(startMsw)],
-  decorators: [withModalContainer, withMerchantCss],
+  decorators: [withShadowRoot, withModalContainer, withMerchantCss],
   globalTypes: {
     merchantCss: {
       description: 'Load merchant CSS after main.css',
