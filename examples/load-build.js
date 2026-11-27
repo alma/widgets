@@ -1,5 +1,5 @@
-// Loads the widgets build that `?build=` picks: dist/ by default, dist-ref/ for `ref`, or an npm
-// version or range from jsDelivr (4.6.2, 4.6.2-beta.1, 4, 4.x, 4.6 or 4.6.x, etc).
+// Loads the widgets build that `?build=` picks: dist/ by default, or an npm version or range from
+// jsDelivr (4.6.2, 4.6.2-beta.1, 4, 4.x, 4.6 or 4.6.x, etc).
 // `document.write` keeps the bundle blocking, so it runs before the pages' inline scripts.
 
 // Chrome may block a jsDelivr build on a 2G connection, because the script is cross-origin.
@@ -10,24 +10,20 @@
 
   if (build === null) {
     base = '../dist/'
-  } else if (build === 'ref') {
-    base = '../dist-ref/'
   } else if (versionOrRange.test(build)) {
     base = 'https://cdn.jsdelivr.net/npm/@alma/widgets@' + build + '/dist/'
   } else {
     throw new Error(
       '[load-build] Invalid build "' +
         build +
-        '". Use "ref", a version such as 4.6.2 or a range such as 4.x.',
+        '". Use a version such as 4.6.2 or a range such as 4.x.',
     )
   }
 
   var hint =
     build === null
       ? 'Run `npm run build`.'
-      : build === 'ref'
-        ? 'Run `npm run build:ref`.'
-        : 'Check that @alma/widgets@' + build + ' exists on npm.'
+      : 'Check that @alma/widgets@' + build + ' exists on npm.'
 
   // Load errors don't bubble, but a capturing listener on window still gets them.
   window.addEventListener(

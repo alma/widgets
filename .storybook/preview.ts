@@ -59,10 +59,6 @@ const preview: Preview = {
             value: 'customized',
             title: 'Merchant page CSS + widget customization (should restyle it)',
           },
-          {
-            value: 'fixtures',
-            title: 'Merchant page CSS + the merchant CSS of the contract tests',
-          },
         ],
         dynamicTitle: true,
       },

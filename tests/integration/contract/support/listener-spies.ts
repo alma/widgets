@@ -1,5 +1,5 @@
 // Counts the event listeners that a bundle leaves attached, per target and event type, so the leak
-// tests can say "no worse than master". It spies on EventTarget.prototype and keeps the listeners
+// tests can compare them with their limits. It spies on EventTarget.prototype and keeps the listeners
 // of `window`, `document`, `document.body` and of each MediaQueryList that matchMedia returns.
 type Listener = EventListenerOrEventListenerObject
 type Counts = Record<string, number>

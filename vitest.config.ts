@@ -1,7 +1,7 @@
 import { playwright } from '@vitest/browser-playwright'
 import { configDefaults, defineConfig } from 'vitest/config'
 import { icuCatalogues } from './scripts/vite-plugin-icu'
-import { alias, define } from './vite.config'
+import { alias, define } from './scripts/vite-config-utils'
 
 // jsdom has no layout and no real Tab navigation, so only the modal's focus tests need a browser.
 const BROWSER_TESTS = ['src/**/*.browser.test.ts']
@@ -61,7 +61,7 @@ export default defineConfig({
         },
       },
       {
-        // Black-box tests on a built bundle: dist-ref/ (master) or dist/ (Lit), chosen by WIDGETS_DIST.
+        // Black-box smoke tests on the built bundle in dist/.
         // They skip src/test/setup.ts, because they never load code from src/.
         extends: true,
         test: {

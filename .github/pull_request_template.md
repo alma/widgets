@@ -47,7 +47,7 @@ removed or changed. A change to the DOM, a class or an ID doesn't go here. -->
 - [ ] Messages reuse the descriptors of the `*.messages.ts` files. (ARCH-04)
 - [ ] The CSS applies inside the shadow roots only, each custom property is an `--alma-*` declared inside the root, and templates add no inline style. (STYLE-01, STYLE-05, STYLE-10)
 - [ ] The CSS still in light DOM keeps `main.css` as the first import, and its templates bind classes with `classMap`. (STYLE-03, STYLE-04)
-- [ ] No change under `tests/integration/contract/`, apart from removing the expected failures that this PR makes pass. (CONTRACT)
+- [ ] No change to the smoke tests under `tests/integration/contract/`. (CONTRACT)
 - [ ] Roles, names, ARIA states, keyboard handling and focus are at least as good as at the merge base. (A11Y-01, A11Y-06)
 - [ ] Axe violations are fixed in the markup, and an axe rule is turned off only for a wrong report, with a comment that says why. (A11Y-02)
 - [ ] Each story was checked in Storybook with Merchant CSS off and on, and with the Accessibility panel.

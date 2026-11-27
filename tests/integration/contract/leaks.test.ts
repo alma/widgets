@@ -1,10 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { afterAll, afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
-import { it } from './support/contract-test'
 import { type ListenerSpies, spyOnListeners } from './support/listener-spies'
 import { loadUmd } from './support/load-bundle'
 import {
@@ -21,19 +20,19 @@ const threePlans = JSON.parse(
   readFileSync(resolve(__dirname, 'fixtures/eligibility/eligible-2x-3x-4x.json'), 'utf8'),
 )
 
-// Master's counts, measured on dist-ref/. The Lit build must stay at or below them. Raising a
-// constant keeps the tests passing, and lowering it below master's count makes them fail.
+// The most listeners and timers that the widget may leave. Raising a limit lets a leak through,
+// and lowering one below what the widget leaves makes the tests fail.
 type Counts = Record<string, number>
-const MASTER_LISTENERS_AFTER_REPLACEMENT: Counts = {}
-// react-modal adds a capturing `focus` listener on `document` that master never removes. It is one
-// listener however many times the modal opens.
-const MASTER_LISTENERS_AFTER_THREE_CYCLES: Counts = { 'document:focus': 1 }
-const MASTER_TIMERS_AFTER_REPLACEMENT = 0
+const MAX_LISTENERS_AFTER_REPLACEMENT: Counts = {}
+// One capturing `focus` listener on `document` may stay, as react-modal leaves it, however many
+// times the modal opens.
+const MAX_LISTENERS_AFTER_THREE_CYCLES: Counts = { 'document:focus': 1 }
+const MAX_TIMERS_AFTER_REPLACEMENT = 0
 // The live widget's timers (cycling, announcements, instructions) all end within this time, so only
-// timers that outlive a replaced widget are left. Counting earlier would measure when Preact and Lit
-// start the live widget's timers, a frame apart, rather than leaks.
+// timers that outlive a replaced widget are left. Counting earlier would count the live widget's
+// timers as leaks.
 const SETTLE_MS = 60000
-const MASTER_TIMERS_AFTER_THREE_CYCLES = 1
+const MAX_TIMERS_AFTER_THREE_CYCLES = 1
 
 let Alma: ReturnType<typeof loadUmd>
 let spies: ListenerSpies
@@ -56,20 +55,20 @@ beforeEach(() => {
 
 // A modal that a test leaves open stays mounted after setup.ts empties <body>.
 afterEach(async () => {
-  ;(closeButton() as HTMLElement | null)?.click()
+  closeButton()?.click()
   await tick(1000)
 })
 
-const expectNoMoreThan = (actual: Counts, master: Counts) => {
-  const keys = new Set([...Object.keys(actual), ...Object.keys(master)])
-  const over = Array.from(keys).filter((key) => (actual[key] ?? 0) > (master[key] ?? 0))
+const expectNoMoreThan = (actual: Counts, limit: Counts) => {
+  const keys = new Set([...Object.keys(actual), ...Object.keys(limit)])
+  const over = Array.from(keys).filter((key) => (actual[key] ?? 0) > (limit[key] ?? 0))
   expect(Object.fromEntries(over.map((key) => [key, actual[key]]))).toEqual(
-    Object.fromEntries(over.map((key) => [key, master[key] ?? 0])),
+    Object.fromEntries(over.map((key) => [key, limit[key] ?? 0])),
   )
 }
 
 describe('listener spies', () => {
-  // Master leaves no listener on these targets, so a spy that records nothing would pass every leak
+  // The limits allow almost no listener, so a spy that records nothing would pass every leak
   // test. This shows that the spies see a listener on each kind of target.
   it('counts the listeners on window, document, body and a MediaQueryList', () => {
     const listener = () => {}
@@ -108,8 +107,8 @@ describe('listener spies, options', () => {
   })
 })
 
-describe('leaks, no worse than master', () => {
-  it("leaves at most master's listeners and timers after a replacement", async () => {
+describe('leaks', () => {
+  it('leaves at most the allowed listeners and timers after a replacement', async () => {
     mockEligibilityApi({ json: threePlans })
     addWidget(Alma, Alma.Widgets.PaymentPlans, {})
     await waitFor(() => planButtons().length > 0, 'the plan buttons')
@@ -119,11 +118,11 @@ describe('leaks, no worse than master', () => {
     await waitFor(() => planButtons().length > 0, 'the plan buttons')
     await tick(SETTLE_MS)
 
-    expectNoMoreThan(spies.attached(), MASTER_LISTENERS_AFTER_REPLACEMENT)
-    expect(vi.getTimerCount()).toBeLessThanOrEqual(MASTER_TIMERS_AFTER_REPLACEMENT)
+    expectNoMoreThan(spies.attached(), MAX_LISTENERS_AFTER_REPLACEMENT)
+    expect(vi.getTimerCount()).toBeLessThanOrEqual(MAX_TIMERS_AFTER_REPLACEMENT)
   })
 
-  it("leaves at most master's listeners after three open and close cycles", async () => {
+  it('leaves at most the allowed listeners after three open and close cycles', async () => {
     mockEligibilityApi({ json: threePlans })
     const handle = addWidget(Alma, Alma.Widgets.Modal, {}) as { open: () => void }
     for (let cycle = 0; cycle < 3; cycle += 1) {
@@ -138,7 +137,7 @@ describe('leaks, no worse than master', () => {
     }
     await tick(1000)
 
-    expectNoMoreThan(spies.attached(), MASTER_LISTENERS_AFTER_THREE_CYCLES)
-    expect(vi.getTimerCount()).toBeLessThanOrEqual(MASTER_TIMERS_AFTER_THREE_CYCLES)
+    expectNoMoreThan(spies.attached(), MAX_LISTENERS_AFTER_THREE_CYCLES)
+    expect(vi.getTimerCount()).toBeLessThanOrEqual(MAX_TIMERS_AFTER_THREE_CYCLES)
   })
 })

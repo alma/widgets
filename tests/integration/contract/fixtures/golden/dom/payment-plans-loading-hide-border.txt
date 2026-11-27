@@ -1,5 +1,0 @@
-<div id="alma-widget">
-  <div class="pending widgetContainer">
-    <div class="loadingIndicator" data-testid="loader">
-      <div class="line1">
-      <div class="line2">

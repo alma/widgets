@@ -23,3 +23,9 @@ export namespace Utils {
 }
 
 export { ApiMode }
+export type {
+  ModalHandle,
+  ModalOptions,
+  PaymentPlanWidgetOptions,
+  WidgetsHandle,
+} from '@/public-api/public-api.types'

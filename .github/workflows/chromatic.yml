@@ -2,9 +2,9 @@ name: Chromatic
 
 on:
   push:
-    branches: [ master, feature/lit-migration ]
+    branches: [ master, feature/lit-migration, feature/rebranding ]
   pull_request:
-    branches: [ master, feature/lit-migration ]
+    branches: [ master, feature/lit-migration, feature/rebranding ]
 
 jobs:
   chromatic:

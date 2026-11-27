@@ -6,20 +6,15 @@ import { JSDOM } from 'jsdom'
 
 const repoRoot = resolve(__dirname, '../../../..')
 
-// The folder of the bundle under test: dist-ref/ (master's React build) or dist/ (the Lit build).
-export const distDir = resolve(repoRoot, process.env.WIDGETS_DIST ?? 'dist')
+const distDir = resolve(repoRoot, 'dist')
 
-export const isReferenceBuild = distDir.endsWith('dist-ref')
-
-const BUILD_COMMAND = isReferenceBuild ? 'npm run build:ref' : 'npm run build:contract'
-
-// The BUILD_VERSION of both builds, which the X-Alma-Agent header carries.
+// The BUILD_VERSION of the contract build, which the X-Alma-Agent header carries.
 export const CONTRACT_VERSION = 'contract-test'
 
 export const bundlePath = (file: string): string => {
   const path = resolve(distDir, file)
   if (!existsSync(path)) {
-    throw new Error(`${path} does not exist. Run "${BUILD_COMMAND}" first.`)
+    throw new Error(`${path} does not exist. Run "npm run build:contract" first.`)
   }
   return path
 }
@@ -49,7 +44,9 @@ type AlmaBundle = {
 export const loadUmd = ({ version }: { version?: string } = {}): AlmaBundle => {
   const source = readBundleFile('widgets.umd.js')
   if (version !== undefined && !source.includes(CONTRACT_VERSION)) {
-    throw new Error(`widgets.umd.js has no "${CONTRACT_VERSION}" version. Run "${BUILD_COMMAND}".`)
+    throw new Error(
+      `widgets.umd.js has no "${CONTRACT_VERSION}" version. Run "npm run build:contract".`,
+    )
   }
   // eslint-disable-next-line no-eval
   ;(0, eval)(version === undefined ? source : source.replaceAll(CONTRACT_VERSION, () => version))

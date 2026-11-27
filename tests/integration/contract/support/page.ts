@@ -1,18 +1,17 @@
 import { afterAll, beforeAll, beforeEach } from 'vitest'
 
-import { loadUmd } from './load-bundle'
+import { deepQueryAll } from './dom'
+import type { loadUmd } from './load-bundle'
 
-export const START = 1638350762000
-export const MERCHANT_ID = 'merchant_contract_test'
+const START = 1638350762000
+const MERCHANT_ID = 'merchant_contract_test'
 
 type Bundle = ReturnType<typeof loadUmd>
 type Options = Record<string, unknown>
 
 /**
- * Fakes the timers that Preact's effects use (animation frame and 100 ms timeout). Call it once at
- * the top of a test file. The fake timers stay installed for the whole file, because Preact queues
- * its effects in a module variable, and a timer that the clock drops between two tests would block
- * every later effect.
+ * Fakes the timers, the animation frame and Date. Call it once at the top of a test file. The fake
+ * timers stay installed for the whole file.
  */
 export const useFakeClock = () => {
   beforeAll(() => {
@@ -48,12 +47,15 @@ export const waitFor = async (check: () => boolean, what: string) => {
   throw new Error(`Timed out waiting for ${what}`)
 }
 
-export const container = () => document.querySelector('#alma-widget') as HTMLElement
-export const planButtons = () =>
-  Array.from(container().querySelectorAll<HTMLElement>('[role="option"]'))
-export const closeButton = () => document.querySelector('[data-testid="modal-close-button"]')
-
-export const loadBundle = (): Bundle => loadUmd()
+// The queries look inside the shadow roots, so they work whether an element renders in one or not.
+const container = () => document.querySelector('#alma-widget') as HTMLElement
+export const planButtons = (root: ParentNode = container()) =>
+  deepQueryAll<HTMLElement>(root, '[role="option"]')
+export const closeButton = (doc = document) =>
+  deepQueryAll<HTMLElement>(doc, '[data-testid="modal-close-button"]')[0] ?? null
+// The modal is a div with role="dialog" until it becomes an open <dialog>.
+export const modalDialog = (doc = document) =>
+  deepQueryAll(doc, 'dialog[open], [role="dialog"]')[0] ?? null
 
 /** Puts an empty container in the page and adds a widget to it. */
 export const addWidget = (

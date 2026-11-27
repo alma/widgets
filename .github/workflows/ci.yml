@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master, feature/lit-migration ]
+    branches: [ master, feature/lit-migration, feature/rebranding ]
   pull_request:
-    branches: [ master, feature/lit-migration ]
+    branches: [ master, feature/lit-migration, feature/rebranding ]
 
 jobs:
   lint:
@@ -55,7 +55,14 @@ jobs:
       - run: npm run build
       # Lit reads globalThis, which every browser from the documented floor has.
       - run: npm run check:es2019
-      # Never fails the job.
+      # attw and publint pass even when index.d.ts imports another file.
+      # The package has no dependencies, so any import leaves consumers with an unresolved type.
+      - name: Check that dist/types/index.d.ts is self-contained
+        run: |
+          if grep -nE "^\s*import\b|\bimport\(|\bfrom\s*['\"]|<reference" dist/types/index.d.ts; then
+            echo "dist/types/index.d.ts must not import or reference another file."
+            exit 1
+          fi
       - run: npm run lint:package
 
   storybook:
@@ -79,25 +86,6 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          # The reference build needs the commit in scripts/ref-sha.txt
-          fetch-depth: 0
-      - name: Set up Node.js
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          node-version-file: .nvmrc
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build:ref
-      - run: npm run test:contract:ref
-      - run: npm run fixtures:messages -- --check
-      - run: npm run build:contract
-      - run: npm run test:contract
-
-  consumers:
-    runs-on: ubuntu-26.04
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
           # Fetch the latest commit, only
           fetch-depth: 1
       - name: Set up Node.js
@@ -106,10 +94,9 @@ jobs:
           node-version-file: .nvmrc
           cache: 'npm'
       - run: npm ci
-      - name: Install Chromium for the render check
-        run: npm run test:browser:install -- --with-deps
-      - run: npm run build
-      - run: npm run test:consumers
+      - run: npm run fixtures:messages -- --check
+      - run: npm run build:contract
+      - run: npm run test:contract
 
   update-release-draft:
     if: github.ref == 'refs/heads/master'

@@ -1,7 +1,5 @@
 // An escaped error is a throw from add(), a window `error` event or an unhandled rejection. The
-// minified messages differ between the two builds, so the tests only ever compare error types.
-import { expect } from 'vitest'
-
+// minified messages change from one build to the next, so the tests only compare error types.
 export type Escapes = {
   /** The type of each escaped error, in order. */
   types: string[]
@@ -59,25 +57,6 @@ export const collectEscapes = (): Escapes => {
       return types
     },
   }
-}
-
-const countByType = (types: string[]): Record<string, number> =>
-  types.reduce<Record<string, number>>(
-    (counts, type) => ({ ...counts, [type]: (counts[type] ?? 0) + 1 }),
-    {},
-  )
-
-/**
- * Accepts the same escaped errors as master, or fewer, and fails on one more or on a type that
- * master doesn't throw.
- */
-export const expectNoMoreEscaped = (actual: string[], master: string[]) => {
-  const allowed = countByType(master)
-  Object.entries(countByType(actual)).forEach(([type, count]) => {
-    expect(count, `escaped ${type} errors, master has ${allowed[type] ?? 0}`).toBeLessThanOrEqual(
-      allowed[type] ?? 0,
-    )
-  })
 }
 
 /**

@@ -13,5 +13,5 @@
     "vite.config.ts",
     "vitest.config.ts"
   ],
-  "exclude": ["node_modules", "dist", "dist-ref", ".ref-worktree"]
+  "exclude": ["node_modules", "dist"]
 }

@@ -2,12 +2,12 @@ import type { ReactiveElement } from 'lit'
 
 import { ApiMode, Widgets } from '@/index'
 import type {
+  AddReturnType,
   ModalOptions,
   PaymentPlanWidgetOptions,
   WidgetNames,
   WidgetOptions,
 } from '@/public-api/public-api.types'
-import type { AddReturnType } from '@/public-api/widgets'
 import { Locale } from '@/shared/i18n/i18n.const'
 
 export const TEST_MERCHANT_ID = '11gKoO333vEXacMNMUMUSc4c4g68g2Les4'
@@ -44,7 +44,12 @@ export async function mountWidget(
   const selector = container ?? TEST_CONTAINER
   // The container may already hold merchant content.
   const childrenBefore = new Set(document.querySelector(selector)?.children)
-  const handle = Widgets.initialize(TEST_MERCHANT_ID, ApiMode.TEST).add(widget, {
+  // mountWidget's own overloads already pair each widget with its options.
+  const add = Widgets.initialize(TEST_MERCHANT_ID, ApiMode.TEST).add as (
+    widget: WidgetNames,
+    options: WidgetOptions,
+  ) => AddReturnType
+  const handle = add(widget, {
     locale: Locale.fr,
     ...options,
     container: selector,

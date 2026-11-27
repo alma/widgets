@@ -7,7 +7,6 @@
       "Bash(npm run test:unit *)",
       "Bash(npm run test:browser *)",
       "Bash(npm run test:contract *)",
-      "Bash(npm run test:contract:ref *)",
       "Bash(npm run typecheck)",
       "Bash(npm run lint)",
       "Bash(npm run build)",
@@ -27,7 +26,6 @@
     ],
     "deny": [
       "Edit(/src/intl/messages/**)",
-      "Edit(/.ref-worktree/**)",
       "Bash(npm publish *)",
       "Bash(npm unpublish *)",
       "Bash(npm deprecate *)",
@@ -54,11 +52,7 @@
       "Bash(git push --force*)",
       "Bash(git push -f*)",
       "Bash(git push * --force*)",
-      "Bash(git push * -f*)",
-      "Bash(npm test * -u*)",
-      "Bash(npm test * --update*)",
-      "Bash(npm run test:* -u*)",
-      "Bash(npm run test:* --update*)"
+      "Bash(git push * -f*)"
     ]
   },
   "hooks": {

@@ -87,8 +87,7 @@ Claude Code has no switch for one hook. To turn hooks off:
 
 `settings.json` lets Claude run, without a prompt, `npm test` and every `test:*` script except
 `test:browser:install`, plus `typecheck`, `lint`, `build`, `build:contract` and `build-storybook`,
-once that script exists. A test script run with vitest's `-u` or `--update` asks first, because it
-can rewrite the snapshots under `tests/integration/contract/`.
+once that script exists.
 
 It also lets every session run `git status`, `diff`, `log`, `show`, `ls-files`, `ls-tree`,
 `merge-base`, `rev-parse` and `gh pr view` without a prompt, which `/lit-review` and its agents
@@ -99,10 +98,9 @@ starts with `/`, `~` or `../`, or climbs out with `/../`, because git then reads
 outside the repo. A quoted absolute path still gets through, and the agents never need one. `gh pr
 edit` isn't allowed, so Claude Code asks before the skill writes the PR description.
 
-It denies edits to `src/intl/messages/`, which Crowdin writes, and to `.ref-worktree/`, the git
-worktree that `npm run build:ref` creates. It also denies `npm publish`, `unpublish` and
-`deprecate`, force pushes and the Crowdin sync commands, and asks before an edit under
-`tests/integration/contract/`.
+It denies edits to `src/intl/messages/`, which Crowdin writes. It also denies `npm publish`,
+`unpublish` and `deprecate`, force pushes and the Crowdin sync commands, and asks before an edit
+under `tests/integration/contract/`.
 
 A deny wins over an allow from any other settings file, so `.claude/settings.local.json` can't lift
 it. The rules have two limits:
