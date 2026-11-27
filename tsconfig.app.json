@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "Bundler",
+    "target": "ES2021",
+    "module": "ESNext",
+    // The bundle ships no polyfills, so the code only uses the ES2019 built-ins.
+    "lib": ["ES2019", "DOM", "DOM.Iterable"],
+    // No Node types, so tsc rejects Node globals in code that runs in the browser.
+    "types": [],
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.stories.ts", "src/test/**"]
+}

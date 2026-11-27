@@ -1,0 +1,125 @@
+import {
+  clearCache,
+  createKey,
+  getCache,
+  isMoreThanOneHourAgo,
+  setCache,
+} from '@/domain/api/eligibility-cache'
+import { buildEligibilityRequest } from '@/domain/api/eligibility-request-builder'
+import { StatusResponse } from '@/domain/api/eligibility.const'
+import type { EligibilityInput, EligibilityResult } from '@/domain/api/eligibility.types'
+import { warnOnce } from '@/lib/errors'
+import { fetchFromApi } from '@/lib/http'
+
+const FAILED: EligibilityResult = { status: StatusResponse.FAILED, plans: [] }
+const PENDING: EligibilityResult = { status: StatusResponse.PENDING, plans: [] }
+
+const fail = (message: string, error?: unknown): EligibilityResult => {
+  warnOnce(message, error)
+  return FAILED
+}
+
+const readEntryField = (entry: unknown, field: 'value' | 'timestamp'): unknown =>
+  entry !== null && typeof entry === 'object'
+    ? (entry as Record<string, unknown>)[field]
+    : undefined
+
+const requestEligibility = async (input: EligibilityInput): Promise<EligibilityResult> => {
+  let request
+  try {
+    request = buildEligibilityRequest(input)
+  } catch (error) {
+    return fail('The eligibility request could not be built.', error)
+  }
+  let response: unknown
+  try {
+    response = await fetchFromApi<unknown>(request)
+  } catch {
+    // Network error or non-JSON body: fails quietly.
+    return FAILED
+  }
+  // An API error, null or another primitive fails quietly too.
+  if (
+    response === null ||
+    typeof response !== 'object' ||
+    'error_code' in response ||
+    'errors' in response
+  ) {
+    return FAILED
+  }
+  if (!Array.isArray(response)) {
+    return fail('The eligibility API returned an unexpected response.')
+  }
+  return { status: StatusResponse.SUCCESS, plans: response }
+}
+
+// The cached result, or null when the request must go out.
+// For an expired entry, clears all of sessionStorage.
+const readCachedEligibility = (key: string): EligibilityResult | null => {
+  let cachedEntry: unknown
+  try {
+    cachedEntry = getCache(key)
+  } catch (error) {
+    return fail('The eligibility cache could not be read.', error)
+  }
+  const cached = readEntryField(cachedEntry, 'value')
+  const timestamp = readEntryField(cachedEntry, 'timestamp')
+  // An entry without a timestamp never expires.
+  const expired = Boolean(timestamp) && isMoreThanOneHourAgo(timestamp as number)
+
+  if (expired) {
+    try {
+      clearCache()
+    } catch (error) {
+      return fail('The eligibility cache could not be cleared.', error)
+    }
+    // Sends no request and keeps loading until the next widget.
+    if (cached) {
+      return PENDING
+    }
+  } else if (cached) {
+    if (!Array.isArray(cached)) {
+      return fail('The eligibility cache entry is malformed.')
+    }
+    return { status: StatusResponse.SUCCESS, plans: cached }
+  }
+
+  return null
+}
+
+// Cache first. Never rejects. A sent request always finishes and writes the cache.
+export const getEligibility = async (input: EligibilityInput): Promise<EligibilityResult> => {
+  const { purchaseAmount, configPlans } = input
+  // The merchant's options arrive unchecked.
+  if (purchaseAmount === undefined || purchaseAmount === null) {
+    return fail('The purchaseAmount option is missing.')
+  }
+  if (configPlans !== undefined && configPlans !== null && !Array.isArray(configPlans)) {
+    return fail('The plans option must be an array.')
+  }
+
+  let key: string
+  try {
+    key = createKey(input)
+  } catch (error) {
+    return fail('The eligibility cache key could not be built.', error)
+  }
+
+  const cachedResult = readCachedEligibility(key)
+  if (cachedResult) {
+    return cachedResult
+  }
+
+  const result = await requestEligibility(input)
+  if (result.status !== StatusResponse.SUCCESS) {
+    return result
+  }
+
+  try {
+    setCache(key, result.plans)
+  } catch (error) {
+    return fail('The eligibility response could not be cached.', error)
+  }
+
+  return result
+}

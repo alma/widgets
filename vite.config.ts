@@ -1,82 +1,79 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
-import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+
 import CleanCSS from 'clean-css'
-import fs from 'fs'
+import { defineConfig, type Plugin } from 'vite'
+
+import { icuCatalogues, icuParserAlias } from './scripts/vite-plugin-icu'
+
+const src = (path = '') => resolve(__dirname, 'src', path)
+
+// alias and define are shared with vitest.config.ts.
+export const alias = [{ find: '@', replacement: src() }, icuParserAlias]
+
+export const define = {
+  'import.meta.env.BUILD_VERSION': JSON.stringify(process.env.BUILD_VERSION ?? 'dev'),
+}
+
+// Runs once per build, like master. Skips when widgets.css is missing (failed watch rebuild, Storybook).
+const minCss = (): Plugin => {
+  let outDir = ''
+  return {
+    name: 'alma-min-css',
+    apply: 'build',
+    configResolved(config) {
+      outDir = resolve(config.root, config.build.outDir)
+    },
+    closeBundle() {
+      const cssPath = resolve(outDir, 'widgets.css')
+      if (!existsSync(cssPath)) return
+      const css = readFileSync(cssPath, 'utf8')
+      writeFileSync(resolve(outDir, 'widgets.min.css'), new CleanCSS().minify(css).styles)
+    },
+  }
+}
+
+// A file in the folder writeBundle wrote to.
+const outFile = (dir: string | undefined, file: string) => {
+  if (!dir) throw new Error(`Cannot locate ${file}: the build output has no dir.`)
+  return resolve(dir, file)
+}
+
+// Runs only after the UMD output is written, so it never copies a stale file. The WooCommerce
+// files are plain copies: master's patch that swaps innerHTML for innerText breaks Lit.
+const wooCommerceCopy = (): Plugin => ({
+  name: 'alma-woocommerce-copy',
+  apply: 'build',
+  writeBundle({ dir }, bundle) {
+    if (!('widgets.umd.js' in bundle)) return
+    copyFileSync(outFile(dir, 'widgets.umd.js'), outFile(dir, 'widgets-wc.umd.js'))
+    copyFileSync(outFile(dir, 'widgets.umd.js.map'), outFile(dir, 'widgets-wc.umd.js.map'))
+  },
+})
 
 export default defineConfig({
+  // dist/ lands next to this file, whatever the current directory.
+  root: __dirname,
+  resolve: { alias },
+  define,
   build: {
-    target: 'es2015',
+    // ES2019 so webpack 4 parses widgets.js. No polyfills, and no check covers DOM methods.
+    target: 'es2019',
     outDir: 'dist',
+    sourcemap: true,
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: src('index.ts'),
       name: 'Alma',
       formats: ['umd', 'es'],
-      fileName: (format) => {
-        if (format === 'es') {
-          return 'widgets.js'
-        } else {
-          return `widgets.${format}.js`
-        }
-      },
+      fileName: (format) => (format === 'es' ? 'widgets.js' : `widgets.${format}.js`),
+      cssFileName: 'widgets',
     },
     rollupOptions: {
       output: {
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'widgets.css'
-          return assetInfo?.name || '[name].[ext]'
-        },
-        // Reuse window.Alma instead of overwriting it, so Alma.InPage survives any load order
+        // Reuse an existing window.Alma, so Alma.InPage survives any load order.
         extend: true,
       },
-      watch: {
-        exclude: ['node_modules/**', 'examples'],
-      },
-      external: [],
-    },
-    sourcemap: true,
-    minify: true,
-  },
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, './src'),
-      assets: resolve(__dirname, './src/assets'),
-      components: resolve(__dirname, './src/components'),
-      hooks: resolve(__dirname, './src/hooks'),
-      utils: resolve(__dirname, './src/utils'),
-      Widgets: resolve(__dirname, './src/Widgets'),
-      intl: resolve(__dirname, './src/intl'),
-      react: 'preact/compat',
-      'react-dom': 'preact/compat',
     },
   },
-  define: {
-    // Inject only the specific env keys the bundle needs. Passing the whole
-    // `process.env` object inlines every build-machine variable into the
-    // published bundle (a leak Vite 6 now warns about).
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ?? 'production'),
-    'process.env.BUILD_VERSION': JSON.stringify(process.env.BUILD_VERSION ?? 'dev'),
-  },
-  plugins: [
-    dts({
-      outDir: 'dist/types',
-      // Stories and test helpers are not part of the published package
-      exclude: ['node_modules/**', 'src/**/*.stories.*', 'src/test/**'],
-    }),
-    nodePolyfills(),
-    {
-      name: 'minify-css',
-      closeBundle: () => {
-        const cssPath = 'dist/widgets.css'
-        const minCssPath = 'dist/widgets.min.css'
-
-        if (fs.existsSync(cssPath)) {
-          const css = fs.readFileSync(cssPath, 'utf8')
-          const minified = new CleanCSS().minify(css).styles
-          fs.writeFileSync(minCssPath, minified)
-        }
-      },
-    },
-  ],
+  plugins: [icuCatalogues(), minCss(), wooCommerceCopy()],
 })

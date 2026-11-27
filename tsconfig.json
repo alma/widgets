@@ -1,33 +1,6 @@
+// Editors only load tsconfig.json, and the app config excludes the tests, so this file points
+// them to both configs. Each file opens in the first config that includes it.
 {
-  "compilerOptions": {
-    "declarationDir": "dist/types",
-    "outDir": "dist/lib",
-    "typeRoots": ["node_modules/@types"],
-    "baseUrl": ".",
-    "moduleResolution": "bundler",
-    "target": "esnext",
-    "module": "esnext",
-    "lib": ["es2015", "es2016", "es2017", "dom"],
-    "strict": true,
-    "sourceMap": true,
-    "declaration": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "jsx": "react",
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "paths": {
-      "assets/*": ["src/assets/*"],
-      "components/*": ["src/components/*"],
-      "hooks/*": ["src/hooks/*"],
-      "intl/*": ["src/intl/*"],
-      "test/*": ["src/test/*"],
-      "utils/*": ["src/utils/*"],
-      "Widgets/*": ["src/Widgets/*"],
-      "@/*": ["src/*"],
-    }
-  },
-  "include": ["src", ".storybook", "setupTests.ts", "vite.config.ts", "scripts"],
+  "files": [],
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.test.json" }]
 }

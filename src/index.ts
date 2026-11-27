@@ -1,17 +1,18 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ApiMode } from '@/consts'
-import { widgetTypes } from '@/types'
+// First import: main.css must open widgets.css,
+// because merchant CSS overrides rely on that order.
 import '@/main.css'
-import * as utils from '@/utils'
-import 'utils/polyfills' // todo Looks like legacy code, needs to be tested on multiple browsers (old ones too)
-import { WidgetsController } from '@/widgets_controller'
+import * as utils from '@/public-api/alma-utils'
+import { ApiMode, WidgetTypes } from '@/public-api/public-api.const'
+import { WidgetsController } from '@/public-api/widgets'
+
+// window.Alma.Widgets and window.Alma.Utils keep the shape that merchant pages call.
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Widgets {
   export function initialize(merchantId: string, mode: ApiMode) {
     return WidgetsController({ domain: mode, merchantId })
   }
-  export const PaymentPlans = widgetTypes.PaymentPlans
-  export const Modal = widgetTypes.Modal
+  export const PaymentPlans = WidgetTypes.PaymentPlans
+  export const Modal = WidgetTypes.Modal
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -21,4 +22,4 @@ export namespace Utils {
   export const formatCents = utils.formatCents
 }
 
-export { ApiMode } from '@/consts'
+export { ApiMode }
