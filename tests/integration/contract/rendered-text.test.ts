@@ -1,30 +1,28 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
 import type { EligibilityReply } from './support/api-mock'
-import { it } from './support/contract-test'
 import { loadUmd } from './support/load-bundle'
 import { addWidget, closeButton, planButtons, tick, useFakeClock } from './support/page'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, setViewportWidth } from './support/viewport'
 
 // What this file pins, and what a reader of a golden file should know:
 //
-// - The golden files hold the text that master's react-intl build renders, one file per `Locale`.
-//   They are written from dist-ref/ only. Run `npm run build:ref` first, then
-//   `WIDGETS_DIST=dist-ref npx vitest run --project contract --update rendered-text` to rewrite them
-//   after a master sync. ICU data changes number and date output between Node versions, so the
-//   capture and the comparison run on the Node version of .nvmrc, which CI uses.
-// - `pt` formats `€ 225,00` and `pt-PT` formats `225,00 €`. Both are master's output.
+// - The golden files hold the text that the widget renders, one file per `Locale`. To rewrite them,
+//   run `npm run build:contract`, then `npx vitest run --project contract --update rendered-text`.
+//   ICU data changes number and date output between Node versions, so the capture and the
+//   comparison run on the Node version of .nvmrc, which CI uses.
+// - `pt` formats `€ 225,00` and `pt-PT` formats `225,00 €`. Both come from Intl.
 // - A widget whose plans are all not eligible and that has no `plans` option shows `Until €0.00`
-//   in `en`, because the missing merchant config gives a maximum of 0. The port keeps it.
-// - Master never renders `accessibility.animation-control-instructions`, so no golden file has it.
+//   in `en`, because the missing merchant config gives a maximum of 0. This records it as it is.
+// - The widget never renders `accessibility.animation-control-instructions`, so no golden file has it.
 // - U+202F and U+00A0, which `Intl` puts in numbers and dates depending on the locale and on the
 //   ICU version, are turned into plain spaces before the comparison.
 // - Everything is captured at 1638350762000 in UTC (vitest.config.ts sets TZ), 500 ms after the
-//   eligibility response, while master's first announcement (cleared after 1000 ms) still shows.
+//   eligibility response, while the first announcement (cleared after 1000 ms) still shows.
 
 const contractDir = resolve(__dirname)
 const repoRoot = resolve(__dirname, '../../..')
@@ -113,7 +111,7 @@ const textLines = (root: Element): string[] =>
     return text ? [...lines, `text: ${text}`] : lines
   })
 
-/** The text of the container and of the modal portal, which react-modal appends to <body>. */
+/** The text of the container and of the modal portal at the end of <body>. */
 const renderedText = (): string => {
   const roots = [
     document.querySelector('#alma-widget'),
@@ -131,7 +129,7 @@ beforeAll(() => {
 
 useFakeClock()
 
-// jsdom doesn't implement window.scroll, which master calls on close through no-scroll.
+// jsdom doesn't implement window.scroll, which the modal calls on close through no-scroll.
 beforeEach(() => {
   vi.stubGlobal('scroll', () => {})
 })
@@ -223,7 +221,6 @@ const planKindCases = (size: string, width: number): Case => ({
     }
     planButtons()[0].dispatchEvent(new MouseEvent('mouseenter'))
     // Half the delay, so the capture below comes before the hover's announcement clears at 1000 ms.
-    // Preact starts that timer a frame after Lit does, so a capture at 1000 ms would differ.
     await tick(CAPTURE_DELAY / 2)
 
     planButtons()[0].click()
@@ -339,7 +336,7 @@ const catalogue = (language: string): Record<string, string> =>
 
 const KEY_PREFIXES = ['payment-plan-strings.', 'legal-mentions.', 'warning-message.']
 
-/** Keys that master never renders, and why. Each one must stay absent from the golden files. */
+/** Keys that the widget never renders, and why. Each one must stay absent from the golden files. */
 const NEVER_RENDERED: Record<string, string> = {}
 
 /** The literal text of an ICU message, with the arguments and the tags taken out. */

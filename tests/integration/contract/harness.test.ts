@@ -1,11 +1,10 @@
-import { existsSync, readFileSync, readdirSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { describe, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import inventory from './inventory.json'
 import { mockEligibilityApi } from './support/api-mock'
-import { it } from './support/contract-test'
 import { containerChildren, domOutline, outlineToText } from './support/dom'
 import { importEsm, loadUmd, readBundleFile } from './support/load-bundle'
 
@@ -67,7 +66,7 @@ describe('ES module bundle', () => {
 describe('inventory', () => {
   const { classes, ids, dataTestIds, rootCustomProperties, locales, catalogues } = inventory
 
-  it('has the counts of master', () => {
+  it('has the contract counts', () => {
     expect(classes.paymentPlans).toHaveLength(7)
     expect(classes.modal).toHaveLength(16)
     expect([...classes.paymentPlans, ...classes.modal]).toHaveLength(23)
@@ -85,24 +84,8 @@ describe('inventory', () => {
   })
 })
 
-describe('expected failures', () => {
-  const failures: Record<string, string> = JSON.parse(
-    readFileSync(resolve(contractDir, 'expected-failures.json'), 'utf8'),
-  )
-
-  it('is sorted by key', () => {
-    const keys = Object.keys(failures)
-    expect(keys).toEqual([...keys].sort())
-  })
-
-  it('names an existing test file and a ticket for each entry', () => {
-    Object.entries(failures).forEach(([key, ticket]) => {
-      expect(existsSync(resolve(contractDir, key.split(' > ')[0])), key).toBe(true)
-      expect(ticket, key).toMatch(/^LIT-\d+$/)
-    })
-  })
-
-  it('has fixtures that parse', () => {
+describe('eligibility fixtures', () => {
+  it('parse', () => {
     const dir = resolve(contractDir, 'fixtures/eligibility')
     readdirSync(dir).forEach((file) => {
       expect(() => JSON.parse(readFileSync(resolve(dir, file), 'utf8')), file).not.toThrow()

@@ -1,7 +1,7 @@
 export const DESKTOP_WIDTH = 1024
 export const MOBILE_WIDTH = 375
 
-// Mobile unless a test says otherwise, like the stub that master's unit tests use.
+// Mobile unless a test says otherwise.
 let width = MOBILE_WIDTH
 
 /**

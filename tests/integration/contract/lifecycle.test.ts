@@ -1,11 +1,10 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
 import { cacheKey } from './support/cache-key'
-import { it } from './support/contract-test'
 import { containerChildren } from './support/dom'
 import { loadUmd } from './support/load-bundle'
 import {
@@ -31,7 +30,7 @@ beforeAll(() => {
 
 useFakeClock()
 
-// jsdom doesn't implement window.scroll, which master calls on close through no-scroll.
+// jsdom doesn't implement window.scroll, which the modal calls on close through no-scroll.
 beforeEach(() => {
   vi.stubGlobal('scroll', () => {})
 })
@@ -108,8 +107,8 @@ describe('replacement and refresh', () => {
     expect(planButtons()).toHaveLength(3)
   })
 
-  // Master sends a request per add(), even with the same options, because the cache is only
-  // written once a response arrives. The Lit build must send no more.
+  // The cache is only written once a response arrives, so each add() sends its own request, even
+  // with the same options.
   it('sends a second request for the same options while the first is pending', async () => {
     const api = mockEligibilityApi({ pending: true })
     addWidget(Alma, plansName())
@@ -181,9 +180,8 @@ describe('external emptying', () => {
     expect(api.calls).toHaveLength(1)
   })
 
-  // This doesn't assert the container after the response. Master puts the announcement
-  // div[role="alert"] back into the emptied container, a side effect of Preact patching a tree
-  // that was removed. The Lit host stops when it leaves the DOM, so it doesn't do that.
+  // The host stops when it leaves the DOM, so the response renders nothing into the emptied
+  // container. Only the request and the cache are asserted.
   it('still completes the request and writes the cache after the container is emptied while loading', async () => {
     const api = mockEligibilityApi({ pending: true })
     addWidget(Alma, plansName())
@@ -198,8 +196,7 @@ describe('external emptying', () => {
     expect(api.calls).toHaveLength(1)
   })
 
-  // Not asserted: that the timers stop after the emptying. On master they keep running, and the
-  // Lit host stops them.
+  // Not asserted: that the host stops its timers after the emptying.
 })
 
 describe('moves', () => {
@@ -235,9 +232,8 @@ describe('moves', () => {
       expect(moved.api.calls).toHaveLength(1)
       expect(moved.order).toEqual(still.order)
       expect(moved.order.length).toBeGreaterThan(1)
-      // During cycling, only the order and the state after the cycle count. The Lit host restarts
-      // its countdown when it reconnects (LIT-34), while master's timer keeps running, so the
-      // DOM at a given fake time may differ.
+      // During cycling, only the order and the state after the cycle count. The host restarts its
+      // countdown when it reconnects, so the DOM at a given fake time may differ.
       expect(moved.state).toBe(still.state)
       if (when !== 'cycling') expect(moved.html).toBe(still.html)
     })
@@ -311,9 +307,8 @@ describe('clickableSelector', () => {
     expect(() => addModal({ clickableSelector: '#nothing' })).not.toThrow()
   })
 
-  // Not asserted: the number of requests and of listeners. Master adds a click listener on each
-  // add() and never removes it, so three add() calls send three requests on one click. The Lit
-  // design removes the old listener when it replaces the widget, and sends fewer.
+  // Not asserted: the number of requests and of listeners. The widget removes the old click listener
+  // when add() replaces it.
   it('opens one portal after three add(Modal) calls, and the close button runs the last onClose only', async () => {
     mockEligibilityApi({ json: threePlans })
     pageWithButtons()

@@ -6,14 +6,11 @@ import { JSDOM } from 'jsdom'
 
 const repoRoot = resolve(__dirname, '../../../..')
 
-// The folder of the bundle under test: dist-ref/ (master's React build) or dist/ (the Lit build).
-export const distDir = resolve(repoRoot, process.env.WIDGETS_DIST ?? 'dist')
+export const distDir = resolve(repoRoot, 'dist')
 
-export const isReferenceBuild = distDir.endsWith('dist-ref')
+const BUILD_COMMAND = 'npm run build:contract'
 
-const BUILD_COMMAND = isReferenceBuild ? 'npm run build:ref' : 'npm run build:contract'
-
-// The BUILD_VERSION of both builds, which the X-Alma-Agent header carries.
+// The BUILD_VERSION of the contract build, which the X-Alma-Agent header carries.
 export const CONTRACT_VERSION = 'contract-test'
 
 export const bundlePath = (file: string): string => {

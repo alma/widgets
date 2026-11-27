@@ -46,7 +46,7 @@ callback, DOM node, class or ID that changes. -->
 - [ ] Messages reuse the descriptors of the `*.messages.ts` files. (ARCH-04)
 - [ ] The contract classes, IDs, `data-testid` values and custom properties keep their names and their elements, and templates bind classes with `classMap` and add no inline style. (STYLE-01, STYLE-04, STYLE-05, STYLE-09)
 - [ ] `main.css` and the `*.module.css` files of the merge base keep their content and order. (STYLE-02, STYLE-03)
-- [ ] No change under `tests/integration/contract/`, apart from removing the expected failures that this PR makes pass. (CONTRACT)
+- [ ] A change under `tests/integration/contract/` matches a change of what merchants see, and the description says why. (CONTRACT)
 - [ ] Roles, names, ARIA states, keyboard handling and focus stay as the merge base renders them. (A11Y-01, A11Y-06)
 - [ ] The modal keeps react-modal's markup, with no `<dialog>`, no `inert` and no `aria-hidden` on the page behind it, and no DOM change made for axe. (A11Y-02, A11Y-03, A11Y-04, A11Y-05)
 - [ ] Each story was checked in Storybook with Merchant CSS off and on, and with the Accessibility panel.

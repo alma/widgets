@@ -1,9 +1,8 @@
 import { statSync } from 'node:fs'
 
 import { JSDOM } from 'jsdom'
-import { describe, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
-import { it } from './support/contract-test'
 import { bundlePath, importEsm, readBundleFile } from './support/load-bundle'
 
 const MEMBERS = ['ApiMode', 'Utils', 'Widgets']
@@ -48,7 +47,7 @@ describe('widgets.umd.js', () => {
     expect(Object.keys(window.Alma as object).sort()).toEqual(MEMBERS)
   })
 
-  // In-page can set window.Alma.InPage before widgets loads (MP-138)
+  // In-page can set window.Alma.InPage before widgets loads.
   it('keeps what window.Alma already holds as a classic script', () => {
     const InPage = {}
     const Alma = { InPage }
@@ -91,7 +90,7 @@ describe('widgets-wc.umd.js', () => {
     expect(Object.keys(window.Alma as object).sort()).toEqual(MEMBERS)
   })
 
-  // In-page can set window.Alma.InPage before widgets loads (MP-138)
+  // In-page can set window.Alma.InPage before widgets loads.
   it('keeps what window.Alma already holds as a classic script', () => {
     const InPage = {}
     const Alma = { InPage }

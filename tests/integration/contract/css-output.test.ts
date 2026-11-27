@@ -3,10 +3,9 @@ import { resolve } from 'node:path'
 
 import postcss from 'postcss'
 import type { AtRule, ChildNode, Declaration, Rule } from 'postcss'
-import { describe, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import inventory from './inventory.json'
-import { it } from './support/contract-test'
 import { readBundleFile } from './support/load-bundle'
 
 const GOLDEN_PATH = resolve(__dirname, 'fixtures/css-output.json')
@@ -163,7 +162,7 @@ describe('widgets.css and widgets.min.css', () => {
       expect([...names].sort()).toEqual([...inventory.rootCustomProperties].sort())
     })
 
-    // The fonts stay linked from Alma's CDN and Adobe Fonts, as on master.
+    // The fonts stay linked from Alma's CDN and Adobe Fonts.
     it('keeps the @font-face URLs on cdn.almapay.com and use.typekit.net', () => {
       const urls = rulesOf(readBundleFile(file))
         .filter(({ selector }) => selector === '@font-face')

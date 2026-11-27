@@ -1,12 +1,11 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import inventory from './inventory.json'
 import { mockEligibilityApi } from './support/api-mock'
 import type { EligibilityReply } from './support/api-mock'
-import { it } from './support/contract-test'
 import { containerChildren, outlineToText, widgetOutline } from './support/dom'
 import { loadUmd } from './support/load-bundle'
 import { addWidget, closeButton, container, planButtons, tick, useFakeClock } from './support/page'
@@ -29,7 +28,7 @@ beforeAll(() => {
 
 useFakeClock()
 
-// jsdom doesn't implement window.scroll, which master calls on close through no-scroll.
+// jsdom doesn't implement window.scroll, which the modal calls on close through no-scroll.
 beforeEach(() => {
   vi.stubGlobal('scroll', () => {})
 })
@@ -515,7 +514,7 @@ const everyState = (width: number) =>
     () => renderStandaloneModal({ pending: true }),
   ])
 
-// The element type that each contract name sits on, on master. Every key must be in
+// The element type that each contract name sits on. Every key must be in
 // inventory.json and every name of the inventory must be a key, so a renamed name fails here.
 const CLASS_ELEMENTS: Record<string, string[]> = {
   'alma-payment-plans-container': ['div'],
@@ -608,7 +607,7 @@ describe('inventory on the page', () => {
   const ID_NAMES = [...inventory.ids.contract, ...inventory.ids.internal]
 
   CLASS_NAMES.forEach((name) => {
-    it(`puts the class ${name} on the element type of master`, async () => {
+    it(`puts the class ${name} on its element type`, async () => {
       const { all } = await seenOnPage()
       const tags = tagsOf(all, ({ classes: tokens }) => tokens.includes(name))
       expect(tags.length).toBeGreaterThan(0)
@@ -617,7 +616,7 @@ describe('inventory on the page', () => {
   })
 
   ID_NAMES.forEach((name) => {
-    it(`puts the ID ${name} on the element type of master`, async () => {
+    it(`puts the ID ${name} on its element type`, async () => {
       const { all } = await seenOnPage()
       const tags = tagsOf(all, ({ id }) => id === name)
       expect(tags.length).toBeGreaterThan(0)
@@ -626,7 +625,7 @@ describe('inventory on the page', () => {
   })
 
   inventory.dataTestIds.forEach((name) => {
-    it(`puts the data-testid ${name} on the element type of master`, async () => {
+    it(`puts the data-testid ${name} on its element type`, async () => {
       const { all } = await seenOnPage()
       const pattern = testIdPattern(name)
       const tags = tagsOf(all, ({ testId }) => testId !== null && pattern.test(testId))
@@ -647,7 +646,7 @@ describe('inventory on the page', () => {
     expect(mobile.some(({ classes: tokens }) => tokens.includes(mobileOnly))).toBe(true)
   })
 
-  // On master only a unit test sets `alma-logo`, so no widget state carries it.
+  // No template sets the lowercase `alma-logo` test ID.
   it('matches nothing for the lowercase alma-logo test ID', async () => {
     const { all } = await seenOnPage()
     expect(all.filter(({ testId }) => testId === 'alma-logo')).toEqual([])

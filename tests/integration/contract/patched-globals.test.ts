@@ -1,10 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
-import { it } from './support/contract-test'
 import { outlineToText, widgetOutline } from './support/dom'
 import { typeOf, withEscapes } from './support/escaped-errors'
 import { loadUmdInNewWindow } from './support/load-bundle'
@@ -26,7 +25,7 @@ beforeAll(() => {
 
 useFakeClock()
 
-// jsdom doesn't implement window.scroll, which master calls on close through no-scroll.
+// jsdom doesn't implement window.scroll, which the modal calls on close through no-scroll.
 beforeEach(() => {
   vi.stubGlobal('scroll', () => {})
 })
@@ -127,9 +126,9 @@ describe('a page with Prototype.js 1.7.3', () => {
     expect(result.outline).toBe(golden('modal-success-mobile'))
   })
 
-  // Master deduplicates the cards with Array.from(new Set(cards)), which $A turns into an empty
-  // array. This records what master renders here: the logos element, empty.
-  it('renders the card logos as master does', async () => {
+  // The widget deduplicates the cards with Array.from(new Set(cards)), which $A turns into an empty
+  // array. This records what renders here: the logos element, empty.
+  it('renders an empty card logos element', async () => {
     const { errors, escaped } = await observe(() =>
       openStandaloneModal({ cards: ['visa', 'cb', 'visa'] }),
     )

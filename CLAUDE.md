@@ -56,7 +56,6 @@ Read the file, not a description of it.
 | Layer order, folder placement and import rules | `.claude/rules/architecture.md` — loads for every file under `src/**` |
 | Which source files coverage leaves out | `vitest.config.ts`'s coverage exclude list |
 | Crowdin message catalogues | `src/intl/messages/*.json` — generated; never hand-edit |
-| Contract expectations the bundles don't meet yet | `tests/integration/contract/expected-failures.json` |
 
 ## Testing
 
@@ -99,4 +98,4 @@ Read the file, not a description of it.
 7. Add or update tests for any behaviour change, whether or not tests were requested.
 8. Comment the why, never the what. A comment that restates the code does not belong.
 9. Never name a script that isn't in `package.json`: it doesn't exist. Check `npm run` before naming one.
-10. A feature PR never edits `tests/integration/contract/`, the black-box tests on the built bundles; it only removes its own entries from `expected-failures.json` once those tests pass.
+10. `tests/integration/contract/` holds the black-box tests of the built bundles. A PR that changes what merchants see updates the matching contract case or golden in the same PR, and its description says why. A fix for a bug that a case pins on purpose rewrites that case to assert the fix.

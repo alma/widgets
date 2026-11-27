@@ -1,4 +1,4 @@
-// The Lit build wraps each widget in a host element. Master's markup has none.
+// The custom elements that wrap each widget. The outlines skip them.
 const HOST_TAGS = ['alma-payment-plans', 'alma-eligibility-modal']
 
 const isHost = (element: Element): boolean => HOST_TAGS.includes(element.localName)
@@ -7,7 +7,6 @@ const SVG_NAMESPACE = 'http://www.w3.org/2000/svg'
 
 /**
  * The element children of a container, with each host replaced by its own element children.
- * On master's build it returns the same list as container.children.
  */
 export const containerChildren = (container: Element): Element[] =>
   Array.from(container.children).flatMap((child) =>
@@ -57,7 +56,7 @@ export const outlineToText = (outline: OutlineEntry[]): string =>
     })
     .join('\n')
 
-/** The outline of a container and of the modal portal, which react-modal appends to <body>. */
+/** The outline of a container and of the modal portal at the end of <body>. */
 export const widgetOutline = (container: Element | null, doc = document): OutlineEntry[] => {
   const portal = doc.querySelector('.ReactModalPortal')
   return [...(container ? domOutline(container) : []), ...(portal ? domOutline(portal) : [])]

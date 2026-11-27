@@ -2,12 +2,11 @@ import { readFileSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import postcss from 'postcss'
-import { afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import inventory from './inventory.json'
 import { mockEligibilityApi } from './support/api-mock'
 import type { EligibilityReply } from './support/api-mock'
-import { it } from './support/contract-test'
 import { loadUmd } from './support/load-bundle'
 import { MERCHANT_ID, closeButton, tick, useFakeClock } from './support/page'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, setViewportWidth } from './support/viewport'
@@ -30,7 +29,7 @@ beforeAll(() => {
 
 useFakeClock()
 
-// jsdom doesn't implement window.scroll, which master calls on close through no-scroll.
+// jsdom doesn't implement window.scroll, which the modal calls on close through no-scroll.
 beforeEach(() => {
   vi.stubGlobal('scroll', () => {})
 })
@@ -363,7 +362,7 @@ describe('merchant CSS selectors', () => {
 
   // Each count is "<in the container>:<in the modal portal>". jsdom computes no style, so the
   // contract is which elements a selector reaches. A fixture count of 0 in every state needs a
-  // reason, and master's counts are the golden file.
+  // reason, and the golden file holds the counts.
   it(
     'matches the golden counts of each selector in each state',
     async () => {

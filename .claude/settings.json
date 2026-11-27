@@ -27,7 +27,6 @@
     ],
     "deny": [
       "Edit(/src/intl/messages/**)",
-      "Edit(/.ref-worktree/**)",
       "Bash(npm publish *)",
       "Bash(npm unpublish *)",
       "Bash(npm deprecate *)",

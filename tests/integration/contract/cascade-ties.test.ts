@@ -3,11 +3,10 @@ import { resolve } from 'node:path'
 
 import postcss from 'postcss'
 import type { AtRule, ChildNode, Rule } from 'postcss'
-import { afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
 import type { EligibilityReply } from './support/api-mock'
-import { it } from './support/contract-test'
 import { loadUmd, readBundleFile } from './support/load-bundle'
 import { addWidget, closeButton, container, planButtons, tick, useFakeClock } from './support/page'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, setViewportWidth } from './support/viewport'

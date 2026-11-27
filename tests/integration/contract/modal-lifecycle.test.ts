@@ -1,10 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { afterEach, beforeAll, beforeEach, describe, expect } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
-import { it } from './support/contract-test'
 import { loadUmd } from './support/load-bundle'
 import {
   addWidget,
@@ -27,7 +26,7 @@ beforeAll(() => {
 
 useFakeClock()
 
-// jsdom doesn't implement window.scroll, which master calls on close through no-scroll.
+// jsdom doesn't implement window.scroll, which the modal calls on close through no-scroll.
 beforeEach(() => {
   vi.stubGlobal('scroll', () => {})
 })
@@ -153,8 +152,8 @@ describe('open() and close()', () => {
     expect(api.calls).toHaveLength(1)
   })
 
-  // Not asserted: that the request count stays at one. The first response has not arrived, so
-  // master sends a request per open(), two in total. The Lit build may send fewer.
+  // Not asserted: that the request count stays at one. The first response has not arrived, so each
+  // open() may send its own request.
   it('keeps one portal for two open() calls before the response', async () => {
     const api = mockEligibilityApi({ pending: true })
     const handle = addWidget(Alma, Alma.Widgets.Modal) as Handle
@@ -194,8 +193,8 @@ describe('open() and close()', () => {
     expect(onClose.mock.calls[0]).toEqual([undefined])
   })
 
-  // This records master as it is. close() on a modal that is closed still calls onClose. The Lit
-  // build is free to skip the call, so the test only requires at most one call.
+  // close() on a modal that is closed may call onClose or skip it, so the test only requires at most
+  // one call.
   it('calls onClose at most once for close() while the modal is closed', () => {
     const onClose = vi.fn()
     const { handle } = standalone({ onClose })
@@ -233,7 +232,7 @@ describe('open() and close()', () => {
     expect(sentinels()).toHaveLength(0)
     expect(onClose).toHaveBeenCalledTimes(3)
     expect(api.calls).toHaveLength(1)
-    // Master leaves an empty style attribute on <html> and an empty class attribute on <body>
+    // Closing may leave an empty style attribute on <html> and an empty class attribute on <body>
     // that had none before, so a missing or empty attribute both pass.
     expect(document.documentElement.getAttribute('style') ?? '').toBe('')
     expect(document.body.getAttribute('class') ?? '').toBe('')
