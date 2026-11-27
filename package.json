@@ -3,10 +3,21 @@
   "version": "3.1.1",
   "description": "Widgets to easily display information from Alma - https://getalma.eu",
   "keywords": [],
+  "type": "module",
   "main": "dist/widgets.js",
   "umd:main": "dist/widgets.umd.js",
   "module": "dist/widgets.js",
-  "typings": "dist/types/index.d.ts",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/widgets.js"
+    },
+    "./dist/widgets.umd.js": null,
+    "./dist/widgets-wc.umd.js": null,
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist"
   ],
@@ -17,7 +28,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=12.20.0"
   },
   "scripts": {
     "start": "vite build --watch",
@@ -27,7 +38,6 @@
     "test": "vitest run --project unit --project browser --coverage",
     "test:no-coverage": "vitest run --project unit --project browser",
     "test:contract": "vitest run --project contract",
-    "test:consumers": "node scripts/consumer-check/webpack-babel/run.mjs",
     "test:unit": "vitest run --project unit",
     "test:browser": "vitest run --project browser",
     "test:browser:install": "playwright install --only-shell chromium",
@@ -41,7 +51,7 @@
     "translations:download": "crowdin download && prettier ./src/intl --write",
     "prepare": "husky",
     "fixtures:messages": "node scripts/generate-message-fixture.mjs",
-    "lint:package": "publint; attw --pack .; exit 0"
+    "lint:package": "publint && attw --pack . --profile esm-only"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",

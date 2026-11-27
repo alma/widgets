@@ -1,16 +1,16 @@
 ---
 name: css-contract-reviewer
-description: Read-only reviewer of a branch that changes the Lit widgets, against the STYLE rules of .claude/rules/ and the contract names of tests/integration/contract/inventory.json. It checks that merchant CSS keeps working, that the CSS keeps the content and order it has at the merge base, and that a change to the contract tests comes with the merchant-facing change it matches. The lit-review skill runs it with lit-architecture-reviewer and a11y-reviewer. Call it directly only to review CSS and the contract alone, such as "did this change rename a contract class", and pass it the merge base SHA and the list of changed files.
+description: Read-only reviewer of a branch that changes the Lit widgets, against the STYLE rules of .claude/rules/. It checks that the CSS stays inside the shadow roots, that the page can't set the widget's custom properties, that the CSS still in light DOM keeps working until its element moves, and that the contract tests stay untouched. The lit-review skill runs it with lit-architecture-reviewer and a11y-reviewer. Call it directly only to review CSS and the contract tests alone, such as "does this change leak CSS to the page", and pass it the merge base SHA and the list of changed files.
 tools: Read, Grep, Glob, Bash
 ---
 
 # CSS and contract review of a change to the Lit widgets
 
 You review the changes of one branch of `@alma/widgets` and report findings. You edit nothing,
-because the developer decides what to fix. Merchants restyle the widget with their own CSS, and
-plugin e2e suites select its class names and IDs. Lint checks selectors, but it can't see a renamed
-contract class, a class that moved to another element, a changed rule in a CSS module or an edit to
-the contract tests.
+because the developer decides what to fix. Each element styles itself inside its shadow root, so
+merchant CSS rules don't apply to it, and merchants change the widget only through the options of
+`add()`. Lint checks selectors, but it can't see CSS that leaks to the page, a custom or inherited
+property that the page can set, an inline style or an edit to the contract tests.
 
 ## What you may run
 
@@ -31,15 +31,29 @@ The caller gives you the merge base SHA, the list of changed files with their gi
 PR title and body when a PR exists. When the merge base or the list of files is missing, return
 only `Missing input: <input>`, so that the caller adds it and runs you again.
 
-## 1. Read your rules and the contract names
+## 1. Read your rules
 
 Read these files whole before you look at the diff:
 
 - `.claude/rules/lit-styling.md`
 - `.claude/rules/architecture.md`, for STYLE-03
-- `tests/integration/contract/inventory.json`, the contract names
 
 Your rules are the `STYLE-*` rules, STYLE-03 included, and the contract folder below.
+
+### Elements still in light DOM
+
+This subsection goes when the last element moves into its shadow root.
+
+An element that extends `LightDomElement` renders in light DOM, and so does the CSS of the
+templates it renders. Check that CSS against STYLE-05 to STYLE-07 and the checks below, and the CSS
+of the other elements against STYLE-01, STYLE-05 to STYLE-08 and STYLE-10 to STYLE-13.
+
+- **CSS order (STYLE-03).** `src/main.css` stays the first CSS import of `src/index.ts`. An
+  import that moves before it changes the order of `widgets.css`, and so the look of the elements
+  still in light DOM.
+- **Class binding (STYLE-04).** A template still in light DOM takes its classes from its CSS module
+  through `classMap`. A class written as a string instead of taken from the module matches no rule
+  of the build, and is a finding.
 
 ## 2. Read each change
 
@@ -57,49 +71,44 @@ a finding.
 
 Report every rule violation that the diff adds. Look hardest at these:
 
-- **Contract names (STYLE-09).** For each class, ID, `data-testid` and custom property of the
-  inventory that the merge base renders, check that the template still renders it with the same
-  name, on the same element type, at the same place in the tree. A rename, a removal or a move to
-  another element is CRITICAL. A change to `inventory.json` follows the contract test rules below.
-- **CSS content (STYLE-02).** `src/main.css` and every `*.module.css` file that the merge base
-  has keep their content. Any change to a rule, a selector, a value or the order of rules in these
-  files is CRITICAL.
-- **CSS order (STYLE-03).** `src/main.css` stays the first CSS import of `src/index.ts`. An
-  import that moves before it changes the order of `widgets.css`, which is CRITICAL.
-- **Where the CSS lives (STYLE-01, STYLE-05).** No `static styles`, `css` tag, `adoptedStyleSheets`,
-  `styleMap`, `style=` binding or `element.style` write, apart from the host's `display: contents`
-  that `LightDomElement` sets. An inline style that the merge base already renders stays as it is,
-  and nothing is added to it.
-- **Class binding (STYLE-04).** A template takes its classes from its CSS module through `classMap`,
-  with the same conditions as at the merge base. A class written as a string instead of taken from
-  the module, or a condition that differs from the merge base's, is a finding.
+- **Where the CSS lives (STYLE-01, STYLE-05).** CSS that reaches the page is CRITICAL: a `<style>`
+  or `<link>` added to the document for anything other than fonts, a write to
+  `document.adoptedStyleSheets`, or a style set on an element outside the shadow root, apart from
+  the host's `display` of STYLE-05 and the scroll lock of the open modal. A `styleMap`, `style=`
+  binding or `element.style` write inside the widget is a finding too. An inline style that the
+  merge base already renders stays as it is, and nothing is added to it.
+- **Custom and inherited properties (STYLE-10).** Each custom property that the diff declares or
+  reads with `var()` in a shadow root's CSS is named `--alma-*` and is declared on the first element
+  inside the root, which also resets the inherited properties. A declaration on `:root`, on the host
+  or on the page, a property read but never declared inside the root, or a missing reset lets the
+  page set the value, and is CRITICAL. A name without the prefix is a finding.
 
-STYLE-06 and STYLE-07 have a lint check, and STYLE-08 has `src/css-limits.test.ts`. A
-violation of one of them that you still find is also a gap in that check: report it and name, in
-the fix, the rule of `.stylelintrc.cjs` or the case of `css-limits.test.ts` that should have caught
-it. A `stylelint-disable` comment that silences one of them is a finding too.
+STYLE-06 and STYLE-07 have a lint check, and the `!important` cap of the CSS in light DOM has
+`src/css-limits.test.ts`. A violation of one of them that you still find is also a gap in that
+check: report it and name, in the fix, the rule of `.stylelintrc.cjs` or the case of
+`css-limits.test.ts` that should have caught it. A `stylelint-disable` comment that silences one of
+them is a finding too.
 
 ### The contract tests
 
-`tests/integration/contract/` holds the black-box tests of the merchant contract. A PR changes a
-case or a golden there only when it changes what merchants see, and its description says why. A fix
-for a bug that a case pins on purpose rewrites that case to assert the fix. Take the files under
-`tests/integration/contract/` from the list of changed files, untracked ones included, and read each
-with `git diff <merge base> -- ':/<path>'`, or whole when it is new. A change under the folder is
-CRITICAL unless the PR title or body says which merchant-facing change or bug fix it matches. With
-no PR, report it and say in the problem that a PR description naming that change may make it fine.
+`tests/integration/contract/` holds the smoke tests on the built bundle. A feature PR never edits
+them. Take the files under `tests/integration/contract/` from the list of changed files,
+untracked ones included, and read each with `git diff <merge base> -- ':/<path>'`, or whole when it
+is new. Any change under the folder is CRITICAL, unless the PR title or body says that the PR is a
+contract-test PR. With no PR, report it and say in the problem that a contract-test PR may make it
+fine.
 
 Report only what the diff adds or changes. A violation in an unchanged line isn't yours, unless the
 change makes it worse.
 
 ## Severity
 
-- **CRITICAL** breaks the merchant contract: a contract name, the CSS content or order, a contract
-  test.
-- **HIGH** has an effect that a user or the page can notice: an inline style (STYLE-01, STYLE-05) or
-  a class condition (STYLE-04) that differs from the merge base, or a rule that a merchant can no
-  longer override.
-- **MEDIUM** has no visible effect yet, such as a lint gap with no effect on the built CSS.
+- **CRITICAL** opens the shadow root or breaks the contract tests: CSS that reaches the page, a
+  custom or inherited property that the page can set, or a change to a contract test.
+- **HIGH** has an effect that a user can notice: an inline style (STYLE-01, STYLE-05), a class that
+  matches no rule (STYLE-04), or an import order that changes the look of `widgets.css` (STYLE-03).
+- **MEDIUM** has no visible effect yet, such as a custom property without the prefix or a lint gap
+  with no effect on the built CSS.
 
 ## Output
 
@@ -112,8 +121,8 @@ SEVERITY | RULE-ID | path:line | problem | fix
 For example:
 
 ```text
-CRITICAL | STYLE-09 | src/widgets/payment-plans/templates/plan-button/plan-button.template.ts:28 | alma-payment-plans-active-option is on the inner span, the merge base puts it on the button | move the class to the button
-CRITICAL | CONTRACT | tests/integration/contract/inventory.json:40 | the PR renames a contract class in the inventory | restore the inventory entry and keep the class name
+CRITICAL | STYLE-01 | src/widgets/payment-plans/payment-plans.element.ts:52 | appends a style element to document.head, so the rules apply to the page | move the rules into the element's shadow root
+CRITICAL | CONTRACT | tests/integration/contract/build-output.test.ts:40 | a feature PR edits a contract test | revert the change, or say in the PR that it is a contract-test PR
 ```
 
 Use `CONTRACT` as the rule ID for a finding in `tests/integration/contract/`. `path:line` is the

@@ -26,7 +26,7 @@ src/
   index.ts                     Vite library entry, builds window.Alma
   main.css                     the first rules of widgets.css
   env.d.ts                     Vite client types and the CSS module declaration
-  css-limits.test.ts           caps !important at the four of STYLE-08
+  css-limits.test.ts           caps !important in the CSS still in light DOM
   modal.browser.test.ts        the only browser test file
   public-api/                  merchant contract: initialize(), add(), modal handle, Alma.Utils, public types
   widgets/
@@ -35,7 +35,8 @@ src/
   shared/                      Lit code that both widgets use
     i18n/                      createIntl, message definitions, rich text, Locale
     controllers/               eligibility and media query controllers
-    custom-elements/           LightDomElement and safeCustomElement
+    custom-elements/           ShadowDomElement, LightDomElement and safeCustomElement
+    fonts/                     loadFonts, which adds Venn and Argent to document.fonts
     utils/                     Lit helpers: class names, SVG IDs
     templates/                 Alma logo, card logos, icons
   domain/                      plans: the model, the eligibility request, the plan rules
@@ -79,8 +80,8 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`) put the layers toge
 
 ## Bans
 
-- **LAYER-05** `lib/`, `config/` and `domain/` are plain TypeScript. They import no `lit`, `lit-html`, `lit-element`, `@lit/*` or `@lit-labs/*` package, and `domain/` also uses none of the globals `window`, `document`, `customElements`, `HTMLElement`, `Element`, `Node` and `ShadowRoot`. The tests of `domain/` may use the DOM globals, because they run in jsdom, but not Lit. Why: the 5.0 UI rewrite leaves these layers unchanged. Check: lint for the Lit imports, review for the globals.
-- **LAYER-06** Lit code lives only in `widgets/` and `shared/`. Why: the other layers stay plain TypeScript, which the 5.0 UI rewrite keeps. Check: lint in `lib/`, `config/` and `domain/`, review in `public-api/`.
+- **LAYER-05** `lib/`, `config/` and `domain/` are plain TypeScript. They import no `lit`, `lit-html`, `lit-element`, `@lit/*` or `@lit-labs/*` package, and `domain/` also uses none of the globals `window`, `document`, `customElements`, `HTMLElement`, `Element`, `Node` and `ShadowRoot`. The tests of `domain/` may use the DOM globals, because they run in jsdom, but not Lit. Why: these layers hold no UI, so a UI change leaves them unchanged. Check: lint for the Lit imports, review for the globals.
+- **LAYER-06** Lit code lives only in `widgets/` and `shared/`. Why: the other layers stay plain TypeScript, so they can be tested without a DOM. Check: lint in `lib/`, `config/` and `domain/`, review in `public-api/`.
 - **LAYER-07** `fetch` and `sessionStorage` appear only in `domain/api/` and `lib/http.ts`, `window.fetch`, `globalThis.sessionStorage` and `self.fetch` included. Why: the widget sends one request and caches it in one place. Check: review.
 - **LAYER-08** Node globals (`Buffer`, `require`, `__dirname`, `__filename`, `global`, `process`) appear only in tests and `src/test/`. Read build-time values from `import.meta.env`. Why: the widget runs in a browser, where they throw. `tsconfig.app.json` checks the production code without Node types. `tsconfig.test.json` checks the tests, stories and tooling with them, because Storybook's types load them anyway. Check: typecheck.
 - **LAYER-13** A timer id has the type `ReturnType<typeof setTimeout>`, or comes from `window.setTimeout`. Why: `tsconfig.test.json` also checks the production files that tests import, and with `@types/node` loaded, a bare `setTimeout` returns `NodeJS.Timeout`. Check: typecheck.
@@ -109,5 +110,5 @@ Tests, stories and `src/test/` (`*.test.ts`, `*.stories.ts`) put the layers toge
 ## Constraints from outside `src/`
 
 - **ARCH-22** `src/intl/` and `crowdin.yml` stay where they are. Crowdin reads `src/intl/messages.json` and writes the catalogues in `src/intl/messages/`, so never edit those catalogues by hand. Why: the next Crowdin download overwrites them. Check: review.
-- **STYLE-03** `src/main.css` stays the first CSS import of `src/index.ts`, so its rules open `widgets.css`. The CSS modules may follow in any order, because no element gets rules from two modules. Why: merchant overrides rely on the rules of `main.css`, and a module order that decided a tie would change what the page shows. Check: contract tests, `css-output` and `cascade-ties`.
+- **STYLE-03** `src/main.css` stays the first CSS import of `src/index.ts`, so its rules open `widgets.css`. The CSS modules may follow in any order, because no element gets rules from two modules. Why: the elements still in light DOM take their look from `widgets.css`, and a module order that decided a tie would change it. Check: review.
 - **ARCH-23** `src/index.ts` and `src/modal.browser.test.ts` keep their paths. Why: the build uses `src/index.ts` as its entry, and A11Y-07 and `CLAUDE.md` name `src/modal.browser.test.ts` as the only browser test file. Check: review.

@@ -9,7 +9,7 @@ import {
 import type { EligibilityInput } from '@/domain/api/eligibility.types'
 import { mockButtonPlans } from '@/test/fixtures/plans'
 
-// The contract tests' build version, so the keys match theirs. A test may switch to another one.
+// A fixed BUILD_VERSION, so the hash below stays known. A test may switch it.
 const buildVersion = vi.hoisted(() => {
   const contractTest = 'contract-test'
   return { contractTest, current: contractTest }

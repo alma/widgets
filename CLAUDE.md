@@ -3,16 +3,18 @@
 `@alma/widgets` is an npm package, also served via jsDelivr, of embeddable payment-plan widgets
 that merchants embed on their own pages to call Alma's BNPL API. It ships only as a browser
 bundle: no server, and nothing here runs in Alma's own backend. Each widget is one Lit 3 custom
-element that renders in light DOM (`alma-payment-plans`, `alma-eligibility-modal`). Template
-functions render the parts below each element. Reactive controllers in `*.controller.ts` files
-keep the shared state, such as the eligibility request.
+element (`alma-payment-plans`, `alma-eligibility-modal`) that renders in an open shadow root, so
+merchant CSS rules don't apply to it, and merchants change it only through the options of
+`add()`. An element that hasn't moved into its shadow root yet still renders in light DOM.
+Template functions render the parts below each element. Reactive controllers in `*.controller.ts`
+files keep the shared state, such as the eligibility request.
 
 ## Tech stack
 
 | | |
 |---|---|
 | Language | TypeScript |
-| Framework | Lit 3, light DOM |
+| Framework | Lit 3, Shadow DOM |
 | Package manager | npm |
 | Toolchain | nvm, via `.nvmrc` |
 
@@ -33,7 +35,7 @@ npm run test:browser:install                          # install Chromium, once p
 npm run typecheck                                     # tsc --noEmit
 npm run lint                                          # eslint on src/*.ts + stylelint
 npm run lint:fix                                      # eslint --fix + stylelint --fix
-npm run test:contract                                 # contract tests on dist/
+npm run test:contract                                 # smoke tests on the built bundle in dist/
 npm run fixtures:messages                             # write the message and date fixtures from @formatjs/intl
 npm run fixtures:messages -- --check                  # fail when the fixtures are out of date
 ```
@@ -78,14 +80,19 @@ Read the file, not a description of it.
   when the code catches the error, and never reaches the network.
 - A custom element definition can't be removed, so a tag stays defined until its test file ends.
   Each test file gets a fresh page.
+- Testing Library's `screen` and `document.activeElement` stop at shadow roots. Query an element in
+  its shadow root with the helpers of `src/test/utils/shadow-screen.ts`. A template story renders
+  in a shadow root with its element's styles when it sets `parameters.shadowStyles` to the
+  element's `static styles`.
 
 ## Workflow
 
 - Before you create any file under `src/`, read `.claude/rules/architecture.md` and the rule files
   that its table lists for that folder. Claude Code loads a rule file only after a file under its
   paths is read or written, and for a new file that happens after the first Write.
-- Only a major release that is allowed to break the merchant contract fills the pull request
-  template's "Merchant contract" section.
+- A pull request that adds, removes or changes a part of the merchant contract, the JavaScript API
+  that `.claude/rules/public-api.md` describes, fills the pull request template's "Merchant
+  contract" section.
 
 ## Non-negotiables
 
@@ -98,4 +105,4 @@ Read the file, not a description of it.
 7. Add or update tests for any behaviour change, whether or not tests were requested.
 8. Comment the why, never the what. A comment that restates the code does not belong.
 9. Never name a script that isn't in `package.json`: it doesn't exist. Check `npm run` before naming one.
-10. `tests/integration/contract/` holds the black-box tests of the built bundles. A PR that changes what merchants see updates the matching contract case or golden in the same PR, and its description says why. A fix for a bug that a case pins on purpose rewrites that case to assert the fix.
+10. A feature PR never edits `tests/integration/contract/`, the smoke tests on the built bundle. A change to the DOM updates a unit test or a Chromatic baseline instead.

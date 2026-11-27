@@ -1,7 +1,7 @@
 // Generates the message and date fixtures that the Lit intl runtime and the date helpers must match.
 // They record what @formatjs/intl and date-fns output.
 //
-//   npm run fixtures:messages            writes the two files in tests/integration/contract/fixtures/
+//   npm run fixtures:messages            writes the two files in src/test/fixtures/
 //   npm run fixtures:messages -- --check exits with code 1 when a fresh run differs from the files
 import { spawnSync } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
@@ -12,7 +12,7 @@ import { parse, TYPE } from '@formatjs/icu-messageformat-parser'
 import { createIntl, createIntlCache } from '@formatjs/intl'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const fixturesDir = resolve(root, 'tests/integration/contract/fixtures')
+const fixturesDir = resolve(root, 'src/test/fixtures')
 const messagesFile = resolve(fixturesDir, 'messages.output.json')
 const datesFile = resolve(fixturesDir, 'dates.json')
 

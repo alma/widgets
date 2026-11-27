@@ -55,7 +55,7 @@ beforeEach(() => {
 
 // A modal that a test leaves open stays mounted after setup.ts empties <body>.
 afterEach(async () => {
-  ;(closeButton() as HTMLElement | null)?.click()
+  closeButton()?.click()
   await tick(1000)
 })
 

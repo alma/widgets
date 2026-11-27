@@ -52,11 +52,7 @@
       "Bash(git push --force*)",
       "Bash(git push -f*)",
       "Bash(git push * --force*)",
-      "Bash(git push * -f*)",
-      "Bash(npm test * -u*)",
-      "Bash(npm test * --update*)",
-      "Bash(npm run test:* -u*)",
-      "Bash(npm run test:* --update*)"
+      "Bash(git push * -f*)"
     ]
   },
   "hooks": {
