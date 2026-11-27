@@ -26,7 +26,6 @@ src/
   index.ts                     Vite library entry, builds window.Alma
   main.css                     the first rules of widgets.css
   env.d.ts                     Vite client types and the CSS module declaration
-  css-limits.test.ts           caps !important in the CSS still in light DOM
   modal.browser.test.ts        the only browser test file
   public-api/                  merchant contract: initialize(), add(), modal handle, Alma.Utils, public types
   widgets/

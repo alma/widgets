@@ -45,7 +45,7 @@ Your rules are the `STYLE-*` rules, STYLE-03 included, and the contract folder b
 This subsection goes when the last element moves into its shadow root.
 
 An element that extends `LightDomElement` renders in light DOM, and so does the CSS of the
-templates it renders. Check that CSS against STYLE-05 to STYLE-07 and the checks below, and the CSS
+templates it renders. Check that CSS against STYLE-05 to STYLE-08 and the checks below, and the CSS
 of the other elements against STYLE-01, STYLE-05 to STYLE-08 and STYLE-10 to STYLE-13.
 
 - **CSS order (STYLE-03).** `src/main.css` stays the first CSS import of `src/index.ts`. An
@@ -64,8 +64,7 @@ For each changed file under `src/`:
    `git show <merge base>:<path>`, with the old path for a renamed file. A file with status `A` or
    `??` has no merge-base version: check it against the rules only.
 
-Also read the changes to `.stylelintrc.cjs` and `src/css-limits.test.ts`: a weakened rule is
-a finding.
+Also read the changes to `.stylelintrc.cjs`: a weakened rule is a finding.
 
 ## 3. Check
 
@@ -83,11 +82,9 @@ Report every rule violation that the diff adds. Look hardest at these:
   or on the page, a property read but never declared inside the root, or a missing reset lets the
   page set the value, and is CRITICAL. A name without the prefix is a finding.
 
-STYLE-06 and STYLE-07 have a lint check, and the `!important` cap of the CSS in light DOM has
-`src/css-limits.test.ts`. A violation of one of them that you still find is also a gap in that
-check: report it and name, in the fix, the rule of `.stylelintrc.cjs` or the case of
-`css-limits.test.ts` that should have caught it. A `stylelint-disable` comment that silences one of
-them is a finding too.
+STYLE-06 to STYLE-08 have a lint check. A violation of one of them that you still find is also a
+gap in that check: report it and name, in the fix, the rule of `.stylelintrc.cjs` that should have
+caught it. A `stylelint-disable` comment that silences one of them is a finding too.
 
 ### The contract tests
 
