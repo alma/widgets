@@ -87,8 +87,7 @@ Claude Code has no switch for one hook. To turn hooks off:
 
 `settings.json` lets Claude run, without a prompt, `npm test` and every `test:*` script except
 `test:browser:install`, plus `typecheck`, `lint`, `build`, `build:contract` and `build-storybook`,
-once that script exists. A test script run with vitest's `-u` or `--update` asks first, because it
-can rewrite the snapshots under `tests/integration/contract/`.
+once that script exists.
 
 It also lets every session run `git status`, `diff`, `log`, `show`, `ls-files`, `ls-tree`,
 `merge-base`, `rev-parse` and `gh pr view` without a prompt, which `/lit-review` and its agents

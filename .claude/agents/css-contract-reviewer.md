@@ -91,8 +91,8 @@ them is a finding too.
 
 ### The contract tests
 
-`tests/integration/contract/` holds the black-box tests of the merchant contract. A feature PR never
-edits them. Take the files under `tests/integration/contract/` from the list of changed files,
+`tests/integration/contract/` holds the smoke tests on the built bundle. A feature PR never edits
+them. Take the files under `tests/integration/contract/` from the list of changed files,
 untracked ones included, and read each with `git diff <merge base> -- ':/<path>'`, or whole when it
 is new. Any change under the folder is CRITICAL, unless the PR title or body says that the PR is a
 contract-test PR. With no PR, report it and say in the problem that a contract-test PR may make it

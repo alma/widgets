@@ -247,7 +247,7 @@ module.exports = {
               {
                 group: ['@/*', 'src', 'src/*', '**/src', '**/src/*'],
                 message:
-                  'Contract tests run on the built bundles in dist/. They never import from src/.',
+                  'Contract tests run on the built bundle in dist/. They never import from src/.',
               },
             ],
           },

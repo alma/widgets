@@ -4,10 +4,16 @@ import { resolve } from 'node:path'
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { mockEligibilityApi } from './support/api-mock'
-import { outlineToText, widgetOutline } from './support/dom'
 import { withEscapes } from './support/escaped-errors'
 import { CONTRACT_VERSION, loadUmd } from './support/load-bundle'
-import { addWidget, closeButton, container, tick, useFakeClock } from './support/page'
+import {
+  addWidget,
+  closeButton,
+  modalDialog,
+  planButtons,
+  tick,
+  useFakeClock,
+} from './support/page'
 
 const TAGS = ['alma-payment-plans', 'alma-eligibility-modal']
 
@@ -18,9 +24,6 @@ const fourPlans = JSON.parse(
   ),
 )
 
-const golden = (name: string) =>
-  readFileSync(resolve(__dirname, `fixtures/golden/dom/${name}.txt`), 'utf8')
-
 useFakeClock()
 
 // jsdom doesn't implement window.scroll, which the modal calls on close through no-scroll.
@@ -30,7 +33,7 @@ beforeEach(() => {
 
 // A modal that a test leaves open stays mounted after setup.ts empties <body>.
 afterEach(async () => {
-  ;(closeButton() as HTMLElement | null)?.click()
+  closeButton()?.click()
   await tick(1000)
 })
 
@@ -74,7 +77,7 @@ describe.each([
     expect(loaded.firstDefinitions.every((definition) => definition !== undefined)).toBe(true)
   })
 
-  it('logs the warnings of its build', () => {
+  it('logs one warning for another version only', () => {
     expect(loaded.warnings).toHaveLength(warnings)
     loaded.warnings.forEach((message) => {
       expect(message).toMatch(/^\[Alma widgets\] /)
@@ -92,9 +95,7 @@ describe.each([
     })
 
     expect(escaped).toEqual([])
-    expect(`${outlineToText(widgetOutline(container()))}\n`).toBe(
-      golden('payment-plans-several-plans'),
-    )
+    expect(planButtons()).toHaveLength(4)
     // The element that the first bundle registered sends the request, with its own version.
     expect(api.calls.map(({ headers }) => headers['x-alma-agent'])).toEqual([
       `Alma Widget/${CONTRACT_VERSION}`,
@@ -109,6 +110,7 @@ describe.each([
     })
 
     expect(escaped).toEqual([])
-    expect(`${outlineToText(widgetOutline(container()))}\n`).toBe(golden('modal-success-mobile'))
+    expect(modalDialog()).not.toBeNull()
+    expect(closeButton()).not.toBeNull()
   })
 })

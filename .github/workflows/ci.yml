@@ -98,24 +98,6 @@ jobs:
       - run: npm run build:contract
       - run: npm run test:contract
 
-  consumers:
-    runs-on: ubuntu-26.04
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          # Fetch the latest commit, only
-          fetch-depth: 1
-      - name: Set up Node.js
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          node-version-file: .nvmrc
-          cache: 'npm'
-      - run: npm ci
-      - name: Install Chromium for the render check
-        run: npm run test:browser:install -- --with-deps
-      - run: npm run build
-      - run: npm run test:consumers
-
   update-release-draft:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-26.04

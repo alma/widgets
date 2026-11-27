@@ -32,7 +32,7 @@ describe('getIndexOfActivePlan', () => {
     expect(getIndexOfActivePlan({ suggestedPaymentPlan: 3, eligibilityPlans: [] })).toBe(0)
   })
 
-  // Known quirk: a numeric string matches no plan, as the contract tests pin.
+  // Known 4.x quirk: a numeric string matches no plan.
   it('should return 0 for a numeric string', () => {
     expect(
       getIndexOfActivePlan({ suggestedPaymentPlan: '4' as unknown as number, eligibilityPlans }),

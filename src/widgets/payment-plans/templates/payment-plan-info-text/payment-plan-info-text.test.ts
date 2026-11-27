@@ -23,10 +23,7 @@ type MessageFixture = {
 }
 
 const { locales }: MessageFixture = JSON.parse(
-  readFileSync(
-    resolve(__dirname, '../../../../../tests/integration/contract/fixtures/messages.output.json'),
-    'utf8',
-  ),
+  readFileSync(resolve(__dirname, '../../../../test/fixtures/messages.output.json'), 'utf8'),
 )
 
 // fr_FR holds only a RangeError.
