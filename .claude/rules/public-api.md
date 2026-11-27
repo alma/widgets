@@ -22,4 +22,4 @@ Generic advice that doesn't apply here: configuring an element through its HTML 
 
 ## Files
 
-- **ARCH-20** The five published files keep their names: `widgets.js`, `widgets.umd.js`, `widgets-wc.umd.js`, `widgets.css` and `widgets.min.css`. The UMD file sets `window.Alma` as a classic script, keeps what `window.Alma` already holds, works under CommonJS and defines an AMD module. Why: merchants and plugins load these files by name, and Magento 2 loads the bundle through RequireJS. Check: contract tests.
+- **ARCH-20** The five published files keep their names: `widgets.js`, `widgets.umd.js`, `widgets-wc.umd.js`, `widgets.css` and `widgets.min.css`. The UMD file sets `window.Alma` as a classic script, keeps what `window.Alma` already holds, defines an AMD module, and fills `module.exports` when a loader runs it as a script. The package's `exports` map sets both UMD files to `null`, because Node and bundlers load a `.js` file of this package as an ES module, and the UMD file would then export nothing. Why: merchants and plugins load these files by name, and Magento 2 loads the bundle through RequireJS. Check: contract tests, and review for `package.json`.

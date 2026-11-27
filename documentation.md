@@ -178,6 +178,11 @@ The package's `dist` folder, also served by jsDelivr, holds these files:
 | `widgets.css`       | The widgets' styles.                                                                      |
 | `widgets.min.css`   | The same styles, minified.                                                                |
 | `widgets-wc.umd.js` | Identical to `widgets.umd.js`. It stays in the package so existing integrations keep working. |
+| `types/index.d.ts`  | The TypeScript declarations of `widgets.js`. TypeScript finds them on its own.            |
+
+With a bundler, import the package itself. `import * as Alma from '@alma/widgets'` loads `widgets.js` and its types. Import the styles as `@alma/widgets/dist/widgets.css` or `@alma/widgets/dist/widgets.min.css`.
+
+`widgets.umd.js` and `widgets-wc.umd.js` are for `<script>` tags only. The package doesn't export them, so a bundler that imports them by package path stops with an error.
 
 # To go further
 
@@ -211,12 +216,14 @@ To handle a variable `purchaseAmount`, you can follow these steps:
    Below is an example of how to implement a widget with a variable `purchaseAmount`:
 
    ```typescript
+   import * as Alma from '@alma/widgets'
+
    let currentPurchaseAmount = 450 * 100; // Initial purchase amount in cents
    // Initialize the Alma widgets Controller
    const widgets = Alma.Widgets.initialize('11gKoO333vEXacMNMUMUSc4c4g68g2Les4', Alma.ApiMode.TEST)
 
    function updateWidget() {
-     const quantity = parseInt(document.getElementById('quantity')?.value || '1', 10);
+     const quantity = parseInt((document.getElementById('quantity') as HTMLInputElement | null)?.value || '1', 10);
      currentPurchaseAmount = 450 * 100 * quantity;
 
      widgets.add(Alma.Widgets.PaymentPlans, {

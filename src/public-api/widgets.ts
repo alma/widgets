@@ -1,12 +1,15 @@
 import { warnOnce } from '@/lib/errors'
-import { createModalHandle, type ModalHandle, openOnClick } from '@/public-api/modal-handle'
+import { createModalHandle, openOnClick } from '@/public-api/modal-handle'
 import { WidgetTypes } from '@/public-api/public-api.const'
 import type {
+  AddReturnType,
   ApiConfig,
+  ModalHandle,
   ModalOptions,
   PaymentPlanWidgetOptions,
   WidgetNames,
   WidgetOptions,
+  WidgetsHandle,
 } from '@/public-api/public-api.types'
 import { Locale } from '@/shared/i18n/i18n.const'
 // Registers <alma-eligibility-modal>, which add() creates by its tag.
@@ -16,8 +19,6 @@ import { ELIGIBILITY_MODAL_TAG } from '@/widgets/eligibility-modal/eligibility-m
 // Registers <alma-payment-plans>, which add() creates by its tag.
 import '@/widgets/payment-plans/payment-plans.element'
 import { PAYMENT_PLANS_TAG } from '@/widgets/payment-plans/payment-plans.const'
-
-export type AddReturnType = ModalHandle | undefined
 
 type HostProperties = Record<string, unknown>
 
@@ -139,53 +140,55 @@ const findContainer = (options: WidgetOptions | undefined): Element | null => {
   }
 }
 
-export function WidgetsController(apiData: ApiConfig) {
-  return {
-    add(widget: WidgetNames, options: WidgetOptions): AddReturnType {
-      const container = findContainer(options)
-      // Before the name check, even an unknown name removes the widget.
-      if (container) {
-        removeHost(container)
-      }
-      if (widget === WidgetTypes.PaymentPlans) {
-        if (!container) {
-          return undefined
-        }
-
-        const properties = toPaymentPlansHostProperties(
-          apiData,
-          options as PaymentPlanWidgetOptions,
-        )
-        mountHost(container, PAYMENT_PLANS_TAG, properties)
+export function WidgetsController(apiData: ApiConfig): WidgetsHandle {
+  function add(
+    widget: typeof WidgetTypes.PaymentPlans,
+    options: PaymentPlanWidgetOptions,
+  ): undefined
+  function add(widget: typeof WidgetTypes.Modal, options: ModalOptions): ModalHandle
+  // Wider than the overloads: JavaScript callers can pass any name and any options.
+  function add(widget: WidgetNames, options: WidgetOptions): AddReturnType {
+    const container = findContainer(options)
+    // Before the name check, even an unknown name removes the widget.
+    if (container) {
+      removeHost(container)
+    }
+    if (widget === WidgetTypes.PaymentPlans) {
+      if (!container) {
         return undefined
       }
-      if (widget === WidgetTypes.Modal) {
-        if (!container) {
-          return { open() {}, close() {} }
-        }
-        const modalOptions = options as ModalOptions
-        // Read now, not at open().
-        const properties = toEligibilityModalHostProperties(apiData, modalOptions)
-        const handle = createModalHandle(modalOptions.onClose, {
-          render: (close) => {
-            const hostProperties = { ...properties, onClose: close }
-            const host = hosts.get(container)
-            // Updates the modal in place, with no new request once it has plans.
-            if (host && hasHost(container, ELIGIBILITY_MODAL_TAG)) {
-              Object.assign(host, hostProperties)
-              return
-            }
-            removeHost(container)
-            mountHost(container, ELIGIBILITY_MODAL_TAG, hostProperties, true)
-          },
-          remove: () => removeHost(container),
-        })
-        if (modalOptions.clickableSelector) {
-          openOnClick(modalOptions.clickableSelector, handle.open)
-        }
-        return handle
-      }
+
+      const properties = toPaymentPlansHostProperties(apiData, options as PaymentPlanWidgetOptions)
+      mountHost(container, PAYMENT_PLANS_TAG, properties)
       return undefined
-    },
+    }
+    if (widget === WidgetTypes.Modal) {
+      if (!container) {
+        return { open() {}, close() {} }
+      }
+      const modalOptions = options as ModalOptions
+      // Read now, not at open().
+      const properties = toEligibilityModalHostProperties(apiData, modalOptions)
+      const handle = createModalHandle(modalOptions.onClose, {
+        render: (close) => {
+          const hostProperties = { ...properties, onClose: close }
+          const host = hosts.get(container)
+          // Updates the modal in place, with no new request once it has plans.
+          if (host && hasHost(container, ELIGIBILITY_MODAL_TAG)) {
+            Object.assign(host, hostProperties)
+            return
+          }
+          removeHost(container)
+          mountHost(container, ELIGIBILITY_MODAL_TAG, hostProperties, true)
+        },
+        remove: () => removeHost(container),
+      })
+      if (modalOptions.clickableSelector) {
+        openOnClick(modalOptions.clickableSelector, handle.open)
+      }
+      return handle
+    }
+    return undefined
   }
+  return { add }
 }

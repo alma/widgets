@@ -1,10 +1,5 @@
 import { warnOnce } from '@/lib/errors'
-import type { ModalOptions } from '@/public-api/public-api.types'
-
-export type ModalHandle = {
-  open: () => void
-  close: (event: MouseEvent | KeyboardEvent) => void
-}
+import type { ModalHandle, ModalOptions } from '@/public-api/public-api.types'
 
 // Passed in by widgets.ts, which owns the hosts, to avoid an import cycle.
 type ModalHostActions = {
@@ -20,7 +15,8 @@ export const createModalHandle = (
   // even when no modal is open. remove() closes the portal first.
   const close: ModalHandle['close'] = (event) => {
     remove()
-    onClose?.(event)
+    // Only a merchant's bare close() passes no event: the modal's own closes always send one.
+    onClose?.(event as MouseEvent | KeyboardEvent)
   }
 
   const open = (): void => render(close)

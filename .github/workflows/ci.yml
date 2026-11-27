@@ -55,7 +55,14 @@ jobs:
       - run: npm run build
       # Lit reads globalThis, which every browser from the documented floor has.
       - run: npm run check:es2019
-      # Never fails the job.
+      # attw and publint pass even when index.d.ts imports another file.
+      # The package has no dependencies, so any import leaves consumers with an unresolved type.
+      - name: Check that dist/types/index.d.ts is self-contained
+        run: |
+          if grep -nE "^\s*import\b|\bimport\(|\bfrom\s*['\"]|<reference" dist/types/index.d.ts; then
+            echo "dist/types/index.d.ts must not import or reference another file."
+            exit 1
+          fi
       - run: npm run lint:package
 
   storybook:
