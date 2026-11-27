@@ -80,6 +80,10 @@ Read the file, not a description of it.
   when the code catches the error, and never reaches the network.
 - A custom element definition can't be removed, so a tag stays defined until its test file ends.
   Each test file gets a fresh page.
+- Testing Library's `screen` and `document.activeElement` stop at shadow roots. Query an element in
+  its shadow root with the helpers of `src/test/utils/shadow-screen.ts`. A template story renders
+  in a shadow root with its element's styles when it sets `parameters.shadowStyles` to the
+  element's `static styles`.
 
 ## Workflow
 

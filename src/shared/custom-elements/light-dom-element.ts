@@ -3,7 +3,7 @@ import { LitElement } from 'lit'
 import { warnOnce } from '@/lib/errors'
 
 // Light DOM, so merchant CSS keeps styling the widget.
-// eslint-disable-next-line no-restricted-syntax -- the one subclass of LitElement
+// eslint-disable-next-line no-restricted-syntax -- a base class of shared/custom-elements
 export class LightDomElement extends LitElement {
   protected override createRenderRoot(): HTMLElement {
     return this

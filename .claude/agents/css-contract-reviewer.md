@@ -46,7 +46,7 @@ This subsection goes when the last element moves into its shadow root.
 
 An element that extends `LightDomElement` renders in light DOM, and so does the CSS of the
 templates it renders. Check that CSS against STYLE-05 to STYLE-07 and the checks below, and the CSS
-of the other elements against STYLE-01, STYLE-05 to STYLE-08, STYLE-10 and STYLE-11.
+of the other elements against STYLE-01, STYLE-05 to STYLE-08 and STYLE-10 to STYLE-13.
 
 - **CSS order (STYLE-03).** `src/main.css` stays the first CSS import of `src/index.ts`. An
   import that moves before it changes the order of `widgets.css`, and so the look of the elements

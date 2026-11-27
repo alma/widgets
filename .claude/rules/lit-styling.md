@@ -18,6 +18,11 @@ Generic advice that doesn't apply here: styling the host through `:host`, parts 
 - **STYLE-11** Sizes use `em`, `%` or `px`, never `rem`. Why: `rem` reads the font size of the page's `<html>` element through the shadow boundary, so a merchant's `html { font-size: 62.5% }` would shrink the widget. Check: review.
 - **STYLE-05** The host gets `display: contents` through the CSSOM, never by writing the `style` attribute. The base classes of `shared/custom-elements/` do it. Why: the host adds no box to the merchant's layout, and a strict `style-src` policy blocks the `style` attribute. Check: unit test.
 
+## How CSS and fonts load
+
+- **STYLE-12** An element in its shadow root takes its CSS from plain `.css` files, one per template, never from CSS modules. The element imports each file with `?inline` and lists it in `static styles` through `unsafeCSS`. Templates write the class names as kebab-case strings, such as `plan-button`. `unsafeCSS` only takes a `?inline` import of one of our own `.css` files, never a string built at runtime from an option, an API response or the page. Why: with `?inline`, Vite returns the CSS as a string and no class map, so templates write the class names as the CSS does. `unsafeCSS` doesn't check what it gets, and it is safe here only because the string is a file of this repository, inlined at build time. Safari before 16.4 has no `adoptedStyleSheets`. There, Lit adds a `<style>` element to the shadow root instead, and a page with a strict `style-src` policy must set `window.litNonce`. Check: review.
+- **STYLE-13** No `@font-face` in the CSS of a shadow root. The element calls `loadFonts()` from `shared/fonts/` in `connectedCallback`. It adds each face with `FontFace` and `document.fonts.add()`, and skips a family that the page already has. Why: browsers ignore `@font-face` inside a shadow root, and a face in `document.fonts` works in every shadow root of the page. Skipping a family already there avoids loading Venn twice on a page that also loads 4.x. Check: review.
+
 ## Selectors
 
 - **STYLE-06** Selector specificity stays at most `0,3,0`, apart from the `.sr-only` rules scoped by ID. Why: low, even weights let a state or a variant override a rule of ours without extra selectors or `!important`. Check: lint.
@@ -28,7 +33,7 @@ Generic advice that doesn't apply here: styling the host through `:host`, parts 
 
 This section goes when the last element moves into its shadow root.
 
-An element that extends `LightDomElement` renders in light DOM, and so does the CSS of the templates it renders. That CSS stays in its CSS modules and in `src/main.css`, which the build ships as `widgets.css` and which declares the custom properties on `:root`. STYLE-03 of `architecture.md` and the rules below describe it, and STYLE-01, STYLE-08, STYLE-10 and STYLE-11 don't apply to it yet. A change to it leaves it there: moving it is a change of its own.
+An element that extends `LightDomElement` renders in light DOM, and so does the CSS of the templates it renders. That CSS stays in its CSS modules and in `src/main.css`, which the build ships as `widgets.css` and which declares the custom properties on `:root`. STYLE-03 of `architecture.md` and the rules below describe it, and STYLE-01, STYLE-08 and STYLE-10 to STYLE-13 don't apply to it yet. A change to it leaves it there: moving it is a change of its own.
 
 - **STYLE-04** Templates import the CSS-module class maps and bind them with `classMap`. Why: the build renames each CSS-module class, so a class written as a string matches no rule of `widgets.css`. Unit tests keep the class names as they are (`classNameStrategy: 'non-scoped'`), so only the build shows that mistake. Check: review.
 
