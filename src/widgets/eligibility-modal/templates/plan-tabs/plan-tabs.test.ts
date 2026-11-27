@@ -26,10 +26,7 @@ type MessageFixture = {
 }
 
 const { locales }: MessageFixture = JSON.parse(
-  readFileSync(
-    resolve(__dirname, '../../../../../tests/integration/contract/fixtures/messages.output.json'),
-    'utf8',
-  ),
+  readFileSync(resolve(__dirname, '../../../../test/fixtures/messages.output.json'), 'utf8'),
 )
 
 // The fixture's text for a message, with each [placeholder] replaced by its value.

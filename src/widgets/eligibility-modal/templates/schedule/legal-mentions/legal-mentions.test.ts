@@ -17,7 +17,7 @@ import { legalMentionsTemplate } from '@/widgets/eligibility-modal/templates/sch
 const renderLegalMentions = (currentPlan: EligibilityPlanToDisplay, locale: Locale = Locale.fr) =>
   renderTemplate(legalMentionsTemplate({ currentPlan, intl: createIntl(locale) }))
 
-// The whole text, with U+202F and U+00A0 as plain spaces, as the golden text files keep it.
+// The whole text, with U+202F and U+00A0 as plain spaces, so the expected strings stay readable.
 const legalMentionsText = () =>
   (screen.getByTestId('legal-mentions').textContent ?? '').replace(/\s+/g, ' ').trim()
 

@@ -17,13 +17,7 @@ import { warningMessageTemplate } from '@/widgets/eligibility-modal/templates/sc
 type MessageFixture = { locales: Record<string, { messages: Record<string, string> }> }
 
 const { locales }: MessageFixture = JSON.parse(
-  readFileSync(
-    resolve(
-      __dirname,
-      '../../../../../../tests/integration/contract/fixtures/messages.output.json',
-    ),
-    'utf8',
-  ),
+  readFileSync(resolve(__dirname, '../../../../../test/fixtures/messages.output.json'), 'utf8'),
 )
 
 const renderWarning = (plan: EligibilityPlanToDisplay, locale: Locale = Locale.fr) =>

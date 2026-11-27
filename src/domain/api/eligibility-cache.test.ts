@@ -9,7 +9,8 @@ import {
 import type { EligibilityInput } from '@/domain/api/eligibility.types'
 import { mockButtonPlans } from '@/test/fixtures/plans'
 
-// The contract tests' build version, so the keys match theirs. A test may switch to another one.
+// The BUILD_VERSION of `npm run build:contract`, so the key below matches master's. A test may
+// switch it.
 const buildVersion = vi.hoisted(() => {
   const contractTest = 'contract-test'
   return { contractTest, current: contractTest }

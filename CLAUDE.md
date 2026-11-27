@@ -35,7 +35,7 @@ npm run test:browser:install                          # install Chromium, once p
 npm run typecheck                                     # tsc --noEmit
 npm run lint                                          # eslint on src/*.ts + stylelint
 npm run lint:fix                                      # eslint --fix + stylelint --fix
-npm run test:contract                                 # contract tests on dist/
+npm run test:contract                                 # smoke tests on the built bundle in dist/
 npm run fixtures:messages                             # write the message and date fixtures from @formatjs/intl
 npm run fixtures:messages -- --check                  # fail when the fixtures are out of date
 ```
@@ -101,4 +101,4 @@ Read the file, not a description of it.
 7. Add or update tests for any behaviour change, whether or not tests were requested.
 8. Comment the why, never the what. A comment that restates the code does not belong.
 9. Never name a script that isn't in `package.json`: it doesn't exist. Check `npm run` before naming one.
-10. A feature PR never edits `tests/integration/contract/`, the black-box tests on the built bundles.
+10. A feature PR never edits `tests/integration/contract/`, the smoke tests on the built bundle. A change to the DOM updates a unit test or a Chromatic baseline instead.

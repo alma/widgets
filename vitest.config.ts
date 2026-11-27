@@ -61,7 +61,7 @@ export default defineConfig({
         },
       },
       {
-        // Black-box tests on the built bundle in dist/.
+        // Black-box smoke tests on the built bundle in dist/.
         // They skip src/test/setup.ts, because they never load code from src/.
         extends: true,
         test: {

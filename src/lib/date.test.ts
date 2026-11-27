@@ -26,9 +26,9 @@ type DatesFixture = {
   zones: Record<string, Record<string, { isToday: boolean }>>
 }
 
-// The isToday result that the contract fixture expects for each zone and due date.
+// The isToday result that the dates fixture expects for each zone and due date.
 const datesFixture: DatesFixture = JSON.parse(
-  readFileSync(resolve(__dirname, '../../tests/integration/contract/fixtures/dates.json'), 'utf8'),
+  readFileSync(resolve(__dirname, '../test/fixtures/dates.json'), 'utf8'),
 )
 
 // None of the fixture zones changes its clocks.

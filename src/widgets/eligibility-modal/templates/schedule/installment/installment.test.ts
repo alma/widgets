@@ -13,13 +13,7 @@ type MessageFixture = {
 }
 
 const { locales }: MessageFixture = JSON.parse(
-  readFileSync(
-    resolve(
-      __dirname,
-      '../../../../../../tests/integration/contract/fixtures/messages.output.json',
-    ),
-    'utf8',
-  ),
+  readFileSync(resolve(__dirname, '../../../../../test/fixtures/messages.output.json'), 'utf8'),
 )
 
 // Whether Intl puts U+202F, U+00A0 or a space depends on the ICU version.
