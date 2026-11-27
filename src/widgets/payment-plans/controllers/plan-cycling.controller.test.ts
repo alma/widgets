@@ -352,7 +352,7 @@ describe('PlanCyclingController', () => {
     })
   })
 
-  // 4.x quirks, which only these tests pin.
+  // Known quirks, which only these tests pin.
   describe('Quirks', () => {
     it('should end after one cycle of steps in total, even after a hover', async () => {
       const host = appendHost([100, 200, 300], 1000)
